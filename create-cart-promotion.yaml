@@ -1,0 +1,217 @@
+openapi: 3.0.0
+info:
+  title: Create Promotion
+  version: 1.0.0
+servers:
+  - url: "{Host}"
+    variables:
+      Host:
+        default: https://eu.intouch.capillarytech.com
+        enum:
+          - https://eu.intouch.capillarytech.com
+          - https://intouch.capillary.co.in
+          - https://apac2.intouch.capillarytech.com
+          - https://sgcrm.cc.capillarytech.com
+          - http://intouch.capillarytech.cn.com
+          - https://north-america.intouch.capillarytech.com
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+security:
+  - basicAuth: []
+paths:
+  /api_gateway/v1/promotions:
+    post:
+      summary: Create Promotion
+      operationId: createPromotion
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "Combo Product promotion "
+                type:
+                  type: string
+                  example: CUSTOMER
+                messageLabel:
+                  type: string
+                  example: Get 15% off combo products
+                active:
+                  type: boolean
+                  example: true
+                priority:
+                  type: integer
+                  example: 0
+                isStackable:
+                  type: boolean
+                  example: false
+                startDate:
+                  type: integer
+                  format: int64
+                  example: 1759363200000
+                endDate:
+                  type: integer
+                  format: int64
+                  example: 1790985600000
+                campaignId:
+                  type: string
+                  example: "286038"
+                condition:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      example: COMBO_PRODUCT
+                    comboProductCondition:
+                      type: object
+                      properties:
+                        productConditions:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              kpi:
+                                type: string
+                                example: QUANTITY
+                              operator:
+                                type: string
+                                example: GREATER_THAN_OR_EQUAL
+                              value:
+                                type: string
+                                example: "1.000000"
+                              criteriaList:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    entity:
+                                      type: string
+                                      example: SKU
+                                    operator:
+                                      type: string
+                                      example: IN
+                                    values:
+                                      type: array
+                                      items:
+                                        type: string
+                                        example: SKU001
+                action:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      example: PRODUCT_BASED
+                    productBasedAction:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          example: PERCENTAGE
+                        value:
+                          type: string
+                          example: "15.000000"
+                        productBasedCondition:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              example: COMBO_PRODUCT
+                            comboProductCondition:
+                              type: object
+                              properties:
+                                productConditions:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      kpi:
+                                        type: string
+                                        example: QUANTITY
+                                      operator:
+                                        type: string
+                                        example: GREATER_THAN_OR_EQUAL
+                                      value:
+                                        type: string
+                                        example: "1.000000"
+                                      criteriaList:
+                                        type: array
+                                        items:
+                                          type: object
+                                          properties:
+                                            entity:
+                                              type: string
+                                              example: SKU
+                                            operator:
+                                              type: string
+                                              example: IN
+                                            values:
+                                              type: array
+                                              items:
+                                                type: string
+                                                example: SKU001
+                customerActivationRequired:
+                  type: boolean
+                  example: true
+                maxIssuancePerCustomer:
+                  type: integer
+                  example: 1
+                promotionRestrictions:
+                  type: object
+                  properties:
+                    Promotion:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          kpi:
+                            type: string
+                            example: REDEMPTION
+                          limit:
+                            type: string
+                            example: "5000.000000"
+                    Customer:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          kpi:
+                            type: string
+                            example: TRANSACTION
+                          frequency:
+                            type: string
+                            example: WEEKS
+                          minTimeBetweenRepeat:
+                            type: integer
+                            example: 604800000
+                          limit:
+                            type: string
+                            example: "2.000000"
+                    Cart:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          kpi:
+                            type: string
+                            example: DISCOUNT
+                          limit:
+                            type: string
+                            example: "50.000000"
+                customFieldValues:
+                  type: object
+                  properties:
+                    Age:
+                      type: integer
+                      example: 25
+      responses:
+        "200":
+          description: Promotion created successfully
+          content:
+            application/json:
+              schema:
+                type: object

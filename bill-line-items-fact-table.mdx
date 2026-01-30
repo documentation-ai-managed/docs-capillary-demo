@@ -11,26 +11,16 @@ This fact table combines data from multiple sources including bills, line items,
 
 ## Key Metrics
 
-<Columns cols="3">
-<Card title="Transaction Metrics" icon="receipt" horizontal={false}>
-Track bill amounts, discounts, and item quantities across all transactions
-</Card>
-
-<Card title="Loyalty Metrics" icon="award" horizontal={false}>
-Monitor allocated and redeemed loyalty points for customer engagement analysis
-</Card>
-
-<Card title="Tax Metrics" icon="calculator" horizontal={false}>
-Analyze various tax components including GST, VAT, and service taxes
-</Card>
-</Columns>
+- **Transaction Metrics**: Track bill amounts, discounts, and item quantities across all transactions
+- **Loyalty Metrics**: Monitor allocated and redeemed loyalty points for customer engagement analysis
+- **Tax Metrics**: Analyze various tax components including GST, VAT, and service taxes
 
 ## Field Reference
 
 ### Financial Measures
 
-<ExpandableGroup>
-<Expandable title="Bill-level Financial Fields" default-open="false">
+#### Bill-level Financial Fields
+
 | Field Name | Data Type | Description | Measure Name |
 |------------|-----------|-------------|--------------|
 | bill_amount | double | Net amount of the transaction after adjusting any discounts, taxes, etc. Final amount customer pays | Bill Amount |
@@ -38,12 +28,10 @@ Analyze various tax components including GST, VAT, and service taxes
 | initial_bill_value | double | Original bill amount before any discounts or taxes are applied | Initial Bill Value |
 | tax_amount | double | Total amount of tax levied on the bill | Tax Amount |
 
-<Callout kind="info">
 The `bill_amount` represents the final amount after all adjustments, while `initial_bill_value` shows the original transaction value before any modifications.
-</Callout>
-</Expandable>
 
-<Expandable title="Line Item Financial Fields" default-open="false">
+#### Line Item Financial Fields
+
 | Field Name | Data Type | Description | Measure Name |
 |------------|-----------|-------------|--------------|
 | line_item_amount | double | Total amount for the line item after discounts and taxes have been applied | Line Item Amount |
@@ -54,34 +42,30 @@ The `bill_amount` represents the final amount after all adjustments, while `init
 | total_unit_cost | double | Total price of the item including tax and other charges | Total Unit Cost |
 | item_unit_margin | double | Profit margin associated with the item | Item Unit Margin |
 
-<Callout kind="tip">
 Use `initial_line_item_value` and `line_item_amount` together to calculate the effective discount percentage on each item.
-</Callout>
-</Expandable>
 
-<Expandable title="Discount Fields" default-open="false">
+#### Discount Fields
+
 | Field Name | Data Type | Description | Measure Name |
 |------------|-----------|-------------|--------------|
 | additional_discount | double | Extra discount availed on a transaction (e.g., combo or bulk items discount) | Additional Discount |
 | item_coupon_discount | double | Discount applied to the line item using coupons | Item Coupon Discount |
 | item_point_discount | double | Discount applied to the line item using loyalty points | Item Points discount |
 | item_discount_description | string | Description of why the discount has been applied to the item | Item Discount Description |
-</Expandable>
-</ExpandableGroup>
 
 ### Tax Fields
 
-<Tabs>
-<Tab title="Bill-level Taxes" icon="file-text">
+#### Bill-level Taxes
+
 | Field Name | Data Type | Description | Measure Name |
 |------------|-----------|-------------|--------------|
 | central_gst | double | GST tax levied by the Central Government | Central Gst |
 | state_gst | double | Taxes levied by the State Government on the bill | State Gst |
 | integrated_gst | double | GST levied by the Central Government for inter-state trade | Integrated Gst |
 | tax_amount | double | Total amount of tax levied on the bill | Tax Amount |
-</Tab>
 
-<Tab title="Line Item Taxes" icon="list">
+#### Line Item Taxes
+
 | Field Name | Data Type | Description | Measure Name |
 |------------|-----------|-------------|--------------|
 | lineitem_central_gst | double | GST levied by the Central Government on the line item | Lineitem Central Gst |
@@ -91,12 +75,8 @@ Use `initial_line_item_value` and `line_item_amount` together to calculate the e
 | lineitem_service_tax_percentage | double | Percentage of service tax levied to the line item | Lineitem Service Tax Percentage |
 | lineitem_vat_amount | double | Amount of VAT levied by the Central Government on the line item | Lineitem Vat Amount |
 | lineitem_vat_tax_percentage | double | Percentage of VAT levied by the Central Government on the line item | Lineitem Vat Tax Percentage |
-</Tab>
-</Tabs>
 
-<Callout kind="info">
 GST (Goods and Services Tax) is divided into three types: Central GST for intra-state transactions, State GST for intra-state transactions, and Integrated GST for inter-state trade.
-</Callout>
 
 ### Loyalty and Points
 
@@ -105,14 +85,10 @@ GST (Goods and Services Tax) is divided into three types: Central GST for intra-
 | allocated_points | double | Number of loyalty points allocated to a customer for a specific transaction. Can be at bill, line item, or customer level | Allocated Points |
 | redeemed_points | double | Points redeemed on the bill level | Redeemed Points |
 
-<Callout kind="success">
 Loyalty points drive customer engagement. Track both `allocated_points` and `redeemed_points` to understand the effectiveness of your loyalty program.
-</Callout>
 
 ### Identifiers
 
-<Columns cols="2">
-<div>
 #### Bill Identifiers
 
 | Field Name | Data Type | Description |
@@ -121,12 +97,8 @@ Loyalty points drive customer engagement. Track both `allocated_points` and `red
 | bill_number | string | Unique identifier for the transaction (auto-generated or manual) |
 | converted_bill_id | bigint | The new bill id after conversion from non-loyal to loyal customer |
 
-<Callout kind="info">
 `bill_id` is the primary key and is system-generated, while `bill_number` is the transaction identifier used at the POS.
-</Callout>
-</div>
 
-<div>
 #### Line Item Identifiers
 
 | Field Name | Data Type | Description |
@@ -136,15 +108,13 @@ Loyalty points drive customer engagement. Track both `allocated_points` and `red
 | parent_line_item_id | bigint | Identifier of the parent line item (for combo or add-on items) |
 | lineitem_serial_number | string | Unique serial number of the line-item |
 | lineitem_uuid | string | Universally unique identifier (UUID) assigned to the line item |
-</div>
-</Columns>
 
 ### Dimension References
 
 The Bill Line Items fact table connects to multiple dimension tables for comprehensive analysis:
 
-<Steps>
-<Step title="Date and Time Dimensions" icon="calendar" title-type="h4">
+#### Date and Time Dimensions
+
 | Field Name | Dimension | Description |
 |------------|-----------|-------------|
 | dim_event_date_id | Date | Date when the transaction occurred |
@@ -155,9 +125,9 @@ The Bill Line Items fact table connects to multiple dimension tables for compreh
 | dim_conversion_request_time_id | Conversion Request Time | Time when conversion request was raised |
 | dim_latest_updated_date_id | Latest Updated Date | Date when data was last changed in source table |
 | dim_latest_updated_time_id | Latest Updated Time | Time when data was last changed in source table |
-</Step>
 
-<Step title="Customer and User Dimensions" icon="users" title-type="h4">
+#### Customer and User Dimensions
+
 | Field Name | Dimension | Description |
 |------------|-----------|-------------|
 | dim_event_user_id | User | User associated with the event (Capillary user ID) |
@@ -166,9 +136,9 @@ The Bill Line Items fact table connects to multiple dimension tables for compreh
 | dim_membership_card_present_id | Membership Card Present | Indicates if membership card is present |
 | dim_repeat_status_id | Repeat Status | Shows if customer has made previous purchases or first transaction |
 | dim_buyer_type_id | Buyer Type | Type of buyer: retail or wholesale |
-</Step>
 
-<Step title="Store and Transaction Dimensions" icon="store" title-type="h4">
+#### Store and Transaction Dimensions
+
 | Field Name | Dimension | Description |
 |------------|-----------|-------------|
 | dim_event_zone_till_id | Store Hierarchy | POS terminal within a store |
@@ -177,18 +147,18 @@ The Bill Line Items fact table connects to multiple dimension tables for compreh
 | dim_lineitem_cashier_id | Lineitem Cashier | Identifier of cashier who processed line item |
 | dim_source_type_id | Source Type | Source of the bill: instore, e-comm, newsletter, campaigns, etc. |
 | dim_order_channel_id | Order Channel | Channel through which transaction was completed |
-</Step>
 
-<Step title="Item and Product Dimensions" icon="package" title-type="h4">
+#### Item and Product Dimensions
+
 | Field Name | Dimension | Description |
 |------------|-----------|-------------|
 | dim_item_id | Item | Unique identifier for the item |
 | dim_parent_item_id | Parent Item | Identifier of the parent item (for combos, splits, add-ons) |
 | dim_line_item_type_id | Line Item Type | Type: add on item, combo item, combo parent, split |
 | dim_special_lineitem_type_id | Special Lineitem Type | Special types: free item, processing fee |
-</Step>
 
-<Step title="Discount and Promotion Dimensions" icon="percent" title-type="h4">
+#### Discount and Promotion Dimensions
+
 | Field Name | Dimension | Description |
 |------------|-----------|-------------|
 | dim_discount_reason_id | Lineitem Cashier Discount Reason | Reason for discount applied to the bill |
@@ -196,9 +166,9 @@ The Bill Line Items fact table connects to multiple dimension tables for compreh
 | dim_lineitem_cashier_discount_reason_id | Lineitem Cashier Discount Reason | Reason for line item discount |
 | dim_lineitem_external_coupon_code_id | Lineitem External Coupon Code | External coupon code applied to line items |
 | dim_promotion_code_id | Item Promotion Code | Line item promotion code information |
-</Step>
 
-<Step title="Status and Classification Dimensions" icon="flag" title-type="h4">
+#### Status and Classification Dimensions
+
 | Field Name | Dimension | Description |
 |------------|-----------|-------------|
 | dim_bill_outlier_status_id | Bill Outlier Status | Whether bill contains outlier items: failed, deleted, fraud, invalid |
@@ -207,8 +177,6 @@ The Bill Line Items fact table connects to multiple dimension tables for compreh
 | dim_tax_code_id | Item Tax Code | Tax category code assigned to item |
 | dim_card_used_id | Card Used | Card used in the transaction |
 | dim_nps_id | NPS | Net Promoter Score (1-10) for the transaction |
-</Step>
-</Steps>
 
 ### Customer Behavior Metrics
 
@@ -218,14 +186,12 @@ The Bill Line Items fact table connects to multiple dimension tables for compreh
 | visit_day_count | bigint | Total number of visits based on dates (multiple visits on same day count as one) | Visit Day Count |
 | days_since_last_visit | bigint | Number of days since the customer's last transaction | Days Since Last Visit |
 
-<Callout kind="tip">
 Use `visit_day_count` instead of `visit_count` to get a more accurate picture of customer engagement, as it accounts for multiple transactions on the same day.
-</Callout>
 
 ### Additional Transaction Details
 
-<Tabs>
-<Tab title="Item Details" icon="box">
+#### Item Details
+
 | Field Name | Data Type | Description |
 |------------|-----------|-------------|
 | description | string | Description of the line items |
@@ -234,9 +200,9 @@ Use `visit_day_count` instead of `visit_count` to get a more accurate picture of
 | total_quantity | integer | Total number of line items in the bill |
 | notes | string | Additional information added while creating the line item |
 | reason | string | Captures the reason for the transaction |
-</Tab>
 
-<Tab title="Timestamps" icon="clock">
+#### Timestamps
+
 | Field Name | Data Type | Description |
 |------------|-----------|-------------|
 | auto_update_time_bill | bigint | Date and time when bill table record was last updated (Unix timestamp) |
@@ -246,80 +212,39 @@ Use `visit_day_count` instead of `visit_count` to get a more accurate picture of
 | auto_update_time_bill_extended_fields | bigint | Date and time when bill extended fields table was last updated (Unix timestamp) |
 | auto_update_time_lineitem_extended_fields | bigint | Date and time when line item extended fields table was last updated (Unix timestamp) |
 
-<Callout kind="info">
 All timestamp fields use Unix timestamp format for consistency and easy comparison across different time zones.
-</Callout>
-</Tab>
 
-<Tab title="Other Fields" icon="more-horizontal">
+#### Other Fields
+
 | Field Name | Data Type | Description |
 |------------|-----------|-------------|
 | year | integer | Year when the transaction was done |
-</Tab>
-</Tabs>
 
 ## Common Use Cases
 
-<Columns cols="2">
-<Card title="Sales Analysis" icon="trending-up" horizontal={false}>
-Analyze transaction patterns, bill amounts, and item-level sales performance across different time periods and customer segments.
-</Card>
-
-<Card title="Discount Analysis" icon="percent" horizontal={false}>
-Track discount effectiveness by analyzing various discount types, reasons, and their impact on transaction values.
-</Card>
-
-<Card title="Loyalty Program Analysis" icon="award" horizontal={false}>
-Monitor loyalty point allocation and redemption patterns to measure program effectiveness and customer engagement.
-</Card>
-
-<Card title="Tax Compliance" icon="file-text" horizontal={false}>
-Generate tax reports by analyzing GST, VAT, and other tax components at bill and line item levels.
-</Card>
-
-<Card title="Customer Behavior" icon="users" horizontal={false}>
-Understand customer purchasing patterns using visit counts, repeat status, and days since last visit metrics.
-</Card>
-
-<Card title="Inventory Analysis" icon="package" horizontal={false}>
-Track item-level sales, quantities, and product performance using line item data and item dimensions.
-</Card>
-</Columns>
+- **Sales Analysis**: Analyze transaction patterns, bill amounts, and item-level sales performance across different time periods and customer segments.
+- **Discount Analysis**: Track discount effectiveness by analyzing various discount types, reasons, and their impact on transaction values.
+- **Loyalty Program Analysis**: Monitor loyalty point allocation and redemption patterns to measure program effectiveness and customer engagement.
+- **Tax Compliance**: Generate tax reports by analyzing GST, VAT, and other tax components at bill and line item levels.
+- **Customer Behavior**: Understand customer purchasing patterns using visit counts, repeat status, and days since last visit metrics.
+- **Inventory Analysis**: Track item-level sales, quantities, and product performance using line item data and item dimensions.
 
 ## Data Quality Notes
 
-<Callout kind="alert">
 **Primary Keys**: This table has `bill_id` as the primary key at the bill level and `line_item_id` as the primary key for individual line items. Ensure these fields are unique for data integrity.
-</Callout>
 
-<Callout kind="info">
 **Extended Fields**: Some fields like `additional_discount` are extended fields that take user input values. Ensure proper validation when populating these fields.
-</Callout>
 
-<Callout kind="tip">
 **Combo Items**: When analyzing combo items, use `parent_line_item_id` to link child items to their parent combo items for accurate reporting.
-</Callout>
 
 ## Best Practices
 
-<Steps>
-<Step title="Join with Dimension Tables" icon="link" title-type="h4">
-Always join this fact table with relevant dimension tables using the `dim_*` fields to get descriptive information about customers, items, stores, and other attributes.
-</Step>
+1. **Join with Dimension Tables**: Always join this fact table with relevant dimension tables using the `dim_*` fields to get descriptive information about customers, items, stores, and other attributes.
 
-<Step title="Filter by Date Range" icon="calendar" title-type="h4">
-Use `dim_event_date_id` to filter transactions within specific date ranges for time-based analysis.
-</Step>
+2. **Filter by Date Range**: Use `dim_event_date_id` to filter transactions within specific date ranges for time-based analysis.
 
-<Step title="Handle Null Values" icon="alert-circle" title-type="h4">
-Some fields may contain null values, especially in extended fields. Always account for nulls in your queries and calculations.
-</Step>
+3. **Handle Null Values**: Some fields may contain null values, especially in extended fields. Always account for nulls in your queries and calculations.
 
-<Step title="Aggregate Appropriately" icon="sigma" title-type="h4">
-When aggregating measures, ensure you're using the correct aggregation function (SUM for amounts, COUNT for quantities, AVG for percentages).
-</Step>
+4. **Aggregate Appropriately**: When aggregating measures, ensure you're using the correct aggregation function (SUM for amounts, COUNT for quantities, AVG for percentages).
 
-<Step title="Consider Transaction Context" icon="context" title-type="h4">
-Use `dim_source_type_id` and `dim_order_channel_id` to differentiate between in-store and online transactions for accurate channel analysis.
-</Step>
-</Steps>
+5. **Consider Transaction Context**: Use `dim_source_type_id` and `dim_order_channel_id` to differentiate between in-store and online transactions for accurate channel analysis.
