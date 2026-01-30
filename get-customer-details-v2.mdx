@@ -1,0 +1,736 @@
+---
+title: "Get Customer Details"
+description: "Retrieve comprehensive customer information from a specific source including profile data, loyalty details, and transaction history"
+---
+
+The Get Customer Details API retrieves detailed information about a customer from a specific source. You can use the `embed` parameter to fetch specific details as required, allowing for flexible and efficient data retrieval.
+
+## API Endpoint
+
+```
+GET https://{host}/v2/customers/{customerId}
+```
+
+## Authentication
+
+This API uses Basic Authentication. You must provide a valid username and password encoded in Base64 format.
+
+<Callout kind="info">
+Include the Authorization header in your request: `Authorization: Basic {base64_encoded_credentials}`
+</Callout>
+
+## Request
+
+<Request tabs="cURL,JavaScript,Python">
+```bash
+curl -X GET 'https://{host}/v2/customers/{customerId}?embed=points,subscriptions,referrals' \
+  -H 'Authorization: Basic BASE64_ENCODED_CREDENTIALS' \
+  -H 'Content-Type: application/json'
+```
+
+```javascript
+const customerId = '12345';
+const embedParams = 'points,subscriptions,referrals';
+
+const response = await fetch(
+  `https://{host}/v2/customers/${customerId}?embed=${embedParams}`,
+  {
+    method: 'GET',
+    headers: {
+      'Authorization': 'Basic ' + btoa('username:password'),
+      'Content-Type': 'application/json'
+    }
+  }
+);
+
+const customerData = await response.json();
+console.log(customerData);
+```
+
+```python
+import requests
+import base64
+
+customer_id = '12345'
+embed_params = 'points,subscriptions,referrals'
+
+# Encode credentials
+credentials = base64.b64encode(b'username:password').decode('utf-8')
+
+headers = {
+    'Authorization': f'Basic {credentials}',
+    'Content-Type': 'application/json'
+}
+
+response = requests.get(
+    f'https://{{host}}/v2/customers/{customer_id}',
+    params={'embed': embed_params},
+    headers=headers
+)
+
+customer_data = response.json()
+print(customer_data)
+```
+</Request>
+
+## Path Parameters
+
+<ParamField path="customerId" param-type="string" required="true">
+Unique identifier of the customer whose details you want to retrieve. This can be:
+
+- Internal customer ID assigned by Capillary
+- Mobile number (with country code)
+- Email address
+- External customer ID from your system
+
+**Example**: `98765432101`, `customer@example.com`, `EXT_CUST_001`
+</ParamField>
+
+## Query Parameters
+
+<ParamField query="embed" param-type="string" required="false">
+Comma-separated list of additional customer details to include in the response. Use this parameter to fetch specific data and optimize API performance.
+
+**Available embed options**:
+
+| Value | Description |
+|-------|-------------|
+| `points` | Loyalty points balance and history |
+| `subscriptions` | Customer communication subscriptions |
+| `referrals` | Referral program details and status |
+| `extended_fields` | Custom extended fields configured for your organization |
+| `segments` | Customer segment memberships |
+| `mlp` | Multi-level program details |
+| `lifetime_points` | Total lifetime points earned |
+| `lifetime_purchases` | Lifetime purchase statistics |
+| `communication_preferences` | Channel-wise communication preferences |
+
+**Example**: `embed=points,subscriptions,referrals`
+
+<Callout kind="tip">
+Only request the data you need using the `embed` parameter to improve response times and reduce bandwidth usage.
+</Callout>
+</ParamField>
+
+<ParamField query="source" param-type="string" required="false">
+Source from which customer data should be retrieved. Use this when the customer is registered across multiple sources.
+
+**Possible values**:
+- `INSTORE` - In-store registration
+- `WECHAT` - WeChat integration
+- `FACEBOOK` - Facebook integration
+- `WEB` - Website registration
+- `MOBILE_APP` - Mobile application
+
+**Example**: `source=INSTORE`
+</ParamField>
+
+<ParamField query="identifierType" param-type="string" required="false">
+Type of identifier provided in the `customerId` path parameter. Helps the API accurately locate the customer.
+
+**Possible values**:
+- `id` - Internal Capillary customer ID
+- `mobile` - Mobile number
+- `email` - Email address
+- `external_id` - External customer ID
+- `card_number` - Loyalty card number
+
+**Default**: `id`
+
+**Example**: `identifierType=mobile`
+</ParamField>
+
+## Response
+
+<Response tabs="200,400,401,404,500">
+```json
+{
+  "status": {
+    "success": true,
+    "code": 200,
+    "message": "Customer details retrieved successfully"
+  },
+  "customer": {
+    "id": 12345,
+    "external_id": "EXT_CUST_001",
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "john.doe@example.com",
+    "mobile": "+11234567890",
+    "gender": "MALE",
+    "date_of_birth": "1990-05-15",
+    "anniversary_date": "2015-06-20",
+    "registered_on": "2020-01-15T10:30:00Z",
+    "updated_on": "2024-01-15T14:22:00Z",
+    "source": "INSTORE",
+    "fraud_status": "NOT_FRAUD",
+    "type": "LOYALTY",
+    "tier": {
+      "name": "Gold",
+      "tier_number": 2,
+      "expiry_date": "2025-12-31T23:59:59Z"
+    },
+    "points": {
+      "current_balance": 5420,
+      "lifetime_earned": 12500,
+      "lifetime_redeemed": 7080,
+      "pending_points": 250,
+      "expired_points": 0
+    },
+    "subscriptions": {
+      "email": {
+        "subscribed": true,
+        "subscription_date": "2020-01-15T10:30:00Z",
+        "priority": "TRANS"
+      },
+      "sms": {
+        "subscribed": true,
+        "subscription_date": "2020-01-15T10:30:00Z",
+        "priority": "TRANS"
+      },
+      "push": {
+        "subscribed": false,
+        "unsubscription_date": "2023-05-10T08:15:00Z"
+      }
+    },
+    "lifetime_purchases": {
+      "total_transactions": 47,
+      "total_amount": 15680.50,
+      "average_order_value": 333.63,
+      "last_transaction_date": "2024-01-10T16:45:00Z",
+      "first_transaction_date": "2020-02-01T11:20:00Z"
+    },
+    "referrals": {
+      "referrer_code": "JOHN2024",
+      "total_referrals": 8,
+      "successful_referrals": 5,
+      "referral_points_earned": 500
+    },
+    "segments": [
+      {
+        "id": 101,
+        "name": "High Value Customers",
+        "added_on": "2023-06-01T00:00:00Z"
+      },
+      {
+        "id": 205,
+        "name": "Frequent Shoppers",
+        "added_on": "2023-03-15T00:00:00Z"
+      }
+    ],
+    "extended_fields": {
+      "preferred_store": "Store_123",
+      "shopping_preference": "Electronics",
+      "vip_member": true
+    }
+  }
+}
+```
+
+```json
+{
+  "status": {
+    "success": false,
+    "code": 400,
+    "message": "Invalid request parameters",
+    "errors": [
+      {
+        "field": "embed",
+        "message": "Invalid embed parameter: 'invalid_field'. Valid options are: points, subscriptions, referrals, extended_fields, segments, mlp, lifetime_points, lifetime_purchases, communication_preferences"
+      }
+    ]
+  }
+}
+```
+
+```json
+{
+  "status": {
+    "success": false,
+    "code": 401,
+    "message": "Authentication failed",
+    "errors": [
+      {
+        "message": "Invalid credentials provided. Please check your username and password."
+      }
+    ]
+  }
+}
+```
+
+```json
+{
+  "status": {
+    "success": false,
+    "code": 404,
+    "message": "Customer not found",
+    "errors": [
+      {
+        "message": "No customer found with ID: 12345 in source: INSTORE"
+      }
+    ]
+  }
+}
+```
+
+```json
+{
+  "status": {
+    "success": false,
+    "code": 500,
+    "message": "Internal server error",
+    "errors": [
+      {
+        "message": "An unexpected error occurred while retrieving customer details",
+        "request_id": "req_abc123xyz"
+      }
+    ]
+  }
+}
+```
+</Response>
+
+## Response Fields
+
+### Status Object
+
+<ResponseField name="status" field-type="object" required="true">
+Contains the status of the API request.
+
+<Expandable title="Status Properties" default-open="true">
+<ResponseField name="success" field-type="boolean" required="true">
+Indicates whether the request was successful.
+</ResponseField>
+
+<ResponseField name="code" field-type="integer" required="true">
+HTTP status code of the response.
+</ResponseField>
+
+<ResponseField name="message" field-type="string" required="true">
+Human-readable message describing the result.
+</ResponseField>
+
+<ResponseField name="errors" field-type="array" required="false">
+Array of error objects if the request failed. Each error contains details about what went wrong.
+</ResponseField>
+</Expandable>
+</ResponseField>
+
+### Customer Object
+
+<ResponseField name="customer" field-type="object" required="true">
+Complete customer information object.
+
+<Expandable title="Basic Customer Information" default-open="true">
+<ResponseField name="id" field-type="integer" required="true">
+Internal Capillary customer identifier.
+</ResponseField>
+
+<ResponseField name="external_id" field-type="string" required="false">
+External customer ID from your system.
+</ResponseField>
+
+<ResponseField name="first_name" field-type="string" required="true">
+Customer's first name.
+</ResponseField>
+
+<ResponseField name="last_name" field-type="string" required="false">
+Customer's last name.
+</ResponseField>
+
+<ResponseField name="email" field-type="string" required="false">
+Customer's email address.
+</ResponseField>
+
+<ResponseField name="mobile" field-type="string" required="false">
+Customer's mobile number with country code.
+</ResponseField>
+
+<ResponseField name="gender" field-type="string" required="false">
+Customer's gender. Possible values: `MALE`, `FEMALE`, `OTHER`, `NOT_SPECIFIED`.
+</ResponseField>
+
+<ResponseField name="date_of_birth" field-type="string" required="false">
+Customer's date of birth in YYYY-MM-DD format.
+</ResponseField>
+
+<ResponseField name="anniversary_date" field-type="string" required="false">
+Customer's anniversary date in YYYY-MM-DD format.
+</ResponseField>
+
+<ResponseField name="registered_on" field-type="string" required="true">
+ISO 8601 timestamp when the customer was registered.
+</ResponseField>
+
+<ResponseField name="updated_on" field-type="string" required="true">
+ISO 8601 timestamp when the customer record was last updated.
+</ResponseField>
+
+<ResponseField name="source" field-type="string" required="true">
+Source from which the customer was registered.
+</ResponseField>
+
+<ResponseField name="fraud_status" field-type="string" required="true">
+Fraud status of the customer. Possible values: `NOT_FRAUD`, `CONFIRMED_FRAUD`, `SUSPECTED_FRAUD`.
+</ResponseField>
+
+<ResponseField name="type" field-type="string" required="true">
+Customer type. Possible values: `LOYALTY`, `NON_LOYALTY`, `NOT_INTERESTED`.
+</ResponseField>
+</Expandable>
+
+<Expandable title="Tier Information (if enrolled in tiered program)" default-open="false">
+<ResponseField name="tier" field-type="object" required="false">
+Customer's current tier information in the loyalty program.
+
+<ResponseField name="name" field-type="string" required="true">
+Name of the tier (e.g., Silver, Gold, Platinum).
+</ResponseField>
+
+<ResponseField name="tier_number" field-type="integer" required="true">
+Numeric tier level (higher numbers indicate higher tiers).
+</ResponseField>
+
+<ResponseField name="expiry_date" field-type="string" required="false">
+ISO 8601 timestamp when the tier membership expires.
+</ResponseField>
+</ResponseField>
+</Expandable>
+
+<Expandable title="Points Information (when embed=points)" default-open="false">
+<ResponseField name="points" field-type="object" required="false">
+Loyalty points information. Included when `embed=points` is specified.
+
+<ResponseField name="current_balance" field-type="number" required="true">
+Current available points balance.
+</ResponseField>
+
+<ResponseField name="lifetime_earned" field-type="number" required="true">
+Total points earned since registration.
+</ResponseField>
+
+<ResponseField name="lifetime_redeemed" field-type="number" required="true">
+Total points redeemed since registration.
+</ResponseField>
+
+<ResponseField name="pending_points" field-type="number" required="false">
+Points that are earned but not yet available for redemption.
+</ResponseField>
+
+<ResponseField name="expired_points" field-type="number" required="false">
+Total points that have expired.
+</ResponseField>
+</ResponseField>
+</Expandable>
+
+<Expandable title="Subscription Information (when embed=subscriptions)" default-open="false">
+<ResponseField name="subscriptions" field-type="object" required="false">
+Communication channel subscription status. Included when `embed=subscriptions` is specified.
+
+Each channel (email, sms, push, whatsapp) can have:
+
+<ResponseField name="subscribed" field-type="boolean" required="true">
+Whether the customer is subscribed to this channel.
+</ResponseField>
+
+<ResponseField name="subscription_date" field-type="string" required="false">
+ISO 8601 timestamp when the customer subscribed.
+</ResponseField>
+
+<ResponseField name="unsubscription_date" field-type="string" required="false">
+ISO 8601 timestamp when the customer unsubscribed.
+</ResponseField>
+
+<ResponseField name="priority" field-type="string" required="false">
+Communication priority level. Possible values: `TRANS` (transactional), `BULK` (promotional).
+</ResponseField>
+</ResponseField>
+</Expandable>
+
+<Expandable title="Lifetime Purchase Statistics (when embed=lifetime_purchases)" default-open="false">
+<ResponseField name="lifetime_purchases" field-type="object" required="false">
+Aggregated purchase statistics. Included when `embed=lifetime_purchases` is specified.
+
+<ResponseField name="total_transactions" field-type="integer" required="true">
+Total number of transactions made by the customer.
+</ResponseField>
+
+<ResponseField name="total_amount" field-type="number" required="true">
+Total amount spent by the customer across all transactions.
+</ResponseField>
+
+<ResponseField name="average_order_value" field-type="number" required="true">
+Average value per transaction.
+</ResponseField>
+
+<ResponseField name="last_transaction_date" field-type="string" required="false">
+ISO 8601 timestamp of the most recent transaction.
+</ResponseField>
+
+<ResponseField name="first_transaction_date" field-type="string" required="false">
+ISO 8601 timestamp of the first transaction.
+</ResponseField>
+</ResponseField>
+</Expandable>
+
+<Expandable title="Referral Information (when embed=referrals)" default-open="false">
+<ResponseField name="referrals" field-type="object" required="false">
+Customer's referral program details. Included when `embed=referrals` is specified.
+
+<ResponseField name="referrer_code" field-type="string" required="true">
+Unique referral code assigned to the customer.
+</ResponseField>
+
+<ResponseField name="total_referrals" field-type="integer" required="true">
+Total number of referrals made by the customer.
+</ResponseField>
+
+<ResponseField name="successful_referrals" field-type="integer" required="true">
+Number of referrals that resulted in successful registrations or transactions.
+</ResponseField>
+
+<ResponseField name="referral_points_earned" field-type="number" required="false">
+Total points earned through referrals.
+</ResponseField>
+</ResponseField>
+</Expandable>
+
+<Expandable title="Segments (when embed=segments)" default-open="false">
+<ResponseField name="segments" field-type="array" required="false">
+Array of customer segments. Included when `embed=segments` is specified.
+
+Each segment object contains:
+
+<ResponseField name="id" field-type="integer" required="true">
+Unique identifier for the segment.
+</ResponseField>
+
+<ResponseField name="name" field-type="string" required="true">
+Name of the customer segment.
+</ResponseField>
+
+<ResponseField name="added_on" field-type="string" required="true">
+ISO 8601 timestamp when the customer was added to this segment.
+</ResponseField>
+</ResponseField>
+</Expandable>
+
+<Expandable title="Extended Fields (when embed=extended_fields)" default-open="false">
+<ResponseField name="extended_fields" field-type="object" required="false">
+Custom extended fields configured for your organization. Included when `embed=extended_fields` is specified.
+
+The structure depends on your organization's configuration. Common examples include:
+- `preferred_store`
+- `shopping_preference`
+- `vip_member`
+- Custom demographic or behavioral attributes
+</ResponseField>
+</Expandable>
+</ResponseField>
+
+## Use Cases
+
+<Tabs>
+<Tab title="Customer Profile Display" icon="user">
+Retrieve basic customer information for displaying in your application or website.
+
+```bash
+GET /v2/customers/john.doe@example.com?identifierType=email
+```
+
+**Use this for**:
+- User profile pages
+- Customer service dashboards
+- Account settings pages
+</Tab>
+
+<Tab title="Loyalty Dashboard" icon="award">
+Get comprehensive loyalty information including points, tier, and lifetime value.
+
+```bash
+GET /v2/customers/12345?embed=points,lifetime_purchases,segments
+```
+
+**Use this for**:
+- Loyalty program dashboards
+- Personalized marketing
+- Customer segmentation analysis
+</Tab>
+
+<Tab title="Marketing Preferences" icon="mail">
+Retrieve communication preferences for sending targeted campaigns.
+
+```bash
+GET /v2/customers/+11234567890?identifierType=mobile&embed=subscriptions,communication_preferences
+```
+
+**Use this for**:
+- Email campaign management
+- SMS marketing tools
+- Communication preference centers
+</Tab>
+
+<Tab title="Referral Program" icon="users">
+Access referral program details for tracking and rewarding customer referrals.
+
+```bash
+GET /v2/customers/12345?embed=referrals,points
+```
+
+**Use this for**:
+- Referral program dashboards
+- Referral tracking systems
+- Incentive calculation
+</Tab>
+</Tabs>
+
+## Best Practices
+
+<Steps>
+<Step title="Use specific identifiers" icon="fingerprint" title-type="h3">
+When possible, use internal customer IDs rather than email or mobile for faster lookups. If using email or mobile, always specify the `identifierType` parameter.
+
+<Callout kind="tip">
+Internal IDs provide the fastest query performance as they are the primary key in the database.
+</Callout>
+</Step>
+
+<Step title="Request only needed data" icon="zap" title-type="h3">
+Use the `embed` parameter judiciously. Only request additional data that you actually need for your use case.
+
+**Good practice**:
+
+```bash
+# Only get points if you need them
+GET /v2/customers/12345?embed=points
+```
+
+**Avoid**:
+
+```bash
+# Don't request everything if you only need basic info
+GET /v2/customers/12345?embed=points,subscriptions,referrals,segments,lifetime_purchases
+```
+</Step>
+
+<Step title="Handle errors gracefully" icon="shield" title-type="h3">
+Always check the `status.success` field and handle different error codes appropriately.
+
+<CodeGroup tabs="JavaScript,Python">
+```javascript
+const response = await fetch(url, options);
+const data = await response.json();
+
+if (!data.status.success) {
+  switch (data.status.code) {
+    case 404:
+      console.log('Customer not found');
+      break;
+    case 401:
+      console.log('Authentication failed');
+      break;
+    default:
+      console.log('An error occurred:', data.status.message);
+  }
+  return;
+}
+
+// Process customer data
+console.log(data.customer);
+```
+
+```python
+response = requests.get(url, headers=headers)
+data = response.json()
+
+if not data['status']['success']:
+    code = data['status']['code']
+    if code == 404:
+        print('Customer not found')
+    elif code == 401:
+        print('Authentication failed')
+    else:
+        print(f"An error occurred: {data['status']['message']}")
+    return
+
+# Process customer data
+print(data['customer'])
+```
+</CodeGroup>
+</Step>
+
+<Step title="Cache responses when appropriate" icon="database" title-type="h3">
+If customer data doesn't change frequently in your use case, implement caching to reduce API calls and improve performance.
+
+<Callout kind="success">
+Caching customer data can reduce API calls by up to 70% for read-heavy applications.
+</Callout>
+</Step>
+
+<Step title="Secure your credentials" icon="lock" title-type="h3">
+Never expose your API credentials in client-side code. Always make API calls from your backend server.
+
+<Callout kind="alert">
+Store credentials in environment variables or secure secret management systems, never in source code.
+</Callout>
+</Step>
+</Steps>
+
+## Rate Limiting
+
+<Callout kind="info">
+The Get Customer Details API has the following rate limits:
+
+- **200 requests per minute** per API key
+- **5000 requests per hour** per API key
+
+If you exceed these limits, you'll receive a `429 Too Many Requests` response. Implement exponential backoff when rate limits are hit.
+</Callout>
+
+## Common Integration Patterns
+
+<Columns cols="2">
+<Card title="Real-time Profile Sync" icon="refresh-cw" horizontal={false}>
+Call this API whenever a customer logs in to ensure you have the latest profile information and loyalty status.
+</Card>
+
+<Card title="Personalization Engine" icon="sparkles" horizontal={false}>
+Use customer segments and purchase history to personalize content, recommendations, and offers in real-time.
+</Card>
+
+<Card title="Customer Service Tools" icon="headphones" horizontal={false}>
+Integrate with support platforms to give agents instant access to customer information, order history, and loyalty status.
+</Card>
+
+<Card title="Analytics and Reporting" icon="bar-chart" horizontal={false}>
+Fetch customer data for business intelligence tools to analyze customer behavior, segment performance, and program effectiveness.
+</Card>
+</Columns>
+
+## FAQs
+
+<ExpandableGroup>
+<Expandable title="Can I retrieve multiple customers in a single API call?" default-open="false">
+No, this endpoint retrieves one customer at a time. For bulk customer data retrieval, use the bulk export APIs or contact support for batch processing options.
+</Expandable>
+
+<Expandable title="How often is customer data updated?" default-open="false">
+Customer data is updated in real-time as transactions occur. The `updated_on` timestamp indicates when the customer record was last modified.
+</Expandable>
+
+<Expandable title="What happens if I request an invalid embed parameter?" default-open="false">
+The API will return a 400 Bad Request error with details about which embed parameter is invalid and what the valid options are.
+</Expandable>
+
+<Expandable title="Can I use this API to search for customers?" default-open="false">
+This API requires a specific customer identifier. For searching customers by partial name, email domain, or other criteria, use the customer search API endpoint.
+</Expandable>
+
+<Expandable title="How do I handle customers registered across multiple sources?" default-open="false">
+Use the `source` query parameter to specify which source to retrieve data from. If not specified, the API returns data from the primary source associated with the customer identifier.
+</Expandable>
+
+<Expandable title="Are there any fields that are always returned regardless of embed parameter?" default-open="false">
+Yes, basic customer information (id, name, email, mobile, registration date, type, source) is always returned. Additional details require the appropriate `embed` parameter.
+</Expandable>
+</ExpandableGroup>
