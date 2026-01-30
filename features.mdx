@@ -1,0 +1,151 @@
+---
+title: Core Features of Capillary Demo
+description: Explore the essential capabilities of Capillary Demo that enable advanced loyalty management and customer retention strategies.
+---
+
+## Overview
+
+Capillary Demo provides powerful tools for loyalty program management. You can build engaging customer experiences with multi-tier programs, AI-driven insights, comprehensive analytics, and seamless omnichannel interactions. These features help you retain customers and drive repeat business.
+
+<Callout kind="info">
+Start by defining your loyalty tiers and engagement rules to maximize retention.
+</Callout>
+
+## Key Features
+
+Discover the core capabilities through these feature cards.
+
+<Columns cols={2}>
+  <Card title="Multi-Tier Loyalty Programs" icon="star" href="#multi-tier-programs">
+    Create flexible tiers like Bronze, Silver, and Gold to reward customer loyalty progressively.
+  </Card>
+  <Card title="AI-Powered Segmentation" icon="brain" href="#ai-segmentation">
+    Use machine learning to segment customers and deliver personalized offers automatically.
+  </Card>
+  <Card title="Analytics & Reporting" icon="bar-chart-3" href="#analytics">
+    Track program performance with real-time dashboards and detailed reports.
+  </Card>
+  <Card title="Omnichannel Engagement" icon="smartphone" href="#omnichannel">
+    Engage customers across email, SMS, push notifications, and in-app messages.
+  </Card>
+</Columns>
+
+## Building Multi-Tier Loyalty Programs
+
+Define tiers based on points earned from purchases. You configure rules for earning and redeeming points.
+
+### Setup Steps
+
+<Steps>
+  <Step title="Create Program" icon="plus">
+    Navigate to the Loyalty Programs dashboard and click "New Program".
+  </Step>
+  <Step title="Define Tiers" icon="settings">
+    Set tiers with point thresholds:
+
+````json
+{
+  "tiers": [
+    {"name": "Bronze", "minPoints": 0},
+    {"name": "Silver", "minPoints": 1000},
+    {"name": "Gold", "minPoints": 5000}
+  ]
+}
+````
+  </Step>
+  <Step title="Activate" icon="check-circle">
+    Publish the program to make it live for customers.
+  </Step>
+</Steps>
+
+## AI-Powered Customer Segmentation and Personalization
+
+Leverage AI to group customers by behavior and preferences.
+
+<Expandable title="Advanced Segmentation Rules" default-open="false">
+Use rules like RFM (Recency, Frequency, Monetary) analysis. The platform automatically suggests segments such as "High-Value VIPs" or "At-Risk Churners".
+</Expandable>
+
+## Analytics and Reporting
+
+Monitor key metrics like redemption rates and tier progression.
+
+<Tabs>
+  <Tab title="Dashboard View" icon="activity">
+    Access real-time KPIs:
+
+````javascript
+// Fetch analytics data
+const response = await fetch('https://api.example.com/v1/analytics/programs/123', {
+  headers: { 'Authorization': 'Bearer YOUR_TOKEN' }
+});
+const data = await response.json();
+console.log(data.redemptions); // e.g., 1500
+````
+  </Tab>
+  <Tab title="Custom Reports" icon="file-text">
+    Schedule exports in CSV or PDF format.
+  </Tab>
+</Tabs>
+
+<ResponseField name="totalMembers" field-type="integer" required="true">
+  Number of active loyalty members.
+</ResponseField>
+<ResponseField name="redemptionRate" field-type="number">
+  Percentage of points redeemed.
+</ResponseField>
+
+## Omnichannel Engagement Tools
+
+Reach customers wherever they are.
+
+<CodeGroup tabs="Email,SMS,Push">
+````javascript
+// Email campaign
+await fetch('https://api.example.com/v1/campaigns/email', {
+  method: 'POST',
+  body: JSON.stringify({
+    segmentId: 'vip-customers',
+    template: 'welcome-gold'
+  })
+});
+````
+````javascript
+// SMS campaign
+await fetch('https://api.example.com/v1/campaigns/sms', {
+  method: 'POST',
+  body: JSON.stringify({
+    segmentId: 'at-risk',
+    message: 'Earn double points this weekend!'
+  })
+});
+````
+````javascript
+// Push notification
+await fetch('https://api.example.com/v1/campaigns/push', {
+  method: 'POST',
+  body: JSON.stringify({
+    title: 'New Rewards Available',
+    segmentId: 'gold-tier'
+  })
+});
+````
+</CodeGroup>
+
+<Callout kind="tip" title="Best Practice">
+Test campaigns on small segments before full rollout to optimize engagement rates.
+</Callout>
+
+## Next Steps
+
+<Columns cols={3}>
+  <Card title="Quickstart Guide" icon="book-open" href="/quickstart">
+    Set up your first program.
+  </Card>
+  <Card title="API Reference" icon="code" href="/authentication">
+    Integrate programmatically.
+  </Card>
+  <Card title="Advanced Analytics" icon="trending-up" href="/changelog">
+    Dive into custom reporting.
+  </Card>
+</Columns>

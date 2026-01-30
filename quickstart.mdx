@@ -1,0 +1,174 @@
+---
+title: Getting Started with Capillary Demo
+description: Set up your Capillary Demo account and launch your first loyalty program in minutes to begin engaging customers effectively.
+---
+
+## Prerequisites
+
+<Callout kind="info" title="Before You Begin">
+Ensure you have:
+- A valid email address for account verification
+- Access to your business details (name, logo, and target audience)
+- Optional: API keys from integrated services like payment gateways
+</Callout>
+
+Review these requirements to avoid delays during setup.
+
+## Create and Verify Your Account
+
+Follow these steps to sign up and activate your Capillary Demo account.
+
+<Steps>
+  <Step title="Sign Up" icon="user-plus">
+    Visit `https://dashboard.capillarydemo.com/signup` and enter your email, business name, and password.
+    
+    Click **Create Account** to receive a verification email.
+  </Step>
+  <Step title="Verify Email" icon="mail">
+    Open the email from Capillary Demo and click the verification link.
+    
+    This activates your account and redirects you to the dashboard.
+  </Step>
+  <Step title="Complete Profile" icon="edit-3">
+    Fill in your business details: logo, address, and currency preferences.
+    
+    Save changes to unlock the setup wizard.
+  </Step>
+</Steps>
+
+## Initial Dashboard Walkthrough
+
+Once logged in, explore the main interface using the setup wizard.
+
+<Tabs>
+  <Tab title="Overview Dashboard" icon="layout">
+    The landing page shows key metrics like active campaigns, customer count, and engagement rates.
+    
+    Use the search bar to find campaigns or customers quickly.
+    
+    <Image
+      src="https://via.placeholder.com/800x400?text=Dashboard+Overview"
+      alt="Capillary Demo dashboard overview"
+      width="800"
+      height="400"
+    />
+  </Tab>
+  <Tab title="Campaigns Section" icon="award">
+    Navigate to **Campaigns** in the sidebar to view loyalty programs.
+    
+    Filter by status: Active, Draft, or Archived.
+  </Tab>
+  <Tab title="Customers Tab" icon="users">
+    Access customer profiles, segments, and loyalty points balances.
+    
+    Export data for analysis if needed.
+  </Tab>
+</Tabs>
+
+## Run the Setup Wizard
+
+The wizard guides you through initial configurations.
+
+<Steps>
+  <Step title="Launch Wizard" icon="sparkles">
+    Click **Start Setup** on the dashboard.
+  </Step>
+  <Step title="Define Program Rules" icon="settings">
+    Set points earning rates (e.g., 1 point per `{USD}`1 spent) and redemption thresholds.
+  </Step>
+  <Step title="Add Tiers" icon="layers">
+    Create tiers like Silver (0-100 points), Gold (101+ points) with benefits.
+  </Step>
+  <Step title="Integrate Channels" icon="link">
+    Connect email, SMS, or your e-commerce API.
+  </Step>
+</Steps>
+
+## Configure Your First Loyalty Campaign
+
+Launch a simple points-based campaign via API or dashboard.
+
+<CodeGroup tabs="cURL,JavaScript,Python">
+  ```bash
+  curl -X POST https://api.example.com/v1/campaigns \
+    -H "Authorization: Bearer YOUR_API_KEY" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "name": "Welcome Points Boost",
+      "type": "points",
+      "rules": {
+        "earn": {"per_dollar": 2},
+        "redeem": {"min_points": 100}
+      },
+      "active": true
+    }'
+  ```
+  ```javascript
+  const response = await fetch('https://api.example.com/v1/campaigns', {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer YOUR_API_KEY',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      name: 'Welcome Points Boost',
+      type: 'points',
+      rules: {
+        earn: { per_dollar: 2 },
+        redeem: { min_points: 100 }
+      },
+      active: true
+    })
+  });
+  const campaign = await response.json();
+  ```
+  ```python
+  import requests
+
+  data = {
+      "name": "Welcome Points Boost",
+      "type": "points",
+      "rules": {
+          "earn": {"per_dollar": 2},
+          "redeem": {"min_points": 100}
+      },
+      "active": True
+  }
+  headers = {
+      "Authorization": "Bearer YOUR_API_KEY",
+      "Content-Type": "application/json"
+  }
+  response = requests.post('https://api.example.com/v1/campaigns', json=data, headers=headers)
+  campaign = response.json()
+  ```
+</CodeGroup>
+
+<Callout kind="tip">
+Replace `YOUR_API_KEY` with your actual key from the dashboard under **Settings > API Keys**.
+</Callout>
+
+## Basic Navigation and Next Steps
+
+Master the UI with these key areas.
+
+<Columns cols={3}>
+  <Card title="Sidebar Menu" icon="menu" href="#sidebar">
+    Access Campaigns, Customers, Analytics, and Settings.
+  </Card>
+  <Card title="Top Bar" icon="search" href="#topbar">
+    Search, notifications, and user profile.
+  </Card>
+  <Card title="Analytics Dashboard" icon="bar-chart-3" href="/introduction">
+    Track ROI, redemption rates, and customer lifetime value.
+  </Card>
+</Columns>
+
+<Expandable title="Advanced Navigation Tips" default-open="false">
+- Use keyboard shortcuts: `Ctrl+K` for quick search
+- Customize dashboard widgets via **Edit Layout**
+- Set role-based permissions in **Team Management**
+</Expandable>
+
+<Callout kind="success" title="Congratulations!">
+You've launched your first campaign. Explore [Analytics](/introduction) next or check the [full API reference](/authentication).
+</Callout>
