@@ -1,465 +1,144 @@
 ---
-title: "Referral Campaign"
-description: "Learn how to create and manage referral campaigns to acquire new customers through existing customer networks with rewards for both referrers and referees"
+title: Changelog
+description: Track the latest updates, improvements, and new features in Orama to stay informed about enhancements to your treasury management experience.
 ---
 
-<Callout kind="alert">
-Referral Campaign can be created from the old UI only.
+## Recent Updates
+
+<Callout kind="info">
+  Check this changelog regularly to stay updated on new releases that enhance your treasury management workflows. Upgrade promptly to benefit from the latest security patches and performance improvements.
 </Callout>
 
-Referral campaigns help you acquire new customers by using your existing customers' networks. Existing customers can refer their friends and contacts to visit your store. You can configure your referral campaigns to reward both the referrer (the existing customers who provide their friends' email addresses or phone numbers) and the referee (the friends of existing customers who receive the invitation) when the referee enrolls in your loyalty program or makes transactions.
+<Update label="2024-10-15" description="v2.0.0" tags={["feature", "breaking"]}>
 
-<Image src="https://files.readme.io/60b4a3de118488ccf31fc8f81dd0d691b934e829929b835a784ac5a5c8c97a5c-FLOWCHART_7.png" width="800" height="400" alt="Referral campaign workflow flowchart showing the process from referrer sharing code to referee registration and rewards distribution" />
+## New Features
 
-## Configure a referral campaign
+- **Advanced Scenario Modeling**: Create and simulate multiple cash flow scenarios with what-if analysis directly in the dashboard. Model variables like revenue fluctuations, expense changes, and market conditions.
+- **AI-Powered Forecasting**: Integrate machine learning predictions for more accurate treasury projections based on historical data.
 
-Follow these steps to set up a complete referral campaign from start to finish.
+## Breaking Changes
+
+- Updated API endpoints for scenario data. Migrate from `/v1/scenarios` to `/v2/scenarios`.
+- Removed deprecated `legacyForecast` parameter from forecast requests.
+
+## Improvements
+
+- Enhanced dashboard performance with 40% faster load times for large datasets.
+- Improved mobile responsiveness for on-the-go treasury monitoring.
+
+## Bug Fixes
+
+- Fixed reconciliation errors when importing bank statements with multi-currency transactions.
+- Resolved export issues for CSV reports exceeding 10,000 rows.
+
+</Update>
+
+<Update label="2024-09-20" description="v1.5.0" tags={["feature", "improvement", "bugfix"]}>
+
+## New Features
+
+- **Bank Account Reconciliation**: Automate matching of bank transactions with your accounting records.
+- **Custom Alerts**: Set up notifications for low cash balances, overdue payments, or forecast deviations.
+
+## Improvements
+
+- Streamlined onboarding with guided setup wizards for new users.
+- Added bulk import support for transaction data from Excel and CSV files.
+
+## Bug Fixes
+
+- Corrected calculation errors in multi-currency cash flow reports.
+- Fixed sync issues with popular accounting integrations like QuickBooks.
+
+</Update>
+
+<Update label="2024-08-10" description="v1.4.0" tags={["feature", "bugfix"]}>
+
+## New Features
+
+- **Real-Time Cash Position**: Live updates of your company's cash across all connected bank accounts.
+- **Team Permissions**: Granular access controls for viewing and editing treasury data.
+
+## Improvements
+
+- Optimized report generation for faster PDF exports.
+
+## Bug Fixes
+
+- Patched security vulnerability in webhook endpoints.
+- Fixed UI glitches on forecast charts in Safari browsers.
+
+</Update>
+
+## Migration Guide
+
+For breaking changes in v2.0.0, follow these steps to update your integration seamlessly.
+
+<Expandable title="Upgrading from v1.x to v2.0.0" default-open="true">
 
 <Steps>
-<Step title="Configure a referral code" icon="qr-code" title-type="h3">
-Generate unique codes to track referrals effectively.
+  <Step title="Review Breaking Changes" icon="alert-triangle">
 
-Referral codes are unique identifiers shared by existing customers (referrers) with their friends and contacts (referees) to promote your brand.
+    Examine the changelog above for deprecated endpoints and parameters.
 
-### Set up referral code configuration
+  </Step>
+  <Step title="Update API Calls" icon="code">
 
-1. Navigate to **Engage+** > **Campaigns** > **Settings**
-2. On the settings page, select **Referral configuration**
+    <CodeGroup tabs="JavaScript,Python">
+      ````javascript
+      // Old v1 endpoint
+      const oldResponse = await fetch('https://api.orama.ai/v1/scenarios');
+      ````
 
-<Image src="https://files.readme.io/262457b-Screenshot_2024-06-18_113333.png" width="800" height="500" alt="Referral configuration settings page showing the referral code setup options" />
+      ````javascript
+      // New v2 endpoint
+      const newResponse = await fetch('https://api.orama.ai/v2/scenarios');
+      ````
+         ````
 
-3. On **Define referral code**, choose one of the following options:
+      ````python
+      # Old v1 endpoint
+      import requests
+      response = requests.get('https://api.orama.ai/v1/scenarios')
+      ````
 
-<Tabs>
-<Tab title="Random Code" icon="shuffle">
-The system will generate random referral codes automatically.
+      ````python
+      # New v2 endpoint
+      response = requests.get('https://api.orama.ai/v2/scenarios')
+      ````
+    </CodeGroup>
 
-1. In the **Minimum code length** field, enter the minimum number of characters for your referral code
-2. Select **Save**
-</Tab>
+  </Step>
+  <Step title="Test in Staging" icon="play-circle">
 
-<Tab title="Custom Code" icon="settings">
-Customize your referral codes with prefixes, suffixes, and character sets.
+    Deploy changes to your staging environment and validate cash flow scenarios.
 
-1. On the **Define character set** section, select your preferences:
-   - **Uppercase**: Make characters uppercase
-   - **Lowercase**: Make characters lowercase  
-   - **Numbers**: Add numbers to your referral code
+  </Step>
+  <Step title="Deploy to Production" icon="rocket">
 
-<Image src="https://files.readme.io/7f41069-Screenshot_2024-06-18_122013.png" width="700" height="400" alt="Define character set options for custom referral codes including uppercase, lowercase, and numbers" />
+    Monitor the first 24 hours post-deployment for any issues.
 
-2. In the **Minimum code length** field, enter the minimum number of characters
-
-3. Configure prefix (optional):
-   - Enable **Add prefix** button
-   - Choose **Custom string** to enter desired characters, or
-   - Choose **Profile attribute** to use **First Name** or **Last Name**
-
-<Image src="https://files.readme.io/1528ff8-custom_string.png" width="650" height="350" alt="Add prefix options showing custom string and profile attribute selections" />
-
-   - Check **Maximum prefix length** box to set length limit
-
-<Image src="https://files.readme.io/013adf2-Screenshot_2024-06-18_124332.png" width="650" height="350" alt="Profile attribute selection for prefix showing First Name and Last Name options" />
-
-4. Configure suffix (optional):
-   - Enable **Add suffix** button
-   - Choose **Custom string** to enter desired characters, or
-   - Choose **Profile attribute** to use **First Name** or **Last Name**
-
-<Image src="https://files.readme.io/ed6b994-Screenshot_2024-06-18_135318.png" width="650" height="350" alt="Add suffix options with custom string and profile attribute configurations" />
-
-   - Check **Maximum suffix length** box to set length limit
-
-5. Select **Save**
-
-<Image src="https://files.readme.io/31fb8c8-Screenshot_2024-06-24_130325.png" width="800" height="500" alt="Completed referral code configuration showing all settings saved" />
-</Tab>
-</Tabs>
-
-You can validate your referral code using the Validate Referral Code API if needed.
-</Step>
-
-<Step title="Configure referral campaign details" icon="file-text" title-type="h3">
-Define the campaign's name, validity, and objective.
-
-1. On the InTouch portal, select **Home** from the left-hand corner
-2. Select **Engage+** from the sidebar menu
-3. Select **Open old campaign manager**
-4. Select **+New Campaign** from the **Campaigns Home** page
-5. Choose **Referral** as the campaign type from the dropdown menu
-6. Enter the required details for the referral campaign
-
-### Campaign configuration fields
-
-| Field | Description |
-|-------|-------------|
-| Campaign Name | Name of the campaign |
-| Description | Brief description of the campaign |
-| Valid between | The date range for which the campaign is valid |
-| Campaign Objective | The primary objective of the campaign |
-| Incentivize Referrer | When to incentivize the referrer: Dynamically as criteria is met or at the end of the campaign |
-| Disable Test-Control | Enable or disable test control groups |
-| Make Default for POS | Enable or disable campaign activation on POS |
-| Invite Registered Customers | Enable or disable inviting previously registered customers |
-| Register Customer Online | Enable or disable registering a customer online using a social app |
-
-### Campaign objectives
-
-| Objective | Type | Description |
-|-----------|------|-------------|
-| Acquisition | General | Acquire new transacting customers from a given acquisition channel |
-| Acquisition | Referral | Acquire new transacting customers through referrals by an existing customer |
-| Delight | Birthday/Anniversary | Delight customers with incentives around life events |
-| Delight | Feedback/Survey | Encourage customers to take surveys or provide feedback |
-| Promotional | Up sell | Encourage people to buy higher volumes of the same SKUs |
-| Promotional | Cross-Sell | Encourage people to buy different SKUs |
-| Promotional | Sales Booster | Encourage people to buy more with higher ABS and ABV |
-| Miscellaneous | Heavy Discount Sale | Boost sales during heavy discount periods including festivals and EOSS |
-| Miscellaneous | Frequency Enhancer | Encourage lower frequency visitors to transact more frequently |
-| Miscellaneous | Lapsation | Reactivate lapsed customers |
-
-7. Select **Create** to create the referral campaign
-</Step>
-
-<Step title="Configure message (post referral)" icon="mail" title-type="h3">
-Define communication templates for messages to be sent after the referral is completed.
-
-You can choose from two types of messages: Email and SMS.
-
-<Tabs>
-<Tab title="Email Template" icon="mail">
-### Create an email template
-
-1. Select **Email** from the tab menu
-2. Select **+Template** to open the template creator
-3. Create a new email template using HTML, or import an HTML file from your system
-4. Use available referral tags to build the template:
-
-| Referral Tag | Description |
-|--------------|-------------|
-| Referrer Code | A unique code assigned to a referrer |
-| Invitee Name | The name of the person being invited |
-| Invitee Identifier | A unique identifier for the invitee |
-| Referrer Full Name | The complete name of the person making the referral |
-| Referrer First Name | The first name of the person making the referral |
-| Unsubscribe* | Enable opt-out option (Compulsory tag) |
-
-5. Provide a name for the template, and select **Save**
-6. Select **Refresh List** to refresh the template list
-7. Select the created template to preview it
-8. Select **Edit Message** to begin editing the subject and text message
-9. Select **Review** to finalize the changes
-10. Preview the message, and select **Save**
-</Tab>
-
-<Tab title="SMS Template" icon="message-square">
-### Create an SMS template
-
-1. Select **SMS** from the tab menu
-2. Enter the template message in the message section
-3. Use the available preset tags to help you draft the message
-4. Select **Review & Save** to save the template
-5. View the message preview, and select **Save** to confirm
-
-<Image src="https://files.readme.io/de449552b062416c3605598ccd8d18b58710a2950851b7dcf8322dec1736ccb1-image.png" width="800" height="500" alt="SMS template creation interface with message field and preset tags" />
-
-Use the available preset tags to help you draft the message.
-</Tab>
-</Tabs>
-
-### Configure and send the message
-
-1. Select **Incentives to Referrer** or **Incentives to Referee**
-2. Select **+** beside **On Referee Registration** or **On Referee Transaction**
-
-| Term | Definition |
-|------|------------|
-| Referee Registration | The action when a new customer signs up using the referral link or code |
-| Referee Transaction | The qualifying purchase made by the referee after successful registration |
-
-<Image src="https://files.readme.io/b696f36cf109540a18bc3c92b1e0c371c8a631147143e125867e2248d5a4fbc6-image8.png" width="800" height="500" alt="Incentives configuration showing On Referee Registration and On Referee Transaction options" />
-
-3. Enter the number of registrations or transactions required to fulfill the criteria
-
-<Image src="https://files.readme.io/27184847df6b941f1d709a4073dfeb969eb8d1cd8f1ee4b29b614843132f9b71-Screenshot_2025-10-07_at_6.22.26_PM.png" width="800" height="450" alt="Configuration interface showing number of registrations or transactions input field" />
-4. Select the **Edit** icon to configure the coupon
-5. Select **Create Coupon Series** to create a new coupon, or **Claim Coupon Series** to add an existing coupon
-6. Enable **Notify by SMS** or **Notify by Email** under **Notification Settings**
-
-<Image src="https://files.readme.io/e8fc2ea431dd7930af073e58c03b189f11e44d0b9499b825fc883f19b241e181-Screenshot_102.png" width="800" height="500" alt="Notification settings showing SMS and Email configuration options" />
-
-7. Select **Configure SMS** or **Configure Email** to draft message
-
-<Image src="https://files.readme.io/788d9ff279563dd4fcf6d521e77068d04ee0f2e3ae34e5ec53789b13e6f5d283-Screenshot_102.png" width="800" height="500" alt="Configure SMS and Email options for post-referral notifications" />
-
-8. Select **Review and Save** to save the changes
-
-<Image src="https://files.readme.io/9f1c2ce7e4db347b146a6757f2c5b068a228402789b485678aa2230f3a55f2b5-Screenshot_103.png" width="800" height="450" alt="Review and Save interface showing configured incentive settings" />
-
-For **Incentives to Referrer**, you can add multiple registration and transaction criteria. However, for **Incentives to Referee**, multiple criteria cannot be configured.
-</Step>
-
-<Step title="Configure the incentives" icon="gift" title-type="h3">
-Set up the rewards for the referral campaign.
-
-Incentives are rewards designed to motivate and encourage customers. There are two types supported:
-
-### Issuing Coupons
-
-1. Select **Rewards** to configure the rewards
-2. Select **Incentives to Referrer** or **Incentives to Referee**
-3. Select **+** beside **On Referee Registration** or **On Referee Transaction**
-4. Enter the number of registrations or transactions required
-5. Select the **Edit** icon to configure the coupon
-
-<Image src="https://files.readme.io/ba78ed42e4c216e4afcedb86e587bc20e4ab3480ca12b2490494e0b06212003e-image9.png" width="800" height="450" alt="Edit icon highlighted to configure coupon for incentives" />
-
-6. Select **Create Coupon Series** or **Claim Coupon Series**
-7. Enable **Notification Settings** for SMS or email if needed
-8. Select **Save** to save the changes
-
-### Issuing Points
-
-1. Navigate to the edit page of the default loyalty program
-2. Under **Workflows**, create a new rule to configure issuing points
-3. Use these rules to issue points:
-   - `referrerCode.refereeRegCount`: Track the number of referrals
-   - `referrerCode.refereeTxnCount`: Track the number of transactions
-4. Select **Add action** to award points
-5. Choose points earn conditions and expiry conditions
-6. Select communication channels
-7. Select **Save and Continue** to apply the changes
-
-The Award Points to Referee action is available only for workflows within the default loyalty program.
-</Step>
-
-<Step title="Create broadcast campaign" icon="radio" title-type="h3">
-Define communication templates for sharing referral codes and send messages to a large audience.
-
-1. Create a Referral Campaign in the Old UI first
-2. On the InTouch portal, select **Home**
-3. Select **Engage+** from the sidebar menu
-4. Select **New Campaign**
-5. Enter the campaign details:
-
-| Field | Description |
-|-------|-------------|
-| Campaign Name | Name of the campaign (up to 50 characters) |
-| Campaign Duration | Start date and end date of the campaign |
-
-<Image src="https://files.readme.io/fa73b13a54a758ceabe8d5d4ffabc1ef4109920db387e8035bfaa2eface78630-Screenshot_54.png" width="800" height="500" alt="New campaign creation form with campaign name and duration fields" />
-
-6. Go to **Advanced Settings**
-7. Select **Attach a Referral Campaign**
-
-<Image src="https://files.readme.io/668abe39f9d41eb6f68ccd4b85c9fb5f265dcaab259436ef8bf7a52751e73944-Screenshot_55.png" width="800" height="500" alt="Advanced Settings showing Attach a Referral Campaign option" />
-8. From the dropdown menu, select the referral campaign previously created in the Old UI
-9. Select **Save Campaign** to finalize the setup
-</Step>
-
-<Step title="Create & send the referral campaign message" icon="send" title-type="h3">
-Communicate referral details to the target audience for engagement and conversions.
-
-1. On the InTouch portal, select **Home**
-2. Select **Engage+** from the sidebar menu
-3. Select a campaign to create a message
-4. Add the **Audience Group** for the campaign
-5. Create the campaign content under the **Content** section
-6. Schedule the campaign as per your requirements and send it for approval
-
-<Callout kind="alert">
-Ensure to add the **referral unique code** tag.
-</Callout>
-</Step>
+  </Step>
 </Steps>
 
-## Managing a referral campaign
-
-### Viewing and editing a referral campaign
-
-1. On the InTouch portal, select **Home**
-2. Select **Engage+** from the sidebar menu
-3. Select **Old Campaign Manager** to view existing campaigns
-4. Select the campaign you want to edit and make necessary modifications
-
-<Image src="https://files.readme.io/578c30124c32e5a0f0e8ff99d78098713f28cfc5efe2c95762732d7597b6e601-Screenshot_58.png" width="800" height="500" alt="Old Campaign Manager showing list of existing referral campaigns" />
-
-The token is a unique identifier used for the Refer Customer API.
-
-### Activating and deactivating campaigns
-
-<Tabs>
-<Tab title="Deactivate Campaign" icon="pause-circle">
-1. Navigate to **Home** > **Engage+** > **Old Campaign Manager**
-2. Select the campaign you want to disable
-
-<Image src="https://files.readme.io/607c1d66b9656770ba09c88679f580364413edf96a3f860069d56d865950f048-Screenshot_58.png" width="800" height="500" alt="Campaign selection for deactivation in Old Campaign Manager" />
-
-3. Select **Stop** to deactivate the Campaign
-
-<Image src="https://files.readme.io/aa08ae83d866f271e23434bf1645e4763d7cfe537ab2b9facb484d3e7ae82863-Screenshot_70.png" width="800" height="450" alt="Stop button to deactivate the selected campaign" />
-
-4. The campaign is successfully deactivated
-
-<Image src="https://files.readme.io/aac6ca6d8bb387112083ff47331cac218e74160ea87e735f1cc4633dc4055ae7-Screenshot_71.png" width="800" height="400" alt="Confirmation message showing campaign has been successfully deactivated" />
-</Tab>
-
-<Tab title="Activate Campaign" icon="play-circle">
-1. Navigate to **Home** > **Engage+** > **Old Campaign Manager**
-2. Select **Lapsed** to view the deactivated referral campaigns
-
-<Image src="https://files.readme.io/17dc3646248442ed4763a5953447977d2aa064c49aaa3a048b63175ad44476e5-Screenshot_72.png" width="800" height="450" alt="Lapsed campaigns view showing deactivated referral campaigns" />
-
-3. Select **start** to activate the campaign
-
-<Image src="https://files.readme.io/b312bcdbf3fafb57596f89037742ba5b9c7c8354a96e9e6b3e8073b51d3a4ef6-Screenshot_73.png" width="800" height="450" alt="Start button to reactivate a lapsed campaign" />
-
-4. The campaign is successfully activated and can be viewed in the **Old Campaign Manager**
-
-<Image src="https://files.readme.io/3f090420c58f71c9ef7be9407c5ce91d5cb16fcf42f7cc20d4a1cf496300056f-Screenshot_75.png" width="800" height="500" alt="Successfully activated campaign now visible in Old Campaign Manager" />
-</Tab>
-</Tabs>
-
-## Use Cases
-
-<ExpandableGroup>
-<Expandable title="Issue a 10% off coupon to referrer on every referee registration up to 5 referrals" default-open="false">
-A brand has implemented a referral program where referrers receive a 10% off coupon for each successful referee registration, up to a maximum of 5 referrals.
-
-**Setup steps:**
-
-1. Configure referral code
-
-<Image src="https://files.readme.io/699d2622054672a5fa47bc584784c1dbbffddd36496ad1ce7944e7d3fafa6b25-Screenshot_96.png" width="700" height="450" alt="Referral code configuration for 10% off coupon use case" />
-
-2. Configure campaign details
-
-<Image src="https://files.readme.io/6997d664f1f000966a95abd7e05f00aaeb677ed2337a061d492474351753fb83-Screenshot_97.png" width="700" height="450" alt="Campaign details configuration for coupon issuance scenario" />
-3. Configure a confirmation message in the old UI
-
-<Image src="https://files.readme.io/4800a2901cb34c241cfac07e352f5c2c68894d63a82344f1867e5970b4e731ba-Screenshot_100.png" width="700" height="450" alt="Confirmation message configuration in old UI" />
-
-4. Configure the incentives for issuing a coupon
-5. Create a new 10% off coupon
-6. Select **Modify advanced settings** > **Redemption settings** > **Limit total redemptions in the offer?**
-7. Turn on the setting and set maximum allowed to 5
-8. Select **Preview and save**
-
-<Image src="https://files.readme.io/7eb3775ce6777702eb250a1f349b753d5f7f27d43b020a2a8c5a68149e65f3bd-image.png" width="700" height="500" alt="Coupon redemption limit settings showing maximum of 5 redemptions" />
-9. Create a message template
-10. Choose the created 10% off coupon while configuring the issue coupon
-11. Validate Referral code using the Validate referral code API
-12. Refer a new customer using the Refer customer API
-</Expandable>
-
-<Expandable title="Issue 1000 points to referrer on first transaction of every referee" default-open="false">
-A Brand has a referral program where referrers earn 1,000 points when a referee makes their first transaction.
-
-**Setup steps:**
-
-1. Configure the incentives for issuing points
-2. Use the following expression: `referrerCode.refereeTxnCount==1`
-3. Configure a referral campaign
-
-<Image src="https://files.readme.io/8da00c1a4dd34c63276f06d40ed6f550c83feb9125e07f66644e34f26128d347-Screenshot_98.png" width="700" height="450" alt="Referral campaign configuration for points-based rewards" />
-4. Configure a confirmation message in the old UI
-5. Create a message template
-6. Validate Referral code using the Validate referral code API
-7. Refer a new customer using the Refer customer API
-</Expandable>
-
-<Expandable title="Brand creating a referral campaign and rewarding customer upon successful registration" default-open="false">
-A brand sets up a referral campaign to reward customers for bringing in new users. Existing customers receive a unique referral code, which they share via email, SMS, or social media.
-
-**Setup steps:**
-
-1. Configure a referral campaign
-
-<Image src="https://files.readme.io/3f9fc1f3447bf342b3eb10d1d1b807b3ad11848df72095979229955664dff8ec-Screenshot_80.png" width="700" height="450" alt="Referral campaign setup for registration rewards" />
-
-2. Configure a confirmation message in the old UI
-3. Configure Incentive
-
-<Image src="https://files.readme.io/2e2dad98c1a57790bc145a1ef480fa33b56cf23940f17aedecd1b786f7021740-Screenshot_79.png" width="700" height="400" alt="Incentive configuration for successful registration" />
-
-<Image src="https://files.readme.io/53954bfe0cd108258b9f7d6f5b67d0c970837960490c98d8247a2de657c8c8f4-Screenshot_81.png" width="700" height="400" alt="Additional incentive settings for referral campaign" />
-4. Create a broadcast campaign
-
-<Image src="https://files.readme.io/787770c8184eb97912cf8f3c87df15412a774a2ee15cddeeb5bd84fbcd8f9712-Screenshot_76.png" width="700" height="450" alt="Broadcast campaign creation to spread referral program awareness" />
-
-5. Create a referral campaign message
-
-<Image src="https://files.readme.io/9db36c3864f3fb612e7ace2e58aae0f5a4847056e82f32d7b654b2b22606dd81-Screenshot_63.png" width="700" height="450" alt="Referral campaign message with unique code distribution" />
-6. Validate Referral code using the Validate referral code API
-7. Refer a new customer using the Refer customer API
-</Expandable>
-
-<Expandable title="Issue a ₹750 OFF coupon to both referrer and referee upon successful registration" default-open="false">
-The brand has launched a referral campaign where both referrers and referees receive a ₹750 OFF coupon upon successful registration.
-
-**Setup steps:**
-
-1. Configure a referral Campaign
-
-<Image src="https://files.readme.io/c0899ef772e397ea3f2bd90bd8133044b4fc75181c7c3279814a10599c4e2725-Screenshot_80.png" width="700" height="450" alt="Referral campaign configuration for dual coupon rewards" />
-
-2. Create Coupon Offers
-
-<Image src="https://files.readme.io/408b8586782c8c95756d6eb4d1f138f3928e9fb67af7b898b7d93de59a5561a9-Screenshot_81.png" width="700" height="400" alt="Coupon offer creation for ₹750 OFF" />
-
-3. Configure Incentive
-
-<Image src="https://files.readme.io/5cc75b818c8c0afc0d9399530036e625a9b22d5c006e2839f6159b9d873a6e6b-Screenshot_79.png" width="700" height="400" alt="Incentive configuration for both referrer and referee" />
-4. Create message template
-
-<Image src="https://files.readme.io/2b90985ef1dbbe5bbf437cb68e4526786513efdd21aa8b51e4f9bdaef3626817-Screenshot_85.png" width="700" height="450" alt="Message template creation for referral notification" />
-
-5. Set up referral Code Configuration
-
-<Image src="https://files.readme.io/4f9b2a8dd9360c7b429ee33e1f6e8a666b31dccfa6b2ff42a02a648af75cbb1a-Screenshot_88.png" width="700" height="450" alt="Referral code configuration setup for coupon distribution" />
-6. Validate Referral code using the Validate referral code API
-7. Refer a new customer using the Refer customer API
-</Expandable>
-
-<Expandable title="Issue 50 points to both referrer and referee on first purchase, up to $50/month" default-open="false">
-Brand offers a referral program where members can earn up to $50 per month by inviting new customers. When a referee signs up using the referrer's unique link and makes their first purchase, both receive $5 Express Cash as a reward.
-
-**Setup steps:**
-
-1. Create a referral campaign
-
-<Image src="https://files.readme.io/95c0e176af98ddf942b9f55d16ca86fff04074f7fe259790e1bcd9589c4730e4-Screenshot_80.png" width="700" height="450" alt="Referral campaign setup for monthly points reward program" />
-
-2. Configure a confirmation message in the old UI
-3. Configure referral code
-
-<Image src="https://files.readme.io/2b6decad5ced692c3b3e95b0d520654f03ce546d6e26ec749a9e692ee473a14a-Screenshot_88.png" width="700" height="450" alt="Referral code setup for tracking monthly rewards" />
-4. Configure incentives (points) for both the referrer and referee on Loyalty+
-5. Use the expression: `(referrerCode.refereeTxnCount==1)&&(currentTxn.value<=50)`
-
-<Image src="https://files.readme.io/38f79f0a1ded558c16358a95fb4cfc3eb6bafdbd4621e024635b46ce584432ab-Screenshot_94.png" width="700" height="450" alt="Points configuration with transaction value conditions" />
-6. Create Message Template
-7. Validate Referral code using the Validate referral code API
-8. Refer a new customer using the Refer customer API
-</Expandable>
-</ExpandableGroup>
-
-## FAQs
-
-<ExpandableGroup>
-<Expandable title="Can we limit the number of referrals a user can make in a referral campaign?" default-open="false">
-Yes, you can set limits on the incentives a user receives for referrals. For example, if you set a limit of 5, the referrer will only receive incentives for the first 5 successful referrals. Beyond that, no incentives will be given.
-</Expandable>
-
-<Expandable title="Can a customer generate a different referral code for each referral?" default-open="false">
-No, each customer is issued a single unique referral code.
-</Expandable>
-
-<Expandable title="Is there an API to fetch the referral code that customers use to register themselves?" default-open="false">
-Yes, there is an API to fetch the referral code customers use to register. This will retrieve the referral details, including the unique referral code. For more information, refer to the API documentation.
-</Expandable>
-
-<Expandable title="Does the referral API restrict sending multiple referral SMS to the same mobile number?" default-open="false">
-Yes, the referral API restricts sending multiple referral SMS to the same mobile number. You cannot send multiple referral messages to the same recipient using the API.
-</Expandable>
-</ExpandableGroup>
+  </Expandable>
+
+## Upcoming Roadmap
+
+Discover what's next for Orama with these planned enhancements.
+
+<Columns cols={3}>
+  <Card title="AI Integrations" icon="zap" href="/concepts/ai-forecasting">
+    Deeper AI-driven insights and third-party tool connections.
+  </Card>
+  <Card title="Advanced Reporting" icon="bar-chart-3" href="/guides/reporting">
+    Customizable dashboards and automated compliance reports.
+  </Card>
+  <Card title="Multi-Entity Support" icon="users" href="/configuration/multi-entity">
+    Manage treasury for groups of companies in one workspace.
+  </Card>
+</Columns>
+
+<Callout kind="tip" title="Feedback Welcome">
+  Have suggestions for future features? Share them via our [feedback form](https://app.orama.ai/feedback) or contact support.
+</Callout>
