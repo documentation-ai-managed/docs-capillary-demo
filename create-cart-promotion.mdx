@@ -1,743 +1,456 @@
 ---
 title: Create Cart Promotions
-description: This endpoint allows you to create a new cart promotion. Cart promotions can be configured with different conditions, actions, and restrictions. You can define conditions based on cart subtotal, item counts, specific products, and tender types.
+description: >-
+  This endpoint allows you to create a new cart promotion. Cart promotions can
+  be configured with different conditions, actions, and restrictions. You can
+  define conditions based on cart subtotal, item counts, specific products, and
+  tender types.
 method: POST
 path: /api_gateway/v1/promotions
 operationId: createPromotion
 _openapi_operation_b64: >-
   eyJzdW1tYXJ5IjoiQ3JlYXRlIFByb21vdGlvbiIsIm9wZXJhdGlvbklkIjoiY3JlYXRlUHJvbW90aW9uIiwicmVxdWVzdEJvZHkiOnsiY29udGVudCI6eyJhcHBsaWNhdGlvbi9qc29uIjp7InNjaGVtYSI6eyJ0eXBlIjoib2JqZWN0IiwicHJvcGVydGllcyI6eyJuYW1lIjp7InR5cGUiOiJzdHJpbmciLCJleGFtcGxlIjoiQ29tYm8gUHJvZHVjdCBwcm9tb3Rpb24gIn0sInR5cGUiOnsidHlwZSI6InN0cmluZyIsImV4YW1wbGUiOiJDVVNUT01FUiJ9LCJtZXNzYWdlTGFiZWwiOnsidHlwZSI6InN0cmluZyIsImV4YW1wbGUiOiJHZXQgMTUlIG9mZiBjb21ibyBwcm9kdWN0cyJ9LCJhY3RpdmUiOnsidHlwZSI6ImJvb2xlYW4iLCJleGFtcGxlIjp0cnVlfSwicHJpb3JpdHkiOnsidHlwZSI6ImludGVnZXIiLCJleGFtcGxlIjowfSwiaXNTdGFja2FibGUiOnsidHlwZSI6ImJvb2xlYW4iLCJleGFtcGxlIjpmYWxzZX0sInN0YXJ0RGF0ZSI6eyJ0eXBlIjoiaW50ZWdlciIsImZvcm1hdCI6ImludDY0IiwiZXhhbXBsZSI6MTc1OTM2MzIwMDAwMH0sImVuZERhdGUiOnsidHlwZSI6ImludGVnZXIiLCJmb3JtYXQiOiJpbnQ2NCIsImV4YW1wbGUiOjE3OTA5ODU2MDAwMDB9LCJjYW1wYWlnbklkIjp7InR5cGUiOiJzdHJpbmciLCJleGFtcGxlIjoiMjg2MDM4In0sImNvbmRpdGlvbiI6eyJ0eXBlIjoib2JqZWN0IiwicHJvcGVydGllcyI6eyJ0eXBlIjp7InR5cGUiOiJzdHJpbmciLCJleGFtcGxlIjoiQ09NQk9fUFJPRFVDVCJ9LCJjb21ib1Byb2R1Y3RDb25kaXRpb24iOnsidHlwZSI6Im9iamVjdCIsInByb3BlcnRpZXMiOnsicHJvZHVjdENvbmRpdGlvbnMiOnsidHlwZSI6ImFycmF5IiwiaXRlbXMiOnsidHlwZSI6Im9iamVjdCIsInByb3BlcnRpZXMiOnsia3BpIjp7InR5cGUiOiJzdHJpbmciLCJleGFtcGxlIjoiUVVBTlRJVFkifSwib3BlcmF0b3IiOnsidHlwZSI6InN0cmluZyIsImV4YW1wbGUiOiJHUkVBVEVSX1RIQU5fT1JfRVFVQUwifSwidmFsdWUiOnsidHlwZSI6InN0cmluZyIsImV4YW1wbGUiOiIxLjAwMDAwMCJ9LCJjcml0ZXJpYUxpc3QiOnsidHlwZSI6ImFycmF5IiwiaXRlbXMiOnsidHlwZSI6Im9iamVjdCIsInByb3BlcnRpZXMiOnsiZW50aXR5Ijp7InR5cGUiOiJzdHJpbmciLCJleGFtcGxlIjoiU0tVIn0sIm9wZXJhdG9yIjp7InR5cGUiOiJzdHJpbmciLCJleGFtcGxlIjoiSU4ifSwidmFsdWVzIjp7InR5cGUiOiJhcnJheSIsIml0ZW1zIjp7InR5cGUiOiJzdHJpbmciLCJleGFtcGxlIjoiU0tVMDAxIn19fX19fX19fX19fSwiYWN0aW9uIjp7InR5cGUiOiJvYmplY3QiLCJwcm9wZXJ0aWVzIjp7InR5cGUiOnsidHlwZSI6InN0cmluZyIsImV4YW1wbGUiOiJQUk9EVUNUX0JBU0VEIn0sInByb2R1Y3RCYXNlZEFjdGlvbiI6eyJ0eXBlIjoib2JqZWN0IiwicHJvcGVydGllcyI6eyJ0eXBlIjp7InR5cGUiOiJzdHJpbmciLCJleGFtcGxlIjoiUEVSQ0VOVEFHRSJ9LCJ2YWx1ZSI6eyJ0eXBlIjoic3RyaW5nIiwiZXhhbXBsZSI6IjE1LjAwMDAwMCJ9LCJwcm9kdWN0QmFzZWRDb25kaXRpb24iOnsidHlwZSI6Im9iamVjdCIsInByb3BlcnRpZXMiOnsidHlwZSI6eyJ0eXBlIjoic3RyaW5nIiwiZXhhbXBsZSI6IkNPTUJPX1BST0RVQ1QifSwiY29tYm9Qcm9kdWN0Q29uZGl0aW9uIjp7InR5cGUiOiJvYmplY3QiLCJwcm9wZXJ0aWVzIjp7InByb2R1Y3RDb25kaXRpb25zIjp7InR5cGUiOiJhcnJheSIsIml0ZW1zIjp7InR5cGUiOiJvYmplY3QiLCJwcm9wZXJ0aWVzIjp7ImtwaSI6eyJ0eXBlIjoic3RyaW5nIiwiZXhhbXBsZSI6IlFVQU5USVRZIn0sIm9wZXJhdG9yIjp7InR5cGUiOiJzdHJpbmciLCJleGFtcGxlIjoiR1JFQVRFUl9USEFOX09SX0VRVUFMIn0sInZhbHVlIjp7InR5cGUiOiJzdHJpbmciLCJleGFtcGxlIjoiMS4wMDAwMDAifSwiY3JpdGVyaWFMaXN0Ijp7InR5cGUiOiJhcnJheSIsIml0ZW1zIjp7InR5cGUiOiJvYmplY3QiLCJwcm9wZXJ0aWVzIjp7ImVudGl0eSI6eyJ0eXBlIjoic3RyaW5nIiwiZXhhbXBsZSI6IlNLVSJ9LCJvcGVyYXRvciI6eyJ0eXBlIjoic3RyaW5nIiwiZXhhbXBsZSI6IklOIn0sInZhbHVlcyI6eyJ0eXBlIjoiYXJyYXkiLCJpdGVtcyI6eyJ0eXBlIjoic3RyaW5nIiwiZXhhbXBsZSI6IlNLVTAwMSJ9fX19fX19fX19fX19fX19LCJjdXN0b21lckFjdGl2YXRpb25SZXF1aXJlZCI6eyJ0eXBlIjoiYm9vbGVhbiIsImV4YW1wbGUiOnRydWV9LCJtYXhJc3N1YW5jZVBlckN1c3RvbWVyIjp7InR5cGUiOiJpbnRlZ2VyIiwiZXhhbXBsZSI6MX0sInByb21vdGlvblJlc3RyaWN0aW9ucyI6eyJ0eXBlIjoib2JqZWN0IiwicHJvcGVydGllcyI6eyJQcm9tb3Rpb24iOnsidHlwZSI6ImFycmF5IiwiaXRlbXMiOnsidHlwZSI6Im9iamVjdCIsInByb3BlcnRpZXMiOnsia3BpIjp7InR5cGUiOiJzdHJpbmciLCJleGFtcGxlIjoiUkVERU1QVElPTiJ9LCJsaW1pdCI6eyJ0eXBlIjoic3RyaW5nIiwiZXhhbXBsZSI6IjUwMDAuMDAwMDAwIn19fX0sIkN1c3RvbWVyIjp7InR5cGUiOiJhcnJheSIsIml0ZW1zIjp7InR5cGUiOiJvYmplY3QiLCJwcm9wZXJ0aWVzIjp7ImtwaSI6eyJ0eXBlIjoic3RyaW5nIiwiZXhhbXBsZSI6IlRSQU5TQUNUSU9OIn0sImZyZXF1ZW5jeSI6eyJ0eXBlIjoic3RyaW5nIiwiZXhhbXBsZSI6IldFRUtTIn0sIm1pblRpbWVCZXR3ZWVuUmVwZWF0Ijp7InR5cGUiOiJpbnRlZ2VyIiwiZXhhbXBsZSI6NjA0ODAwMDAwfSwibGltaXQiOnsidHlwZSI6InN0cmluZyIsImV4YW1wbGUiOiIyLjAwMDAwMCJ9fX19LCJDYXJ0Ijp7InR5cGUiOiJhcnJheSIsIml0ZW1zIjp7InR5cGUiOiJvYmplY3QiLCJwcm9wZXJ0aWVzIjp7ImtwaSI6eyJ0eXBlIjoic3RyaW5nIiwiZXhhbXBsZSI6IkRJU0NPVU5UIn0sImxpbWl0Ijp7InR5cGUiOiJzdHJpbmciLCJleGFtcGxlIjoiNTAuMDAwMDAwIn19fX19fSwiY3VzdG9tRmllbGRWYWx1ZXMiOnsidHlwZSI6Im9iamVjdCIsInByb3BlcnRpZXMiOnsiQWdlIjp7InR5cGUiOiJpbnRlZ2VyIiwiZXhhbXBsZSI6MjV9fX19fX19fSwicmVzcG9uc2VzIjp7IjIwMCI6eyJkZXNjcmlwdGlvbiI6IlByb21vdGlvbiBjcmVhdGVkIHN1Y2Nlc3NmdWxseSIsImNvbnRlbnQiOnsiYXBwbGljYXRpb24vanNvbiI6eyJzY2hlbWEiOnsidHlwZSI6Im9iamVjdCJ9fX19fSwibWV0aG9kIjoiUE9TVCIsInBhdGgiOiIvYXBpX2dhdGV3YXkvdjEvcHJvbW90aW9ucyIsInBhcmFtZXRlcnMiOltdLCJzZXJ2ZXJzIjpbeyJ1cmwiOiJodHRwczovL2V1LmludG91Y2guY2FwaWxsYXJ5dGVjaC5jb20iLCJ2YXJpYWJsZXMiOnsiSG9zdCI6eyJkZWZhdWx0IjoiaHR0cHM6Ly9ldS5pbnRvdWNoLmNhcGlsbGFyeXRlY2guY29tIiwiZW51bSI6WyJodHRwczovL2V1LmludG91Y2guY2FwaWxsYXJ5dGVjaC5jb20iLCJodHRwczovL2ludG91Y2guY2FwaWxsYXJ5LmNvLmluIiwiaHR0cHM6Ly9hcGFjMi5pbnRvdWNoLmNhcGlsbGFyeXRlY2guY29tIiwiaHR0cHM6Ly9zZ2NybS5jYy5jYXBpbGxhcnl0ZWNoLmNvbSIsImh0dHA6Ly9pbnRvdWNoLmNhcGlsbGFyeXRlY2guY24uY29tIiwiaHR0cHM6Ly9ub3J0aC1hbWVyaWNhLmludG91Y2guY2FwaWxsYXJ5dGVjaC5jb20iXX19fV0sInNlY3VyaXR5IjpbeyJiYXNpY0F1dGgiOltdfV0sImNvbXBvbmVudHMiOnsic2VjdXJpdHlTY2hlbWVzIjp7ImJhc2ljQXV0aCI6eyJ0eXBlIjoiaHR0cCIsInNjaGVtZSI6ImJhc2ljIn19fX0=
-createdAt: "2026-02-04T05:59:49.483Z"
-updatedAt: "2026-02-04T05:59:49.483Z"
+createdAt: '2026-02-04T05:59:49.483Z'
+updatedAt: '2026-02-04T05:59:49.483Z'
 ---
 
-<PlaygroundComponent />
 
-<AuthParams schemes={["basicAuth"]}>
-  <AuthType scheme="basicAuth">
-    <ParamField header="Authorization" param-type="string" required="true">
-      Basic authentication credentials. Provide username and password encoded in
-      Base64 format: Basic base64(username:password)
-    </ParamField>
-  </AuthType>
-</AuthParams>
-
-<BodyParams contentTypes={["application/json"]} defaultType="application/json">
-  <ContentType type="application/json">
-<ParamField showLocation="false" body="name" param-type="string" required="false">
-
-</ParamField>
-
-<ParamField showLocation="false" body="type" param-type="string" required="false">
-
-</ParamField>
-
-<ParamField showLocation="false" body="messageLabel" param-type="string" required="false">
-
-</ParamField>
-
-<ParamField showLocation="false" body="active" param-type="boolean" required="false">
-
-</ParamField>
-
-<ParamField showLocation="false" body="priority" param-type="integer" required="false">
-
-</ParamField>
-
-<ParamField showLocation="false" body="isStackable" param-type="boolean" required="false">
-
-</ParamField>
-
-<ParamField showLocation="false" body="startDate" param-type="integer" required="false">
-
-</ParamField>
-
-<ParamField showLocation="false" body="endDate" param-type="integer" required="false">
-
-</ParamField>
-
-<ParamField showLocation="false" body="campaignId" param-type="string" required="false">
-
-</ParamField>
-
-<ParamField showLocation="false" body="condition" param-type="object" required="false">
-
-<Expandable title="Object Properties" default-open="false">
-
-<ParamField
-  showLocation="false"
-  body="type"
-  param-type="string"
-  required="false"
-></ParamField>
-
-  <ParamField showLocation="false" body="comboProductCondition" param-type="object" required="false">
-
-  <Expandable title="Object Properties" default-open="false">
-
-<ParamField showLocation="false" body="productConditions" param-type="array" required="false">
-
-    <Expandable title="Array Items" default-open="false">
-
-<ParamField showLocation="false" body="kpi" param-type="string" required="false">
-
-</ParamField>
-
-<ParamField showLocation="false" body="operator" param-type="string" required="false">
-
-</ParamField>
-
-<ParamField showLocation="false" body="value" param-type="string" required="false">
-
-</ParamField>
-
-<ParamField showLocation="false" body="criteriaList" param-type="array" required="false">
-
-<Expandable title="Array Items" default-open="false">
-
-<ParamField showLocation="false" body="entity" param-type="string" required="false">
-
-</ParamField>
-
-<ParamField showLocation="false" body="operator" param-type="string" required="false">
-
-</ParamField>
-
-<ParamField showLocation="false" body="values" param-type="array" required="false">
-
-</ParamField>
-
-</Expandable>
-</ParamField>
-
-    </Expandable>
-
-</ParamField>
-
-  </Expandable>
-  </ParamField>
-
-</Expandable>
-</ParamField>
-
-<ParamField showLocation="false" body="action" param-type="object" required="false">
-
-<Expandable title="Object Properties" default-open="false">
-
-<ParamField
-  showLocation="false"
-  body="type"
-  param-type="string"
-  required="false"
-></ParamField>
-
-  <ParamField showLocation="false" body="productBasedAction" param-type="object" required="false">
-
-  <Expandable title="Object Properties" default-open="false">
-
-<ParamField showLocation="false" body="type" param-type="string" required="false">
-
-</ParamField>
-
-<ParamField showLocation="false" body="value" param-type="string" required="false">
-
-</ParamField>
-
-<ParamField showLocation="false" body="productBasedCondition" param-type="object" required="false">
-
-    <Expandable title="Object Properties" default-open="false">
-
-<ParamField showLocation="false" body="type" param-type="string" required="false">
-
-</ParamField>
-
-<ParamField showLocation="false" body="comboProductCondition" param-type="object" required="false">
-
-<Expandable title="Object Properties" default-open="false">
-
-<ParamField showLocation="false" body="productConditions" param-type="array" required="false">
-
-  <Expandable title="Array Items" default-open="false">
-
-    <ParamField showLocation="false" body="kpi" param-type="string" required="false">
-
-    </ParamField>
-
-    <ParamField showLocation="false" body="operator" param-type="string" required="false">
-
-    </ParamField>
-
-    <ParamField showLocation="false" body="value" param-type="string" required="false">
-
-    </ParamField>
-
-    <ParamField showLocation="false" body="criteriaList" param-type="array" required="false">
-
-
-    <Expandable title="Array Items" default-open="false">
-
-      <ParamField showLocation="false" body="entity" param-type="string" required="false">
-
-      </ParamField>
-
-      <ParamField showLocation="false" body="operator" param-type="string" required="false">
-
-      </ParamField>
-
-      <ParamField showLocation="false" body="values" param-type="array" required="false">
-
-      </ParamField>
-
-    </Expandable>
-    </ParamField>
-
-  </Expandable>
-</ParamField>
-
-</Expandable>
-</ParamField>
-
-    </Expandable>
-
-</ParamField>
-
-  </Expandable>
-  </ParamField>
-
-</Expandable>
-</ParamField>
-
-<ParamField showLocation="false" body="customerActivationRequired" param-type="boolean" required="false">
-
-</ParamField>
-
-<ParamField showLocation="false" body="maxIssuancePerCustomer" param-type="integer" required="false">
-
-</ParamField>
-
-<ParamField showLocation="false" body="promotionRestrictions" param-type="object" required="false">
-
-<Expandable title="Object Properties" default-open="false">
-
-  <ParamField showLocation="false" body="Promotion" param-type="array" required="false">
-
-  <Expandable title="Array Items" default-open="false">
-
-<ParamField showLocation="false" body="kpi" param-type="string" required="false">
-
-</ParamField>
-
-<ParamField showLocation="false" body="limit" param-type="string" required="false">
-
-</ParamField>
-
-  </Expandable>
-  </ParamField>
-
-  <ParamField showLocation="false" body="Customer" param-type="array" required="false">
-
-  <Expandable title="Array Items" default-open="false">
-
-<ParamField showLocation="false" body="kpi" param-type="string" required="false">
-
-</ParamField>
-
-<ParamField showLocation="false" body="frequency" param-type="string" required="false">
-
-</ParamField>
-
-<ParamField showLocation="false" body="minTimeBetweenRepeat" param-type="integer" required="false">
-
-</ParamField>
-
-<ParamField showLocation="false" body="limit" param-type="string" required="false">
-
-</ParamField>
-
-  </Expandable>
-  </ParamField>
-
-  <ParamField showLocation="false" body="Cart" param-type="array" required="false">
-
-  <Expandable title="Array Items" default-open="false">
-
-<ParamField showLocation="false" body="kpi" param-type="string" required="false">
-
-</ParamField>
-
-<ParamField showLocation="false" body="limit" param-type="string" required="false">
-
-</ParamField>
-
-  </Expandable>
-  </ParamField>
-
-</Expandable>
-</ParamField>
-
-<ParamField showLocation="false" body="customFieldValues" param-type="object" required="false">
-
-<Expandable title="Object Properties" default-open="false">
-
-<ParamField
-  showLocation="false"
-  body="Age"
-  param-type="integer"
-  required="false"
-></ParamField>
-
-</Expandable>
-</ParamField>
-  </ContentType>
-</BodyParams>
-
-<Request tabs="curl,python,javascript,go,ruby">
-
-```bash
-curl -X POST "https://eu.intouch.capillarytech.com/api_gateway/v1/promotions" \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Basic YOUR_CREDENTIALS" \
-  -d '{
-  "name": "Combo Product promotion ",
-  "type": "CUSTOMER",
-  "messageLabel": "Get 15% off combo products",
-  "active": true,
-  "priority": 0,
-  "isStackable": false,
-  "startDate": 1759363200000,
-  "endDate": 1790985600000,
-  "campaignId": "286038",
-  "condition": {
-    "type": "COMBO_PRODUCT",
-    "comboProductCondition": {
-"productConditions": [
-  {
-    "kpi": "QUANTITY",
-    "operator": "GREATER_THAN_OR_EQUAL",
-    "value": "1.000000",
-    "criteriaList": [
-      {
-        "entity": "SKU",
-        "operator": "IN",
-        "values": [
-          "SKU001"
-        ]
-      }
-    ]
-  }
-]
+<Request default-tab="1" show-lines="true" tabs={[]}>
+  ```bash
+  curl -X POST "https://eu.intouch.capillarytech.com/api_gateway/v1/promotions" \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Basic YOUR_CREDENTIALS" \
+    -d '{
+    "name": "Combo Product promotion ",
+    "type": "CUSTOMER",
+    "messageLabel": "Get 15% off combo products",
+    "active": true,
+    "priority": 0,
+    "isStackable": false,
+    "startDate": 1759363200000,
+    "endDate": 1790985600000,
+    "campaignId": "286038",
+    "condition": {
+      "type": "COMBO_PRODUCT",
+      "comboProductCondition": {
+  "productConditions": [
+    {
+      "kpi": "QUANTITY",
+      "operator": "GREATER_THAN_OR_EQUAL",
+      "value": "1.000000",
+      "criteriaList": [
+        {
+          "entity": "SKU",
+          "operator": "IN",
+          "values": [
+            "SKU001"
+          ]
+        }
+      ]
     }
-  },
-  "action": {
-    "type": "PRODUCT_BASED",
-    "productBasedAction": {
-"type": "PERCENTAGE",
-"value": "15.000000",
-"productBasedCondition": {
-  "type": "COMBO_PRODUCT",
-  "comboProductCondition": {
-    "productConditions": [
-      {
-        "kpi": "QUANTITY",
-        "operator": "GREATER_THAN_OR_EQUAL",
-        "value": "1.000000",
-        "criteriaList": [
-          {
-            "entity": "SKU",
-            "operator": "IN",
-            "values": [
-              "SKU001"
-            ]
-          }
-        ]
+  ]
       }
-    ]
-  }
-}
-    }
-  },
-  "customerActivationRequired": true,
-  "maxIssuancePerCustomer": 1,
-  "promotionRestrictions": {
-    "Promotion": [
-{
-  "kpi": "REDEMPTION",
-  "limit": "5000.000000"
-}
-    ],
-    "Customer": [
-{
-  "kpi": "TRANSACTION",
-  "frequency": "WEEKS",
-  "minTimeBetweenRepeat": 604800000,
-  "limit": "2.000000"
-}
-    ],
-    "Cart": [
-{
-  "kpi": "DISCOUNT",
-  "limit": "50.000000"
-}
-    ]
-  },
-  "customFieldValues": {
-    "Age": 25
-  }
-}'
-```
-
-```python
-import requests
-import json
-
-url = "https://eu.intouch.capillarytech.com/api_gateway/v1/promotions"
-headers = {
-  "Content-Type": "application/json",
-  "Authorization": "Basic YOUR_CREDENTIALS"
-}
-data = {
-  "name": "Combo Product promotion ",
-  "type": "CUSTOMER",
-  "messageLabel": "Get 15% off combo products",
-  "active": true,
-  "priority": 0,
-  "isStackable": false,
-  "startDate": 1759363200000,
-  "endDate": 1790985600000,
-  "campaignId": "286038",
-  "condition": {
-    "type": "COMBO_PRODUCT",
-    "comboProductCondition": {
-"productConditions": [
-  {
-    "kpi": "QUANTITY",
-    "operator": "GREATER_THAN_OR_EQUAL",
-    "value": "1.000000",
-    "criteriaList": [
-      {
-        "entity": "SKU",
-        "operator": "IN",
-        "values": [
-          "SKU001"
-        ]
-      }
-    ]
-  }
-]
-    }
-  },
-  "action": {
-    "type": "PRODUCT_BASED",
-    "productBasedAction": {
-"type": "PERCENTAGE",
-"value": "15.000000",
-"productBasedCondition": {
-  "type": "COMBO_PRODUCT",
-  "comboProductCondition": {
-    "productConditions": [
-      {
-        "kpi": "QUANTITY",
-        "operator": "GREATER_THAN_OR_EQUAL",
-        "value": "1.000000",
-        "criteriaList": [
-          {
-            "entity": "SKU",
-            "operator": "IN",
-            "values": [
-              "SKU001"
-            ]
-          }
-        ]
-      }
-    ]
-  }
-}
-    }
-  },
-  "customerActivationRequired": true,
-  "maxIssuancePerCustomer": 1,
-  "promotionRestrictions": {
-    "Promotion": [
-{
-  "kpi": "REDEMPTION",
-  "limit": "5000.000000"
-}
-    ],
-    "Customer": [
-{
-  "kpi": "TRANSACTION",
-  "frequency": "WEEKS",
-  "minTimeBetweenRepeat": 604800000,
-  "limit": "2.000000"
-}
-    ],
-    "Cart": [
-{
-  "kpi": "DISCOUNT",
-  "limit": "50.000000"
-}
-    ]
-  },
-  "customFieldValues": {
-    "Age": 25
-  }
-}
-
-response = requests.post(url, headers=headers, json=data)
-print(response.json())
-```
-
-```javascript
-const response = await fetch(
-  "https://eu.intouch.capillarytech.com/api_gateway/v1/promotions",
-  {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Basic YOUR_CREDENTIALS",
     },
-    body: JSON.stringify({
-      name: "Combo Product promotion ",
-      type: "CUSTOMER",
-      messageLabel: "Get 15% off combo products",
-      active: true,
-      priority: 0,
-      isStackable: false,
-      startDate: 1759363200000,
-      endDate: 1790985600000,
-      campaignId: "286038",
-      condition: {
-        type: "COMBO_PRODUCT",
-        comboProductCondition: {
-          productConditions: [
+    "action": {
+      "type": "PRODUCT_BASED",
+      "productBasedAction": {
+  "type": "PERCENTAGE",
+  "value": "15.000000",
+  "productBasedCondition": {
+    "type": "COMBO_PRODUCT",
+    "comboProductCondition": {
+      "productConditions": [
+        {
+          "kpi": "QUANTITY",
+          "operator": "GREATER_THAN_OR_EQUAL",
+          "value": "1.000000",
+          "criteriaList": [
             {
-              kpi: "QUANTITY",
-              operator: "GREATER_THAN_OR_EQUAL",
-              value: "1.000000",
-              criteriaList: [
-                {
-                  entity: "SKU",
-                  operator: "IN",
-                  values: ["SKU001"],
-                },
-              ],
+              "entity": "SKU",
+              "operator": "IN",
+              "values": [
+                "SKU001"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+      }
+    },
+    "customerActivationRequired": true,
+    "maxIssuancePerCustomer": 1,
+    "promotionRestrictions": {
+      "Promotion": [
+  {
+    "kpi": "REDEMPTION",
+    "limit": "5000.000000"
+  }
+      ],
+      "Customer": [
+  {
+    "kpi": "TRANSACTION",
+    "frequency": "WEEKS",
+    "minTimeBetweenRepeat": 604800000,
+    "limit": "2.000000"
+  }
+      ],
+      "Cart": [
+  {
+    "kpi": "DISCOUNT",
+    "limit": "50.000000"
+  }
+      ]
+    },
+    "customFieldValues": {
+      "Age": 25
+    }
+  }'
+  ```
+
+  ```python
+  import requests
+  import json
+
+  url = "https://eu.intouch.capillarytech.com/api_gateway/v1/promotions"
+  headers = {
+    "Content-Type": "application/json",
+    "Authorization": "Basic YOUR_CREDENTIALS"
+  }
+  data = {
+    "name": "Combo Product promotion ",
+    "type": "CUSTOMER",
+    "messageLabel": "Get 15% off combo products",
+    "active": true,
+    "priority": 0,
+    "isStackable": false,
+    "startDate": 1759363200000,
+    "endDate": 1790985600000,
+    "campaignId": "286038",
+    "condition": {
+      "type": "COMBO_PRODUCT",
+      "comboProductCondition": {
+  "productConditions": [
+    {
+      "kpi": "QUANTITY",
+      "operator": "GREATER_THAN_OR_EQUAL",
+      "value": "1.000000",
+      "criteriaList": [
+        {
+          "entity": "SKU",
+          "operator": "IN",
+          "values": [
+            "SKU001"
+          ]
+        }
+      ]
+    }
+  ]
+      }
+    },
+    "action": {
+      "type": "PRODUCT_BASED",
+      "productBasedAction": {
+  "type": "PERCENTAGE",
+  "value": "15.000000",
+  "productBasedCondition": {
+    "type": "COMBO_PRODUCT",
+    "comboProductCondition": {
+      "productConditions": [
+        {
+          "kpi": "QUANTITY",
+          "operator": "GREATER_THAN_OR_EQUAL",
+          "value": "1.000000",
+          "criteriaList": [
+            {
+              "entity": "SKU",
+              "operator": "IN",
+              "values": [
+                "SKU001"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+      }
+    },
+    "customerActivationRequired": true,
+    "maxIssuancePerCustomer": 1,
+    "promotionRestrictions": {
+      "Promotion": [
+  {
+    "kpi": "REDEMPTION",
+    "limit": "5000.000000"
+  }
+      ],
+      "Customer": [
+  {
+    "kpi": "TRANSACTION",
+    "frequency": "WEEKS",
+    "minTimeBetweenRepeat": 604800000,
+    "limit": "2.000000"
+  }
+      ],
+      "Cart": [
+  {
+    "kpi": "DISCOUNT",
+    "limit": "50.000000"
+  }
+      ]
+    },
+    "customFieldValues": {
+      "Age": 25
+    }
+  }
+
+  response = requests.post(url, headers=headers, json=data)
+  print(response.json())
+  ```
+
+  ```javascript
+  const response = await fetch(
+    "https://eu.intouch.capillarytech.com/api_gateway/v1/promotions",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Basic YOUR_CREDENTIALS",
+      },
+      body: JSON.stringify({
+        name: "Combo Product promotion ",
+        type: "CUSTOMER",
+        messageLabel: "Get 15% off combo products",
+        active: true,
+        priority: 0,
+        isStackable: false,
+        startDate: 1759363200000,
+        endDate: 1790985600000,
+        campaignId: "286038",
+        condition: {
+          type: "COMBO_PRODUCT",
+          comboProductCondition: {
+            productConditions: [
+              {
+                kpi: "QUANTITY",
+                operator: "GREATER_THAN_OR_EQUAL",
+                value: "1.000000",
+                criteriaList: [
+                  {
+                    entity: "SKU",
+                    operator: "IN",
+                    values: ["SKU001"],
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        action: {
+          type: "PRODUCT_BASED",
+          productBasedAction: {
+            type: "PERCENTAGE",
+            value: "15.000000",
+            productBasedCondition: {
+              type: "COMBO_PRODUCT",
+              comboProductCondition: {
+                productConditions: [
+                  {
+                    kpi: "QUANTITY",
+                    operator: "GREATER_THAN_OR_EQUAL",
+                    value: "1.000000",
+                    criteriaList: [
+                      {
+                        entity: "SKU",
+                        operator: "IN",
+                        values: ["SKU001"],
+                      },
+                    ],
+                  },
+                ],
+              },
+            },
+          },
+        },
+        customerActivationRequired: true,
+        maxIssuancePerCustomer: 1,
+        promotionRestrictions: {
+          Promotion: [
+            {
+              kpi: "REDEMPTION",
+              limit: "5000.000000",
+            },
+          ],
+          Customer: [
+            {
+              kpi: "TRANSACTION",
+              frequency: "WEEKS",
+              minTimeBetweenRepeat: 604800000,
+              limit: "2.000000",
+            },
+          ],
+          Cart: [
+            {
+              kpi: "DISCOUNT",
+              limit: "50.000000",
             },
           ],
         },
-      },
-      action: {
-        type: "PRODUCT_BASED",
-        productBasedAction: {
-          type: "PERCENTAGE",
-          value: "15.000000",
-          productBasedCondition: {
-            type: "COMBO_PRODUCT",
-            comboProductCondition: {
-              productConditions: [
-                {
-                  kpi: "QUANTITY",
-                  operator: "GREATER_THAN_OR_EQUAL",
-                  value: "1.000000",
-                  criteriaList: [
-                    {
-                      entity: "SKU",
-                      operator: "IN",
-                      values: ["SKU001"],
-                    },
-                  ],
-                },
-              ],
-            },
-          },
+        customFieldValues: {
+          Age: 25,
         },
-      },
-      customerActivationRequired: true,
-      maxIssuancePerCustomer: 1,
-      promotionRestrictions: {
-        Promotion: [
-          {
-            kpi: "REDEMPTION",
-            limit: "5000.000000",
-          },
-        ],
-        Customer: [
-          {
-            kpi: "TRANSACTION",
-            frequency: "WEEKS",
-            minTimeBetweenRepeat: 604800000,
-            limit: "2.000000",
-          },
-        ],
-        Cart: [
-          {
-            kpi: "DISCOUNT",
-            limit: "50.000000",
-          },
-        ],
-      },
-      customFieldValues: {
-        Age: 25,
-      },
-    }),
-  }
-);
+      }),
+    }
+  );
 
-const data = await response.json();
-console.log(data);
-```
+  const data = await response.json();
+  console.log(data);
+  ```
 
-```go
-package main
+  ```go
+  package main
 
-import (
-    "fmt"
-    "net/http"
-    "bytes"
-    "encoding/json"
-)
+  import (
+      "fmt"
+      "net/http"
+      "bytes"
+      "encoding/json"
+  )
 
-func main() {
-    data := []byte(`{
-  "name": "Combo Product promotion ",
-  "type": "CUSTOMER",
-  "messageLabel": "Get 15% off combo products",
-  "active": true,
-  "priority": 0,
-  "isStackable": false,
-  "startDate": 1759363200000,
-  "endDate": 1790985600000,
-  "campaignId": "286038",
-  "condition": {
+  func main() {
+      data := []byte(`{
+    "name": "Combo Product promotion ",
+    "type": "CUSTOMER",
+    "messageLabel": "Get 15% off combo products",
+    "active": true,
+    "priority": 0,
+    "isStackable": false,
+    "startDate": 1759363200000,
+    "endDate": 1790985600000,
+    "campaignId": "286038",
+    "condition": {
+      "type": "COMBO_PRODUCT",
+      "comboProductCondition": {
+  "productConditions": [
+    {
+      "kpi": "QUANTITY",
+      "operator": "GREATER_THAN_OR_EQUAL",
+      "value": "1.000000",
+      "criteriaList": [
+        {
+          "entity": "SKU",
+          "operator": "IN",
+          "values": [
+            "SKU001"
+          ]
+        }
+      ]
+    }
+  ]
+      }
+    },
+    "action": {
+      "type": "PRODUCT_BASED",
+      "productBasedAction": {
+  "type": "PERCENTAGE",
+  "value": "15.000000",
+  "productBasedCondition": {
     "type": "COMBO_PRODUCT",
     "comboProductCondition": {
-"productConditions": [
+      "productConditions": [
+        {
+          "kpi": "QUANTITY",
+          "operator": "GREATER_THAN_OR_EQUAL",
+          "value": "1.000000",
+          "criteriaList": [
+            {
+              "entity": "SKU",
+              "operator": "IN",
+              "values": [
+                "SKU001"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+      }
+    },
+    "customerActivationRequired": true,
+    "maxIssuancePerCustomer": 1,
+    "promotionRestrictions": {
+      "Promotion": [
   {
-    "kpi": "QUANTITY",
-    "operator": "GREATER_THAN_OR_EQUAL",
-    "value": "1.000000",
-    "criteriaList": [
-      {
-        "entity": "SKU",
-        "operator": "IN",
-        "values": [
-          "SKU001"
-        ]
+    "kpi": "REDEMPTION",
+    "limit": "5000.000000"
+  }
+      ],
+      "Customer": [
+  {
+    "kpi": "TRANSACTION",
+    "frequency": "WEEKS",
+    "minTimeBetweenRepeat": 604800000,
+    "limit": "2.000000"
+  }
+      ],
+      "Cart": [
+  {
+    "kpi": "DISCOUNT",
+    "limit": "50.000000"
+  }
+      ]
+    },
+    "customFieldValues": {
+      "Age": 25
+    }
+  }`)
+
+      req, err := http.NewRequest("POST", "https://eu.intouch.capillarytech.com/api_gateway/v1/promotions", bytes.NewBuffer(data))
+      if err != nil {
+    panic(err)
       }
-    ]
-  }
-]
-    }
-  },
-  "action": {
-    "type": "PRODUCT_BASED",
-    "productBasedAction": {
-"type": "PERCENTAGE",
-"value": "15.000000",
-"productBasedCondition": {
-  "type": "COMBO_PRODUCT",
-  "comboProductCondition": {
-    "productConditions": [
-      {
-        "kpi": "QUANTITY",
-        "operator": "GREATER_THAN_OR_EQUAL",
-        "value": "1.000000",
-        "criteriaList": [
-          {
-            "entity": "SKU",
-            "operator": "IN",
-            "values": [
-              "SKU001"
-            ]
-          }
-        ]
+
+      req.Header.Set("Content-Type", "application/json")
+      req.Header.Set("Authorization", "Basic YOUR_CREDENTIALS")
+
+      client := &http.Client{}
+      resp, err := client.Do(req)
+      if err != nil {
+    panic(err)
       }
-    ]
+      defer resp.Body.Close()
+
+      fmt.Println("Response Status:", resp.Status)
   }
-}
-    }
-  },
-  "customerActivationRequired": true,
-  "maxIssuancePerCustomer": 1,
-  "promotionRestrictions": {
-    "Promotion": [
-{
-  "kpi": "REDEMPTION",
-  "limit": "5000.000000"
-}
-    ],
-    "Customer": [
-{
-  "kpi": "TRANSACTION",
-  "frequency": "WEEKS",
-  "minTimeBetweenRepeat": 604800000,
-  "limit": "2.000000"
-}
-    ],
-    "Cart": [
-{
-  "kpi": "DISCOUNT",
-  "limit": "50.000000"
-}
-    ]
-  },
-  "customFieldValues": {
-    "Age": 25
-  }
-}`)
+  ```
 
-    req, err := http.NewRequest("POST", "https://eu.intouch.capillarytech.com/api_gateway/v1/promotions", bytes.NewBuffer(data))
-    if err != nil {
-  panic(err)
-    }
+  ```ruby
+  require 'net/http'
+  require 'json'
 
-    req.Header.Set("Content-Type", "application/json")
-    req.Header.Set("Authorization", "Basic YOUR_CREDENTIALS")
+  uri = URI('https://eu.intouch.capillarytech.com/api_gateway/v1/promotions')
+  http = Net::HTTP.new(uri.host, uri.port)
+  http.use_ssl = true
 
-    client := &http.Client{}
-    resp, err := client.Do(req)
-    if err != nil {
-  panic(err)
-    }
-    defer resp.Body.Close()
+  request = Net::HTTP::Post.new(uri)
+  request['Content-Type'] = 'application/json'
+  request['Authorization'] = 'Basic YOUR_CREDENTIALS'
+  request.body = '{\n  "name": "Combo Product promotion ",\n  "type": "CUSTOMER",\n  "messageLabel": "Get 15% off combo products",\n  "active": true,\n  "priority": 0,\n  "isStackable": false,\n  "startDate": 1759363200000,\n  "endDate": 1790985600000,\n  "campaignId": "286038",\n  "condition": {\n    "type": "COMBO_PRODUCT",\n    "comboProductCondition": {\n      "productConditions": [\n        {\n          "kpi": "QUANTITY",\n          "operator": "GREATER_THAN_OR_EQUAL",\n          "value": "1.000000",\n          "criteriaList": [\n            {\n              "entity": "SKU",\n              "operator": "IN",\n              "values": [\n                "SKU001"\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  },\n  "action": {\n    "type": "PRODUCT_BASED",\n    "productBasedAction": {\n      "type": "PERCENTAGE",\n      "value": "15.000000",\n      "productBasedCondition": {\n        "type": "COMBO_PRODUCT",\n        "comboProductCondition": {\n          "productConditions": [\n            {\n              "kpi": "QUANTITY",\n              "operator": "GREATER_THAN_OR_EQUAL",\n              "value": "1.000000",\n              "criteriaList": [\n                {\n                  "entity": "SKU",\n                  "operator": "IN",\n                  "values": [\n                    "SKU001"\n                  ]\n                }\n              ]\n            }\n          ]\n        }\n      }\n    }\n  },\n  "customerActivationRequired": true,\n  "maxIssuancePerCustomer": 1,\n  "promotionRestrictions": {\n    "Promotion": [\n      {\n        "kpi": "REDEMPTION",\n        "limit": "5000.000000"\n      }\n    ],\n    "Customer": [\n      {\n        "kpi": "TRANSACTION",\n        "frequency": "WEEKS",\n        "minTimeBetweenRepeat": 604800000,\n        "limit": "2.000000"\n      }\n    ],\n    "Cart": [\n      {\n        "kpi": "DISCOUNT",\n        "limit": "50.000000"\n      }\n    ]\n  },\n  "customFieldValues": {\n    "Age": 25\n  }\n}'
 
-    fmt.Println("Response Status:", resp.Status)
-}
-```
-
-```ruby
-require 'net/http'
-require 'json'
-
-uri = URI('https://eu.intouch.capillarytech.com/api_gateway/v1/promotions')
-http = Net::HTTP.new(uri.host, uri.port)
-http.use_ssl = true
-
-request = Net::HTTP::Post.new(uri)
-request['Content-Type'] = 'application/json'
-request['Authorization'] = 'Basic YOUR_CREDENTIALS'
-request.body = '{\n  "name": "Combo Product promotion ",\n  "type": "CUSTOMER",\n  "messageLabel": "Get 15% off combo products",\n  "active": true,\n  "priority": 0,\n  "isStackable": false,\n  "startDate": 1759363200000,\n  "endDate": 1790985600000,\n  "campaignId": "286038",\n  "condition": {\n    "type": "COMBO_PRODUCT",\n    "comboProductCondition": {\n      "productConditions": [\n        {\n          "kpi": "QUANTITY",\n          "operator": "GREATER_THAN_OR_EQUAL",\n          "value": "1.000000",\n          "criteriaList": [\n            {\n              "entity": "SKU",\n              "operator": "IN",\n              "values": [\n                "SKU001"\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  },\n  "action": {\n    "type": "PRODUCT_BASED",\n    "productBasedAction": {\n      "type": "PERCENTAGE",\n      "value": "15.000000",\n      "productBasedCondition": {\n        "type": "COMBO_PRODUCT",\n        "comboProductCondition": {\n          "productConditions": [\n            {\n              "kpi": "QUANTITY",\n              "operator": "GREATER_THAN_OR_EQUAL",\n              "value": "1.000000",\n              "criteriaList": [\n                {\n                  "entity": "SKU",\n                  "operator": "IN",\n                  "values": [\n                    "SKU001"\n                  ]\n                }\n              ]\n            }\n          ]\n        }\n      }\n    }\n  },\n  "customerActivationRequired": true,\n  "maxIssuancePerCustomer": 1,\n  "promotionRestrictions": {\n    "Promotion": [\n      {\n        "kpi": "REDEMPTION",\n        "limit": "5000.000000"\n      }\n    ],\n    "Customer": [\n      {\n        "kpi": "TRANSACTION",\n        "frequency": "WEEKS",\n        "minTimeBetweenRepeat": 604800000,\n        "limit": "2.000000"\n      }\n    ],\n    "Cart": [\n      {\n        "kpi": "DISCOUNT",\n        "limit": "50.000000"\n      }\n    ]\n  },\n  "customFieldValues": {\n    "Age": 25\n  }\n}'
-
-response = http.request(request)
-puts response.body
-```
-
+  response = http.request(request)
+  puts response.body
+  ```
 </Request>
 
 #### Responses
 
-<div data-component="ResponsesCollection"><Expandable title="200 - Promotion created successfully" default-open="true">
-
-_Promotion created successfully_
-
-</Expandable>
-
-</div>
-
-<Response tabs="200">
-
-```json
-{}
-```
-
+<Response show-lines="true" tabs={[]}>
+  ```json
+  {}
+  ```
 </Response>
 
 ## Example request
@@ -878,7 +591,7 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions' \
 
 ## API Quick Reference
 
-```bash Reference structure
+```bash "Reference structure"
 {{https://eu.api.capillarytech.com/api_gateway/v1/promotions}}
    └─ {{promotions}}
 ├─ {{createCartPromotion}}({{CartPromotionRequest}}) -> {{CartPromotionResponse}}
@@ -1015,23 +728,24 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions' \
 ## Prerequisites
 
 - Authentication: Basic or OAuth authentication.
+
 - Default access group
 
 ## Body parameters
 
 The following parameters describe the top-level fields required to create any type of cart promotion.
 
-<ParamField showLocation="false" body="name" param-type="string" required="true">
+<ParamField body="name" param-type="string" required="true" deprecated="false">
   Indicates a unique name of the cart promotion. Character limit: 1-50.
 </ParamField>
 
-<ParamField showLocation="false" body="type" param-type="enum" required="true">
+<ParamField body="type" param-type="enum" required="true" deprecated="false">
   Specifies the type of cart promotion. Supported values are: • **POS** (Point
   of Sale): Applies automatically at checkout when cart or purchase conditions
-  are met. _ Constrain: If a POS cart promotion is not restricted to loyal
+  are met. \_ Constrain: If a POS cart promotion is not restricted to loyal
   customers(isLoyaltyOnly is false), it cannot have Customer level restrictions.
   • **CODE**: Requires the customer to enter a cart promotion code for
-  redemption. _ Constrain: Code cart promotions cannot have Customer level
+  redemption. \_ Constrain: Code cart promotions cannot have Customer level
   restrictions. They also require Code level restrictions to be present. •
   **CUSTOMER**: Targets specific customer segments or individuals based on
   attributes or behaviour. • **EARNING**: Grants rewards (such as points or
@@ -1040,17 +754,17 @@ The following parameters describe the top-level fields required to create any ty
   conditions.
 </ParamField>
 
-<ParamField showLocation="false" body="messageLabel" param-type="string" required="false">
+<ParamField body="messageLabel" param-type="string" required="false" deprecated="false">
   Specifies a label for the cart promotion message. There is no character limit
   set for labels. **Example**: SummerSale2025.
 </ParamField>
 
-<ParamField showLocation="false" body="active" param-type="boolean" required="true">
+<ParamField body="active" param-type="boolean" required="true" deprecated="false">
   Indicates if the cart promotion is active. Supported values: true, false.
   **Default value is true**.
 </ParamField>
 
-<ParamField showLocation="false" body="priority" param-type="integer" required="true">
+<ParamField body="priority" param-type="integer" required="true" deprecated="false">
   Specifies the order in which cart promotions are applied. Lower numbers have
   higher priority, with **0 being the highest**. Example: If there are three
   promotions—A (priority 0), B (priority 1), and C (priority 2), the order of
@@ -1059,31 +773,31 @@ The following parameters describe the top-level fields required to create any ty
   promotion.
 </ParamField>
 
-<ParamField showLocation="false" body="isStackable" param-type="boolean" required="true">
+<ParamField body="isStackable" param-type="boolean" required="true" deprecated="false">
   Indicates whether this cart promotion can be used with other cart promotions.
   Supported values: true, false. **Default**: false.
 </ParamField>
 
-<ParamField showLocation="false" body="startDate" param-type="long" required="true">
+<ParamField body="startDate" param-type="long" required="true" deprecated="false">
   Specifies the date and time when the cart promotion becomes active, as a Unix
   epoch timestamp in milliseconds (UTC). **Example**: 1757388651000 corresponds
   to 2025-09-12 06:30:51 UTC.\ Note: This field will be deprecated in the future
   and is being replaced by `startDateISO`
 </ParamField>
 
-<ParamField showLocation="false" body="endDate" param-type="long" required="true">
+<ParamField body="endDate" param-type="long" required="true" deprecated="false">
   Specifies the end date and time when the cart promotion expires, as a Unix
   epoch timestamp in milliseconds (UTC). **Example**: 1726123456789 corresponds
   to 2024-09-12 10:24:16 UTC.\ Note: This field will be deprecated in the future
   and is being replaced by `endDateISO`
 </ParamField>
 
-<ParamField showLocation="false" body="campaignId" param-type="string" required="true">
+<ParamField body="campaignId" param-type="string" required="true" deprecated="false">
   Specifies the unique identifier of the campaign that the cart promotion is
   linked to. Example: 12345. **There is no validation for the campaign ID**.
 </ParamField>
 
-<ParamField showLocation="false" body="mode" param-type="enum" required="false">
+<ParamField body="mode" param-type="enum" required="false" deprecated="false">
   Specifies the application mode of the promotion.\ Supported values:\
   `DISCOUNT` : A price reduction applied directly to items or the total cart
   during checkout. Example: A "Buy One, Get One Free" offer at Starbucks that
@@ -1094,11 +808,11 @@ The following parameters describe the top-level fields required to create any ty
   is omitted , it defaults to "DISCOUNT"
 </ParamField>
 
-<ParamField showLocation="false" body="condition" param-type="object" required="true">
+<ParamField body="condition" param-type="object" required="true" deprecated="false">
   Specifies the rules that determine how the cart promotion applies.
 </ParamField>
 
-<ParamField showLocation="false" body="type" param-type="enum" required="true">
+<ParamField body="type" param-type="enum" required="true" deprecated="false">
   [CART](https://docs.capillarytech.com/reference/create-cart-promotion-api#when-the-promotions-condition-type-is-cart)
   : Conditions based on the entire shopping cart's properties, like its total
   value or item count. Example: “Get $10 off when your subtotal is over $100.”
@@ -1107,7 +821,7 @@ The following parameters describe the top-level fields required to create any ty
   TENDER condition must be paired with a TENDER action, and vice-versa. You
   cannot have a tender-based condition with a cart-based action. Example:
   “Receive 5% cashback when you pay with a Visa card.”
-  [COMBO_PRODUCT](https://docs.capillarytech.com/reference/create-cart-promotion-api#when-the-promotions-condition-type--is-combo_product)
+  [COMBO\_PRODUCT](https://docs.capillarytech.com/reference/create-cart-promotion-api#when-the-promotions-condition-type--is-combo_product)
   : Conditions based on the presence of multiple, specific products or product
   groups being purchased together. Example: “Buy a laptop and a mouse to get $50
   off your total purchase.”
@@ -1115,21 +829,21 @@ The following parameters describe the top-level fields required to create any ty
   : Conditions based on a specific group of products, evaluated by their
   quantity or total value. Example: “Buy at least two items from the 'Beverages'
   category to get 10% off.”
-  [PAYMENT_MODE_SCOPE](https://docs.capillarytech.com/reference/create-cart-promotion-api#cart-promotion-with-condition-type-payment_mode_scope):
+  [PAYMENT\_MODE\_SCOPE](https://docs.capillarytech.com/reference/create-cart-promotion-api#cart-promotion-with-condition-type-payment_mode_scope):
   Conditions based on a specific payment method like points, cash being used in
   combination with a nested PRODUCT or CART condition. Example: "Get 50% off on
-  a 'ChocoBrand' when you pay with Points. Constraints: _ The promotion's
-  top-level mode must be DISCOUNT. _ The nested condition.type must be PRODUCT
-  or CART. _ This condition cannot be paired with a simple CART_BASED action. It
-  must use a product-focused action like PRODUCT_BASED or PER_UNIT. Note: This
+  a 'ChocoBrand' when you pay with Points. Constraints: \_ The promotion's
+  top-level mode must be DISCOUNT. \_ The nested condition.type must be PRODUCT
+  or CART. \_ This condition cannot be paired with a simple CART\_BASED action. It
+  must use a product-focused action like PRODUCT\_BASED or PER\_UNIT. Note: This
   condition is for promotions like: "Pay with Points and get 50% off this
   specific item, not applicable for promotions like: "Pay with Points and get $5
   off your total bill.
-  [PAYMENT_MODE_COMBO_PRODUCT](https://docs.capillarytech.com/reference/create-cart-promotion-api#cart-promotion-with-condition-type-payment_mode_combo_product):
+  [PAYMENT\_MODE\_COMBO\_PRODUCT](https://docs.capillarytech.com/reference/create-cart-promotion-api#cart-promotion-with-condition-type-payment_mode_combo_product):
   Conditions based on a specific payment method like points, card or cash being
   used in combination with a nested `COMBO_PRODUCT` condition. Example: "Buy a
   Coke and a 'ChocoBrand' and pay with Points to get 50% off a Maggi."
-  Constrains: _ The promotion's top-level mode must be `DISCOUNT`. \* This
+  Constrains: \_ The promotion's top-level mode must be `DISCOUNT`. \* This
   condition cannot be paired with a simple `CART_BASED` action.It must use a
   product-focused action like `PRODUCT_BASED`, `FREE_PRODUCT`, `FIXED_PRICE`, or
   `PER_UNIT`. Note: This constraint means the promotion must reward the customer
@@ -1141,30 +855,30 @@ The following parameters describe the top-level fields required to create any ty
   below for the full structure.
 </ParamField>
 
-<ParamField showLocation="false" body="action" param-type="object" required="true">
+<ParamField body="action" param-type="object" required="true" deprecated="false">
   Specifies what happens when the cart promotion is applied.
 </ParamField>
 
-<ParamField showLocation="false" body="type" param-type="enum" required="true">
+<ParamField body="type" param-type="enum" required="true" deprecated="false">
   Specifies the scope of the action when the cart promotion is applied.
   Supported values: •
-  [CART_BASED](https://docs.capillarytech.com/reference/create-cart-promotion-api#when-the-promotions-action-type-is-cart_based)
+  [CART\_BASED](https://docs.capillarytech.com/reference/create-cart-promotion-api#when-the-promotions-action-type-is-cart_based)
   : Applies to the entire cart. •[
-  PRODUCT_BASED](https://docs.capillarytech.com/reference/create-cart-promotion-api#when-the-promotions-action-type-is-product_based)
+  PRODUCT\_BASED](https://docs.capillarytech.com/reference/create-cart-promotion-api#when-the-promotions-action-type-is-product_based)
   : Applies to specific items in the cart. •
   [TENDER](https://docs.capillarytech.com/reference/create-cart-promotion-api#when-the-promotions-action-type-is-tender)
   : Applies a discount based on payment method. Constrain: A TENDER condition
   must be paired with a TENDER action, and vice-versa. You cannot have a
   tender-based condition with a cart-based action. •
-  [PER_UNIT](https://docs.capillarytech.com/reference/create-cart-promotion-api#when-the-promotions-action-type-is-per_unit)
-  : Applies a discount for every X units.FREE_PRODUCT : Makes a specific item in
-  the cart free of charge. • [FIXED_PRICE
+  [PER\_UNIT](https://docs.capillarytech.com/reference/create-cart-promotion-api#when-the-promotions-action-type-is-per_unit)
+  : Applies a discount for every X units.FREE\_PRODUCT : Makes a specific item in
+  the cart free of charge. • [FIXED\_PRICE
   ](https://docs.capillarytech.com/reference/create-cart-promotion-api#when-the-promotions-action-type-is-fixed_price):
   Changes the price of a specific item to a set amount. Constrain: If you use a
-  FIXED_PRICE action, the associated condition must be a PRODUCT or
-  COMBO_PRODUCT type. A CART or TENDER condition is not supported for this
+  FIXED\_PRICE action, the associated condition must be a PRODUCT or
+  COMBO\_PRODUCT type. A CART or TENDER condition is not supported for this
   action. •
-  [FREE_PRODUCT](https://docs.capillarytech.com/reference/create-cart-promotion-api#when-the-promotions-action-type-is-free_product):
+  [FREE\_PRODUCT](https://docs.capillarytech.com/reference/create-cart-promotion-api#when-the-promotions-action-type-is-free_product):
   Makes a specific item in the cart free of charge. Constraint: The
   freeProductAction object requires a nested productBasedCondition to define
   which specific product (or group of products) is made free. This action is
@@ -1174,22 +888,18 @@ The following parameters describe the top-level fields required to create any ty
   below for the full structure.
 </ParamField>
 
-<ParamField
-  body="customerActivationRequired"
-  param-type="boolean"
-  required="false"
->
+<ParamField body="customerActivationRequired" param-type="boolean" required="false" deprecated="false">
   Indicates if a customer must opt-in for a cart promotion before it can be
   redeemed. If true, the cart promotion is issued as `INACTIVE` and requires a
   customer action to become `ACTIVE`.
 </ParamField>
 
-<ParamField showLocation="false" body="maxIssuancePerCustomer" param-type="integer" required="false">
+<ParamField body="maxIssuancePerCustomer" param-type="integer" required="false" deprecated="false">
   Defines the total number of times this cart promotion can be issued to a
   single customer.
 </ParamField>
 
-<ParamField showLocation="false" body="promotionRestrictions" param-type="object" required="false">
+<ParamField body="promotionRestrictions" param-type="object" required="false" deprecated="false">
   Defines usage limits on the cart promotion, grouped by level : `Customer`,
   `Cart`, `Promotion`, `Code` and `Earn`. See the ["Promotion Restrictions
   Object" table
@@ -1197,11 +907,11 @@ The following parameters describe the top-level fields required to create any ty
   for the full structure.
 </ParamField>
 
-<ParamField showLocation="false" body="customFieldValues" param-type="object" required="false">
-Defines a key-value map for storing custom metadata. The structure is user-defined (e.g., `{"key": "value"}`).
+<ParamField body="customFieldValues" param-type="object" required="false" deprecated="false">
+  Defines a key-value map for storing custom metadata. The structure is user-defined (e.g., `{"key": "value"}`).
 </ParamField>
 
-<ParamField showLocation="false" body="isLoyaltyOnly" param-type="boolean" required="false">
+<ParamField body="isLoyaltyOnly" param-type="boolean" required="false" deprecated="false">
   Indicates if a POS promotion should apply only to identified loyalty members.
   Supported values: • **`true`**: The promotion applies only to loyalty
   customers.\ • **`false`**: The promotion applies to all customers (anonymous
@@ -1209,33 +919,33 @@ Defines a key-value map for storing custom metadata. The structure is user-defin
   `POS`.
 </ParamField>
 
-<ParamField showLocation="false" body="earningCriteria" param-type="object" required="false">
+<ParamField body="earningCriteria" param-type="object" required="false" deprecated="false">
   Defines the conditions for earning a reward. Required when the type is
   EARNING. See the ["Earning Criteria
   Object"](https://docs.capillarytech.com/reference/create-cart-promotion-api#earning-criteria-object)
   table below for the full structure.
 </ParamField>
 
-<ParamField showLocation="false" body="maxEarningPerCustomer" param-type="integer" required="false">
+<ParamField body="maxEarningPerCustomer" param-type="integer" required="false" deprecated="false">
   Specifies the maximum number of times a customer can earn the reward from an
   EARNING type cart promotion.
 </ParamField>
 
-<ParamField showLocation="false" body="storeCriteria" param-type="object" required="false">
+<ParamField body="storeCriteria" param-type="object" required="false" deprecated="false">
   Limits the promotion to specific stores, zones, or concepts. See the ["Store
   Criteria
   Object"](https://docs.capillarytech.com/reference/create-cart-promotion-api#store-criteria-object)
   section for the full structure.
 </ParamField>
 
-<ParamField showLocation="false" body="timeCriteria" param-type="object" required="false">
+<ParamField body="timeCriteria" param-type="object" required="false" deprecated="false">
   Restricts the promotion to specific days of the week or hours of the day. See
   the ["Time Criteria
   Object"](https://docs.capillarytech.com/reference/create-cart-promotion-api#time-criteria-object)
   section for the full structure.
 </ParamField>
 
-<ParamField showLocation="false" body="supplementaryCriteria" param-type="object" required="false">
+<ParamField body="supplementaryCriteria" param-type="object" required="false" deprecated="false">
   Targets the promotion to customers in a specific loyalty tier or subscription
   program. See the ["Supplementary Criteria
   Object"](https://docs.capillarytech.com/reference/create-cart-promotion-api#supplementary-criteria-object)
@@ -1244,24 +954,24 @@ Defines a key-value map for storing custom metadata. The structure is user-defin
 
 ### Condition Objects (Rules that determine how the cart promotion applies)
 
-The condition object must contain a type field (CART, TENDER, or COMBO_PRODUCT) which determines its structure.
+The condition object must contain a type field (CART, TENDER, or COMBO\_PRODUCT) which determines its structure.
 
 #### Cart promotion with the cart promotions condition type as `CART`
 
-<ParamField showLocation="false" body="cartCondition" param-type="object" required="true">
+<ParamField body="cartCondition" param-type="object" required="true" deprecated="false">
   Defines rules that apply to the entire shopping cart.
 </ParamField>
 
-<ParamField showLocation="false" body="kpi" param-type="enum" required="true">
+<ParamField body="kpi" param-type="enum" required="true" deprecated="false">
   Metric to evaluate. **Supported**: `SUBTOTAL`,`ITEMCOUNT`.
 </ParamField>
 
-<ParamField showLocation="false" body="operator" param-type="enum" required="true">
+<ParamField body="operator" param-type="enum" required="true" deprecated="false">
   Comparison operator. **Supported**: `EQUALS`, `GREATER_THAN`,
   `GREATER_THAN_OR_EQUAL`.
 </ParamField>
 
-<ParamField showLocation="false" body="value" param-type="number" required="true">
+<ParamField body="value" param-type="number" required="true" deprecated="false">
   The number to compare against. **Example**: 250.
 </ParamField>
 
@@ -1309,35 +1019,35 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions' \
 
 #### Cart promotion with the cart promotions condition type as `TENDER`
 
-<ParamField showLocation="false" body="tenderCondition" param-type="object" required="true">
+<ParamField body="tenderCondition" param-type="object" required="true" deprecated="false">
   Defines rules based on the customer's method of payment. You can use this to
   set a condition based on the payment type, such as Card, Cash or gift voucher.
 </ParamField>
 
-<ParamField showLocation="false" body="tenderModes" param-type="array" required="true">
+<ParamField body="tenderModes" param-type="array" required="true" deprecated="false">
   Lists specific payment modes that trigger this condition.
 </ParamField>
 
-<ParamField showLocation="false" body="type" param-type="string" required="true">
+<ParamField body="type" param-type="string" required="true" deprecated="false">
   Specifies the payment category. Supported values: `CARD`, `CASH` ,
   `PAYMENT_VOUCHER`.
 </ParamField>
 
-<ParamField showLocation="false" body="identifiers" param-type="array" required="false">
+<ParamField body="identifiers" param-type="array" required="false" deprecated="false">
   The identifiers used for the `CARD` and `PAYMENT_VOUCHER` payment category.
 </ParamField>
 
-<ParamField showLocation="false" body="condition" param-type="object" required="true">
+<ParamField body="condition" param-type="object" required="true" deprecated="false">
   Defines an additional condition that must also be met for this rule to apply.
   Example - You want a cart promotion to apply only when a customer pays by card
   and the cart subtotal is greater than $500.
 </ParamField>
 
-<ParamField showLocation="false" body="type" param-type="enum" required="true">
+<ParamField body="type" param-type="enum" required="true" deprecated="false">
   Specifies the type of nested condition. Supported values: `CART`, `PRODUCT`.
 </ParamField>
 
-<ParamField showLocation="false" body="cartCondition" param-type="object" required="false">
+<ParamField body="cartCondition" param-type="object" required="false" deprecated="false">
   Defines rules based on specific products. Required when condition.type is
   `CART`. Example: You want a cart promotion to apply only when the customer
   pays by cash and buys at least 2 units of a specific product. Defines rules
@@ -1346,40 +1056,40 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions' \
   $50.
 </ParamField>
 
-<ParamField showLocation="false" body="kpi" param-type="enum" required="true">
+<ParamField body="kpi" param-type="enum" required="true" deprecated="false">
   Defines the metric to evaluate the cart. Supported values: `SUBTOTAL`,
   `ITEMCOUNT`.
 </ParamField>
 
-<ParamField showLocation="false" body="operator" param-type="enum" required="true">
+<ParamField body="operator" param-type="enum" required="true" deprecated="false">
   Defines how to compare the metric. Supported values: `EQUALS`, `GREATER_THAN`,
   `GREATER_THAN_OR_EQUAL`.
 </ParamField>
 
-<ParamField showLocation="false" body="value" param-type="number" required="true">
+<ParamField body="value" param-type="number" required="true" deprecated="false">
   The number to compare against.
 </ParamField>
 
-<ParamField showLocation="false" body="productCondition" param-type="object" required="false">
+<ParamField body="productCondition" param-type="object" required="false" deprecated="false">
   Defines rules based on specific products. Required when condition.type is
   `PRODUCT`. Example: Apply a $100 discount when the customer pays with a VISA
   card and buys at least 2 items from the “Paint Supplies” category.
 </ParamField>
 
-<ParamField showLocation="false" body="criteriaList" param-type="array" required="true">
+<ParamField body="criteriaList" param-type="array" required="true" deprecated="false">
   Lists criteria that identify the products targeted by this condition.
 </ParamField>
 
-<ParamField showLocation="false" body="kpi" param-type="enum" required="true">
+<ParamField body="kpi" param-type="enum" required="true" deprecated="false">
   Specifies the product-level metric. Supported values: `NONE`, `QUANTITY`
   ,`AMOUNT`.
 </ParamField>
 
-<ParamField showLocation="false" body="operator" param-type="enum" required="false">
+<ParamField body="operator" param-type="enum" required="false" deprecated="false">
   Defines how to compare the product metric. Supported value: `EQUALS`.
 </ParamField>
 
-<ParamField showLocation="false" body="value" param-type="string" required="false">
+<ParamField body="value" param-type="string" required="false" deprecated="false">
   Specifies the target value for the comparison.\ Supports up to 100 values in a
   single array.
 </ParamField>
@@ -1612,51 +1322,51 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions' \
 
 #### Cart promotion with the cart promotions condition type as `COMBO_PRODUCT`
 
-<ParamField showLocation="false" body="comboProductCondition" param-type="object" required="true">
+<ParamField body="comboProductCondition" param-type="object" required="true" deprecated="false">
   Defines rules that require specific product combinations to qualify for the
   cart promotion. Example: A customer must buy one brush and one tube of Brand A
   toothpaste.
 </ParamField>
 
-<ParamField showLocation="false" body="productConditions" param-type="array" required="true">
+<ParamField body="productConditions" param-type="array" required="true" deprecated="false">
   List of product condition objects. All listed conditions must be met for the
   cart promotion to apply. The maximum number of product conditions that you can
   set is 100.
 </ParamField>
 
-<ParamField showLocation="false" body="kpi" param-type="enum" required="true">
+<ParamField body="kpi" param-type="enum" required="true" deprecated="false">
   Metric used to evaluate each condition. Supported values: `NONE`, `QUANTITY`,
   `AMOUNT`. QUANTITY checks how many qualifying products are in the cart.
 </ParamField>
 
-<ParamField showLocation="false" body="operator" param-type="enum" required="false">
+<ParamField body="operator" param-type="enum" required="false" deprecated="false">
   Comparison logic for evaluating the metric. Supported values: `EQUALS`,
   `GREATER_THAN`, `GREATER_THAN_OR_EQUAL`.
 </ParamField>
 
-<ParamField showLocation="false" body="value" param-type="string" required="false">
+<ParamField body="value" param-type="string" required="false" deprecated="false">
   Target value for the comparison. The value should be in number. If kpi is
   `QUANTITY`, operator is `GREATER_THAN_OR_EQUAL`, and value is 2, the condition
   applies when the cart contains two or more qualifying products.
 </ParamField>
 
-<ParamField showLocation="false" body="criteriaList" param-type="array" required="true">
+<ParamField body="criteriaList" param-type="array" required="true" deprecated="false">
   Defines which products or attributes are part of the condition. Example:
-  Products where entity = PRODUCT_NAME and values = \["Paint Brush"].
+  Products where entity = PRODUCT\_NAME and values = \["Paint Brush"].
 </ParamField>
 
-<ParamField showLocation="false" body="entity" param-type="string" required="true">
+<ParamField body="entity" param-type="string" required="true" deprecated="false">
   Product attribute to evaluate. Example: `PRODUCT_NAME`, `BRAND`, or
   `CATEGORY`. This should match with the line item names in the Add Transaction
   API payload.
 </ParamField>
 
-<ParamField showLocation="false" body="operator" param-type="enum" required="true">
+<ParamField body="operator" param-type="enum" required="true" deprecated="false">
   Defines how attribute values are compared. Supported values: `IN`, `NOT_IN`.\
   Example: IN checks if the product belongs to the specified brand or category.
 </ParamField>
 
-<ParamField showLocation="false" body="values" param-type="array" required="true">
+<ParamField body="values" param-type="array" required="true" deprecated="false">
   List of attribute values to match against the entity.
 </ParamField>
 
@@ -1768,16 +1478,16 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions' \
 
 This condition type triggers a cart promotion based on the presence, quantity, or total value of specific products or product groups within the cart.
 
-<ParamField showLocation="false" body="productCondition" param-type="object" required="true">
+<ParamField body="productCondition" param-type="object" required="true" deprecated="false">
   Defines rules that apply to specific products in the shopping cart.
 </ParamField>
 
-<ParamField showLocation="false" body="criteriaList" param-type="array" required="true">
+<ParamField body="criteriaList" param-type="array" required="true" deprecated="false">
   Defines the specific products that must be present in the cart to satisfy the
   condition.
 </ParamField>
 
-<ParamField showLocation="false" body="entity" param-type="string" required="true">
+<ParamField body="entity" param-type="string" required="true" deprecated="false">
   The product attribute to evaluate. Supported values: `SKU:` The unique product
   code used internally to track a specific item (Stock Keeping Unit). `BRAND`:
   The name of the manufacturer. `ATTRIBUTE`: A custom property or characteristic
@@ -1786,7 +1496,7 @@ This condition type triggers a cart promotion based on the presence, quantity, o
   belongs to, Eg. 'Detergents' or 'Outerwear'.
 </ParamField>
 
-<ParamField showLocation="false" body="operator" param-type="enum" required="true">
+<ParamField body="operator" param-type="enum" required="true" deprecated="false">
   Defines how attribute values are compared.\ Supported values:\ `IN`: Specifies
   that an attribute's value must match one of the values provided in a list
   `NOT_IN`: Specifies that an attribute's value must not match any of the values
@@ -1794,12 +1504,12 @@ This condition type triggers a cart promotion based on the presence, quantity, o
   your purchase.
 </ParamField>
 
-<ParamField showLocation="false" body="values" param-type="array" required="true">
+<ParamField body="values" param-type="array" required="true" deprecated="false">
   List of attribute values to match against the entity.\ Supports up to 100
   values in a single array.
 </ParamField>
 
-<ParamField showLocation="false" body="kpi" param-type="enum" required="true">
+<ParamField body="kpi" param-type="enum" required="true" deprecated="false">
   Specifies the metric used to evaluate the matching products. `NONE`: Used when
   the condition focuses only on the presence of a specific product type, without
   requiring a minimum quantity or value check.\ `QUANTITY`: Used when the
@@ -1808,14 +1518,14 @@ This condition type triggers a cart promotion based on the presence, quantity, o
   the qualifying product in the cart.
 </ParamField>
 
-<ParamField showLocation="false" body="operator" param-type="enum" required="false">
+<ParamField body="operator" param-type="enum" required="false" deprecated="false">
   Comparison logic for the metric.\ Supported values:\ `EQUALS`: The metric must
   be the same value as the target set in the rule. `GREATER_THAN`: The metric
   must be more than the value set in the rule. `GREATER_THAN_OR_EQUAL`: The
   metric must be the same value or more than the target set in the rule.
 </ParamField>
 
-<ParamField showLocation="false" body="value" param-type="string" required="false">
+<ParamField body="value" param-type="string" required="false" deprecated="false">
   Target value for the comparison. Required if `kpi` is not `NONE`.
 </ParamField>
 
@@ -1871,113 +1581,99 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions' \
 
 This condition type combines payment using Points with a product or cart condition that will trigger the promotion benefits. For example, "Pay with 50 points to get 60% off on ChocoBrand biscuit".
 
-<ParamField
-  body="paymentModeScopeConditionRO"
-  param-type="object"
-  required="true"
->
+<ParamField body="paymentModeScopeConditionRO" param-type="object" required="true" deprecated="false">
   Defines the main container object for a payment condition.
 </ParamField>
 
-<ParamField showLocation="false" body="paymentModeConditionRO" param-type="object" required="true">
+<ParamField body="paymentModeConditionRO" param-type="object" required="true" deprecated="false">
   Defines the specific payment method rules that will trigger the promotion.
 </ParamField>
 
-<ParamField showLocation="false" body="paymentModeSelectionCriteriaRO" param-type="object" required="true">
-Specifies the specific criteria for selecting the payment mode.\ Example : "paymentModeSelectionCriteriaRO": `{` "operator": "IN", "values": `[` `{` "type": "CARD", "identifiers": `[`"POINTS`]`
+<ParamField body="paymentModeSelectionCriteriaRO" param-type="object" required="true" deprecated="false">
+  Specifies the specific criteria for selecting the payment mode.\ Example : "paymentModeSelectionCriteriaRO": `{` "operator": "IN", "values": `[` `{` "type": "CARD", "identifiers": `[`"POINTS`]`
 </ParamField>
 
-<ParamField showLocation="false" body="operator" param-type="enum" required="true">
+<ParamField body="operator" param-type="enum" required="true" deprecated="false">
   Indicates the logical operator for the values list.\ Supported values:\ `IN`:
   Contains at least one item from the specified values. `NOT_IN`: Does not
   contain item from the specified values. For example, the cart must contain
   either "Nike shoes" OR "Adidas shoes".
 </ParamField>
 
-<ParamField showLocation="false" body="values" param-type="array" required="true">
+<ParamField body="values" param-type="array" required="true" deprecated="false">
   Defines an array of payment mode objects that are allowed.
 </ParamField>
 
-    <ParamField showLocation="false" body="type" param-type="string" required="true">
-
-Specifies the category of the payment method. Supported: `CARD`. `CARD` is always used as a payment type when the payment method is Points.
-
+<ParamField body="type" param-type="string" required="true" deprecated="false">
+  Specifies the category of the payment method. Supported: `CARD`. `CARD` is always used as a payment type when the payment method is Points.
 </ParamField>
 
-    <ParamField showLocation="false" body="identifiers" param-type="array" required="true">
-
-Specifies the payment identifier. Supported: `POINTS`
-
+<ParamField body="identifiers" param-type="array" required="true" deprecated="false">
+  Specifies the payment identifier. Supported: `POINTS`
 </ParamField>
 
-<ParamField showLocation="false" body="condition" param-type="object" required="true">
+<ParamField body="condition" param-type="object" required="true" deprecated="false">
   Indicates a standard subcondition /nested condition that must also be met for
   the promotion to be applied.
 </ParamField>
 
-<ParamField showLocation="false" body="type" param-type="enum" required="true">
+<ParamField body="type" param-type="enum" required="true" deprecated="false">
   Defines the type of the nested condition.\ Supported:\ `PRODUCT`: Condition is
   based on a specific product. `CART`: Condition is based on a specific product.
   For example, pay with points and purchase a "Nike" shoes to get 50% off.
 </ParamField>
 
-<ParamField showLocation="false" body="productCondition" param-type="object" required="false">
+<ParamField body="productCondition" param-type="object" required="false" deprecated="false">
   Specifies the product condition details. Required if the condition type is
   `PRODUCT`.
 </ParamField>
 
-<ParamField showLocation="false" body="criteriaList" param-type="array" required="true">
-Defines the specific products that must be in the cart to satisfy the condition. Example:\ "criteriaList": `[ ` `{` "entity": "SKU",\ "operator": "IN",\ "values": `[ ` "'ChocoBrand'"`]`
+<ParamField body="criteriaList" param-type="array" required="true" deprecated="false">
+  Defines the specific products that must be in the cart to satisfy the condition. Example:\ "criteriaList": `[ ` `{` "entity": "SKU",\ "operator": "IN",\ "values": `[ ` "'ChocoBrand'"`]`
 </ParamField>
 
-    <ParamField showLocation="false" body="entity" param-type="string" required="true">
-
-Specifies the product attribute to evaluate.\ Supported values:\ `SKU`: The unique product code used internally to track a specific item (Stock Keeping Unit). `BRAND`: The trademarked name of the manufacturer or collection associated with the product. `ATTRIBUTE`: A custom property or characteristic of the product not covered by SKU, Brand, or Category Eg., 'Color: Red' or 'Material: Leather'. `CATEGORY`: The classification or group the product belongs to\ Eg., 'Detergents' or 'Outerwear'.
-
+<ParamField body="entity" param-type="string" required="true" deprecated="false">
+  Specifies the product attribute to evaluate.\ Supported values:\ `SKU`: The unique product code used internally to track a specific item (Stock Keeping Unit). `BRAND`: The trademarked name of the manufacturer or collection associated with the product. `ATTRIBUTE`: A custom property or characteristic of the product not covered by SKU, Brand, or Category Eg., 'Color: Red' or 'Material: Leather'. `CATEGORY`: The classification or group the product belongs to\ Eg., 'Detergents' or 'Outerwear'.
 </ParamField>
 
-    <ParamField showLocation="false" body="operator" param-type="enum" required="true">
-
-Defines how attribute values are compared.\ Supported values:\ `IN`: Contains at least one item from the specified values. `NOT_IN`: Does not contain item from the specified values. For example, the cart must contain either "Nike shoes" OR "Adidas shoes".
-
+<ParamField body="operator" param-type="enum" required="true" deprecated="false">
+  Defines how attribute values are compared.\ Supported values:\ `IN`: Contains at least one item from the specified values. `NOT_IN`: Does not contain item from the specified values. For example, the cart must contain either "Nike shoes" OR "Adidas shoes".
 </ParamField>
 
-    <ParamField showLocation="false" body="values" param-type="array" required="true">
-
-Defines values to match against the product.\ Example: `[ "ChocoBrand"]`\ Supports up to 100 values in a single array.
-
+<ParamField body="values" param-type="array" required="true" deprecated="false">
+  Defines values to match against the product.\ Example: `[ "ChocoBrand"]`\ Supports up to 100 values in a single array.
 </ParamField>
 
-<ParamField showLocation="false" body="kpi" param-type="enum" required="true">
+<ParamField body="kpi" param-type="enum" required="true" deprecated="false">
   Defines the metric used to evaluate the matching products. Supported: `NONE`,
   `QUANTITY`, `AMOUNT`.
 </ParamField>
 
-<ParamField showLocation="false" body="operator" param-type="enum" required="false">
+<ParamField body="operator" param-type="enum" required="false" deprecated="false">
   Defines the comparison logic for the metric. Required if KPI is not NONE.
   Supported: `EQUALS`, `GREATER_THAN`, `GREATER_THAN_OR_EQUAL`.
 </ParamField>
 
-<ParamField showLocation="false" body="value" param-type="number" required="false">
+<ParamField body="value" param-type="number" required="false" deprecated="false">
   Specifies the target value for the comparison. Required if KPI is not `NONE`.
 </ParamField>
 
-<ParamField showLocation="false" body="cartCondition" param-type="object" required="false">
+<ParamField body="cartCondition" param-type="object" required="false" deprecated="false">
   Defines the cart condition details. Required if ..condition.type is `CART`.
 </ParamField>
 
-<ParamField showLocation="false" body="kpi" param-type="enum" required="true">
+<ParamField body="kpi" param-type="enum" required="true" deprecated="false">
   Defines the metric to evaluate the entire cart. Supported:\ `SUBTOTAL`: Total
   sum value of the items in the cart , `ITEMCOUNT`: Total number of items in the
   cart.
 </ParamField>
 
-<ParamField showLocation="false" body="operator" param-type="enum" required="true">
+<ParamField body="operator" param-type="enum" required="true" deprecated="false">
   Indicates the comparison operator. Supported: `EQUALS`, `GREATER_THAN`,
   `GREATER_THAN_OR_EQUAL`.
 </ParamField>
 
-<ParamField showLocation="false" body="value" param-type="number" required="true">
+<ParamField body="value" param-type="number" required="true" deprecated="false">
   Specifies the number to compare the cart's KPI against.
 </ParamField>
 
@@ -2058,97 +1754,79 @@ Defines values to match against the product.\ Example: `[ "ChocoBrand"]`\ Suppor
 
 #### Cart promotion with condition type `PAYMENT_MODE_COMBO_PRODUCT`
 
-<ParamField
-  body="paymentComboProductConditionRO"
-  param-type="object"
-  required="true"
->
+<ParamField body="paymentComboProductConditionRO" param-type="object" required="true" deprecated="false">
   Specifies the main container object for a payment based combo condition.
 </ParamField>
 
-<ParamField showLocation="false" body="tenderCondition" param-type="object" required="true">
+<ParamField body="tenderCondition" param-type="object" required="true" deprecated="false">
   Defines the specific payment method rules required to trigger the promotion.
 </ParamField>
 
-<ParamField
-  body="paymentModeSelectionCriteriaRO"
-  param-type="object"
-  required="true"
->
+<ParamField body="paymentModeSelectionCriteriaRO" param-type="object" required="true" deprecated="false">
   Specifies the criteria for selecting the payment mode.
 </ParamField>
 
-<ParamField showLocation="false" body="operator" param-type="enum" required="true">
+<ParamField body="operator" param-type="enum" required="true" deprecated="false">
   Indicates the logical operator for the values list. \ Supported values: `IN`:
   The promotion applies if the customer pays with points. `NOT_IN`: The
   promotion applies if the customer pays with any method other than points. Eg.
   Paying with "Cash" instead of "Points".
 </ParamField>
 
-<ParamField showLocation="false" body="values" param-type="array" required="true">
+<ParamField body="values" param-type="array" required="true" deprecated="false">
   Defines an array of payment mode objects to check against.
 </ParamField>
 
-    <ParamField showLocation="false" body="type" param-type="string" required="true">
-
-Specifies the category of the payment method. \ Supported values:\ `CARD`: A non-cash payment type, which is always used to represent the identifier "Points".
-
+<ParamField body="type" param-type="string" required="true" deprecated="false">
+  Specifies the category of the payment method. \ Supported values:\ `CARD`: A non-cash payment type, which is always used to represent the identifier "Points".
 </ParamField>
 
-    <ParamField showLocation="false" body="identifiers" param-type="array" required="true">
-
-Defines the specific payment identifiers.\ Supported value: `POINTS`.
-
+<ParamField body="identifiers" param-type="array" required="true" deprecated="false">
+  Defines the specific payment identifiers.\ Supported value: `POINTS`.
 </ParamField>
 
-<ParamField showLocation="false" body="comboProductCondition" param-type="object" required="true">
+<ParamField body="comboProductCondition" param-type="object" required="true" deprecated="false">
   Defines the combo product condition. All product conditions listed inside must
   be fulfilled for the promotion to be triggered\ Example: The customer must buy
   both a "Burger" AND "Fries".
 </ParamField>
 
-<ParamField showLocation="false" body="productConditions" param-type="array" required="true">
+<ParamField body="productConditions" param-type="array" required="true" deprecated="false">
   Defines the list of product rules that make up the combo. Each object in this
   list is one part of the combo.
 </ParamField>
 
-<ParamField showLocation="false" body="criteriaList" param-type="array" required="true">
-Defines the specific products that must be in the cart for this part of the combo. Example:\ "criteriaList": `[ ` `{` "entity": "SKU",\ "operator": "IN",\ "values": `[ ` "ChocoBrand"`]`
+<ParamField body="criteriaList" param-type="array" required="true" deprecated="false">
+  Defines the specific products that must be in the cart for this part of the combo. Example:\ "criteriaList": `[ ` `{` "entity": "SKU",\ "operator": "IN",\ "values": `[ ` "ChocoBrand"`]`
 </ParamField>
 
-    <ParamField showLocation="false" body="entity" param-type="string" required="true">
-
-Specifies the product attribute to evaluate. \ Supported values:
-
+<ParamField body="entity" param-type="string" required="true" deprecated="false">
+  Specifies the product attribute to evaluate. \ Supported values:
 </ParamField>
 
-    <ParamField showLocation="false" body="operator" param-type="enum" required="true">
-
-Defines how attribute values are compared. \ Supported values: `IN`: The item's entity must be in this list of values\ `NOT_IN`: The item's entity must not be in this list of values.
-
+<ParamField body="operator" param-type="enum" required="true" deprecated="false">
+  Defines how attribute values are compared. \ Supported values: `IN`: The item's entity must be in this list of values\ `NOT_IN`: The item's entity must not be in this list of values.
 </ParamField>
 
-    <ParamField showLocation="false" body="values" param-type="array" required="true">
-
-Defines an array of user-defined strings to match against the entity. Supports up to 100 values in a single array. Example: `[`"SKU-123"`]`, `[`"Large Fries"`]`.
-
+<ParamField body="values" param-type="array" required="true" deprecated="false">
+  Defines an array of user-defined strings to match against the entity. Supports up to 100 values in a single array. Example: `[`"SKU-123"`]`, `[`"Large Fries"`]`.
 </ParamField>
 
-<ParamField showLocation="false" body="kpi" param-type="enum" required="true">
+<ParamField body="kpi" param-type="enum" required="true" deprecated="false">
   Specifies the metric used to evaluate the matching products for this combo
   part. \ Supported values:\ `NONE`: Checks only for the presence of the item,
   not its quantity or value.\ `QUANTITY`: Checks the number of units of the
   item.\ `AMOUNT`: Checks the total value of the items.
 </ParamField>
 
-<ParamField showLocation="false" body="operator" param-type="enum" required="false">
+<ParamField body="operator" param-type="enum" required="false" deprecated="false">
   Indicates the comparison logic for the kpi. Required if kpi is not `NONE`. \
   Supported values: \ `EQUALS`: The KPI must exactly match the value.
   `GREATER_THAN`: The KPI must be more than the value. `GREATER_THAN_OR_EQUAL`:
   The KPI must be at least the set value.
 </ParamField>
 
-<ParamField showLocation="false" body="value" param-type="number" required="false">
+<ParamField body="value" param-type="number" required="false" deprecated="false">
   Specifies the target value for the comparison. Required if kpi is not NONE.
 </ParamField>
 
@@ -2233,24 +1911,26 @@ Defines an array of user-defined strings to match against the entity. Supports u
 **Note**
 
 - A PRODUCT condition checks for one set of products that meet a single criteria.
-- A COMBO_PRODUCT condition checks for multiple, distinct sets of products that must all be present in the cart together.
+
+- A COMBO\_PRODUCT condition checks for multiple, distinct sets of products that must all be present in the cart together.
 
 ### Action Objects (specifies what happens when the cart promotion is applied)
 
 The **action** object defines **what happens** when a cart promotion’s **condition** is met.
 In simple terms:
 
-- **Condition** = _When does the offer apply?_
-- **Action** = _What benefit does the customer get?_
+- **Condition** = *When does the offer apply?*
+
+- **Action** = *What benefit does the customer get?*
 
 | Concept   | Purpose                                                                 | Example                                   |
-| :-------- | :---------------------------------------------------------------------- | :---------------------------------------- |
+| --------- | ----------------------------------------------------------------------- | ----------------------------------------- |
 | condition | Specifies the trigger criteria for the cart promotion.                  | When the cart subtotal is ₹1,000 or more. |
 | action    | Specifies the reward action or benefit once the condition is satisfied. | Apply a ₹200 discount.                    |
 
 #### Action Types and Scenarios
 
-**1. CART_BASED**
+**1. CART\_BASED**
 
 Applies a discount to the entire shopping cart when a cart-level condition is met.
 **Example**: Give a $200 discount when the cart subtotal is $1,000 or more.
@@ -2264,18 +1944,21 @@ Applies a discount based on the customer’s **payment method**.
 
 The condition checks the payment type; the action applies a discount tied to that payment.
 
-**3. PRODUCT_BASED**
+**3. PRODUCT\_BASED**
 
 A product-based action is used when the cart promotion applies a discount or reward action to specific products in the cart, not to the entire cart or a payment method. This action type is most commonly used for item-level offers, where the benefit depends on the products purchased or their attributes (such as category, brand, or quantity).
 
 **When to use it**
 
 - Apply a percentage or fixed amount discount on certain products.
+
 - Offer discounts only on products that meet specific criteria, such as `category`, `brand`, or `SKU`.
+
 - Reward a related product set, for example, “Buy product A, get a discount on product B.”
+
 - Run category-level or brand-level cart promotions.
 
-**4. FREE_PRODUCT**
+**4. FREE\_PRODUCT**
 
 Makes one or more specific items in the cart free of charge. This is the ideal action for "Buy X, Get Y Free" cart promotions.
 
@@ -2283,7 +1966,7 @@ Makes one or more specific items in the cart free of charge. This is the ideal a
 
 The system identifies the product to be discounted and reduces its price to zero.
 
-**5. FIXED_PRICE**
+**5. FIXED\_PRICE**
 
 Changes the price of specific items to a set amount, regardless of their original price.
 
@@ -2291,7 +1974,7 @@ Changes the price of specific items to a set amount, regardless of their origina
 
 The system finds the qualifying item and overrides its original price with the new fixed price.
 
-**6. PER_UNIT**
+**6. PER\_UNIT**
 
 Applies a reward action repeatedly for each qualifying group of items or value.
 **Example**: Buy 2 Paint Buckets, get 1 Paint Brush free for every 2 buckets.
@@ -2300,29 +1983,29 @@ The condition checks the total quantity or amount, and the action applies a recu
 
 #### Comparison Table
 
-| Action Type   | When to Use It                                                 | What It Does                                                                       | Example cart Promotion                                           |
-| :------------ | :------------------------------------------------------------- | :--------------------------------------------------------------------------------- | :--------------------------------------------------------------- |
-| CART_BASED    | When the discount applies to the entire cart total.            | Gives a single discount based on the total value of all items in the cart.         | Get $200 off when your cart total is $1,000 or more.             |
-| TENDER        | When the reward action depends on the payment method used.     | Applies a discount if the customer uses a specific payment mode.                   | Pay with a VISA card and get $100 off your total bill.           |
-| PRODUCT_BASED | When you want to discount specific products or categories.     | Applies a fixed or percentage discount to particular items that meet set criteria. | Get 10% off all Paint Supplies.                                  |
-| FREE_PRODUCT  | For "Buy X, Get Y Free" offers.                                | Reduces the price of one or more specific items to zero.                           | Buy a laptop and get a computer mouse for free.                  |
-| FIXED_PRICE   | To sell an item or group of items at a specific special price. | Overrides the original price of an item with a new, set price.                     | Get any large pizza for $10.                                     |
-| PER_UNIT      | When the reward action should repeat per quantity or group.    | Applies benefits repeatedly for each qualifying group of items or value.           | Buy 2 Paint Buckets, get 1 Paint Brush free for every 2 buckets. |
+| Action Type    | When to Use It                                                 | What It Does                                                                       | Example cart Promotion                                           |
+| -------------- | -------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| CART\_BASED    | When the discount applies to the entire cart total.            | Gives a single discount based on the total value of all items in the cart.         | Get $200 off when your cart total is $1,000 or more.             |
+| TENDER         | When the reward action depends on the payment method used.     | Applies a discount if the customer uses a specific payment mode.                   | Pay with a VISA card and get $100 off your total bill.           |
+| PRODUCT\_BASED | When you want to discount specific products or categories.     | Applies a fixed or percentage discount to particular items that meet set criteria. | Get 10% off all Paint Supplies.                                  |
+| FREE\_PRODUCT  | For "Buy X, Get Y Free" offers.                                | Reduces the price of one or more specific items to zero.                           | Buy a laptop and get a computer mouse for free.                  |
+| FIXED\_PRICE   | To sell an item or group of items at a specific special price. | Overrides the original price of an item with a new, set price.                     | Get any large pizza for $10.                                     |
+| PER\_UNIT      | When the reward action should repeat per quantity or group.    | Applies benefits repeatedly for each qualifying group of items or value.           | Buy 2 Paint Buckets, get 1 Paint Brush free for every 2 buckets. |
 
-#### When the cart promotions action type is CART_BASED
+#### When the cart promotions action type is CART\_BASED
 
-<ParamField showLocation="false" body="cartBasedAction" param-type="object" required="true">
+<ParamField body="cartBasedAction" param-type="object" required="true" deprecated="false">
   Defines a reward action or discount that applies to the entire shopping cart
   once the cart promotion’s condition is met. It’s used when the benefit is
   calculated at the cart level, not per product or payment type. Example: Apply
   a $200 discount when the cart subtotal is $1,000 or more.
 </ParamField>
 
-<ParamField showLocation="false" body="type" param-type="enum" required="true">
+<ParamField body="type" param-type="enum" required="true" deprecated="false">
   Type of action. Supported value: `ABSOLUTE`, `PERCENTAGE`.
 </ParamField>
 
-<ParamField showLocation="false" body="value" param-type="number" required="true">
+<ParamField body="value" param-type="number" required="true" deprecated="false">
   Fixed monetary amount for the discount.
 </ParamField>
 
@@ -2370,19 +2053,19 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions' \
 
 #### When the cart promotions action type is TENDER
 
-<ParamField showLocation="false" body="tenderBasedAction" param-type="object" required="true">
+<ParamField body="tenderBasedAction" param-type="object" required="true" deprecated="false">
   Defines a reward action or discount that applies when the customer uses a
   specific payment method (tender) during checkout. It’s used for conditions
   tied to cards or cash payments. Apply a $100 discount when the customer pays
   using a VISA credit card.
 </ParamField>
 
-<ParamField showLocation="false" body="type" param-type="enum" required="true">
+<ParamField body="type" param-type="enum" required="true" deprecated="false">
   Specifies how the discount or reward action amount is calculated. Supported
   value: `ABSOLUTE`, `PERCENTAGE`.
 </ParamField>
 
-<ParamField showLocation="false" body="value" param-type="string" required="true">
+<ParamField body="value" param-type="string" required="true" deprecated="false">
   Specifies the amount of discount to apply in numbers. Example: If the value is
   $20, the system applies a fixed discount, for example, $20 off.
 </ParamField>
@@ -2441,119 +2124,113 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions' \
 }'
 ```
 
-#### When the cart promotions action type is PRODUCT_BASED
+#### When the cart promotions action type is PRODUCT\_BASED
 
-<ParamField showLocation="false" body="productBasedAction" param-type="object" required="true">
+<ParamField body="productBasedAction" param-type="object" required="true" deprecated="false">
   Defines a discount or reward action applied to specific products that meet
   defined criteria. Example: Apply a 10% discount on Paint Supplies.
 </ParamField>
 
-<ParamField showLocation="false" body="type" param-type="enum" required="true">
+<ParamField body="type" param-type="enum" required="true" deprecated="false">
   Defines how the discount is calculated. Supported values: `ABSOLUTE` (fixed
   amount), \`PERCENTAGE(percentage-based). Example: type = PERCENTAGE applies
   10% off.
 </ParamField>
 
-<ParamField showLocation="false" body="value" param-type="number" required="true">
+<ParamField body="value" param-type="number" required="true" deprecated="false">
   Specifies the amount or percentage of the discount. Example: value = 10
   applies a 10% discount if type is PERCENTAGE, or $10 off if type is ABSOLUTE.
 </ParamField>
 
-<ParamField
-  body="includeItemsFromConditionSet"
-  param-type="boolean"
-  required="true"
->
+<ParamField body="includeItemsFromConditionSet" param-type="boolean" required="true" deprecated="false">
   Controls whether the action benefit applies to the same items that satisfied
   the cart promotion trigger (`true`) or to a different target set defined by
   productBasedCondition (`false`). Example (true): “Buy 10 A, get $100 off those
   10 A.” Example (false): “Buy 10 A, get $100 off B.”
 </ParamField>
 
-<ParamField showLocation="false" body="productBasedCondition" param-type="object" required="false">
+<ParamField body="productBasedCondition" param-type="object" required="false" deprecated="false">
   Defines the set of products to which the action's benefit will be applied.
   This field is required when includeItemsFromConditionSet is false, unless the
   action is intended to apply to the items from the nested condition like in
-  condition type "PAYMENT_MODE_SCOPE".
+  condition type "PAYMENT\_MODE\_SCOPE".
 </ParamField>
 
-<ParamField showLocation="false" body="type" param-type="enum" required="true">
+<ParamField body="type" param-type="enum" required="true" deprecated="false">
   Specifies how target products are grouped. Supported values: `PRODUCT`,
-  `COMBO_PRODUCT`. Example: COMBO_PRODUCT targets combinations like Paint +
+  `COMBO_PRODUCT`. Example: COMBO\_PRODUCT targets combinations like Paint +
   Brush.
 </ParamField>
 
-<ParamField showLocation="false" body="productCondition" param-type="object" required="false">
+<ParamField body="productCondition" param-type="object" required="false" deprecated="false">
   Defines target products using product-level rules. Required if type =
   `PRODUCT`. Example: Apply discount to products in the “Paint Supplies”
   category.
 </ParamField>
 
-<ParamField showLocation="false" body="criteriaList" param-type="array" required="true">
+<ParamField body="criteriaList" param-type="array" required="true" deprecated="false">
   List of rules that specify which products are eligible. Example: entity =
   CATEGORY, values = \["Paint Supplies"].
 </ParamField>
 
-<ParamField showLocation="false" body="kpi" param-type="enum" required="true">
+<ParamField body="kpi" param-type="enum" required="true" deprecated="false">
   Metric used for filtering products. Supported values: `NONE`, `QUANTITY`,
   `AMOUNT`. Example: QUANTITY = 2 means at least two products are required.
 </ParamField>
 
-<ParamField showLocation="false" body="operator" param-type="enum" required="false">
+<ParamField body="operator" param-type="enum" required="false" deprecated="false">
   Defines how the KPI is compared. Supported value: `EQUALS`. Example: EQUALS
   ensures the quantity exactly matches the target value.
 </ParamField>
 
-<ParamField showLocation="false" body="value" param-type="string" required="false">
+<ParamField body="value" param-type="string" required="false" deprecated="false">
   Specifies the target number or value for the comparison. This should be
   defined in numbers. Example: value = "2" means exactly two items must be
   purchased.
 </ParamField>
 
-<ParamField showLocation="false" body="comboProductCondition" param-type="object" required="false">
+<ParamField body="comboProductCondition" param-type="object" required="false" deprecated="false">
   Defines the set of product combinations that receive the discount or reward
   action when the cart promotion is applied. It specifies which combo of
   products — such as a bundle or paired items — will get the benefit, based on
   the action’s configuration. If `includeItemsFromConditionSet` is true, the
   discount applies to the same combo that triggered the cart promotion. If`
-  includeItemsFromConditionSet` is false, the discount applies to a different
+    includeItemsFromConditionSet` is false, the discount applies to a different
   combo defined here.
 </ParamField>
 
-<ParamField showLocation="false" body="productConditions" param-type="array" required="true">
+<ParamField body="productConditions" param-type="array" required="true" deprecated="false">
   List of product condition objects. All listed conditions must be met for the
   discount to apply.\ Example: One Paint Brush and one ColorCo product.
 </ParamField>
 
-    <ParamField showLocation="false" body="kpi" param-type="enum" required="true">
-    Metric used for evaluating combo conditions. Supported values: `NONE`, `QUANTITY`, `AMOUNT`. Example: QUANTITY = 1 ensures each product is present at least once.
-    </ParamField>
-
-    <ParamField showLocation="false" body="operator" param-type="enum" required="false">
-    Logical operator. Supported values: `EQUALS`, `GREATER_THAN`, `GREATER_THAN_OR_EQUA`L.
-    </ParamField>
-
-    <ParamField showLocation="false" body="value" param-type="string" required="false">
-    Numeric target for KPI comparison. This should be defined in numbers. Example: value = "1" means at least one item must be present.
-    </ParamField>
-
-    <ParamField showLocation="false" body="criteriaList" param-type="array" required="true">
-
-Defines which products or attributes are included in the combo. Example: entity = PRODUCT_NAME, values = \["Paint Brush"].
-
+<ParamField body="kpi" param-type="enum" required="true" deprecated="false">
+  Metric used for evaluating combo conditions. Supported values: `NONE`, `QUANTITY`, `AMOUNT`. Example: QUANTITY = 1 ensures each product is present at least once.
 </ParamField>
 
-      <ParamField showLocation="false" body="entity" param-type="string" required="true">
-      Product attribute to evaluate (e.g., SKU).
-      </ParamField>
+<ParamField body="operator" param-type="enum" required="false" deprecated="false">
+  Logical operator. Supported values: `EQUALS`, `GREATER_THAN`, `GREATER_THAN_OR_EQUA`L.
+</ParamField>
 
-      <ParamField showLocation="false" body="operator" param-type="enum" required="true">
-      Defines how the attribute values are compared. Supported values: `IN`, `NOT_IN`. Example: IN checks if the product belongs to “Paint Supplies.”
-      </ParamField>
+<ParamField body="value" param-type="string" required="false" deprecated="false">
+  Numeric target for KPI comparison. This should be defined in numbers. Example: value = "1" means at least one item must be present.
+</ParamField>
 
-      <ParamField showLocation="false" body="values" param-type="array" required="true">
-      List of attribute values to match. Supports up to 100 values in a single array. Example: values = \["Paint Brush", "ColorCo"].
-      </ParamField>
+<ParamField body="criteriaList" param-type="array" required="true" deprecated="false">
+  Defines which products or attributes are included in the combo. Example: entity = PRODUCT\_NAME, values = \["Paint Brush"].
+</ParamField>
+
+<ParamField body="entity" param-type="string" required="true" deprecated="false">
+  Product attribute to evaluate (e.g., SKU).
+</ParamField>
+
+<ParamField body="operator" param-type="enum" required="true" deprecated="false">
+  Defines how the attribute values are compared. Supported values: `IN`, `NOT_IN`. Example: IN checks if the product belongs to “Paint Supplies.”
+</ParamField>
+
+<ParamField body="values" param-type="array" required="true" deprecated="false">
+  List of attribute values to match. Supports up to 100 values in a single array. Example: values = \["Paint Brush", "ColorCo"].
+</ParamField>
 
 #### Example request
 
@@ -2698,17 +2375,17 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions' \
 }'\'''
 ```
 
-#### When the cart promotions action type is PER_UNIT
+#### When the cart promotions action type is PER\_UNIT
 
-<ParamField showLocation="false" body="perUnitAction" param-type="object" required="true">
+<ParamField body="perUnitAction" param-type="object" required="true" deprecated="false">
   Defines a reward action that can be applied repeatedly.
 </ParamField>
 
-<ParamField showLocation="false" body="perUnitKPI" param-type="enum" required="true">
+<ParamField body="perUnitKPI" param-type="enum" required="true" deprecated="false">
   Metric used to group items. **Supported**: `QUANTITY`.
 </ParamField>
 
-<ParamField showLocation="false" body="perUnitDivider" param-type="string" required="true">
+<ParamField body="perUnitDivider" param-type="string" required="true" deprecated="false">
   Specifies a numerical value that specifies the minimum quantity of items that
   must be purchased before a specified action (such as a discount or free
   item)is repeated.
@@ -2719,16 +2396,16 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions' \
   repeatedly.
 </ParamField>
 
-<ParamField showLocation="false" body="rewardAction" param-type="object" required="true">
+<ParamField body="rewardAction" param-type="object" required="true" deprecated="false">
   Defines the specific benefit for each group.
 </ParamField>
 
-<ParamField showLocation="false" body="type" param-type="enum" required="true">
-  Type of per-unit reward action. **Supported values** : _ `PRODUCT_BASED`: This
+<ParamField body="type" param-type="enum" required="true" deprecated="false">
+  Type of per-unit reward action. **Supported values** : \_ `PRODUCT_BASED`: This
   action applies a direct discount (either a fixed amount or a percentage) to
   specific items., Example :A "25% Off All Snacks" cart promotion . When a
   customer adds any item from the "Snacks" category to their cart, the system
-  applies a 25% discount to the price of just those snack items. _
+  applies a 25% discount to the price of just those snack items. \_
   `FREE_PRODUCT`:This action makes a specific item free, often as part of a "Buy
   X, Get Y" offer. Example : A "Buy 2 Shirts, Get 1 Free" cart promotion . When
   the system detects three items from the "Shirts" category in the cart, it
@@ -2740,23 +2417,19 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions' \
   changes it to the special fixed price of $10.
 </ParamField>
 
-<ParamField showLocation="false" body="productBasedAction" param-type="object" required="false">
+<ParamField body="productBasedAction" param-type="object" required="false" deprecated="false">
   Required when `rewardAction.type` is `PRODUCT_BASED`.
 </ParamField>
 
-<ParamField showLocation="false" body="type" param-type="enum" required="true">
+<ParamField body="type" param-type="enum" required="true" deprecated="false">
   Calculation method. **Supported**: `ABSOLUTE`, `PERCENTAGE`.
 </ParamField>
 
-<ParamField showLocation="false" body="value" param-type="number" required="true">
+<ParamField body="value" param-type="number" required="true" deprecated="false">
   The amount or percentage of the discount.
 </ParamField>
 
-<ParamField
-  body="includeItemsFromConditionSet"
-  param-type="boolean"
-  required="true"
->
+<ParamField body="includeItemsFromConditionSet" param-type="boolean" required="true" deprecated="false">
   Controls whether the action benefit applies to the same items that satisfied
   the cart promotion trigger (`true`) or to a different target set defined by
   productBasedCondition (`false`). Example (true): “Buy 10 A, get $100 off those
@@ -2768,70 +2441,62 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions' \
   the same three items that triggered the cart promotion in the above example.
 </ParamField>
 
-<ParamField showLocation="false" body="productBasedCondition" param-type="object" required="false">
+<ParamField body="productBasedCondition" param-type="object" required="false" deprecated="false">
   Defines the set of products to which the action's benefit will be applied.
   This field is required when includeItemsFromConditionSet is false, unless the
   action is intended to apply to the items from the nested condition like in
-  condition type "PAYMENT_MODE_SCOPE".
+  condition type "PAYMENT\_MODE\_SCOPE".
 </ParamField>
 
-    <ParamField showLocation="false" body="type" param-type="enum" required="true">
-    Targeting method. **Supported**: `PRODUCT`, `COMBO_PRODUCT`.
-    </ParamField>
-
-    <ParamField showLocation="false" body="productCondition" param-type="object" required="false">
-
-Defines target products. Required if type is PRODUCT.
-
+<ParamField body="type" param-type="enum" required="true" deprecated="false">
+  Targeting method. **Supported**: `PRODUCT`, `COMBO_PRODUCT`.
 </ParamField>
 
-      <ParamField showLocation="false" body="criteriaList" param-type="array" required="true">
-      Defines an array of rule objects that specify which products are targeted.
-      </ParamField>
-
-        <ParamField showLocation="false" body="entity" param-type="string" required="true">
-        Specifies the product attribute to evaluate.\ Supported values:\ `SKU`: The unique product code used internally to track a specific item (Stock Keeping Unit). `BRAND`: The trademarked name of the manufacturer or collection associated with the product. `ATTRIBUTE`: A custom property or characteristic of the product not covered by SKU, Brand, or Category Eg., 'Color: Red' or 'Material: Leather'. `CATEGORY`: The classification or group the product belongs to\ Eg., 'Detergents' or 'Outerwear'.
-        </ParamField>
-
-        <ParamField showLocation="false" body="values" param-type="array" required="true">
-        Specifies an array of strings to match against the `entity` attribute.\ Supports up to 100 values in a single array.
-        </ParamField>
-
-        <ParamField showLocation="false" body="operator" param-type="enum" required="true">
-        Specifies the operator for the list comparison. **Supported values**: `IN`, `NOT_IN`.
-        </ParamField>
-
-      <ParamField showLocation="false" body="kpi" param-type="enum" required="true">
-      Specifies an optional metric for filtering products. **Supported values**: `NONE`, `QUANTITY`, `AMOUNT`.
-      </ParamField>
-
-      <ParamField showLocation="false" body="operator" param-type="enum" required="false">
-      Specifies the logical operator for product comparison. **Supported values**: `EQUALS`.
-      </ParamField>
-
-      <ParamField showLocation="false" body="value" param-type="string" required="false">
-      Specifies the target value for the product KPI comparison.
-      </ParamField>
-
-    <ParamField showLocation="false" body="comboProductCondition" param-type="object" required="false">
-
-Defines target combos. Required if type is COMBO_PRODUCT.
-
+<ParamField body="productCondition" param-type="object" required="false" deprecated="false">
+  Defines target products. Required if type is PRODUCT.
 </ParamField>
 
-      <ParamField showLocation="false" body="productConditions" param-type="array" required="true">
-      Array of product condition objects.
-      </ParamField>
-
-<ParamField showLocation="false" body="freeProductAction" param-type="object" required="false">
-  Required when rewardAction.type is FREE_PRODUCT.
+<ParamField body="criteriaList" param-type="array" required="true" deprecated="false">
+  Defines an array of rule objects that specify which products are targeted.
 </ParamField>
 
-<ParamField
-  body="includeItemsFromConditionSet"
-  param-type="boolean"
-  required="true"
->
+<ParamField body="entity" param-type="string" required="true" deprecated="false">
+  Specifies the product attribute to evaluate.\ Supported values:\ `SKU`: The unique product code used internally to track a specific item (Stock Keeping Unit). `BRAND`: The trademarked name of the manufacturer or collection associated with the product. `ATTRIBUTE`: A custom property or characteristic of the product not covered by SKU, Brand, or Category Eg., 'Color: Red' or 'Material: Leather'. `CATEGORY`: The classification or group the product belongs to\ Eg., 'Detergents' or 'Outerwear'.
+</ParamField>
+
+<ParamField body="values" param-type="array" required="true" deprecated="false">
+  Specifies an array of strings to match against the `entity` attribute.\ Supports up to 100 values in a single array.
+</ParamField>
+
+<ParamField body="operator" param-type="enum" required="true" deprecated="false">
+  Specifies the operator for the list comparison. **Supported values**: `IN`, `NOT_IN`.
+</ParamField>
+
+<ParamField body="kpi" param-type="enum" required="true" deprecated="false">
+  Specifies an optional metric for filtering products. **Supported values**: `NONE`, `QUANTITY`, `AMOUNT`.
+</ParamField>
+
+<ParamField body="operator" param-type="enum" required="false" deprecated="false">
+  Specifies the logical operator for product comparison. **Supported values**: `EQUALS`.
+</ParamField>
+
+<ParamField body="value" param-type="string" required="false" deprecated="false">
+  Specifies the target value for the product KPI comparison.
+</ParamField>
+
+<ParamField body="comboProductCondition" param-type="object" required="false" deprecated="false">
+  Defines target combos. Required if type is COMBO\_PRODUCT.
+</ParamField>
+
+<ParamField body="productConditions" param-type="array" required="true" deprecated="false">
+  Array of product condition objects.
+</ParamField>
+
+<ParamField body="freeProductAction" param-type="object" required="false" deprecated="false">
+  Required when rewardAction.type is FREE\_PRODUCT.
+</ParamField>
+
+<ParamField body="includeItemsFromConditionSet" param-type="boolean" required="true" deprecated="false">
   Controls whether the action benefit applies to the same items that satisfied
   the cart promotion trigger (`true`) or to a different target set defined by
   productBasedCondition (`false`). Example (true): “Buy 10 A, get $100 off those
@@ -2841,68 +2506,60 @@ Defines target combos. Required if type is COMBO_PRODUCT.
   transaction, they get 50% off all three items."
 </ParamField>
 
-<ParamField showLocation="false" body="productBasedCondition" param-type="object" required="true">
+<ParamField body="productBasedCondition" param-type="object" required="true" deprecated="false">
   Defines exactly which products are to be marked as free.
 </ParamField>
 
-    <ParamField showLocation="false" body="type" param-type="enum" required="true">
-    Targeting method. **Supported**: `PRODUCT`, `COMBO_PRODUCT`.
-    </ParamField>
-
-    <ParamField showLocation="false" body="productCondition" param-type="object" required="false">
-
-Defines target products. Required if type is `PRODUCT`.
-
+<ParamField body="type" param-type="enum" required="true" deprecated="false">
+  Targeting method. **Supported**: `PRODUCT`, `COMBO_PRODUCT`.
 </ParamField>
 
-      <ParamField showLocation="false" body="criteriaList" param-type="array" required="true">
-      Defines an array of rule objects that specify which products are targeted.
-      </ParamField>
-
-        <ParamField showLocation="false" body="entity" param-type="string" required="true">
-        Specifies the product attribute to evaluate, such as `SKU`, `BRAND`, or `CATEGORY`.
-        </ParamField>
-
-        <ParamField showLocation="false" body="values" param-type="array" required="true">
-        Specifies an array of strings to match against the `entity` attribute.\ Supports up to 100 values in a single array.
-        </ParamField>
-
-        <ParamField showLocation="false" body="operator" param-type="enum" required="true">
-        Specifies the operator for the list comparison. **Supported values**: `IN`, `NOT_IN`.
-        </ParamField>
-
-      <ParamField showLocation="false" body="kpi" param-type="enum" required="true">
-      Specifies an optional metric for filtering products. **Supported values**: `NONE`, `QUANTITY`, `AMOUNT`.
-      </ParamField>
-
-      <ParamField showLocation="false" body="operator" param-type="enum" required="false">
-      Specifies the logical operator for product comparison. **Supported values**: `EQUALS`.
-      </ParamField>
-
-      <ParamField showLocation="false" body="value" param-type="string" required="false">
-      Specifies the target value for the product KPI comparison.
-      </ParamField>
-
-    <ParamField showLocation="false" body="comboProductCondition" param-type="object" required="false">
-
-Defines target combos. Required if type is `COMBO_PRODUCT`.
-
+<ParamField body="productCondition" param-type="object" required="false" deprecated="false">
+  Defines target products. Required if type is `PRODUCT`.
 </ParamField>
 
-<ParamField showLocation="false" body="fixedPriceAction" param-type="object" required="false">
+<ParamField body="criteriaList" param-type="array" required="true" deprecated="false">
+  Defines an array of rule objects that specify which products are targeted.
+</ParamField>
+
+<ParamField body="entity" param-type="string" required="true" deprecated="false">
+  Specifies the product attribute to evaluate, such as `SKU`, `BRAND`, or `CATEGORY`.
+</ParamField>
+
+<ParamField body="values" param-type="array" required="true" deprecated="false">
+  Specifies an array of strings to match against the `entity` attribute.\ Supports up to 100 values in a single array.
+</ParamField>
+
+<ParamField body="operator" param-type="enum" required="true" deprecated="false">
+  Specifies the operator for the list comparison. **Supported values**: `IN`, `NOT_IN`.
+</ParamField>
+
+<ParamField body="kpi" param-type="enum" required="true" deprecated="false">
+  Specifies an optional metric for filtering products. **Supported values**: `NONE`, `QUANTITY`, `AMOUNT`.
+</ParamField>
+
+<ParamField body="operator" param-type="enum" required="false" deprecated="false">
+  Specifies the logical operator for product comparison. **Supported values**: `EQUALS`.
+</ParamField>
+
+<ParamField body="value" param-type="string" required="false" deprecated="false">
+  Specifies the target value for the product KPI comparison.
+</ParamField>
+
+<ParamField body="comboProductCondition" param-type="object" required="false" deprecated="false">
+  Defines target combos. Required if type is `COMBO_PRODUCT`.
+</ParamField>
+
+<ParamField body="fixedPriceAction" param-type="object" required="false" deprecated="false">
   Defines a reward action where products are sold at a fixed price. Required
   when `rewardAction.type` is `FIXED_PRICE`.
 </ParamField>
 
-<ParamField showLocation="false" body="value" param-type="number" required="true">
+<ParamField body="value" param-type="number" required="true" deprecated="false">
   Specifies the new, fixed price for the qualifying items.
 </ParamField>
 
-<ParamField
-  body="includeItemsFromConditionSet"
-  param-type="boolean"
-  required="true"
->
+<ParamField body="includeItemsFromConditionSet" param-type="boolean" required="true" deprecated="false">
   Controls whether the action benefit applies to the same items that satisfied
   the cart promotion trigger (`true`) or to a different target set defined by
   productBasedCondition (`false`). Example (true): “Buy 10 A, get $100 off those
@@ -2912,91 +2569,85 @@ Defines target combos. Required if type is `COMBO_PRODUCT`.
   transaction, they get 50% off all three items."
 </ParamField>
 
-<ParamField showLocation="false" body="productBasedCondition" param-type="object" required="true">
+<ParamField body="productBasedCondition" param-type="object" required="true" deprecated="false">
   Defines exactly which products are to be sold at the fixed price.
 </ParamField>
 
-    <ParamField showLocation="false" body="type" param-type="enum" required="true">
-
-Specifies the product targeting method for the action. Supported values: `PRODUCT`, `COMBO_PRODUCT`.
-
+<ParamField body="type" param-type="enum" required="true" deprecated="false">
+  Specifies the product targeting method for the action. Supported values: `PRODUCT`, `COMBO_PRODUCT`.
 </ParamField>
 
-    <ParamField showLocation="false" body="productCondition" param-type="object" required="false">
-
-Defines target products using a list of criteria. Required when `type` is `PRODUCT`.
-
+<ParamField body="productCondition" param-type="object" required="false" deprecated="false">
+  Defines target products using a list of criteria. Required when `type` is `PRODUCT`.
 </ParamField>
 
-      <ParamField showLocation="false" body="criteriaList" param-type="array" required="true">
-      Defines an array of rule objects that specify which products are targeted.
-      </ParamField>
-
-        <ParamField showLocation="false" body="entity" param-type="string" required="true">
-        Specifies the product attribute to evaluate, such as `SKU`, `BRAND`, or `CATEGORY`.
-        </ParamField>
-
-        <ParamField showLocation="false" body="values" param-type="array" required="true">
-        Specifies an array of strings to match against the `entity` attribute.\ Supports up to 100 values in a single array.
-        </ParamField>
-
-        <ParamField showLocation="false" body="operator" param-type="enum" required="true">
-        Specifies the operator for the list comparison. Supported values: `IN`, `NOT_IN`.
-        </ParamField>
-
-      <ParamField showLocation="false" body="kpi" param-type="enum" required="true">
-      Specifies an optional metric for filtering products. Supported values: `NONE`, `QUANTITY`, `AMOUNT`.
-      </ParamField>
-
-      <ParamField showLocation="false" body="operator" param-type="enum" required="false">
-      Specifies the logical operator for product comparison. Supported values: `EQUALS`.
-      </ParamField>
-
-      <ParamField showLocation="false" body="value" param-type="string" required="false">
-      Specifies the target value for the product KPI comparison.
-      </ParamField>
-
-    <ParamField showLocation="false" body="comboProductCondition" param-type="object" required="false">
-
-Defines the target combo products for the action. Required when `type` is `COMBO_PRODUCT`.
-
+<ParamField body="criteriaList" param-type="array" required="true" deprecated="false">
+  Defines an array of rule objects that specify which products are targeted.
 </ParamField>
 
-      <ParamField showLocation="false" body="productConditions" param-type="array" required="true">
-      Defines an array of product condition objects that must all be satisfied for the action to apply.
-      </ParamField>
+<ParamField body="entity" param-type="string" required="true" deprecated="false">
+  Specifies the product attribute to evaluate, such as `SKU`, `BRAND`, or `CATEGORY`.
+</ParamField>
 
-        <ParamField showLocation="false" body="kpi" param-type="enum" required="true">
-        Specifies an optional metric for filtering products. Supported values: `NONE`, `QUANTITY`.
-        </ParamField>
+<ParamField body="values" param-type="array" required="true" deprecated="false">
+  Specifies an array of strings to match against the `entity` attribute.\ Supports up to 100 values in a single array.
+</ParamField>
 
-        <ParamField showLocation="false" body="operator" param-type="enum" required="false">
-        Specifies the logical operator for the product `kpi` comparison.
-        </ParamField>
+<ParamField body="operator" param-type="enum" required="true" deprecated="false">
+  Specifies the operator for the list comparison. Supported values: `IN`, `NOT_IN`.
+</ParamField>
 
-        <ParamField showLocation="false" body="value" param-type="string" required="false">
-        Specifies the target value for the product `kpi` comparison.\ Supports up to 100 values in a single array.
-        </ParamField>
+<ParamField body="kpi" param-type="enum" required="true" deprecated="false">
+  Specifies an optional metric for filtering products. Supported values: `NONE`, `QUANTITY`, `AMOUNT`.
+</ParamField>
 
-        <ParamField showLocation="false" body="criteriaList" param-type="array" required="true">
-        Defines an array of rule objects that specify the products in this part of the combo.
-        </ParamField>
+<ParamField body="operator" param-type="enum" required="false" deprecated="false">
+  Specifies the logical operator for product comparison. Supported values: `EQUALS`.
+</ParamField>
 
-          <ParamField showLocation="false" body="entity" param-type="string" required="true">
-          Specifies the product attribute to evaluate, such as `SKU`, `BRAND`, or `CATEGORY`.
-          </ParamField>
+<ParamField body="value" param-type="string" required="false" deprecated="false">
+  Specifies the target value for the product KPI comparison.
+</ParamField>
 
-          <ParamField showLocation="false" body="values" param-type="array" required="true">
-          Specifies an array of strings to match against the `entity` attribute.\ Supports up to 100 values in a single array.
-          </ParamField>
+<ParamField body="comboProductCondition" param-type="object" required="false" deprecated="false">
+  Defines the target combo products for the action. Required when `type` is `COMBO_PRODUCT`.
+</ParamField>
 
-          <ParamField showLocation="false" body="operator" param-type="enum" required="true">
-          Specifies the operator for the list comparison. Supported values: `IN`, `NOT_IN`.
-          </ParamField>
+<ParamField body="productConditions" param-type="array" required="true" deprecated="false">
+  Defines an array of product condition objects that must all be satisfied for the action to apply.
+</ParamField>
+
+<ParamField body="kpi" param-type="enum" required="true" deprecated="false">
+  Specifies an optional metric for filtering products. Supported values: `NONE`, `QUANTITY`.
+</ParamField>
+
+<ParamField body="operator" param-type="enum" required="false" deprecated="false">
+  Specifies the logical operator for the product `kpi` comparison.
+</ParamField>
+
+<ParamField body="value" param-type="string" required="false" deprecated="false">
+  Specifies the target value for the product `kpi` comparison.\ Supports up to 100 values in a single array.
+</ParamField>
+
+<ParamField body="criteriaList" param-type="array" required="true" deprecated="false">
+  Defines an array of rule objects that specify the products in this part of the combo.
+</ParamField>
+
+<ParamField body="entity" param-type="string" required="true" deprecated="false">
+  Specifies the product attribute to evaluate, such as `SKU`, `BRAND`, or `CATEGORY`.
+</ParamField>
+
+<ParamField body="values" param-type="array" required="true" deprecated="false">
+  Specifies an array of strings to match against the `entity` attribute.\ Supports up to 100 values in a single array.
+</ParamField>
+
+<ParamField body="operator" param-type="enum" required="true" deprecated="false">
+  Specifies the operator for the list comparison. Supported values: `IN`, `NOT_IN`.
+</ParamField>
 
 #### Example request
 
-**Requirement 1:** The brand wants to set up a product-specific discount cart promotion, "Get 25% Off All Snacks," with conditions that if a customer adds any item from the "Snacks" category to their cart, a 25% discount is applied to those specific items. This uses a PRODUCT_BASED reward action.
+**Requirement 1:** The brand wants to set up a product-specific discount cart promotion, "Get 25% Off All Snacks," with conditions that if a customer adds any item from the "Snacks" category to their cart, a 25% discount is applied to those specific items. This uses a PRODUCT\_BASED reward action.
 
 ```json
 curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions' \
@@ -3132,7 +2783,7 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions' \
 }''\'''
 ```
 
-**Requirement 3:** The brand wants to set up a cart promotion, "Any Large Pizza for $10," with conditions that if a customer buys any item from the "Large Pizzas" category, its price is set to $10. This uses a FIXED_PRICE reward action.
+**Requirement 3:** The brand wants to set up a cart promotion, "Any Large Pizza for $10," with conditions that if a customer buys any item from the "Large Pizzas" category, its price is set to $10. This uses a FIXED\_PRICE reward action.
 
 ```json
 curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions' \
@@ -3259,15 +2910,11 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions' \
 
 #### When the cart promotion's action type is `FREE_PRODUCT`
 
-<ParamField showLocation="false" body="freeProductAction" param-type="object" required="true">
+<ParamField body="freeProductAction" param-type="object" required="true" deprecated="false">
   Defines a reward action where specific products are made free.
 </ParamField>
 
-<ParamField
-  body="includeItemsFromConditionSet"
-  param-type="boolean"
-  required="true"
->
+<ParamField body="includeItemsFromConditionSet" param-type="boolean" required="true" deprecated="false">
   Controls whether the action benefit applies to the same items that satisfied
   the cart promotion trigger (`true`) or to a different target set defined by
   productBasedCondition (`false`). Example (true): “Buy 10 A, get $100 off those
@@ -3278,101 +2925,87 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions' \
   for a combined, fixed price of **$1200**."
 </ParamField>
 
-<ParamField showLocation="false" body="productBasedCondition" param-type="object" required="true">
+<ParamField body="productBasedCondition" param-type="object" required="true" deprecated="false">
   Defines the set of products that are eligible to be made free. If multiple
   items in the cart match, the system typically makes the cheapest one free.
 </ParamField>
 
-<ParamField showLocation="false" body="type" param-type="enum" required="true">
+<ParamField body="type" param-type="enum" required="true" deprecated="false">
   Specifies how target products are grouped. **Supported**: `PRODUCT`,
   `COMBO_PRODUCT`.
 </ParamField>
 
-<ParamField showLocation="false" body="productCondition" param-type="object" required="false">
+<ParamField body="productCondition" param-type="object" required="false" deprecated="false">
   Defines target products using product-level rules. Required when `type` is
   `PRODUCT`.
 </ParamField>
 
-<ParamField showLocation="false" body="criteriaList" param-type="array" required="true">
+<ParamField body="criteriaList" param-type="array" required="true" deprecated="false">
   A list of rule objects that specify which products are targeted.
 </ParamField>
 
-    <ParamField showLocation="false" body="entity" param-type="string" required="true">
-
-Specifies the product attribute to evaluate, such as `SKU`, `BRAND`, or `CATEGORY`.
-
+<ParamField body="entity" param-type="string" required="true" deprecated="false">
+  Specifies the product attribute to evaluate, such as `SKU`, `BRAND`, or `CATEGORY`.
 </ParamField>
 
-    <ParamField showLocation="false" body="operator" param-type="enum" required="true">
-
-Specifies the operator for the list comparison. **Supported**: `IN`, `NOT_IN`.
-
+<ParamField body="operator" param-type="enum" required="true" deprecated="false">
+  Specifies the operator for the list comparison. **Supported**: `IN`, `NOT_IN`.
 </ParamField>
 
-    <ParamField showLocation="false" body="values" param-type="array" required="true">
-
-Specifies an array of strings to match against the `entity` attribute.
-
+<ParamField body="values" param-type="array" required="true" deprecated="false">
+  Specifies an array of strings to match against the `entity` attribute.
 </ParamField>
 
-<ParamField showLocation="false" body="kpi" param-type="enum" required="true">
+<ParamField body="kpi" param-type="enum" required="true" deprecated="false">
   An optional metric for filtering products. **Supported**: `NONE`, `QUANTITY`,
   `AMOUNT`.
 </ParamField>
 
-<ParamField showLocation="false" body="operator" param-type="enum" required="false">
+<ParamField body="operator" param-type="enum" required="false" deprecated="false">
   The logical operator for the KPI comparison. Required if `kpi` is not `NONE`.
   **Supported**: `EQUALS`, `GREATER_THAN`, `GREATER_THAN_OR_EQUAL`.
 </ParamField>
 
-<ParamField showLocation="false" body="value" param-type="string" required="false">
+<ParamField body="value" param-type="string" required="false" deprecated="false">
   The target value for the KPI comparison. Required if `kpi` is not `NONE`.
 </ParamField>
 
-<ParamField showLocation="false" body="comboProductCondition" param-type="object" required="false">
+<ParamField body="comboProductCondition" param-type="object" required="false" deprecated="false">
   Defines the set of product combinations that can be made free. Required when
   `type` is `COMBO_PRODUCT`.
 </ParamField>
 
-<ParamField showLocation="false" body="productConditions" param-type="array" required="true">
+<ParamField body="productConditions" param-type="array" required="true" deprecated="false">
   An array of product condition objects. All conditions in this list must be
   satisfied for the combo to qualify.
 </ParamField>
 
-    <ParamField showLocation="false" body="criteriaList" param-type="array" required="true">
-
-Defines the specific products to check in this part of the combo.
-
+<ParamField body="criteriaList" param-type="array" required="true" deprecated="false">
+  Defines the specific products to check in this part of the combo.
 </ParamField>
 
-      <ParamField showLocation="false" body="entity" param-type="string" required="true">
-      Specifies the product attribute to evaluate, such as `SKU`, `BRAND`, or `CATEGORY`.
-      </ParamField>
-
-      <ParamField showLocation="false" body="operator" param-type="enum" required="true">
-      The operator for the list comparison. Supported values:`IN`, `NOT_IN`.
-      </ParamField>
-
-      <ParamField showLocation="false" body="values" param-type="array" required="true">
-      The list of attribute values to match against.\ Supports up to 100 values in a single array.
-      </ParamField>
-
-    <ParamField showLocation="false" body="kpi" param-type="enum" required="true">
-
-The metric to evaluate for this part of the combo.\ Supported values:`NONE`, `QUANTITY`, `AMOUNT`.
-
+<ParamField body="entity" param-type="string" required="true" deprecated="false">
+  Specifies the product attribute to evaluate, such as `SKU`, `BRAND`, or `CATEGORY`.
 </ParamField>
 
-    <ParamField showLocation="false" body="operator" param-type="enum" required="false">
-
-The comparison logic for the KPI Supported values: `EQUALS`, `GREATER_THAN`, `GREATER_THAN_OR_EQUA`L.
-
+<ParamField body="operator" param-type="enum" required="true" deprecated="false">
+  The operator for the list comparison. Supported values:`IN`, `NOT_IN`.
 </ParamField>
 
-    <ParamField showLocation="false" body="value" param-type="string" required="false">
+<ParamField body="values" param-type="array" required="true" deprecated="false">
+  The list of attribute values to match against.\ Supports up to 100 values in a single array.
+</ParamField>
 
-The target value for the KPI comparison.
+<ParamField body="kpi" param-type="enum" required="true" deprecated="false">
+  The metric to evaluate for this part of the combo.\ Supported values:`NONE`, `QUANTITY`, `AMOUNT`.
+</ParamField>
 
+<ParamField body="operator" param-type="enum" required="false" deprecated="false">
+  The comparison logic for the KPI Supported values: `EQUALS`, `GREATER_THAN`, `GREATER_THAN_OR_EQUA`L.
+</ParamField>
+
+<ParamField body="value" param-type="string" required="false" deprecated="false">
+  The target value for the KPI comparison.
 </ParamField>
 
 #### Example request
@@ -3462,20 +3095,16 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions' \
 
 > **Important Constraint**: For a `FIXED_PRICE` action to be valid, the `productCondition` or `comboProductCondition` that defines which items get the special price **must** use a `kpi` of `QUANTITY` and an `operator` of `EQUALS`.
 
-<ParamField showLocation="false" body="fixedPriceAction" param-type="object" required="true">
+<ParamField body="fixedPriceAction" param-type="object" required="true" deprecated="false">
   Defines a reward action where the price of a product is changed to a specific
   value.
 </ParamField>
 
-<ParamField showLocation="false" body="value" param-type="number" required="true">
+<ParamField body="value" param-type="number" required="true" deprecated="false">
   The new, fixed price for the qualifying items.
 </ParamField>
 
-<ParamField
-  body="includeItemsFromConditionSet"
-  param-type="boolean"
-  required="true"
->
+<ParamField body="includeItemsFromConditionSet" param-type="boolean" required="true" deprecated="false">
   Controls whether the action benefit applies to the same items that satisfied
   the cart promotion trigger (`true`) or to a different target set defined by
   productBasedCondition (`false`). Example (true): “Buy 10 A, get $100 off those
@@ -3485,100 +3114,86 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions' \
   from the "Large Pizzas" category, its price is set to a fixed $10.
 </ParamField>
 
-<ParamField showLocation="false" body="productBasedCondition" param-type="object" required="true">
+<ParamField body="productBasedCondition" param-type="object" required="true" deprecated="false">
   Defines the specific set of products that will be sold at the fixed price.
 </ParamField>
 
-<ParamField showLocation="false" body="type" param-type="enum" required="true">
+<ParamField body="type" param-type="enum" required="true" deprecated="false">
   Specifies how the target products are grouped. **Supported**: `PRODUCT`,
   `COMBO_PRODUCT`.
 </ParamField>
 
-<ParamField showLocation="false" body="productCondition" param-type="object" required="false">
+<ParamField body="productCondition" param-type="object" required="false" deprecated="false">
   Defines target products using product-level rules. Required when `type` is
   `PRODUCT`.
 </ParamField>
 
-<ParamField showLocation="false" body="criteriaList" param-type="array" required="true">
+<ParamField body="criteriaList" param-type="array" required="true" deprecated="false">
   A list of rule objects that specify which products are targeted.
 </ParamField>
 
-    <ParamField showLocation="false" body="entity" param-type="string" required="true">
-
-Specifies the product attribute to evaluate, such as `SKU`, `BRAND`, or `CATEGORY`.
-
+<ParamField body="entity" param-type="string" required="true" deprecated="false">
+  Specifies the product attribute to evaluate, such as `SKU`, `BRAND`, or `CATEGORY`.
 </ParamField>
 
-    <ParamField showLocation="false" body="operator" param-type="enum" required="true">
-
-Specifies the operator for the list comparison. **Supported**: `IN`, `NOT_IN`.
-
+<ParamField body="operator" param-type="enum" required="true" deprecated="false">
+  Specifies the operator for the list comparison. **Supported**: `IN`, `NOT_IN`.
 </ParamField>
 
-    <ParamField showLocation="false" body="values" param-type="array" required="true">
-
-Specifies an array of strings to match against the `entity` attribute.
-
+<ParamField body="values" param-type="array" required="true" deprecated="false">
+  Specifies an array of strings to match against the `entity` attribute.
 </ParamField>
 
-<ParamField showLocation="false" body="kpi" param-type="enum" required="true">
+<ParamField body="kpi" param-type="enum" required="true" deprecated="false">
   The metric for filtering products. **Constraint**: Must be `QUANTITY` for this
   action type.
 </ParamField>
 
-<ParamField showLocation="false" body="operator" param-type="enum" required="false">
+<ParamField body="operator" param-type="enum" required="false" deprecated="false">
   The logical operator for the KPI comparison. **Constraint**: Must be `EQUALS`
   for this action type.
 </ParamField>
 
-<ParamField showLocation="false" body="value" param-type="string" required="false">
+<ParamField body="value" param-type="string" required="false" deprecated="false">
   The target quantity for the KPI comparison. Required if `kpi` is not `NONE`.
 </ParamField>
 
-<ParamField showLocation="false" body="comboProductCondition" param-type="object" required="false">
+<ParamField body="comboProductCondition" param-type="object" required="false" deprecated="false">
   Defines the set of product combinations that will be sold at the fixed price.
   Required when `type` is `COMBO_PRODUCT`.
 </ParamField>
 
-<ParamField showLocation="false" body="productConditions" param-type="array" required="true">
+<ParamField body="productConditions" param-type="array" required="true" deprecated="false">
   An array of `productCondition` objects. All conditions in this list must be
   satisfied for the combo to qualify.
 </ParamField>
 
-    <ParamField showLocation="false" body="criteriaList" param-type="array" required="true">
-
-Defines the specific products to check in this part of the combo.
-
+<ParamField body="criteriaList" param-type="array" required="true" deprecated="false">
+  Defines the specific products to check in this part of the combo.
 </ParamField>
 
-      <ParamField showLocation="false" body="entity" param-type="string" required="true">
-      The product attribute to evaluate Supported values: `CATEGORY`, `BRAND`,`SKU`.
-      </ParamField>
-
-      <ParamField showLocation="false" body="operator" param-type="enum" required="true">
-      The operator for the list comparison Supported values:`IN`, `NOT_IN`.
-      </ParamField>
-
-      <ParamField showLocation="false" body="values" param-type="array" required="true">
-      The list of attribute values to match against.\ Supports up to 100 values in a single array.
-      </ParamField>
-
-    <ParamField showLocation="false" body="kpi" param-type="enum" required="true">
-
-The metric for this part of the combo. **Constraint**: Must be `QUANTITY`.
-
+<ParamField body="entity" param-type="string" required="true" deprecated="false">
+  The product attribute to evaluate Supported values: `CATEGORY`, `BRAND`,`SKU`.
 </ParamField>
 
-    <ParamField showLocation="false" body="operator" param-type="enum" required="false">
-
-The comparison logic for the KPI. **Constraint**: Must be `EQUALS`.
-
+<ParamField body="operator" param-type="enum" required="true" deprecated="false">
+  The operator for the list comparison Supported values:`IN`, `NOT_IN`.
 </ParamField>
 
-    <ParamField showLocation="false" body="value" param-type="string" required="false">
+<ParamField body="values" param-type="array" required="true" deprecated="false">
+  The list of attribute values to match against.\ Supports up to 100 values in a single array.
+</ParamField>
 
-The target quantity for the KPI comparison.
+<ParamField body="kpi" param-type="enum" required="true" deprecated="false">
+  The metric for this part of the combo. **Constraint**: Must be `QUANTITY`.
+</ParamField>
 
+<ParamField body="operator" param-type="enum" required="false" deprecated="false">
+  The comparison logic for the KPI. **Constraint**: Must be `EQUALS`.
+</ParamField>
+
+<ParamField body="value" param-type="string" required="false" deprecated="false">
+  The target quantity for the KPI comparison.
 </ParamField>
 
 #### Example Request
@@ -3646,44 +3261,44 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions' \
 
 ### Promotion restrictions Object
 
-<ParamField showLocation="false" body="Customer" param-type="array" required="false">
+<ParamField body="Customer" param-type="array" required="false" deprecated="false">
   Specifies restrictions that apply per customer.
 </ParamField>
 
-<ParamField showLocation="false" body="Cart" param-type="array" required="false">
+<ParamField body="Cart" param-type="array" required="false" deprecated="false">
   Specifies restrictions that apply per cart.
 </ParamField>
 
-<ParamField showLocation="false" body="Promotion" param-type="array" required="false">
+<ParamField body="Promotion" param-type="array" required="false" deprecated="false">
   Specifies restrictions that apply to the overall cart promotion.
 </ParamField>
 
-<ParamField showLocation="false" body="Code" param-type="array" required="false">
+<ParamField body="Code" param-type="array" required="false" deprecated="false">
   Specifies restrictions that apply to cart promotion codes. Required when the
   main promotion type is `CODE`.
 </ParamField>
 
-<ParamField showLocation="false" body="Earn" param-type="array" required="false">
+<ParamField body="Earn" param-type="array" required="false" deprecated="false">
   Specifies restrictions that apply to the earning action. This is only valid
   when the main promotion type is `EARNING`.
 </ParamField>
 
-<ParamField showLocation="false" body="kpi" param-type="enum" required="true">
+<ParamField body="kpi" param-type="enum" required="true" deprecated="false">
   The metric to be limited. Supported: • `REDEMPTION`: Limits redemption count.
   • `TRANSACTION`: Limits transaction count. • `DISCOUNT`: Caps total discount
   value.
 </ParamField>
 
-<ParamField showLocation="false" body="frequency" param-type="enum" required="false">
+<ParamField body="frequency" param-type="enum" required="false" deprecated="false">
   How often the restriction resets. Supported: ;\* `DAYS`: The limit resets
   every N days. Example: A limit of 100 redemptions resets every 10 days. ;\*
   `WEEKS`: The limit resets weekly. Example: A limit of 500 redemptions resets
-  each week, starting on Monday. DOES_NOT_REPEAT : The restriction is applied
+  each week, starting on Monday. DOES\_NOT\_REPEAT : The restriction is applied
   only once and does not reset. It acts as a single, lifetime limit for the
   duration of the promotion.. **If omitted, the restriction does not repeat.**
 </ParamField>
 
-<ParamField showLocation="false" body="minTimeBetweenRepeat" param-type="long" required="false">
+<ParamField body="minTimeBetweenRepeat" param-type="long" required="false" deprecated="false">
   Defines the interval at which the limit resets **Weekly Limit Reset:** The
   limit resets based on a fixed, recurring window measured in weeks.Example: If
   the value is 2, the limit resets every two weeks. Reset Day: The reset
@@ -3695,7 +3310,7 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions' \
   starting November 6th (after the 5-day window has passed).
 </ParamField>
 
-<ParamField showLocation="false" body="limit" param-type="string" required="true">
+<ParamField body="limit" param-type="string" required="true" deprecated="false">
   Maximum allowed value for the restriction. Example: A REDEMPTION limit of "1".
 </ParamField>
 
@@ -3885,24 +3500,24 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions' \
 
 ### Earning Criteria Object
 
-<ParamField showLocation="false" body="active" param-type="boolean" required="true">
+<ParamField body="active" param-type="boolean" required="true" deprecated="false">
   Flag to enable or disable this specific earning rule.
 </ParamField>
 
-<ParamField showLocation="false" body="criteriaDsl" param-type="string" required="true">
+<ParamField body="criteriaDsl" param-type="string" required="true" deprecated="false">
   The earning rule in simple language Example: "true": Always True (No
   Condition)
 </ParamField>
 
-  <ParamField showLocation="false" body="criteriaDslJson" param-type="string" required="true">
+<ParamField body="criteriaDslJson" param-type="string" required="true" deprecated="false">
   Escaped JSON string of the rule's values. Example: `"{ \"arity\":\"literal\", \"value\":\"true\", \"type\":\"boolean:primitive\" }"`
-  </ParamField>
+</ParamField>
 
-<ParamField showLocation="false" body="criteriaName" param-type="string" required="true">
+<ParamField body="criteriaName" param-type="string" required="true" deprecated="false">
   A name for the earning criteria rule.
 </ParamField>
 
-<ParamField showLocation="false" body="earnedFromType" param-type="enum" required="true">
+<ParamField body="earnedFromType" param-type="enum" required="true" deprecated="false">
   Type of event that triggers the rule. Supported: `ACTIVITY`: This type is used
   when a cart promotion is earned based on a customer's real-time actions, such
   as making a purchase (TransactionAdd). `MILESTONE`: This type is used when a
@@ -3910,16 +3525,16 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions' \
   status within a program.
 </ParamField>
 
-<ParamField showLocation="false" body="eventType" param-type="enum" required="true">
+<ParamField body="eventType" param-type="enum" required="true" deprecated="false">
   Specific activity that triggers the rule. Supported: `TransactionAdd` ,
   `Customer Update` , `Registration`.
 </ParamField>
 
-<ParamField showLocation="false" body="groupId" param-type="integer" required="true">
+<ParamField body="groupId" param-type="integer" required="true" deprecated="false">
   Identifier for grouping related earning criteria.
 </ParamField>
 
-<ParamField showLocation="false" body="milestoneId" param-type="integer" required="true">
+<ParamField body="milestoneId" param-type="integer" required="true" deprecated="false">
   Identifier for a specific milestone within an earning program.
 </ParamField>
 
@@ -3974,18 +3589,18 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions' \
 
 This object limits the promotion to specific physical or logical locations, such as a set of stores or a geographical zone.
 
-<ParamField showLocation="false" body="type" param-type="enum" required="true">
+<ParamField body="type" param-type="enum" required="true" deprecated="false">
   The type of location entity. Supported values: • **`STORE`**: A specific
   store. • **`ZONE`**: A defined group of stores. • **`CONCEPT`**: A brand or
   store concept.
 </ParamField>
 
-<ParamField showLocation="false" body="values" param-type="array of integers" required="true">
+<ParamField body="values" param-type="array of integers" required="true" deprecated="false">
   An array of IDs corresponding to the `type` (e.g., `[101, 204]` for store
   IDs).
 </ParamField>
 
-<ParamField showLocation="false" body="operator" param-type="enum" required="true">
+<ParamField body="operator" param-type="enum" required="true" deprecated="false">
   The logical operator. Supported values: • **`IN`**: The promotion is valid
   **only in** the listed locations. • **`NOT_IN`**: The promotion is valid
   **everywhere except** the listed locations.
@@ -4033,23 +3648,23 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions' \
 
 This object restricts the promotion to specific times of the day or days of the week, enabling use cases like "Happy Hour" or "Weekend Specials."
 
-<ParamField showLocation="false" body="startTime" param-type="string" required="true">
+<ParamField body="startTime" param-type="string" required="true" deprecated="false">
   An object specifying the start time. Must contain `hour` (0-23) and `minute`
   (0-59).
 </ParamField>
 
-<ParamField showLocation="false" body="durationInHours" param-type="integer" required="true">
+<ParamField body="durationInHours" param-type="integer" required="true" deprecated="false">
   The duration of the promotion window in hours from the `startTime`.
 </ParamField>
 
-<ParamField showLocation="false" body="repeatFrequency" param-type="enum" required="true">
+<ParamField body="repeatFrequency" param-type="enum" required="true" deprecated="false">
   How often the time window repeats. Supported: `WEEKS`, `DAYS`,
   `DOES_NOT_REPEAT`.
 </ParamField>
 
-<ParamField showLocation="false" body="weeklyValues" param-type="array of strings" required="false">
+<ParamField body="weeklyValues" param-type="array of strings" required="false" deprecated="false">
   Required if `repeatFrequency` is `WEEKS`. A list of days, e.g., `["MONDAY",
-  "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"]`.
+    "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"]`.
 </ParamField>
 
 **Example Request**
@@ -4103,17 +3718,17 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions' \
 
 This object targets customers based on their status in a loyalty program, such as their membership tier or subscription status.
 
-<ParamField showLocation="false" body="loyaltyProgramId" param-type="integer" required="true">
+<ParamField body="loyaltyProgramId" param-type="integer" required="true" deprecated="false">
   The ID of the loyalty program to check against.
 </ParamField>
 
-<ParamField showLocation="false" body="programType" param-type="enum" required="true">
+<ParamField body="programType" param-type="enum" required="true" deprecated="false">
   The type of program. Supported values: • **`TIER`**: Targets customers in a
   specific loyalty tier. • **`SUBSCRIPTION`**: Targets customers with a specific
   subscription.
 </ParamField>
 
-<ParamField showLocation="false" body="partnerProgramId" param-type="integer" required="true">
+<ParamField body="partnerProgramId" param-type="integer" required="true" deprecated="false">
   The ID of the specific tier or subscription within the program that is being
   targeted.
 </ParamField>
@@ -4289,7 +3904,7 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions' \
 
 ## Response parameters
 
-```json Sample Response Body
+```json "Sample Response Body"
 {
   "data": {
     "id": "68c3e98baa0d7a770cbb0952",
@@ -4467,3 +4082,4 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions' \
   "x-readme": {}
 }
 ```
+
