@@ -1,0 +1,1577 @@
+openapi: 3.1.0
+info:
+  title: Get Points Ledger Explode Info in Connected Orgs
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  /v2.1/pointsLedger/getLedgerExplodeInfo:
+    get:
+      summary: Get Points Ledger Explode Info in Connected Orgs
+      description: ''
+      operationId: connectedorgs-get-customer-ledger-explode-info
+      parameters:
+      - name: identifierName
+        in: query
+        description: Identifier type to identify the customer.
+        required: true
+        schema:
+          type: string
+      - name: identifierValue
+        in: query
+        description: Value of the identifier.
+        required: true
+        schema:
+          type: string
+      - name: source
+        in: query
+        description: Specifies the source from where customer details are retrieved.
+        required: true
+        schema:
+          type: string
+      - name: eventIds
+        in: query
+        description: The list of eventId’s with comma separated values. These are
+          eventLogIds, corresponding to the events in loyalty like TransactionAdd,
+          CustomerRegistration etc.
+        required: true
+        schema:
+          type: string
+      - name: accountId
+        in: query
+        description: For a source with multiple accounts, pass the specific accountId
+          in which the customer identifier is available.
+        schema:
+          type: string
+      - name: DATA-SCOPE-ORG
+        in: header
+        description: List of Organization IDs
+        required: true
+        schema:
+          type: string
+      - name: DATA-SCOPE
+        in: header
+        description: The scope to authorize access (SELF, OTHER, ALL)
+        schema:
+          type: string
+      - name: getBillDetails
+        in: query
+        description: Setting this to true will return Bill details like the bill no,
+          amount, discount, line items etc
+        schema:
+          type: boolean
+      - name: getPointsEarnedBreakup
+        in: query
+        description: Setting this to true will return the points breakup details like
+          points category Name, points allocation strategy Name, expiry strategy etc
+        schema:
+          type: boolean
+      - name: getCustomFields
+        in: query
+        description: Setting this value will return the custom fields set up by the
+          brand
+        schema:
+          type: boolean
+      - name: getExtendedFields
+        in: query
+        description: Setting this field will return the extended fields set up by
+          the brand
+        schema:
+          type: boolean
+      - name: getMaxConversionDetails
+        in: query
+        description: Setting this field to true will return the max conversion details
+          which is set for Add txn, for all line items where delayed accrual is based
+          on fixed or return date, max of all dates is calculated and show in the
+          field name “maxConversionDate”
+        schema:
+          type: boolean
+      - name: getPaymentMode
+        in: query
+        description: Setting this field will show an array of payment modes used ex
+          UPI, CASH etc
+        schema:
+          type: string
+      - name: type
+        in: query
+        description: Setting this filed returns entries for type of user, whether
+          individual customer or a group. Only two values are allowed here - CUTSOMER,
+          USERGROUP2
+        schema:
+          type: string
+      - name: isPrimaryUser
+        in: query
+        description: Returns entry for the primary member of a group, in case of usergroups.
+        schema:
+          type: boolean
+      - name: includeAlternateCurrencies
+        in: query
+        description: Pass includeAlternateCurrencies=true to retrieve all alternate
+          currencies available with the customer.
+        schema:
+          type: boolean
+      - name: alternateCurrencyNames
+        in: query
+        description: Filter alternate currencies for the customer based on the name.
+          You can also pass a list of comma-separated alternate currency names. Set
+          the parameter includeAlternateCurrencies to false when you use this. If
+          the value is true, includeAlternateCurrencies lists all the available currencies.
+        schema:
+          type: string
+      - name: eventName
+        in: query
+        description: Name of the event (GenericEvent, TransactionAdd, ReturnBill).
+        schema:
+          type: string
+      - name: eventReferenceIds
+        in: query
+        description: A reference ID is a unique identifier that links to an event.
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                NewBill/Txn Add:
+                  value: "{\n  \"events\": [\n    {\n      \"eventLogId\": 549393345,\n\
+                    \      \"eventName\": \"TransactionAdd\",\n      \"eventDetails\"\
+                    : {\n        \"eventTime\": \"2023-08-02 16:24:44.0\",\n     \
+                    \   \"tillId\": 100004318\n      },\n      \"billDetails\": {\n\
+                    \        \"type\": \"loyalty\",\n        \"billNumber\": \"TC300051690458\"\
+                    ,\n        \"grossAmount\": 0,\n        \"discount\": 0,\n   \
+                    \     \"billAmount\": 11691,\n        \"note\": \"\",\n      \
+                    \  \"source\": \"instore\",\n        \"pointsEarned\": {\n   \
+                    \       \"regular\": [],\n          \"promo\": [],\n         \
+                    \ \"promised\": []\n        },\n        \"lineItems\": [\n   \
+                    \       {\n            \"id\": 310201424,\n            \"itemCode\"\
+                    : \"243593\",\n            \"source\": \"instore\",\n        \
+                    \    \"grossAmount\": 0,\n            \"discount\": 0,\n     \
+                    \       \"amount\": 11691,\n            \"rate\": 0,\n       \
+                    \     \"qty\": 1,\n            \"pointsEarned\": {\n         \
+                    \     \"regular\": [\n                {\n                  \"\
+                    value\": 0,\n                  \"expiresOn\": \"2024-08-01 23:59:59.0\"\
+                    ,\n                  \"programId\": 1000013,\n               \
+                    \   \"programName\": \"Croma\",\n                  \"expiryType\"\
+                    : \"rolling\"\n                }\n              ],\n         \
+                    \     \"promo\": [\n                {\n                  \"promotionId\"\
+                    : 9418,\n                  \"promotionName\": \"Min 5% Drop 2_Croma\"\
+                    ,\n                  \"programId\": 1000007,\n               \
+                    \   \"programName\": \"TataNeu\",\n                  \"value\"\
+                    : 0,\n                  \"expiresOn\": \"2024-08-01 23:59:59.0\"\
+                    ,\n                  \"expiryType\": \"rolling\"\n           \
+                    \     }\n              ],\n              \"promised\": []\n  \
+                    \          }\n          }\n        ]\n      },\n      \"customFields\"\
+                    : [\n        {\n          \"name\": \"txn_source\",\n        \
+                    \  \"value\": \"tcp\"\n        }\n      ],\n      \"extendedFields\"\
+                    : [],\n      \"paymentModes\": [\n        \"Others\"\n      ],\n\
+                    \      \"pointInTimeSlabs\": [\n        {\n          \"pointInTimeSlabNumber\"\
+                    : 1,\n          \"pointInTimeSlabName\": \"NONE\",\n         \
+                    \ \"programId\": 1000007,\n          \"isDefaultProgram\": true\n\
+                    \        },\n        {\n          \"pointInTimeSlabNumber\": 1,\n\
+                    \          \"pointInTimeSlabName\": \"Privilege\",\n         \
+                    \ \"programId\": 1000013,\n          \"isDefaultProgram\": false\n\
+                    \        }\n      ],\n      \"eventReferenceId\": \"2151165932\"\
+                    ,\n      \"orgId\": 4000218\n    }\n  ],\n  \"warnings\": []\n\
+                    }"
+                GenericEvent/ImportEvents:
+                  value: "{\n  \"events\": [\n    {\n      \"eventLogId\": 296576878,\n\
+                    \      \"eventName\": \"GenericEvent\",\n      \"eventDetails\"\
+                    : {\n        \"eventDisplayName\": \"first_bill_pay\",\n     \
+                    \   \"tillId\": 100011485,\n        \"displayName\": \"first_bill_pay\"\
+                    \n      },\n      \"pointsEarned\": {\n        \"regular\": [],\n\
+                    \        \"promo\": [\n          {\n            \"promotionId\"\
+                    : 7125,\n            \"promotionName\": \"Earn at BillPay – December\
+                    \ Mid Month Sale\",\n            \"programId\": 1000055,\n   \
+                    \         \"programName\": \"bill payments\",\n            \"\
+                    value\": 0,\n            \"promotionStartDate\": \"2022-12-19\
+                    \ 00:00:00.0\",\n            \"promotionEndDate\": \"2022-12-22\
+                    \ 23:59:59.0\"\n          }\n        ],\n        \"promised\"\
+                    : []\n      },\n      \"behavioralEventMetadata\": {\n       \
+                    \ \"label\": \"first_bill_pay\",\n        \"fields\": [\n    \
+                    \      {\n            \"fieldName\": \"externalid\",\n       \
+                    \     \"fieldType\": \"customer\",\n            \"attributes\"\
+                    : {\n              \"accountId\": {\n                \"valueType\"\
+                    : \"ENUM\"\n              },\n              \"addCustomerIfNotExists\"\
+                    : {\n                \"valueType\": \"BOOLEAN\",\n           \
+                    \     \"value\": \"false\"\n              },\n              \"\
+                    identifierType\": {\n                \"valueType\": \"ENUM\",\n\
+                    \                \"value\": \"externalId\"\n              },\n\
+                    \              \"isRequired\": {\n                \"valueType\"\
+                    : \"BOOLEAN\",\n                \"value\": \"true\"\n        \
+                    \      },\n              \"source\": {\n                \"valueType\"\
+                    : \"ENUM\",\n                \"value\": \"INSTORE\"\n        \
+                    \      }\n            }\n          },\n          {\n         \
+                    \   \"fieldName\": \"billamount\",\n            \"fieldType\"\
+                    : \"double\",\n            \"attributes\": {\n              \"\
+                    isRequired\": {\n                \"valueType\": \"BOOLEAN\",\n\
+                    \                \"value\": \"false\"\n              }\n     \
+                    \       }\n          },\n          {\n            \"fieldName\"\
+                    : \"date\",\n            \"fieldType\": \"date\",\n          \
+                    \  \"attributes\": {\n              \"isRequired\": {\n      \
+                    \          \"valueType\": \"BOOLEAN\",\n                \"value\"\
+                    : \"false\"\n              }\n            }\n          },\n  \
+                    \        {\n            \"fieldName\": \"tillcode\",\n       \
+                    \     \"fieldType\": \"tillCode\",\n            \"attributes\"\
+                    : {\n              \"isRequired\": {\n                \"valueType\"\
+                    : \"BOOLEAN\",\n                \"value\": \"false\"\n       \
+                    \       }\n            }\n          },\n          {\n        \
+                    \    \"fieldName\": \"upipayment\",\n            \"fieldType\"\
+                    : \"string\",\n            \"attributes\": {\n              \"\
+                    isRequired\": {\n                \"valueType\": \"BOOLEAN\",\n\
+                    \                \"value\": \"false\"\n              },\n    \
+                    \          \"regex\": {\n                \"valueType\": \"STRING\"\
+                    \n              }\n            }\n          }\n        ]\n   \
+                    \   },\n      \"eventReferenceId\": \"2151165932\",\n      \"\
+                    orgId\": 4000218\n    }\n  ],\n  \"warnings\": []\n}"
+                CustomerRegistration:
+                  value: "{\n  \"events\": [\n    {\n      \"eventLogId\": 20229363,\n\
+                    \      \"eventName\": \"CustomerRegistration\",\n      \"eventDetails\"\
+                    : {\n        \"eventTime\": \"2023-08-31 06:25:40.0\",\n     \
+                    \   \"tillId\": 50137565\n      },\n      \"pointsEarned\": {\n\
+                    \        \"regular\": [\n          {\n            \"value\": 100,\n\
+                    \            \"expiresOn\": \"2023-09-15 23:59:59.0\",\n     \
+                    \       \"programId\": 1933,\n            \"programName\": \"\
+                    PellDungaAgarUseKiyaTohDefaultProgram\",\n            \"expiryType\"\
+                    : \"fixed\"\n          }\n        ],\n        \"promo\": [\n \
+                    \         {\n            \"promotionId\": 1133561326,\n      \
+                    \      \"promotionName\": \"delayedAccrualpromo\",\n         \
+                    \   \"programId\": 1933,\n            \"programName\": \"PellDungaAgarUseKiyaTohDefaultProgram\"\
+                    ,\n            \"value\": 100,\n            \"expiresOn\": \"\
+                    2023-09-15 23:59:59.0\",\n            \"expiryType\": \"fixed\"\
+                    \n          }\n        ],\n        \"promised\": [\n         \
+                    \ {\n            \"value\": 1001,\n            \"conversionDate\"\
+                    : \"2023-09-06 00:00:00.0\",\n            \"programId\": 1933,\n\
+                    \            \"programName\": \"PellDungaAgarUseKiyaTohDefaultProgram\"\
+                    \n          }\n        ]\n      },\n      \"eventReferenceId\"\
+                    : \"2151165932\",\n      \"orgId\": 4000218\n    }\n  ],\n  \"\
+                    warnings\": []\n}"
+                GoodWillPoints:
+                  value: "{\n  \"events\": [\n    {\n      \"eventLogId\": 579442157,\n\
+                    \      \"eventName\": \"AllocateGoodwillPoints\",\n      \"eventDetails\"\
+                    : {\n        \"eventTime\": \"2023-08-29 19:12:17.0\",\n     \
+                    \   \"reason\": \"CS: Cx received Rs 500 TNRL voucher which can\
+                    \ be u\",\n        \"requestId\": 2828197\n      },\n      \"\
+                    pointsEarned\": {\n        \"regular\": [],\n        \"promo\"\
+                    : [\n          {\n            \"promotionId\": 5486,\n       \
+                    \     \"promotionName\": \"Goodwill Promotion\",\n           \
+                    \ \"programId\": 1000019,\n            \"programName\": \"AirAsia\
+                    \ India\",\n            \"value\": 500,\n            \"expiresOn\"\
+                    : \"2024-08-28 23:59:59.0\",\n            \"expiryType\": \"rolling\"\
+                    \n          }\n        ],\n        \"promised\": []\n      },\n\
+                    \      \"eventReferenceId\": \"2151165932\",\n      \"orgId\"\
+                    : 4000218\n    }\n  ],\n  \"warnings\": []\n}"
+                TargetCompleted:
+                  value: "{\n  \"events\": [\n    {\n      \"eventLogId\": 404150880,\n\
+                    \      \"eventName\": \"TargetCompleted\",\n      \"eventDetails\"\
+                    : {\n        \"eventTime\": \"2023-03-26 21:31:49.0\",\n     \
+                    \   \"tillId\": 100008816\n      },\n      \"targetCompletedDetails\"\
+                    : {\n        \"targetGroupID\": 106,\n        \"targetGroupName\"\
+                    : \"Offer_March2023_CFT_Milestone\",\n        \"targetId\": 199,\n\
+                    \        \"targetName\": \"Offer_March2023_CFT_Milestone_1\",\n\
+                    \        \"targetPeriodID\": 44,\n        \"targetPeriodName\"\
+                    : \"B1\",\n        \"targetValue\": \"2.000\",\n        \"achievedValue\"\
+                    : \"2.000\",\n        \"sourceId\": 5020906,\n        \"sourceType\"\
+                    : \"USERTARGET\",\n        \"pointsEarned\": {\n          \"promised\"\
+                    : [\n            {\n              \"value\": 0,\n            \
+                    \  \"conversionDate\": \"2023-04-26 00:00:00.0\",\n          \
+                    \    \"programId\": 1000007,\n              \"programName\": \"\
+                    TataNeu\"\n            }\n          ]\n        }\n      },\n \
+                    \     \"eventReferenceId\": \"2151165932\",\n      \"orgId\":\
+                    \ 4000218\n    }\n  ],\n  \"warnings\": []\n}"
+                PointsTransfer:
+                  value: "{\n  \"events\": [\n    {\n      \"eventLogId\": 498243059,\n\
+                    \      \"eventName\": \"PointsTransfer\",\n      \"eventDetails\"\
+                    : {\n        \"eventTime\": \"2023-06-19 10:04:32.0\"\n      },\n\
+                    \      \"transferredFrom\": {\n        \"userId\": \"4811870\"\
+                    ,\n        \"firstName\": \"\",\n        \"lastName\": \"\",\n\
+                    \        \"transferType\": \"TRANSFER\",\n        \"pointsTransferDetails\"\
+                    : [\n          {\n            \"points\": \"62718.260\",\n   \
+                    \         \"programId\": \"1000014\",\n            \"programName\"\
+                    : \"IHCL\"\n          }\n        ]\n      },\n      \"transferredTo\"\
+                    : {\n        \"userId\": \"68519328\",\n        \"firstName\"\
+                    : \"3e64ec7fb438a54abc003b95942a5e9a\",\n        \"lastName\"\
+                    : \"3e64ec7fb438a54abc003b95942a5e9a\",\n        \"transferType\"\
+                    : \"TRANSFER\",\n        \"pointsTransferDetails\": [\n      \
+                    \    {\n            \"points\": \"62718.260\",\n            \"\
+                    programId\": \"1000014\",\n            \"programName\": \"IHCL\"\
+                    \n          }\n        ]\n      },\n      \"notes\": \"2023-06-19T04:34:32.327770699\"\
+                    ,\n      \"eventReferenceId\": \"2151165932\",\n      \"orgId\"\
+                    : 4000218\n    }\n  ],\n  \"warnings\": []\n}"
+                PointsRedemption:
+                  value: "{\n  \"events\": [\n    {\n      \"eventLogId\": 469585846,\n\
+                    \      \"eventName\": \"PointsRedemption\",\n      \"eventDetails\"\
+                    : {\n        \"eventTime\": \"2023-05-23 12:20:18.0\",\n     \
+                    \   \"tillId\": 100007771,\n        \"redemptionDetails\": {\n\
+                    \          \"pointsRedeemed\": \"1131.870\",\n          \"transactionNumber\"\
+                    : \"TBN-1222183117-20230523\",\n          \"billingTime\": \"\
+                    2023-05-23 12:20:18.0\",\n          \"externalReferenceNumber\"\
+                    : \"26ec1bca2ccb9cea9ef2\",\n          \"notes\": \"\",\n    \
+                    \      \"groupRedemption\": true\n        }\n      },\n      \"\
+                    customFields\": [],\n      \"pointsBreakup\": [\n        {\n \
+                    \         \"points\": \"803.009\",\n          \"programId\": \"\
+                    1000007\",\n          \"programName\": \"TataNeu\"\n        },\n\
+                    \        {\n          \"points\": \"0.121\",\n          \"programId\"\
+                    : \"1000028\",\n          \"programName\": \"bigbasket\"\n   \
+                    \     },\n        {\n          \"points\": \"328.740\",\n    \
+                    \      \"programId\": \"1000086\",\n          \"programName\"\
+                    : \"TataNeu HDFC\"\n        }\n      ],\n      \"eventReferenceId\"\
+                    : \"2151165932\",\n      \"orgId\": 4000218\n    }\n  ],\n  \"\
+                    warnings\": []\n}"
+                ReturnTxn:
+                  value: "{\n  \"events\": [\n    {\n      \"eventLogId\": 529902660,\n\
+                    \      \"eventName\": \"ReturnBill\",\n      \"eventDetails\"\
+                    : {\n        \"eventTime\": \"2023-07-15 20:43:33.0\",\n     \
+                    \   \"tillId\": 100004318\n      },\n      \"billDetails\": {\n\
+                    \        \"billNumber\": \"TC300049941700\",\n        \"billAmount\"\
+                    : 32999,\n        \"note\": \"\",\n        \"returnDate\": \"\
+                    2023-07-15 20:43:33.0\",\n        \"returnAmount\": 32999,\n \
+                    \       \"billDate\": \"2023-07-13 23:52:48.0\",\n        \"returnType\"\
+                    : \"LINE_ITEM\",\n        \"pointsEarned\": {\n          \"regular\"\
+                    : [],\n          \"promo\": [],\n          \"promised\": []\n\
+                    \        },\n        \"pointsEarnedBreakup\": {\n          \"\
+                    regular\": [],\n          \"promised\": []\n        },\n     \
+                    \   \"lineItems\": [\n          {\n            \"id\": 303060102,\n\
+                    \            \"itemCode\": \"274277\",\n            \"grossAmount\"\
+                    : 0,\n            \"amount\": 32999,\n            \"rate\": 0,\n\
+                    \            \"qty\": 1,\n            \"serialNumber\": 1,\n \
+                    \           \"returnAmount\": 32999,\n            \"returnRate\"\
+                    : 0,\n            \"returnQty\": 1,\n            \"returnValue\"\
+                    : 0,\n            \"pointsEarned\": {\n              \"regular\"\
+                    : [\n                {\n                  \"value\": 0,\n    \
+                    \              \"expiresOn\": \"2024-07-12 23:59:59.0\",\n   \
+                    \               \"programId\": 1000013,\n                  \"\
+                    programName\": \"Croma\",\n                  \"returnPoints\"\
+                    : 108.897,\n                  \"expiryType\": \"rolling\"\n  \
+                    \              }\n              ],\n              \"promo\": [\n\
+                    \                {\n                  \"promotionId\": 6444,\n\
+                    \                  \"promotionName\": \"Min 5% Drop 1_Croma\"\
+                    ,\n                  \"programId\": 1000007,\n               \
+                    \   \"programName\": \"TataNeu\",\n                  \"value\"\
+                    : 0,\n                  \"expiresOn\": \"2024-07-12 23:59:59.0\"\
+                    ,\n                  \"returnedPoints\": 1541.053,\n         \
+                    \         \"expiryType\": \"rolling\"\n                }\n   \
+                    \           ],\n              \"promised\": []\n            },\n\
+                    \            \"pointsEarnedBreakup\": {\n              \"regular\"\
+                    : [\n                {\n                  \"value\": 1541.053,\n\
+                    \                  \"expiresOn\": \"2024-07-12 23:59:59.0\",\n\
+                    \                  \"awardedOn\": \"2023-07-29 00:00:00.0\",\n\
+                    \                  \"sourceValue\": 32999,\n                 \
+                    \ \"awardActionDetails\": {\n                    \"id\": 235074156,\n\
+                    \                    \"name\": \"AWARD_POINTS_ACTION\",\n    \
+                    \                \"rulesetId\": 1356,\n                    \"\
+                    rulesetName\": \"ruleset_20220329234517\"\n                  },\n\
+                    \                  \"programId\": 1000007,\n                 \
+                    \ \"programName\": \"TataNeu\",\n                  \"allocationStrategyId\"\
+                    : 1048,\n                  \"allocationStrategyName\": \"TD_croma\
+                    \ 4.67\",\n                  \"pointsCategoryId\": 102,\n    \
+                    \              \"pointsCategoryName\": \"DelayedAccrualPointCategory\"\
+                    ,\n                  \"expiryStrategyId\": 572,\n            \
+                    \      \"expiryStrategyName\": \"1_year_Rolling expiry\",\n  \
+                    \                \"promotionDetails\": {\n                   \
+                    \ \"promotionId\": 6444,\n                    \"promotionName\"\
+                    : \"Min 5% Drop 1_Croma\"\n                  },\n            \
+                    \      \"returnPoints\": 1541.053,\n                  \"expiryType\"\
+                    : \"rolling\"\n                },\n                {\n       \
+                    \           \"value\": 108.897,\n                  \"expiresOn\"\
+                    : \"2024-07-12 23:59:59.0\",\n                  \"awardedOn\"\
+                    : \"2023-07-29 00:00:00.0\",\n                  \"sourceValue\"\
+                    : 32999,\n                  \"awardActionDetails\": {\n      \
+                    \              \"id\": 235074155,\n                    \"name\"\
+                    : \"BILL_POINTS_ACTION\",\n                    \"rulesetId\":\
+                    \ 2256,\n                    \"rulesetName\": \"ruleset_20220810231204\"\
+                    \n                  },\n                  \"programId\": 1000013,\n\
+                    \                  \"programName\": \"Croma\",\n             \
+                    \     \"allocationStrategyId\": 198,\n                  \"allocationStrategyName\"\
+                    : \"Croma Points\",\n                  \"pointsCategoryId\": 26,\n\
+                    \                  \"pointsCategoryName\": \"DelayedAccrualPointCategory\"\
+                    ,\n                  \"expiryStrategyId\": 201,\n            \
+                    \      \"expiryStrategyName\": \"Croma Rolling Expiry\",\n   \
+                    \               \"returnPoints\": 108.897,\n                 \
+                    \ \"expiryType\": \"rolling\"\n                }\n           \
+                    \   ],\n              \"promised\": []\n            }\n      \
+                    \    }\n        ]\n      },\n      \"eventReferenceId\": \"2151165932\"\
+                    ,\n      \"orgId\": 4000218\n    }\n  ],\n  \"warnings\": []\n\
+                    }"
+                CustomerPromotionImport:
+                  value: "{\n  \"events\": [\n    {\n      \"eventLogId\": 564778187,\n\
+                    \      \"eventName\": \"CustomerPromotionImport\",\n      \"eventDetails\"\
+                    : {\n        \"eventDisplayName\": \"Tata Neu HDFC Bank Credit\
+                    \ Card – Last billing cycle NeuCoins\",\n        \"tillId\": -1\n\
+                    \      },\n      \"pointsEarned\": {\n        \"regular\": [],\n\
+                    \        \"promo\": [\n          {\n            \"promotionId\"\
+                    : 6877,\n            \"promotionName\": \"Tata Neu HDFC Bank Credit\
+                    \ Card – Last billing cycle NeuCoins\",\n            \"programId\"\
+                    : 1000086,\n            \"programName\": \"TataNeu HDFC\",\n \
+                    \           \"value\": 8754\n          }\n        ],\n       \
+                    \ \"promised\": []\n      },\n      \"importMeta\": {\n      \
+                    \  \"fileName\": \"cap_data_16082023_031522_16August2023_09_01_14am.csv\"\
+                    ,\n        \"importStartTime\": \"2023-08-16 09:01:15.0\",\n \
+                    \       \"importEndTime\": \"2023-08-16 09:02:13.0\",\n      \
+                    \  \"profileName\": \"Customer Promotion\",\n        \"profileType\"\
+                    : \"Promotional Rewards \"\n      },\n      \"eventReferenceId\"\
+                    : \"2151165932\",\n      \"orgId\": 4000218\n    }\n  ],\n  \"\
+                    warnings\": []\n}"
+              schema:
+                oneOf:
+                - title: NewBill/Txn Add
+                  type: object
+                  properties:
+                    events:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          eventLogId:
+                            type: integer
+                            example: 549393345
+                            default: 0
+                          eventName:
+                            type: string
+                            example: TransactionAdd
+                          eventDetails:
+                            type: object
+                            properties:
+                              eventTime:
+                                type: string
+                                example: "2023-08-02 16:24:44.0"
+                              tillId:
+                                type: integer
+                                example: 100004318
+                                default: 0
+                          billDetails:
+                            type: object
+                            properties:
+                              type:
+                                type: string
+                                example: loyalty
+                              billNumber:
+                                type: string
+                                example: TC300051690458
+                              grossAmount:
+                                type: integer
+                                example: 0
+                                default: 0
+                              discount:
+                                type: integer
+                                example: 0
+                                default: 0
+                              billAmount:
+                                type: integer
+                                example: 11691
+                                default: 0
+                              note:
+                                type: string
+                                example: ''
+                              source:
+                                type: string
+                                example: instore
+                              pointsEarned:
+                                type: object
+                                properties:
+                                  regular:
+                                    type: array
+                                  promo:
+                                    type: array
+                                  promised:
+                                    type: array
+                              lineItems:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                      example: 310201424
+                                      default: 0
+                                    itemCode:
+                                      type: string
+                                      example: '243593'
+                                    source:
+                                      type: string
+                                      example: instore
+                                    grossAmount:
+                                      type: integer
+                                      example: 0
+                                      default: 0
+                                    discount:
+                                      type: integer
+                                      example: 0
+                                      default: 0
+                                    amount:
+                                      type: integer
+                                      example: 11691
+                                      default: 0
+                                    rate:
+                                      type: integer
+                                      example: 0
+                                      default: 0
+                                    qty:
+                                      type: integer
+                                      example: 1
+                                      default: 0
+                                    pointsEarned:
+                                      type: object
+                                      properties:
+                                        regular:
+                                          type: array
+                                          items:
+                                            type: object
+                                            properties:
+                                              value:
+                                                type: integer
+                                                example: 0
+                                                default: 0
+                                              expiresOn:
+                                                type: string
+                                                example: "2024-08-01 23:59:59.0"
+                                              programId:
+                                                type: integer
+                                                example: 1000013
+                                                default: 0
+                                              programName:
+                                                type: string
+                                                example: Croma
+                                              expiryType:
+                                                type: string
+                                                example: rolling
+                                        promo:
+                                          type: array
+                                          items:
+                                            type: object
+                                            properties:
+                                              promotionId:
+                                                type: integer
+                                                example: 9418
+                                                default: 0
+                                              promotionName:
+                                                type: string
+                                                example: Min 5% Drop 2_Croma
+                                              programId:
+                                                type: integer
+                                                example: 1000007
+                                                default: 0
+                                              programName:
+                                                type: string
+                                                example: TataNeu
+                                              value:
+                                                type: integer
+                                                example: 0
+                                                default: 0
+                                              expiresOn:
+                                                type: string
+                                                example: "2024-08-01 23:59:59.0"
+                                              expiryType:
+                                                type: string
+                                                example: rolling
+                                        promised:
+                                          type: array
+                          customFields:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                name:
+                                  type: string
+                                  example: txn_source
+                                value:
+                                  type: string
+                                  example: tcp
+                          extendedFields:
+                            type: array
+                          paymentModes:
+                            type: array
+                            items:
+                              type: string
+                              example: Others
+                          pointInTimeSlabs:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                pointInTimeSlabNumber:
+                                  type: integer
+                                  example: 1
+                                  default: 0
+                                pointInTimeSlabName:
+                                  type: string
+                                  example: NONE
+                                programId:
+                                  type: integer
+                                  example: 1000007
+                                  default: 0
+                                isDefaultProgram:
+                                  type: boolean
+                                  example: true
+                                  default: true
+                          eventReferenceId:
+                            type: string
+                            example: '2151165932'
+                          orgId:
+                            type: integer
+                            example: 4000218
+                            default: 0
+                    warnings:
+                      type: array
+                - title: GenericEvent/ImportEvents
+                  type: object
+                  properties:
+                    events:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          eventLogId:
+                            type: integer
+                            example: 296576878
+                            default: 0
+                          eventName:
+                            type: string
+                            example: GenericEvent
+                          eventDetails:
+                            type: object
+                            properties:
+                              eventDisplayName:
+                                type: string
+                                example: first_bill_pay
+                              tillId:
+                                type: integer
+                                example: 100011485
+                                default: 0
+                              displayName:
+                                type: string
+                                example: first_bill_pay
+                          pointsEarned:
+                            type: object
+                            properties:
+                              regular:
+                                type: array
+                              promo:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    promotionId:
+                                      type: integer
+                                      example: 7125
+                                      default: 0
+                                    promotionName:
+                                      type: string
+                                      example: Earn at BillPay – December Mid Month
+                                        Sale
+                                    programId:
+                                      type: integer
+                                      example: 1000055
+                                      default: 0
+                                    programName:
+                                      type: string
+                                      example: bill payments
+                                    value:
+                                      type: integer
+                                      example: 0
+                                      default: 0
+                                    promotionStartDate:
+                                      type: string
+                                      example: "2022-12-19 00:00:00.0"
+                                    promotionEndDate:
+                                      type: string
+                                      example: "2022-12-22 23:59:59.0"
+                              promised:
+                                type: array
+                          behavioralEventMetadata:
+                            type: object
+                            properties:
+                              label:
+                                type: string
+                                example: first_bill_pay
+                              fields:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    fieldName:
+                                      type: string
+                                      example: externalid
+                                    fieldType:
+                                      type: string
+                                      example: customer
+                                    attributes:
+                                      type: object
+                                      properties:
+                                        accountId:
+                                          type: object
+                                          properties:
+                                            valueType:
+                                              type: string
+                                              example: ENUM
+                                        addCustomerIfNotExists:
+                                          type: object
+                                          properties:
+                                            valueType:
+                                              type: string
+                                              example: BOOLEAN
+                                            value:
+                                              type: string
+                                              example: 'false'
+                                        identifierType:
+                                          type: object
+                                          properties:
+                                            valueType:
+                                              type: string
+                                              example: ENUM
+                                            value:
+                                              type: string
+                                              example: externalId
+                                        isRequired:
+                                          type: object
+                                          properties:
+                                            valueType:
+                                              type: string
+                                              example: BOOLEAN
+                                            value:
+                                              type: string
+                                              example: 'true'
+                                        source:
+                                          type: object
+                                          properties:
+                                            valueType:
+                                              type: string
+                                              example: ENUM
+                                            value:
+                                              type: string
+                                              example: INSTORE
+                          eventReferenceId:
+                            type: string
+                            example: '2151165932'
+                          orgId:
+                            type: integer
+                            example: 4000218
+                            default: 0
+                    warnings:
+                      type: array
+                - title: CustomerRegistration
+                  type: object
+                  properties:
+                    events:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          eventLogId:
+                            type: integer
+                            example: 20229363
+                            default: 0
+                          eventName:
+                            type: string
+                            example: CustomerRegistration
+                          eventDetails:
+                            type: object
+                            properties:
+                              eventTime:
+                                type: string
+                                example: "2023-08-31 06:25:40.0"
+                              tillId:
+                                type: integer
+                                example: 50137565
+                                default: 0
+                          pointsEarned:
+                            type: object
+                            properties:
+                              regular:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    value:
+                                      type: integer
+                                      example: 100
+                                      default: 0
+                                    expiresOn:
+                                      type: string
+                                      example: "2023-09-15 23:59:59.0"
+                                    programId:
+                                      type: integer
+                                      example: 1933
+                                      default: 0
+                                    programName:
+                                      type: string
+                                      example: PellDungaAgarUseKiyaTohDefaultProgram
+                                    expiryType:
+                                      type: string
+                                      example: fixed
+                              promo:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    promotionId:
+                                      type: integer
+                                      example: 1133561326
+                                      default: 0
+                                    promotionName:
+                                      type: string
+                                      example: delayedAccrualpromo
+                                    programId:
+                                      type: integer
+                                      example: 1933
+                                      default: 0
+                                    programName:
+                                      type: string
+                                      example: PellDungaAgarUseKiyaTohDefaultProgram
+                                    value:
+                                      type: integer
+                                      example: 100
+                                      default: 0
+                                    expiresOn:
+                                      type: string
+                                      example: "2023-09-15 23:59:59.0"
+                                    expiryType:
+                                      type: string
+                                      example: fixed
+                              promised:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    value:
+                                      type: integer
+                                      example: 1001
+                                      default: 0
+                                    conversionDate:
+                                      type: string
+                                      example: "2023-09-06 00:00:00.0"
+                                    programId:
+                                      type: integer
+                                      example: 1933
+                                      default: 0
+                                    programName:
+                                      type: string
+                                      example: PellDungaAgarUseKiyaTohDefaultProgram
+                          eventReferenceId:
+                            type: string
+                            example: '2151165932'
+                          orgId:
+                            type: integer
+                            example: 4000218
+                            default: 0
+                    warnings:
+                      type: array
+                - title: GoodWillPoints
+                  type: object
+                  properties:
+                    events:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          eventLogId:
+                            type: integer
+                            example: 579442157
+                            default: 0
+                          eventName:
+                            type: string
+                            example: AllocateGoodwillPoints
+                          eventDetails:
+                            type: object
+                            properties:
+                              eventTime:
+                                type: string
+                                example: "2023-08-29 19:12:17.0"
+                              reason:
+                                type: string
+                                example: "CS: Cx received Rs 500 TNRL voucher which\
+                                  \ can be u"
+                              requestId:
+                                type: integer
+                                example: 2828197
+                                default: 0
+                          pointsEarned:
+                            type: object
+                            properties:
+                              regular:
+                                type: array
+                              promo:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    promotionId:
+                                      type: integer
+                                      example: 5486
+                                      default: 0
+                                    promotionName:
+                                      type: string
+                                      example: Goodwill Promotion
+                                    programId:
+                                      type: integer
+                                      example: 1000019
+                                      default: 0
+                                    programName:
+                                      type: string
+                                      example: AirAsia India
+                                    value:
+                                      type: integer
+                                      example: 500
+                                      default: 0
+                                    expiresOn:
+                                      type: string
+                                      example: "2024-08-28 23:59:59.0"
+                                    expiryType:
+                                      type: string
+                                      example: rolling
+                              promised:
+                                type: array
+                          eventReferenceId:
+                            type: string
+                            example: '2151165932'
+                          orgId:
+                            type: integer
+                            example: 4000218
+                            default: 0
+                    warnings:
+                      type: array
+                - title: TargetCompleted
+                  type: object
+                  properties:
+                    events:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          eventLogId:
+                            type: integer
+                            example: 404150880
+                            default: 0
+                          eventName:
+                            type: string
+                            example: TargetCompleted
+                          eventDetails:
+                            type: object
+                            properties:
+                              eventTime:
+                                type: string
+                                example: "2023-03-26 21:31:49.0"
+                              tillId:
+                                type: integer
+                                example: 100008816
+                                default: 0
+                          targetCompletedDetails:
+                            type: object
+                            properties:
+                              targetGroupID:
+                                type: integer
+                                example: 106
+                                default: 0
+                              targetGroupName:
+                                type: string
+                                example: Offer_March2023_CFT_Milestone
+                              targetId:
+                                type: integer
+                                example: 199
+                                default: 0
+                              targetName:
+                                type: string
+                                example: Offer_March2023_CFT_Milestone_1
+                              targetPeriodID:
+                                type: integer
+                                example: 44
+                                default: 0
+                              targetPeriodName:
+                                type: string
+                                example: B1
+                              targetValue:
+                                type: string
+                                example: '2.000'
+                              achievedValue:
+                                type: string
+                                example: '2.000'
+                              sourceId:
+                                type: integer
+                                example: 5020906
+                                default: 0
+                              sourceType:
+                                type: string
+                                example: USERTARGET
+                              pointsEarned:
+                                type: object
+                                properties:
+                                  promised:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        value:
+                                          type: integer
+                                          example: 0
+                                          default: 0
+                                        conversionDate:
+                                          type: string
+                                          example: "2023-04-26 00:00:00.0"
+                                        programId:
+                                          type: integer
+                                          example: 1000007
+                                          default: 0
+                                        programName:
+                                          type: string
+                                          example: TataNeu
+                          eventReferenceId:
+                            type: string
+                            example: '2151165932'
+                          orgId:
+                            type: integer
+                            example: 4000218
+                            default: 0
+                    warnings:
+                      type: array
+                - title: PointsTransfer
+                  type: object
+                  properties:
+                    events:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          eventLogId:
+                            type: integer
+                            example: 498243059
+                            default: 0
+                          eventName:
+                            type: string
+                            example: PointsTransfer
+                          eventDetails:
+                            type: object
+                            properties:
+                              eventTime:
+                                type: string
+                                example: "2023-06-19 10:04:32.0"
+                          transferredFrom:
+                            type: object
+                            properties:
+                              userId:
+                                type: string
+                                example: '4811870'
+                              firstName:
+                                type: string
+                                example: ''
+                              lastName:
+                                type: string
+                                example: ''
+                              transferType:
+                                type: string
+                                example: TRANSFER
+                              pointsTransferDetails:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    points:
+                                      type: string
+                                      example: '62718.260'
+                                    programId:
+                                      type: string
+                                      example: '1000014'
+                                    programName:
+                                      type: string
+                                      example: IHCL
+                          transferredTo:
+                            type: object
+                            properties:
+                              userId:
+                                type: string
+                                example: '68519328'
+                              firstName:
+                                type: string
+                                example: 3e64ec7fb438a54abc003b95942a5e9a
+                              lastName:
+                                type: string
+                                example: 3e64ec7fb438a54abc003b95942a5e9a
+                              transferType:
+                                type: string
+                                example: TRANSFER
+                              pointsTransferDetails:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    points:
+                                      type: string
+                                      example: '62718.260'
+                                    programId:
+                                      type: string
+                                      example: '1000014'
+                                    programName:
+                                      type: string
+                                      example: IHCL
+                          notes:
+                            type: string
+                            example: "2023-06-19T04:34:32.327770699"
+                          eventReferenceId:
+                            type: string
+                            example: '2151165932'
+                          orgId:
+                            type: integer
+                            example: 4000218
+                            default: 0
+                    warnings:
+                      type: array
+                - title: PointsRedemption
+                  type: object
+                  properties:
+                    events:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          eventLogId:
+                            type: integer
+                            example: 469585846
+                            default: 0
+                          eventName:
+                            type: string
+                            example: PointsRedemption
+                          eventDetails:
+                            type: object
+                            properties:
+                              eventTime:
+                                type: string
+                                example: "2023-05-23 12:20:18.0"
+                              tillId:
+                                type: integer
+                                example: 100007771
+                                default: 0
+                              redemptionDetails:
+                                type: object
+                                properties:
+                                  pointsRedeemed:
+                                    type: string
+                                    example: '1131.870'
+                                  transactionNumber:
+                                    type: string
+                                    example: TBN-1222183117-20230523
+                                  billingTime:
+                                    type: string
+                                    example: "2023-05-23 12:20:18.0"
+                                  externalReferenceNumber:
+                                    type: string
+                                    example: 26ec1bca2ccb9cea9ef2
+                                  notes:
+                                    type: string
+                                    example: ''
+                                  groupRedemption:
+                                    type: boolean
+                                    example: true
+                                    default: true
+                          customFields:
+                            type: array
+                          pointsBreakup:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                points:
+                                  type: string
+                                  example: '803.009'
+                                programId:
+                                  type: string
+                                  example: '1000007'
+                                programName:
+                                  type: string
+                                  example: TataNeu
+                          eventReferenceId:
+                            type: string
+                            example: '2151165932'
+                          orgId:
+                            type: integer
+                            example: 4000218
+                            default: 0
+                    warnings:
+                      type: array
+                - title: ReturnTxn
+                  type: object
+                  properties:
+                    events:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          eventLogId:
+                            type: integer
+                            example: 529902660
+                            default: 0
+                          eventName:
+                            type: string
+                            example: ReturnBill
+                          eventDetails:
+                            type: object
+                            properties:
+                              eventTime:
+                                type: string
+                                example: "2023-07-15 20:43:33.0"
+                              tillId:
+                                type: integer
+                                example: 100004318
+                                default: 0
+                          billDetails:
+                            type: object
+                            properties:
+                              billNumber:
+                                type: string
+                                example: TC300049941700
+                              billAmount:
+                                type: integer
+                                example: 32999
+                                default: 0
+                              note:
+                                type: string
+                                example: ''
+                              returnDate:
+                                type: string
+                                example: "2023-07-15 20:43:33.0"
+                              returnAmount:
+                                type: integer
+                                example: 32999
+                                default: 0
+                              billDate:
+                                type: string
+                                example: "2023-07-13 23:52:48.0"
+                              returnType:
+                                type: string
+                                example: LINE_ITEM
+                              pointsEarned:
+                                type: object
+                                properties:
+                                  regular:
+                                    type: array
+                                  promo:
+                                    type: array
+                                  promised:
+                                    type: array
+                              pointsEarnedBreakup:
+                                type: object
+                                properties:
+                                  regular:
+                                    type: array
+                                  promised:
+                                    type: array
+                              lineItems:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                      example: 303060102
+                                      default: 0
+                                    itemCode:
+                                      type: string
+                                      example: '274277'
+                                    grossAmount:
+                                      type: integer
+                                      example: 0
+                                      default: 0
+                                    amount:
+                                      type: integer
+                                      example: 32999
+                                      default: 0
+                                    rate:
+                                      type: integer
+                                      example: 0
+                                      default: 0
+                                    qty:
+                                      type: integer
+                                      example: 1
+                                      default: 0
+                                    serialNumber:
+                                      type: integer
+                                      example: 1
+                                      default: 0
+                                    returnAmount:
+                                      type: integer
+                                      example: 32999
+                                      default: 0
+                                    returnRate:
+                                      type: integer
+                                      example: 0
+                                      default: 0
+                                    returnQty:
+                                      type: integer
+                                      example: 1
+                                      default: 0
+                                    returnValue:
+                                      type: integer
+                                      example: 0
+                                      default: 0
+                                    pointsEarned:
+                                      type: object
+                                      properties:
+                                        regular:
+                                          type: array
+                                          items:
+                                            type: object
+                                            properties:
+                                              value:
+                                                type: integer
+                                                example: 0
+                                                default: 0
+                                              expiresOn:
+                                                type: string
+                                                example: "2024-07-12 23:59:59.0"
+                                              programId:
+                                                type: integer
+                                                example: 1000013
+                                                default: 0
+                                              programName:
+                                                type: string
+                                                example: Croma
+                                              returnPoints:
+                                                type: number
+                                                example: 108.897
+                                                default: 0
+                                              expiryType:
+                                                type: string
+                                                example: rolling
+                                        promo:
+                                          type: array
+                                          items:
+                                            type: object
+                                            properties:
+                                              promotionId:
+                                                type: integer
+                                                example: 6444
+                                                default: 0
+                                              promotionName:
+                                                type: string
+                                                example: Min 5% Drop 1_Croma
+                                              programId:
+                                                type: integer
+                                                example: 1000007
+                                                default: 0
+                                              programName:
+                                                type: string
+                                                example: TataNeu
+                                              value:
+                                                type: integer
+                                                example: 0
+                                                default: 0
+                                              expiresOn:
+                                                type: string
+                                                example: "2024-07-12 23:59:59.0"
+                                              returnedPoints:
+                                                type: number
+                                                example: 1541.053
+                                                default: 0
+                                              expiryType:
+                                                type: string
+                                                example: rolling
+                                        promised:
+                                          type: array
+                                    pointsEarnedBreakup:
+                                      type: object
+                                      properties:
+                                        regular:
+                                          type: array
+                                          items:
+                                            type: object
+                                            properties:
+                                              value:
+                                                type: number
+                                                example: 1541.053
+                                                default: 0
+                                              expiresOn:
+                                                type: string
+                                                example: "2024-07-12 23:59:59.0"
+                                              awardedOn:
+                                                type: string
+                                                example: "2023-07-29 00:00:00.0"
+                                              sourceValue:
+                                                type: integer
+                                                example: 32999
+                                                default: 0
+                                              awardActionDetails:
+                                                type: object
+                                                properties:
+                                                  id:
+                                                    type: integer
+                                                    example: 235074156
+                                                    default: 0
+                                                  name:
+                                                    type: string
+                                                    example: AWARD_POINTS_ACTION
+                                                  rulesetId:
+                                                    type: integer
+                                                    example: 1356
+                                                    default: 0
+                                                  rulesetName:
+                                                    type: string
+                                                    example: ruleset_20220329234517
+                                              programId:
+                                                type: integer
+                                                example: 1000007
+                                                default: 0
+                                              programName:
+                                                type: string
+                                                example: TataNeu
+                                              allocationStrategyId:
+                                                type: integer
+                                                example: 1048
+                                                default: 0
+                                              allocationStrategyName:
+                                                type: string
+                                                example: TD_croma 4.67
+                                              pointsCategoryId:
+                                                type: integer
+                                                example: 102
+                                                default: 0
+                                              pointsCategoryName:
+                                                type: string
+                                                example: DelayedAccrualPointCategory
+                                              expiryStrategyId:
+                                                type: integer
+                                                example: 572
+                                                default: 0
+                                              expiryStrategyName:
+                                                type: string
+                                                example: 1_year_Rolling expiry
+                                              promotionDetails:
+                                                type: object
+                                                properties:
+                                                  promotionId:
+                                                    type: integer
+                                                    example: 6444
+                                                    default: 0
+                                                  promotionName:
+                                                    type: string
+                                                    example: Min 5% Drop 1_Croma
+                                              returnPoints:
+                                                type: number
+                                                example: 1541.053
+                                                default: 0
+                                              expiryType:
+                                                type: string
+                                                example: rolling
+                                        promised:
+                                          type: array
+                          eventReferenceId:
+                            type: string
+                            example: '2151165932'
+                          orgId:
+                            type: integer
+                            example: 4000218
+                            default: 0
+                    warnings:
+                      type: array
+                - title: CustomerPromotionImport
+                  type: object
+                  properties:
+                    events:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          eventLogId:
+                            type: integer
+                            example: 564778187
+                            default: 0
+                          eventName:
+                            type: string
+                            example: CustomerPromotionImport
+                          eventDetails:
+                            type: object
+                            properties:
+                              eventDisplayName:
+                                type: string
+                                example: Tata Neu HDFC Bank Credit Card – Last billing
+                                  cycle NeuCoins
+                              tillId:
+                                type: integer
+                                example: -1
+                                default: 0
+                          pointsEarned:
+                            type: object
+                            properties:
+                              regular:
+                                type: array
+                              promo:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    promotionId:
+                                      type: integer
+                                      example: 6877
+                                      default: 0
+                                    promotionName:
+                                      type: string
+                                      example: Tata Neu HDFC Bank Credit Card – Last
+                                        billing cycle NeuCoins
+                                    programId:
+                                      type: integer
+                                      example: 1000086
+                                      default: 0
+                                    programName:
+                                      type: string
+                                      example: TataNeu HDFC
+                                    value:
+                                      type: integer
+                                      example: 8754
+                                      default: 0
+                              promised:
+                                type: array
+                          importMeta:
+                            type: object
+                            properties:
+                              fileName:
+                                type: string
+                                example: cap_data_16082023_031522_16August2023_09_01_14am.csv
+                              importStartTime:
+                                type: string
+                                example: "2023-08-16 09:01:15.0"
+                              importEndTime:
+                                type: string
+                                example: "2023-08-16 09:02:13.0"
+                              profileName:
+                                type: string
+                                example: Customer Promotion
+                              profileType:
+                                type: string
+                                example: 'Promotional Rewards '
+                          eventReferenceId:
+                            type: string
+                            example: '2151165932'
+                          orgId:
+                            type: integer
+                            example: 4000218
+                            default: 0
+                    warnings:
+                      type: array
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"errors\": [\n        {\n            \"status\"\
+                    : false,\n            \"message\": \"Invalid source\",\n     \
+                    \       \"code\": 8003\n        }\n}      "
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl --location 'https://host/v2.1/pointsLedger/getLedgerExplodeInfo?identifierName=mobile&identifierValue=9988221100&source=INSTORE&eventIds=13499088'\
+            \ \\\n--header 'DATA-SCOPE: OTHER' \\\n--header 'DATA-SCOPE-ORG: 50405'\
+            \ \\"
+          name: cURL
+        samples-languages:
+        - curl
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

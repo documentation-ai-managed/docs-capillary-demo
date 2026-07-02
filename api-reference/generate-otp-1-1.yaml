@@ -1,0 +1,105 @@
+openapi: 3.1.0
+info:
+  title: Generate OTP
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  /auth/v1/otp/generate:
+    post:
+      summary: Generate OTP
+      description: "Issues OTP to the customer’s mobile number/email ID using the\
+        \ `sessionId` generated through the `token/generate` API.\n\nThere is a limit\
+        \ in the number of OTPs a customer can generate in a day. If you wish to increase\
+        \ or decrease the limit, contact the Platforms team."
+      operationId: generate-otp-1-1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - identifierType
+              - brand
+              - deviceId
+              - sessionId
+              properties:
+                identifierType:
+                  type: string
+                  description: "Identifier used for token generation. Values: MOBILE,\
+                    \ EMAIL, USERNAME."
+                mobile:
+                  type: string
+                  description: Mobile number of the customer. Either mobile number
+                    or email ID is required to authenticate with username.
+                email:
+                  type: string
+                  description: Email ID of the customer. Either mobile number or email
+                    ID is required to authenticate with username.
+                brand:
+                  type: string
+                  description: Name of the brand/org for which authentication needs
+                    to be verified.
+                deviceId:
+                  type: string
+                  description: Unique ID of the device from which the customer has
+                    generated the token.
+                sessionId:
+                  type: string
+                  description: Session ID generated through the `v1/token/generate`
+                    API.
+            examples:
+              Sample POST Body:
+                value:
+                  identifierType: MOBILE
+                  identifierValue: '9940000000'
+                  deviceId: 32rtsdered
+                  brand: STANDARDAPP
+                  sessionId: D-502259d3-d4d6-4458-bc5f-b89d3d8e4c7b
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
+                    \   \"code\": 200,\n        \"message\": \"SUCCESS\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+                      code:
+                        type: integer
+                        example: 200
+                        default: 0
+                      message:
+                        type: string
+                        example: SUCCESS
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

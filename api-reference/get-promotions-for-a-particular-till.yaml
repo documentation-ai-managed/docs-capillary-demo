@@ -1,0 +1,1435 @@
+openapi: 3.1.0
+info:
+  title: Get Cart Promotions for a particular till
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  "/api_gateway/v1/promotions/till/{tillId}":
+    get:
+      summary: Get Cart Promotions for a particular till
+      description: This API can be used to fetch the Cart promotions for a particular
+        till
+      operationId: get-promotions-for-a-particular-till
+      parameters:
+      - in: path
+        name: tillId
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tillId:
+                  type: integer
+                  description: Unique id assigned to a till
+                  format: int32
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n   \
+                    \   \"name\": \"string\",\n      \"orgId\": 0 ,          //Unique\
+                    \ id assigned to the organization/brand\n      \"priority\": 0,\n\
+                    \      \"active\": true,  //Whether the promotion is active or\
+                    \ not(marked by the user)\n\n      \"messageLabel\": \"string\"\
+                    ,\n      \"type\": \"POS\",\n      \"timeCriteria\": {\n     \
+                    \   \"startTime\": {\n          \"hour\": 0,\n          \"minute\"\
+                    : 0,\n          \"second\": 0,\n          \"nano\": 0\n      \
+                    \  },\n        \"durationInHours\": 0,\n        \"repeatFrequency\"\
+                    : \"DOES_NOT_REPEAT\",\n        \"weeklyValues\": [\n        \
+                    \  \"MONDAY\"\n        ],\n        \"monthlyDayValues\": [\n \
+                    \         0\n        ]\n      },\n      \"storeCriteria\": {\n\
+                    \        \"type\": \"STORE\",\n        \"values\": [\n       \
+                    \   0\n        ],\n        \"operator\": \"IN\"\n      },\n  \
+                    \    \"supplementaryCriteria\": {\n        \"loyaltyProgramId\"\
+                    : 0,\n        \"programType\": \"TIER\",\n        \"partnerProgramId\"\
+                    : 0\n      },\n      \"condition\": {\n        \"type\": \"CART\"\
+                    ,\n        \"cartCondition\": {\n          \"kpi\": \"SUBTOTAL\"\
+                    ,\n          \"operator\": \"EQUALS\",\n          \"value\": 0\n\
+                    \        },\n        \"productCondition\": {\n          \"criteriaList\"\
+                    : [\n            {\n              \"entity\": \"SKU\",\n     \
+                    \         \"operator\": \"IN\",\n              \"values\": [\n\
+                    \                \"string\"\n              ],\n              \"\
+                    attributeName\": \"string\"\n            }\n          ],\n   \
+                    \       \"kpi\": \"AMOUNT\",\n          \"value\": 0,\n      \
+                    \    \"operator\": \"EQUALS\"\n        },\n        \"comboProductCondition\"\
+                    : {\n          \"productConditions\": [\n            {\n     \
+                    \         \"criteriaList\": [\n                {\n           \
+                    \       \"entity\": \"SKU\",\n                  \"operator\":\
+                    \ \"IN\",\n                  \"values\": [\n                 \
+                    \   \"string\"\n                  ],\n                  \"attributeName\"\
+                    : \"string\"\n                }\n              ],\n          \
+                    \    \"kpi\": \"AMOUNT\",\n              \"value\": 0,\n     \
+                    \         \"operator\": \"EQUALS\"\n            },\n         \
+                    \   {\n              \"criteriaList\": [\n                {\n\
+                    \                  \"entity\": \"SKU\",\n                  \"\
+                    operator\": \"IN\",\n                  \"values\": [\n       \
+                    \             \"string\"\n                  ],\n             \
+                    \     \"attributeName\": \"string\"\n                }\n     \
+                    \         ],\n              \"kpi\": \"AMOUNT\",\n           \
+                    \   \"value\": 0,\n              \"operator\": \"EQUALS\"\n  \
+                    \          }\n          ]\n        },\n        \"tenderCondition\"\
+                    : {\n          \"type\": \"PAYMENT_VOUCHER\",\n          \"identifier\"\
+                    : \"string\",\n          \"tenderModes\": [\n            {\n \
+                    \             \"type\": \"PAYMENT_VOUCHER\",\n              \"\
+                    identifiers\": [\n                \"string\"\n              ]\n\
+                    \            }\n          ],\n          \"condition\": \"string\"\
+                    \n        }\n      },\n      \"action\": {\n        \"type\":\
+                    \ \"FIXED_PRICE\",\n        \"cartBasedAction\": {\n         \
+                    \ \"type\": \"PERCENTAGE\",\n          \"value\": 0\n        },\n\
+                    \        \"productBasedAction\": {\n          \"productBasedCondition\"\
+                    : {\n            \"type\": \"CART\",\n            \"cartCondition\"\
+                    : {\n              \"kpi\": \"SUBTOTAL\",\n              \"operator\"\
+                    : \"EQUALS\",\n              \"value\": 0\n            },\n  \
+                    \          \"productCondition\": {\n              \"criteriaList\"\
+                    : [\n                {\n                  \"entity\": \"SKU\"\
+                    ,\n                  \"operator\": \"IN\",\n                 \
+                    \ \"values\": [\n                    \"string\"\n            \
+                    \      ],\n                  \"attributeName\": \"string\"\n \
+                    \               }\n              ],\n              \"kpi\": \"\
+                    AMOUNT\",\n              \"value\": 0,\n              \"operator\"\
+                    : \"EQUALS\"\n            },\n            \"comboProductCondition\"\
+                    : {\n              \"productConditions\": [\n                {\n\
+                    \                  \"criteriaList\": [\n                    {\n\
+                    \                      \"entity\": \"SKU\",\n                \
+                    \      \"operator\": \"IN\",\n                      \"values\"\
+                    : [\n                        \"string\"\n                    \
+                    \  ],\n                      \"attributeName\": \"string\"\n \
+                    \                   }\n                  ],\n                \
+                    \  \"kpi\": \"AMOUNT\",\n                  \"value\": 0,\n   \
+                    \               \"operator\": \"EQUALS\"\n                },\n\
+                    \                {\n                  \"criteriaList\": [\n  \
+                    \                  {\n                      \"entity\": \"SKU\"\
+                    ,\n                      \"operator\": \"IN\",\n             \
+                    \         \"values\": [\n                        \"string\"\n\
+                    \                      ],\n                      \"attributeName\"\
+                    : \"string\"\n                    }\n                  ],\n  \
+                    \                \"kpi\": \"AMOUNT\",\n                  \"value\"\
+                    : 0,\n                  \"operator\": \"EQUALS\"\n           \
+                    \     }\n              ]\n            },\n            \"tenderCondition\"\
+                    : {\n              \"type\": \"PAYMENT_VOUCHER\",\n          \
+                    \    \"identifier\": \"string\",\n              \"tenderModes\"\
+                    : [\n                {\n                  \"type\": \"PAYMENT_VOUCHER\"\
+                    ,\n                  \"identifiers\": [\n                    \"\
+                    string\"\n                  ]\n                }\n           \
+                    \   ],\n              \"condition\": \"string\"\n            }\n\
+                    \          },\n          \"type\": \"PERCENTAGE\",\n         \
+                    \ \"value\": 0,\n          \"includeItemsFromConditionSet\": true\n\
+                    \        },\n        \"fixedPriceAction\": {\n          \"productBasedCondition\"\
+                    : {\n            \"type\": \"CART\",\n            \"cartCondition\"\
+                    : {\n              \"kpi\": \"SUBTOTAL\",\n              \"operator\"\
+                    : \"EQUALS\",\n              \"value\": 0\n            },\n  \
+                    \          \"productCondition\": {\n              \"criteriaList\"\
+                    : [\n                {\n                  \"entity\": \"SKU\"\
+                    ,\n                  \"operator\": \"IN\",\n                 \
+                    \ \"values\": [\n                    \"string\"\n            \
+                    \      ],\n                  \"attributeName\": \"string\"\n \
+                    \               }\n              ],\n              \"kpi\": \"\
+                    AMOUNT\",\n              \"value\": 0,\n              \"operator\"\
+                    : \"EQUALS\"\n            },\n            \"comboProductCondition\"\
+                    : {\n              \"productConditions\": [\n                {\n\
+                    \                  \"criteriaList\": [\n                    {\n\
+                    \                      \"entity\": \"SKU\",\n                \
+                    \      \"operator\": \"IN\",\n                      \"values\"\
+                    : [\n                        \"string\"\n                    \
+                    \  ],\n                      \"attributeName\": \"string\"\n \
+                    \                   }\n                  ],\n                \
+                    \  \"kpi\": \"AMOUNT\",\n                  \"value\": 0,\n   \
+                    \               \"operator\": \"EQUALS\"\n                },\n\
+                    \                {\n                  \"criteriaList\": [\n  \
+                    \                  {\n                      \"entity\": \"SKU\"\
+                    ,\n                      \"operator\": \"IN\",\n             \
+                    \         \"values\": [\n                        \"string\"\n\
+                    \                      ],\n                      \"attributeName\"\
+                    : \"string\"\n                    }\n                  ],\n  \
+                    \                \"kpi\": \"AMOUNT\",\n                  \"value\"\
+                    : 0,\n                  \"operator\": \"EQUALS\"\n           \
+                    \     }\n              ]\n            },\n            \"tenderCondition\"\
+                    : {\n              \"type\": \"PAYMENT_VOUCHER\",\n          \
+                    \    \"identifier\": \"string\",\n              \"tenderModes\"\
+                    : [\n                {\n                  \"type\": \"PAYMENT_VOUCHER\"\
+                    ,\n                  \"identifiers\": [\n                    \"\
+                    string\"\n                  ]\n                }\n           \
+                    \   ],\n              \"condition\": \"string\"\n            }\n\
+                    \          },\n          \"value\": 0,\n          \"includeItemsFromConditionSet\"\
+                    : true\n        },\n        \"freeProductAction\": {\n       \
+                    \   \"productBasedCondition\": {\n            \"type\": \"CART\"\
+                    ,\n            \"cartCondition\": {\n              \"kpi\": \"\
+                    SUBTOTAL\",\n              \"operator\": \"EQUALS\",\n       \
+                    \       \"value\": 0\n            },\n            \"productCondition\"\
+                    : {\n              \"criteriaList\": [\n                {\n  \
+                    \                \"entity\": \"SKU\",\n                  \"operator\"\
+                    : \"IN\",\n                  \"values\": [\n                 \
+                    \   \"string\"\n                  ],\n                  \"attributeName\"\
+                    : \"string\"\n                }\n              ],\n          \
+                    \    \"kpi\": \"AMOUNT\",\n              \"value\": 0,\n     \
+                    \         \"operator\": \"EQUALS\"\n            },\n         \
+                    \   \"comboProductCondition\": {\n              \"productConditions\"\
+                    : [\n                {\n                  \"criteriaList\": [\n\
+                    \                    {\n                      \"entity\": \"SKU\"\
+                    ,\n                      \"operator\": \"IN\",\n             \
+                    \         \"values\": [\n                        \"string\"\n\
+                    \                      ],\n                      \"attributeName\"\
+                    : \"string\"\n                    }\n                  ],\n  \
+                    \                \"kpi\": \"AMOUNT\",\n                  \"value\"\
+                    : 0,\n                  \"operator\": \"EQUALS\"\n           \
+                    \     },\n                {\n                  \"criteriaList\"\
+                    : [\n                    {\n                      \"entity\":\
+                    \ \"SKU\",\n                      \"operator\": \"IN\",\n    \
+                    \                  \"values\": [\n                        \"string\"\
+                    \n                      ],\n                      \"attributeName\"\
+                    : \"string\"\n                    }\n                  ],\n  \
+                    \                \"kpi\": \"AMOUNT\",\n                  \"value\"\
+                    : 0,\n                  \"operator\": \"EQUALS\"\n           \
+                    \     }\n              ]\n            },\n            \"tenderCondition\"\
+                    : {\n              \"type\": \"PAYMENT_VOUCHER\",\n          \
+                    \    \"identifier\": \"string\",\n              \"tenderModes\"\
+                    : [\n                {\n                  \"type\": \"PAYMENT_VOUCHER\"\
+                    ,\n                  \"identifiers\": [\n                    \"\
+                    string\"\n                  ]\n                }\n           \
+                    \   ],\n              \"condition\": \"string\"\n            }\n\
+                    \          },\n          \"includeItemsFromConditionSet\": true\n\
+                    \        },\n        \"tenderBasedAction\": {\n          \"type\"\
+                    : \"PERCENTAGE\",\n          \"value\": 0\n        },\n      \
+                    \  \"perUnitAction\": {\n          \"rewardAction\": \"string\"\
+                    ,\n          \"perUnitKPI\": \"AMOUNT\",\n          \"perUnitDivider\"\
+                    : 0,\n          \"includeItemsFromConditionSet\": true\n     \
+                    \   }\n      },\n      \"createdBy\": 0,\n      \"createdOn\"\
+                    : \"2023-01-19T09:28:58.595Z\",\n      \"lastUpdatedBy\": 0,\n\
+                    \      \"lastUpdatedOn\": \"2023-01-19T09:28:58.595Z\",\n    \
+                    \  \"startDate\": 0,\n      \"endDate\": 0,\n      \"campaignId\"\
+                    : 0,\n      \"loyaltyEarningExpiryDays\": 0,\n      \"maxEarningPerCustomer\"\
+                    : 0,\n      \"earningCriteria\": {\n        \"criteriaName\":\
+                    \ \"string\",\n        \"earnedFromType\": \"BULK_ISSUE\",\n \
+                    \       \"milestoneId\": 0,\n        \"groupId\": 0,\n       \
+                    \ \"eventType\": \"TransactionAdd\",\n        \"storeCriteria\"\
+                    : {\n          \"type\": \"STORE\",\n          \"values\": [\n\
+                    \            0\n          ],\n          \"operator\": \"IN\"\n\
+                    \        },\n        \"timeCriteria\": {\n          \"startTime\"\
+                    : {\n            \"hour\": 0,\n            \"minute\": 0,\n  \
+                    \          \"second\": 0,\n            \"nano\": 0\n         \
+                    \ },\n          \"durationInHours\": 0,\n          \"repeatFrequency\"\
+                    : \"DOES_NOT_REPEAT\",\n          \"weeklyValues\": [\n      \
+                    \      \"MONDAY\"\n          ],\n          \"monthlyDayValues\"\
+                    : [\n            0\n          ]\n        },\n        \"earningValidTillDays\"\
+                    : 1,\n        \"criteriaDsl\": \"string\",\n        \"criteriaDslJson\"\
+                    : \"string\",\n        \"active\": true\n      },\n      \"promotionRestrictions\"\
+                    : {\n        \"additionalProp1\": [\n          {\n           \
+                    \ \"kpi\": \"TRANSACTION\",\n            \"frequency\": \"DAYS\"\
+                    ,\n            \"minTimeBetweenRepeat\": 0,\n            \"limit\"\
+                    : 0\n          }\n        ],\n        \"additionalProp2\": [\n\
+                    \          {\n            \"kpi\": \"TRANSACTION\",\n        \
+                    \    \"frequency\": \"DAYS\",\n            \"minTimeBetweenRepeat\"\
+                    : 0,\n            \"limit\": 0\n          }\n        ],\n    \
+                    \    \"additionalProp3\": [\n          {\n            \"kpi\"\
+                    : \"TRANSACTION\",\n            \"frequency\": \"DAYS\",\n   \
+                    \         \"minTimeBetweenRepeat\": 0,\n            \"limit\"\
+                    : 0\n          }\n        ]\n      },\n      \"earnLimitedToSpecificAudience\"\
+                    : true,\n      \"customFieldValues\": {\n        \"additionalProp1\"\
+                    : \"string\",\n        \"additionalProp2\": \"string\",\n    \
+                    \    \"additionalProp3\": \"string\"\n      },\n      \"onEarnCommunicationChannels\"\
+                    : {\n        \"additionalProp1\": {\n          \"subject\": \"\
+                    string\",\n          \"message\": \"string\",\n          \"senderLabel\"\
+                    : \"string\",\n          \"senderReplyToEmail\": \"string\",\n\
+                    \          \"unsubscribeLabel\": \"string\",\n          \"senderEmail\"\
+                    : \"string\",\n          \"senderGSM\": \"string\",\n        \
+                    \  \"senderCDMA\": \"string\",\n          \"domainPropertyId\"\
+                    : \"string\",\n          \"accountId\": \"string\",\n        \
+                    \  \"channelType\": \"ANDROID\",\n          \"pushNotificationCta\"\
+                    : {\n            \"type\": \"DEEP_LINK\",\n            \"actionLink\"\
+                    : \"string\",\n            \"image\": \"string\",\n          \
+                    \  \"pushNotificationCtaActionList\": [\n              {\n   \
+                    \             \"type\": \"DEEP_LINK\",\n                \"actionLink\"\
+                    : \"string\",\n                \"actionText\": \"string\",\n \
+                    \               \"templateCtaId\": \"string\"\n              }\n\
+                    \            ]\n          }\n        },\n        \"additionalProp2\"\
+                    : {\n          \"subject\": \"string\",\n          \"message\"\
+                    : \"string\",\n          \"senderLabel\": \"string\",\n      \
+                    \    \"senderReplyToEmail\": \"string\",\n          \"unsubscribeLabel\"\
+                    : \"string\",\n          \"senderEmail\": \"string\",\n      \
+                    \    \"senderGSM\": \"string\",\n          \"senderCDMA\": \"\
+                    string\",\n          \"domainPropertyId\": \"string\",\n     \
+                    \     \"accountId\": \"string\",\n          \"channelType\": \"\
+                    ANDROID\",\n          \"pushNotificationCta\": {\n           \
+                    \ \"type\": \"DEEP_LINK\",\n            \"actionLink\": \"string\"\
+                    ,\n            \"image\": \"string\",\n            \"pushNotificationCtaActionList\"\
+                    : [\n              {\n                \"type\": \"DEEP_LINK\"\
+                    ,\n                \"actionLink\": \"string\",\n             \
+                    \   \"actionText\": \"string\",\n                \"templateCtaId\"\
+                    : \"string\"\n              }\n            ]\n          }\n  \
+                    \      },\n        \"additionalProp3\": {\n          \"subject\"\
+                    : \"string\",\n          \"message\": \"string\",\n          \"\
+                    senderLabel\": \"string\",\n          \"senderReplyToEmail\":\
+                    \ \"string\",\n          \"unsubscribeLabel\": \"string\",\n \
+                    \         \"senderEmail\": \"string\",\n          \"senderGSM\"\
+                    : \"string\",\n          \"senderCDMA\": \"string\",\n       \
+                    \   \"domainPropertyId\": \"string\",\n          \"accountId\"\
+                    : \"string\",\n          \"channelType\": \"ANDROID\",\n     \
+                    \     \"pushNotificationCta\": {\n            \"type\": \"DEEP_LINK\"\
+                    ,\n            \"actionLink\": \"string\",\n            \"image\"\
+                    : \"string\",\n            \"pushNotificationCtaActionList\":\
+                    \ [\n              {\n                \"type\": \"DEEP_LINK\"\
+                    ,\n                \"actionLink\": \"string\",\n             \
+                    \   \"actionText\": \"string\",\n                \"templateCtaId\"\
+                    : \"string\"\n              }\n            ]\n          }\n  \
+                    \      }\n      },\n      \"languagesConfigured\": [\n       \
+                    \ \"string\"\n      ],\n      \"customerActivationRequired\":\
+                    \ true,\n      \"isLoyaltyOnly\": true,\n      \"mode\": \"DISCOUNT\"\
+                    ,\n      \"maxIssuancePerCustomer\": 50,\n      \"isStackable\"\
+                    : true,\n      \"expiryDateChangeJobList\": [\n        {\n   \
+                    \       \"jobType\": \"ISSUED\",\n          \"status\": \"OPEN\"\
+                    ,\n          \"createdOn\": \"2023-01-19T09:28:58.595Z\",\n  \
+                    \        \"lastUpdatedOn\": \"2023-01-19T09:28:58.595Z\",\n  \
+                    \        \"lastUpdatedBy\": 0,\n          \"createdBy\": 0,\n\
+                    \          \"impactedCount\": 0,\n          \"message\": \"string\"\
+                    \n        }\n      ],\n      \"redeemableFromCriteria\": {\n \
+                    \       \"redeemableFrom\": {\n          \"period\": 0,\n    \
+                    \      \"type\": \"HOURS\"\n        },\n        \"redemptionValidBeforeExpiry\"\
+                    : {\n          \"period\": 0,\n          \"type\": \"HOURS\"\n\
+                    \        }\n      }\n    }\n  ],\n  \"errors\": [\n    {\n   \
+                    \   \"code\": 0,\n      \"message\": \"string\"\n    }\n  ]\n\
+                    }\n"
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: string
+                        name:
+                          type: string
+                          example: string
+                        orgId:
+                          type: integer
+                          example: 0
+                          default: 0
+                        priority:
+                          type: integer
+                          example: 0
+                          default: 0
+                        active:
+                          type: boolean
+                          example: true
+                          default: true
+                        messageLabel:
+                          type: string
+                          example: string
+                        type:
+                          type: string
+                          example: POS
+                        timeCriteria:
+                          type: object
+                          properties:
+                            startTime:
+                              type: object
+                              properties:
+                                hour:
+                                  type: integer
+                                  example: 0
+                                  default: 0
+                                minute:
+                                  type: integer
+                                  example: 0
+                                  default: 0
+                                second:
+                                  type: integer
+                                  example: 0
+                                  default: 0
+                                nano:
+                                  type: integer
+                                  example: 0
+                                  default: 0
+                            durationInHours:
+                              type: integer
+                              example: 0
+                              default: 0
+                            repeatFrequency:
+                              type: string
+                              example: DOES_NOT_REPEAT
+                            weeklyValues:
+                              type: array
+                              items:
+                                type: string
+                                example: MONDAY
+                            monthlyDayValues:
+                              type: array
+                              items:
+                                type: integer
+                                example: 0
+                                default: 0
+                        storeCriteria:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              example: STORE
+                            values:
+                              type: array
+                              items:
+                                type: integer
+                                example: 0
+                                default: 0
+                            operator:
+                              type: string
+                              example: IN
+                        supplementaryCriteria:
+                          type: object
+                          properties:
+                            loyaltyProgramId:
+                              type: integer
+                              example: 0
+                              default: 0
+                            programType:
+                              type: string
+                              example: TIER
+                            partnerProgramId:
+                              type: integer
+                              example: 0
+                              default: 0
+                        condition:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              example: CART
+                            cartCondition:
+                              type: object
+                              properties:
+                                kpi:
+                                  type: string
+                                  example: SUBTOTAL
+                                operator:
+                                  type: string
+                                  example: EQUALS
+                                value:
+                                  type: integer
+                                  example: 0
+                                  default: 0
+                            productCondition:
+                              type: object
+                              properties:
+                                criteriaList:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      entity:
+                                        type: string
+                                        example: SKU
+                                      operator:
+                                        type: string
+                                        example: IN
+                                      values:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: string
+                                      attributeName:
+                                        type: string
+                                        example: string
+                                kpi:
+                                  type: string
+                                  example: AMOUNT
+                                value:
+                                  type: integer
+                                  example: 0
+                                  default: 0
+                                operator:
+                                  type: string
+                                  example: EQUALS
+                            comboProductCondition:
+                              type: object
+                              properties:
+                                productConditions:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      criteriaList:
+                                        type: array
+                                        items:
+                                          type: object
+                                          properties:
+                                            entity:
+                                              type: string
+                                              example: SKU
+                                            operator:
+                                              type: string
+                                              example: IN
+                                            values:
+                                              type: array
+                                              items:
+                                                type: string
+                                                example: string
+                                            attributeName:
+                                              type: string
+                                              example: string
+                                      kpi:
+                                        type: string
+                                        example: AMOUNT
+                                      value:
+                                        type: integer
+                                        example: 0
+                                        default: 0
+                                      operator:
+                                        type: string
+                                        example: EQUALS
+                            tenderCondition:
+                              type: object
+                              properties:
+                                type:
+                                  type: string
+                                  example: PAYMENT_VOUCHER
+                                identifier:
+                                  type: string
+                                  example: string
+                                tenderModes:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      type:
+                                        type: string
+                                        example: PAYMENT_VOUCHER
+                                      identifiers:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: string
+                                condition:
+                                  type: string
+                                  example: string
+                        action:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              example: FIXED_PRICE
+                            cartBasedAction:
+                              type: object
+                              properties:
+                                type:
+                                  type: string
+                                  example: PERCENTAGE
+                                value:
+                                  type: integer
+                                  example: 0
+                                  default: 0
+                            productBasedAction:
+                              type: object
+                              properties:
+                                productBasedCondition:
+                                  type: object
+                                  properties:
+                                    type:
+                                      type: string
+                                      example: CART
+                                    cartCondition:
+                                      type: object
+                                      properties:
+                                        kpi:
+                                          type: string
+                                          example: SUBTOTAL
+                                        operator:
+                                          type: string
+                                          example: EQUALS
+                                        value:
+                                          type: integer
+                                          example: 0
+                                          default: 0
+                                    productCondition:
+                                      type: object
+                                      properties:
+                                        criteriaList:
+                                          type: array
+                                          items:
+                                            type: object
+                                            properties:
+                                              entity:
+                                                type: string
+                                                example: SKU
+                                              operator:
+                                                type: string
+                                                example: IN
+                                              values:
+                                                type: array
+                                                items:
+                                                  type: string
+                                                  example: string
+                                              attributeName:
+                                                type: string
+                                                example: string
+                                        kpi:
+                                          type: string
+                                          example: AMOUNT
+                                        value:
+                                          type: integer
+                                          example: 0
+                                          default: 0
+                                        operator:
+                                          type: string
+                                          example: EQUALS
+                                    comboProductCondition:
+                                      type: object
+                                      properties:
+                                        productConditions:
+                                          type: array
+                                          items:
+                                            type: object
+                                            properties:
+                                              criteriaList:
+                                                type: array
+                                                items:
+                                                  type: object
+                                                  properties:
+                                                    entity:
+                                                      type: string
+                                                      example: SKU
+                                                    operator:
+                                                      type: string
+                                                      example: IN
+                                                    values:
+                                                      type: array
+                                                      items:
+                                                        type: string
+                                                        example: string
+                                                    attributeName:
+                                                      type: string
+                                                      example: string
+                                              kpi:
+                                                type: string
+                                                example: AMOUNT
+                                              value:
+                                                type: integer
+                                                example: 0
+                                                default: 0
+                                              operator:
+                                                type: string
+                                                example: EQUALS
+                                    tenderCondition:
+                                      type: object
+                                      properties:
+                                        type:
+                                          type: string
+                                          example: PAYMENT_VOUCHER
+                                        identifier:
+                                          type: string
+                                          example: string
+                                        tenderModes:
+                                          type: array
+                                          items:
+                                            type: object
+                                            properties:
+                                              type:
+                                                type: string
+                                                example: PAYMENT_VOUCHER
+                                              identifiers:
+                                                type: array
+                                                items:
+                                                  type: string
+                                                  example: string
+                                        condition:
+                                          type: string
+                                          example: string
+                                type:
+                                  type: string
+                                  example: PERCENTAGE
+                                value:
+                                  type: integer
+                                  example: 0
+                                  default: 0
+                                includeItemsFromConditionSet:
+                                  type: boolean
+                                  example: true
+                                  default: true
+                            fixedPriceAction:
+                              type: object
+                              properties:
+                                productBasedCondition:
+                                  type: object
+                                  properties:
+                                    type:
+                                      type: string
+                                      example: CART
+                                    cartCondition:
+                                      type: object
+                                      properties:
+                                        kpi:
+                                          type: string
+                                          example: SUBTOTAL
+                                        operator:
+                                          type: string
+                                          example: EQUALS
+                                        value:
+                                          type: integer
+                                          example: 0
+                                          default: 0
+                                    productCondition:
+                                      type: object
+                                      properties:
+                                        criteriaList:
+                                          type: array
+                                          items:
+                                            type: object
+                                            properties:
+                                              entity:
+                                                type: string
+                                                example: SKU
+                                              operator:
+                                                type: string
+                                                example: IN
+                                              values:
+                                                type: array
+                                                items:
+                                                  type: string
+                                                  example: string
+                                              attributeName:
+                                                type: string
+                                                example: string
+                                        kpi:
+                                          type: string
+                                          example: AMOUNT
+                                        value:
+                                          type: integer
+                                          example: 0
+                                          default: 0
+                                        operator:
+                                          type: string
+                                          example: EQUALS
+                                    comboProductCondition:
+                                      type: object
+                                      properties:
+                                        productConditions:
+                                          type: array
+                                          items:
+                                            type: object
+                                            properties:
+                                              criteriaList:
+                                                type: array
+                                                items:
+                                                  type: object
+                                                  properties:
+                                                    entity:
+                                                      type: string
+                                                      example: SKU
+                                                    operator:
+                                                      type: string
+                                                      example: IN
+                                                    values:
+                                                      type: array
+                                                      items:
+                                                        type: string
+                                                        example: string
+                                                    attributeName:
+                                                      type: string
+                                                      example: string
+                                              kpi:
+                                                type: string
+                                                example: AMOUNT
+                                              value:
+                                                type: integer
+                                                example: 0
+                                                default: 0
+                                              operator:
+                                                type: string
+                                                example: EQUALS
+                                    tenderCondition:
+                                      type: object
+                                      properties:
+                                        type:
+                                          type: string
+                                          example: PAYMENT_VOUCHER
+                                        identifier:
+                                          type: string
+                                          example: string
+                                        tenderModes:
+                                          type: array
+                                          items:
+                                            type: object
+                                            properties:
+                                              type:
+                                                type: string
+                                                example: PAYMENT_VOUCHER
+                                              identifiers:
+                                                type: array
+                                                items:
+                                                  type: string
+                                                  example: string
+                                        condition:
+                                          type: string
+                                          example: string
+                                value:
+                                  type: integer
+                                  example: 0
+                                  default: 0
+                                includeItemsFromConditionSet:
+                                  type: boolean
+                                  example: true
+                                  default: true
+                            freeProductAction:
+                              type: object
+                              properties:
+                                productBasedCondition:
+                                  type: object
+                                  properties:
+                                    type:
+                                      type: string
+                                      example: CART
+                                    cartCondition:
+                                      type: object
+                                      properties:
+                                        kpi:
+                                          type: string
+                                          example: SUBTOTAL
+                                        operator:
+                                          type: string
+                                          example: EQUALS
+                                        value:
+                                          type: integer
+                                          example: 0
+                                          default: 0
+                                    productCondition:
+                                      type: object
+                                      properties:
+                                        criteriaList:
+                                          type: array
+                                          items:
+                                            type: object
+                                            properties:
+                                              entity:
+                                                type: string
+                                                example: SKU
+                                              operator:
+                                                type: string
+                                                example: IN
+                                              values:
+                                                type: array
+                                                items:
+                                                  type: string
+                                                  example: string
+                                              attributeName:
+                                                type: string
+                                                example: string
+                                        kpi:
+                                          type: string
+                                          example: AMOUNT
+                                        value:
+                                          type: integer
+                                          example: 0
+                                          default: 0
+                                        operator:
+                                          type: string
+                                          example: EQUALS
+                                    comboProductCondition:
+                                      type: object
+                                      properties:
+                                        productConditions:
+                                          type: array
+                                          items:
+                                            type: object
+                                            properties:
+                                              criteriaList:
+                                                type: array
+                                                items:
+                                                  type: object
+                                                  properties:
+                                                    entity:
+                                                      type: string
+                                                      example: SKU
+                                                    operator:
+                                                      type: string
+                                                      example: IN
+                                                    values:
+                                                      type: array
+                                                      items:
+                                                        type: string
+                                                        example: string
+                                                    attributeName:
+                                                      type: string
+                                                      example: string
+                                              kpi:
+                                                type: string
+                                                example: AMOUNT
+                                              value:
+                                                type: integer
+                                                example: 0
+                                                default: 0
+                                              operator:
+                                                type: string
+                                                example: EQUALS
+                                    tenderCondition:
+                                      type: object
+                                      properties:
+                                        type:
+                                          type: string
+                                          example: PAYMENT_VOUCHER
+                                        identifier:
+                                          type: string
+                                          example: string
+                                        tenderModes:
+                                          type: array
+                                          items:
+                                            type: object
+                                            properties:
+                                              type:
+                                                type: string
+                                                example: PAYMENT_VOUCHER
+                                              identifiers:
+                                                type: array
+                                                items:
+                                                  type: string
+                                                  example: string
+                                        condition:
+                                          type: string
+                                          example: string
+                                includeItemsFromConditionSet:
+                                  type: boolean
+                                  example: true
+                                  default: true
+                            tenderBasedAction:
+                              type: object
+                              properties:
+                                type:
+                                  type: string
+                                  example: PERCENTAGE
+                                value:
+                                  type: integer
+                                  example: 0
+                                  default: 0
+                            perUnitAction:
+                              type: object
+                              properties:
+                                rewardAction:
+                                  type: string
+                                  example: string
+                                perUnitKPI:
+                                  type: string
+                                  example: AMOUNT
+                                perUnitDivider:
+                                  type: integer
+                                  example: 0
+                                  default: 0
+                                includeItemsFromConditionSet:
+                                  type: boolean
+                                  example: true
+                                  default: true
+                        createdBy:
+                          type: integer
+                          example: 0
+                          default: 0
+                        createdOn:
+                          type: string
+                          example: "2023-01-19T09:28:58.595Z"
+                        lastUpdatedBy:
+                          type: integer
+                          example: 0
+                          default: 0
+                        lastUpdatedOn:
+                          type: string
+                          example: "2023-01-19T09:28:58.595Z"
+                        startDate:
+                          type: integer
+                          example: 0
+                          default: 0
+                        endDate:
+                          type: integer
+                          example: 0
+                          default: 0
+                        campaignId:
+                          type: integer
+                          example: 0
+                          default: 0
+                        loyaltyEarningExpiryDays:
+                          type: integer
+                          example: 0
+                          default: 0
+                        maxEarningPerCustomer:
+                          type: integer
+                          example: 0
+                          default: 0
+                        earningCriteria:
+                          type: object
+                          properties:
+                            criteriaName:
+                              type: string
+                              example: string
+                            earnedFromType:
+                              type: string
+                              example: BULK_ISSUE
+                            milestoneId:
+                              type: integer
+                              example: 0
+                              default: 0
+                            groupId:
+                              type: integer
+                              example: 0
+                              default: 0
+                            eventType:
+                              type: string
+                              example: TransactionAdd
+                            storeCriteria:
+                              type: object
+                              properties:
+                                type:
+                                  type: string
+                                  example: STORE
+                                values:
+                                  type: array
+                                  items:
+                                    type: integer
+                                    example: 0
+                                    default: 0
+                                operator:
+                                  type: string
+                                  example: IN
+                            timeCriteria:
+                              type: object
+                              properties:
+                                startTime:
+                                  type: object
+                                  properties:
+                                    hour:
+                                      type: integer
+                                      example: 0
+                                      default: 0
+                                    minute:
+                                      type: integer
+                                      example: 0
+                                      default: 0
+                                    second:
+                                      type: integer
+                                      example: 0
+                                      default: 0
+                                    nano:
+                                      type: integer
+                                      example: 0
+                                      default: 0
+                                durationInHours:
+                                  type: integer
+                                  example: 0
+                                  default: 0
+                                repeatFrequency:
+                                  type: string
+                                  example: DOES_NOT_REPEAT
+                                weeklyValues:
+                                  type: array
+                                  items:
+                                    type: string
+                                    example: MONDAY
+                                monthlyDayValues:
+                                  type: array
+                                  items:
+                                    type: integer
+                                    example: 0
+                                    default: 0
+                            earningValidTillDays:
+                              type: integer
+                              example: 1
+                              default: 0
+                            criteriaDsl:
+                              type: string
+                              example: string
+                            criteriaDslJson:
+                              type: string
+                              example: string
+                            active:
+                              type: boolean
+                              example: true
+                              default: true
+                        promotionRestrictions:
+                          type: object
+                          properties:
+                            additionalProp1:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  kpi:
+                                    type: string
+                                    example: TRANSACTION
+                                  frequency:
+                                    type: string
+                                    example: DAYS
+                                  minTimeBetweenRepeat:
+                                    type: integer
+                                    example: 0
+                                    default: 0
+                                  limit:
+                                    type: integer
+                                    example: 0
+                                    default: 0
+                            additionalProp2:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  kpi:
+                                    type: string
+                                    example: TRANSACTION
+                                  frequency:
+                                    type: string
+                                    example: DAYS
+                                  minTimeBetweenRepeat:
+                                    type: integer
+                                    example: 0
+                                    default: 0
+                                  limit:
+                                    type: integer
+                                    example: 0
+                                    default: 0
+                            additionalProp3:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  kpi:
+                                    type: string
+                                    example: TRANSACTION
+                                  frequency:
+                                    type: string
+                                    example: DAYS
+                                  minTimeBetweenRepeat:
+                                    type: integer
+                                    example: 0
+                                    default: 0
+                                  limit:
+                                    type: integer
+                                    example: 0
+                                    default: 0
+                        earnLimitedToSpecificAudience:
+                          type: boolean
+                          example: true
+                          default: true
+                        customFieldValues:
+                          type: object
+                          properties:
+                            additionalProp1:
+                              type: string
+                              example: string
+                            additionalProp2:
+                              type: string
+                              example: string
+                            additionalProp3:
+                              type: string
+                              example: string
+                        onEarnCommunicationChannels:
+                          type: object
+                          properties:
+                            additionalProp1:
+                              type: object
+                              properties:
+                                subject:
+                                  type: string
+                                  example: string
+                                message:
+                                  type: string
+                                  example: string
+                                senderLabel:
+                                  type: string
+                                  example: string
+                                senderReplyToEmail:
+                                  type: string
+                                  example: string
+                                unsubscribeLabel:
+                                  type: string
+                                  example: string
+                                senderEmail:
+                                  type: string
+                                  example: string
+                                senderGSM:
+                                  type: string
+                                  example: string
+                                senderCDMA:
+                                  type: string
+                                  example: string
+                                domainPropertyId:
+                                  type: string
+                                  example: string
+                                accountId:
+                                  type: string
+                                  example: string
+                                channelType:
+                                  type: string
+                                  example: ANDROID
+                                pushNotificationCta:
+                                  type: object
+                                  properties:
+                                    type:
+                                      type: string
+                                      example: DEEP_LINK
+                                    actionLink:
+                                      type: string
+                                      example: string
+                                    image:
+                                      type: string
+                                      example: string
+                                    pushNotificationCtaActionList:
+                                      type: array
+                                      items:
+                                        type: object
+                                        properties:
+                                          type:
+                                            type: string
+                                            example: DEEP_LINK
+                                          actionLink:
+                                            type: string
+                                            example: string
+                                          actionText:
+                                            type: string
+                                            example: string
+                                          templateCtaId:
+                                            type: string
+                                            example: string
+                            additionalProp2:
+                              type: object
+                              properties:
+                                subject:
+                                  type: string
+                                  example: string
+                                message:
+                                  type: string
+                                  example: string
+                                senderLabel:
+                                  type: string
+                                  example: string
+                                senderReplyToEmail:
+                                  type: string
+                                  example: string
+                                unsubscribeLabel:
+                                  type: string
+                                  example: string
+                                senderEmail:
+                                  type: string
+                                  example: string
+                                senderGSM:
+                                  type: string
+                                  example: string
+                                senderCDMA:
+                                  type: string
+                                  example: string
+                                domainPropertyId:
+                                  type: string
+                                  example: string
+                                accountId:
+                                  type: string
+                                  example: string
+                                channelType:
+                                  type: string
+                                  example: ANDROID
+                                pushNotificationCta:
+                                  type: object
+                                  properties:
+                                    type:
+                                      type: string
+                                      example: DEEP_LINK
+                                    actionLink:
+                                      type: string
+                                      example: string
+                                    image:
+                                      type: string
+                                      example: string
+                                    pushNotificationCtaActionList:
+                                      type: array
+                                      items:
+                                        type: object
+                                        properties:
+                                          type:
+                                            type: string
+                                            example: DEEP_LINK
+                                          actionLink:
+                                            type: string
+                                            example: string
+                                          actionText:
+                                            type: string
+                                            example: string
+                                          templateCtaId:
+                                            type: string
+                                            example: string
+                            additionalProp3:
+                              type: object
+                              properties:
+                                subject:
+                                  type: string
+                                  example: string
+                                message:
+                                  type: string
+                                  example: string
+                                senderLabel:
+                                  type: string
+                                  example: string
+                                senderReplyToEmail:
+                                  type: string
+                                  example: string
+                                unsubscribeLabel:
+                                  type: string
+                                  example: string
+                                senderEmail:
+                                  type: string
+                                  example: string
+                                senderGSM:
+                                  type: string
+                                  example: string
+                                senderCDMA:
+                                  type: string
+                                  example: string
+                                domainPropertyId:
+                                  type: string
+                                  example: string
+                                accountId:
+                                  type: string
+                                  example: string
+                                channelType:
+                                  type: string
+                                  example: ANDROID
+                                pushNotificationCta:
+                                  type: object
+                                  properties:
+                                    type:
+                                      type: string
+                                      example: DEEP_LINK
+                                    actionLink:
+                                      type: string
+                                      example: string
+                                    image:
+                                      type: string
+                                      example: string
+                                    pushNotificationCtaActionList:
+                                      type: array
+                                      items:
+                                        type: object
+                                        properties:
+                                          type:
+                                            type: string
+                                            example: DEEP_LINK
+                                          actionLink:
+                                            type: string
+                                            example: string
+                                          actionText:
+                                            type: string
+                                            example: string
+                                          templateCtaId:
+                                            type: string
+                                            example: string
+                        languagesConfigured:
+                          type: array
+                          items:
+                            type: string
+                            example: string
+                        customerActivationRequired:
+                          type: boolean
+                          example: true
+                          default: true
+                        isLoyaltyOnly:
+                          type: boolean
+                          example: true
+                          default: true
+                        mode:
+                          type: string
+                          example: DISCOUNT
+                        maxIssuancePerCustomer:
+                          type: integer
+                          example: 50
+                          default: 0
+                        isStackable:
+                          type: boolean
+                          example: true
+                          default: true
+                        expiryDateChangeJobList:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              jobType:
+                                type: string
+                                example: ISSUED
+                              status:
+                                type: string
+                                example: OPEN
+                              createdOn:
+                                type: string
+                                example: "2023-01-19T09:28:58.595Z"
+                              lastUpdatedOn:
+                                type: string
+                                example: "2023-01-19T09:28:58.595Z"
+                              lastUpdatedBy:
+                                type: integer
+                                example: 0
+                                default: 0
+                              createdBy:
+                                type: integer
+                                example: 0
+                                default: 0
+                              impactedCount:
+                                type: integer
+                                example: 0
+                                default: 0
+                              message:
+                                type: string
+                                example: string
+                        redeemableFromCriteria:
+                          type: object
+                          properties:
+                            redeemableFrom:
+                              type: object
+                              properties:
+                                period:
+                                  type: integer
+                                  example: 0
+                                  default: 0
+                                type:
+                                  type: string
+                                  example: HOURS
+                            redemptionValidBeforeExpiry:
+                              type: object
+                              properties:
+                                period:
+                                  type: integer
+                                  example: 0
+                                  default: 0
+                                type:
+                                  type: string
+                                  example: HOURS
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          example: 0
+                          default: 0
+                        message:
+                          type: string
+                          example: string
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

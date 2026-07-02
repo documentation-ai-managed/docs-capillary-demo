@@ -1,0 +1,236 @@
+---
+title: 'Enrol Members to a Loyalty Promotion '
+---
+## Enrol Members to a Loyalty Promotion
+
+Endpoint for POST /v3/promotions/enrol
+
+The Enrol Unified Promotions API allows you to directly manage member participation for specific, targeted campaigns. You can use this endpoint to manually register members or process specific opt-in requests, giving you precise control over who enters exclusive or invite-only promotions.
+
+## Example request
+
+<CodeGroup show-lines="true" tabs={["ENROL","OPT_IN"]}>
+  ```bash ENROL
+  curl --location 'https://{host}/v3/promotions/enrol' \
+  --header 'Content-Type: application/json' \
+  --data '{
+      "requestId": "some-test-id",
+      "action": "ENROL",
+      "promotion": {
+          "id": "68c3f64bbd0a8a0aa705c793",
+          "promotionId": 1133590053
+      },
+      "customer": {
+          "identifierName": "id",
+          "identifierValue": "388369579",
+          "source": "INSTORE"
+      },
+      "programId": 3334
+  }'
+  ```
+
+  ```json OPT_IN
+  curl --location 'https://eu.api.capillarytech.com/v3/promotions/enrol' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Basic DllZTk=' \
+  --header 'Cookie: _cfuvid=w9k84Tbu9Ahlvel7gyPLGv9wCGWeqg-1763442378135-0.0.1.1-604800000' \
+  --data '{
+      "requestId": "some-test-id",
+      "action": "OPT_IN",
+      "promotion": {
+          "id": "690ddfe45d4a900e2157f1c2",
+          "promotionId": 1133595380
+      },
+      "customer": {
+          "identifierName": "id",
+          "identifierValue": "388519295",
+          "source": "INSTORE"
+      },
+      "programId": 973
+  }'
+  ```
+</CodeGroup>
+
+## API Quick Reference
+
+<CodeGroup show-lines="true" tabs={["Enroll reference structure","Opt -in reference structure"]}>
+  ```text "Enroll reference structure"
+  {{promotions_enrol}}
+     └─ {{EnrollmentRequest}}
+        ├─ {{requestId}} (string)
+        ├─ {{action}} (string)
+        ├─ {{programId}} (integer)
+        ├─ {{promotion}}
+        │   ├─ {{promoHexId}} (string)
+        │   └─ {{promoIntId}} (integer)
+        └─ {{customer}}
+            ├─ {{identifierName}} (string)
+            ├─ {{identifierValue}} (string)
+            └─ {{source}} (string)
+  ```
+
+  ```text "Opt -in reference structure"
+  {{promotions_enrol}}
+     └─ {{OptInRequest}}
+        ├─ {{requestId}} (string)
+        ├─ {{action}} (string)
+        ├─ {{programId}} (integer)
+        ├─ {{optinDate}} (string)
+        ├─ {{promotion}}
+        │   ├─ {{promoHexId}} (string)
+        │   └─ {{promoIntId}} (integer)
+        └─ {{customer}}
+            ├─ {{identifierName}} (string)
+            ├─ {{identifierValue}} (string)
+            └─ {{source}} (string)
+  ```
+</CodeGroup>
+
+## Prerequisites
+
+- Authentication: Basic or OAuth authentication.
+
+- Default access group
+
+## Body parameters
+
+| Field             | Type   | Required | Description                                                                                                                                                                                                                                                                                                                                                                                              |
+| :---------------- | :----- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| requestId         | String | Optional | Specifies a unique identifier for the request.                                                                                                                                                                                                                                                                                                                                                           |
+| action            | String | Yes      | Specifies the action to perform. Must be one of: `ENROL`, `OPT_IN`.                                                                                                                                                                                                                                                                                                                                      |
+| promotion         | Object | Yes      | Defines the promotion to enrol into.                                                                                                                                                                                                                                                                                                                                                                     |
+| ..id              | String | Yes      | Specifies the unique string ID of the promotion.                                                                                                                                                                                                                                                                                                                                                         |
+| ..promotionId     | Number | Yes      | Specifies the unique numeric ID of the promotion.                                                                                                                                                                                                                                                                                                                                                        |
+| customer          | Object | Yes      | Defines the customer to be enrolled.                                                                                                                                                                                                                                                                                                                                                                     |
+| ..identifierName  | String | Yes      | The identifier type for the customer. Supported values: `id` (customer ID), `mobile`, `email`.                                                                                                                                                                                                                                                                                                           |
+| ..identifierValue | String | Yes      | Specifies the value for the customer identifier. Supported values: mobile, email, userid, externalId.                                                                                                                                                                                                                                                                                                    |
+| ..source          | String | Optional | The source of the customer's registration. Supported values: `FACEBOOK`, `WEB_ENGAGE`, `INSTORE`, `MARTJACK`, `TMALL`, `TAOBAO`, `JD`, `ECOMMERCE`, `WEBSITE`, `LINE`, `ALL`.                                                                                                                                                                                                                            |
+| programId         | Number | Yes      | Specifies the unique ID of the loyalty program.                                                                                                                                                                                                                                                                                                                                                          |
+| optinDate         | String | Optional | ISO 8601 timestamp with timezone offset (for example, `2026-03-01T10:00:00+05:30`). The date and time the member opted in. Applies to promotions with an opt-in window (`optInStartDate`/`optInEndDate`) when the `CONF_ENROLLMENT_OPTIN_DURATION_ENABLED` org flag is enabled. If omitted, defaults to the current time. Must not be in the future, and must fall within the promotion's opt-in window. |
+
+## Example response
+
+<CodeGroup default-tab="0" show-lines="true" tabs={["JSON"]}>
+  ```json JSON
+  {
+      "data": {
+          "requestId": "some-test-id",
+          "action": "ENROL",
+          "customer": {
+              "identifierName": "id",
+              "identifierValue": "388369579",
+              "customerId": 388369579
+          },
+          "enrollmentStatus": {
+              "promotion": {
+                  "id": "68c3f64bbd0a8a0aa705c793",
+                  "identifier": "enr-58",
+                  "programId": 3334,
+                  "enrollmentId": "25286",
+                  "optinId": "25910"
+              },
+              "milestone": {
+                  "status": "SUCCESS",
+                  "milestones": [
+                      {
+                          "targetGroupId": 97829,
+                          "targetRuleId": 151359,
+                          "initialBalance": 0
+                      }
+                  ]
+              }
+          },
+          "status": "SUCCESS"
+      },
+      "errors": null,
+      "warnings": null
+  }
+  ```
+</CodeGroup>
+
+## Response parameters
+
+| Field                  | Type   | Description                                                                                                                                       |
+| :--------------------- | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------ |
+| data                   | Object | Defines the result of the enrollment request.                                                                                                     |
+| ..requestId            | String | Specifies the request identifier, echoed from the request.                                                                                        |
+| ..action               | String | Specifies the action performed, echoed from the request.                                                                                          |
+| ..customer             | Object | Defines the customer details, including the resolved ID.                                                                                          |
+| ....identifierName     | String | Specifies the identifier type used.                                                                                                               |
+| ....identifierValue    | String | Specifies the identifier value used.                                                                                                              |
+| ....customerId         | Number | Specifies the resolved unique customer ID.                                                                                                        |
+| ..enrollmentStatus     | Object | Defines the details of the enrolment.                                                                                                             |
+| ....promotion          | Object | Defines the promotion that was enrolled.                                                                                                          |
+| ......id               | String | Specifies the unique string ID of the promotion.                                                                                                  |
+| ......identifier       | String | Specifies the promotion's short identifier.                                                                                                       |
+| ......programId        | Number | Specifies the program ID.                                                                                                                         |
+| ......enrollmentId     | String | Specifies the unique ID for this enrollment.                                                                                                      |
+| ......optinId          | String | Specifies the unique ID for the opt-in record.                                                                                                    |
+| ....milestone          | Object | Defines the status of any associated milestones.                                                                                                  |
+| ......status           | String | Indicates the status of the milestone processing.                                                                                                 |
+| ......milestones       | Array  | Defines a list of milestone details.                                                                                                              |
+| ........targetGroupId  | Number | Specifies the target group ID for the milestone.                                                                                                  |
+| ........targetRuleId   | Number | Specifies the target rule ID for the milestone.                                                                                                   |
+| ........initialBalance | Number | Specifies the customer's initial balance of the specified target amount, which serves as the starting point for the milestone target calculation. |
+| ..status               | String | Indicates the overall status of the enrolment.                                                                                                    |
+| errors                 | Object | Defines any errors that occurred. null on success.                                                                                                |
+| warnings               | Object | Defines any warnings generated. null if no warnings.                                                                                              |
+
+## Warning messages
+
+| Warning message                                                             | Description                                                                                                          |
+| --------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| Unable to enroll in promotions. Customer already enrolled or limit reached. | The customer is already enrolled in the promotion or the maximum enrollment limit has been reached.                  |
+| failed to enrol into milestones                                             | The main promotion enrollment was successful, but the system failed to enroll the customer into specific milestones. |
+| Unable to enroll in promotions. No Response from EMF service.               | The primary enrollment action succeeded, but the downstream service did not return the expected confirmation IDs.    |
+
+## Error codes
+
+| Error Code | Description                                                                                                                   |
+| :--------- | :---------------------------------------------------------------------------------------------------------------------------- |
+| 310002     | `action` is required. Specify a valid action: `ENROL`, `OPT_IN`, or `ENROL_MILESTONES`.                                       |
+| 310003     | `promotion` is required. Ensure the `promotion` object is provided in the request body.                                       |
+| 310004     | `customer` is required. Ensure the `customer` object with identifiers is provided.                                            |
+| 310005     | `programId` is required. Provide a valid loyalty program ID.                                                                  |
+| 310006     | `customer.identifierName` is required. Use a valid identifier like `mobile`, `email`, or `external_id`.                       |
+| 310007     | `customer.identifierValue` is required. Provide the actual value for the customer identifier.                                 |
+| 310008     | `customer.source` is required. Specify the source of the enrollment (e.g., `INSTORE`).                                        |
+| 310009     | `customer.milestone.targetRuleId` is required. Provide the specific `targetRuleId` for milestone enrollment.                  |
+| 400        | Promotion not found or inactive. Use a valid `promotionId`/`identifier` and ensure it is in `LIVE` or `UPCOMING` status.      |
+| 400        | Program not found. Verify that the `programId` provided exists in the system.                                                 |
+| 400        | Customer not found. Ensure the customer exists for the given organization and identifiers.                                    |
+| 400        | `GENERIC` promotions are not eligible for enrollment. Enrollment is only supported for `LOYALTY` and `LOYALTY_EARNING` types. |
+| 400        | `OPT_IN` action not supported. The specified promotion type does not support the `OPT_IN` action (e.g., use `ENROL` instead). |
+| 500        | Unable to enrol in promotions. An internal error occurred in the promotion engine (`EMF`). Try again later.                   |
+| 310229     | Opt-in window not yet open. The `optinDate` is before the promotion's `optInStartDate`. HTTP 400.                             |
+| 310230     | Opt-in window has closed. The `optinDate` is after the promotion's `optInEndDate`. HTTP 400.                                  |
+| 310238     | `optinDate` cannot be in the future. HTTP 400.                                                                                |
+
+## Parameters & Headers
+
+<Expandable title="Request Body" default-open="false">
+  <ParamField body="requestId" param-type="string" required="false" deprecated="false" show-location="true" />
+
+  <ParamField body="action" param-type="string" required="false" deprecated="false" show-location="true" />
+
+  <ParamField body="promotion" param-type="object" required="false" deprecated="false" show-location="true">
+    <Expandable title="promotion properties" default-open="false">
+      <ParamField body="id" param-type="string" required="false" deprecated="false" show-location="true" />
+
+      <ParamField body="promotionId" param-type="integer" required="false" deprecated="false" show-location="true" />
+    </Expandable>
+  </ParamField>
+
+  <ParamField body="customer" param-type="object" required="false" deprecated="false" show-location="true">
+    <Expandable title="customer properties" default-open="false">
+      <ParamField body="identifierName" param-type="string" required="false" deprecated="false" show-location="true" />
+
+      <ParamField body="identifierValue" param-type="integer" required="false" deprecated="false" show-location="true" />
+
+      <ParamField body="source" param-type="string" required="false" deprecated="false" show-location="true" />
+    </Expandable>
+  </ParamField>
+
+  <ParamField body="programId" param-type="integer" required="false" deprecated="false" show-location="true" />
+</Expandable>
+

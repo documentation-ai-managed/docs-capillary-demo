@@ -1,0 +1,395 @@
+openapi: 3.1.0
+info:
+  title: Issue single reward
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  "/api_gateway/rewards/core/v1/user/reward/{rewardId}/issue":
+    post:
+      summary: Issue single reward
+      description: ''
+      operationId: post-issue-user-reward
+      parameters:
+      - name: rewardId
+        in: path
+        description: Unique identifier of the reward.
+        schema:
+          type: string
+        required: true
+      - name: skip_validation
+        in: query
+        schema:
+          type: string
+      - name: username
+        in: query
+        description: Username here represents name of the store.
+        required: true
+        schema:
+          type: string
+      - name: store
+        in: query
+        schema:
+          type: string
+        required: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - mobile
+              - brand
+              - transactionNumber
+              properties:
+                mobile:
+                  type: string
+                  description: Mobile number, email ID, or external ID of the customer
+                brand:
+                  type: string
+                  description: name of the brand
+                transactionNumber:
+                  type: string
+                  description: transaction number for issuing the reward
+                notes:
+                  type: string
+                  description: custom metadata for the reward
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
+                    \   \"code\": 200,\n        \"message\": \"Reward issued successfully\"\
+                    \n    },\n    \"intouch\": null,\n    \"transactionId\": 397137,\n\
+                    \    \"promotion\": null,\n    \"vendor\": {\n        \"pointsRedeemed\"\
+                    : \"500\"\n    },\n    \"paymentConfig\": null,\n    \"redemptionDetails\"\
+                    : null,\n    \"fulfillmentDetails\": null,\n    \"customFields\"\
+                    : null,\n    \"eventLogId\": null,\n    \"requestId\": null,\n\
+                    \    \"eventDateTime\": \"2025-03-27T13:38:11Z\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+                      code:
+                        type: integer
+                        example: 200
+                        default: 0
+                      message:
+                        type: string
+                        example: Reward issued successfully
+                  intouch: {}
+                  transactionId:
+                    type: integer
+                    example: 397137
+                    default: 0
+                  promotion: {}
+                  vendor:
+                    type: object
+                    properties:
+                      pointsRedeemed:
+                        type: string
+                        example: '500'
+                  paymentConfig: {}
+                  redemptionDetails: {}
+                  fulfillmentDetails: {}
+                  customFields: {}
+                  eventLogId: {}
+                  requestId: {}
+                  eventDateTime:
+                    type: string
+                    example: "2025-03-27T13:38:11Z"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                '3004':
+                  value: "\n{\n   \"status\": {\n       \"success\": false,\n    \
+                    \   \"code\": 3004,\n       \"message\": \"Brand not found\"\n\
+                    \   }\n}\n\n"
+                '8003':
+                  value: "\n{\n   \"status\": {\n       \"success\": false,\n    \
+                    \   \"code\": 8003,\n       \"message\": \"fail to issue reward\
+                    \ as Reward is disabled or not started yet or expired\"\n   },\n\
+                    \   \"rewards\": null\n}\n\n"
+                '8004':
+                  value: "\n{\n   \"status\": {\n       \"success\": false,\n    \
+                    \   \"code\": 8004,\n       \"message\": \"fail to issue reward\
+                    \ as  points are not redeemable\"\n   },\n   \"intouch\": null,\n\
+                    \   \"promotion\": null,\n   \"vendor\": null\n}\n\n"
+                '8010':
+                  value: "{\n    \"status\": {\n        \"success\": false,\n    \
+                    \    \"code\": 8010,\n        \"message\": \"Reward issued partially\"\
+                    \n    },\n    \"rewards\": [\n        {\n            \"status\"\
+                    : {\n                \"success\": true,\n                \"code\"\
+                    : 200,\n                \"message\": \"Reward issued successfully\"\
+                    \n            },\n            \"rewardId\": 13649,\n         \
+                    \   \"requestedQuantity\": 1,\n            \"pointsReferenceId\"\
+                    : \"jDgoKj\",\n            \"intouch\": null,\n            \"\
+                    promotions\": [],\n            \"vendor\": [\n               \
+                    \ {\n                    \"voucher\": \"1510791\",\n         \
+                    \           \"pointsRedeemed\": \"114\"\n                }\n \
+                    \           ],\n            \"restrictions\": null,\n        \
+                    \    \"paymentConfig\": {\n                \"paymentMode\": \"\
+                    CONV_RATIO\",\n                \"id\": 307,\n                \"\
+                    conversionRatio\": 0.3500\n            },\n            \"fulfillmentDetails\"\
+                    : null,\n            \"customFields\": null\n        },\n    \
+                    \    {\n            \"status\": {\n                \"success\"\
+                    : false,\n                \"code\": 12035,\n                \"\
+                    message\": \"Payment Mode needs to be passed when multiple payment\
+                    \ Payment Config Exists\"\n            },\n            \"rewardId\"\
+                    : 14746,\n            \"requestedQuantity\": 1,\n            \"\
+                    pointsReferenceId\": null,\n            \"intouch\": null,\n \
+                    \           \"promotions\": null,\n            \"vendor\": null,\n\
+                    \            \"restrictions\": null,\n            \"paymentConfig\"\
+                    : null,\n            \"fulfillmentDetails\": null,\n         \
+                    \   \"customFields\": null\n        }\n    ]\n}"
+                '12005':
+                  value: "\n{\n   \"status\": {\n       \"success\": false,\n    \
+                    \   \"code\": 12005,\n       \"message\": \"Reward constraint\
+                    \ evaluation failed. Request failed. Max limit for the DAYS is\
+                    \ reached. Allowed limit is 15 For Level CUSTOMER\"\n   },\n \
+                    \  \"intouch\": null,\n   \"promotion\": null,\n   \"vendor\"\
+                    : null\n}\n\n"
+                '12016':
+                  value: "{\n    \"status\": {\n        \"success\": false,\n    \
+                    \    \"code\": 12016,\n        \"message\": \"Invalid payment\
+                    \ mode passed.\"\n    },\n    \"intouch\": null,\n    \"promotion\"\
+                    : null,\n    \"vendor\": null,\n    \"paymentConfig\": null,\n\
+                    \    \"fulfillmentDetails\": null,\n    \"customFields\": null\n\
+                    }"
+                Result:
+                  value: "{\n    \"status\": {\n        \"success\": false,\n    \
+                    \    \"code\": 400,\n        \"message\": \"Invalid payment mode\
+                    \ passed.,Payment configuration id is mandatory\"\n    }\n}"
+              schema:
+                oneOf:
+                - title: '8003'
+                  type: object
+                  properties:
+                    status:
+                      type: object
+                      properties:
+                        success:
+                          type: boolean
+                          example: false
+                          default: true
+                        code:
+                          type: integer
+                          example: 8003
+                          default: 0
+                        message:
+                          type: string
+                          example: fail to issue reward as Reward is disabled or not
+                            started yet or expired
+                    rewards: {}
+                - title: '3004'
+                  type: object
+                  properties:
+                    status:
+                      type: object
+                      properties:
+                        success:
+                          type: boolean
+                          example: false
+                          default: true
+                        code:
+                          type: integer
+                          example: 3004
+                          default: 0
+                        message:
+                          type: string
+                          example: Brand not found
+                - title: '8004'
+                  type: object
+                  properties:
+                    status:
+                      type: object
+                      properties:
+                        success:
+                          type: boolean
+                          example: false
+                          default: true
+                        code:
+                          type: integer
+                          example: 8004
+                          default: 0
+                        message:
+                          type: string
+                          example: fail to issue reward as  points are not redeemable
+                    intouch: {}
+                    promotion: {}
+                    vendor: {}
+                - title: '12005'
+                  type: object
+                  properties:
+                    status:
+                      type: object
+                      properties:
+                        success:
+                          type: boolean
+                          example: false
+                          default: true
+                        code:
+                          type: integer
+                          example: 12005
+                          default: 0
+                        message:
+                          type: string
+                          example: Reward constraint evaluation failed. Request failed.
+                            Max limit for the DAYS is reached. Allowed limit is 15
+                            For Level CUSTOMER
+                    intouch: {}
+                    promotion: {}
+                    vendor: {}
+                - type: object
+                  properties:
+                    status:
+                      type: object
+                      properties:
+                        success:
+                          type: boolean
+                          example: false
+                          default: true
+                        code:
+                          type: integer
+                          example: 400
+                          default: 0
+                        message:
+                          type: string
+                          example: Invalid payment mode passed.,Payment configuration
+                            id is mandatory
+                - title: '12016'
+                  type: object
+                  properties:
+                    status:
+                      type: object
+                      properties:
+                        success:
+                          type: boolean
+                          example: false
+                          default: true
+                        code:
+                          type: integer
+                          example: 12016
+                          default: 0
+                        message:
+                          type: string
+                          example: Invalid payment mode passed.
+                    intouch: {}
+                    promotion: {}
+                    vendor: {}
+                    paymentConfig: {}
+                    fulfillmentDetails: {}
+                    customFields: {}
+                - title: '8010'
+                  type: object
+                  properties:
+                    status:
+                      type: object
+                      properties:
+                        success:
+                          type: boolean
+                          example: false
+                          default: true
+                        code:
+                          type: integer
+                          example: 8010
+                          default: 0
+                        message:
+                          type: string
+                          example: Reward issued partially
+                    rewards:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          status:
+                            type: object
+                            properties:
+                              success:
+                                type: boolean
+                                example: true
+                                default: true
+                              code:
+                                type: integer
+                                example: 200
+                                default: 0
+                              message:
+                                type: string
+                                example: Reward issued successfully
+                          rewardId:
+                            type: integer
+                            example: 13649
+                            default: 0
+                          requestedQuantity:
+                            type: integer
+                            example: 1
+                            default: 0
+                          pointsReferenceId:
+                            type: string
+                            example: jDgoKj
+                          intouch: {}
+                          promotions:
+                            type: array
+                          vendor:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                voucher:
+                                  type: string
+                                  example: '1510791'
+                                pointsRedeemed:
+                                  type: string
+                                  example: '114'
+                          restrictions: {}
+                          paymentConfig:
+                            type: object
+                            properties:
+                              paymentMode:
+                                type: string
+                                example: CONV_RATIO
+                              id:
+                                type: integer
+                                example: 307
+                                default: 0
+                              conversionRatio:
+                                type: number
+                                example: 0.35
+                                default: 0
+                          fulfillmentDetails: {}
+                          customFields: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/user/reward/367568/issue?username=george.johnson'\
+            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization:\
+            \ Basic Z2VvcmdwYTEzNzg=' \\\n--header 'Cookie: _cfuvid=5GVMEy2iFMxxlrzpgyqeZo7sWQJSeywKTjtSlNbcpE0-1746707886590-0.0.1.1-604800000'\
+            \ \\\n--data '{\n    \"mobile\": \"9988221100\",\n    \"brand\": \"DOCDEMO\"\
+            ,\n    \"programId\": \"973\",\n    \"eventDateTime\" : \"2025-03-27T13:38:11Z\"\
+            ,\n    \"rewards\": [\n        {\n            \"rewardId\": \"366796\"\
+            ,\n            \"quantity\": 1\n        }\n    ]\n}'"
+          name: Request Body
+        samples-languages:
+        - curl
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

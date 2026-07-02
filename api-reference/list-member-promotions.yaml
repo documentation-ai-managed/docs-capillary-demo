@@ -1,0 +1,109 @@
+openapi: 3.0.0
+info:
+  title: GET /v3/members/{memberId}/promotions
+  version: 1.0.0
+servers:
+  - url: https://{Host}
+    variables:
+      Host:
+        enum:
+          - eu.intouch.capillarytech.com
+          - intouch.capillary.co.in
+          - apac2.intouch.capillarytech.com
+          - sgcrm.cc.capillarytech.com
+          - intouch.capillarytech.cn.com
+          - north-america.intouch.capillarytech.com
+        default: eu.intouch.capillarytech.com
+paths:
+  /v3/members/{memberId}/promotions:
+    get:
+      summary: List Member Promotions
+      operationId: listMemberPromotions
+      parameters:
+        - name: memberId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+          example: 388757626
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+          example: 0
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: integer
+          example: 10
+        - name: memberEnrollmentStatus
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - PENDING_ENROLLMENT
+              - PENDING_OPT_IN
+              - AVAILABLE_TO_REDEEM
+              - REDEEMED
+              - EXPIRED
+          example: AVAILABLE_TO_REDEEM
+        - name: promotionIdentifier
+          in: query
+          required: false
+          schema:
+            type: string
+          example: single-activity-promotion2
+        - name: promotionId
+          in: query
+          required: false
+          schema:
+            type: integer
+          example: 126635
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+          example: Basic dGlsbG
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              example:
+                pageDetails:
+                  pageNumber: 0
+                  pageSize: 10
+                  totalEntries: 37
+                  pageCount: 4
+                memberId: 388757626
+                promotions:
+                  - promotionId: 126779
+                    promotionName: UAT ULP - Updating enrolment type using API
+                    programId: 973
+                    startDateISO: '2026-03-18T06:11:00Z'
+                    endDateISO: '2026-03-19T06:11:59Z'
+                    timezoneName: Indian/Maldives
+                    promotionIdentifier: f385f258-c315-412c-b910-7bd8a8d89427
+                    description: UAT ULP - Updating enrolment type using API
+                    active: true
+                  - promotionId: 126635
+                    promotionName: Single Activity Promotion2
+                    programId: 973
+                    startDateISO: '2026-03-01T05:11:00Z'
+                    endDateISO: '2026-03-31T05:11:59Z'
+                    timezoneName: Asia/Kolkata
+                    promotionIdentifier: single-activity-promotion2
+                    description: A promotion with single activity
+                    active: true
+      security:
+        - basicAuth: []
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic

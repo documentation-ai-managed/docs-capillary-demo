@@ -1,0 +1,540 @@
+openapi: 3.1.0
+info:
+  title: Issue Reward in connected orgs
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  /v1.1/user/rewards/issue/:
+    post:
+      summary: Issue Reward in connected orgs
+      description: ''
+      operationId: issue-bulk-reward-connected-org
+      parameters:
+      - name: username
+        in: query
+        description: username here represents name of the store
+        required: true
+        schema:
+          type: string
+          default: store_name
+      - name: skip_validation
+        in: query
+        description: optional
+        schema:
+          type: string
+      - name: till
+        in: query
+        schema:
+          type: string
+        required: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mobile:
+                  type: string
+                  description: Mobile number/ email Id/ External Id of the customer
+                brand:
+                  type: string
+                  description: name of the brand
+                transactionNumber:
+                  type: string
+                  description: transaction number for issuing the reward
+                rewardId:
+                  type: string
+                  description: reward ID(s) of the rewards to be issued
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                With DATA-SCOPE as SELF:
+                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
+                    \   \"code\": 200,\n        \"message\": \"Reward issued successfully\"\
+                    \n    },\n    \"rewards\": [\n        {\n            \"status\"\
+                    : {\n                \"success\": true,\n                \"code\"\
+                    : 200,\n                \"message\": \"Reward issued successfully\"\
+                    \n            },\n            \"orgId\": 4004543,\n          \
+                    \  \"transactionId\": 57097,\n            \"rewardId\": 350,\n\
+                    \            \"requestedQuantity\": 1,\n            \"quantity\"\
+                    : 1,\n            \"pointsReferenceId\": \"7Scaq1\",\n       \
+                    \     \"pointsReferenceIds\": [\n                \"7Scaq1\"\n\
+                    \            ],\n            \"eventLogId\": null,\n         \
+                    \   \"requestId\": null,\n            \"intouch\": null,\n   \
+                    \         \"promotions\": [],\n            \"vendor\": [\n   \
+                    \             {\n                    \"valid_till\": \"2027-11-01\"\
+                    ,\n                    \"voucher\": \"OV4GJYQV3Y\",\n        \
+                    \            \"pointsRedeemed\": \"2\",\n                    \"\
+                    offer_name\": \"marvel-loadtest\",\n                    \"coupon_series_id\"\
+                    : \"234\"\n                }\n            ],\n            \"restrictions\"\
+                    : null,\n            \"paymentConfig\": {\n                \"\
+                    paymentMode\": \"CONV_RATIO\",\n                \"id\": 54,\n\
+                    \                \"conversionRatio\": 0.5000\n            },\n\
+                    \            \"fulfillmentDetails\": null,\n            \"customFields\"\
+                    : null,\n            \"redemptionDetails\": {\n              \
+                    \  \"redemptionType\": \"MILES\",\n                \"totalRedemptionValue\"\
+                    : 1\n            }\n        }\n    ]\n}"
+                With DATA-SCOPE as OTHER:
+                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
+                    \   \"code\": 200,\n        \"message\": \"Reward issued successfully\"\
+                    \n    },\n    \"rewards\": [\n        {\n            \"status\"\
+                    : {\n                \"success\": true,\n                \"code\"\
+                    : 200,\n                \"message\": \"Reward issued successfully\"\
+                    \n            },\n            \"orgId\": 4000086,\n          \
+                    \  \"transactionId\": 57097,\n            \"rewardId\": 350,\n\
+                    \            \"requestedQuantity\": 1,\n            \"quantity\"\
+                    : 1,\n            \"pointsReferenceId\": \"7Scaq1\",\n       \
+                    \     \"pointsReferenceIds\": [\n                \"7Scaq1\"\n\
+                    \            ],\n            \"eventLogId\": null,\n         \
+                    \   \"requestId\": null,\n            \"intouch\": null,\n   \
+                    \         \"promotions\": [],\n            \"vendor\": [\n   \
+                    \             {\n                    \"valid_till\": \"2027-11-01\"\
+                    ,\n                    \"voucher\": \"OV4GJYQV3Y\",\n        \
+                    \            \"pointsRedeemed\": \"2\",\n                    \"\
+                    offer_name\": \"marvel-loadtest\",\n                    \"coupon_series_id\"\
+                    : \"234\"\n                }\n            ],\n            \"restrictions\"\
+                    : null,\n            \"paymentConfig\": {\n                \"\
+                    paymentMode\": \"CONV_RATIO\",\n                \"id\": 54,\n\
+                    \                \"conversionRatio\": 0.5000\n            },\n\
+                    \            \"fulfillmentDetails\": null,\n            \"customFields\"\
+                    : null,\n            \"redemptionDetails\": {\n              \
+                    \  \"redemptionType\": \"MILES\",\n                \"totalRedemptionValue\"\
+                    : 1\n            }\n        }\n    ]\n}"
+              schema:
+                oneOf:
+                - title: With DATA-SCOPE as SELF
+                  type: object
+                  properties:
+                    status:
+                      type: object
+                      properties:
+                        success:
+                          type: boolean
+                          example: true
+                          default: true
+                        code:
+                          type: integer
+                          example: 200
+                          default: 0
+                        message:
+                          type: string
+                          example: Reward issued successfully
+                    rewards:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          status:
+                            type: object
+                            properties:
+                              success:
+                                type: boolean
+                                example: true
+                                default: true
+                              code:
+                                type: integer
+                                example: 200
+                                default: 0
+                              message:
+                                type: string
+                                example: Reward issued successfully
+                          orgId:
+                            type: integer
+                            example: 4004543
+                            default: 0
+                          transactionId:
+                            type: integer
+                            example: 57097
+                            default: 0
+                          rewardId:
+                            type: integer
+                            example: 350
+                            default: 0
+                          requestedQuantity:
+                            type: integer
+                            example: 1
+                            default: 0
+                          quantity:
+                            type: integer
+                            example: 1
+                            default: 0
+                          pointsReferenceId:
+                            type: string
+                            example: 7Scaq1
+                          pointsReferenceIds:
+                            type: array
+                            items:
+                              type: string
+                              example: 7Scaq1
+                          eventLogId: {}
+                          requestId: {}
+                          intouch: {}
+                          promotions:
+                            type: array
+                          vendor:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                valid_till:
+                                  type: string
+                                  example: '2027-11-01'
+                                voucher:
+                                  type: string
+                                  example: OV4GJYQV3Y
+                                pointsRedeemed:
+                                  type: string
+                                  example: '2'
+                                offer_name:
+                                  type: string
+                                  example: marvel-loadtest
+                                coupon_series_id:
+                                  type: string
+                                  example: '234'
+                          restrictions: {}
+                          paymentConfig:
+                            type: object
+                            properties:
+                              paymentMode:
+                                type: string
+                                example: CONV_RATIO
+                              id:
+                                type: integer
+                                example: 54
+                                default: 0
+                              conversionRatio:
+                                type: number
+                                example: 0.5
+                                default: 0
+                          fulfillmentDetails: {}
+                          customFields: {}
+                          redemptionDetails:
+                            type: object
+                            properties:
+                              redemptionType:
+                                type: string
+                                example: MILES
+                              totalRedemptionValue:
+                                type: integer
+                                example: 1
+                                default: 0
+                - title: With DATA-SCOPE as OTHER
+                  type: object
+                  properties:
+                    status:
+                      type: object
+                      properties:
+                        success:
+                          type: boolean
+                          example: true
+                          default: true
+                        code:
+                          type: integer
+                          example: 200
+                          default: 0
+                        message:
+                          type: string
+                          example: Reward issued successfully
+                    rewards:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          status:
+                            type: object
+                            properties:
+                              success:
+                                type: boolean
+                                example: true
+                                default: true
+                              code:
+                                type: integer
+                                example: 200
+                                default: 0
+                              message:
+                                type: string
+                                example: Reward issued successfully
+                          orgId:
+                            type: integer
+                            example: 4000086
+                            default: 0
+                          transactionId:
+                            type: integer
+                            example: 57097
+                            default: 0
+                          rewardId:
+                            type: integer
+                            example: 350
+                            default: 0
+                          requestedQuantity:
+                            type: integer
+                            example: 1
+                            default: 0
+                          quantity:
+                            type: integer
+                            example: 1
+                            default: 0
+                          pointsReferenceId:
+                            type: string
+                            example: 7Scaq1
+                          pointsReferenceIds:
+                            type: array
+                            items:
+                              type: string
+                              example: 7Scaq1
+                          eventLogId: {}
+                          requestId: {}
+                          intouch: {}
+                          promotions:
+                            type: array
+                          vendor:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                valid_till:
+                                  type: string
+                                  example: '2027-11-01'
+                                voucher:
+                                  type: string
+                                  example: OV4GJYQV3Y
+                                pointsRedeemed:
+                                  type: string
+                                  example: '2'
+                                offer_name:
+                                  type: string
+                                  example: marvel-loadtest
+                                coupon_series_id:
+                                  type: string
+                                  example: '234'
+                          restrictions: {}
+                          paymentConfig:
+                            type: object
+                            properties:
+                              paymentMode:
+                                type: string
+                                example: CONV_RATIO
+                              id:
+                                type: integer
+                                example: 54
+                                default: 0
+                              conversionRatio:
+                                type: number
+                                example: 0.5
+                                default: 0
+                          fulfillmentDetails: {}
+                          customFields: {}
+                          redemptionDetails:
+                            type: object
+                            properties:
+                              redemptionType:
+                                type: string
+                                example: MILES
+                              totalRedemptionValue:
+                                type: integer
+                                example: 1
+                                default: 0
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                '8003':
+                  value: "{\n   \"status\": {\n       \"success\": false,\n      \
+                    \ \"code\": 8003,\n       \"message\": \"fail to issue reward\"\
+                    \n   },\n   \"rewards\": [\n       {\n           \"status\": {\n\
+                    \               \"success\": false,\n               \"code\":\
+                    \ 12005,\n               \"message\": \"Reward constraint evaluation\
+                    \ failed. Request failed. Max limit for the DAYS is reached. Allowed\
+                    \ limit is 15 For Level CUSTOMER\"\n           },\n          \
+                    \ \"rewardId\": 49827,\n           \"requestedQuantity\": 1,\n\
+                    \           \"pointsReferenceId\": null,\n           \"intouch\"\
+                    : null,\n           \"promotions\": null,\n           \"vendor\"\
+                    : null,\n           \"restrictions\": null\n       }\n   ]\n}\n\
+                    \n"
+                Result:
+                  value: "{\n   \"status\": {\n       \"success\": false,\n      \
+                    \ \"code\": 8010,\n       \"message\": \"Reward issued partially\"\
+                    \n   },\n   \"rewards\": [\n       {\n           \"status\": {\n\
+                    \               \"success\": true,\n               \"code\": 200,\n\
+                    \               \"message\": \"Reward issued successfully\"\n\
+                    \           },\n           \"rewardId\": 13,\n           \"requestedQuantity\"\
+                    : 1,\n           \"pointsReferenceId\": \"ZGxGVD\",\n        \
+                    \   \"intouch\": [\n               {\n                   \"pointsRedeemed\"\
+                    : \"50\",\n                   \"couponCode\": \"42FU1ZP3\",\n\
+                    \                   \"codeExpiry\": \"2023-06-09 00:00:00\"\n\
+                    \               }\n           ],\n           \"promotions\": [],\n\
+                    \           \"vendor\": [],\n           \"restrictions\": null\n\
+                    \       },\n       {\n           \"status\": {\n             \
+                    \  \"success\": false,\n               \"code\": 8004,\n     \
+                    \          \"message\": \"fail to issue reward as  Coupon has\
+                    \ expired\"\n           },\n           \"rewardId\": 12,\n   \
+                    \        \"requestedQuantity\": 1,\n           \"pointsReferenceId\"\
+                    : \"ZGxGVD\",\n           \"intouch\": null,\n           \"promotions\"\
+                    : [],\n           \"vendor\": [],\n           \"restrictions\"\
+                    : null\n       }\n   ]\n}\n\n"
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    status:
+                      type: object
+                      properties:
+                        success:
+                          type: boolean
+                          example: false
+                          default: true
+                        code:
+                          type: integer
+                          example: 8010
+                          default: 0
+                        message:
+                          type: string
+                          example: Reward issued partially
+                    rewards:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          status:
+                            type: object
+                            properties:
+                              success:
+                                type: boolean
+                                example: true
+                                default: true
+                              code:
+                                type: integer
+                                example: 200
+                                default: 0
+                              message:
+                                type: string
+                                example: Reward issued successfully
+                          rewardId:
+                            type: integer
+                            example: 13
+                            default: 0
+                          requestedQuantity:
+                            type: integer
+                            example: 1
+                            default: 0
+                          pointsReferenceId:
+                            type: string
+                            example: ZGxGVD
+                          intouch:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                pointsRedeemed:
+                                  type: string
+                                  example: '50'
+                                couponCode:
+                                  type: string
+                                  example: 42FU1ZP3
+                                codeExpiry:
+                                  type: string
+                                  example: "2023-06-09 00:00:00"
+                          promotions:
+                            type: array
+                          vendor:
+                            type: array
+                          restrictions: {}
+                - title: '8003'
+                  type: object
+                  properties:
+                    status:
+                      type: object
+                      properties:
+                        success:
+                          type: boolean
+                          example: false
+                          default: true
+                        code:
+                          type: integer
+                          example: 8003
+                          default: 0
+                        message:
+                          type: string
+                          example: fail to issue reward
+                    rewards:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          status:
+                            type: object
+                            properties:
+                              success:
+                                type: boolean
+                                example: false
+                                default: true
+                              code:
+                                type: integer
+                                example: 12005
+                                default: 0
+                              message:
+                                type: string
+                                example: Reward constraint evaluation failed. Request
+                                  failed. Max limit for the DAYS is reached. Allowed
+                                  limit is 15 For Level CUSTOMER
+                          rewardId:
+                            type: integer
+                            example: 49827
+                            default: 0
+                          requestedQuantity:
+                            type: integer
+                            example: 1
+                            default: 0
+                          pointsReferenceId: {}
+                          intouch: {}
+                          promotions: {}
+                          vendor: {}
+                          restrictions: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1.1/user/rewards/issue/?skip_validation=true&username=loadtest.marvel'\
+            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Accept:\
+            \ */*' \\\n--header 'Authorization: Basic bG9hZHRlc3QubWBLAHBLAH5NjRiMDcxNTJkMjM0Yjcw'\
+            \ \\\n--header 'Cookie: _cfuvid=Vl2GkTHlFJ52__EqmWxwr62UUys6VkoqjLDZ8Iah00s-1732168027696-0.0.1.1-604800000;\
+            \ _cfuvid=iCEn1_39ZRrYViEvmJGle4eW7lcuck3DPgT_B1jmysQ-1732599277239-0.0.1.1-604800000'\
+            \ \\\n--header 'DATA-SCOPE: SELF' \\\n--data '{\n    \"brand\": \"O2Brand\"\
+            ,\n    \"transactionNumber\": \"123456789\",\n    \"orgLevelDetails\"\
+            : [\n        {\n            \"orgId\": 4004543\n        }\n    ],\n  \
+            \  \"rewards\": [\n        {\n            \"rewardId\": 350,\n       \
+            \     \"quantity\": 1,\n            \"orgId\": 4004543,\n            \"\
+            paymentConfig\": {\n                \"redemptionValue\": 1\n         \
+            \   }\n        }\n    ],\n    \"externalId\": \"ext_id9860000198\"\n}'"
+          name: With DATA-SCOPE as SELF
+        - language: curl
+          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1.1/user/rewards/issue/?skip_validation=true&username=loadtest.marvel'\
+            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Accept:\
+            \ */*' \\\n--header 'Authorization: Basic bG9hZHBLAHBLAH3NWI5NjRiMDcxNTJkMjM0Yjcw'\
+            \ \\\n--header 'DATA-SCOPE: OTHER' \\\n--header 'DATA-SCOPE-ORGS: 4000085'\
+            \ \\\n--header 'Cookie: _cfuvid=u7lX7fA.uTQht8cWKxG4HXhwZo7y8PLo9hFe64KkyjA-1734592157810-0.0.1.1-604800000'\
+            \ \\\n--data '{\n    \"brand\": \"OptumUATChild2\",\n    \"transactionNumber\"\
+            : \"123456789\",\n    \"orgLevelDetails\": [\n        {\n            \"\
+            orgId\": 4000086\n        }\n    ],\n    \"rewards\": [\n        {\n \
+            \           \"rewardId\": 350,\n            \"quantity\": 1,\n       \
+            \     \"orgId\": 4000086,\n            \"paymentConfig\": {\n        \
+            \        \"redemptionValue\": 1\n            }\n        }\n    ],\n  \
+            \  \"externalId\": \"ext_id9860000198\"\n}'"
+          name: With DATA-SCOPE as OTHER
+        samples-languages:
+        - curl
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

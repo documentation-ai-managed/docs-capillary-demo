@@ -1,0 +1,221 @@
+openapi: 3.1.0
+info:
+  title: Get Allocated Points Details with Expiry in Specified Date Range
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  /das/getPAIdsForProvidedDateRange:
+    get:
+      summary: Get Allocated Points Details with Expiry in Specified Date Range
+      description: ''
+      operationId: retrieve-pa-id-for-specified-data-range
+      parameters:
+      - name: program_id
+        in: query
+        description: Unique identifier of the loyalty program.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: point_category_id
+        in: query
+        description: Unique identifier for a Point Category in the loyalty points
+          system.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: expiry_date_start
+        in: query
+        description: "Start date of the expiry range. **Format**: YYYY-MM-DD.   **Example**:\
+          \ 2025-06-01"
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: expiry_date_end
+        in: query
+        description: "End date of the expiry range. **Format**: YYYY-MM-DD.   **Example**:\
+          \ 2025-06-01"
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: entity_id
+        in: query
+        description: Customer ID of the customer for whom the points allocation ID
+          is retrieved.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: page
+        in: query
+        description: "Retrieve details of a specific page. Page count starts from\
+          \ 1.  Example: page=2 retrieves data on page 2."
+        schema:
+          type: integer
+          format: int32
+      - name: count
+        in: query
+        description: Number of results to display per page. The default value is 10.
+          The maximum supported value is 100.
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Sample Response:
+                  value: "[\n    {\n        \"till_id\": 50140377,\n        \"point_category_id\"\
+                    : 17383,\n        \"program_id\": 2282,\n        \"event_log_id\"\
+                    : 33822621,\n        \"event_type_id\": 15,\n        \"points_source_type_id\"\
+                    : 1,\n        \"original_points\": 0,\n        \"awarded_date\"\
+                    : 1735309787000,\n        \"returned_exclusive_value\": 50,\n\
+                    \        \"points_source_id\": 2151585684,\n        \"id\": 38855229,\n\
+                    \        \"cps_id\": 80537188,\n        \"original_customer_id\"\
+                    : 383474113,\n        \"expiry_strategy_id\": 105462,\n      \
+                    \  \"returned_value\": 0,\n        \"redeemed_exclusive_value\"\
+                    : 0,\n        \"expiry_date\": 1766687399000,\n        \"auto_update_time\"\
+                    : 1735309788000,\n        \"redeemed_value\": 0,\n        \"expired_exclusive_value\"\
+                    : 0,\n        \"allocation_strategy_id\": 105594,\n        \"\
+                    points_value\": 0,\n        \"org_id\": 50914,\n        \"expired_value\"\
+                    : 0,\n        \"customer_id\": 383474113,\n        \"points_exclusive\"\
+                    : 100,\n        \"status\": \"AVAILABLE\"\n    }\n]"
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    till_id:
+                      type: integer
+                      example: 50140377
+                      default: 0
+                    point_category_id:
+                      type: integer
+                      example: 17383
+                      default: 0
+                    program_id:
+                      type: integer
+                      example: 2282
+                      default: 0
+                    event_log_id:
+                      type: integer
+                      example: 33822621
+                      default: 0
+                    event_type_id:
+                      type: integer
+                      example: 15
+                      default: 0
+                    points_source_type_id:
+                      type: integer
+                      example: 1
+                      default: 0
+                    original_points:
+                      type: integer
+                      example: 0
+                      default: 0
+                    awarded_date:
+                      type: integer
+                      example: 1735309787000
+                      default: 0
+                    returned_exclusive_value:
+                      type: integer
+                      example: 50
+                      default: 0
+                    points_source_id:
+                      type: integer
+                      example: 2151585684
+                      default: 0
+                    id:
+                      type: integer
+                      example: 38855229
+                      default: 0
+                    cps_id:
+                      type: integer
+                      example: 80537188
+                      default: 0
+                    original_customer_id:
+                      type: integer
+                      example: 383474113
+                      default: 0
+                    expiry_strategy_id:
+                      type: integer
+                      example: 105462
+                      default: 0
+                    returned_value:
+                      type: integer
+                      example: 0
+                      default: 0
+                    redeemed_exclusive_value:
+                      type: integer
+                      example: 0
+                      default: 0
+                    expiry_date:
+                      type: integer
+                      example: 1766687399000
+                      default: 0
+                    auto_update_time:
+                      type: integer
+                      example: 1735309788000
+                      default: 0
+                    redeemed_value:
+                      type: integer
+                      example: 0
+                      default: 0
+                    expired_exclusive_value:
+                      type: integer
+                      example: 0
+                      default: 0
+                    allocation_strategy_id:
+                      type: integer
+                      example: 105594
+                      default: 0
+                    points_value:
+                      type: integer
+                      example: 0
+                      default: 0
+                    org_id:
+                      type: integer
+                      example: 50914
+                      default: 0
+                    expired_value:
+                      type: integer
+                      example: 0
+                      default: 0
+                    customer_id:
+                      type: integer
+                      example: 383474113
+                      default: 0
+                    points_exclusive:
+                      type: integer
+                      example: 100
+                      default: 0
+                    status:
+                      type: string
+                      example: AVAILABLE
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

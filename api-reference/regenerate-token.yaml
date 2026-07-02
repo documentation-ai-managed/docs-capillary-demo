@@ -1,0 +1,118 @@
+openapi: 3.1.0
+info:
+  title: Regenerate token
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  /auth/v1/mfa/token/regenerate:
+    post:
+      summary: Regenerate token
+      description: MFA token regeneration.
+      operationId: regenerate-token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - deviceId
+              - brand
+              - key
+              - identifierType
+              - identifierValue
+              properties:
+                deviceId:
+                  type: string
+                  description: Unique ID of the device used for token regeneration.
+                brand:
+                  type: string
+                  description: Name of the brand or organisation that needs verification.
+                key:
+                  type: string
+                  description: Key generated from the password or OTP validate response.
+                identifierType:
+                  type: string
+                  description: Type of identifier to identify the customer.
+                  enum:
+                  - MOBILE
+                  - EMAIL
+                  - USERNAME
+                  - EXTERNALID
+                identifierValue:
+                  type: string
+                  description: Value of the identifier.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
+                    \   \"code\": 200,\n        \"message\": \"SUCCESS\"\n    },\n\
+                    \    \"auth\": {\n        \"token\": \"eyJpZHYiOlsiTU9CSUxFfDE4NzY3NDMxNzU0Il0sImRldiI6IjEyMzQiLCJvcmciOiJCVUtMIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOiIxNzgwNzc2IiwiaXNzIjoiQ0FQSUxMQVJZIFRFQ0hOT0xPR0lFUyIsImlzYyI6ImZhbHNlIiwib2djIjpbIjEwMDQ1OHxidWtsLmluZC5zb2x1dGlvbiJdLCJleHAiOjE3MTcwNjE0NjUsImlhdCI6MTcxNzA2MDU2NSwicm9sIjoiVVNFUiJ9.rmKqmOQyYYtEPs422G0xZ-EUFpak5i0jdrx9W4YVxJQ\"\
+                    ,\n        \"key\": null\n    },\n    \"user\": {\n        \"\
+                    appRegistered\": false,\n        \"sessionId\": null,\n      \
+                    \  \"role\": \"USER\",\n        \"userRegisteredForPassword\"\
+                    : true\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+                      code:
+                        type: integer
+                        example: 200
+                        default: 0
+                      message:
+                        type: string
+                        example: SUCCESS
+                  auth:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                        example: eyJpZHYiOlsiTU9CSUxFfDE4NzY3NDMxNzU0Il0sImRldiI6IjEyMzQiLCJvcmciOiJCVUtMIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOiIxNzgwNzc2IiwiaXNzIjoiQ0FQSUxMQVJZIFRFQ0hOT0xPR0lFUyIsImlzYyI6ImZhbHNlIiwib2djIjpbIjEwMDQ1OHxidWtsLmluZC5zb2x1dGlvbiJdLCJleHAiOjE3MTcwNjE0NjUsImlhdCI6MTcxNzA2MDU2NSwicm9sIjoiVVNFUiJ9.rmKqmOQyYYtEPs422G0xZ-EUFpak5i0jdrx9W4YVxJQ
+                      key: {}
+                  user:
+                    type: object
+                    properties:
+                      appRegistered:
+                        type: boolean
+                        example: false
+                        default: true
+                      sessionId: {}
+                      role:
+                        type: string
+                        example: USER
+                      userRegisteredForPassword:
+                        type: boolean
+                        example: true
+                        default: true
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

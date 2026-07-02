@@ -1,0 +1,144 @@
+openapi: 3.0.1
+info:
+  title: Sample API
+  version: 1.0.0
+  description: >-
+    API specification generated from cURL for POST
+    /v3/promotions/69034fe43d40cd1e08fb66d8/review
+servers:
+  - url: https://{host
+paths:
+  /v3/promotions/{promotionId}/review:
+    post:
+      summary: Review a Loyalty Promotion
+      description: Endpoint for POST /v3/promotions/69034fe43d40cd1e08fb66d8/review
+      operationId: postV3promotions69034fe43d40cd1e08fb66d8review
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          schema:
+            type: string
+            example: Basic dGlsbGhnNWI5NjRiMDcxNTJkMjM0Yjcw
+        - in: path
+          name: promotionId
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful operation (default from cURL)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Success
+              examples:
+                OK:
+                  summary: OK
+                  value:
+                    data:
+                      metadata:
+                        name: Promogold
+                        description: newProm43oTest123
+                        programId: '2607'
+                        orgId: 51174
+                        startDate: '2025-10-01T00:00:00+05:30'
+                        endDate: '2025-10-31T23:59:00+05:30'
+                        timezoneName: Asia/Kolkata
+                        promotionType: GENERIC
+                        status: COMPLETED
+                        promoIdentifier: fdee323d-7a5e33342c0-b438-9892085a0a7c
+                        promotionId: 1133594588
+                        createdOn: '2025-11-01T15:03:33+05:30'
+                        lastModifiedOn: '2025-11-01T15:03:59+05:30'
+                        createdBy: 50685521
+                        lastModifiedBy: 50685521
+                        loyaltyEarningType: null
+                        version: null
+                        draftDetails: null
+                        loyaltyConfigMetaData:
+                          isStackable: false
+                          isConsideredForRanking: false
+                          isExclusive: false
+                          isAlwaysApply: false
+                          skipEarnedDateCheckOnRedeem: null
+                        promotionMetadata: []
+                        commonStrategies: null
+                        promotionMode: UNIFIED
+                      customerEnrolment:
+                        enrolmentMethod: TRANSACTION
+                      activities:
+                        - type: SINGLE
+                          id: activity_1761824716197
+                          name: Activity 1
+                          commonCycleActionMapping:
+                            - cycle: Cycle_1
+                              actions:
+                                - id: '4706439'
+                                  actionName: AWARD_POINTS_ACTION
+                                  actionClass: >-
+                                    com.capillary.shopbook.pointsengine.endpoint.impl.action.AwardPointsActionImpl
+                                  description: Fixed10
+                                  mandatoryPropertiesValues:
+                                    AwardStrategy: '121429'
+                                    ExpiryStrategy: '109006'
+                                    PointsRoundingStrategy: ACTUAL
+                                    SourceValueRoundingStrategy: ACTUAL
+                                    DelayStrategy: AS_DEFINED_IN_ALLOCATION_STRATEGY
+                                    EvaluatedEntity: USER
+                                    DelayExtendedFieldName: ''
+                                    ProRateOnSourceValue: EVENT_DEFAULT_VALUE
+                                    PointType: Main
+                                  mandatoryComplexPropertiesValues: {}
+                              startDate: '2025-10-01'
+                              endDate: '2025-10-31'
+                              rulesetId: '1514933'
+                          event: TransactionAdd
+                          expJSON:
+                            arity: literal
+                            type: boolean:primitive
+                            value: 'true'
+                          cycles: []
+                          milestones: []
+                          allCycles: []
+                      comments: dsd
+                      parentId: null
+                      parentDetails: null
+                      version: 1
+                      limits: []
+                      liabilityOwnerSplitInfo: []
+                      id: 69034fe43d40cd1e08fb66d8
+                      workflowMetadata:
+                        enrolment:
+                          basedOn: null
+                          activities: null
+                          audienceMapping: null
+                          restrictions: null
+                        optin:
+                          basedOn: null
+                          audienceMapping: null
+                          activities: null
+                          restrictions: null
+                      communicationApprovalStatus:
+                        success: true
+                        message: No communications to approve
+                        response: null
+                        statusCode: 200
+                    errors: null
+                    warnings: null
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                approvalStatus:
+                  type: string
+                  example: APPROVE
+              description: Request body as an object
+        description: Request body
+        required: false

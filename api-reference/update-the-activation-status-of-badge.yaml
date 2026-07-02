@@ -1,0 +1,110 @@
+openapi: 3.1.0
+info:
+  title: Update activation status of badge
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  "/api_gateway/v1/badges/badgeMeta/{badgeId}/{activationStatus}":
+    put:
+      summary: Update activation status of badge
+      description: ''
+      operationId: update-the-activation-status-of-badge
+      parameters:
+      - name: activationStatus
+        in: path
+        description: Status of the badge.
+        schema:
+          type: string
+          enum:
+          - activate
+          - deactivate
+        required: true
+      - name: badgeId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Sample response when activationStatus=activate:
+                  value:
+                    data:
+                      id: 68ccf60d28a4f97c042c83c1
+                      isActive: true
+                    errors: []
+                    warnings: []
+                  summary: Sample response when activationStatus=activate
+                Sample response when activationStatus=deactivate:
+                  value:
+                    data:
+                      id: 68ccf60d28a4f97c042c83c1
+                      isActive: false
+                    errors: []
+                    warnings: []
+                  summary: Sample response when activationStatus=deactivate
+              schema:
+                oneOf:
+                - title: When activationStatus=activate
+                  type: object
+                  properties:
+                    data:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 6543688e66a87827bb61e62a
+                        isActive:
+                          type: boolean
+                          example: true
+                          default: true
+                    errors:
+                      type: array
+                    warnings:
+                      type: array
+                - title: When activationStatus=deactivate
+                  type: object
+                  properties:
+                    data:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 6543688e66a87827bb61e62a
+                        isActive:
+                          type: boolean
+                          example: false
+                          default: true
+                    errors:
+                      type: array
+                    warnings:
+                      type: array
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: shell
+          code: "curl --location --request PUT 'https://eucrm.cc.capillarytech.com/api_gateway/v1/badges/badgeMeta/68ccf60d28a4f97c042c83c1/activate'\
+            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization:\
+            \ Basic bWFkaHVI3MjU2YQ==' \\\n--data '{\n    \"active\": true\n}'"
+          name: Sample request when activationStatus =activate
+        - code: "curl --location --request PUT 'https://eucrm.cc.capillarytech.com/api_gateway/v1/badges/badgeMeta/68ccf60d28a4f97c042c83c1/deactivate'\
+            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization:\
+            \ Basic bWFk3MjU2YQ==' \\\n--data '{\n    \"active\": true\n}'"
+          language: shell
+          name: Sample request when activationStatus =deactivate
+        samples-languages:
+        - shell
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

@@ -1,0 +1,473 @@
+openapi: 3.1.0
+info:
+  title: Get all brand rewards using Brand ID
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  "/api_gateway/rewards/core/v1/reward/list/brand/{brandID}":
+    get:
+      summary: Get all brand rewards using Brand ID
+      description: ''
+      operationId: get-reward-list
+      parameters:
+      - name: BrandId
+        in: path
+        description: Unique identifier of the brand
+        schema:
+          type: integer
+          format: int32
+        required: true
+      - name: ownerType
+        in: query
+        description: Module for which the reward was created.
+        schema:
+          type: string
+          enum:
+          - Loyalty program
+          - Milestones
+          - Campaigns
+          - Journeys
+          - Goodwill.
+      - name: ownerId
+        in: query
+        description: Unique identifier of the owner to claim the reward.
+        schema:
+          type: string
+      - name: size
+        in: query
+        description: Results to show per page. Default - 100
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: Allows to retrieve details of a specific page.
+        schema:
+          type: string
+      - name: language
+        in: query
+        description: Filters the response based on the reward language. Use this parameter
+          to retrieve rewards in a specific language. For example, to display rewards
+          in English, set the parameter to en
+        schema:
+          type: string
+          enum:
+          - ''
+          default: en
+      - name: brandID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                With OwnerType:
+                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
+                    \   \"code\": 6101,\n        \"message\": \"Reward details fetched\
+                    \ successfully\"\n    },\n    \"rewardList\": [\n        {\n \
+                    \           \"id\": 345839,\n            \"name\": \"New year\
+                    \ tes\",\n            \"startTime\": \"2025-04-02 10:20:10\",\n\
+                    \            \"startDateTime\": \"2025-04-02T10:20:10Z\",\n  \
+                    \          \"endTime\": \"2025-04-02 10:25:10\",\n           \
+                    \ \"endDateTime\": \"2025-04-02T10:25:10Z\",\n            \"type\"\
+                    : \"VOUCHER\",\n            \"priority\": 1,\n            \"enabled\"\
+                    : true,\n            \"intouchPoints\": 0,\n            \"redemptionType\"\
+                    : \"MILES\",\n            \"customFields\": {\n              \
+                    \  \"A\": \"1\",\n                \"CF1233\": \"1\",\n       \
+                    \         \"EnumCF2\": \"r1\",\n                \"EnumCF1\": \"\
+                    white\"\n            },\n            \"owners\": null,\n     \
+                    \       \"paymentConfigs\": [\n                {\n           \
+                    \         \"paymentMode\": \"FREE\",\n                    \"id\"\
+                    : 5717\n                }\n            ],\n            \"groups\"\
+                    : [],\n            \"rewardRank\": null,\n            \"status\"\
+                    : \"ENDED\",\n            \"intouchSeriesId\": null,\n       \
+                    \     \"vendorRedemptionId\": 13417,\n            \"vendorRedemptionName\"\
+                    : \"Delta\",\n            \"vendorId\": 21,\n            \"vendorName\"\
+                    : \"Delta\",\n            \"lastUpdatedOn\": 1743667380000,\n\
+                    \            \"lastUpdatedOnDateTime\": \"2025-04-03T08:03:00Z\"\
+                    ,\n            \"lastUpdatedBy\": 75106389,\n            \"createdBy\"\
+                    : 75106389\n        },\n        {\n            \"id\": 346323,\n\
+                    \            \"name\": \"Go Test fastest\",\n            \"startTime\"\
+                    : \"2025-04-03 05:29:47\",\n            \"startDateTime\": \"\
+                    2025-04-03T05:29:47Z\",\n            \"endTime\": \"2025-04-03\
+                    \ 05:34:47\",\n            \"endDateTime\": \"2025-04-03T05:34:47Z\"\
+                    ,\n            \"type\": \"VOUCHER\",\n            \"priority\"\
+                    : null,\n            \"enabled\": true,\n            \"intouchPoints\"\
+                    : 0,\n            \"redemptionType\": \"MILES\",\n           \
+                    \ \"customFields\": {\n                \"A\": \"1\",\n       \
+                    \         \"CF1233\": \"1\",\n                \"EnumCF2\": \"\
+                    r1\",\n                \"EnumCF1\": \"white\",\n             \
+                    \   \"CF1\": \"test\"\n            },\n            \"owners\"\
+                    : null,\n            \"paymentConfigs\": [\n                {\n\
+                    \                    \"paymentMode\": \"FREE\",\n            \
+                    \        \"id\": 5751\n                }\n            ],\n   \
+                    \         \"groups\": [],\n            \"rewardRank\": null,\n\
+                    \            \"status\": \"ENDED\",\n            \"intouchSeriesId\"\
+                    : null,\n            \"vendorRedemptionId\": 13417,\n        \
+                    \    \"vendorRedemptionName\": \"Delta\",\n            \"vendorId\"\
+                    : 21,\n            \"vendorName\": \"Delta\",\n            \"\
+                    lastUpdatedOn\": 1743666079000,\n            \"lastUpdatedOnDateTime\"\
+                    : \"2025-04-03T07:41:19Z\",\n            \"lastUpdatedBy\": 75106389,\n\
+                    \            \"createdBy\": 75106389\n        }\n    ],\n    \"\
+                    pagingDto\": {\n        \"last\": false,\n        \"totalElements\"\
+                    : 759,\n        \"totalPages\": 380,\n        \"numberOfElements\"\
+                    : 2,\n        \"first\": false,\n        \"size\": 2,\n      \
+                    \  \"number\": 2\n    }\n}"
+                Result:
+                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
+                    \   \"code\": 6101,\n        \"message\": \"Reward details fetched\
+                    \ successfully\"\n    },\n    \"rewardList\": [\n        {\n \
+                    \           \"id\": 20867,\n            \"name\": \"name_first\"\
+                    ,\n            \"startTime\": \"2024-11-01 03:53:01\",\n     \
+                    \       \"endTime\": \"2027-01-15 07:26:45\",\n            \"\
+                    type\": \"VOUCHER\",\n            \"priority\": 1,\n         \
+                    \   \"enabled\": true,\n            \"intouchPoints\": 1,\n  \
+                    \          \"redemptionType\": \"SWEEPSTAKES\",\n            \"\
+                    customFields\": {},\n            \"owners\": null,\n         \
+                    \   \"paymentConfigs\": [\n                {\n               \
+                    \     \"paymentMode\": \"CASH\",\n                    \"id\":\
+                    \ 813,\n                    \"cash\": 25.0000\n              \
+                    \  }\n            ],\n            \"groups\": [\n            \
+                    \    {\n                    \"groupName\": \"groupName014\",\n\
+                    \                    \"groupRank\": 8\n                }\n   \
+                    \         ],\n            \"rewardRank\": 10,\n            \"\
+                    status\": \"UPCOMING\",\n            \"intouchSeriesId\": null,\n\
+                    \            \"vendorRedemptionId\": 1627,\n            \"vendorRedemptionName\"\
+                    : \"demo vendor for physicalReward\",\n            \"vendorId\"\
+                    : 17,\n            \"vendorName\": \"testVendor002\",\n      \
+                    \      \"lastUpdatedOn\": 1725359777000,\n            \"lastUpdatedBy\"\
+                    : null\n        }\n    ],\n    \"pagingDto\": {\n        \"last\"\
+                    : true,\n        \"totalElements\": 1,\n        \"totalPages\"\
+                    : 1,\n        \"numberOfElements\": 1,\n        \"first\": true,\n\
+                    \        \"size\": 10,\n        \"number\": 0\n    }\n}"
+              schema:
+                oneOf:
+                - title: With OwnerType
+                  type: object
+                  properties:
+                    status:
+                      type: object
+                      properties:
+                        success:
+                          type: boolean
+                          example: true
+                          default: true
+                        code:
+                          type: integer
+                          example: 6101
+                          default: 0
+                        message:
+                          type: string
+                          example: Reward details fetched successfully
+                    rewardList:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 345839
+                            default: 0
+                          name:
+                            type: string
+                            example: New year tes
+                          startTime:
+                            type: string
+                            example: "2025-04-02 10:20:10"
+                          startDateTime:
+                            type: string
+                            example: "2025-04-02T10:20:10Z"
+                          endTime:
+                            type: string
+                            example: "2025-04-02 10:25:10"
+                          endDateTime:
+                            type: string
+                            example: "2025-04-02T10:25:10Z"
+                          type:
+                            type: string
+                            example: VOUCHER
+                          priority:
+                            type: integer
+                            example: 1
+                            default: 0
+                          enabled:
+                            type: boolean
+                            example: true
+                            default: true
+                          intouchPoints:
+                            type: integer
+                            example: 0
+                            default: 0
+                          redemptionType:
+                            type: string
+                            example: MILES
+                          customFields:
+                            type: object
+                            properties:
+                              A:
+                                type: string
+                                example: '1'
+                              CF1233:
+                                type: string
+                                example: '1'
+                              EnumCF2:
+                                type: string
+                                example: r1
+                              EnumCF1:
+                                type: string
+                                example: white
+                          owners: {}
+                          paymentConfigs:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                paymentMode:
+                                  type: string
+                                  example: FREE
+                                id:
+                                  type: integer
+                                  example: 5717
+                                  default: 0
+                          groups:
+                            type: array
+                          rewardRank: {}
+                          status:
+                            type: string
+                            example: ENDED
+                          intouchSeriesId: {}
+                          vendorRedemptionId:
+                            type: integer
+                            example: 13417
+                            default: 0
+                          vendorRedemptionName:
+                            type: string
+                            example: Delta
+                          vendorId:
+                            type: integer
+                            example: 21
+                            default: 0
+                          vendorName:
+                            type: string
+                            example: Delta
+                          lastUpdatedOn:
+                            type: integer
+                            example: 1743667380000
+                            default: 0
+                          lastUpdatedOnDateTime:
+                            type: string
+                            example: "2025-04-03T08:03:00Z"
+                          lastUpdatedBy:
+                            type: integer
+                            example: 75106389
+                            default: 0
+                          createdBy:
+                            type: integer
+                            example: 75106389
+                            default: 0
+                    pagingDto:
+                      type: object
+                      properties:
+                        last:
+                          type: boolean
+                          example: false
+                          default: true
+                        totalElements:
+                          type: integer
+                          example: 759
+                          default: 0
+                        totalPages:
+                          type: integer
+                          example: 380
+                          default: 0
+                        numberOfElements:
+                          type: integer
+                          example: 2
+                          default: 0
+                        first:
+                          type: boolean
+                          example: false
+                          default: true
+                        size:
+                          type: integer
+                          example: 2
+                          default: 0
+                        number:
+                          type: integer
+                          example: 2
+                          default: 0
+                - type: object
+                  properties:
+                    status:
+                      type: object
+                      properties:
+                        success:
+                          type: boolean
+                          example: true
+                          default: true
+                        code:
+                          type: integer
+                          example: 6101
+                          default: 0
+                        message:
+                          type: string
+                          example: Reward details fetched successfully
+                    rewardList:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 20867
+                            default: 0
+                          name:
+                            type: string
+                            example: name_first
+                          startTime:
+                            type: string
+                            example: "2024-11-01 03:53:01"
+                          endTime:
+                            type: string
+                            example: "2027-01-15 07:26:45"
+                          type:
+                            type: string
+                            example: VOUCHER
+                          priority:
+                            type: integer
+                            example: 1
+                            default: 0
+                          enabled:
+                            type: boolean
+                            example: true
+                            default: true
+                          intouchPoints:
+                            type: integer
+                            example: 1
+                            default: 0
+                          redemptionType:
+                            type: string
+                            example: SWEEPSTAKES
+                          customFields:
+                            type: object
+                            properties: {}
+                          owners: {}
+                          paymentConfigs:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                paymentMode:
+                                  type: string
+                                  example: CASH
+                                id:
+                                  type: integer
+                                  example: 813
+                                  default: 0
+                                cash:
+                                  type: integer
+                                  example: 25
+                                  default: 0
+                          groups:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                groupName:
+                                  type: string
+                                  example: groupName014
+                                groupRank:
+                                  type: integer
+                                  example: 8
+                                  default: 0
+                          rewardRank:
+                            type: integer
+                            example: 10
+                            default: 0
+                          status:
+                            type: string
+                            example: UPCOMING
+                          intouchSeriesId: {}
+                          vendorRedemptionId:
+                            type: integer
+                            example: 1627
+                            default: 0
+                          vendorRedemptionName:
+                            type: string
+                            example: demo vendor for physicalReward
+                          vendorId:
+                            type: integer
+                            example: 17
+                            default: 0
+                          vendorName:
+                            type: string
+                            example: testVendor002
+                          lastUpdatedOn:
+                            type: integer
+                            example: 1725359777000
+                            default: 0
+                          lastUpdatedBy: {}
+                    pagingDto:
+                      type: object
+                      properties:
+                        last:
+                          type: boolean
+                          example: true
+                          default: true
+                        totalElements:
+                          type: integer
+                          example: 1
+                          default: 0
+                        totalPages:
+                          type: integer
+                          example: 1
+                          default: 0
+                        numberOfElements:
+                          type: integer
+                          example: 1
+                          default: 0
+                        first:
+                          type: boolean
+                          example: true
+                          default: true
+                        size:
+                          type: integer
+                          example: 10
+                          default: 0
+                        number:
+                          type: integer
+                          example: 0
+                          default: 0
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/list/brand/1?page=0&size=20'\
+            \ \\\n--header 'Authorization: Basic aWFtc2hpdmFhbms6NDAblahblahkNWI1YTI5MWY='\
+            \ \\\n--header 'Cookie: _cfuvid=QbjsRhi.Ql7ZC6uSBP98acGYFfR9hGAQv4cQ2w34JpU-1727244469000-0.0.1.1-604800000'"
+        samples-languages:
+        - curl
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

@@ -1,0 +1,39 @@
+---
+title: Issue Tracker Fact Table
+---
+
+This fact table captures details of all customer complaints that have been converted into "issues" and are managed by the Customer Care Management System.
+
+**Databricks Table Name:** issue_tracker_fact
+
+**Issue Tracker Fact - Entity Relationship Diagram (ERD)**
+
+Zoom in the table for more clarity. Click the table title to view its details.
+
+<SVG src="https://blob-cdn.documentation.ai/org-33a37b13-6e8e-4740-8784-efe392e052a1/doc-f5d2fac6-45c6-4928-b76b-06e4ff784712/1782803874255-g1fgyi6nxzk-issue-tracker-fact-table-erd.svg?rasterize-bypass=true" />
+
+**Issue Tracker Fact Table**
+
+| **Column Name** | **Data Type** | **Description** | Linked Table | **Availability for Export in the [Issue Trackers](/docs/issue-trackers-standard-export-template) Template** |
+| :--- | :---: | :--- | :---: | :--- |
+| dim_active_status_id | bigint | Identifier indicating whether the issue is still active or not. Possible values are 0 and 1. | [active_status](/dimensions-tables#active-status) | Yes; Dimension Name: Active Status > Id |
+| dim_assigned_by_id | bigint | Identifier for the person or entity who assigned the issue. | [zone_till](/dimensions-tables#zone-till) | Yes; Dimension Name: Assigned By > Till Id |
+| dim_assigned_to_id | bigint | Identifier for the person or department to whom the issue is assigned. | [zone_till](/dimensions-tables#zone-till) | Yes; Dimension Name: Assigned To > Id |
+| dim_created_by_id | bigint | Identifier for the person who created the issue record. | [zone_till](/dimensions-tables#zone-till) | Yes; Dimension Name: Created By > Till Id |
+| dim_due_date_id | bigint | Identifier for the due date of the issue resolution. | [date](/dimensions-tables#date) | Yes; Dimension Name: Due Date > Date |
+| dim_event_date_id | bigint | Date when the issue event occurred. | [date](/dimensions-tables#date) | Yes; Dimension Name: Date |
+| dim_event_time_id | bigint | Time when the issue event occurred. | [time](/dimensions-tables#time) | Yes; Dimension Name: Time > Time Id |
+| dim_event_user_id | bigint | Identifier for the user involved in the issue event. | [users](/dimensions-tables#users-users) | Yes; Dimension Name: User > User Id |
+| dim_issue_type_id | bigint | Identifier for the type or category of the issue. Possible values are - Store, and Customer. | [issue_type](/dimensions-tables#issue-type) | Yes; Dimension Name: Issue Type > Id |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/row is changed in the source table. | [date](/dimensions-tables#date) | Yes; Dimension Name: Latest Updated Date > Date |
+| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/row is changed in the source table. | [time](/dimensions-tables#time) | Yes; Dimension Name: Latest Updated Time > Time Id |
+| dim_reported_by_id | bigint | Identifier indicating how the issue was reported. Possible values are - email, intouch, call center, client and microsite. | [reported_by](/dimensions-tables#reported-by) | Yes; Dimension Name: Reported By > Id |
+| issue_code | string | Identifier of the issue. | _ | Yes; Measure Name: Issue Code |
+| issue_depearment | string | Department to which the issue belongs. | _ | Yes; Measure Name: Issue Department |
+| issue_name | string | Gives the actual issue description. | _ | Yes; Measure Name: Issue Name |
+| issue_priority | string | Priority of the complaint as per the escalation metrics. Possible values are - high, medium, and low. | _ | Yes; Measure Name: Issue Priority |
+| issue_status | string | Current status of the issue. Possible values are - open, and closed. | _ | Yes; Measure Name: Issue Status |
+| issue_tracker_id | bigint | Unique identifier generated for the issue or complaint. It is the primary key for the table. | _ | Yes; Measure Name: Issue Tracker Id |
+| ticket_code | string | Unique identifier of the issue for internal reference. | _ | Yes; Measure Name: Ticket Code |
+| year | int | Year of the issue. | _ | Yes; Dimension Name: Year |
+

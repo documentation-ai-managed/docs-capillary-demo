@@ -1,0 +1,130 @@
+openapi: 3.1.0
+info:
+  title: Perform Search (Cortex API)
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  /api_gateway/cortex/v1/search:
+    post:
+      summary: Perform Search (Cortex API)
+      description: ''
+      operationId: search-api-cortex-api
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}{\n    \"data\": {\n        \"orgId\": 100737,\n     \
+                    \   \"entityType\": \"CUSTOMER\",\n        \"entityDetails\":\
+                    \ [\n            {\n                \"entityId\": \"564647512\"\
+                    ,\n                \"entityData\": {\n                    \"firstName\"\
+                    : \"dave\",\n                    \"lastName\": \"mustaine\"\n\
+                    \                }\n            },\n            {\n          \
+                    \      \"entityId\": \"564647566\",\n                \"entityData\"\
+                    : {\n                    \"firstName\": \"dave\",\n          \
+                    \          \"lastName\": \"mustaine\",\n                    \"\
+                    externalId\": \"mega123\"\n                }\n            },\n\
+                    \            {\n                \"entityId\": \"564647568\",\n\
+                    \                \"entityData\": {\n                    \"firstName\"\
+                    : \"dave\",\n                    \"lastName\": \"mustaine\",\n\
+                    \                    \"externalId\": \"mega1234\"\n          \
+                    \      }\n            },\n            {\n                \"entityId\"\
+                    : \"564647574\",\n                \"entityData\": {\n        \
+                    \            \"firstName\": \"dave\",\n                    \"\
+                    lastName\": \"mustaine\",\n                    \"mobile\": \"\
+                    9988221100\",\n                    \"externalId\": \"mega12345\"\
+                    ,\n                    \"email\": \"tom.sawyer@capillarytech.com\"\
+                    \n                }\n            },\n            {\n         \
+                    \       \"entityId\": \"564647589\",\n                \"entityData\"\
+                    : {\n                    \"firstName\": \"dave\",\n          \
+                    \          \"lastName\": \"mustaine\",\n                    \"\
+                    externalId\": \"mega123457\"\n                }\n            },\n\
+                    \            {\n                \"entityId\": \"564662467\",\n\
+                    \                \"entityData\": {\n                    \"firstName\"\
+                    : \"dave\",\n                    \"lastName\": \"mustaine\",\n\
+                    \                    \"externalId\": \"mega123458\"\n        \
+                    \        }\n            },\n            {\n                \"\
+                    entityId\": \"564662468\",\n                \"entityData\": {\n\
+                    \                    \"firstName\": \"dave\",\n              \
+                    \      \"lastName\": \"mustaine\",\n                    \"externalId\"\
+                    : \"mega123459\"\n                }\n            },\n        \
+                    \    {\n                \"entityId\": \"564663537\",\n       \
+                    \         \"entityData\": {\n                    \"firstName\"\
+                    : \"dave\",\n                    \"lastName\": \"mustaine\",\n\
+                    \                    \"externalId\": \"mega1\"\n             \
+                    \   }\n            },\n            {\n                \"entityId\"\
+                    : \"564663541\",\n                \"entityData\": {\n        \
+                    \            \"firstName\": \"dave\",\n                    \"\
+                    lastName\": \"mustaine1\",\n                    \"externalId\"\
+                    : \"megaa\"\n                }\n            },\n            {\n\
+                    \                \"entityId\": \"564663557\",\n              \
+                    \  \"entityData\": {\n                    \"firstName\": \"dave\"\
+                    ,\n                    \"lastName\": \"mustaine1\",\n        \
+                    \            \"externalId\": \"megaa1\"\n                }\n \
+                    \           }\n        ]\n    },\n    \"errors\": []\n}"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl --location 'eu.api.capillarytech.com/api_gateway/cortex/v1/search'\
+            \ \\\n--header 'Content-Type: application/json' \\\n--data '{\n    \"\
+            entityType\": \"CUSTOMER\",\n\n    \"searchConditions\": [\n        {\n\
+            \            \"fieldId\": \"search_prefix\",\n            \"operator\"\
+            : \"STARTS_WITH\",\n            \"values\": [\n                \"Dave\"\
+            \n            ]\n        }\n    ]\n\n} '"
+          name: Using starts_with
+        - language: curl
+          code: "curl --location 'eu.api.capillarytech.com/api_gateway/cortex/v1/search'\
+            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization:\
+            \ Basic bmVlcmFqLmRvYzpiNGFmO0MDA5Y2IwMzZhNGNjZGMzMzQzMWVmOWFjOQ==' \\\
+            \n--header 'Cookie: _cfuvid=712eXDq0ppxlT168Xp.8agHB9AIF3dm1OHgmh0Qi_x0-1747981082674-0.0.1.1-604800000'\
+            \ \\\n--data '{\n    \"entityType\": \"CUSTOMER\",\n\n    \"searchConditions\"\
+            : [\n        {\n            \"fieldId\": \"search_prefix\",\n        \
+            \    \"operator\": \"STARTS_WITH\",\n            \"values\": [\n     \
+            \           \"Dave\"\n            ]\n        }\n    ],\n    \"limit\"\
+            : 10,\n    \"offset\":3\n\n} '"
+          name: with limit and offset
+        - language: curl
+          code: "curl --location 'eu.api.capillarytech.com/api_gateway/cortex/v1/search'\
+            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization:\
+            \ Basic bmVlcmFqLmRvYzpiNGFmO0MDA5Y2IwMzZhNGNjZGMzMzQzMWVmOWFjOQ==' \\\
+            \n--header 'Cookie: _cfuvid=712eXDq0ppxlT168Xp.8agHB9AIF3dm1OHgmh0Qi_x0-1747981082674-0.0.1.1-604800000'\
+            \ \\\n--data '{\n    \"entityType\": \"CUSTOMER\",\n\n    \"searchConditions\"\
+            : [\n        {\n            \"fieldId\": \"firstName\",\n            \"\
+            operator\": \"EQUALS,\n            \"values\": [\n                \"Dave\"\
+            \n            ]\n        }\n    ],\n    \"limit\": 10,\n    \"offset\"\
+            :3\n\n} '"
+          name: using Equals
+        - language: curl
+          code: "curl --location 'eu.api.capillarytech.com/api_gateway/cortex/v1/search'\
+            \ \\\n--header 'Content-Type: application/json' \\\n--data '{\n    \"\
+            entityType\": \"CUSTOMER\",\n\n    \"searchConditions\": [\n        {\n\
+            \            \"fieldId\": \"createdAt\",\n            \"operator\": \"\
+            RANGE\",\n            \"values\": [\n                1625097600, 1625184000\n\
+            \            ]\n        }\n    ]\n\n} '"
+          name: with range
+        samples-languages:
+        - curl
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

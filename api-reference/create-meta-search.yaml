@@ -1,0 +1,212 @@
+openapi: 3.1.0
+info:
+  title: Create search criteria
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  /api_gateway/cortex/v1/criteria:
+    post:
+      summary: Create search criteria
+      description: This API allows you to create a search criteria.
+      operationId: create-meta-search
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Search criteria created:
+                  value: "{\"data\":{\"id\":\"67c091299e22382d75d405bc\",\"orgId\"\
+                    :100737,\"name\":\"TransactionSearch3\",\"searchStrategyType\"\
+                    :\"COMBINATION\",\"entityType\":\"TRANSACTION\",\"fieldDefinitions\"\
+                    :[{\"fieldId\":\"billNumber\",\"fieldAlias\":\"billNumber\",\"\
+                    fieldType\":\"INDEXED\",\"dataSourceDetails\":{\"fieldReference\"\
+                    :\"billNumber\"},\"dataType\":\"STRING\"}],\"dataFieldDefinitions\"\
+                    :[{\"fieldId\":\"billNumber\",\"fieldAlias\":\"billNumber\",\"\
+                    fieldType\":\"DATA\",\"dataSourceDetails\":{\"fieldReference\"\
+                    :\"billNumber\"},\"dataType\":\"STRING\"},{\"fieldId\":\"billDate\"\
+                    ,\"fieldAlias\":\"billDate\",\"fieldType\":\"DATA\",\"dataSourceDetails\"\
+                    :{\"fieldReference\":\"billDate\"},\"dataType\":\"DATE\"}],\"\
+                    searchDataPolicy\":{\"dataRetentionPolicy\":{\"unit\":\"DAYS\"\
+                    ,\"value\":10},\"expireDataFrom\":\"CREATE\"},\"criteriaStatus\"\
+                    :{\"status\":\"VERIFICATION_IN_PROGRESS\"},\"bulkJobStatus\":\"\
+                    OPEN\",\"auditInfo\":{\"createdOn\":\"2025-02-27T16:22:01.911+00:00\"\
+                    ,\"createdBy\":75155282,\"lastUpdatedOn\":\"2025-02-27T16:22:01.911+00:00\"\
+                    ,\"lastUpdatedBy\":75155282}},\"errors\":[]}"
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 67c091299e22382d75d405bc
+                      orgId:
+                        type: integer
+                        example: 100737
+                        default: 0
+                      name:
+                        type: string
+                        example: TransactionSearch3
+                      searchStrategyType:
+                        type: string
+                        example: COMBINATION
+                      entityType:
+                        type: string
+                        example: TRANSACTION
+                      fieldDefinitions:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            fieldId:
+                              type: string
+                              example: billNumber
+                            fieldAlias:
+                              type: string
+                              example: billNumber
+                            fieldType:
+                              type: string
+                              example: INDEXED
+                            dataSourceDetails:
+                              type: object
+                              properties:
+                                fieldReference:
+                                  type: string
+                                  example: billNumber
+                            dataType:
+                              type: string
+                              example: STRING
+                      dataFieldDefinitions:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            fieldId:
+                              type: string
+                              example: billNumber
+                            fieldAlias:
+                              type: string
+                              example: billNumber
+                            fieldType:
+                              type: string
+                              example: DATA
+                            dataSourceDetails:
+                              type: object
+                              properties:
+                                fieldReference:
+                                  type: string
+                                  example: billNumber
+                            dataType:
+                              type: string
+                              example: STRING
+                      searchDataPolicy:
+                        type: object
+                        properties:
+                          dataRetentionPolicy:
+                            type: object
+                            properties:
+                              unit:
+                                type: string
+                                example: DAYS
+                              value:
+                                type: integer
+                                example: 10
+                                default: 0
+                          expireDataFrom:
+                            type: string
+                            example: CREATE
+                      criteriaStatus:
+                        type: object
+                        properties:
+                          status:
+                            type: string
+                            example: VERIFICATION_IN_PROGRESS
+                      bulkJobStatus:
+                        type: string
+                        example: OPEN
+                      auditInfo:
+                        type: object
+                        properties:
+                          createdOn:
+                            type: string
+                            example: "2025-02-27T16:22:01.911+00:00"
+                          createdBy:
+                            type: integer
+                            example: 75155282
+                            default: 0
+                          lastUpdatedOn:
+                            type: string
+                            example: "2025-02-27T16:22:01.911+00:00"
+                          lastUpdatedBy:
+                            type: integer
+                            example: 75155282
+                            default: 0
+                  errors:
+                    type: array
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/cortex/v1/criteria'\
+            \ \\\n--header 'X-CAP-API-AUTH-ORG-ID: 100737' \\\n--header 'Content-Type:\
+            \ application/json' \\\n--header 'Authorization: Basic bmVlcmFqLmpiNGFmODA0MDA5Y2IwMzZhNGNjZGMzMzQzMWVmOWFjOQ=='\
+            \ \\\n--header 'Cookie: _cfuvid=d6B6HLH6oGwJZ21oIncVwhv3KVFCQL1tV0M8y1Bz2L8-1740672713496-0.0.1.1-604800000'\
+            \ \\\n--data '{\n    \"name\": \"TransactionSearch3\",\n    \"entityType\"\
+            : \"TRANSACTION\",\n    \"searchStrategyType\": \"COMBINATION\",\n   \
+            \ \"fieldDefinitions\": [\n        {\n            \"fieldId\": \"billNumber\"\
+            ,\n            \"fieldAlias\": \"billNumber\",\n            \"fieldType\"\
+            : \"INDEXED\",\n            \"dataSourceDetails\": {\n               \
+            \ \"fieldReference\": \"billNumber\"\n            },\n            \"dataType\"\
+            : \"STRING\"\n        }\n        \n    ],\n    \"searchDataPolicy\": {\n\
+            \        \"dataRetentionPolicy\": {\n            \"unit\": \"DAYS\",\n\
+            \            \"value\": 10\n        },\n        \"expireDataFrom\": \"\
+            CREATE\"\n    }\n}'"
+          name: Transaction Search Criteria
+        - language: curl
+          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/cortex/v1/criteria'\
+            \ \\\n--header 'X-CAP-API-AUTH-ORG-ID: 100737' \\\n--header 'Content-Type:\
+            \ application/json' \\\n--header 'Authorization: Basic bmVlcmFqLmRvYzFmODA0MDA5Y2IwMzZhNGNjZGMzMzQzMWVmOWFjOQ=='\
+            \ \\\n--header 'Cookie: _cfuvid=XfPD1k6yhtSKjydb78p1yRVTyPer7G3A10DLFGZS3Dc-1741063927669-0.0.1.1-604800000'\
+            \ \\\n--data '{\n    \"name\": \"CustomerSearch5\",\n    \"entityType\"\
+            : \"CUSTOMER\",\n    \"searchStrategyType\": \"PREFIX\",\n    \"fieldDefinitions\"\
+            : [\n        {\n            \"fieldId\": \"firstName\",\n            \"\
+            fieldAlias\": \"firstName\",\n            \"fieldType\": \"INDEXED\",\n\
+            \            \"dataSourceDetails\": {\n                \"fieldReference\"\
+            : \"firstName\"\n            },\n            \"dataType\": \"STRING\"\n\
+            \        },\n {\n            \"fieldId\": \"lastName\",\n            \"\
+            fieldAlias\": \"lastName\",\n            \"fieldType\": \"INDEXED\",\n\
+            \            \"dataSourceDetails\": {\n                \"fieldReference\"\
+            : \"lastName\"\n            },\n            \"dataType\": \"STRING\"\n\
+            \        },\n        \n{\n            \"fieldId\": \"mobile\",\n     \
+            \       \"fieldAlias\": \"mobile\",\n            \"fieldType\": \"INDEXED\"\
+            ,\n            \"dataSourceDetails\": {\n                \"fieldReference\"\
+            : \"mobile\"\n            },\n            \"dataType\": \"STRING\"\n \
+            \       }\n        \n    ],\n    \"searchDataPolicy\": {\n        \"dataRetentionPolicy\"\
+            : {\n            \"unit\": \"DAYS\",\n            \"value\": 180\n   \
+            \     },\n        \"expireDataFrom\": \"CREATE\"\n    }\n}'"
+          name: Customer Search Criteria
+        samples-languages:
+        - curl
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

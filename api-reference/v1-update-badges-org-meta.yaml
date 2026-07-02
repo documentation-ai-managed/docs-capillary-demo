@@ -1,0 +1,57 @@
+openapi: 3.1.0
+info:
+  title: Update badges org meta
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  /api_gateway/v1/badges/orgMeta:
+    put:
+      summary: Update badges org meta
+      description: ''
+      operationId: update-badges-org-meta
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"data\": {\n        \"id\": \"string\",\n      \
+                    \  \"orgId\": orgId,\n        \"tags\": [\n            {\n   \
+                    \             \"key\": \"Type\",\n                \"dataType\"\
+                    : \"string\",\n                \"description\": \"Type of badge(Exclusive,Regular)\"\
+                    ,\n                \"mandatory\": false\n            },\n    \
+                    \        {\n                \"key\": \"Priority\",\n         \
+                    \       \"dataType\": \"integer\",\n                \"description\"\
+                    : \"Priority of the badge\",\n                \"mandatory\": false\n\
+                    \            }\n        ],\n        \"createdOn\": 1697636680.484000000,\n\
+                    \        \"createdBy\": 75097962,\n        \"lastUpdatedOn\":\
+                    \ 1699458829.960881000,\n        \"lastUpdatedBy\": 75097962\n\
+                    \    },\n    \"errors\": null,\n    \"warnings\": null\n}"
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/v1/badges/orgMeta'\
+            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
+            \ application/json'\\\n--header 'Authorization: Basic {token}' \\\n--data\
+            \ '{\n    \"orgId\": orgId,\n    \"tags\": [\n        {\n            \"\
+            key\": \"Type\",\n            \"dataType\": \"string\",\n            \"\
+            description\": \"Type of badge(Exclusive,Regular)\",\n            \"mandatory\"\
+            : false\n        },\n        {\n            \"key\": \"Priority\",\n \
+            \           \"dataType\": \"integer\",\n            \"description\": \"\
+            Priority of the badge\",\n            \"mandatory\": false\n        }\n\
+            \    ]\n}'"
+        samples-languages:
+        - curl
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

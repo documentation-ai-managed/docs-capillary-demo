@@ -1,0 +1,87 @@
+openapi: 3.1.0
+info:
+  title: Update badges group
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  "/api_gateway/v1/badges/{groupid}":
+    put:
+      summary: Update badges group
+      description: ''
+      operationId: update-badges-group
+      parameters:
+      - name: id
+        in: query
+        description: Unique ID of the group.
+        schema:
+          type: string
+      - name: groupid
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              - rank
+              properties:
+                name:
+                  type: string
+                  description: Name of the group
+                rank:
+                  type: string
+                  description: The rank of the group set by the user.
+            examples:
+              Request Example:
+                value:
+                  name: GROUP_RANK_59
+                  rank: 1
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Sample response:
+                  value:
+                    data:
+                      id: 69708faa0772ad476ecf8511
+                      orgId: 100737
+                      name: GROUP_RANK_59
+                      rank: 1
+                      createdBy: 75197372
+                      createdOn: 1768984490.856
+                      createdOnISO: "2026-01-21T08:34:50Z"
+                      lastUpdatedBy: 75197372
+                      lastUpdatedOn: 1771247122.42123
+                      lastUpdatedOnISO: "2026-02-16T13:05:22Z"
+                      isActive: true
+                    errors: []
+                    warnings: []
+                  summary: Sample response
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

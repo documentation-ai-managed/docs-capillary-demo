@@ -1,0 +1,104 @@
+openapi: 3.0.0
+info:
+  title: Get Customer Promotion Details
+  version: 1.0.0
+servers:
+  - url: https://{Host}
+    variables:
+      Host:
+        enum:
+          - eu.intouch.capillarytech.com
+          - intouch.capillary.co.in
+          - apac2.intouch.capillarytech.com
+          - sgcrm.cc.capillarytech.com
+          - intouch.capillarytech.cn.com
+          - north-america.intouch.capillarytech.com
+        default: eu.intouch.capillarytech.com
+paths:
+  /v3/customers/{customerId}/customerPromotionDetails/actionSummary:
+    get:
+      tags:
+        - Promotions
+      summary: Get Customer Promotion Details
+      operationId: getCustomerPromotionDetailsV3
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+          example: 388597285
+        - name: programId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+          example: 3334
+        - name: promotionId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+          example: 1133600978
+        - name: activityId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: activity_badge_1
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+          example: Basic dGlsbGhnXXXXXXXX
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              example:
+                orgId: 51948
+                programId: 3334
+                entityId: 388597285
+                promotionId: 1133600978
+                incentives:
+                  - activityId: activity_reward_1
+                    action: REWARD
+                    actionIssuedCount: 1
+                    actionId: '133423'
+                    lastIssuedOn: 1734533309000
+                  - activityId: activity_badge_1
+                    action: BADGES
+                    actionIssuedCount: 1
+                    actionId: SomeBadgeId
+                    lastIssuedOn: 1734533309000
+                  - activityId: activity_coupon_1
+                    action: COUPONS
+                    actionIssuedCount: 1
+                    actionId: '5231232'
+                    lastIssuedOn: 1734533309000
+                points:
+                  - pointsCategory: REGULAR_POINTS
+                    totalPointsIssued: '1234.000'
+                    numberOfTimesIssued: 1
+                    lastIssuedOn: 1734533309000
+                alternateCurrencies:
+                  - currencyName: some_ac
+                    totalCurrencyIssued: '1234.000'
+                    numberOfTimesIssued: 1
+                    lastIssuedOn: 1734533309000
+                warnings: []
+      security:
+        - basicAuth: []
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+tags:
+  - name: Promotions
+    description: Operations related to customer promotions

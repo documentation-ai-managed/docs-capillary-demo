@@ -1,0 +1,290 @@
+openapi: 3.1.0
+info:
+  title: Get all badge custom fields
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  /api_gateway/v1/badges/customField:
+    get:
+      summary: Get all badge custom fields
+      description: ''
+      operationId: get-all-custom-fields
+      parameters:
+      - name: size
+        in: query
+        schema:
+          type: string
+      - name: page
+        in: query
+        schema:
+          type: string
+      - name: order
+        in: query
+        schema:
+          type: string
+          enum:
+          - ASC
+          - DESC
+      - name: sortOn
+        in: query
+        description: LAST_UPDATED_DATE
+        schema:
+          type: string
+      - name: isActive
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Sample response:
+                  value:
+                    data:
+                      customFieldROList:
+                      - id: 6995bc2a306bcf780036c094
+                        orgId: 100737
+                        name: CF32 date
+                        isMandatory: false
+                        defaultValue: cgvhjb
+                        isActive: true
+                        dataType: STRING
+                        createdOn: 1771420714.676
+                        createdOnISO: "2026-02-18T13:18:34Z"
+                        createdBy: 75197372
+                        lastUpdatedOn: 1771496603.009
+                        lastUpdatedOnISO: "2026-02-19T10:23:23Z"
+                        lastUpdatedBy: 75197372
+                      - id: 6995c19691e2b31c0d2a81db
+                        orgId: 100737
+                        name: CF19 date
+                        isMandatory: false
+                        defaultValue: ''
+                        isActive: true
+                        dataType: STRING
+                        createdOn: 1771422102.365
+                        createdOnISO: "2026-02-18T13:41:42Z"
+                        createdBy: 75197372
+                        lastUpdatedOn: 1771422102.365
+                        lastUpdatedOnISO: "2026-02-18T13:41:42Z"
+                        lastUpdatedBy: 75197372
+                      - id: 6995bdbc91e2b31c0d2a81da
+                        orgId: 100737
+                        name: CF18 date
+                        isMandatory: false
+                        defaultValue: '0'
+                        isActive: true
+                        dataType: STRING
+                        createdOn: 1771421116.329
+                        createdOnISO: "2026-02-18T13:25:16Z"
+                        createdBy: 75197372
+                        lastUpdatedOn: 1771421116.329
+                        lastUpdatedOnISO: "2026-02-18T13:25:16Z"
+                        lastUpdatedBy: 75197372
+                      - id: 6995bd90306bcf780036c096
+                        orgId: 100737
+                        name: CF17 date
+                        isMandatory: false
+                        defaultValue: null
+                        isActive: true
+                        dataType: STRING
+                        createdOn: 1771421072.736
+                        createdOnISO: "2026-02-18T13:24:32Z"
+                        createdBy: 75197372
+                        lastUpdatedOn: 1771421072.736
+                        lastUpdatedOnISO: "2026-02-18T13:24:32Z"
+                        lastUpdatedBy: 75197372
+                      - id: 69660bb80772ad476ecf1809
+                        orgId: 100737
+                        name: CF31 date23
+                        isMandatory: false
+                        defaultValue: cgvhjb
+                        isActive: true
+                        dataType: STRING
+                        createdOn: 1768295352.346
+                        createdOnISO: "2026-01-13T09:09:12Z"
+                        createdBy: 75197941
+                        lastUpdatedOn: 1768295588.086
+                        lastUpdatedOnISO: "2026-01-13T09:13:08Z"
+                        lastUpdatedBy: 75197941
+                      - id: 691304658cbebe157550f64d
+                        orgId: 100737
+                        name: Test CF 01
+                        isMandatory: true
+                        defaultValue: '0'
+                        isActive: true
+                        dataType: INTEGER
+                        createdOn: 1762853989.253
+                        createdOnISO: "2025-11-11T09:39:49Z"
+                        createdBy: 75176138
+                        lastUpdatedOn: 1762853989.253
+                        lastUpdatedOnISO: "2025-11-11T09:39:49Z"
+                        lastUpdatedBy: 75176138
+                      - id: 691303e68cbebe157550f64c
+                        orgId: 100737
+                        name: Test CF
+                        isMandatory: true
+                        defaultValue: 'null'
+                        isActive: true
+                        dataType: STRING
+                        createdOn: 1762853862.878
+                        createdOnISO: "2025-11-11T09:37:42Z"
+                        createdBy: 75176138
+                        lastUpdatedOn: 1762853862.878
+                        lastUpdatedOnISO: "2025-11-11T09:37:42Z"
+                        lastUpdatedBy: 75176138
+                      - id: 68c80d2e28a4f97c042c5daa
+                        orgId: 100737
+                        name: CF 155
+                        isMandatory: false
+                        defaultValue: null
+                        isActive: true
+                        dataType: STRING
+                        createdOn: 1757941038.711
+                        createdOnISO: "2025-09-15T12:57:18Z"
+                        createdBy: 75176138
+                        lastUpdatedOn: 1762843579.904
+                        lastUpdatedOnISO: "2025-11-11T06:46:19Z"
+                        lastUpdatedBy: 75176138
+                      - id: 6912db4c2814b4096eba9531
+                        orgId: 100737
+                        name: CF 177
+                        isMandatory: true
+                        defaultValue: '0'
+                        isActive: true
+                        dataType: INTEGER
+                        createdOn: 1762843468.247
+                        createdOnISO: "2025-11-11T06:44:28Z"
+                        createdBy: 75176138
+                        lastUpdatedOn: 1762843468.247
+                        lastUpdatedOnISO: "2025-11-11T06:44:28Z"
+                        lastUpdatedBy: 75176138
+                      - id: 6912cb812814b4096eba9465
+                        orgId: 100737
+                        name: CF 09
+                        isMandatory: true
+                        defaultValue: 'null'
+                        isActive: true
+                        dataType: STRING
+                        createdOn: 1762839425.753
+                        createdOnISO: "2025-11-11T05:37:05Z"
+                        createdBy: 75176138
+                        lastUpdatedOn: 1762839425.753
+                        lastUpdatedOnISO: "2025-11-11T05:37:05Z"
+                        lastUpdatedBy: 75176138
+                      pagination:
+                        page: 0
+                        size: 10
+                        total: 18
+                        totalPages: 2
+                    errors: []
+                    warnings: []
+                  summary: Sample response
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      customFieldROList:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: 65bb3d6afd3e324f2cac8839
+                            orgId:
+                              type: integer
+                              example: 100606
+                              default: 0
+                            name:
+                              type: string
+                              example: CF1
+                            isMandatory:
+                              type: boolean
+                              example: true
+                              default: true
+                            defaultValue:
+                              type: string
+                              example: CF1 value
+                            isActive:
+                              type: boolean
+                              example: true
+                              default: true
+                            dataType:
+                              type: string
+                              example: STRING
+                            createdOn:
+                              type: number
+                              example: 1706769770.082
+                              default: 0
+                            createdBy:
+                              type: integer
+                              example: 75097962
+                              default: 0
+                            lastUpdatedOn:
+                              type: number
+                              example: 1706769770.082
+                              default: 0
+                            lastUpdatedBy:
+                              type: integer
+                              example: 75097962
+                              default: 0
+                      pagination:
+                        type: object
+                        properties:
+                          page:
+                            type: integer
+                            example: 0
+                            default: 0
+                          size:
+                            type: integer
+                            example: 50
+                            default: 0
+                          total:
+                            type: integer
+                            example: 6
+                            default: 0
+                          totalPages:
+                            type: integer
+                            example: 1
+                            default: 0
+                  errors:
+                    type: array
+                  warnings:
+                    type: array
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: shell
+          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/customField'\
+            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
+            \ application/json' \\\n--header 'accept: application/json' \\\n--header\
+            \ 'Authorization: Basic bWFkjU2YQ==' \\\n--header 'Cookie: _cfuvid=.WgVCi5zQoIGi4K1C9BdZuw_u5XdPxOmzWrvi.sO9xA-1771420714759-0.0.1.1-604800000'"
+          name: 'Sample request '
+        samples-languages:
+        - shell
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

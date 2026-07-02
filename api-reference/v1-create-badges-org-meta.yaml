@@ -1,0 +1,179 @@
+openapi: 3.1.0
+info:
+  title: Create badges org meta
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  /api_gateway/v1/badges/orgMeta:
+    post:
+      summary: Create badges org meta
+      description: ''
+      operationId: create-badges-org-meta
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - orgID
+              properties:
+                orgID:
+                  type: string
+                  description: Unique ID of the org.
+                tags:
+                  type: object
+                  properties:
+                    key:
+                      type: string
+                      description: "The name of the tag, e.g., \"Category\"."
+                    dataType:
+                      type: string
+                      description: The data type of the tag.
+                    description:
+                      type: string
+                      description: Description of the tag.
+                    mandatory:
+                      type: string
+                      description: Boolean variable indicating if the tag is required
+                        or not.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"data\": {\n    \"id\": \"string\",\n    \"orgId\"\
+                    : 0,\n    \"tags\": [\n      {\n        \"key\": \"Category\"\
+                    ,\n        \"dataType\": \"string\",\n        \"description\"\
+                    : \"Type of badge(Exclusive,Regular)\",\n        \"mandatory\"\
+                    : false\n      }\n    ],\n    \"createdOn\": \"2023-11-08T15:43:40.382Z\"\
+                    ,\n    \"createdBy\": 0,\n    \"lastUpdatedOn\": \"2023-11-08T15:43:40.382Z\"\
+                    ,\n    \"lastUpdatedBy\": 0\n  },\n  \"errors\": [\n    {\n  \
+                    \    \"code\": 0,\n      \"message\": \"string\",\n      \"reference\"\
+                    : \"string\"\n    }\n  ],\n  \"warnings\": [\n    {\n      \"\
+                    code\": 0,\n      \"message\": \"string\"\n    }\n  ]\n}"
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: string
+                      orgId:
+                        type: integer
+                        example: 0
+                        default: 0
+                      tags:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            key:
+                              type: string
+                              example: Category
+                            dataType:
+                              type: string
+                              example: string
+                            description:
+                              type: string
+                              example: Type of badge(Exclusive,Regular)
+                            mandatory:
+                              type: boolean
+                              example: false
+                              default: true
+                      createdOn:
+                        type: string
+                        example: "2023-11-08T15:43:40.382Z"
+                      createdBy:
+                        type: integer
+                        example: 0
+                        default: 0
+                      lastUpdatedOn:
+                        type: string
+                        example: "2023-11-08T15:43:40.382Z"
+                      lastUpdatedBy:
+                        type: integer
+                        example: 0
+                        default: 0
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          example: 0
+                          default: 0
+                        message:
+                          type: string
+                          example: string
+                        reference:
+                          type: string
+                          example: string
+                  warnings:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          example: 0
+                          default: 0
+                        message:
+                          type: string
+                          example: string
+        '409':
+          description: '409'
+          content:
+            application/json:
+              examples:
+                error code 999999:
+                  value: "{\n    \"data\": null,\n    \"errors\": [\n        {\n \
+                    \           \"code\": 999999,\n            \"message\": \"ORG_CONFIG_ALREADY_EXIST_PLEASE_USE_UPDATE_ORG_CONFIG_API\"\
+                    ,\n            \"reference\": null\n        }\n    ],\n    \"\
+                    warnings\": null\n}"
+              schema:
+                type: object
+                properties:
+                  data: {}
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          example: 999999
+                          default: 0
+                        message:
+                          type: string
+                          example: ORG_CONFIG_ALREADY_EXIST_PLEASE_USE_UPDATE_ORG_CONFIG_API
+                        reference: {}
+                  warnings: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/orgMeta'\
+            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
+            \ application/json'\\\n--header 'Authorization: Basic {token}' \\\n--data\
+            \ '{\n    \"orgId\": orgid,\n    \"tags\": [\n        {\n            \"\
+            key\": \"Category\",\n            \"dataType\": \"string\",\n        \
+            \    \"description\": \"Type of badge(Exclusive,Regular)\",\n        \
+            \    \"mandatory\": false\n        }\n    ]\n}'"
+        samples-languages:
+        - curl
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

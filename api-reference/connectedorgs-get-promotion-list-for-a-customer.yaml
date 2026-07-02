@@ -1,0 +1,220 @@
+openapi: 3.1.0
+info:
+  title: Get Loyalty Promotion List of a Customer (Connected Org)
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  /v2.1/customers/lookup/promotionData:
+    get:
+      summary: Get Loyalty Promotion List of a Customer (Connected Org)
+      description: ''
+      operationId: connectedorgs-get-promotion-list-for-a-customer
+      parameters:
+      - name: identifierName
+        in: query
+        description: Identifier type to identify the customer.
+        required: true
+        schema:
+          type: string
+      - name: identifierValue
+        in: query
+        description: Value of the identifier.
+        required: true
+        schema:
+          type: string
+      - name: source
+        in: query
+        description: Specifies the source from where customer details are retrieved.
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Number of results that need to be displayed. The values from
+          zero to a maximum of 100 are supported.
+        schema:
+          type: string
+      - name: offset
+        in: query
+        description: Start index for data retrieval. This value should not be negative.
+        schema:
+          type: string
+      - name: DATA-SCOPE-ORG
+        in: header
+        description: List of Organisation IDs
+        schema:
+          type: string
+      - name: DATA-SCOPE
+        in: header
+        description: The scope to authorize access (SELF, OTHER, ALL)
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"pageDetails\": {\n        \"pageNumber\": 0,\n\
+                    \        \"pageSize\": 10,\n        \"totalEntries\": 1,\n   \
+                    \     \"pageCount\": 1\n    },\n    \"customerId\": 347297848,\n\
+                    \    \"promotions\": [\n        {\n            \"promotionId\"\
+                    : 1122938,\n            \"promotionName\": \"Award50\",\n    \
+                    \        \"programId\": 1147,\n            \"startDate\": \"2024-08-30T00:00:00.000Z\"\
+                    ,\n            \"endDate\": \"2024-09-29T23:59:59.000Z\",\n  \
+                    \          \"identifier\": \"ed64e808-dc10-4784-a752-eb7d8d55c87e\"\
+                    ,\n            \"description\": \"Award 50\",\n            \"\
+                    active\": true,\n            \"eventName\": \"TransactionAdd\"\
+                    ,\n            \"limits\": {\n                \"maxPointsPerEvent\"\
+                    : \"0\",\n                \"pointsPerCustomer\": \"0\",\n    \
+                    \            \"numberOFTimesPerCustomer\": 0,\n              \
+                    \  \"totalPointsInPromotion\": \"0\"\n            },\n       \
+                    \     \"customerUsage\": {\n                \"currentPointsPerCustomer\"\
+                    : \"50.000\",\n                \"currentNumberOfTimesPerCustomer\"\
+                    : 1,\n                \"currentTotalPointsInPromotion\": \"0\"\
+                    \n            },\n            \"pointsOfferType\": \"GENERIC\"\
+                    ,\n            \"promotionRestriction\": {\n                \"\
+                    issualRestrictions\": [],\n                \"earnRestrictions\"\
+                    : [],\n                \"redemptionRestrictions\": []\n      \
+                    \      },\n            \"orgId\": 50405\n        }\n    ],\n \
+                    \   \"warnings\": []\n}"
+              schema:
+                type: object
+                properties:
+                  pageDetails:
+                    type: object
+                    properties:
+                      pageNumber:
+                        type: integer
+                        example: 0
+                        default: 0
+                      pageSize:
+                        type: integer
+                        example: 10
+                        default: 0
+                      totalEntries:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pageCount:
+                        type: integer
+                        example: 1
+                        default: 0
+                  customerId:
+                    type: integer
+                    example: 347297848
+                    default: 0
+                  promotions:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        promotionId:
+                          type: integer
+                          example: 1122938
+                          default: 0
+                        promotionName:
+                          type: string
+                          example: Award50
+                        programId:
+                          type: integer
+                          example: 1147
+                          default: 0
+                        startDate:
+                          type: string
+                          example: "2024-08-30T00:00:00.000Z"
+                        endDate:
+                          type: string
+                          example: "2024-09-29T23:59:59.000Z"
+                        identifier:
+                          type: string
+                          example: ed64e808-dc10-4784-a752-eb7d8d55c87e
+                        description:
+                          type: string
+                          example: Award 50
+                        active:
+                          type: boolean
+                          example: true
+                          default: true
+                        eventName:
+                          type: string
+                          example: TransactionAdd
+                        limits:
+                          type: object
+                          properties:
+                            maxPointsPerEvent:
+                              type: string
+                              example: '0'
+                            pointsPerCustomer:
+                              type: string
+                              example: '0'
+                            numberOFTimesPerCustomer:
+                              type: integer
+                              example: 0
+                              default: 0
+                            totalPointsInPromotion:
+                              type: string
+                              example: '0'
+                        customerUsage:
+                          type: object
+                          properties:
+                            currentPointsPerCustomer:
+                              type: string
+                              example: '50.000'
+                            currentNumberOfTimesPerCustomer:
+                              type: integer
+                              example: 1
+                              default: 0
+                            currentTotalPointsInPromotion:
+                              type: string
+                              example: '0'
+                        pointsOfferType:
+                          type: string
+                          example: GENERIC
+                        promotionRestriction:
+                          type: object
+                          properties:
+                            issualRestrictions:
+                              type: array
+                            earnRestrictions:
+                              type: array
+                            redemptionRestrictions:
+                              type: array
+                        orgId:
+                          type: integer
+                          example: 50405
+                          default: 0
+                  warnings:
+                    type: array
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"errors\": [\n        {\n            \"status\"\
+                    : false,\n            \"message\": \"Invalid source\",\n     \
+                    \       \"code\": 8003\n        }\n}      "
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl --location 'host/v2.1/customers/lookup/promotionData?identifierName=mobile&identifierValue=9988221100&source=INSTORE'\
+            \ \\\n--header 'DATA-SCOPE: OTHER' \\\n--header 'DATA-SCOPE-ORG: 50405'\
+            \ \\"
+          name: cURL
+        samples-languages:
+        - curl
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

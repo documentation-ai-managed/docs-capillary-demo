@@ -1,0 +1,368 @@
+---
+title: 'Get Details of Loyalty Promotion using ID '
+---
+## Get Details of Loyalty Promotion using ID
+
+Endpoint for GET /v3/promotions/6903253184daf5486232dec9
+
+This API allows you to retrive configuration details of a specific campaign. Instead of searching through broader lists, you can use this endpoint to retrieve and filter out the exact details of a single promotion, including its defined activities, milestones, and applied limits.
+
+## Example request
+
+<CodeGroup show-lines="true" tabs={["cURL"]}>
+  ```bash wrap="true" cURL
+  curl --location 'https://eu.api.capillarytech.com/v3/promotions/6903253184daf5486232dec9' \
+  --header 'Authorization: Basic Y3MmNhZjY1ZmY=' \
+  --header 'Cookie: _cfuvid=T3K.m2gK9VcrapHl6j6_t73Xeq0OAdOcgzk3_Y9mvlk-1765201565371-0.0.1.1-604800000'
+  ```
+</CodeGroup>
+
+## Prerequisites
+
+- Authentication: Basic or OAuth authentication.
+
+- Default access group
+
+## Path parameters
+
+| Parameter Name | Data Type | Description                |
+| :------------- | :-------- | :------------------------- |
+| promotionId    | String    | Unique ID of the promotion |
+
+## Query parameters
+
+| Field                | Type    | Required | Description                                                                                                                                                                                                                   |
+| -------------------- | ------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| includeDraftDetails  | boolean | Optional | Indicates whether to include details about the draft version if a promotion exists as both a live version and a draft. true includes this extra draft info. **Supported Values:** true, false. Default value is false.        |
+| includeParentDetails | boolean | Optional | Indicates whether to include details about the parent promotion if the retrieved promotion is a version or clone. true includes info about the original promotion. **Supported Values:** true, false. Default value is false. |
+
+## Example response
+
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+  ```json JSON
+  {
+      "data": {
+          "metadata": {
+              "name": "Efd Activity Based Prom",
+              "description": "Enrollment for all members, requires activity-based opt-in.",
+              "programId": "HiddenGemDefaultProgram_ID",
+              "orgId": 100458,
+              "startDate": "2025-11-27T00:00:00Z",
+              "endDate": "2025-12-27T23:59:59Z",
+              "timezoneName": "Asia/Kolkata",
+              "promotionType": "LOYALTY",
+              "status": "DRAFT",
+              "promoIdentifier": null,
+              "promotionId": 0,
+              "createdOn": "2025-10-30T08:43:29Z",
+              "lastModifiedOn": "2025-10-30T08:43:29Z",
+              "createdBy": 0,
+              "lastModifiedBy": 0,
+              "loyaltyEarningType": null,
+              "version": null,
+              "draftDetails": null,
+              "loyaltyConfigMetaData": {
+                  "isStackable": false,
+                  "isConsideredForRanking": false,
+                  "isExclusive": false,
+                  "isAlwaysApply": false,
+                  "skipEarnedDateCheckOnRedeem": null
+              },
+              "promotionMetadata": null,
+              "commonStrategies": null,
+              "promotionMode": "UNIFIED"
+          },
+          "customerEnrolment": {
+              "enrolmentMethod": "TRANSACTION"
+          },
+          "activities": [
+              {
+                  "type": "SINGLE",
+                  "id": "activity_reward_trigger",
+                  "type": "SINGLE",
+                  "name": "Main Reward Activity",
+                  "commonCycleActionMapping": [
+                      {
+                          "cycle": "cycle_promo_period",
+                          "actions": [
+                              {
+                                  "id": "action_award_points",
+                                  "actionName": "AWARD_CURRENCY",
+                                  "actionClass": "com.capillary.loyalty.engine.actor.promotion.actions.AwardCurrency",
+                                  "mandatoryPropertiesValues": {
+                                      "POINTS_TO_AWARD": "100",
+                                      "CURRENCY_IDENTIFIER": "POINTS"
+                                  }
+                              }
+                          ],
+                          "startDate": "2025-11-27",
+                          "endDate": "2025-12-27"
+                      }
+                  ],
+                  "event": "TransactionAdd",
+                  "allCycles": []
+              }
+          ],
+          "comments": null,
+          "parentId": null,
+          "parentDetails": null,
+          "version": 1,
+          "limits": [],
+          "liabilityOwnerSplitInfo": [],
+          "id": "6903253184daf5486232dec9",
+          "workflowMetadata": {
+              "enrolment": {
+                  "basedOn": null,
+                  "activities": null,
+                  "audienceMapping": null,
+                  "restrictions": null
+              },
+              "optin": {
+                  "basedOn": "ACTIVITY",
+                  "audienceMapping": null,
+                  "activities": [
+                      {
+                          "type": "SINGLE",
+                          "id": "activity_optin_trigger",
+                          "type": "SINGLE",
+                          "name": "Opt-in Trigger Activity",
+                          "event": "TransactionAdd",
+                          "allCycles": []
+                      }
+                  ],
+                  "restrictions": null
+              }
+          },
+          "communicationApprovalStatus": null
+      },
+      "errors": null,
+      "warnings": null
+  }
+  ```
+</CodeGroup>
+
+## Response parameters
+
+| Field                                    | Type               | Description                                                                                                                                                                   |
+| ---------------------------------------- | ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| data                                     | Object             | Defines the main data object containing pagination details and the list of promotions. Possible Values: A valid PageUnifiedPromotion object.                                  |
+| .totalElements                           | integer (int64)    | Specifies the total number of promotions found matching the filter criteria across all pages. Possible Values: Non-negative integer.                                          |
+| .totalPages                              | integer (int32)    | Specifies the total number of pages available based on the size parameter. Possible Values: Non-negative integer.                                                             |
+| .size                                    | integer (int32)    | Specifies the number of items requested per page (reflects the size query parameter). Possible Values: Positive integer.                                                      |
+| .content                                 | Array (Object)     | Defines the list of UnifiedPromotion objects for the current page. Possible Values: Array of UnifiedPromotion objects.                                                        |
+| ..id                                     | String             | Specifies the unique system-generated identifier for the unified promotion. Possible Values: System-generated unique string ID.                                               |
+| ..metadata                               | Object             | Defines the object containing all metadata for the promotion (Metadata). Possible Values: A valid Metadata object.                                                            |
+| ...name                                  | String             | Specifies the name of the promotion. Possible Values: String.                                                                                                                 |
+| ...description                           | String             | Specifies the description of the promotion. Possible Values: String.                                                                                                          |
+| ...programId                             | String             | Specifies the program ID associated with the promotion. Possible Values: String or Integer Program ID.                                                                        |
+| ...orgId                                 | Integer (int64)    | Specifies the unique ID of the organization that owns this promotion.                                                                                                         |
+| ...startDate                             | String (date-time) | Specifies the start date and time of the promotion in ISO 8601 format.                                                                                                        |
+| ...endDate                               | String (date-time) | Specifies the end date and time of the promotion in ISO 8601 format.                                                                                                          |
+| ...timezoneName                          | String             | [IANA time zone name](https://timeapi.io/documentation/iana-timezones) for the promotion. This is a reference label to identify the time zone where the promotion is created. |
+| ...promotionType                         | String             | Specifies the type of promotion. Possible Values: `LOYALTY`, `GENERIC`, `DISCOUNT`.                                                                                           |
+| ...status                                | String             | Indicates the current status of the promotion. Possible Values: `DRAFT`, `ACTIVE`,`UPCOMING`.                                                                                 |
+| ...promoIdentifier                       | String             | Specifies a unique string identifier for the promotion.                                                                                                                       |
+| ...promotionId                           | Integer (int32)    | Specifies the legacy numerical promotion ID (system-assigned).                                                                                                                |
+| ...createdOn                             | String (date-time) | Specifies the creation timestamp (system-set) in ISO 8601 format.                                                                                                             |
+| ...lastModifiedOn                        | String (date-time) | Specifies the last modification timestamp (system-set) in ISO 8601 format.                                                                                                    |
+| ...createdBy                             | Integer (int32)    | Specifies the user ID of the creator (system-set).                                                                                                                            |
+| ...lastModifiedBy                        | Integer (int32)    | Specifies the user ID of the last modifier (system-set).                                                                                                                      |
+| ...loyaltyEarningType                    | String             | Indicates the loyalty earning type. Possible Values: DIRECT\_EARN, ISSUE\_AND\_EARN, null.                                                                                    |
+| ...version                               | String             | Specifies the version string of the promotion (system managed). Possible Values: String version identifier or null.                                                           |
+| ...draftDetails                          | Object             | Defines details if the promotion is a draft (DraftDetails). Included if includeDraftDetails is true. Possible Values: A valid DraftDetails object or null.                    |
+| ....id                                   | String             | Specifies the draft's unique ID. Possible Values: String ID.                                                                                                                  |
+| ....status                               | String             | Specifies the draft's status. Possible Values: String status.                                                                                                                 |
+| ....version                              | Integer (int32)    | Specifies the draft version number. Possible Values: Integer.                                                                                                                 |
+| ....lastModifiedBy                       | Integer (int32)    | Specifies the user who last modified the draft. Possible Values: Integer user ID.                                                                                             |
+| ....lastModifiedOn                       | String (date-time) | Specifies when the draft was last modified, in ISO 8601 format.                                                                                                               |
+| ...loyaltyConfigMetaData                 | Object             | Defines loyalty-specific configurations (LoyaltyConfigMetaDto). Possible Values: A valid LoyaltyConfigMetaDto object.                                                         |
+| ....isStackable                          | Boolean            | Indicates if the promotion can be applied alongside other active promotions within the same transaction.                                                                      |
+| ....isConsideredForRanking               | Boolean            | Indicates if the promotion is included in priority ranking, which controls which promotions take precedence when multiple are applicable to the same transaction.             |
+| ....isExclusive                          | Boolean            | Indicates if the promotion is evaluated in isolation, preventing any other promotion from being applied in the same transaction.                                              |
+| ....isAlwaysApply                        | Boolean            | Indicates if the promotion is applied unconditionally, bypassing the ranking and stacking rules configured for the org.                                                       |
+| ....skipEarnedDateCheckOnRedeem          | Boolean            | Indicates if customers can redeem rewards from this promotion outside its active earning period.                                                                              |
+| ...promotionMetadata                     | Array (Object)     | Defines a list of custom key-value metadata pairs (PromotionMetadata). Possible Values: Array of PromotionMetadata objects or null.                                           |
+| ....isBrandDefined                       | String             | Indicates if this metadata key-value pair was configured by the brand, as opposed to being system-generated.                                                                  |
+| ....key                                  | String             | Specifies the identifier of the custom metadata attribute associated with the promotion.                                                                                      |
+| ....value                                | String             | Specifies the value associated with the metadata key.                                                                                                                         |
+| ...commonStrategies                      | Object             | Defines common strategies, like expiry (CommonStrategies). Possible Values: A valid CommonStrategies object or null.                                                          |
+| ....expiry                               | Array (Object)     | Defines a list of expiry strategies (StrategyInfo). Possible Values: Array of StrategyInfo objects.                                                                           |
+| .....strategyTypeId                      | Integer (int32)    | Specifies the strategy type ID. Possible Values: Integer ID.                                                                                                                  |
+| .....propertyValues                      | String             | Specifies the property values for the strategy. Possible Values: JSON string.                                                                                                 |
+| .....owner                               | String             | Specifies the owner of the strategy. Possible Values: String.                                                                                                                 |
+| .....updatedViaNewUI                     | Boolean            | Indicates if this expiry strategy was last updated using the Loyalty+ UI.                                                                                                     |
+| .....useCommonExpiryStrategy             | Boolean            | Indicates if the promotion uses the org-level expiry strategy instead of a promotion-level configuration.                                                                     |
+| .....strategyRef                         | String             | Specifies the strategy reference. Possible Values: String.                                                                                                                    |
+| .....strategySubType                     | String             | Indicates the sub-type of the expiry strategy, such as a fixed expiry date or a rolling window from the date of issue.                                                        |
+| ...promotionMode                         | String             | Indicates the mode under which the promotion was created.                                                                                                                     |
+| ..customerEnrolment                      | Object             | Defines the customer enrolment rules (CustomerEnrolment). Possible Values: A valid CustomerEnrolment object.                                                                  |
+| ...enrolmentMethod                       | String             | Indicates the method of customer enrolment. Possible Values: TRANSACTION, IMPORT.                                                                                             |
+| ...audienceGroups                        | Array (Object)     | Defines a list of audience groups for enrolment (AudienceGroupDetails). Possible Values: Array of AudienceGroupDetails objects or null.                                       |
+| ....audienceGroupId                      | Integer (int64)    | Specifies the unique ID for the audience group. Possible Values: Integer ID.                                                                                                  |
+| ....audienceGroupName                    | String             | Specifies the name of the audience group. Possible Values: String.                                                                                                            |
+| ....description                          | String             | Specifies the description of the audience group. Possible Values: String.                                                                                                     |
+| ..activities                             | Array (Object)     | Defines a list of activities (SingleActivity or GroupActivity). Possible Values: Array of valid Activity objects.                                                             |
+| ...id                                    | String             | Specifies the unique ID for the activity. Possible Values: String ID.                                                                                                         |
+| ...type                                  | String             | Specifies the type of the activity. Possible Values: SINGLE, GROUP.                                                                                                           |
+| ...name                                  | String             | Specifies the name of the activity. Possible Values: String.                                                                                                                  |
+| ...refId                                 | String             | Specifies the reference ID for the activity. Possible Values: String or null.                                                                                                 |
+| ...parentId                              | String             | Specifies the parent activity's ID. Possible Values: String ID or null.                                                                                                       |
+| ...commonCycleActionMapping              | Array (Object)     | Defines action mappings for common cycles (CycleActionMapping). Possible Values: Array of CycleActionMapping objects.                                                         |
+| ....cycle                                | String             | Specifies the cycle name/ID. Possible Values: String ID.                                                                                                                      |
+| ....defaultValue                         | Number (double)    | Specifies the default value for the action. Possible Values: Number or null.                                                                                                  |
+| ....actions                              | Array (Object)     | Defines a list of actions (Action). Possible Values: Array of Action objects.                                                                                                 |
+| .....id                                  | String             | Specifies the action ID. Possible Values: String ID.                                                                                                                          |
+| .....actionName                          | String             | Specifies the action name. Possible Values: String representing a valid action name.                                                                                          |
+| .....actionClass                         | String             | Specifies the action class. Possible Values: Fully qualified Java class name string.                                                                                          |
+| .....description                         | String             | Specifies the action description. Possible Values: String or null.                                                                                                            |
+| .....mandatoryPropertiesValues           | Object             | Defines key-value pairs for mandatory properties. Possible Values: Object with string keys/values.                                                                            |
+| .....mandatoryComplexPropertiesValues    | Object             | Defines key-value pairs for mandatory complex properties. Possible Values: Object with string keys and object values, or null.                                                |
+| .....embeddedStrategies                  | Array (Object)     | Defines a list of embedded StrategyInfo objects. Possible Values: Array of StrategyInfo objects or null.                                                                      |
+| ....startDate                            | String (date-time) | Specifies the cycle mapping start date, in ISO 8601 format.                                                                                                                   |
+| ....endDate                              | String (date-time) | Specifies the cycle mapping end date, in ISO 8601 format.                                                                                                                     |
+| ....rulesetId                            | String             | Specifies the cycle mapping ruleset ID. Possible Values: String ID or null.                                                                                                   |
+| ...rulesetId                             | String             | Specifies the ruleset ID for the activity. Possible Values: String ID or null.                                                                                                |
+| ...cycles                                | Array (Object)     | Defines a list of general cycles (Cycle). Possible Values: Array of Cycle objects or null.                                                                                    |
+| ...event                                 | String             | Specifies the event associated with the single activity. Possible Values: String event name.                                                                                  |
+| ...ruleExpression                        | String             | Specifies the rule expression for the single activity. Possible Values: String DSL or null.                                                                                   |
+| ...expJSON                               | String             | Specifies the rule expression in JSON format.                                                                                                                                 |
+| ...frequencyType                         | String             | Specifies how often rewards can be earned within the promotion's active period.                                                                                               |
+| ...targetEvaluationType                  | String             | Specifies the method used to evaluate whether qualifying events meet the promotion's target criteria.                                                                         |
+| ...targetCycleStartDate                  | String (date-time) | Specifies the target cycle start date, in ISO 8601 format.                                                                                                                    |
+| ...targetCycleEndDate                    | String (date-time) | Specifies the target cycle end date. Possible Values: ISO 8601 date-time string or null.                                                                                      |
+| ...activityCycles                        | Array (Object)     | Defines the distinct earning periods associated with this activity, controlling when rewards are earned and reset.                                                            |
+| ...milestones                            | Array (Object)     | Defines milestones (Milestone). Possible Values: Array containing maximum one Milestone object.                                                                               |
+| ...allCycles                             | Array (Object)     | Defines all earning and redemption cycles applicable to this activity, including their start and end dates.                                                                   |
+| --- Fields specific to GroupActivity --- |                    |                                                                                                                                                                               |
+| ...event                                 | String             | Specifies the trigger event that initiates evaluation of this activity group.                                                                                                 |
+| ...combinationType                       | String             | Indicates how child activities are combined. Possible Values: ANY, ALL.                                                                                                       |
+| ...children                              | Array (Object)     | Defines an array of objects that contain child GroupActivity or SingleActivity objects.                                                                                       |
+| ...ruleExpression                        | String             | Specifies the conditional logic evaluated to determine if this activity group's rewards should be awarded.                                                                    |
+| ...expJSON                               | String             | Specifies the rule expression in JSON format.                                                                                                                                 |
+| ..comments                               | String             | Specifies internal or administrative notes about the promotion for business stakeholders.                                                                                     |
+| ..parentId                               | String             | Specifies the original promotion ID when this is a version or derived instance, linking it back to its source.                                                                |
+| ..parentDetails                          | Object             | Defines details of the parent promotion (ParentDetails). Included if includeParentDetails is true.                                                                            |
+| ...id                                    | String             | Specifies the parent promotion ID. Possible Values: String ID.                                                                                                                |
+| ...status                                | String             | Specifies the parent promotion status. Possible                                                                                                                               |
+| ...version                               | Integer (int32)    | Specifies the parent promotion version. Possible Values: Integer.                                                                                                             |
+| ...lastModifiedBy                        | Integer (int32)    | Specifies the user who last modified the parent.                                                                                                                              |
+| ...lastModifiedOn                        | String (date-time) | Specifies when the parent was last modified, in ISO 8601 format.                                                                                                              |
+| ..version                                | Integer (int32)    | Specifies the version number of the promotion. Possible Values: Integer version number (system-managed).                                                                      |
+| ..limits                                 | Array (Object)     | Defines a list of limits for the promotion (Limit). Possible Values: Array of Limit objects.                                                                                  |
+| ...id                                    | Integer (int64)    | Specifies the limit ID. Possible Values: Integer ID (system-assigned).                                                                                                        |
+| ...entityScope                           | String             | Indicates the scope of the limit. Possible Values: PROGRAM, PROMOTION.                                                                                                        |
+| ...granularity                           | String             | Indicates the granularity of the limit. Possible Values: OVERALL, USER, PER\_ACTIVITY.                                                                                        |
+| ...entityId                              | Integer (int64)    | Specifies the entity ID the limit applies to. Possible Values: Integer ID.                                                                                                    |
+| ...actionType                            | String             | Indicates the action type being limited. Possible Values: AWARD\_CURRENCY, AWARD\_BADGE.                                                                                      |
+| ...actionSubTypeId                       | String             | Specifies the action sub-type ID. Possible Values: String identifier.                                                                                                         |
+| ...limitType                             | String             | Indicates the type of limit. Possible Values: SUM, COUNT.                                                                                                                     |
+| ...limitValue                            | Number             | Specifies the value of the limit. Possible Values: Number.                                                                                                                    |
+| ...period                                | Object             | Defines the time period for the limit (LimitPeriod). Possible Values: A valid LimitPeriod object.                                                                             |
+| ....id                                   | Integer (int64)    | Specifies the period ID. Possible Values: Integer ID (system-assigned).                                                                                                       |
+| ....periodType                           | String             | Indicates the type of period. Possible Values: MOVING\_WINDOW, FIXED\_CALENDAR\_WINDOW, NON\_PERIOD\_BASED, FIXED\_WINDOW.                                                    |
+| ....periodUnit                           | String             | Indicates the unit for the period. Possible Values: DAYS, WEEKS, MONTHS, null.                                                                                                |
+| ....periodValue                          | Integer (int32)    | Specifies the value for the period. Possible Values: Integer or null.                                                                                                         |
+| ....periodStartDay                       | String             | Indicates the start day for weekly periods. Possible Values: SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, null.                                            |
+| ....startDate                            | String (date-time) | Specifies the fixed start date for the period, in ISO 8601 format.                                                                                                            |
+| ....endDate                              | String (date-time) | Specifies the fixed end date for the period, in ISO 8601 format.                                                                                                              |
+| ...createdOn                             | String (date-time) | Specifies the creation timestamp of the limit, in ISO 8601 format.                                                                                                            |
+| ...createdBy                             | Integer (int64)    | Specifies the user ID of the limit creator. Possible Values: Integer user ID (system-set).                                                                                    |
+| ...lastUpdatedOn                         | String (date-time) | Specifies the last update timestamp of the limit, in ISO 8601 format.                                                                                                         |
+| ...lastUpdatedBy                         | Integer (int64)    | Specifies the user ID of the last updater.                                                                                                                                    |
+| ...active                                | Boolean            | Indicates if the limit is active. Possible Values: true, false.                                                                                                               |
+| ..liabilityOwnerSplitInfo                | Array (Object)     | Defines how liability is split (LiabilityOwnerSplitInfo). Possible Values: Array of LiabilityOwnerSplitInfo objects.                                                          |
+| ...orgId                                 | Integer (int32)    | Specifies the organization ID. Possible Values: Integer Org ID.                                                                                                               |
+| ...liabilityOwnerId                      | Integer (int32)    | Specifies the liability owner ID. Possible Values: Integer ID.                                                                                                                |
+| ...componentId                           | Integer (int32)    | Specifies the component ID. Possible Values: Integer ID.                                                                                                                      |
+| ...componentType                         | String             | Indicates the component type. Possible Values: PROGRAM, PROMOTION.                                                                                                            |
+| ...createdBy                             | Integer (int32)    | Specifies the user ID of the creator. Possible Values: Integer user ID.                                                                                                       |
+| ...ratio                                 | Number (double)    | Specifies the liability split ratio. Possible Values: Number between 0 and 1.                                                                                                 |
+| ...liabilityOwnerName                    | String             | Specifies the liability owner's name. Possible Values: String.                                                                                                                |
+| ...liabilityOwnerType                    | String             | Indicates the liability owner's type. Possible Values: PARTNER, PROGRAM.                                                                                                      |
+| ...active                                | Boolean            | Indicates if the split info is active. Possible Values: true, false.                                                                                                          |
+| ..workflowMetadata                       | Object             | Defines workflow metadata for enrolment and opt-in (WorkflowMetadata). Possible Values: A valid WorkflowMetadata object or null.                                              |
+| ...enrolment                             | Object             | Defines enrolment workflow details (Enrolment). Possible Values: A valid Enrolment object or empty object \{}.                                                                |
+| ....basedOn                              | String             | Indicates the basis for enrolment. Possible Values: ACTIVITY, AUDIENCE, EXTERNAL\_TRIGGER, null.                                                                              |
+| ....activities                           | Array (Object)     | Defines activities (SingleActivity/GroupActivity) triggering enrolment. Possible Values: Array of Activity objects or null.                                                   |
+| ....audienceMapping                      | Array (Object)     | Defines audience mappings (AudienceMapping) for enrolment. Possible Values: Array of AudienceMapping objects or null.                                                         |
+| .....groupId                             | Integer (int64)    | Specifies the group ID. Possible Values: Integer ID.                                                                                                                          |
+| .....groupName                           | String             | Specifies the group name. Possible Values: String.                                                                                                                            |
+| ....restrictions                         | Object             | Defines enrolment restrictions (PromotionRestrictions). Possible Values: A valid PromotionRestrictions object or null.                                                        |
+| .....optinExpiryBasedOn                  | Object             | Defines opt-in expiry (PromotionExpiryConfig). Possible Values: A valid PromotionExpiryConfig object or null.                                                                 |
+| .....enrolmentExpiryBasedOn              | Object             | Defines enrolment expiry (PromotionExpiryConfig). Possible Values: A valid PromotionExpiryConfig object or null.                                                              |
+| .....optinLimitPerCustomer               | Object             | Defines opt-in limit (PromotionRestrictionsConfig). Possible Values: A valid PromotionRestrictionsConfig object or null.                                                      |
+| .....maxRedemptionsPerEarnPerCustomer    | Object             | Defines redemption limit (PromotionRestrictionsConfig). Possible Values: A valid PromotionRestrictionsConfig object or null.                                                  |
+| .....enrolmentLimitPerPromotion          | Object             | Defines total enrolment limit (PromotionRestrictionsConfig). Possible Values: A valid PromotionRestrictionsConfig object or null.                                             |
+| .....enrolmentLimitPerCustomer           | Object             | Defines enrolment limit per customer (PromotionRestrictionsConfig). Possible Values: A valid PromotionRestrictionsConfig object or null.                                      |
+| .....maxPointsPerEarnPerCustomer         | Object             | Defines max points per earn limit (PromotionRestrictionsConfig). Possible Values: A valid PromotionRestrictionsConfig object or null.                                         |
+| ...optin                                 | Object             | Defines opt-in workflow details (Optin). Possible Values: A valid Optin object or empty object \{}.                                                                           |
+| ....basedOn                              | String             | Indicates the basis for opt-in. Possible Values: ACTIVITY, AUDIENCE, EXTERNAL\_TRIGGER, null.                                                                                 |
+| ....activities                           | Array (Object)     | Defines activities (SingleActivity/ProupActivity) triggering opt-in. Possible Values: Array of Activity objects or null.                                                      |
+| ....audienceMapping                      | Array (Object)     | Defines audience mappings (AudienceMapping) for opt-in. Possible Values: Array of AudienceMapping objects or null.                                                            |
+| .....groupId                             | Integer (int64)    | Specifies the group ID. Possible Values: Integer ID.                                                                                                                          |
+| .....groupName                           | String             | Specifies the group name. Possible Values: String.                                                                                                                            |
+| ....restrictions                         | Object             | Defines opt-in restrictions (PromotionRestrictions). Possible Values: A valid PromotionRestrictions object or null.                                                           |
+| .....optinExpiryBasedOn                  | Object             | Defines opt-in expiry (PromotionExpiryConfig). Possible Values: A valid PromotionExpiryConfig object or null.                                                                 |
+| .....enrolmentExpiryBasedOn              | Object             | Defines enrolment expiry (PromotionExpiryConfig). Possible Values: A valid PromotionExpiryConfig object or null.                                                              |
+| .....optinLimitPerCustomer               | Object             | Defines opt-in limit (PromotionRestrictionsConfig). Possible Values: A valid PromotionRestrictionsConfig object or null.                                                      |
+| .....maxRedemptionsPerEarnPerCustomer    | Object             | Defines redemption limit (PromotionRestrictionsConfig). Possible Values: A valid PromotionRestrictionsConfig object or null.                                                  |
+| .....enrolmentLimitPerPromotion          | Object             | Defines total enrolment limit (PromotionRestrictionsConfig). Possible Values: A valid PromotionRestrictionsConfig object or null.                                             |
+| .....enrolmentLimitPerCustomer           | Object             | Defines enrolment limit per customer (PromotionRestrictionsConfig). Possible Values: A valid PromotionRestrictionsConfig object or null.                                      |
+| .....maxPointsPerEarnPerCustomer         | Object             | Defines max points per earn limit (PromotionRestrictionsConfig). Possible Values: A valid PromotionRestrictionsConfig object or null.                                         |
+| ..communicationApprovalStatus            | Object             | Defines the status of communication approval (BulkClaimApproveResponse). Possible Values: A valid BulkClaimApproveResponse object or null (system-set).                       |
+| ...success                               | Boolean            | Indicates if the approval status check was successful. Possible Values: true, false.                                                                                          |
+| ...message                               | String             | Specifies the status message. Possible Values: String or null.                                                                                                                |
+| ...response                              | Object             | Defines the nested response object. Possible Values: Object or null.                                                                                                          |
+| ...statusCode                            | Integer (int32)    | Specifies the status code. Possible Values: Integer HTTP status code or null.                                                                                                 |
+| .number                                  | integer (int32)    | Specifies the current page number (0-indexed). Possible Values: Non-negative integer.                                                                                         |
+| .sort                                    | Array (Object)     | Defines the sorting rules applied to the results (SortObject). Possible Values: Array of SortObject objects.                                                                  |
+| ..direction                              | String             | Specifies the sort direction. Possible Values: String (e.g., "ASC", "DESC").                                                                                                  |
+| ..nullHandling                           | String             | Specifies how null values are handled during sorting. Possible Values: String (e.g., "NATIVE", "NULLS\_FIRST", "NULLS\_LAST").                                                |
+| ..ascending                              | Boolean            | Indicates if the sort direction is ascending. Possible Values: true, false.                                                                                                   |
+| ..property                               | String             | Specifies the field name used for sorting. Possible Values: String field name.                                                                                                |
+| ..ignoreCase                             | Boolean            | Indicates if case should be ignored during sorting (for string fields). Possible Values: true, false.                                                                         |
+| .pageable                                | Object             | Defines pagination details (PageableObject). Possible Values: A valid PageableObject object.                                                                                  |
+| ..offset                                 | integer (int64)    | Specifies the offset of the first element returned on the page. Possible Values: Non-negative integer.                                                                        |
+| ..sort                                   | Array (Object)     | Defines the sorting rules applied (SortObject, same structure as .sort above). Possible Values: Array of SortObject objects.                                                  |
+| ..pageNumber                             | integer (int32)    | Specifies the current page number (0-indexed). Possible Values: Non-negative integer.                                                                                         |
+| ..pageSize                               | integer (int32)    | Specifies the number of items requested per page. Possible Values: Positive integer.                                                                                          |
+| ..paged                                  | Boolean            | Indicates if pagination is applied. Possible Values: true, false.                                                                                                             |
+| ..unpaged                                | Boolean            | Indicates if pagination is not applied. Possible Values: true, false.                                                                                                         |
+| .numberOfElements                        | integer (int32)    | Specifies the number of promotions returned on the current page. Possible Values: Non-negative integer.                                                                       |
+| errors                                   | Array (Object)     | Defines a list of errors that occurred, if any (ApiError). Possible Values: Array of ApiError objects or null.                                                                |
+| .code                                    | Integer (int64)    | Specifies the error code. Possible Values: Integer error code.                                                                                                                |
+| .message                                 | String             | Specifies the error message. Possible Values: String error description.                                                                                                       |
+| warnings                                 | Array (Object)     | Defines a list of warnings, if any (ApiWarning). Possible Values: Array of ApiWarning objects or null.                                                                        |
+| .message                                 | String             | Specifies the warning message. Possible Values: String warning description.                                                                                                   |
+
+## Warning messages
+
+| Warning message                                                             | Description                                                                                                               |
+| --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| Unable to enroll in promotions. Customer already enrolled or limit reached. | The customer is already enrolled in the promotion or the maximum enrollment limit has been reached.                       |
+| Partial Success: Milestone enrollment failed.                               | The main promotion enrollment was successful, but one or more milestone enrollments failed.                               |
+| No upload details found for file: `fileName`.                               | The promotion was retrieved, but recent upload status for individual milestone files could not be fetched.                |
+| Unable to enroll in promotions. No Response from service.                   | The systems processed the request, but a downstream service did not return a confirmation, leading to an uncertain state. |
+
+## Error codes
+
+| Error Code | Description                                                                                                   |
+| ---------- | ------------------------------------------------------------------------------------------------------------- |
+| 9013       | Request not found. Use a valid `promotionId` and ensure the promotion exists in the system.                   |
+| 300003     | Invalid Org Entity. Ensure the `orgId` associated with your token matches the promotion's organization.       |
+| 300005     | Access denied. Your account does not have the necessary permissions to view this promotion.                   |
+| 310068     | Target details not found. The underlying target group details for this promotion are missing or inaccessible. |
+| 498        | Token Expired. The authentication token has expired. Please log in again to generate a new session.           |
+
+## Parameters & Headers
+
+<Expandable title="Request Headers" default-open="false">
+  <ParamField header="Authorization" param-type="string" required="false" deprecated="false" show-location="true" />
+
+  <ParamField header="Cookie" param-type="string" required="false" deprecated="false" show-location="true" />
+</Expandable>
+
+<Expandable title="Path Parameters" default-open="false">
+  <ParamField path="promotionId" param-type="string" required="true" deprecated="false" show-location="true" />
+</Expandable>
+

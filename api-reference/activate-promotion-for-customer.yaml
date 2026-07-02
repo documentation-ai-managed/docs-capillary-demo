@@ -1,0 +1,61 @@
+openapi: 3.0.0
+info:
+  title: Activate Promotion
+  version: 1.0.0
+servers:
+  - url: '{Host}'
+    variables:
+      Host:
+        default: https://eu.intouch.capillarytech.com
+        enum:
+          - https://eu.intouch.capillarytech.com
+          - https://intouch.capillary.co.in
+          - https://apac2.intouch.capillarytech.com
+          - https://sgcrm.cc.capillarytech.com
+          - http://intouch.capillarytech.cn.com
+          - https://north-america.intouch.capillarytech.com
+paths:
+  /api_gateway/v1/promotions/{promotionId}/activate:
+    post:
+      summary: Activate Promotion
+      parameters:
+        - name: promotionId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: 698ab5f73b42186a70163ddf
+        - name: customerId
+          in: query
+          schema:
+            type: string
+          example: '566881933'
+        - name: Authorization
+          in: header
+          description: Basic Auth Header
+          schema:
+            type: string
+          example: Basic Z2VvcmdlLmRvY2RlbW86NjVhMDgzYjk1MWY5MGY1NTY5NDk1YmNkNzUxYmJi
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customerId:
+                  type: string
+                  example: '566881933'
+                earnId:
+                  type: string
+                  example: '1234123'
+        required: true
+      responses:
+        '200':
+          description: Successful response
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+security:
+  - basicAuth: []

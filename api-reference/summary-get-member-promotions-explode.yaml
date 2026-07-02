@@ -1,0 +1,111 @@
+openapi: 3.0.0
+info:
+  title: Get Member Promotion Explode Details
+  version: 1.0.0
+servers:
+  - url: https://{Host}
+    variables:
+      Host:
+        enum:
+          - eu.intouch.capillarytech.com
+          - intouch.capillary.co.in
+          - apac2.intouch.capillarytech.com
+          - sgcrm.cc.capillarytech.com
+          - intouch.capillarytech.cn.com
+          - north-america.intouch.capillarytech.com
+        default: eu.intouch.capillarytech.com
+paths:
+  /v3/members/{memberId}/promotions/{promotionId}:
+    get:
+      tags:
+        - Promotions
+      summary: Get Member Promotion Explode Details
+      operationId: getMemberPromotionDetails
+      parameters:
+        - name: memberId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+          example: 388757266
+        - name: promotionId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+          example: 1133608813
+        - name: memberEnrollmentStatus
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - PENDING_ENROLLMENT
+              - PENDING_OPT_IN
+              - AVAILABLE_TO_REDEEM
+              - REDEEMED
+              - EXPIRED
+          example: AVAILABLE_TO_REDEEM
+        - name: promotionIdentifier
+          in: query
+          required: false
+          schema:
+            type: string
+          example: 2dac55ea-2ae8-486a-bed1-0c7992c2565c
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+          example: Basic dGlsbGhnXXXXXXXX
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              example:
+                memberId: 388757266
+                promotions:
+                  - promotionId: 1133608813
+                    promotionName: test-loyalty-promo-123
+                    programId: 2607
+                    startDateISO: '2026-03-01T00:00:00+05:30'
+                    endDateISO: '2026-04-01T23:59:59+05:30'
+                    timezoneName: Asia/Kolkata
+                    promotionIdentifier: 2dac55ea-2ae8-486a-bed1-0c7992c2565c
+                    unifiedPromotionId: abc12345-0000-4abc-8def-000000000000
+                    description: test-loyalty-promo-123
+                    active: true
+                    promotionCustomFields:
+                      - key: header-new
+                        value: '1234'
+                        brandDefined: true
+                      - key: xsx
+                        value: '4567'
+                        brandDefined: true
+                    customerPromotionTimelines:
+                      - enrollmentDetails:
+                          - enrollmentId: 222987
+                            enrollmentDateISO: '2026-03-10T13:55:10+05:30'
+                            enrollmentExpiryDateISO: '2026-04-01T23:59:59+05:30'
+                            enrollEventLogId: 52208266
+                            active: true
+                            optInDetails:
+                              - optInId: 185122
+                                optInDateISO: '2026-03-10T13:57:20+05:30'
+                                optInExpiryDateISO: '2026-04-01T23:59:59+05:30'
+                                optInEventLogId: 52208279
+                                optInProcessingDateISO: '2026-03-10T13:57:20+05:30'
+                                active: true
+      security:
+        - basicAuth: []
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+tags:
+  - name: Promotions
+    description: Operations related to member promotions

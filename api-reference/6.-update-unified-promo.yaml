@@ -1,0 +1,331 @@
+openapi: 3.0.1
+info:
+  title: Sample API
+  version: 1.0.0
+  description: >-
+    API specification generated from cURL for PUT
+    /api_gateway/v1/promotions/%7Bpromotion_id%7D
+servers:
+  - url: https://{host}
+paths:
+  /v3/promotions/{promotion_id}:
+    put:
+      summary: Update a Loyalty Promotion
+      description: Endpoint for PUT /api_gateway/v1/promotions/%7Bpromotion_id%7D
+      operationId: putApi_gatewayv1promotions7Bpromotion_id7D
+      parameters:
+        - name: X-CAP-API-AUTH-ORG-ID
+          in: header
+          required: false
+          schema:
+            type: string
+            example: '100232'
+        - name: user-agent
+          in: header
+          required: false
+          schema:
+            type: string
+            example: pyapps_auto_Promotion_Engine_Eucrm_Smoke
+        - name: Authorization
+          in: header
+          required: false
+          schema:
+            type: string
+            example: Basic bmFtYW5fZGgyMzA3MWJmYjM5OGM5ZmM2YjZlY2I2MmEy
+        - in: path
+          name: promotion_id
+          schema:
+            type: string
+          required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                Created:
+                  summary: Created
+                  value:
+                    data:
+                      metadata:
+                        name: Efd Activity Based Prom11
+                        description: >-
+                          Enrollment for all members, requires activity-based
+                          opt-in.
+                        programId: HiddenGemDefaultProgram_ID
+                        orgId: 51174
+                        startDate: '2025-11-27T05:30:00+05:30'
+                        endDate: '2025-12-28T05:29:59+05:30'
+                        timezoneName: Asia/Kolkata
+                        promotionType: LOYALTY
+                        status: DRAFT
+                        promoIdentifier: null
+                        promotionId: 0
+                        createdOn: '2025-10-21T20:43:08+05:30'
+                        lastModifiedOn: '2025-10-21T20:43:08+05:30'
+                        createdBy: 0
+                        lastModifiedBy: 0
+                        loyaltyEarningType: null
+                        version: null
+                        draftDetails: null
+                        loyaltyConfigMetaData:
+                          isStackable: false
+                          isConsideredForRanking: false
+                          isExclusive: false
+                          isAlwaysApply: false
+                        promotionMetadata: null
+                        commonStrategies: null
+                      customerEnrolment:
+                        enrolmentMethod: TRANSACTION
+                      activities:
+                        - type: SINGLE
+                          id: activity_reward_trigger
+                          name: Main Reward Activity
+                          commonCycleActionMapping:
+                            - cycle: cycle_promo_period
+                              actions:
+                                - id: action_award_points
+                                  actionName: AWARD_CURRENCY
+                                  actionClass: >-
+                                    com.capillary.loyalty.engine.actor.promotion.actions.AwardCurrency
+                                  mandatoryPropertiesValues:
+                                    POINTS_TO_AWARD: '100'
+                                    CURRENCY_IDENTIFIER: POINTS
+                              startDate: '2025-11-27'
+                              endDate: '2025-12-27'
+                          event: TransactionAdd
+                          allCycles: []
+                      comments: null
+                      parentId: null
+                      version: 1
+                      limits: []
+                      liabilityOwnerSplitInfo: []
+                      id: 68f7a304fd5b970d1efaf626
+                      workflowMetadata:
+                        enrolment:
+                          basedOn: null
+                          activities: null
+                          audienceMapping: null
+                          restrictions: null
+                        optin:
+                          basedOn: ACTIVITY
+                          audienceMapping: null
+                          activities:
+                            - type: SINGLE
+                              id: activity_optin_trigger
+                              name: Opt-in Trigger Activity
+                              event: TransactionAdd
+                              allCycles: []
+                          restrictions: null
+                    errors: null
+                    warnings: null
+          description: Created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: CODE_Promotion_Test_17573886
+                orgId:
+                  type: integer
+                  example: 100027
+                priority:
+                  type: integer
+                  example: 0
+                active:
+                  type: boolean
+                  example: true
+                messageLabel:
+                  type: string
+                  example: test!!
+                type:
+                  type: string
+                  example: CODE
+                condition:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      example: CART
+                    cartCondition:
+                      type: object
+                      properties:
+                        kpi:
+                          type: string
+                          example: SUBTOTAL
+                        operator:
+                          type: string
+                          example: EQUALS
+                        value:
+                          type: integer
+                          example: 250
+                action:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      example: CART_BASED
+                    cartBasedAction:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          example: ABSOLUTE
+                        value:
+                          type: integer
+                          example: 25
+                createdBy:
+                  type: integer
+                  example: 70707
+                createdOn:
+                  type: integer
+                  example: 0
+                lastUpdatedBy:
+                  type: integer
+                  example: 70707
+                startDate:
+                  type: integer
+                  example: '1857388651000'
+                endDate:
+                  type: integer
+                  example: '1857475051000'
+                campaignId:
+                  type: integer
+                  example: 39077
+                mode:
+                  type: string
+                  example: DISCOUNT
+                promotionRestrictions:
+                  type: object
+                  properties:
+                    Code:
+                      type: array
+                      example:
+                        - kpi: REDEMPTION
+                          limit: 1
+                      items:
+                        type: object
+                        example:
+                          kpi: REDEMPTION
+                          limit: 1
+                        properties:
+                          kpi:
+                            type: string
+                            example: REDEMPTION
+                          limit:
+                            type: integer
+                            example: 1
+                isStackable:
+                  type: boolean
+                  example: false
+              description: Request body as an object
+        description: Request body
+        required: false
+      x-readme:
+        code-samples:
+          - code: >-
+              curl --location 'https://eu.api.capillarytech.com/v3/promotions' \
+
+              --header 'content-type: application/json' \
+
+              --header 'Authorization: Basic jAxMzU5NGIwNDllZTk=' \
+
+              --header 'Cookie:
+              _cfuvid=BC9cwq9x9u_qIzIGlUxLEwV1ldTNVbpH1faK4-1763285329155-0.0.1.1-604800000'
+              \
+
+              --data '{
+                  "metadata": {
+                      "name": "Single Milestone Promotion",
+                      "description": "Single Milestone Promotion",
+                      "programId": 973,
+                      "startDate": "2026-02-03T12:28:00+05:30",
+                      "endDate": "2026-02-28T12:28:59+05:30",
+                      "promotionType": "GENERIC",
+                      "status": "DRAFT",
+                      "promoIdentifier": "single-milestone-promotion",
+                      "timezoneName": "Asia/Kolkata",
+                      "loyaltyConfigMetaData": {
+                          "isStackable": false,
+                          "isConsideredForRanking": false,
+                          "isExclusive": false,
+                          "isAlwaysApply": false,
+                          "skipEarnedDateCheckOnRedeem": null
+                      },
+                      "promotionMetadata": [],
+                      "lastModifiedBy": 75139931,
+                      "loyaltyEarningType": null
+                  },
+                  "customerEnrolment": {
+                      "enrolmentMethod": "TRANSACTION"
+                  },
+                  "liabilityOwnerSplitInfo": [],
+                  "activities": [
+                      {
+                          "id": "activity_1770015539223",
+                          "name": "Activity 1",
+                          "type": "SINGLE",
+                          "event": "TransactionAdd",
+                          "milestones": [
+                              {
+                                  "name": "Single Milestone Promotion~Activity 1~Milestone 1770015543",
+                                  "trackingType": "DEFAULT",
+                                  "targetEvaluationType": "FIXED_CALENDAR_WINDOW",
+                                  "frequencyType": "WEEKLY",
+                                  "sameActionsForEveryCycle": true,
+                                  "differentTargetsForEveryCycle": false,
+                                  "leaderboardEnabled": false,
+                                  "preferredTillId": 75216507,
+                                  "targetEntity": "TRANSACTION",
+                                  "targetType": "COUNT",
+                                  "cycleActionMapping": [
+                                      {
+                                          "cycle": "Cycle_1",
+                                          "startDate": "2026-02-03T12:28:00+05:30",
+                                          "endDate": "2026-02-09T23:59:59+05:30",
+                                          "defaultValue": "3",
+                                          "actions": []
+                                      },
+                                      {
+                                          "cycle": "Cycle_2",
+                                          "startDate": "2026-02-10T00:00:00+05:30",
+                                          "endDate": "2026-02-16T23:59:59+05:30",
+                                          "defaultValue": "3",
+                                          "actions": []
+                                      },
+                                      {
+                                          "cycle": "Cycle_3",
+                                          "startDate": "2026-02-17T00:00:00+05:30",
+                                          "endDate": "2026-02-23T23:59:59+05:30",
+                                          "defaultValue": "3",
+                                          "actions": []
+                                      },
+                                      {
+                                          "cycle": "Cycle_4",
+                                          "startDate": "2026-02-24T00:00:00+05:30",
+                                          "endDate": "2026-02-28T12:28:59+05:30",
+                                          "defaultValue": "3",
+                                          "actions": []
+                                      }
+                                  ]
+                              }
+                          ],
+                          "commonCycleActionMapping": [],
+                          "expJSON": "{\n  \"arity\": \"binary_operation\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \">\",\n  \"operands\": [\n    {\n      \"arity\": \"object_dereference\",\n      \"type\": \"real:object:primitive\",\n      \"operands\": [\n        {\n          \"arity\": \"name\",\n          \"type\": \"tx:object:primitive\",\n          \"value\": \"currentTxn\"\n        },\n        {\n          \"arity\": \"name\",\n          \"type\": \"real:object:primitive\",\n          \"value\": \"value\"\n        }\n      ]\n    },\n    {\n      \"arity\": \"literal\",\n      \"type\": \"number:primitive\",\n      \"value\": \"1000\"\n    }\n  ]\n}"
+                      }
+                  ],
+                  "id": "69804b71d90f137246ab7202",
+                  "workflowMetadata": {
+                      "optin": {},
+                      "enrolment": {}
+                  }
+              }'
+            language: shell
+            name: curl
+        samples-languages:
+          - shell

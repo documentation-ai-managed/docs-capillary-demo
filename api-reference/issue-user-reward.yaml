@@ -1,0 +1,99 @@
+openapi: 3.1.0
+info:
+  title: Issue User Reward
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  /mobile/v2/api/marvel/reward/issue:
+    post:
+      summary: Issue User Reward
+      description: Lets you issue rewards to a specific customer. Customer points
+        are deducted according to the voucher issued.
+      operationId: issue-user-reward
+      parameters:
+      - name: cap_authorization
+        in: header
+        description: Unique token generated for the customer.
+        required: true
+        schema:
+          type: string
+      - name: cap_brand
+        in: header
+        description: Org associated with the token to issue rewards.
+        required: true
+        schema:
+          type: string
+      - name: cap_device_id
+        in: header
+        description: Unique device ID the customer used for authentication.
+        required: true
+        schema:
+          type: string
+      - name: cap_mobile
+        in: header
+        description: The registered mobile number of the customer.
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: query
+        description: Unique ID of the reward.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: tillId
+        in: query
+        description: Till code that you want to associate with the rewards.
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - mobile
+              - brand
+              - transactionNumber
+              properties:
+                mobile:
+                  type: string
+                  description: Registered mobile number of the customer to issue rewards.
+                brand:
+                  type: string
+                  description: Name of the brand or org.
+                notes:
+                  type: string
+                  description: Brief information about issuing rewards.
+                transactionNumber:
+                  type: string
+                  description: Unique transaction number associated with the issual.
+                validationCode:
+                  type: string
+                  description: Validation code received by the customer.
+            examples:
+              Sample POST Body:
+                value:
+                  mobile: '9988221100'
+                  brand: DemoBrand
+                  notes: Sample note, issuing rewards to customer
+                  transactionNumber: Cap12345
+                  validationCode: '87654'
+                  redemptionTime: ''
+      deprecated: false
+      responses:
+        '200':
+          description: Successful response
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

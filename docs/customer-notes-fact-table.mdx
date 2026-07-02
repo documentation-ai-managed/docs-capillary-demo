@@ -1,0 +1,36 @@
+---
+title: Customer Notes Fact Table
+---
+
+This table captures the event when a customer note is created. It has additional information about the customer. The table captures the date and time when the customer note was created, store at which the note was created, and details of the customer for whom the note is added.
+
+**Databricks Table Name:** customer_notes
+
+**Customer Notes - Entity Relationship Diagram (ERD)**
+
+Zoom in the table for more clarity. Click the table title to view its details.
+
+<SVG src="https://blob-cdn.documentation.ai/org-33a37b13-6e8e-4740-8784-efe392e052a1/doc-f5d2fac6-45c6-4928-b76b-06e4ff784712/1782804314068-802q3ijdzat-customer-notes-fact-table-erd.svg?rasterize-bypass=true" />
+
+**Customer Notes Fact Table**
+
+| **Column Name** | **Data Type** | **Description** | Linked Table |
+| :--- | :---: | :--- | :---: |
+| auto_update_time_customer_note | bigint | Date and time when the corresponding record in the customer_note table available at the source was last updated. It is in the Unix timestamp format. | _ |
+| customer_note | string | Captures additional information about the customer. | _ |
+| dim_event_date_id | bigint | Date when customer note was created. | [date](/docs/dimension-tables#date) |
+| dim_event_time_id | bigint | Time when customer note was created. | [time](/docs/dimension-tables#time) |
+| dim_event_user_id | bigint | Identifier for the customer associated with the note. It is an internally assigned value by Capillary for user identification. | [users](/docs/dimension-tables#users-users) |
+| dim_event_zone_till_id | bigint | Identifier assigned to the point-of-sale (POS) terminal within a store. It distinguishes one checkout location from another within the same store. | [zone_tills](/docs/dimension-tables#zone-till) |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/row is changed in the source table. | [date](/docs/dimension-tables#date) |
+| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/row is changed in the source table. | [time](/docs/dimension-tables#time) |
+| note_id | bigint | Unique identifier of the customer note. It is the primary key of this table. | _ |
+| year | int | Year of customer note addition. | _ |
+
+## Legend
+
+| Element | Definition |
+|---------|------------|
+| **PK** | Primary Key |
+| **LK** | Linking Key |
+

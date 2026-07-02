@@ -1,0 +1,32 @@
+---
+title: Referrals Fact Table
+---
+
+This table records referral events, where existing customers introduce new customers to the brand. The person who makes the referral is known as a referrer, while the individual who receives the referral invite is called a referee.
+
+**Databricks Table Name:** referrals
+
+**Referrals Fact - Entity Relationship Diagram (ERD)**
+
+Zoom in the table for more clarity. Click the table title to view its details.
+
+<SVG src="https://blob-cdn.documentation.ai/org-33a37b13-6e8e-4740-8784-efe392e052a1/doc-f5d2fac6-45c6-4928-b76b-06e4ff784712/1782803424368-53fzc34kykp-referrals-fact-table-erd.svg?rasterize-bypass=true" />
+
+**Referrals Fact Table**
+
+| Column Name | Data Type | Description | Linked Table |
+| --- | --- | --- | --- |
+| auto_update_time | bigint | Unix timestamp of last source update | _ |
+| context_id | bigint | Identifier for action context | _ |
+| dim_campaign_id | bigint | Campaign identifier | [campaign](/dimensions-tables#campaigns) |
+| dim_event_date_id | bigint | Referral action date | [date](/dimensions-tables#date) |
+| dim_event_time_id | bigint | Referral action time | [time](/dimensions-tables#time) |
+| dim_event_user_id | bigint | Customer identifier | [users](/dimensions-tables#users-users) |
+| dim_event_zone_till_id | bigint | POS terminal identifier within store | [zone till](/dimensions-tables#zone-till) |
+| dim_latest_updated_date_id | bigint | Data change date in source | [date](/dimensions-tables#date) |
+| dim_latest_updated_time_id | bigint | Data change time in source | [time](/dimensions-tables#time) |
+| dim_referred_to_user_id | bigint | Referee customer identifier | [users](/dimensions-tables#users-users) |
+| event_type | string | "Referral Registration" or "Referral Transaction" | _ |
+| referee_id | bigint | Primary key; unique referee identifier | _ |
+| year | int | Referral year | _ |
+

@@ -1,0 +1,99 @@
+openapi: 3.1.0
+info:
+  title: Get Cart Recommendations
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  /api_gateway/v1/recommendations/cart:
+    get:
+      summary: Get Cart Recommendations
+      description: Retrieves the recommended products of a specific cart items.
+      operationId: get-cart-recommendations
+      parameters:
+      - name: model
+        in: path
+        description: Pass frequently-bought-together to get products that were frequently
+          bought along with the items in the cart. For example, if the cart has mobile,
+          the recommended item could be mobile case.
+        schema:
+          type: string
+          enum:
+          - frequently-bought-together
+        required: true
+      - name: cartparam
+        in: query
+        description: "Object type to identify the cart items in SKU:quantity pairs\
+          \ - {sku1:quantity,sku2:quantity}. For example,cartparam={\"000000000000010242\"\
+          :1,000000000000080246\":5}"
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Limit the number of results to retrieve. You can retrieve a maximum
+          of 25 results.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: offset
+        in: query
+        description: Number of results to ignore from top (where the recommendations
+          array to start fetching). Set 0 to ignore the first result, 1 to ignore
+          the first two results and so on.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: categories
+        in: query
+        description: "Filter recommended products by one or more categories. Pass\
+          \ comma separated category codes. Maximum of 10 categories are supported.\
+          \ Example: categories=Shirts,Bottomwear"
+        schema:
+          type: array
+          items:
+            type: string
+      - name: stores
+        in: query
+        description: "Filter products by stores. Pass comma separated store codes.\
+          \ Max limit is 10. Example: stores=store.1,store.2"
+        schema:
+          type: array
+          items:
+            type: string
+      - name: X-CAP-API-AUTH-ENTITY-ID
+        in: header
+        description: Unique Till ID used for authentication.
+        required: true
+        schema:
+          type: string
+      - name: X-CAP-API-AUTH-ORG-ID
+        in: header
+        description: Unique Org ID used for authentication.
+        required: true
+        schema:
+          type: string
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: html
+          code: "https://incrm.cc.capillarytech.com/api_gateway/v1/recommendations/cart/frequently-bought-together/?cartparam={\"\
+            000000000000010242\": 1}&limit=5&offset=0&categories"
+          name: Sample Request URL
+        samples-languages:
+        - html
+      responses:
+        '200':
+          description: Successful response
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

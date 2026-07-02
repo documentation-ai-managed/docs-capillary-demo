@@ -1,0 +1,156 @@
+openapi: 3.1.0
+info:
+  title: Get User Reward Merge Details
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  /api_gateway/rewards/core/v1/user-merge:
+    get:
+      summary: Get User Reward Merge Details
+      description: Get all merge details in an org
+      operationId: get-user-rewards-merge-details
+      parameters:
+      - name: fromUserId
+        in: query
+        description: Unique customer ID of the victim customer. This is the user account
+          from which rewards and their data were transferred.
+        schema:
+          type: integer
+          format: int64
+      - name: toUserId
+        in: query
+        description: Unique customer ID of the surviving customer. This is the user
+          account that received the rewards and their data from the victim account.
+        schema:
+          type: integer
+          format: int64
+      - name: page
+        in: query
+        description: Page number to retrieve. To view the first page, set the value
+          to 0.
+        schema:
+          type: integer
+          format: int32
+      - name: size
+        in: query
+        description: Number of entries to display per page. For example, if the total
+          records are 15 and the limit is 5, the first page will display the first
+          5 records. The maximum supported limit is 50.
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"userMerge\": [\n        {\n            \"fromUserId\"\
+                    : 423930934,\n            \"toUserId\": 423930935,\n         \
+                    \   \"requestId\": \"merge_123\",\n            \"mergeUserStatus\"\
+                    : \"SUCCESS\"\n        }\n    ],\n    \"pagingDto\": {\n     \
+                    \   \"last\": false,\n        \"totalElements\": 66,\n       \
+                    \ \"totalPages\": 66,\n        \"numberOfElements\": 1,\n    \
+                    \    \"first\": true,\n        \"size\": 1,\n        \"number\"\
+                    : 0\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  userMerge:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        fromUserId:
+                          type: integer
+                          example: 423930934
+                          default: 0
+                        toUserId:
+                          type: integer
+                          example: 423930935
+                          default: 0
+                        requestId:
+                          type: string
+                          example: merge_123
+                        mergeUserStatus:
+                          type: string
+                          example: SUCCESS
+                  pagingDto:
+                    type: object
+                    properties:
+                      last:
+                        type: boolean
+                        example: false
+                        default: true
+                      totalElements:
+                        type: integer
+                        example: 66
+                        default: 0
+                      totalPages:
+                        type: integer
+                        example: 66
+                        default: 0
+                      numberOfElements:
+                        type: integer
+                        example: 1
+                        default: 0
+                      first:
+                        type: boolean
+                        example: true
+                        default: true
+                      size:
+                        type: integer
+                        example: 1
+                        default: 0
+                      number:
+                        type: integer
+                        example: 0
+                        default: 0
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": {\n        \"success\": false,\n    \
+                    \    \"code\": 400,\n        \"message\": \"size should be less\
+                    \ than or equal to 50.\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: false
+                        default: true
+                      code:
+                        type: integer
+                        example: 400
+                        default: 0
+                      message:
+                        type: string
+                        example: size should be less than or equal to 50.
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/user-merge?fromUserId=100&toUserId=null&page=1&size=5'\
+            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization:\
+            \ Basic YXV0b3N0YWM1OTA3NWI5NbruhjRiMDcxNTJkMjM0Yjcw' \\\n--header 'Cookie:\
+            \ _cfuvid=uaERq9xlkg3etKQty4bclbq216ZQ4fmsGKEGNKW9xJI-1739870550295-0.0.1.1-604800000'"
+        samples-languages:
+        - curl
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

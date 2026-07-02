@@ -1,0 +1,28 @@
+---
+title: Milestones Fact Table
+---
+
+This table captures the milestone event of customers, such as the start date of the milestone target, client/ org to which the milestone belongs, and identifier of the milestone.
+
+**Databricks Table Name:** target_milestone_trigger_communications
+
+**Milestones Entity Relationship Diagram**
+
+Zoom in the table for more clarity. Click the table title to view its details.
+
+<SVG src="https://blob-cdn.documentation.ai/org-33a37b13-6e8e-4740-8784-efe392e052a1/doc-f5d2fac6-45c6-4928-b76b-06e4ff784712/1782804031002-7vzo0rm1kb7-fact_milestones-erd.svg?rasterize-bypass=true" />
+
+**Milestones Fact Table**
+
+| Column Name | Data Type | Description | Linked Table |
+| --- | --- | --- | --- |
+| auto_update_time | bigint | Date and time when the corresponding record in the milestone table available at the source was last updated. It is in the Unix timestamp format. | _ |
+| client_id | bigint | Unique identifier for the client or organization. | _ |
+| dim_event_date_id | bigint | Start date of the milestone. | [date](/dimensions-tables#date) |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. | [date](/dimensions-tables#date) |
+| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/ row is changed in the source table. | [time](/dimensions-tables#time) |
+| dim_milestone_id | bigint | Identifier for the milestone. | [milestone](/dimensions-tables#milestone) |
+| dim_user_target_id | bigint | Identifier for the user target. | [user_target](/dimensions-tables#user-target-user_target) |
+| id | bigint | Unique identifier and primary key for the table. | _ |
+| year | integer | Year of the milestone. | _ |
+

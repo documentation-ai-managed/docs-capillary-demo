@@ -1,0 +1,80 @@
+openapi: 3.1.0
+info:
+  title: Disable Catalog promotion
+  version: '1.0'
+servers:
+- url: https://{host}
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  /api_gateway/rewards/core/v1/promotion/{promotionId}/status/false/brand/{brandId}:
+    put:
+      summary: Disable Catalog promotion
+      description: ''
+      operationId: put-disable-catalog-promotion
+      parameters:
+      - name: promotionId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique ID of the promotion.
+      - name: brandId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique ID of the brand.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
+                    \   \"code\": 11013,\n        \"message\": \"Catalog promotion\
+                    \ is disabled.\"\n    }\n}"
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    status:
+                      type: object
+                      properties:
+                        success:
+                          type: boolean
+                          example: true
+                          default: true
+                        code:
+                          type: integer
+                          example: 11011
+                          default: 0
+                        message:
+                          type: string
+                          example: Catalog promotion status updated successfully.
+                - type: object
+                  properties:
+                    status:
+                      type: object
+                      properties:
+                        success:
+                          type: boolean
+                          example: true
+                          default: true
+                        code:
+                          type: integer
+                          example: 11013
+                          default: 0
+                        message:
+                          type: string
+                          example: Catalog promotion is disabled.
+      deprecated: false
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

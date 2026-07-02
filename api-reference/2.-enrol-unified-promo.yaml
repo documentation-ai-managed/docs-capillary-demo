@@ -1,0 +1,139 @@
+openapi: 3.0.1
+info:
+  title: Sample API
+  version: 1.0.0
+  description: API specification generated from cURL for POST /v3/promotions/enrol
+servers:
+  - url: https://{host}
+paths:
+  /v3/promotions/enrol:
+    post:
+      summary: Operation for POST /v3/promotions/enrol
+      description: Endpoint for POST /v3/promotions/enrol
+      operationId: postV3promotionsenrol
+      parameters: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              examples:
+                OK:
+                  summary: OK
+                  value:
+                    data:
+                      requestId: some-test-id
+                      action: ENROL
+                      customer:
+                        identifierName: id
+                        identifierValue: '388369579'
+                        customerId: 388369579
+                      enrollmentStatus:
+                        promotion:
+                          id: 68c3f64bbd0a8a0aa705c793
+                          identifier: enr-58
+                          programId: 3334
+                          enrollmentId: '25286'
+                          optinId: '25910'
+                        milestone:
+                          status: SUCCESS
+                          milestones:
+                            - targetGroupId: 97829
+                              targetRuleId: 151359
+                              initialBalance: 0
+                      status: SUCCESS
+                    errors: null
+                    warnings: null
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                requestId:
+                  type: string
+                  example: some-test-id
+                action:
+                  type: string
+                  example: ENROL
+                promotion:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: 68c3f64bbd0a8a0aa705c793
+                    promotionId:
+                      type: integer
+                      example: 1133590053
+                customer:
+                  type: object
+                  properties:
+                    identifierName:
+                      type: string
+                      example: id
+                    identifierValue:
+                      type: integer
+                      example: '388369579'
+                    source:
+                      type: string
+                      example: INSTORE
+                programId:
+                  type: integer
+                  example: 3334
+              description: Request body as an object
+        description: Request body
+        required: false
+      x-readme:
+        code-samples:
+          - code: |-
+              curl --location 'https://{host}/v3/promotions/enrol' \
+              --header 'Content-Type: application/json' \
+              --data '{
+                  "requestId": "some-test-id",
+                  "action": "ENROL",
+                  "promotion": {
+                      "id": "68c3f64bbd0a8a0aa705c793",
+                      
+                      "promotionId": 1133590053
+                  },
+                  "customer": {
+                      "identifierName": "id",
+                      "identifierValue": "388369579",
+                      "source": "INSTORE"
+                  },
+                  "programId": 3334
+              }'
+            language: shell
+            name: Enrol
+          - code: >-
+              curl --location
+              'https://eu.api.capillarytech.com/v3/promotions/enrol' \
+
+              --header 'Content-Type: application/json' \
+
+              --header 'Authorization: Basic
+              Z2VvcmdlLmRvY2RlbW86MmQ1OE2NWI5ZjAxMzU5NGIwNDllZTk=' \
+
+              --header 'Cookie:
+              _cfuvid=w9k84Tbu9Ahlvel7gyPLGv9wCGWeqg-1763442378135-0.0.1.1-604800000'
+              \
+
+              --data '{
+                  "requestId": "some-test-id",
+                  "action": "OPT_IN",
+                  "promotion": {
+                      "id": "690ddfe45d4a900e2157f1c2",
+                      
+                      "promotionId": 1133595380
+                  },
+                  "customer": {
+                      "identifierName": "id",
+                      "identifierValue": "388519295",
+                      "source": "INSTORE"
+                  },
+                  "programId": 973
+              }'
+            language: shell
+            name: Opt In
+        samples-languages:
+          - shell

@@ -1,0 +1,145 @@
+openapi: 3.1.0
+info:
+  title: Points Restrictions - Create points restriction
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  /api_gateway/rewards/core/v1/brand/constraints:
+    post:
+      summary: Points Restrictions - Create points restriction
+      description: ''
+      operationId: create-points-restriction
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                RAW_BODY:
+                  type: string
+                  description: "[     {   \"kpi\" :\"POINTS\",         \"constraintLevel\"\
+                    \ : \"CUSTOMER_REDEMPTION_TYPE\",         \"frequencyType\" :\
+                    \ \"DAILY\",         \"intervalValue\" : 1,         \"constraintLimitValue\"\
+                    \ : 15,         \"isActive\" : true,         \"redemptionType\"\
+                    : \"POINTS\"     } ]"
+            examples:
+              Request Example:
+                value:
+                - kpi: POINTS
+                  constraintLevel: CUSTOMER_REDEMPTION_TYPE
+                  frequencyType: DAILY
+                  intervalValue: 1
+                  constraintLimitValue: 15
+                  isActive: true
+                  redemptionType: POINTS
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Sample response:
+                  value:
+                  - rewardConstraintId: 50527
+                    orgId: 100737
+                    kpi: POINTS
+                    constraintLevel: CUSTOMER_REDEMPTION_TYPE
+                    frequencyType: DAILY
+                    constraintLimitValue: 15
+                    isActive: true
+                    intervalValue: 1
+                    status:
+                      success: true
+                      code: 0
+                    createdOn: 1765370540000
+                    lastUpdatedOn: 1765370540000
+                    createdBy: 75197372
+                    lastUpdatedBy: 75197372
+                    createdOnDateTime: "2025-12-10T12:42:20Z"
+                    lastUpdatedOnDateTime: "2025-12-10T12:42:20Z"
+                    redemptionType: INTOUCH_REWARD
+                  summary: Sample response
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    rewardConstraintId:
+                      type: integer
+                      example: 6759
+                      default: 0
+                    orgId:
+                      type: integer
+                      example: 50672
+                      default: 0
+                    kpi:
+                      type: string
+                      example: POINTS
+                    constraintLevel:
+                      type: string
+                      example: CUSTOMER_REDEMPTION_TYPE
+                    frequencyType:
+                      type: string
+                      example: DAILY
+                    constraintLimitValue:
+                      type: integer
+                      example: 15
+                      default: 0
+                    isActive:
+                      type: boolean
+                      example: true
+                      default: true
+                    intervalValue:
+                      type: integer
+                      example: 1
+                      default: 0
+                    status:
+                      type: object
+                      properties:
+                        success:
+                          type: boolean
+                          example: true
+                          default: true
+                        code:
+                          type: integer
+                          example: 0
+                          default: 0
+                    redemptionType:
+                      type: string
+                      example: POINTS
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/constraints'\
+            \ \\\n--header 'Content-Type: application/json' \\\n--header 'accept:\
+            \ application/json' \\\n--header 'Authorization: Basic bWFkaHMjU2YQ=='\
+            \ \\\n--header 'Cookie: _cfuvid=pmgXD8k6OMub7ECuaQ2wrzeksWm6sWXaIIAk1K5YFKk-1765284539237-0.0.1.1-604800000'\
+            \ \\\n--data '[\n  {\n    \"kpi\": \"POINTS\",\n    \"constraintLevel\"\
+            : \"CUSTOMER_REDEMPTION_TYPE\",\n    \"frequencyType\": \"DAILY\",\n \
+            \   \"intervalValue\": 1,\n    \"constraintLimitValue\": 15,\n    \"isActive\"\
+            : true,\n    \"redemptionType\": \"INTOUCH_REWARD\"\n  }\n]'"
+          language: shell
+          name: Sample request
+        samples-languages:
+        - shell
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

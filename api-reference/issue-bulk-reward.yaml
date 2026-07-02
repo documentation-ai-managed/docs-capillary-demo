@@ -1,0 +1,366 @@
+openapi: 3.1.0
+info:
+  title: Issue bulk reward
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  /api_gateway/rewards/core/v1/user/rewards/issue:
+    post:
+      summary: Issue bulk reward
+      description: ''
+      operationId: issue-bulk-reward
+      parameters:
+      - name: username
+        in: query
+        description: username here represents name of the store
+        required: true
+        schema:
+          type: string
+          default: store_name
+      - name: skip_validation
+        in: query
+        description: optional
+        schema:
+          type: string
+      - name: store
+        in: query
+        schema:
+          type: string
+        required: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mobile:
+                  type: string
+                  description: Mobile number/ email Id/ External Id of the customer
+                brand:
+                  type: string
+                  description: name of the brand
+                transactionNumber:
+                  type: string
+                  description: transaction number for issuing the reward
+                rewardId:
+                  type: string
+                  description: reward ID(s) of the rewards to be issued
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
+                    \   \"code\": 200,\n        \"message\": \"Reward issued successfully\"\
+                    \n    },\n    \"rewards\": [\n        {\n            \"status\"\
+                    : {\n                \"success\": false,\n                \"code\"\
+                    : 8010,\n                \"message\": \"Reward issued partially\"\
+                    \n            },\n            \"transactionId\": 397107,\n   \
+                    \         \"rewardId\": 225086,\n            \"requestedQuantity\"\
+                    : 1,\n            \"quantity\": 2,\n            \"pointsReferenceId\"\
+                    : null,\n            \"pointsReferenceIds\": [],\n           \
+                    \ \"eventLogId\": null,\n            \"requestId\": null,\n  \
+                    \          \"intouch\": [\n                {\n               \
+                    \     \"pointsRedeemed\": \"0\",\n                    \"couponCode\"\
+                    : \"1908009843\",\n                    \"codeExpiry\": \"2025-10-31\
+                    \ 00:00:00\",\n                    \"codeExpiryDateTime\": \"\
+                    2025-10-31T00:00:00Z\"\n                },\n                {\n\
+                    \                    \"pointsRedeemed\": \"0\",\n            \
+                    \        \"couponCode\": \"2088404495\",\n                   \
+                    \ \"codeExpiry\": \"2025-10-31 00:00:00\",\n                 \
+                    \   \"codeExpiryDateTime\": \"2025-10-31T00:00:00Z\"\n       \
+                    \         }\n            ],\n            \"promotions\": [],\n\
+                    \            \"vendor\": [],\n            \"eventDateTime\": \"\
+                    2025-05-08T13:48:13Z\",\n            \"restrictions\": null,\n\
+                    \            \"paymentConfig\": {\n                \"paymentMode\"\
+                    : \"FREE\",\n                \"id\": 463\n            },\n   \
+                    \         \"fulfillmentDetails\": null,\n            \"customFields\"\
+                    : null,\n            \"redemptionDetails\": null\n        },\n\
+                    \        {\n            \"status\": {\n                \"success\"\
+                    : false,\n                \"code\": 8003,\n                \"\
+                    message\": \"fail to issue reward\"\n            },\n        \
+                    \    \"transactionId\": 397108,\n            \"rewardId\": 225087,\n\
+                    \            \"requestedQuantity\": 1,\n            \"quantity\"\
+                    : 0,\n            \"pointsReferenceId\": null,\n            \"\
+                    pointsReferenceIds\": [],\n            \"eventLogId\": null,\n\
+                    \            \"requestId\": null,\n            \"intouch\": null,\n\
+                    \            \"promotions\": [],\n            \"vendor\": [],\n\
+                    \            \"eventDateTime\": \"2025-05-08T13:48:13Z\",\n  \
+                    \          \"restrictions\": null,\n            \"paymentConfig\"\
+                    : {\n                \"paymentMode\": \"FREE\",\n            \
+                    \    \"id\": 464\n            },\n            \"fulfillmentDetails\"\
+                    : null,\n            \"customFields\": null,\n            \"redemptionDetails\"\
+                    : null\n        }\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+                      code:
+                        type: integer
+                        example: 200
+                        default: 0
+                      message:
+                        type: string
+                        example: Reward issued successfully
+                  rewards:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        status:
+                          type: object
+                          properties:
+                            success:
+                              type: boolean
+                              example: false
+                              default: true
+                            code:
+                              type: integer
+                              example: 8010
+                              default: 0
+                            message:
+                              type: string
+                              example: Reward issued partially
+                        transactionId:
+                          type: integer
+                          example: 397107
+                          default: 0
+                        rewardId:
+                          type: integer
+                          example: 225086
+                          default: 0
+                        requestedQuantity:
+                          type: integer
+                          example: 1
+                          default: 0
+                        quantity:
+                          type: integer
+                          example: 2
+                          default: 0
+                        pointsReferenceId: {}
+                        pointsReferenceIds:
+                          type: array
+                        eventLogId: {}
+                        requestId: {}
+                        intouch:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              pointsRedeemed:
+                                type: string
+                                example: '0'
+                              couponCode:
+                                type: string
+                                example: '1908009843'
+                              codeExpiry:
+                                type: string
+                                example: "2025-10-31 00:00:00"
+                              codeExpiryDateTime:
+                                type: string
+                                example: "2025-10-31T00:00:00Z"
+                        promotions:
+                          type: array
+                        vendor:
+                          type: array
+                        eventDateTime:
+                          type: string
+                          example: "2025-05-08T13:48:13Z"
+                        restrictions: {}
+                        paymentConfig:
+                          type: object
+                          properties:
+                            paymentMode:
+                              type: string
+                              example: FREE
+                            id:
+                              type: integer
+                              example: 463
+                              default: 0
+                        fulfillmentDetails: {}
+                        customFields: {}
+                        redemptionDetails: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                '8003':
+                  value: "{\n   \"status\": {\n       \"success\": false,\n      \
+                    \ \"code\": 8003,\n       \"message\": \"fail to issue reward\"\
+                    \n   },\n   \"rewards\": [\n       {\n           \"status\": {\n\
+                    \               \"success\": false,\n               \"code\":\
+                    \ 12005,\n               \"message\": \"Reward constraint evaluation\
+                    \ failed. Request failed. Max limit for the DAYS is reached. Allowed\
+                    \ limit is 15 For Level CUSTOMER\"\n           },\n          \
+                    \ \"rewardId\": 49827,\n           \"requestedQuantity\": 1,\n\
+                    \           \"pointsReferenceId\": null,\n           \"intouch\"\
+                    : null,\n           \"promotions\": null,\n           \"vendor\"\
+                    : null,\n           \"restrictions\": null\n       }\n   ]\n}\n\
+                    \n"
+                Result:
+                  value: "{\n   \"status\": {\n       \"success\": false,\n      \
+                    \ \"code\": 8010,\n       \"message\": \"Reward issued partially\"\
+                    \n   },\n   \"rewards\": [\n       {\n           \"status\": {\n\
+                    \               \"success\": true,\n               \"code\": 200,\n\
+                    \               \"message\": \"Reward issued successfully\"\n\
+                    \           },\n           \"rewardId\": 13,\n           \"requestedQuantity\"\
+                    : 1,\n           \"pointsReferenceId\": \"ZGxGVD\",\n        \
+                    \   \"intouch\": [\n               {\n                   \"pointsRedeemed\"\
+                    : \"50\",\n                   \"couponCode\": \"42FU1ZP3\",\n\
+                    \                   \"codeExpiry\": \"2023-06-09 00:00:00\"\n\
+                    \               }\n           ],\n           \"promotions\": [],\n\
+                    \           \"vendor\": [],\n           \"restrictions\": null\n\
+                    \       },\n       {\n           \"status\": {\n             \
+                    \  \"success\": false,\n               \"code\": 8004,\n     \
+                    \          \"message\": \"fail to issue reward as  Coupon has\
+                    \ expired\"\n           },\n           \"rewardId\": 12,\n   \
+                    \        \"requestedQuantity\": 1,\n           \"pointsReferenceId\"\
+                    : \"ZGxGVD\",\n           \"intouch\": null,\n           \"promotions\"\
+                    : [],\n           \"vendor\": [],\n           \"restrictions\"\
+                    : null\n       }\n   ]\n}\n\n"
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    status:
+                      type: object
+                      properties:
+                        success:
+                          type: boolean
+                          example: false
+                          default: true
+                        code:
+                          type: integer
+                          example: 8010
+                          default: 0
+                        message:
+                          type: string
+                          example: Reward issued partially
+                    rewards:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          status:
+                            type: object
+                            properties:
+                              success:
+                                type: boolean
+                                example: true
+                                default: true
+                              code:
+                                type: integer
+                                example: 200
+                                default: 0
+                              message:
+                                type: string
+                                example: Reward issued successfully
+                          rewardId:
+                            type: integer
+                            example: 13
+                            default: 0
+                          requestedQuantity:
+                            type: integer
+                            example: 1
+                            default: 0
+                          pointsReferenceId:
+                            type: string
+                            example: ZGxGVD
+                          intouch:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                pointsRedeemed:
+                                  type: string
+                                  example: '50'
+                                couponCode:
+                                  type: string
+                                  example: 42FU1ZP3
+                                codeExpiry:
+                                  type: string
+                                  example: "2023-06-09 00:00:00"
+                          promotions:
+                            type: array
+                          vendor:
+                            type: array
+                          restrictions: {}
+                - title: '8003'
+                  type: object
+                  properties:
+                    status:
+                      type: object
+                      properties:
+                        success:
+                          type: boolean
+                          example: false
+                          default: true
+                        code:
+                          type: integer
+                          example: 8003
+                          default: 0
+                        message:
+                          type: string
+                          example: fail to issue reward
+                    rewards:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          status:
+                            type: object
+                            properties:
+                              success:
+                                type: boolean
+                                example: false
+                                default: true
+                              code:
+                                type: integer
+                                example: 12005
+                                default: 0
+                              message:
+                                type: string
+                                example: Reward constraint evaluation failed. Request
+                                  failed. Max limit for the DAYS is reached. Allowed
+                                  limit is 15 For Level CUSTOMER
+                          rewardId:
+                            type: integer
+                            example: 49827
+                            default: 0
+                          requestedQuantity:
+                            type: integer
+                            example: 1
+                            default: 0
+                          pointsReferenceId: {}
+                          intouch: {}
+                          promotions: {}
+                          vendor: {}
+                          restrictions: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: ''
+          name: request body
+        samples-languages:
+        - curl
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

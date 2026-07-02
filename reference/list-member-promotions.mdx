@@ -1,0 +1,161 @@
+---
+title: 'List Member Promotions '
+---
+## List Member Promotions
+
+Returns a paginated list of  loyalty promotions associated with a specific member. Use the optional query parameter filters to narrow results by enrolment status, promotion identifier, or promotion ID.
+
+## Example request
+
+<CodeGroup show-lines="true" tabs={["cURL"]}>
+  ```bash wrap="true" cURL
+  curl -X GET "https://{host}/v3/members/{memberId}/promotions?page=0&size=10" \
+    -H "Authorization: Basic {token}"
+  ```
+</CodeGroup>
+
+## Prerequisites
+
+- Authentication: Basic authentication. Provide a valid `Authorization` header.
+
+- Default access group.
+
+## Resource information
+
+| Pagination    | Yes |
+| :------------ | :-- |
+| Batch support | No  |
+
+## Path parameters
+
+| Field      | Type | Required | Description                               |
+| :--------- | :--- | :------- | :---------------------------------------- |
+| `memberId` | Long | Yes      | Unique customer identifier of the member. |
+
+## Query parameters
+
+| Field                    | Type    | Required | Description                                                                                                                                                                  |
+| :----------------------- | :------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `page`                   | Integer | Optional | Page number for pagination (0-indexed). Defaults to `0`.                                                                                                                     |
+| `size`                   | Integer | Optional | Number of promotions per page. Defaults to `10`. Max: `20`.                                                                                                                  |
+| `memberEnrollmentStatus` | String  | Optional | Filters promotions by the member's enrolment status. Supported values: `PENDING_ENROLLMENT`, `PENDING_OPT_IN`, `AVAILABLE_TO_REDEEM`, `REDEEMED`, `EXPIRED`. Case-sensitive. |
+| `promotionIdentifier`    | String  | Optional | Filters by the promotion's unique string identifier. The identifier must resolve to a promotion in `ACTIVE`, `PAUSED`, or `STOPPED` state.                                   |
+| `promotionId`            | Integer | Optional | Filters by the promotion's numeric ID. The promotion must be in `ACTIVE`, `PAUSED`, or `STOPPED` state.                                                                      |
+
+## API Quick Reference
+
+```
+GET /v3/members/{memberId}/promotions
+   └─ Response
+       ├─ pageDetails (object)
+       │   ├─ pageNumber (number)
+       │   ├─ pageSize (number)
+       │   ├─ totalEntries (number)
+       │   └─ pageCount (number)
+       ├─ memberId (number)
+       └─ promotions []
+           ├─ promotionId (number)
+           ├─ promotionName (string)
+           ├─ programId (number)
+           ├─ startDateISO (string)
+           ├─ endDateISO (string)
+           ├─ timezoneName (string)
+           ├─ promotionIdentifier (string)
+           ├─ description (string)
+           └─ active (boolean)
+```
+
+## Example response
+
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+  ```json JSON
+  {
+    "pageDetails": {
+      "pageNumber": 0,
+      "pageSize": 10,
+      "totalEntries": 37,
+      "pageCount": 4
+    },
+    "memberId": 388757626,
+    "promotions": [
+      {
+        "promotionId": 126779,
+        "promotionName": "UAT ULP - Updating enrolment type using API",
+        "programId": 973,
+        "startDateISO": "2026-03-18T06:11:00Z",
+        "endDateISO": "2026-03-19T06:11:59Z",
+        "timezoneName": "Indian/Maldives",
+        "promotionIdentifier": "f385f258-c315-412c-b910-7bd8a8d89427",
+        "description": "UAT ULP - Updating enrolment type using API",
+        "active": true
+      },
+      {
+        "promotionId": 126635,
+        "promotionName": "Single Activity Promotion2",
+        "programId": 973,
+        "startDateISO": "2026-03-01T05:11:00Z",
+        "endDateISO": "2026-03-31T05:11:59Z",
+        "timezoneName": "Asia/Kolkata",
+        "promotionIdentifier": "single-activity-promotion2",
+        "description": "A promotion with single activity",
+        "active": true
+      }
+    ]
+  }
+  ```
+</CodeGroup>
+
+## Response parameters
+
+| Field                  | Type               | Description                                                                                                                                                                                                                                                                                                                                                                            |
+| ---------------------- | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `pageDetails`          | Object             | Pagination metadata for the response.                                                                                                                                                                                                                                                                                                                                                  |
+| `.pageNumber`          | Integer            | The zero-based index of the current page in the result set.                                                                                                                                                                                                                                                                                                                            |
+| `.pageSize`            | Integer            | The number of promotions returned in the current page of results.                                                                                                                                                                                                                                                                                                                      |
+| `.totalEntries`        | Integer            | The total count of promotions matching the specified filters across all pages.                                                                                                                                                                                                                                                                                                         |
+| `.pageCount`           | Integer            | The total number of pages available at the specified page size.                                                                                                                                                                                                                                                                                                                        |
+| `memberId`             | Long               | The system-generated identifier of the member whose promotions are being retrieved.                                                                                                                                                                                                                                                                                                    |
+| `promotions`           | Array              | The list of promotions the member is enrolled in or eligible to participate in.                                                                                                                                                                                                                                                                                                        |
+| `.promotionId`         | Long               | The system-generated identifier for the promotion.                                                                                                                                                                                                                                                                                                                                     |
+| `.promotionName`       | String             | The display name of the promotion.                                                                                                                                                                                                                                                                                                                                                     |
+| `.programId`           | Integer            | The unique identifier of the loyalty program under which this promotion operates.                                                                                                                                                                                                                                                                                                      |
+| `.startDateISO`        | String (date-time) | Indicates the promotion's start date and time in ISO 8601 format, returned in the server time zone. EU server example: 2025-12-16T14:30:45Z → 16 December 2025, 14:30:45 (UTC) India server example: 2025-12-16T14:30:45+05:30 → 16 December 2025, 14:30:45 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
+| `.endDateISO`          | String (date-time) | Indicates the promotion's end date and time in ISO 8601 format, returned in the server time zone. EU server example: 2025-12-16T14:30:45Z → 16 December 2025, 14:30:45 (UTC) India server example: 2025-12-16T14:30:45+05:30 → 16 December 2025, 14:30:45 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request.   |
+| `.timezoneName`        | String             | [IANA time zone name](https://timeapi.io/documentation/iana-timezones) for the promotion. This is a reference label to identify the time zone where the promotion is created.                                                                                                                                                                                                          |
+| `.promotionIdentifier` | String             | The human-readable identifier used to reference the promotion across systems, distinct from the system-generated ID.                                                                                                                                                                                                                                                                   |
+| `.description`         | String             | The text describing the promotion's offer and key benefits to the member.                                                                                                                                                                                                                                                                                                              |
+| `.active`              | Boolean            | Indicates if the promotion is currently eligible for member enrollment and participation.                                                                                                                                                                                                                                                                                              |
+
+## Error and warning codes
+
+| Code   | Type  | Description                                                                                                                                                       |
+| :----- | :---- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 310192 | Error | Member not found for the given `memberId`. Provide a valid member identifier.                                                                                     |
+| 310193 | Error | No `ACTIVE`, `PAUSED`, or `STOPPED` promotion found for the given `promotionIdentifier`.                                                                          |
+| 310194 | Error | No `ACTIVE`, `PAUSED`, or `STOPPED` promotion found for the given `promotionId`.                                                                                  |
+| 310195 | Error | `size` exceeds the maximum allowed limit of 20.                                                                                                                   |
+| 310196 | Error | Invalid value for `memberEnrollmentStatus`. Must be one of: `PENDING_ENROLLMENT`, `PENDING_OPT_IN`, `AVAILABLE_TO_REDEEM`, `REDEEMED`, `EXPIRED`. Case-sensitive. |
+| 500    | Error | Internal server error. Retry the request after a short delay.                                                                                                     |
+
+## Parameters & Headers
+
+<Expandable title="Request Headers" default-open="false">
+  <ParamField header="Authorization" param-type="string" required="true" deprecated="false" show-location="true" />
+</Expandable>
+
+<Expandable title="Path Parameters" default-open="false">
+  <ParamField path="memberId" param-type="integer" required="true" deprecated="false" show-location="true" />
+</Expandable>
+
+<Expandable title="Query Parameters" default-open="false">
+  <ParamField query="page" param-type="integer" required="false" deprecated="false" show-location="true" />
+
+  <ParamField query="size" param-type="integer" required="false" deprecated="false" show-location="true" />
+
+  <ParamField query="memberEnrollmentStatus" param-type="string enum" required="false" deprecated="false" show-location="true" />
+
+  <ParamField query="promotionIdentifier" param-type="string" required="false" deprecated="false" show-location="true" />
+
+  <ParamField query="promotionId" param-type="integer" required="false" deprecated="false" show-location="true" />
+</Expandable>
+

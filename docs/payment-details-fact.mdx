@@ -1,0 +1,47 @@
+---
+title: Payment Details Fact Table
+---
+
+This table captures the payment details of transactions, such as the bill amount, customer details, the mode of payment, taxes and discount details, cashier id, NPS value, loyalty type of the customer, and the store where the transaction is done.
+
+**Databricks Table Name:** payment_details_fact
+
+**Payment Details Fact - Entity Relationship Diagram (ERD)**
+
+Zoom in the table for more clarity. Click the table title to view its details.
+
+<SVG src="https://blob-cdn.documentation.ai/org-33a37b13-6e8e-4740-8784-efe392e052a1/doc-f5d2fac6-45c6-4928-b76b-06e4ff784712/1782803750211-nhuobiegx2-payment-details-fact-erd.svg?rasterize-bypass=true" />
+
+**Payment Details Fact Table**
+
+| Column Name | Data Type | Description | Linked Table | Availability for Export in the [Payment Mode](/docs/payment-mode-standard-export-template) Template |
+| --- | --- | --- | --- | --- |
+| bill_amount | double | The total amount of the transaction for which the payment has been done. | _ | Yes; Measure Name: Bill Amount |
+| bill_discount | double | Total discount applied on the bill. Possible values are flat discount, percentage discount, etc. | _ | Yes; Measure Name: Bill Discount |
+| bill_id | bigint | Unique identifier assigned to a bill internally by Capillary system. It is the primary key of this table. | _ | Yes; Measure Name: Bill Id |
+| bill_number | string | A unique number for a transaction that is either auto-generated at the POS machine (billing counter) or provided manually. | _ | Yes; Measure Name: Bill Number |
+| central_gst | double | GST tax levied by the Central Government. | _ | Yes; Measure Name: Central Gst |
+| dim_added_on_date_id | bigint | Date when the payment details had been added for the transaction. | [date](/dimensions-tables#date) | Yes: Dimension Name: Added On Date > Date Id |
+| dim_bill_outlier_status_id | bigint | Captures whether a bill, identified by its bill_id, contains outlier items. | [outlier_status](/dimensions-tables#outlier-status) | Yes: Dimension Name: Bill Outlier > Id |
+| dim_bill_type_id | bigint | Captures the type of bill for which the payment has been made. Possible values are - Regular, and Not interested. | [bill_type](/dimensions-tables#bill-type) | Yes: Dimension Name: Dim Bill Type Id |
+| dim_cashier_id | bigint | Identifier of the cashier who processed the transaction. | [cashier](/dimensions-tables#cashier) | Yes: Dimension Name: Cashier Id |
+| dim_event_date_id | bigint | Date when the payment has been done. | [date](/dimensions-tables#date) | Yes: Dimension Name: Date > Date |
+| dim_event_time_id | bigint | Time when the payment has been done. | [time](/dimensions-tables#time) | Yes: Dimension Name: Time > Time Id |
+| dim_event_user_id | bigint | Identifier of the customer who has done the payment. | [users](/dimensions-tables#users-users) | Yes: Dimension Name: User > User Id |
+| dim_event_zone_till_id | bigint | Identifier assigned to the point-of-sale (POS) terminal within a store, where the payment has been done. | [zone_tills](/dimensions-tables#zone-till) | Yes: Dimension Name: Store Hierarchy > Till Id |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. | [date](/dimensions-tables#date) | Yes: Dimension Name: Latest Updated Date > Date |
+| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/ row is changed in the source table. | [time](/dimensions-tables#time) | Yes: Dimension Name: Latest Updated Time > Time Id |
+| dim_loyalty_type_id | bigint | Identifier of the Loyalty type of the customer. Possible values are - loyalty/ non loyalty/ not registered (who have not provided their contact details). | [loyalty_type](/dimensions-tables#loyalty-type) | Yes: Dimension Name: Loyalty > Id |
+| dim_nps_id | bigint | Net Promoter Score (NPS) for the transaction, where NPS is a measure for customer satisfaction, ranging from 1 to 10. | [nps_score](/dimensions-tables#nps-score) | Yes: Dimension Name: Nps > Id |
+| dim_order_channel_id | bigint | Identifier for the order channel associated with a transaction. It indicates the specific channel through which the transaction was completed. Possible values are online, in-store, through a mobile app, etc. | [order_channel](/dimensions-tables#order-channel) | Yes: Dimension Name: Order Channel > Id |
+| dim_payment_mode_id | bigint | Identifier for the mode of payment. Possible values are- Netbanking, PhonePe, Mastercard, Visa card, etc. | [payment_mode](/dimensions-tables#payment-mode) | Yes: Dimension Name: Payment Mode > Id |
+| dim_repeat_status_id | bigint | Shows if the customer has made previous purchases or if it's their first transaction. | [repeat_status](/dimensions-tables#repeat-status) | Yes: Dimension Name: Repeat > Id |
+| dim_source_type_id | bigint | Identifier for the source of the bill. Possible values are instore, e-comm, newsletter, campaigns, NCA, Wechat, Facebook, etc. | [source_type](/dimensions-tables#source-type) | Yes: Dimension Name: Source > Id |
+| integrated_gst | double | GST levied by the Central Government for inter-state trade. | _ | Yes; Measure Name: Integrated Gst |
+| payment_mode_amount | double | Total amount of the payment made. | _ | Yes; Measure Name: Payment Mode Amount |
+| payment_mode_details_id | bigint | Unique identifier for the payment mode details, generated by Capillary system. It is the primary key of this table. | [payment_attributes](/dimensions-tables#payment-attributes) | Yes; Measure Name: Payment Mode Attribute > Id |
+| quantity | double | Total number of items in the transaction, for which the payment has been done. | _ | Yes; Measure Name: Quantity |
+| state_gst | double | Taxes levied by the State Government on the bill. | _ | Yes; Measure Name: State Gst |
+| tax_amount | double | Total amount of tax levied on the bill. | _ | Yes; Measure Name: Tax Amount |
+| year | int | Year when the payment has been done. | _ | Yes: Dimension Name: Year |
+

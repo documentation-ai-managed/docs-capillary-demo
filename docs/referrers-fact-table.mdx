@@ -1,0 +1,29 @@
+---
+title: Referrers Fact Table
+---
+
+This table captures the information of the referrers. A referrer is a customer who refers other customers to transact with the brand. This fact table captures all the information surrounding the referrer, such as the referrer identifier, date and time of the referral, campaign associated with the referral, and the token associated with the referral campaign.
+
+**Databricks Table Name:** referrers
+
+**Referrers Fact - Entity Relationship Diagram (ERD)**
+
+<SVG src="https://blob-cdn.documentation.ai/org-33a37b13-6e8e-4740-8784-efe392e052a1/doc-f5d2fac6-45c6-4928-b76b-06e4ff784712/1782803364940-uxbc3kv4sxr-referrers-fact-table-erd.svg?rasterize-bypass=true" />
+
+Zoom in the table for more clarity. Click the table title to view its details.
+
+**Referrers Fact Table**
+
+| Column Name | Data Type | Description | Linked Table |
+| --- | --- | --- | --- |
+| auto_update_time | bigint | Date and time when the corresponding table available at the source was last updated. It is in the Unix timestamp format. | _ |
+| dim_campaign_id | bigint | Identifier for the campaign associated with the referral action. | [campaign](/dimensions-tables#campaigns) |
+| dim_event_date_id | bigint | Date when the referral action occurred. | [date](/dimensions-tables#date) |
+| dim_event_time_id | bigint | Time when the referral action occurred. | [time](/dimensions-tables#time) |
+| dim_event_user_id | bigint | Identifier for the customer associated with the referral action. | [users](/dimensions-tables#users-users) |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/row is changed in the source table. | [date](/dimensions-tables#date) |
+| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/row is changed in the source table. | [time](/dimensions-tables#time) |
+| referrer_id | bigint | Unique identifier for the referrer (the customer who referred another customer). It is the primary key for this table. | _ |
+| token | string | Unique token of the referral campaign. | _ |
+| year | int | Year of the referral. | _ |
+

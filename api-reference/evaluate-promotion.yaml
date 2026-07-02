@@ -1,0 +1,154 @@
+openapi: 3.1.0
+info:
+  title: Evaluate Promotion
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  /api_gateway/v1/promotions/evaluate:
+    post:
+      summary: Evaluate Promotion
+      description: ''
+      operationId: evaluate-promotion
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                RAW_BODY:
+                  type: string
+                  format: json
+            examples:
+              Sample POST Body:
+                value:
+                  amount: '2000.000000'
+                  customerId: 319630259
+                  cartItems:
+                  - referenceId: fdc78567-bf4a-494b-9386-83045a910dcb
+                    sku: 6676557b-a2ee-4334-aa6e-7a64ba15be37
+                    amount: 200
+                    qty: 2
+                    discount: null
+                    appliedPromotions: null
+                  - referenceId: 7caa090c-9278-4f25-b587-575a6f1f1405
+                    sku: d5a5ef5f-1f96-4180-9f31-81940469fbce
+                    amount: 800
+                    qty: 2
+                    discount: null
+                    appliedPromotions: null
+                  promoCode:
+                  - QCBS3WWZUES
+                  - QCBS3WWZU
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"data\": {\n        \"amount\": \"2000.000000\"\
+                    ,\n        \"customerId\": 319630259,\n        \"cartItems\":\
+                    \ [\n            {\n                \"referenceId\": \"7caa090c-9278-4f25-b587-575a6f1f1405\"\
+                    ,\n                \"sku\": \"d5a5ef5f-1f96-4180-9f31-81940469fbce\"\
+                    ,\n                \"amount\": \"800.000000\",\n             \
+                    \   \"qty\": \"2.000000\",\n                \"discount\": \"0\"\
+                    ,\n                \"appliedPromotions\": []\n            },\n\
+                    \            {\n                \"referenceId\": \"fdc78567-bf4a-494b-9386-83045a910dcb\"\
+                    ,\n                \"sku\": \"6676557b-a2ee-4334-aa6e-7a64ba15be37\"\
+                    ,\n                \"amount\": \"200.000000\",\n             \
+                    \   \"qty\": \"2.000000\",\n                \"discount\": \"0\"\
+                    ,\n                \"appliedPromotions\": []\n            }\n\
+                    \        ],\n        \"evaluationId\": \"62ac29f8ab178d6d72d41734\"\
+                    ,\n        \"appliedPromotions\": [],\n        \"appliedPaymentVouchers\"\
+                    : [],\n        \"promoCodeEvaluationLogs\": [],\n        \"paymentVoucherEvaluationLogs\"\
+                    : [],\n        \"cartTenders\": [\n            {\n           \
+                    \     \"identifier\": \"CASH\",\n                \"amount\": \"\
+                    2000.00\",\n                \"adjustedAmount\": \"2000.00\"\n\
+                    \            }\n        ],\n        \"categoryHierarchySentInPayload\"\
+                    : false\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      amount:
+                        type: string
+                        example: '2000.000000'
+                      customerId:
+                        type: integer
+                        example: 319630259
+                        default: 0
+                      cartItems:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            referenceId:
+                              type: string
+                              example: 7caa090c-9278-4f25-b587-575a6f1f1405
+                            sku:
+                              type: string
+                              example: d5a5ef5f-1f96-4180-9f31-81940469fbce
+                            amount:
+                              type: string
+                              example: '800.000000'
+                            qty:
+                              type: string
+                              example: '2.000000'
+                            discount:
+                              type: string
+                              example: '0'
+                            appliedPromotions:
+                              type: array
+                      evaluationId:
+                        type: string
+                        example: 62ac29f8ab178d6d72d41734
+                      appliedPromotions:
+                        type: array
+                      appliedPaymentVouchers:
+                        type: array
+                      promoCodeEvaluationLogs:
+                        type: array
+                      paymentVoucherEvaluationLogs:
+                        type: array
+                      cartTenders:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            identifier:
+                              type: string
+                              example: CASH
+                            amount:
+                              type: string
+                              example: '2000.00'
+                            adjustedAmount:
+                              type: string
+                              example: '2000.00'
+                      categoryHierarchySentInPayload:
+                        type: boolean
+                        example: false
+                        default: true
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

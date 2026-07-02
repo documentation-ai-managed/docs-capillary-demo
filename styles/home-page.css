@@ -1,0 +1,266 @@
+/*
+  All rules are scoped to the Home page only.
+  :root:has(h3#user-documentation) matches when the Home page content is present.
+  No other page has this heading, so nothing below affects any other page.
+*/
+:root:has(h3#user-documentation) {
+
+  /* ─── Hide breadcrumbs ─── */
+  .dai-breadcrumbs { display: none !important; }
+ .dai-navbar-tabs {
+    display: none !important;
+  }
+
+
+  /* ─── Hide platform page title ─── */
+  .dai-page-header { display: none !important; }
+  .page-title      { display: none !important; }
+
+  /* ─── Hide heading anchor icons ─── */
+  [data-component="Heading"] > div { display: none !important; }
+
+  /* ─── Content column padding (wide layout, no sidebar) ─── */
+    /* ─── Top breathing room above the heading ─── */
+  .dai-article {
+    padding-top: 4px !important;
+  }
+
+  .dai-article,
+  .dai-content-column {
+    max-width: 100% !important;
+    padding-left: 100px !important;
+    padding-right: 100px !important;
+  }
+
+  /* ─── Main page heading ─── */
+  .dai-article h2:first-of-type {
+    font-size: 26px !important;
+    font-weight: 600 !important;
+    line-height: 1.4 !important;
+    color: #434B4F !important;
+    margin: 0 0 6px !important;
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+  }
+  &.dark .dai-article h2:first-of-type {
+    color: #D1D8DD !important;
+  }
+
+  /* ─── Subtitle paragraph ─── */
+  .dai-article h2:first-of-type + p {
+    color: #747474 !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    line-height: 1.6 !important;
+    margin: 0 !important;
+    font-family: 'Roboto', sans-serif;
+  }
+  &.dark .dai-article h2:first-of-type + p {
+    color: #A0A0A0 !important;
+  }
+
+  /* ─── Section labels (H3) ─── */
+  .dai-article h3 {
+    color: #1341A9 !important;
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    line-height: 1.4 !important;
+    margin: 24px 0 0 !important;
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+  }
+  &.dark .dai-article h3 {
+    color: #85A1FF !important;
+  }
+    /* Match the space above the first section to the second */
+  .dai-article h3#user-documentation {
+    margin-top: 20px !important;
+  }
+
+
+  /* ─── Columns grid spacing ─── */
+  h3#user-documentation + [data-component="Columns"],
+  h3#developer-documentation + [data-component="Columns"] {
+    margin-top: 15px !important;
+    margin-bottom: 40px !important;
+    gap: 20px !important;
+  }
+
+  /* ─── All cards ─── */
+  [data-component="Card"] {
+    border-radius: 24px !important;
+    min-height: 215px !important;
+    cursor: pointer !important;
+    transition: box-shadow 0.3s ease !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  [data-component="Card"]:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.10) !important;
+  }
+  &.dark [data-component="Card"]:hover {
+    box-shadow: 0 4px 12px rgba(120,120,120,0.25) !important;
+  }
+
+  /* ─── Icon image wrapper ─── */
+  [data-component="Card"] > div:first-child {
+    width: fit-content !important;
+    padding: 20px 0 0 20px !important;
+    overflow: visible !important;
+  }
+
+  /* ─── Icon image: 40 × 40 px ─── */
+  .dai-card-image {
+    width: 40px !important;
+    height: 40px !important;
+    max-width: 40px !important;
+    object-fit: contain !important;
+    display: block !important;
+    border-radius: 0 !important;
+    transform: none !important;
+  }
+
+  /* ─── Card body ─── */
+  [data-component="Card"] > div:last-child {
+    padding: 8px 20px 20px 20px !important;
+  }
+
+  /* ─── Card title ─── */
+  [data-component="Card"] .dai-card-title {
+    color: #3B4A61 !important;
+    font-weight: 500 !important;
+    font-size: 16px !important;
+    font-family: Twemoji Country Flags, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif !important;
+    line-height: 1.4 !important;
+    margin: 0 0 4px !important;
+  }
+  &.dark [data-component="Card"] .dai-card-title {
+    color: #D6E0F0 !important;
+  }
+
+  /* ─── Card description ─── */
+  [data-component="Card"] .dai-card-description {
+    color: #3B4A61 !important;
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    line-height: 1.5 !important;
+    margin: 0 !important;
+  }
+  &.dark [data-component="Card"] .dai-card-description {
+    color: #D6E0F0 !important;
+  }
+
+  /* ─── USER DOCUMENTATION — card backgrounds ─── */
+  h3#user-documentation + [data-component="Columns"] > a:nth-child(1) [data-component="Card"] {
+    background: url(https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/da520d6b-8cb3-4ac3-bdb5-bae859a1.png) center / cover no-repeat !important;
+    border-color: transparent !important;
+  }
+  &.dark h3#user-documentation + [data-component="Columns"] > a:nth-child(1) [data-component="Card"] {
+    background:
+      linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+      url(https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/da520d6b-8cb3-4ac3-bdb5-bae859a1.png) center / cover no-repeat !important;
+  }
+
+  h3#user-documentation + [data-component="Columns"] > a:nth-child(2) [data-component="Card"] {
+    background: url(https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/b432aaf5-5d36-4947-9fa3-06b1140b.png) center / cover no-repeat !important;
+    border-color: transparent !important;
+  }
+  &.dark h3#user-documentation + [data-component="Columns"] > a:nth-child(2) [data-component="Card"] {
+    background:
+      linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+      url(https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/b432aaf5-5d36-4947-9fa3-06b1140b.png) center / cover no-repeat !important;
+  }
+
+  h3#user-documentation + [data-component="Columns"] > a:nth-child(3) [data-component="Card"] {
+    background: url(https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/0f637aee-3e50-4713-9f20-1251f84d.png) center / cover no-repeat !important;
+    border-color: transparent !important;
+  }
+  &.dark h3#user-documentation + [data-component="Columns"] > a:nth-child(3) [data-component="Card"] {
+    background:
+      linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+      url(https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/0f637aee-3e50-4713-9f20-1251f84d.png) center / cover no-repeat !important;
+  }
+
+  h3#user-documentation + [data-component="Columns"] > a:nth-child(4) [data-component="Card"] {
+    background: url(https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/b67c4cb9-5cf9-48ff-a2fc-7cf02a50.png) center / cover no-repeat !important;
+    border-color: transparent !important;
+  }
+  &.dark h3#user-documentation + [data-component="Columns"] > a:nth-child(4) [data-component="Card"] {
+    background:
+      linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+      url(https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/b67c4cb9-5cf9-48ff-a2fc-7cf02a50.png) center / cover no-repeat !important;
+  }
+
+  /* Dark mode text on user doc colored cards */
+  &.dark h3#user-documentation + [data-component="Columns"] [data-component="Card"] .dai-card-title {
+    color: #ffffff !important;
+  }
+  &.dark h3#user-documentation + [data-component="Columns"] [data-component="Card"] .dai-card-description {
+    color: rgba(255,255,255,0.85) !important;
+  }
+
+  /* User doc cards: title color on hover */
+  h3#user-documentation + [data-component="Columns"] a:hover [data-component="Card"] .dai-card-title {
+    color: #1341A9 !important;
+  }
+  &.dark h3#user-documentation + [data-component="Columns"] a:hover [data-component="Card"] .dai-card-title {
+    color: #85A1FF !important;
+  }
+
+  /* User doc cards: cancel shadow on hover */
+  h3#user-documentation + [data-component="Columns"] a:hover [data-component="Card"],
+  &.dark h3#user-documentation + [data-component="Columns"] a:hover [data-component="Card"] {
+    box-shadow: none !important;
+  }
+
+  /* ─── DEVELOPER DOCUMENTATION — gray background cards ─── */
+  h3#developer-documentation + [data-component="Columns"] [data-component="Card"] {
+    background: #F7F7F7 !important;
+    border-color: transparent !important;
+  }
+  &.dark h3#developer-documentation + [data-component="Columns"] [data-component="Card"] {
+    background: #1E2530 !important;
+  }
+
+  h3#developer-documentation + [data-component="Columns"] a:hover [data-component="Card"] .dai-card-title {
+    color: #1341A9 !important;
+  }
+  &.dark h3#developer-documentation + [data-component="Columns"] a:hover [data-component="Card"] .dai-card-title {
+    color: #85A1FF !important;
+  }
+
+  /* ─── Tablet ─── */
+  @media (max-width: 1200px) {
+    .dai-article,
+    .dai-content-column {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+  }
+
+  /* ─── Mobile ─── */
+  @media (max-width: 540px) {
+
+    .dai-article {
+    padding-top: 0px !important;   /* ← add this line */
+  }
+  .dai-article h3#user-documentation {
+    margin-top: 0px !important;    /* ← change 5px to 0px */
+  }
+
+
+    .dai-article,
+    .dai-content-column {
+      padding-left: 2px !important;
+      padding-right: 2px !important;
+    }
+    [data-component="Card"] {
+      min-height: 150px !important;
+    }
+    h3#user-documentation + [data-component="Columns"],
+    h3#developer-documentation + [data-component="Columns"] {
+      margin-bottom: 24px !important;
+    }
+  }
+
+}

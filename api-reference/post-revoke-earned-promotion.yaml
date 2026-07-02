@@ -1,0 +1,103 @@
+openapi: 3.1.0
+info:
+  title: Post Revoke Earned Cart Promotion
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  /api_gateway/v1/promotions/revokeEarn:
+    post:
+      summary: Post Revoke Earned Cart Promotion
+      description: This API is used to revoke an already earned cart promotion
+      operationId: post-revoke-earned-promotion
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                RAW_BODY:
+                  type: string
+                customerId:
+                  type: string
+                  description: The customerId for which the earn should be revokes
+                earnRevokeDetails:
+                  type: object
+                  description: revoke details
+                  properties:
+                    ? ''
+                    : type: string
+            examples:
+              Request Body:
+                value:
+                  customerId: 0
+                  earnRevokeDetails:
+                  - promotionId: string
+                    earnIds:
+                    - string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"data\": {\n    \"code\": 0,\n    \"message\": \"\
+                    string\"\n  },\n  \"errors\": [\n    {\n      \"code\": 0,\n \
+                    \     \"message\": \"string\",\n      \"promotionId\": \"string\"\
+                    , //Unique id assigned to any promotion created\n      \"earnIds\"\
+                    : [\n        \"string\"\n      ]\n    }\n  ]\n}\n"
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 0
+                        default: 0
+                      message:
+                        type: string
+                        example: string
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          example: 0
+                          default: 0
+                        message:
+                          type: string
+                          example: string
+                        promotionId:
+                          type: string
+                          example: string
+                        earnIds:
+                          type: array
+                          items:
+                            type: string
+                            example: string
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

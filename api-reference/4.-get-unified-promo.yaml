@@ -1,0 +1,167 @@
+openapi: 3.0.1
+info:
+  title: Sample API
+  version: 1.0.0
+  description: API specification generated from cURL for GET /v3/promotions
+servers:
+  - url: https://eu.api.capillarytech.com
+paths:
+  /v3/promotions:
+    get:
+      summary: Operation for GET /v3/promotions
+      description: Endpoint for GET /v3/promotions
+      operationId: getV3promotions
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          schema:
+            type: string
+            example: Basic Z2VvcmdlLmJ1a2w6NzYzNDkxOGFmNDI3MGQ3YzI4ZjU4ZjY3MmNhZjY1ZmY=
+        - name: Cookie
+          in: header
+          required: false
+          schema:
+            type: string
+            example: >-
+              _cfuvid=FpEQ1IKxM7IelsonuP1pTKDZjT_pAkTzJBGUZqKDqpA-1761801071752-0.0.1.1-604800000
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                OK:
+                  summary: OK
+                  value:
+                    data:
+                      content:
+                        - metadata:
+                            name: Efd Activity Based Prom
+                            description: >-
+                              Enrollment for all members, requires
+                              activity-based opt-in.
+                            programId: HiddenGemDefaultProgram_ID
+                            orgId: 100458
+                            startDate: '2025-11-27T00:00:00Z'
+                            endDate: '2025-12-27T23:59:59Z'
+                            timezoneName: Asia/Kolkata
+                            promotionType: LOYALTY
+                            status: DRAFT
+                            promoIdentifier: null
+                            promotionId: 0
+                            createdOn: '2025-10-30T08:43:29Z'
+                            lastModifiedOn: '2025-10-30T08:43:29Z'
+                            createdBy: 0
+                            lastModifiedBy: 0
+                            loyaltyEarningType: null
+                            version: null
+                            draftDetails: null
+                            loyaltyConfigMetaData:
+                              isStackable: false
+                              isConsideredForRanking: false
+                              isExclusive: false
+                              isAlwaysApply: false
+                              skipEarnedDateCheckOnRedeem: null
+                            promotionMetadata: null
+                            commonStrategies: null
+                            promotionMode: UNIFIED
+                          customerEnrolment:
+                            enrolmentMethod: TRANSACTION
+                          activities:
+                            - type: SINGLE
+                              id: activity_reward_trigger
+                              name: Main Reward Activity
+                              commonCycleActionMapping:
+                                - cycle: cycle_promo_period
+                                  actions:
+                                    - id: action_award_points
+                                      actionName: AWARD_CURRENCY
+                                      actionClass: >-
+                                        com.capillary.loyalty.engine.actor.promotion.actions.AwardCurrency
+                                      mandatoryPropertiesValues:
+                                        POINTS_TO_AWARD: '100'
+                                        CURRENCY_IDENTIFIER: POINTS
+                                  startDate: '2025-11-27'
+                                  endDate: '2025-12-27'
+                              event: TransactionAdd
+                              allCycles: []
+                          comments: null
+                          parentId: null
+                          parentDetails: null
+                          version: 1
+                          limits: []
+                          liabilityOwnerSplitInfo: []
+                          id: 6903253184daf5486232dec9
+                          workflowMetadata:
+                            enrolment:
+                              basedOn: null
+                              activities: null
+                              audienceMapping: null
+                              restrictions: null
+                            optin:
+                              basedOn: ACTIVITY
+                              audienceMapping: null
+                              activities:
+                                - type: SINGLE
+                                  id: activity_optin_trigger
+                                  name: Opt-in Trigger Activity
+                                  event: TransactionAdd
+                                  allCycles: []
+                              restrictions: null
+                          communicationApprovalStatus: null
+                      pageable:
+                        pageNumber: 0
+                        pageSize: 10
+                        sort:
+                          empty: true
+                          sorted: false
+                          unsorted: true
+                        offset: 0
+                        unpaged: false
+                        paged: true
+                      totalElements: 1
+                      totalPages: 1
+                      last: true
+                      size: 10
+                      number: 0
+                      sort:
+                        empty: true
+                        sorted: false
+                        unsorted: true
+                      numberOfElements: 1
+                      first: true
+                      empty: false
+                    errors: null
+                    warnings: null
+          description: OK
+      x-readme:
+        code-samples:
+          - code: >-
+              curl -L
+              'https://eu.api.capillarytech.com/v3/promotions?status=ACTIVE&page=5&size=3&includeDraftDetails=true'
+              \
+
+              -H 'Authorization: Basic M2YjZlY2I2MmEy' \
+
+              -H 'Cookie:
+              _cfuvid=FpP1pTKDZjT_pAkTzJBGUZqKDqpA-1761801071752-0.0.1.1-604800000;
+              _cfuvid=6a.B._s_kdRufILbNOTC4r3QDBELr3gKkwGiVHKE6U8-1769591693772-0.0.1.1-604800000'
+            language: shell
+            name: curl
+          - code: >-
+              curl -L
+              'https://eu.api.capillarytech.com/v3/promotions?status=ACTIVE&page=5&size=3&includeDraftDetails=true&searchText=Non%20Loyal%20Customer'
+              \
+
+              -H 'Authorization: Basic M5ZmM2YjZlY2I2MmEy' \
+
+              -H 'Cookie:
+              _cfuvid=FpP1pTKDZjT_pAkTzJBGUZqKDqpA-1761801071752-0.0.1.1-604800000;
+              _cfuvid=6a.B._s_kdRufILbNOTC4r3QDBELr3gKkwGiVHKE6U8-1769591693772-0.0.1.1-604800000'
+            language: shell
+            name: With "searchText" filter
+        samples-languages:
+          - shell

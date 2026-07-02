@@ -1,0 +1,132 @@
+openapi: 3.1.0
+info:
+  title: Issue Cart Promotion
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  "/api_gateway/v1/promotions/{promotionId}/issueBulk":
+    post:
+      summary: Issue Cart Promotion
+      description: Issue Cart Promotion for the customer.
+      operationId: issue-cart-promotion
+      parameters:
+      - name: promotionId
+        in: path
+        description: ID of cart promotion that is generated when creating a cart promotion
+        schema:
+          type: string
+        required: true
+      - name: contextId
+        in: query
+        description: Unique identifier of the entity that issued the promotion. This
+          is also known as tillId.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"data\": {\n        \"564332013\": {\n         \
+                    \   \"id\": \"68230a3af1ebc84977d9ea2c\",\n            \"customerId\"\
+                    : 564332013,\n            \"promotionId\": \"67f3832ab206f929966adf81\"\
+                    ,\n            \"earnedFromId\": \"2 items in cart\",\n      \
+                    \      \"eventTime\": 1747126842954,\n            \"validTill\"\
+                    : 1748716199999\n        }\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      '564332013':
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: 68230a3af1ebc84977d9ea2c
+                          customerId:
+                            type: integer
+                            example: 564332013
+                            default: 0
+                          promotionId:
+                            type: string
+                            example: 67f3832ab206f929966adf81
+                          earnedFromId:
+                            type: string
+                            example: 2 items in cart
+                          eventTime:
+                            type: integer
+                            example: 1747126842954
+                            default: 0
+                          validTill:
+                            type: integer
+                            example: 1748716199999
+                            default: 0
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"data\": {\n        \"555567088\": {\n         \
+                    \   \"id\": \"67dd4237ef21a64211227e06\",\n            \"customerId\"\
+                    : 555567088,\n            \"promotionId\": \"67dd4210ef21a64211227e04\"\
+                    ,\n            \"earnedFromId\": \"973\", \n            \"eventTime\"\
+                    : 1742553655678,\n            \"validTill\": 1746046799999\n \
+                    \       }\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      '555567088':
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: 67dd4237ef21a64211227e06
+                          customerId:
+                            type: integer
+                            example: 555567088
+                            default: 0
+                          promotionId:
+                            type: string
+                            example: 67dd4210ef21a64211227e04
+                          earnedFromId:
+                            type: string
+                            example: '973'
+                          eventTime:
+                            type: integer
+                            example: 1742553655678
+                            default: 0
+                          validTill:
+                            type: integer
+                            example: 1746046799999
+                            default: 0
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/67f3832ab206f929966adf81/issueBulk?contextId=2%20items%20in%20cart'\
+            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization:\
+            \ Basic bmFtYW5fZG9jOmEzYjRjYjgyMzA3MWJmYjM5OGM5ZmM2YjZlY2I2MmEy' \\\n\
+            --header 'Cookie: _cfuvid=IBM60ka7X5Aybk9GUAmy_p8JKVHig14rVuwA5XcyAUA-1747041228297-0.0.1.1-604800000;\
+            \ _cfuvid=fVY1aFlJcxMfPAsl7lBGJQG55iNNKmYw08.WciBy9eY-1747126931365-0.0.1.1-604800000'\
+            \ \\\n--data '[\n  564332013\n]'"
+        samples-languages:
+        - curl
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

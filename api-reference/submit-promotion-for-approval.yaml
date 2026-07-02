@@ -1,0 +1,149 @@
+openapi: 3.0.1
+info:
+  title: Update Promotion Status
+  version: 1.0.0
+  description: API specification for PUT /v3/requests/PROMOTION/{promotionId}/status
+servers:
+  - url: https://{host}
+paths:
+  /v3/requests/PROMOTION/{promotionId}/status:
+    put:
+      summary: Update Promotion Status
+      description: >-
+        Updates the status of a loyalty promotion to manage its lifecycle.
+        Supports submitting a promotion for approval, withdrawing it from review,
+        pausing or resuming an active promotion, and stopping a promotion permanently.
+      operationId: submitPromotionForApproval
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          description: >-
+            Basic or OAuth authentication credentials.
+          schema:
+            type: string
+            example: Basic <YOUR_AUTH_TOKEN>
+        - name: Content-Type
+          in: header
+          required: true
+          schema:
+            type: string
+            example: application/json
+        - in: path
+          name: promotionId
+          required: true
+          description: >-
+            The unique identifier of the promotion to update.
+          schema:
+            type: string
+            example: <PROMOTION_ID>
+        - in: query
+          name: existingStatus
+          required: true
+          description: >-
+            The current status of the promotion. The request fails if the
+            promotion's actual status does not match this value.
+          schema:
+            type: string
+            enum:
+              - DRAFT
+              - PENDING_APPROVAL
+              - ACTIVE
+              - PAUSED
+            example: DRAFT
+      requestBody:
+        required: true
+        description: Promotion status transition details.
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - promotionStatus
+              properties:
+                promotionStatus:
+                  type: string
+                  description: >-
+                    The target status for the promotion. Valid values depend on
+                    existingStatus: PENDING_APPROVAL (from DRAFT), REVOKE (from
+                    PENDING_APPROVAL), PAUSE (from ACTIVE), STOP (from ACTIVE or
+                    PAUSED), RESUME (from PAUSED).
+                  enum:
+                    - PENDING_APPROVAL
+                    - REVOKE
+                    - RESUME
+                    - PAUSE
+                    - STOP
+                  example: PENDING_APPROVAL
+            examples:
+              Submit for approval:
+                summary: Submit for approval (DRAFT → PENDING_APPROVAL)
+                value:
+                  promotionStatus: PENDING_APPROVAL
+              Withdraw from review:
+                summary: Withdraw from review (PENDING_APPROVAL → DRAFT)
+                value:
+                  promotionStatus: REVOKE
+              Pause:
+                summary: Pause promotion (ACTIVE → PAUSED)
+                value:
+                  promotionStatus: PAUSE
+              Stop from active:
+                summary: Stop promotion (ACTIVE → STOPPED)
+                value:
+                  promotionStatus: STOP
+              Resume:
+                summary: Resume promotion (PAUSED → ACTIVE)
+                value:
+                  promotionStatus: RESUME
+              Stop from paused:
+                summary: Stop promotion (PAUSED → STOPPED)
+                value:
+                  promotionStatus: STOP
+      responses:
+        '200':
+          description: Promotion status updated successfully.
+          content:
+            application/json:
+              example:
+                data:
+                  unifiedPromotionId: <PROMOTION_ID>
+                  metadata:
+                    name: Sample Promotion
+                    description: Sample promotion description
+                    programId: <PROGRAM_ID>
+                    orgId: <ORG_ID>
+                    startDate: "2026-08-01T00:00:00Z"
+                    endDate: "2026-08-31T23:59:59Z"
+                    promotionType: GENERIC
+                    status: PENDING_APPROVAL
+                    promotionMode: UNIFIED
+                    promoIdentifier: sample-promo-identifier
+                  customerEnrolment:
+                    enrolmentMethod: TRANSACTION
+                  activities:
+                    - type: SINGLE
+                      id: <ACTIVITY_ID>
+                      name: Activity 1
+                      event: TransactionAdd
+                  version: 1
+                  limits: []
+                errors: null
+                warnings: null
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                  errors:
+                    type: object
+                    nullable: true
+                  warnings:
+                    type: object
+                    nullable: true
+        '400':
+          description: >-
+            Bad request. Returned when promotionStatus is missing or invalid,
+            or existingStatus is not a supported value.
+        '401':
+          description: Unauthorized. Invalid or missing authentication credentials.

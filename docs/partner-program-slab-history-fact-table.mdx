@@ -1,0 +1,24 @@
+---
+title: Partner Program Slab History Fact Table
+---
+
+
+**Databricks Table Name:** : partner\_program\_slab\_history
+
+| Column Name                                   | Data Type | Description                                                                                                                                 | Linked Table                                                              |
+| :-------------------------------------------- | :-------- | :------------------------------------------------------------------------------------------------------------------------------------------ | :------------------------------------------------------------------------ |
+| auto\_update\_time\_pp\_slab\_history         | bigint    | Indicates the date and time when the slab change log record was last updated in the source table. It is in the Unix timestamp format.       | -                                                                         |
+| dim\_event\_date\_id                          | bigint    | Indicates the the date when the slab change occurred.                                                                                       | [date](/dimensions-tables#date)                                           |
+| dim\_event\_program\_id                       | integer   | The Unique identifier of the program associated with the customer's slab change.                                                            | [program](/dimensions-tables#program)                                     |
+| dim\_event\_user\_id                          | bigint    | The Unique Identifier/customer ID for the user associated with the slab change event. This is a system-assigned unique ID for the customer. | -                                                                         |
+| dim\_event\_zone\_till\_id                    | bigint    | The till ID where the slab change transaction occurred.                                                                                     | [zone\_tills](/dimensions-tables#zone-till)                               |
+| dim\_external\_partner\_program\_id           | integer   | The Unique Identifier for the external partner program linked to the slab history.                                                          | -                                                                         |
+| dim\_last\_slab\_action\_id                   | string    | The Unique Identifier for the action associated with the slab change such as tier downgrade, tier upgrade or tier renewal.                  | -                                                                         |
+| dim\_latest\_updated\_date\_id                | bigint    | Indicates the date when the data corresponding to this row was last updated in the source table.                                            | [date](/dimensions-tables#date)                                           |
+| dim\_latest\_updated\_time\_id                | bigint    | Indicates the time when the data corresponding to this row was last updated in the source table.                                            | [time](/dimensions-tables#/time)                                          |
+| dim\_partner\_program\_id                     | integer   | The Unique Identifier for the partner program associated with the slab history.                                                             | [partner\_programs](/dimensions-tables#partner-programs-partner_programs) |
+| dim\_partner\_program\_tier\_expiry\_date\_id | bigint    | The Unique Identifier for the expiry date of the partner program tier.                                                                      | -                                                                         |
+| id                                            | bigint    | The Unique identifier for the slab history record. It is the primary key for this table.                                                    | -                                                                         |
+| partner\_program\_tier\_id                    | integer   | Indicates the ID of the partner program tier (slab) the customer belongs to in this history record.                                         | -                                                                         |
+| year                                          | integer   | Indicates the year in which the slab change occurred.                                                                                       | [date](/docs/dimension-tables#date)                                       |
+

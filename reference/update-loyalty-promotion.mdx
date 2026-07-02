@@ -1,0 +1,1900 @@
+---
+title: Update a Loyalty Promotion
+---
+## Update a Loyalty Promotion
+
+Endpoint for PUT /api\_gateway/v1/promotions/%7Bpromotion\_id%7D
+
+Updates an existing loyalty promotion using its unique ID. This is a full-replacement PUT — you must include the complete promotion object in the request body, including any fields you want to preserve. Fields omitted from the request will be cleared or reset to defaults.
+
+Use this endpoint to make changes such as adjusting the promotion name, extending the end date, updating enrolment rules, modifying activity milestones, changing reward limits, or updating liability cost splits.
+
+**Important constraints:**
+
+- `status` cannot be changed via this endpoint — use the dedicated review/status-action endpoints.
+
+- `startDate` cannot be modified once the promotion is live (ACTIVE or LIVE).
+
+- The `event` field on a `SINGLE` activity cannot be changed after creation.
+
+- `programId` is immutable and cannot be changed after creation.
+
+## Example request
+
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+  ```json JSON
+  {
+      "metadata": {
+          "name": "Single Milestone Promotion",
+          "description": "Single Milestone Promotion",
+          "programId": 973,
+          "startDate": "2026-02-03T12:28:00+05:30",
+          "endDate": "2026-02-28T12:28:59+05:30",
+          "promotionType": "GENERIC",
+          "status": "DRAFT",
+          "promoIdentifier": "single-milestone-promotion",
+          "timezoneName": "Asia/Kolkata",
+          "promotionMetadata": [],
+          "lastModifiedBy": 75139931
+      },
+      "customerEnrolment": {
+          "enrolmentMethod": "TRANSACTION"
+      },
+      "liabilityOwnerSplitInfo": [],
+      "activities": [
+          {
+              "id": "activity_1770015539223",
+              "name": "Activity 1",
+              "type": "SINGLE",
+              "event": "TransactionAdd",
+              "milestones": [
+                  {
+                      "name": "Single Milestone Promotion~Activity 1~Milestone 1770015543",
+                      "trackingType": "DEFAULT",
+                      "targetEvaluationType": "FIXED_CALENDAR_WINDOW",
+                      "frequencyType": "WEEKLY",
+                      "sameActionsForEveryCycle": true,
+                      "differentTargetsForEveryCycle": false,
+                      "leaderboardEnabled": false,
+                      "preferredTillId": 75216507,
+                      "targetEntity": "TRANSACTION",
+                      "targetType": "COUNT",
+                      "cycleActionMapping": [
+                          {
+                              "cycle": "Cycle_1",
+                              "startDate": "2026-02-03T12:28:00+05:30",
+                              "endDate": "2026-02-09T23:59:59+05:30",
+                              "defaultValue": "3",
+                              "actions": []
+                          },
+                          {
+                              "cycle": "Cycle_2",
+                              "startDate": "2026-02-10T00:00:00+05:30",
+                              "endDate": "2026-02-16T23:59:59+05:30",
+                              "defaultValue": "3",
+                              "actions": []
+                          },
+                          {
+                              "cycle": "Cycle_3",
+                              "startDate": "2026-02-17T00:00:00+05:30",
+                              "endDate": "2026-02-23T23:59:59+05:30",
+                              "defaultValue": "3",
+                              "actions": []
+                          },
+                          {
+                              "cycle": "Cycle_4",
+                              "startDate": "2026-02-24T00:00:00+05:30",
+                              "endDate": "2026-02-28T12:28:59+05:30",
+                              "defaultValue": "3",
+                              "actions": []
+                          }
+                      ]
+                  }
+              ],
+              "commonCycleActionMapping": [],
+              "expJSON": "{\n  \"arity\": \"binary_operation\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \">\",\n  \"operands\": [\n    {\n      \"arity\": \"object_dereference\",\n      \"type\": \"real:object:primitive\",\n      \"operands\": [\n        {\n          \"arity\": \"name\",\n          \"type\": \"tx:object:primitive\",\n          \"value\": \"currentTxn\"\n        },\n        {\n          \"arity\": \"name\",\n          \"type\": \"real:object:primitive\",\n          \"value\": \"value\"\n        }\n      ]\n    },\n    {\n      \"arity\": \"literal\",\n      \"type\": \"number:primitive\",\n      \"value\": \"1000\"\n    }\n  ]\n}"
+          }
+      ],
+      "id": "69804b71d90f137246ab7202",
+      "workflowMetadata": {
+          "optin": {},
+          "enrolment": {}
+      }
+  }
+  ```
+</CodeGroup>
+
+## API Quick Reference
+
+<CodeGroup default-tab="0" show-lines="true" tabs={["Text"]}>
+  ```text Text
+  {{updateUnifiedPromotion}}
+     ├─ {{metadata}}
+     │   ├─ {{name}} (string)
+     │   ├─ {{description}} (string)
+     │   ├─ {{orgId}} (integer)
+     │   ├─ {{programId}} (integer)
+     │   ├─ {{startDate}} (string)
+     │   ├─ {{endDate}} (string)
+     │   ├─ {{promotionType}} (string)
+     │   ├─ {{status}} (string)
+     │   ├─ {{timezoneName}} (string)
+     │   └─ {{promoIdentifier}} (string)
+     ├─ {{customerEnrolment}}
+     │   ├─ {{enrolmentMethod}} (string)
+     │   └─ {{audienceGroups}} []
+     ├─ {{activities}} []
+     │   ├─ {{activityId}} (string)
+     │   ├─ {{activityType}} (string)
+     │   ├─ {{activityName}} (string)
+     │   ├─ {{event}} (string)
+     │   ├─ {{expJSON}} (string)
+     │   └─ {{commonCycleActionMapping}} []
+     │       ├─ {{cycle}} (string)
+     │       ├─ {{cycleStartDate}} (string)
+     │       ├─ {{cycleEndDate}} (string)
+     │       └─ {{actions}} []
+     │           ├─ {{actionId}} (string)
+     │           ├─ {{actionName}} (string)
+     │           ├─ {{actionClass}} (string)
+     │           ├─ {{actionDescription}} (string)
+     │           └─ {{mandatoryPropertiesValues}}
+     │               ├─ {{AwardStrategy}} (string)
+     │               ├─ {{ExpiryStrategy}} (string)
+     │               └─ {{PointType}} (string)
+     ├─ {{limits}} []
+     │   ├─ {{granularity}} (string)
+     │   ├─ {{limitActionType}} (string)
+     │   ├─ {{actionSubTypeId}} (string)
+     │   ├─ {{limitType}} (string)
+     │   ├─ {{limitValue}} (integer)
+     │   └─ {{period}}
+     │       ├─ {{periodType}} (string)
+     │       ├─ {{periodUnit}} (string)
+     │       └─ {{periodValue}} (integer)
+     ├─ {{liabilityOwnerSplitInfo}} []
+     │   ├─ {{liabilityOwnerId}} (integer)
+     │   ├─ {{componentType}} (string)
+     │   ├─ {{ratio}} (integer)
+     │   ├─ {{isActive}} (boolean)
+     │   ├─ {{liabilityOwnerName}} (string)
+     │   ├─ {{liabilityOwnerType}} (string)
+     │   └─ {{liabilityOrgId}} (integer)
+     └─ {{workflowMetadata}}
+         ├─ {{optin}} (object)
+         └─ {{enrolment}} (object)
+  ```
+</CodeGroup>
+
+```curl
+```
+
+## Prerequisites
+
+- Authentication: Basic or OAuth authentication.
+
+- Default access group
+
+## Body parameters
+
+| Field                   | Type            | Required | Description                                                                                                      |
+| ----------------------- | --------------- | -------- | ---------------------------------------------------------------------------------------------------------------- |
+| metadata                | Object          | Yes      | Contains all core promotion settings. See the metadata Object table below.                                       |
+| customerEnrolment       | Object          | Yes      | Defines who is initially eligible. See the Member Enrolment & Workflows table below.                             |
+| activities              | Array of Object | Yes      | Defines the triggers and rewards. See the activities Object table below.                                         |
+| workflowMetadata        | Object          | Optional | Defines dynamic opt-in or enrolment rules. See the workflowMetadata table below.                                 |
+| limits                  | Array of Object | Optional | Sets usage limits. See the limits Object table below.                                                            |
+| liabilityOwnerSplitInfo | Array of Object | Optional | Defines cost splitting within programs and partner programs. See the LiabilityOwnerSplitInfo Object table below. |
+| comments                | string          | Optional | Internal comments for the promotion. Example: "Initial draft for review"                                         |
+
+## Metadata object table
+
+Specifies the essential configuration details for the promotion. This object holds the core identifiers and timing of a promotion, such as the name of the promotion, the duration of the promotion, and the promotion type, among others.
+
+| Field             | Type           | Required | Description                                                                                                                                                                                                                                                                                                                                                       |
+| ----------------- | -------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name              | string         | Yes      | Specifies the unique name of the promotion, used for identification. Max length: 200. Example: "Q3 Bonus Points for Gold Tier"                                                                                                                                                                                                                                    |
+| orgId             | integer        | Yes      | Indicates the unique organization identifier the promotion belongs to. This ensures the promotion runs under the correct business account.                                                                                                                                                                                                                        |
+| startDate         | string         | Yes      | Specifies the promotion's start date. The startDate cannot be changed once the promotion is active. Time format: ISO 8601 timestamp with timezone offset. Example: `2025-12-16T14:30:45+05:30`                                                                                                                                                                    |
+| endDate           | string         | Yes      | Specifies the promotion's end date. Time format: ISO 8601 timestamp with timezone offset. Example: `2025-12-31T23:59:59+05:30`                                                                                                                                                                                                                                    |
+| promotionType     | string         | Yes      | Indicates the nature of the reward or promotion type, used for categorisation. Supported values: `LOYALTY_EARNING`: Use this promotion type when the primary reward is awarding loyalty points or currency to the member. `GENERIC`: Use this promotion type for any non-point reward, such as issuing a voucher, awarding a badge, or upgrading a member's tier. |
+| status            | enum           | Yes      | Include the current promotion status in the request body. **Status transitions cannot be made via this endpoint** — use the dedicated review/status-action endpoints for state changes. Supported values: `DRAFT`, `ACTIVE`, `PENDING_APPROVAL`, `LIVE`, `UPCOMING`.                                                                                              |
+| description       | string         | Optional | Indicates a brief description of the promotion's purpose for internal reference. Example: "Standard weekend points multiplier promotion".                                                                                                                                                                                                                         |
+| programId         | string         | Optional | Specifies the loyalty program ID to which the promotion belongs. To retrieve the `programId`, use the Get Loyalty Programs API.                                                                                                                                                                                                                                   |
+| timezoneName      | string         | Optional | Specifies the timezone name for the promotion's schedule. This is a reference label and is not validated. Supported values: Valid IANA Time Zone Database name. Example: `"Asia/Kolkata"` or `"America/New_York"`                                                                                                                                                 |
+| promoIdentifier   | string         | Optional | Specifies the unique string identifier for the promotion. This value is a permanent unique key per org and cannot be changed to match another promotion's identifier. Max length: 255 characters.                                                                                                                                                                 |
+| promotionMetadata | Array (Object) | Optional | Defines a list of custom key-value pairs for additional metadata, often for reporting or integration purposes. Supported Values: Array of PromotionMetadata objects. Example: `[ { "key": "CampaignCode", "value": "FALL25" } ]` See the promotionMetadata Object table below for the full structure.                                                             |
+
+### promotionMetadata object
+
+This object captures optional metadata for internal promotion tracking. It lets you add a key–value pair to label or identify the promotion.
+
+| Field          | Type   | Required | Description                                                                                                                                                  |
+| -------------- | ------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| isBrandDefined | string | Optional | Indicates if the metadata key is custom (true) or system-defined (false). True indicates that the metadata key is user-defined and not internally generated. |
+| key            | string | Optional | Specifies the custom metadata key name. This key is used for tracking internal promotions. Example: "CampaignCode"                                           |
+| value          | string | Optional | Specifies the metadata key value. This value is used for the specific code for the promotion. Example: "FALL25"                                              |
+
+### Example use case 1: applying the metadata object to update a promotion
+
+StyleSavvy Boutique previously created a draft promotion named "StyleSavvy VIP Early Access-lock". Now they need to update the status from `DRAFT` to `ACTIVE` to launch the promotion. Additionally, they want to modify the internal `description` to explicitly state that this promotion acts as a "Liability Lock" to prevent confusion during reporting.
+
+```bash
+curl --location --request PUT 'https://eu.api.capillarytech.com/v3/promotions/693bba55147aa26388780ffd' \
+--header 'Content-Type: application/json' \
+--header 'X-CAP-API-AUTH-ORG-ID: 100232' \
+--header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86NjVhMDgzYjk1MGY1NTY5NDk1YmNkNzUxYmJiY2U=' \
+--header 'Cookie: _cfuvid=bw96IuxgkLuZy6CYqoMPzwtPCXTg6pMsX5zEo-1765521791434-0.0.1.1-604800000' \
+--data '{
+  "metadata": {
+    "name": "StyleSavvy VIP Early Access-lock",
+    "description": "Standard liability - 100% to main program (973).",
+    "orgId": 100737,
+    "programId": 973,
+    "startDate": "2025-11-20T00:00:00+05:30",
+    "endDate": "2025-12-31T23:59:59+05:30",
+    "promotionType": "LOYALTY_EARNING",
+    "status": "DRAFT",
+    "timezoneName": "Asia/Kolkata",
+    "promoIdentifier": "stylesavvy-vip-early-access-lock",
+    "promotionMetadata": []
+  },
+  "customerEnrolment": {
+    "enrolmentMethod": "TRANSACTION",
+    "audienceGroups": []
+  },
+  "activities": [
+    {
+      "id": "activity_1761xxxxxxb1",
+      "type": "SINGLE",
+      "name": "Award Points",
+      "event": "TransactionAdd",
+      "expJSON": "{\n  \"arity\": \"literal\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"true\"\n}",
+      "commonCycleActionMapping": [
+        {
+          "cycle": "Cycle_1",
+          "startDate": "2025-11-20T00:00:00+05:30",
+          "endDate": "2025-12-31T23:59:59+05:30",
+          "actions": [
+            {
+              "id": "temp_action_pts_split",
+              "actionName": "AWARD_POINTS_ACTION",
+              "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.AwardPointsActionImpl",
+              "description": "Award Points with 100% Liability",
+              "mandatoryPropertiesValues": {
+                "AwardStrategy": "109010",
+                "ExpiryStrategy": "109436",
+                "PointType": "Main"
+              },
+              "embeddedStrategies": []
+            }
+          ]
+        }
+      ],
+      "milestones": []
+    }
+  ],
+  "limits": [],
+  "liabilityOwnerSplitInfo": [],
+  "workflowMetadata": {
+    "optin": {},
+    "enrolment": {}
+  }
+}'
+```
+
+### Example use case 2: applying the metadata object to update a promotion
+
+Adventure Quest Outfitters previously drafted a promotion called the "Gear Up Challenge". Now they need to update the status from DRAFT to ACTIVE to officially launch the promotion. Additionally, they have decided to extend the promotion duration by one week, changing the end date from December 31st to January 7th, 2026, to allow for post-holiday participation.
+
+```bash
+curl --location --request PUT 'https://eu.api.capillarytech.com/v3/promotions/{promotionid}' \
+--header 'Content-Type: application/json' \
+--header 'X-CAP-API-AUTH-ORG-ID: 100232' \
+--header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86NjVhMDgzYjk1MWY5MGY1NTk1YmNkNzUxYmJiY2U=' \
+--header 'Cookie: _cfuvid=bw96IuxgkLuZy69HNs9OCYtPCXTg6pMsX5zEo-1765521791434-0.0.1.1-604800000' \
+--data '{
+  "metadata": {
+    "name": "Adventure Quest Gear Up2",
+    "description": "Generic promo for Gear Up Challenge. Issue and Earn. EXTENDED to Jan 7.",
+    "orgId": 100737,
+    "programId": 973,
+    "startDate": "2025-12-01T00:00:00+05:30",
+    "endDate": "2026-01-07T23:59:59+05:30",
+    "promotionType": "GENERIC",
+    "status": "DRAFT",
+    "timezoneName": "Asia/Kolkata",
+    "promoIdentifier": "aq-gearup-dec25-ui",
+    "promotionMetadata": []
+  },
+  "customerEnrolment": {
+    "enrolmentMethod": "TRANSACTION",
+    "audienceGroups": []
+  },
+  "activities": [
+    {
+      "id": "activity_1761xxxxxx02",
+      "type": "SINGLE",
+      "name": "Challenge Activity",
+      "event": "CustomEvent",
+      "expJSON": "{\n  \"arity\": \"literal\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"true\"\n}",
+      "commonCycleActionMapping": [
+        {
+          "cycle": "Cycle_1",
+          "startDate": "2025-12-01T00:00:00+05:30",
+          "endDate": "2026-01-07T23:59:59+05:30",
+          "actions": [
+            {
+              "id": "temp_action_badge",
+              "actionName": "AWARD_BADGE",
+              "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.AwardBadgeActionImpl",
+              "description": "Award Gear Up Badge",
+              "mandatoryPropertiesValues": {
+                "badgeId": "GEAR_UP_DEC25"
+              },
+              "mandatoryComplexPropertiesValues": {},
+              "embeddedStrategies": []
+            }
+          ]
+        }
+      ],
+      "milestones": []
+    }
+  ],
+  "limits": [],
+  "liabilityOwnerSplitInfo": [],
+  "workflowMetadata": {
+    "optin": {},
+    "enrolment": {}
+  }
+}'
+```
+
+## Member enrolment and workflows object table
+
+Specifies the configuration for how members enrol into the promotion and whom to target.
+
+### customerEnrolment object table
+
+It specifies how members first enrol, whether they join automatically via transactions, through a manual list import, or based on existing audience segments.
+
+| Field               | Type           | Required    | Description                                                                                                                                         |
+| ------------------- | -------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| enrolmentMethod     | enum           | Optional    | Defines the primary enrolment type. `TRANSACTION`: Auto-enrols the member when any purchase is made. `IMPORT`: Manually enrols a specific list.     |
+| audienceGroups      | Array (Object) | Conditional | List of audience segments. For audience-based enrolment, configure `workflowMetadata.enrolment.basedOn = AUDIENCE` with `enrolmentMethod = IMPORT`. |
+| ..audienceGroupId   | integer        | Yes         | The ID of the target audience group. Example: 12345                                                                                                 |
+| ..audienceGroupName | string         | Optional    | Informational name of the audience group. Example: "Gold Tier"                                                                                      |
+| ..description       | string         | Optional    | Informational description of the audience group. Example: "High spending members"                                                                   |
+
+### workflowMetadata object
+
+Defines the rules that determine how members can join or opt in to the loyalty promotion, whether through automatic, system-driven enrolment or through member-initiated participation.
+
+| Field     | Type   | Required | Description                                                                                      |
+| --------- | ------ | -------- | ------------------------------------------------------------------------------------------------ |
+| enrolment | Object | Optional | Specifies rules for automatic dynamic enrolment. See the enrolment and optin Object table below. |
+| optin     | Object | Optional | Specifies rules for member-managed opt-in. See the enrolment and optin Object table below.       |
+
+#### `enrolment` and `optin` object
+
+Defines the specific conditions that trigger a member's enrolment or opt-in, such as performing a qualifying activity or entering a target audience segment, along with any associated mappings or restrictions that apply to the workflow.
+
+| Field           | Type           | Required    | Description                                                                                                                                                                                                                                                                                                                                                                                     |
+| --------------- | -------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| basedOn         | enum           | Optional    | Specifies the condition type that triggers the member's enrolment or opt-in. `ACTIVITY`: Enrolment is triggered when the member performs a defined action. `AUDIENCE`: Enrolment is triggered when the member enters a specified audience segment.                                                                                                                                              |
+| activities      | Array (Object) | Conditional | A list of Activity Objects that trigger the enrolment or opt-in. Required if basedOn is `ACTIVITY`.                                                                                                                                                                                                                                                                                             |
+| audienceMapping | Array (Object) | Conditional | List of audience groups that trigger the enrolment or opt-in. Required if basedOn is AUDIENCE.                                                                                                                                                                                                                                                                                                  |
+| ..groupId       | integer        | Optional    | The ID of the audience group. Example: 12345                                                                                                                                                                                                                                                                                                                                                    |
+| ..groupName     | string         | Optional    | Informational name of the audience group. Example: "Gold Tier"                                                                                                                                                                                                                                                                                                                                  |
+| optInStartDate  | string         | Conditional | Start of the opt-in window, in ISO 8601 format with the region offset. For example: `2025-12-16T14:30:45+05:30`. Applies to the `optin` block on enrol and opt-in promotions (`promotionType`: `LOYALTY_EARNING`) when the `CONF_ENROLLMENT_OPTIN_DURATION_ENABLED` org flag is enabled. Whether this date can be changed depends on the promotion status. See Editing the opt-in window below. |
+| optInEndDate    | string         | Conditional | End of the opt-in window, in ISO 8601 format with the region offset. For example: `2025-12-16T14:30:45+05:30`. Must be after `optInStartDate` and on or before the promotion `endDate`. Whether this date can be changed depends on the promotion status. See Editing the opt-in window below.                                                                                                  |
+| restrictions    | Object         | Optional    | Applies limits specifically to this workflow. See the Promotion Restrictions Object table below.                                                                                                                                                                                                                                                                                                |
+
+#### Editing the opt-in window
+
+Whether you can change `optInStartDate` and `optInEndDate` depends on the promotion's status when you send the update. The opt-in window opens at `optInStartDate`.
+
+| Promotion status                  | optInStartDate                          | optInEndDate                                            |
+| --------------------------------- | --------------------------------------- | ------------------------------------------------------- |
+| Draft                             | Editable, including past dates.         | Editable, including past dates.                         |
+| Upcoming, before the window opens | Editable. Cannot be set to a past date. | Editable. Cannot be set to a past date.                 |
+| Upcoming, after the window opens  | Locked.                                 | Extend only. Cannot be shortened.                       |
+| Live or paused                    | Locked.                                 | Extend only. Cannot be shortened or set to a past date. |
+| Ended                             | Locked.                                 | Extend only. Cannot be shortened.                       |
+| Stopped or pending approval       | No edits allowed.                       | No edits allowed.                                       |
+
+**Note:** A promotion that enrols members through an activity or an external API call does not support an opt-in window. Sending `optInStartDate` or `optInEndDate` for these enrolment types returns error `310228`.
+
+The following errors apply when you change the opt-in window. Every entry returns HTTP `400`.
+
+| Code   | Description                                                                                       |
+| ------ | ------------------------------------------------------------------------------------------------- |
+| 310224 | Opt-in start date cannot be changed after the opt-in window has opened.                           |
+| 310225 | Opt-in end date cannot be shortened, it can only be extended.                                     |
+| 310226 | Opt-in start date cannot be set to a past date during edit.                                       |
+| 310227 | Opt-in end date cannot be set to a past date during edit.                                         |
+| 310228 | Opt-in window is not supported when a member is enrolled via an activity or an external API call. |
+
+#### `restrictions` object
+
+Specifies the limits on how long an opt-in status lasts, how many times a member can join, and the maximum number of times they can earn rewards through that specific workflow.
+
+| Field                            | Type    | Required    | Description                                                                                                                                                                                                          |
+| -------------------------------- | ------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| optinExpiryBasedOn               | Object  | Optional    | Defines expiry for the user's opt-in status.                                                                                                                                                                         |
+| ..type                           | enum    | Optional    | Specifies the expiry method. Supported Values: `PROMOTION`: Expires with the promotion end date. `CUSTOM`: Expires after a personal timer. `FIXED_DATE`: Expires on a specific calendar date for everyone.           |
+| ..value                          | integer | Optional    | Duration for which the opt-in lasts. Example: 30, which defines the opt-in expiry as 30 days. Required if type is `CUSTOM`.                                                                                          |
+| ..expiryDate                     | string  | Optional    | Time format: ISO 8601 timestamp with timezone offset. Example: `2025-12-16T14:30:45+05:30`. Required if type is `FIXED_DATE`.                                                                                        |
+| enrolmentExpiryBasedOn           | Object  | Optional    | Defines expiry for the user's enrolment status.                                                                                                                                                                      |
+| ..type                           | enum    | Optional    | Specifies the expiry method. Supported Values: `PROMOTION`: Expires with the promotion end date. `CUSTOM`: Expires after a personal timer. `FIXED_DATE`: Expires on a specific calendar date for everyone.           |
+| ..value                          | integer | Optional    | Specifies the duration during which the enrolment will be active. Example: 7. Required if type is `CUSTOM`.                                                                                                          |
+| ..expiryDate                     | string  | Optional    | Time format: ISO 8601 timestamp with timezone offset. Example: `2025-12-16T14:30:45+05:30`. Required if type is `FIXED_DATE`.                                                                                        |
+| optinLimitPerCustomer            | Object  | Optional    | Limits how many times a member can opt-in.                                                                                                                                                                           |
+| ..type                           | enum    | Optional    | Defines how the limit is set. Supported values: `NON_PERIOD_BASED`: The limit applies once for the entire promotion. `PERIOD_BASED`: The limit resets after a set timeframe.                                         |
+| ..value                          | integer | Optional    | The maximum number of times a member can opt-in. Example: 1                                                                                                                                                          |
+| ..periodType                     | enum    | Conditional | Defines the window type for evaluating period-based limits. Supported value: `MOVING_WINDOW`. Required if type is `PERIOD_BASED`.                                                                                    |
+| ..periodUnit                     | enum    | Conditional | Specifies the interval at which the limit resets. Supported Values: `DAILY`, `WEEKLY`, `MONTHLY`. Required if type is `PERIOD_BASED`.                                                                                |
+| maxRedemptionsPerEarnPerCustomer | Object  | Optional    | Specifies the maximum number of times a member can redeem rewards earned after joining the promotion through this specific workflow.                                                                                 |
+| ..type                           | enum    | Optional    | Defines if the redemption limit resets based on a set period. `NON_PERIOD_BASED`: Applies once for the entire promotion. `PERIOD_BASED`: Resets on a regular schedule.                                               |
+| ..value                          | integer | Optional    | The maximum number of redemptions that the member can make within a specific period of time.                                                                                                                         |
+| ..periodType                     | enum    | Conditional | Defines the type of period at which the redemption limit resets. Supported value: `MOVING_WINDOW`. Required if type is `PERIOD_BASED`.                                                                               |
+| ..periodUnit                     | enum    | Conditional | Specifies the interval at which the member can redeem rewards. Supported Values: `DAILY`, `WEEKLY`, `MONTHLY`. Required if type is `PERIOD_BASED`.                                                                   |
+| enrolmentLimitPerPromotion       | Object  | Optional    | Defines the overall limit on total enrolments or opt-ins possible through this workflow. Maximum value for `value`: 100,000. A value above 100,000 returns a 400 error.                                              |
+| ..value                          | integer | Optional    | Specifies the maximum enrolment limit per promotion. Maximum: 100,000.                                                                                                                                               |
+| ..type                           | enum    | Optional    | Defines if the enrolment limit resets based on set intervals. `NON_PERIOD_BASED`: Applies once for the entire promotion. `PERIOD_BASED`: Resets on a regular schedule.                                               |
+| ..periodType                     | enum    | Conditional | Defines how the overall limit per promotion is calculated. `MOVING_WINDOW`. Required if type is `PERIOD_BASED`.                                                                                                      |
+| ..periodUnit                     | enum    | Conditional | Defines the specific time an overall enrolment limit resets: `DAILY`, `WEEKLY`, `MONTHLY`. Required if type is `PERIOD_BASED`.                                                                                       |
+| enrolmentLimitPerCustomer        | Object  | Optional    | Limits the number of times a member can enrol on the loyalty promotion via this workflow.                                                                                                                            |
+| ..value                          | integer | Optional    | The maximum number of times a member can enrol on this loyalty promotion. Example: 1                                                                                                                                 |
+| ..type                           | enum    | Optional    | Defines how the limit is applied to a single member. `NON_PERIOD_BASED`: Applies once for the entire promotion. `PERIOD_BASED`: Resets after a set timeframe.                                                        |
+| ..periodType                     | enum    | Conditional | Defines how the time-based limit is calculated for that specific member. `MOVING_WINDOW`. Required if type is `PERIOD_BASED`.                                                                                        |
+| ..periodUnit                     | enum    | Conditional | Defines the specific time unit for the `PERIOD_BASED` limit. Supported values: `DAILY`, `WEEKLY`, `MONTHLY`.                                                                                                         |
+| maxPointsPerEarnPerCustomer      | Object  | Optional    | Defines the maximum points a member can earn from a single reward activity, after they have enrolled or opted in through this workflow.                                                                              |
+| ..type                           | enum    | Optional    | Defines how often the points limit is applied. `NON_PERIOD_BASED`: The cap applies to every single reward activity, individually. `PERIOD_BASED`: The cap applies to the total points earned over a set time period. |
+| ..value                          | integer | Optional    | The maximum points that can be earned. Example: 100                                                                                                                                                                  |
+| ..periodType                     | enum    | Conditional | Defines how the time-based points limit is calculated. `MOVING_WINDOW`. Required if type is `PERIOD_BASED`.                                                                                                          |
+| ..periodUnit                     | enum    | Conditional | Defines the specific interval for a `PERIOD_BASED` limit. `DAILY`, `WEEKLY`, `MONTHLY`.                                                                                                                              |
+
+### Example use case 1: applying the customerEnrolment object to update a promotion
+
+Healthy Habits Cafe previously drafted the "Wellness Week Opt-In" promotion. Now they need to update the configuration to activate the promotion. Additionally, anticipating higher than expected demand from their "Pre-selected Wellness Group", they decided to double the participation cap. They need to increase the total enrolment limit from 500 to 1,000 members.
+
+```bash
+curl --location --request PUT 'https://eu.api.capillarytech.com/v3/promotions/{promotionid}' \
+--header 'content-type: application/json' \
+--header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW862MTE2NWI5ZjAxMzU5NGIwNDllZTk=' \
+--header 'Cookie: _cfuvid=LpG9HQOgnKC0mPstUJNTMOdr1nbz8FvnCc-1763223314046-0.0.1.1-604800000' \
+--data '{
+  "metadata": {
+    "name": "Healthy Habits Wellness Week Opt-In - new1",
+    "description": "Audience enrol, activity opt-in w/ ALL restrictions. CAPACITY INCREASED to 1000.",
+    "orgId": 100737,
+    "programId": 973,
+    "startDate": "2025-11-17T00:00:00+05:30",
+    "endDate": "2025-11-23T23:59:59+05:30",
+    "promotionType": "LOYALTY_EARNING",
+    "status": "DRAFT",
+    "timezoneName": "Asia/Kolkata",
+    "promoIdentifier": "hh-wellness-optin-nov25-ui",
+    "promotionMetadata": []
+  },
+  "customerEnrolment": {
+    "enrolmentMethod": "AUDIENCE_FILTER",
+    "audienceGroups": [
+      {
+        "audienceGroupId": 612174375,
+        "audienceGroupName": "Pre-selected Wellness Group",
+        "description": "Pre-selected member list"
+      }
+    ]
+  },
+  "workflowMetadata": {
+    "optin": {
+      "basedOn": "ACTIVITY",
+      "activities": [
+        {
+          "id": "activity_1761xxxxxx03",
+          "type": "SINGLE",
+          "name": "Opt-in via Purchase",
+          "event": "TransactionAdd",
+          "expJSON": "{\n  \"arity\": \"literal\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"true\"\n}",
+          "commonCycleActionMapping": [
+            {
+              "cycle": "Cycle_1",
+              "startDate": "2025-11-17T00:00:00+05:30",
+              "endDate": "2025-11-23T23:59:59+05:30",
+              "actions": [
+                {
+                  "id": "temp_action_optin_aaa",
+                  "actionName": "EARN_PROMOTION_ACTION",
+                  "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.EarnPromotionActionImpl",
+                  "description": "Perform Opt-In",
+                  "mandatoryPropertiesValues": {
+                    "promotionIdentifier": "hh-wellness-optin-nov25-ui",
+                    "activityName": "Opt-in via Purchase",
+                    "delegateActionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.EarnPromotionActionImpl"
+                  },
+                  "mandatoryComplexPropertiesValues": {},
+                  "embeddedStrategies": []
+                }
+              ]
+            }
+          ],
+          "milestones": []
+        }
+      ],
+      "audienceMapping": [],
+      "restrictions": {
+        "optinExpiryBasedOn": {
+          "type": "PROMOTION",
+          "value": ""
+        },
+        "enrolmentExpiryBasedOn": {
+          "type": "CUSTOM",
+          "value": 30
+        },
+        "optinLimitPerCustomer": {
+          "value": "1",
+          "type": "PERIOD_BASED",
+          "periodType": "MOVING_WINDOW",
+          "periodUnit": "DAILY"
+        },
+        "maxRedemptionsPerEarnPerCustomer": {
+          "value": "5",
+          "type": "NON_PERIOD_BASED"
+        },
+        "enrolmentLimitPerPromotion": {
+          "value": "1000"
+        },
+        "enrolmentLimitPerCustomer": {
+          "value": "1"
+        },
+        "maxPointsPerEarnPerCustomer": {
+          "value": 200,
+          "type": "NON_PERIOD_BASED"
+        }
+      }
+    },
+    "enrolment": {}
+  },
+  "activities": [
+    {
+      "id": "activity_1761xxxxxx04",
+      "type": "SINGLE",
+      "name": "Wellness Reward",
+      "event": "TransactionAdd",
+      "expJSON": "{\n  \"arity\": \"literal\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"true\"\n}",
+      "commonCycleActionMapping": [
+        {
+          "cycle": "Cycle_1",
+          "startDate": "2025-11-17T00:00:00+05:30",
+          "endDate": "2025-11-23T23:59:59+05:30",
+          "actions": [
+            {
+              "id": "temp_action_wellness",
+              "actionName": "AWARD_POINTS_ACTION",
+              "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.AwardPointsActionImpl",
+              "mandatoryPropertiesValues": {
+                "AwardStrategy": "109010"
+              },
+              "embeddedStrategies": []
+            }
+          ]
+        }
+      ],
+      "milestones": []
+    }
+  ],
+  "limits": [],
+  "liabilityOwnerSplitInfo": []
+}'
+```
+
+### Example use case 2: applying the customerEnrolment object to update a promotion
+
+Gadget Galaxy already has a "Beta Tester Program" running where they manually import specific members. However, they now want to expand access. They need to update the promotion so that any member who joins the "PreOrder List" audience group is automatically enrolled as well, without stopping the manual imports.
+
+```bash
+curl --location --request PUT 'https://eu.api.capillarytech.com/v3/promotions/{promotionid}' \
+--header 'Content-Type: application/json' \
+--header 'X-CAP-API-AUTH-ORG-ID: 100232' \
+--header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86NjVhMDgzYjk1MWY5MGY1NTY5NDk1YmNkNzUxYmJiY2U=' \
+--header 'Cookie: _cfuvid=bw96IuxgkLuZy69HNs9OCYqoMPzwtPCXTg6pMsX5zEo-1765521791434-0.0.1.1-604800000' \
+--data '{
+  "metadata": {
+    "name": "Gadget Galaxy Beta Tester Program Q1-UI1",
+    "description": "Import enrol. UPDATED: Added dynamic enrolment for PreOrder List.",
+    "orgId": 100737,
+    "programId": 973,
+    "startDate": "2026-01-01T00:00:00+05:30",
+    "endDate": "2026-03-31T23:59:59+05:30",
+    "promotionType": "LOYALTY_EARNING",
+    "status": "DRAFT",
+    "timezoneName": "Asia/Kolkata",
+    "promoIdentifier": "gg-beta-q126-ui",
+    "promotionMetadata": []
+  },
+  "customerEnrolment": {
+    "enrolmentMethod": "IMPORT",
+    "audienceGroups": []
+  },
+  "workflowMetadata": {
+    "optin": {},
+    "enrolment": {
+      "basedOn": "AUDIENCE",
+      "activities": [],
+      "audienceMapping": [
+        {
+          "groupId": 612174375,
+          "groupName": "PreOrder List"
+        }
+      ],
+      "restrictions": {
+        "enrolmentLimitPerPromotion": {
+          "value": "1000"
+        }
+      }
+    }
+  },
+  "activities": [
+    {
+      "id": "activity_1761xxxxxx05",
+      "type": "SINGLE",
+      "name": "Beta Reward (100 Points)",
+      "event": "FeedbackSubmitted",
+      "expJSON": "{\n  \"arity\": \"literal\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"true\"\n}",
+      "commonCycleActionMapping": [
+        {
+          "cycle": "Cycle_1",
+          "startDate": "2026-01-01T00:00:00+05:30",
+          "endDate": "2026-03-31T23:59:59+05:30",
+          "actions": [
+            {
+              "id": "temp_action_beta_pts",
+              "actionName": "AWARD_POINTS_ACTION",
+              "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.AwardPointsActionImpl",
+              "mandatoryPropertiesValues": {
+                "AwardStrategy": "109010",
+                "ExpiryStrategy": "109006",
+                "PointType": "Main"
+              },
+              "embeddedStrategies": []
+            }
+          ]
+        }
+      ],
+      "milestones": []
+    }
+  ],
+  "limits": [
+    {
+      "granularity": "USER",
+      "actionType": "AWARD_CURRENCY",
+      "actionSubTypeId": "Points",
+      "limitType": "SUM",
+      "limitValue": 500,
+      "period": {
+        "periodType": "NON_PERIOD_BASED"
+      }
+    }
+  ],
+  "liabilityOwnerSplitInfo": []
+}'
+```
+
+## The activities object
+
+Specifies the definitions for what actions a member must perform to qualify, including the specific events to listen for and the rules to evaluate.
+
+### `activities` object (common fields)
+
+Specifies the specific event name to listen for, any rule expressions used to filter that event, and the time-based settings (like frequency and evaluation types) that determine how the activity tracks member progress. These fields are present on all activity objects, whether SINGLE or GROUP.
+
+| Field                    | Type           | Required | Description                                                                                                                                                                                          |
+| ------------------------ | -------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id                       | string         | Optional | Unique identifier for the activity. Example: "activity\_1761023957829"                                                                                                                               |
+| type                     | enum           | Yes      | SINGLE: A single trigger. GROUP: A combination of triggers. Supported Values: SINGLE, GROUP.                                                                                                         |
+| name                     | string         | Optional | Name for identification. Example: "Main Purchase Activity"                                                                                                                                           |
+| parentId                 | string         | Optional | ID of the parent activity if this activity is a child inside a GROUP. Example: `"activity_group_parent"`                                                                                             |
+| rulesetId                | string         | Optional | System-assigned identifier for the Points Engine ruleset associated with this activity. Populated by the backend after the promotion is published. Pass this back when editing an existing activity. |
+| cycles                   | Array (Object) | Optional | Defines general time windows (cycles) for this activity.                                                                                                                                             |
+| ..id                     | string         | Optional | Cycle ID. Example: "c1"                                                                                                                                                                              |
+| ..name                   | string         | Optional | Cycle name. Example: "Nov Cycle"                                                                                                                                                                     |
+| ..startDate              | string         | Optional | Time format: ISO 8601 timestamp with timezone offset. Example: `2025-12-16T14:30:45+05:30`                                                                                                           |
+| ..endDate                | string         | Optional | Time format: ISO 8601 timestamp with timezone offset. Example: `2025-12-31T23:59:59+05:30`                                                                                                           |
+| commonCycleActionMapping | Array (Object) | Optional | Defines the reward(s) for this activity. Links actions to cycles.                                                                                                                                    |
+| ..cycle                  | string         | Optional | ID of the cycle this action applies to. Example: "main\_cycle"                                                                                                                                       |
+| ..defaultValue           | number         | Optional | A default value (e.g., a target amount) used in action calculations. Example: 10.0                                                                                                                   |
+| ..startDate              | string         | Optional | Time format: ISO 8601 timestamp with timezone offset. Example: `2025-12-16T14:30:45+05:30`                                                                                                           |
+| ..endDate                | string         | Optional | Time format: ISO 8601 timestamp with timezone offset. Example: `2025-12-31T23:59:59+05:30`                                                                                                           |
+| ..rulesetId              | string         | Optional | System-assigned ruleset ID for this specific action mapping. Pass this back when editing an existing action mapping.                                                                                 |
+| ..actions                | Array (Object) | Optional | The list of rewards to issue. See the Action Object table below.                                                                                                                                     |
+
+#### `actions` object (fields inside `activities` array)
+
+Specifies the details of the reward fulfilment — the type of reward to issue and the parameters required to process it.
+
+| Field                            | Type           | Required    | Description                                                                                                                                                                                                            |
+| -------------------------------- | -------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id                               | string         | Optional    | Client-supplied temporary identifier for this action. Used to reference the action within the request payload and is not persisted as the system's internal ID. Example: `"temp_06a1a899-99e8-4f5e-8910-a3b2b51aa142"` |
+| actionName                       | string         | Yes         | Specifies the action to trigger for the loyalty promotion.                                                                                                                                                             |
+| actionClass                      | string         | Yes         | Always `com.capillary.shopbook.pointsengine.endpoint.impl.action.CommunicationDecoratorActionImpl`. The actual implementation is determined by `delegateActionClass` in `mandatoryPropertiesValues`.                   |
+| description                      | string         | Optional    | A brief label for this action. Example: `"Award 100 bonus points"`                                                                                                                                                     |
+| mandatoryPropertiesValues        | Object         | Conditional | Key-value pairs that configure the action. Required keys vary by `actionName`.                                                                                                                                         |
+| mandatoryComplexPropertiesValues | Object         | Optional    | Object containing details on line-item filter conditions used to restrict award eligibility to specific products or categories.                                                                                        |
+| embeddedStrategies               | Array (Object) | Optional    | Object containing details on inline strategy configurations (point allocation and expiry) attached to this action.                                                                                                     |
+
+#### Line-item based awarding
+
+Award badges, points, or other rewards based on individual line items in a transaction rather than the entire transaction. Use this to target specific products, categories, brands, or payment methods.
+
+**Configuring line-item based awarding**
+
+Configure the following properties in the `mandatoryPropertiesValues` object:
+
+| Property               | Type   | Description                                                                                                                                                                                                                                                                                                            |
+| ---------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ProRateOnSourceValue` | string | Controls how awards are distributed. Supported values: `LINEITEM_AMOUNT` (distribute based on line item amount), `LINEITEM_QUANTITY` (distribute based on line item quantity), `LINEITEM_EXTENDED_FIELD` (distribute based on a custom extended field value), `EVENT_DEFAULT_VALUE` or `AMOUNT` (bill-level awarding). |
+| `ProrateFieldName`     | string | Specifies the extended field name to use for distribution. Required when `ProRateOnSourceValue` is `LINEITEM_EXTENDED_FIELD`. Example: `"item_bonus"`                                                                                                                                                                  |
+| `UseProportions`       | string | Specifies whether to use proportional distribution across qualifying line items. Set to `"true"` to enable.                                                                                                                                                                                                            |
+
+**Filtering line items**
+
+Use the `mandatoryComplexPropertiesValues` object to filter which line items qualify for the award. Each filter is an object with `operator` and `values` properties.
+
+| Property     | Description                     | Example                                                |
+| ------------ | ------------------------------- | ------------------------------------------------------ |
+| `skus`       | Filters by product SKU codes.   | `{"operator": "IN", "values": "SKU001,SKU002,SKU003"}` |
+| `brands`     | Filters by brand names.         | `{"operator": "IN", "values": "Nike,Adidas"}`          |
+| `categories` | Filters by product categories.  | `{"operator": "IN", "values": "Electronics,Apparel"}`  |
+| `attributes` | Filters by product attributes.  | `{"operator": "IN", "values": "color:red,size:large"}` |
+| `tendermode` | Filters by payment/tender type. | `{"operator": "IN", "values": "cash,card"}`            |
+
+When multiple filters are specified, a line item must match all filters to qualify (AND logic).
+
+### `activities` object (single activities)
+
+Specifies the specific event name to listen for, any rule expressions used to filter that event, and the time-based settings (like frequency and evaluation types) that determine how the activity tracks member progress.
+
+| Field                            | Type                  | Required | Description                                                                                                                                                                                                                                                               |
+| -------------------------------- | --------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| event                            | string                | Yes      | The exact event name that triggers the activity. The event cannot be changed on an existing activity once the draft is created. Supported events: `TransactionAdd`, `GroupTransactionAdd`, `TransactionFinished`, `NewBill`, `SlabUpgrade` and custom behavioural events. |
+| ruleExpression                   | string                | Optional | Specifies the rule expression string to filter the triggering event.                                                                                                                                                                                                      |
+| expJSON                          | string                | Optional | Specifies the JSON representation of the loyalty rule expression.                                                                                                                                                                                                         |
+| frequencyType                    | string                | Optional | Specifies the time unit for milestone evaluation. Supported values: `DAILY`, `WEEKLY`, `MONTHLY`, `QUARTERLY`, `HALF_YEARLY`, `YEARLY`, `CUSTOM`.                                                                                                                         |
+| targetEvaluationType             | enum                  | Optional | Specifies the evaluation logic window. Supported values: `FIXED_CALENDAR_WINDOW`, `CYCLIC_WINDOW`, `PERIOD_AGNOSTIC_WINDOW`, `CALENDAR_CYCLIC_WINDOW`.                                                                                                                    |
+| targetCycleStartDate             | string (date-time)    | Optional | Time format: ISO 8601 timestamp with timezone offset. Example: `2025-12-16T14:30:45+05:30`                                                                                                                                                                                |
+| targetCycleEndDate               | string (date-time)    | Optional | Time format: ISO 8601 timestamp with timezone offset. Example: `2025-12-31T23:59:59+05:30`                                                                                                                                                                                |
+| activityCycles                   | Array (Object)        | Optional | Defines specific, named time periods used by a milestone.                                                                                                                                                                                                                 |
+| ..id                             | string                | Optional | Specifies the activity cycle ID.                                                                                                                                                                                                                                          |
+| ..name                           | string                | Optional | Specifies the activity cycle name.                                                                                                                                                                                                                                        |
+| ..startDate                      | string                | Optional | Defines the activity cycle's start date in ISO 8601 format with the region offset.                                                                                                                                                                                        |
+| ..endDate                        | string                | Optional | Defines the activity cycle's end date in ISO 8601 format with the region offset.                                                                                                                                                                                          |
+| ..refCode                        | string                | Optional | Specifies the activity cycle reference code.                                                                                                                                                                                                                              |
+| ..isActive                       | boolean               | Optional | Indicates if the activity cycle is active. Supported values: `true`, `false`.                                                                                                                                                                                             |
+| milestones                       | Array (Object)        | Optional | Defines a list of target milestones within this activity.                                                                                                                                                                                                                 |
+| ..name                           | string                | Optional | Specifies the milestone name.                                                                                                                                                                                                                                             |
+| ..sameActionsForEveryCycle       | boolean               | Optional | Indicates if the same actions apply across all cycles.                                                                                                                                                                                                                    |
+| ..differentTargetsForEveryCycle  | boolean               | Optional | Indicates if target values differ across cycles.                                                                                                                                                                                                                          |
+| ..description                    | string                | Optional | Indicates the milestone description.                                                                                                                                                                                                                                      |
+| ..trackingType                   | string                | Optional | Specifies how the milestone is tracked. Supported values: `DEFAULT`, `STREAKS`, `NON_CONTINUOUS_STREAKS`, `CAPPING`, `UNIFIED`.                                                                                                                                           |
+| ..targetType                     | enum                  | Yes      | Defines the KPI to track for the milestone. Supported values: `QUANTITY`, `SALES`, `COUNT`, `VISIT`, `GROSS_SALES`, `REGULAR_POINTS`, `PROMOTIONAL_POINTS`, `ALL_POINTS`, `EXTENDED_FIELD`, `EVENT_ATTRIBUTE`.                                                            |
+| ..targetEntity                   | enum                  | Yes      | Specifies the entity to track the targetType against. Supported values: `TRANSACTION`, `LINEITEM`, `POINTS`, `EVENT`, `ALTERNATE_CURRENCIES`.                                                                                                                             |
+| ..defaultValue                   | string                | Optional | Specifies the target value threshold for achieving the milestone. Although string type, holds a numeric value. Example: `"15"`                                                                                                                                            |
+| ..targetValue                    | string                | Optional | Specifies the target value to achieve the milestone (often same as defaultValue).                                                                                                                                                                                         |
+| ..preferredTillId                | integer (int64)       | Optional | Specifies the till ID if tracking transactions on specific POS terminals is required.                                                                                                                                                                                     |
+| ..frequencyType                  | string                | Optional | Specifies the time unit for milestone evaluation. Supported values: `DAILY`, `WEEKLY`, `MONTHLY`, `QUARTERLY`, `HALF_YEARLY`, `YEARLY`, `CUSTOM`.                                                                                                                         |
+| ..targetEvaluationType           | enum                  | Optional | Specifies the evaluation logic window. Supported values: `FIXED_CALENDAR_WINDOW`, `CYCLIC_WINDOW`, `PERIOD_AGNOSTIC_WINDOW`, `CALENDAR_CYCLIC_WINDOW`.                                                                                                                    |
+| ..recurringCycles                | integer (int32)       | Optional | Specifies the number of recurring cycles for milestone evaluation.                                                                                                                                                                                                        |
+| ..targetGroupId                  | integer (int64)       | Optional | Indicates the target group ID associated with this milestone's tracking logic.                                                                                                                                                                                            |
+| ..leaderboardEnabled             | boolean               | Optional | Indicates if a leaderboard competition is enabled for this milestone.                                                                                                                                                                                                     |
+| ..cycleActionMapping             | Array (Object)        | Optional | Defines the reward(s) for achieving the milestone.                                                                                                                                                                                                                        |
+| ..streaks                        | Array (Object)        | Optional | Defines streak configuration if trackingType is STREAKS.                                                                                                                                                                                                                  |
+| ....name                         | string                | Optional | Specifies the streak name.                                                                                                                                                                                                                                                |
+| ....targetCountOfSequence        | integer (int32)       | Optional | Specifies the required count within each period.                                                                                                                                                                                                                          |
+| ....consecutive                  | boolean               | Optional | True means the streak must be unbroken; false allows non-consecutive days.                                                                                                                                                                                                |
+| ....aggregateFunction            | string                | Optional | Specifies the function to aggregate values: "SUM" or "COUNT".                                                                                                                                                                                                             |
+| ..cycles                         | Array (Object)        | Optional | Defines the evaluation cycles specific to this milestone.                                                                                                                                                                                                                 |
+| ....id                           | string                | Optional | Specifies the cycle ID.                                                                                                                                                                                                                                                   |
+| ....name                         | string                | Optional | Specifies the cycle name.                                                                                                                                                                                                                                                 |
+| ....startDate                    | date                  | Optional | Time format: ISO 8601 timestamp with timezone offset. Example: `2025-12-16T14:30:45+05:30`                                                                                                                                                                                |
+| ....endDate                      | date                  | Optional | Time format: ISO 8601 timestamp with timezone offset. Example: `2025-12-31T23:59:59+05:30`                                                                                                                                                                                |
+| ..periods                        | Array                 | Optional | Defines the evaluation periods for the milestone.                                                                                                                                                                                                                         |
+| ....id                           | string                | Optional | Specifies the period ID.                                                                                                                                                                                                                                                  |
+| ....name                         | string                | Optional | Specifies the period name.                                                                                                                                                                                                                                                |
+| ....startDate                    | string                | Optional | Time format: ISO 8601 timestamp with timezone offset. Example: `2025-12-16T14:30:45+05:30`                                                                                                                                                                                |
+| ....endDate                      | string                | Optional | Time format: ISO 8601 timestamp with timezone offset. Example: `2025-12-31T23:59:59+05:30`                                                                                                                                                                                |
+| ....refCode                      | string                | Optional | Specifies the period reference code.                                                                                                                                                                                                                                      |
+| ....isActive                     | boolean               | Optional | Indicates if the period is active.                                                                                                                                                                                                                                        |
+| ..targetRuleIds                  | Array (integer int64) | Optional | Indicates associated target rule IDs.                                                                                                                                                                                                                                     |
+| ..individualMilestoneFileDetails | Array (Object)        | Optional | Details related to uploaded files providing individual targets.                                                                                                                                                                                                           |
+| ....fileName                     | string                | Optional | The original name of the uploaded file.                                                                                                                                                                                                                                   |
+| ....fileHandle                   | string                | Optional | The system URL/handle where the file is stored.                                                                                                                                                                                                                           |
+| ....status                       | string                | Optional | The processing status of the file.                                                                                                                                                                                                                                        |
+| ....totalRecords                 | integer               | Optional | The total number of records found in the file.                                                                                                                                                                                                                            |
+| ....successRecords               | integer               | Optional | The number of records successfully processed.                                                                                                                                                                                                                             |
+| ....failureCount                 | integer               | Optional | The number of records that failed to process.                                                                                                                                                                                                                             |
+
+### `activities` (group activities)
+
+| Field           | Type           | Required | Description                                                                                                                                                                                                                                                                    |
+| --------------- | -------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| combinationType | enum           | Yes      | Logic to combine children in GROUP activities. Supported values: `ANY`, `ALL`.                                                                                                                                                                                                 |
+| children        | Array (Object) | Yes      | An array of child Activity objects (SINGLE or nested GROUP). **Note:** When a GROUP activity has `commonCycleActionMapping` populated, it takes precedence as the reward definition for the entire group. Child activities must not have their own `commonCycleActionMapping`. |
+| event           | string         | Optional | The event that applies to the group as a whole. Built-in events: `TransactionAdd`, `GroupTransactionAdd`, `TransactionFinished`. Custom org-configured events are also supported.                                                                                              |
+| ruleExpression  | string         | Optional | Rule expression that applies to the group result.                                                                                                                                                                                                                              |
+| expJSON         | string         | Optional | JSON representation of the group's rule expression.                                                                                                                                                                                                                            |
+
+### `milestones` object (fields inside milestones array)
+
+| Field                          | Type               | Required    | Description                                                                                                                                                                                                    |
+| ------------------------------ | ------------------ | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name                           | string             | Optional    | Specifies the milestone name. Supported Values: String. Example: "Tier 1: Spend $100"                                                                                                                          |
+| sameActionsForEveryCycle       | boolean            | Optional    | Specifies if the same actions apply across all cycles defined for this milestone.                                                                                                                              |
+| differentTargetsForEveryCycle  | boolean            | Optional    | Specifies if target values differ across cycles.                                                                                                                                                               |
+| description                    | string             | Optional    | Indicates the milestone description.                                                                                                                                                                           |
+| trackingType                   | string             | Optional    | Specifies how the milestone is tracked. Supported values: `DEFAULT`, `STREAKS`, `NON_CONTINUOUS_STREAKS`, `CAPPING`, `UNIFIED`, `INDIVIDUAL`.                                                                  |
+| targetType                     | enum               | Yes         | Defines the KPI to track for the milestone. Supported values: `QUANTITY`, `SALES`, `COUNT`, `VISIT`, `GROSS_SALES`, `REGULAR_POINTS`, `PROMOTIONAL_POINTS`, `ALL_POINTS`, `EXTENDED_FIELD`, `EVENT_ATTRIBUTE`. |
+| targetEntity                   | enum               | Yes         | Specifies the entity to track the targetType against. Supported values: `TRANSACTION`, `LINEITEM`, `POINTS`, `EVENT`, `ALTERNATE_CURRENCIES`.                                                                  |
+| targetRuleMetaData             | Object             | Conditional | Required when `targetType` is `EXTENDED_FIELD`. Defines which custom extended field to track and how to aggregate its values.                                                                                  |
+| ..name                         | string             | Yes         | The name of the extended field to track. Example: `"CentralGST"`                                                                                                                                               |
+| ..aggregateFunction            | enum               | Yes         | Specifies how to aggregate the extended field values. Supported values: `SUM`, `COUNT`, `MAX`, `MIN`.                                                                                                          |
+| defaultValue                   | string             | Optional    | Specifies the default target value threshold. Example: `"15"`                                                                                                                                                  |
+| targetValue                    | string             | Optional    | Specifies the target value to achieve the milestone (often same as defaultValue).                                                                                                                              |
+| preferredTillId                | integer (int64)    | Optional    | Indicates a preferred till ID if tracking is specific to certain POS terminals.                                                                                                                                |
+| frequencyType                  | string             | Optional    | Specifies the time unit for milestone evaluation. Supported values: `DAILY`, `WEEKLY`, `MONTHLY`, `QUARTERLY`, `HALF_YEARLY`, `YEARLY`, `CUSTOM`.                                                              |
+| targetEvaluationType           | enum               | Optional    | Specifies the evaluation logic window. Supported values: `FIXED_CALENDAR_WINDOW`, `CYCLIC_WINDOW`, `PERIOD_AGNOSTIC_WINDOW`, `CALENDAR_CYCLIC_WINDOW`.                                                         |
+| recurringCycles                | integer (int32)    | Optional    | Specifies the number of recurring cycles for milestone evaluation.                                                                                                                                             |
+| targetGroupId                  | integer (int64)    | Optional    | Indicates the target group ID associated with this milestone's tracking logic.                                                                                                                                 |
+| leaderboardEnabled             | boolean            | Optional    | Indicates if a leaderboard competition is enabled for this milestone. Supported values: `true`, `false`.                                                                                                       |
+| cycleActionMapping             | Array (Object)     | Optional    | Defines the reward(s) for achieving the milestone. Same structure as `commonCycleActionMapping`.                                                                                                               |
+| streaks                        | Array (Object)     | Optional    | Defines streak configuration. Required when `trackingType` is `STREAKS` or `NON_CONTINUOUS_STREAKS`.                                                                                                           |
+| ..name                         | string             | Optional    | Specifies the streak name.                                                                                                                                                                                     |
+| ..targetCountOfSequence        | integer (int32)    | Optional    | The required number of consecutive qualifying events per cycle.                                                                                                                                                |
+| ..consecutive                  | boolean            | Optional    | Whether the events must be consecutive. `true`: The streak must be unbroken. `false`: Non-consecutive occurrences are allowed.                                                                                 |
+| aggregateFunction              | string             | Optional    | Specifies the function to aggregate values. Supported values: `SUM`, `COUNT`, `MAX`, `MIN`.                                                                                                                    |
+| cycles                         | Array (Object)     | Optional    | Defines the evaluation cycles specific to this milestone.                                                                                                                                                      |
+| ..id                           | string             | Optional    | Specifies the cycle ID.                                                                                                                                                                                        |
+| ..name                         | string             | Optional    | Specifies the cycle name.                                                                                                                                                                                      |
+| ..startDate                    | string (date-time) | Optional    | Time format: ISO 8601 timestamp with timezone offset. Example: `2025-12-16T14:30:45+05:30`                                                                                                                     |
+| ..endDate                      | string (date-time) | Optional    | Time format: ISO 8601 timestamp with timezone offset. Example: `2025-12-31T23:59:59+05:30`                                                                                                                     |
+| periods                        | Array (Object)     | Optional    | Defines the evaluation periods for the milestone.                                                                                                                                                              |
+| ..id                           | string             | Optional    | Specifies the period ID.                                                                                                                                                                                       |
+| ..name                         | string             | Optional    | Specifies the period name.                                                                                                                                                                                     |
+| ..startDate                    | string             | Optional    | Time format: ISO 8601 timestamp with timezone offset. Example: `2025-12-16T14:30:45+05:30`                                                                                                                     |
+| ..endDate                      | string             | Optional    | Time format: ISO 8601 timestamp with timezone offset. Example: `2025-12-31T23:59:59+05:30`                                                                                                                     |
+| ..refCode                      | string             | Optional    | Specifies the period reference code.                                                                                                                                                                           |
+| ..isActive                     | boolean            | Optional    | Indicates if the period is active.                                                                                                                                                                             |
+| individualMilestoneFileDetails | Array (Object)     | Optional    | Array containing the configuration for the CSV file to be processed.                                                                                                                                           |
+| ..fileHandle                   | string             | Yes         | The unique UUID reference to the file after it has been uploaded to the file storage service.                                                                                                                  |
+| ..fileName                     | string             | Yes         | The original name of the CSV file being uploaded.                                                                                                                                                              |
+| ..columnsMapping               | Object             | Yes         | An object that maps your CSV column names to the system's fields.                                                                                                                                              |
+| ....userIdentifier             | string             | Yes         | The user identification method. Possible Values: `EMAIL`, `USER_ID`, `MOBILE`, `EXTERNAL_ID`.                                                                                                                  |
+| ....userIdentifierColumn       | string             | Yes         | The exact name of the column in your CSV that contains the user identifier.                                                                                                                                    |
+| ....targetColumns              | Object             | Yes         | A key-value map where the key is the system cycle (Cycle\_1, Cycle\_2) and the value is the corresponding column name in your CSV.                                                                             |
+
+### Example use case 1: applying the activities object to update a promotion
+
+FitNation Gym previously drafted the "Workout Warrior" challenge with a target of 15 visits. Now they need to update the promotion to go live. However, after reviewing member attendance data, management decided that 15 visits in one month is too difficult for most members. To encourage higher participation, they are lowering the milestone target to 12 visits before activating the promotion.
+
+```bash
+curl --location --request PUT 'https://eu.api.capillarytech.com/v3/promotions/{promotionid}' \
+--header 'Content-Type: application/json' \
+--header 'X-CAP-API-AUTH-ORG-ID: 100232' \
+--header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86NjVhMDgzYjk1MWY5MGY1NTY5NDk1YmNkNzUxYmJiY2U=' \
+--header 'Cookie: _cfuvid=bw96IuxgkLuZy69HNs9OCYqoMPzwtPCXTg6pMsX5zEo-1765521791434-0.0.1.1-604800000' \
+--data '{
+  "metadata": {
+    "name": "FitNation Workout Warrior - Nov-UI2",
+    "description": "Milestone: 12 Gym Check-ins in Nov at Loc 101. UPDATED TARGET.",
+    "orgId": 100737,
+    "programId": 973,
+    "startDate": "2025-11-01T00:00:00+05:30",
+    "endDate": "2025-11-30T23:59:59+05:30",
+    "promotionType": "GENERIC",
+    "status": "DRAFT",
+    "timezoneName": "Asia/Kolkata",
+    "promoIdentifier": "fn-warrior-nov25-ui",
+    "promotionMetadata": []
+  },
+  "customerEnrolment": {
+    "enrolmentMethod": "TRANSACTION",
+    "audienceGroups": []
+  },
+  "activities": [
+    {
+      "id": "activity_1761000000006",
+      "type": "SINGLE",
+      "name": "Track Gym CheckIns",
+      "event": "GymCheckIn",
+      "expJSON": "{\n  \"arity\": \"binary_operation\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"==\",\n  \"operands\": [\n    {\n      \"arity\": \"object_dereference\",\n      \"type\": \"number:object:primitive\",\n      \"operands\": [\n        {\n          \"arity\": \"name\",\n          \"type\": \"event:object:primitive\",\n          \"value\": \"currentEvent\"\n        },\n        {\n          \"arity\": \"name\",\n          \"type\": \"number:object:primitive\",\n          \"value\": \"locationId\"\n        }\n      ]\n    },\n    {\n      \"arity\": \"literal\",\n      \"type\": \"number:primitive\",\n      \"value\": \"101\"\n    }\n  ]\n}",
+      "commonCycleActionMapping": [],
+      "frequencyType": "WEEKLY",
+      "targetEvaluationType": "CYCLIC_WINDOW",
+      "activityCycles": [
+        {
+          "id": "ac_w1",
+          "name": "Nov Week 1",
+          "startDate": "2025-11-01T00:00:00+05:30",
+          "endDate": "2025-11-09T23:59:59+05:30",
+          "refCode": "W1",
+          "isActive": true
+        },
+        {
+          "id": "ac_w2",
+          "name": "Nov Week 2",
+          "startDate": "2025-11-10T00:00:00+05:30",
+          "endDate": "2025-11-16T23:59:59+05:30",
+          "refCode": "W2",
+          "isActive": true
+        },
+        {
+          "id": "ac_w3",
+          "name": "Nov Week 3",
+          "startDate": "2025-11-17T00:00:00+05:30",
+          "endDate": "2025-11-23T23:59:59+05:30",
+          "refCode": "W3",
+          "isActive": true
+        },
+        {
+          "id": "ac_w4",
+          "name": "Nov Week 4",
+          "startDate": "2025-11-24T00:00:00+05:30",
+          "endDate": "2025-11-30T23:59:59+05:30",
+          "refCode": "W4",
+          "isActive": true
+        }
+      ],
+      "milestones": [
+        {
+          "name": "Achieve 12 Check-Ins",
+          "trackingType": "DEFAULT",
+          "leaderboardEnabled": true,
+          "targetType": "VISIT",
+          "targetEntity": "EVENT",
+          "aggregateFunction": "COUNT",
+          "preferredTillId": null,
+          "cycleActionMapping": [
+            {
+              "cycle": "Cycle_1",
+              "startDate": "2025-11-01T00:00:00+05:30",
+              "endDate": "2025-11-30T23:59:59+05:30",
+              "defaultValue": "12",
+              "actions": [
+                {
+                  "id": "temp_action_tierup",
+                  "actionName": "UPGRADE_SLAB_ACTION_SLAB",
+                  "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.UpgradeSlabActionImpl",
+                  "description": "Upgrade to Tier 2",
+                  "mandatoryComplexPropertiesValues": {},
+                  "mandatoryPropertiesValues": {
+                    "EvaluatedEntity": "USER",
+                    "ToSlabSerialNumber": "2",
+                    "TierBasedExpiry": "0"
+                  },
+                  "embeddedStrategies": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "limits": [],
+  "liabilityOwnerSplitInfo": [],
+  "workflowMetadata": {
+    "optin": {},
+    "enrolment": {}
+  }
+}'
+```
+
+### Example use case 2: applying the activities object to update a promotion
+
+Gourmet Galaxy Foods drafted their "Dinner Special" promotion, configured to award points during specific dinner hours for purchasing either a 'Premium Steak' or a 'Salad + Bread' bundle over $30. Now they need to update the promotion to launch it. Additionally, they have decided to slightly extend the "Dinner Hours" window to capture late-night diners, changing the end time from 10:00 PM to 11:00 PM.
+
+```bash
+curl --location --request PUT 'https://eu.api.capillarytech.com/v3/promotions/{promotionid}' \
+--header 'content-type: application/json' \
+--header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW862MTE2NWI5ZjAxMzU5NGIwNDllZTk=' \
+--header 'Cookie: _cfuvid=LpG9HQ0MrgpPTMOdr1nbz8FvnCc-1763223314046-0.0.1.1-604800000' \
+--data '{
+  "metadata": {
+    "name": "Gourmet Galaxy Dinner Special-22-UI",
+    "description": "Points for Steak OR (Salad AND Bread AND >$30). UPDATED: Dinner hours extended to 11 PM.",
+    "orgId": 100737,
+    "programId": 973,
+    "startDate": "2025-11-01T00:00:00+05:30",
+    "endDate": "2025-11-30T23:59:59+05:30",
+    "promotionType": "LOYALTY_EARNING",
+    "status": "DRAFT",
+    "timezoneName": "Asia/Kolkata",
+    "promoIdentifier": "gg-dinner-nov25-ui",
+    "promotionMetadata": []
+  },
+  "customerEnrolment": {
+    "enrolmentMethod": "TRANSACTION",
+    "audienceGroups": []
+  },
+  "activities": [
+    {
+      "id": "group_176100000007",
+      "type": "GROUP",
+      "name": "Dinner Special Check (ANY)",
+      "combinationType": "ANY",
+      "event": "TransactionAdd",
+      "cycles": [
+        {
+          "id": "c_dinner",
+          "name": "Dinner Hours",
+          "startDate": "2025-11-01T18:00:00+05:30",
+          "endDate": "2025-11-30T23:00:00+05:30"
+        }
+      ],
+      "expJSON": "{\n  \"arity\": \"literal\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"true\"\n}",
+      "children": [
+        {
+          "id": "sub_activity_176100000008",
+          "parentId": "group_176100000007",
+          "name": "Bought Premium Steak",
+          "type": "SINGLE",
+          "event": "TransactionAdd",
+          "milestones": [
+            {
+              "name": "Default Milestone Steak",
+              "trackingType": "DEFAULT",
+              "leaderboardEnabled": false
+            }
+          ],
+          "commonCycleActionMapping": []
+        },
+        {
+          "id": "sub_group_176100000009",
+          "parentId": "group_176100000007",
+          "name": "Side Bundle Check (ALL)",
+          "type": "GROUP",
+          "combinationType": "ALL",
+          "event": "TransactionAdd",
+          "children": [
+            {
+              "id": "sub_sub_activity_10",
+              "parentId": "sub_group_176100000009",
+              "name": "Bought Organic Salad",
+              "type": "SINGLE",
+              "event": "TransactionAdd",
+              "milestones": [
+                {
+                  "name": "Default Milestone Salad",
+                  "trackingType": "DEFAULT",
+                  "leaderboardEnabled": false
+                }
+              ],
+              "commonCycleActionMapping": []
+            },
+            {
+              "id": "sub_sub_activity_11",
+              "parentId": "sub_group_176100000009",
+              "name": "Bought Artisan Bread",
+              "type": "SINGLE",
+              "event": "TransactionAdd",
+              "milestones": [
+                {
+                  "name": "Default Milestone Bread",
+                  "trackingType": "DEFAULT",
+                  "leaderboardEnabled": false
+                }
+              ],
+              "commonCycleActionMapping": []
+            },
+            {
+              "id": "sub_sub_activity_12",
+              "parentId": "sub_group_176100000009",
+              "name": "Transaction > $30",
+              "type": "SINGLE",
+              "event": "TransactionAdd",
+              "milestones": [
+                {
+                  "name": "Default Milestone Amount",
+                  "trackingType": "DEFAULT",
+                  "leaderboardEnabled": false
+                }
+              ],
+              "commonCycleActionMapping": []
+            }
+          ],
+          "commonCycleActionMapping": []
+        }
+      ],
+      "commonCycleActionMapping": [
+        {
+          "cycle": "c_dinner",
+          "startDate": "2025-11-01T18:00:00+05:30",
+          "endDate": "2025-11-30T23:00:00+05:30",
+          "actions": [
+            {
+              "id": "temp_action_dinnerpts",
+              "actionName": "AWARD_POINTS_ACTION",
+              "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.AwardPointsActionImpl",
+              "description": "Award 150 Dinner Special Points",
+              "mandatoryPropertiesValues": {
+                "AwardStrategy": "111728",
+                "ExpiryStrategy": "121544",
+                "PointType": "Main"
+              },
+              "mandatoryComplexPropertiesValues": {},
+              "embeddedStrategies": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "limits": [],
+  "liabilityOwnerSplitInfo": [],
+  "workflowMetadata": {
+    "optin": {},
+    "enrolment": {}
+  }
+}'
+```
+
+## Limits object
+
+Specifies limits for issuance and redemption. This is an array, so you can define multiple limit objects.
+
+| Field           | Type    | Required    | Description                                                                                                                                                                                                                                                                      |
+| --------------- | ------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| entityScope     | enum    | Optional    | Specifies the scope of the limit. Supported values: `PROMOTION`: The limit applies only to rewards generated by this specific promotion. `PROGRAM`: The limit applies across the entire loyalty program. Default value: `PROMOTION`.                                             |
+| entityId        | integer | Conditional | The numeric ID of the entity this limit applies to. Required when `entityScope` is `PROGRAM` — set this to the `programId`. Not required when `entityScope` is `PROMOTION`.                                                                                                      |
+| granularity     | enum    | Optional    | Specifies the tracking level for the limit. Supported values: `OVERALL`: Limits the total count/sum across all members combined. `USER`: Limits the count/sum per individual member. `PER_ACTIVITY`: Limits the count/sum based on each individual triggering activity instance. |
+| actionType      | enum    | Optional    | Specifies the category of action to cap. Supported values: `AWARD_CURRENCY`, `AWARD_BADGE`, `ISSUE_COUPON`, `ISSUE_REWARD`, `UPGRADE_TIER`, `RENEW_TIER`, `DOWNGRADE_TIER`.                                                                                                      |
+| actionSubTypeId | string  | Optional    | Specifies the limit to a specific sub-type. If `actionType` is `AWARD_CURRENCY`, this can be the currency name like `"Points"` or `"Miles"`. If `actionType` is `ISSUE_COUPON`, this can be the coupon series ID.                                                                |
+| limitType       | enum    | Optional    | Specifies the measure used for limiting. Supported values: `SUM`: Limits the total value accumulated. `COUNT`: Limits the total number of times an action can occur.                                                                                                             |
+| limitValue      | number  | Optional    | Specifies the maximum allowable value for the limit.                                                                                                                                                                                                                             |
+| period          | Object  | Conditional | Defines the reset window. Required when you need to set a reset interval for limits. See the period Object table below.                                                                                                                                                          |
+
+### `period` object
+
+Defines the time window and reset logic for a limit.
+
+| Field          | Type               | Required | Description                                                                                                                                                                                                                                                                                                                                                                                |
+| -------------- | ------------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| periodType     | enum               | Optional | Defines the reset style for the limit. Supported values: `NON_PERIOD_BASED`: The limit applies once for the entire promotion duration and never resets. `MOVING_WINDOW`: Uses a rolling duration from the current moment. `FIXED_CALENDAR_WINDOW`: Resets based on fixed calendar periods. `FIXED_WINDOW`: The limit is only active during the specific `startDate` and `endDate` defined. |
+| periodUnit     | enum               | Optional | Specifies the unit of time if `periodType` is `MOVING_WINDOW` or `FIXED_CALENDAR_WINDOW`. Supported values: `DAYS`, `WEEKS`, `MONTHS`.                                                                                                                                                                                                                                                     |
+| periodValue    | integer            | Optional | Specifies the number of period units in one complete limit period. For `MOVING_WINDOW`: the window size. Example: `7` with `DAYS` means "last 7 days".                                                                                                                                                                                                                                     |
+| periodStartDay | enum               | Optional | Specifies which day the calendar week starts on. Only applicable when `periodType` is `FIXED_CALENDAR_WINDOW` and `periodUnit` is `WEEKS`. Supported values: `SUNDAY`, `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, `SATURDAY`.                                                                                                                                                 |
+| referenceDate  | string (date-time) | Optional | Specifies the anchor date used to calculate fixed calendar periods when `periodType` is `FIXED_CALENDAR_WINDOW` and `periodUnit` is `DAYS` or `MONTHS`. Time format: ISO 8601 timestamp. Example: `"2025-01-01T00:00:00Z"`                                                                                                                                                                 |
+| startDate      | string (date-time) | Optional | For `periodType` = `FIXED_WINDOW`: the exact date/time this limit becomes active. Time format: ISO 8601 timestamp with timezone offset. Example: `2025-12-01T00:00:00+05:30`                                                                                                                                                                                                               |
+| endDate        | string (date-time) | Optional | For `periodType` = `FIXED_WINDOW`: the exact date/time this limit becomes inactive. Must be null for `FIXED_CALENDAR_WINDOW`. Time format: ISO 8601 timestamp with timezone offset. Example: `2025-12-31T23:59:59+05:30`                                                                                                                                                                   |
+
+### Example use case 1: applying the limits object to update a promotion
+
+Fresh Juice Bar previously set up a "Buy 5 Get 1 Free" coupon promotion with a limit of 2 coupons per member per week. Now they need to update the promotion based on member feedback. They have decided to increase the redemption limit, allowing members to earn up to 3 coupons every week instead of just 2.
+
+```bash
+curl --location --request PUT 'https://eu.api.capillarytech.com/v3/promotions/{promotionid}' \
+--header 'Content-Type: application/json' \
+--header 'X-CAP-API-AUTH-ORG-ID: 100232' \
+--header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86NjVhMDgzYjk1MWY5MGY1NTY5zUxYmJiY2U=' \
+--header 'Cookie: _cfuvid=bw96IuxgkLuZy69HNs9OCYqtPCXTg6pMsX5zEo-1765521791434-0.0.1.1-604800000' \
+--data '{
+  "metadata": {
+    "name": "Fresh Juice Weekly Coupon Limit4-UI2",
+    "description": "Limit B5G1_JUICE coupon to 3 per user per 7 days. UPDATED LIMIT.",
+    "orgId": 100737,
+    "programId": 973,
+    "startDate": "2025-12-01T00:00:00+05:30",
+    "endDate": "2025-12-31T23:59:59+05:30",
+    "promotionType": "GENERIC",
+    "status": "DRAFT",
+    "timezoneName": "Asia/Kolkata",
+    "promoIdentifier": "juice-limit-dec25-ui",
+    "promotionMetadata": []
+  },
+  "customerEnrolment": {
+    "enrolmentMethod": "TRANSACTION",
+    "audienceGroups": []
+  },
+  "activities": [
+    {
+      "id": "activity_1761xxxxxxa1",
+      "type": "SINGLE",
+      "name": "Issue B5G1 Coupon",
+      "event": "TransactionAdd",
+      "expJSON": "{\n  \"arity\": \"literal\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"true\"\n}",
+      "commonCycleActionMapping": [
+        {
+          "cycle": "Cycle_1",
+          "startDate": "2025-12-01T00:00:00+05:30",
+          "endDate": "2025-12-31T23:59:59+05:30",
+          "actions": [
+            {
+              "id": "temp_action_b5g1",
+              "actionName": "PE_ISSUE_VOUCHER_ACTION",
+              "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.PointsEngineIssueVoucherActionImpl",
+              "description": "Issue B5G1 Juice Voucher",
+              "mandatoryPropertiesValues": {
+                "VoucherSeriesId": "B5G1_JUICE"
+              },
+              "mandatoryComplexPropertiesValues": {},
+              "embeddedStrategies": []
+            }
+          ]
+        }
+      ],
+      "milestones": []
+    }
+  ],
+  "limits": [
+    {
+      "granularity": "USER",
+      "actionType": "AWARD_CURRENCY",
+      "actionSubTypeId": "Points",
+      "limitType": "COUNT",
+      "limitValue": 3,
+      "period": {
+        "periodType": "MOVING_WINDOW",
+        "periodUnit": "DAYS",
+        "periodValue": 7
+      }
+    }
+  ],
+  "liabilityOwnerSplitInfo": [],
+  "workflowMetadata": {
+    "optin": {},
+    "enrolment": {}
+  }
+}'
+```
+
+### Example use case 2: applying the limits object to update a promotion
+
+Global Gadgets previously launched a Q1 promotion with an overall liability cap of 1,000,000 points. Due to higher-than-expected member engagement, they are approaching this limit faster than anticipated. To ensure the promotion continues without interruption, they need to update the promotion to double the total allowable points to 2,000,000 within the same 30-day rolling window.
+
+```bash
+curl --location --request PUT 'https://eu.api.capillarytech.com/v3/promotions/{promotionid}' \
+--header 'content-type: application/json' \
+--header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86MmQ1OTNTk1OGE2NWI5ZjAxMzU5NGIwNDllZTk=' \
+--header 'Cookie: _cfuvid=BC9cwq9u_qIzIGlUxLEwV1ldTNVbpH1faK4-1763285329155-0.0.1.1-604800000' \
+--data '{
+  "metadata": {
+    "name": "Global Gadgets Points Promo w Overall Limit-UI",
+    "description": "Overall promo limit: Max 2M points total awarded in any 30-day window. CAP INCREASED.",
+    "orgId": 100737,
+    "programId": 973,
+    "startDate": "2026-02-01T00:00:00+05:30",
+    "endDate": "2026-04-30T23:59:59+05:30",
+    "promotionType": "LOYALTY_EARNING",
+    "status": "DRAFT",
+    "timezoneName": "Asia/Kolkata",
+    "promoIdentifier": "gg-limit-roll-q126-ui",
+    "promotionMetadata": []
+  },
+  "customerEnrolment": {
+    "enrolmentMethod": "TRANSACTION",
+    "audienceGroups": []
+  },
+  "activities": [
+    {
+      "id": "activity_1761xxxxxxa2",
+      "type": "SINGLE",
+      "name": "Award Points",
+      "event": "TransactionAdd",
+      "expJSON": "{\n  \"arity\": \"literal\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"true\"\n}",
+      "commonCycleActionMapping": [
+        {
+          "cycle": "Cycle_1",
+          "startDate": "2026-02-01T00:00:00+05:30",
+          "endDate": "2026-04-30T23:59:59+05:30",
+          "actions": [
+            {
+              "id": "temp_action_pts_lim",
+              "actionName": "AWARD_POINTS_ACTION",
+              "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.AwardPointsActionImpl",
+              "description": "Award Standard Points",
+              "mandatoryPropertiesValues": {
+                "AwardStrategy": "109010",
+                "ExpiryStrategy": "109006",
+                "PointType": "Main"
+              },
+              "mandatoryComplexPropertiesValues": {},
+              "embeddedStrategies": []
+            }
+          ]
+        }
+      ],
+      "milestones": []
+    }
+  ],
+  "limits": [
+    {
+      "entityScope": "PROMOTION",
+      "granularity": "OVERALL",
+      "actionType": "AWARD_CURRENCY",
+      "actionSubTypeId": "Points",
+      "limitType": "SUM",
+      "limitValue": 2000000,
+      "period": {
+        "periodType": "MOVING_WINDOW",
+        "periodValue": 30,
+        "periodUnit": "DAYS"
+      }
+    }
+  ],
+  "liabilityOwnerSplitInfo": [],
+  "workflowMetadata": {
+    "optin": {},
+    "enrolment": {}
+  }
+}'
+```
+
+## liabilityOwnerSplitInfo object
+
+Defines how the reward liability (cost) is financially distributed. This is an array, so you can define multiple split objects.
+
+| Field              | Type    | Required | Description                                                                                                                                                                                                 |
+| ------------------ | ------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| orgId              | integer | Optional | The Organization ID of the entity bearing this portion of the cost. Supported Values: A valid integer orgId.                                                                                                |
+| liabilityOwnerId   | integer | Optional | The specific ID of the entity that owns this liability. If liabilityOwnerType is PROGRAM, this is the Program ID. If liabilityOwnerType is PARTNER, this is the Partner ID. Example: 229.                   |
+| componentType      | enum    | Optional | Specifies what this liability split is for. `PROMOTION`: (Default) The cost split applies only to this specific promotion. `PROGRAM`: The split applies to the entire program.                              |
+| ratio              | number  | Optional | The percentage (0-100) of the total liability this owner will cover. The sum of all ratio values in the liabilityOwnerSplitInfo array should equal 100. Example: 50 (for 50%).                              |
+| liabilityOwnerType | enum    | Optional | Specifies if the owner is an internal program or an external partner. `PROGRAM`: Liability is assigned to one of your own loyalty programs. `PARTNER`: Liability is assigned to an external partner entity. |
+| active             | boolean | Optional | Indicates if this specific split rule is active. If set to false, this split entry is ignored. Supported Values: true, false.                                                                               |
+
+### Example use case 1: applying the liabilityOwnerSplitInfo object to update a promotion
+
+The brand previously configured a promotion with a 50/50 liability split between two programs. Now they need to update this financial arrangement based on a new budget agreement. Management has decided that the main program (ID 82) should bear a larger share of the cost. They are updating the split ratio to 70% for the main program and reducing the transfer program's share (ID 87) to 30%.
+
+```bash
+curl --location --request PUT 'https://eu.api.capillarytech.com/v3/promotions/{promotionid}' \
+--header 'content-type: application/json' \
+--header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86MmQ1OTNhMjI2MTk1OGE2NWI5ZjAxMzU5NGIwNDllZTk=' \
+--header 'Cookie: _cfuvid=BC9cwq9xQ4RRsN9u_qIzIGlUxLEwV1ldTNVbpH1faK4-1763285329155-0.0.1.1-604800000' \
+--data '{
+  "metadata": {
+    "name": "Liability Split - DocDemo and DocTransfer",
+    "description": "UPDATED: Split liability adjusted to 70/30 (Main/Transfer).",
+    "orgId": 100737,
+    "programId": 973,
+    "startDate": "2025-11-20T00:00:00+05:30",
+    "endDate": "2025-12-31T23:59:59+05:30",
+    "promotionType": "LOYALTY_EARNING",
+    "status": "DRAFT",
+    "timezoneName": "Asia/Kolkata",
+    "promoIdentifier": "liability-split-progprog-ui-v2",
+    "promotionMetadata": []
+  },
+  "customerEnrolment": {
+    "enrolmentMethod": "TRANSACTION",
+    "audienceGroups": []
+  },
+  "activities": [
+    {
+      "id": "activity_1761xxxxxxb1",
+      "type": "SINGLE",
+      "name": "Award Points",
+      "event": "TransactionAdd",
+      "expJSON": "{\n  \"arity\": \"literal\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"true\"\n}",
+      "commonCycleActionMapping": [
+        {
+          "cycle": "Cycle_1",
+          "startDate": "2025-11-20T00:00:00+05:30",
+          "endDate": "2025-12-31T23:59:59+05:30",
+          "actions": [
+            {
+              "id": "temp_action_pts_split",
+              "actionName": "AWARD_POINTS_ACTION",
+              "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.AwardPointsActionImpl",
+              "description": "100 Points",
+              "mandatoryPropertiesValues": {
+                "AwardStrategy": "109010",
+                "ExpiryStrategy": "109436",
+                "PointType": "Main"
+              },
+              "mandatoryComplexPropertiesValues": {},
+              "embeddedStrategies": []
+            }
+          ]
+        }
+      ],
+      "milestones": []
+    }
+  ],
+  "limits": [],
+  "liabilityOwnerSplitInfo": [
+    {
+      "liabilityOwnerId": 82,
+      "componentType": "PROMOTION",
+      "ratio": 70,
+      "isActive": true,
+      "liabilityOwnerName": "DocDemoDefaultProgram",
+      "liabilityOwnerType": "PROGRAM",
+      "orgId": 100737
+    },
+    {
+      "liabilityOwnerId": 87,
+      "componentType": "PROMOTION",
+      "ratio": 30,
+      "isActive": true,
+      "liabilityOwnerName": "DocTransferPoints",
+      "liabilityOwnerType": "PROGRAM",
+      "orgId": 100737
+    }
+  ],
+  "workflowMetadata": {
+    "optin": {},
+    "enrolment": {}
+  }
+}'
+```
+
+### Example use case 2: applying the liabilityOwnerSplitInfo object to update a promotion
+
+Digital Hub previously launched a promotion where their main loyalty program covered 100% of the costs. Now they need to update this configuration because they have secured a sponsorship deal. An external partner, "TechGiant Partners" (Partner ID 505), has agreed to subsidize the promotion.
+
+To reflect this new financial agreement, the brand needs to update the liability split: the main program will now cover only 60% of the cost, while the new partner will cover the remaining 40%.
+
+```bash
+curl --location --request PUT 'https://eu.api.capillarytech.com/v3/promotions/{promotionid}' \
+--header 'Content-Type: application/json' \
+--header 'X-CAP-API-AUTH-ORG-ID: 100232' \
+--header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86NjVhMDgzYjk1MWY5NDk1YmNkNzUxYmJiY2U=' \
+--header 'Cookie: _cfuvid=bw96IuxgkLuZy69HCXTg6pMsX5zEo-1765521791434-0.0.1.1-604800000' \
+--data '{
+  "metadata": {
+    "name": "Digital Hub Standard 100 Liability2",
+    "description": "UPDATED: Liability split 60% Program / 40% Partner (TechGiant).",
+    "orgId": 100737,
+    "programId": 973,
+    "startDate": "2025-12-01T00:00:00+05:30",
+    "endDate": "2025-12-31T23:59:59+05:30",
+    "promotionType": "GENERIC",
+    "status": "DRAFT",
+    "timezoneName": "Asia/Kolkata",
+    "promoIdentifier": "dh-std-liab-dec25-ui",
+    "promotionMetadata": []
+  },
+  "customerEnrolment": {
+    "enrolmentMethod": "TRANSACTION",
+    "audienceGroups": []
+  },
+  "activities": [
+    {
+      "id": "activity_1763288000001",
+      "name": "Activity 1",
+      "type": "SINGLE",
+      "event": "TransactionAdd",
+      "expJSON": "{\n  \"arity\": \"literal\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"true\"\n}",
+      "commonCycleActionMapping": [
+        {
+          "cycle": "Cycle_1",
+          "startDate": "2025-12-01T00:00:00+05:30",
+          "endDate": "2025-12-31T23:59:59+05:30",
+          "actions": []
+        }
+      ],
+      "milestones": []
+    }
+  ],
+  "limits": [],
+  "liabilityOwnerSplitInfo": [
+    {
+      "liabilityOwnerId": 82,
+      "componentType": "PROMOTION",
+      "ratio": 60,
+      "isActive": true,
+      "liabilityOwnerName": "DocDemoDefaultProgram",
+      "liabilityOwnerType": "PROGRAM",
+      "orgId": 100737
+    },
+    {
+      "liabilityOwnerId": 505,
+      "componentType": "PROMOTION",
+      "ratio": 40,
+      "isActive": true,
+      "liabilityOwnerName": "TechGiant Partners",
+      "liabilityOwnerType": "PARTNER",
+      "orgId": 100737
+    }
+  ],
+  "workflowMetadata": {
+    "optin": {},
+    "enrolment": {}
+  }
+}'
+```
+
+## Example response
+
+```json
+{
+    "data": {
+        "metadata": {
+            "name": "Efd Activity Based Prom11",
+            "description": "Enrolment for all members, requires activity-based opt-in.",
+            "programId": "HiddenGemDefaultProgram_ID",
+            "orgId": 51174,
+            "startDate": "2025-11-27T05:30:00+05:30",
+            "endDate": "2025-12-28T05:29:59+05:30",
+            "timezoneName": "Asia/Kolkata",
+            "promotionType": "LOYALTY",
+            "status": "DRAFT",
+            "promoIdentifier": null,
+            "promotionId": 0,
+            "createdOn": "2025-10-21T20:43:08+05:30",
+            "lastModifiedOn": "2025-10-21T20:43:08+05:30",
+            "createdBy": 0,
+            "lastModifiedBy": 0,
+            "version": null,
+            "draftDetails": null,
+            "promotionMetadata": null,
+            "commonStrategies": null
+        },
+        "customerEnrolment": {
+            "enrolmentMethod": "TRANSACTION"
+        },
+        "activities": [
+            {
+                "type": "SINGLE",
+                "id": "activity_reward_trigger",
+                "name": "Main Reward Activity",
+                "commonCycleActionMapping": [
+                    {
+                        "cycle": "cycle_promo_period",
+                        "actions": [
+                            {
+                                "id": "action_award_points",
+                                "actionName": "AWARD_CURRENCY",
+                                "actionClass": "com.capillary.loyalty.engine.actor.promotion.actions.AwardCurrency",
+                                "mandatoryPropertiesValues": {
+                                    "POINTS_TO_AWARD": "100",
+                                    "CURRENCY_IDENTIFIER": "POINTS"
+                                }
+                            }
+                        ],
+                        "startDate": "2025-11-27",
+                        "endDate": "2025-12-27"
+                    }
+                ],
+                "event": "TransactionAdd",
+                "allCycles": []
+            }
+        ],
+        "comments": null,
+        "parentId": null,
+        "version": 1,
+        "limits": [],
+        "liabilityOwnerSplitInfo": [],
+        "id": "68f7a304fd5b970d1efaf626",
+        "workflowMetadata": {
+            "enrolment": {
+                "basedOn": null,
+                "activities": null,
+                "audienceMapping": null,
+                "restrictions": null
+            },
+            "optin": {
+                "basedOn": "ACTIVITY",
+                "audienceMapping": null,
+                "activities": [
+                    {
+                        "type": "SINGLE",
+                        "id": "activity_optin_trigger",
+                        "name": "Opt-in Trigger Activity",
+                        "event": "TransactionAdd",
+                        "allCycles": []
+                    }
+                ],
+                "restrictions": null
+            }
+        }
+    },
+    "errors": null,
+    "warnings": null
+}
+```
+
+## Response body parameters
+
+| Field                                | Type                  | Description                                                                                                  |
+| ------------------------------------ | --------------------- | ------------------------------------------------------------------------------------------------------------ |
+| data                                 | Object                | The main data object for the promotion.                                                                      |
+| .id                                  | String                | Specifies the unique system-generated identifier for the unified promotion.                                  |
+| .metadata                            | Object                | Defines the object containing all metadata for the promotion.                                                |
+| ..name                               | String                | Specifies the name of the promotion.                                                                         |
+| ..description                        | String                | Specifies the description of the promotion.                                                                  |
+| ..programId                          | String                | Specifies the program ID associated with the promotion.                                                      |
+| ..orgId                              | Integer (int64)       | Specifies the organization ID.                                                                               |
+| ..startDate                          | String (date-time)    | Indicates the promotion's start date in ISO 8601 format, returned in the server time zone.                   |
+| ..endDate                            | String (date-time)    | Indicates the promotion's end date in ISO 8601 format, returned in the server time zone.                     |
+| ..timezoneName                       | String                | Specifies the timezone name for the promotion's schedule.                                                    |
+| ..promotionType                      | String                | Specifies the type of promotion.                                                                             |
+| ..status                             | String                | Indicates the current status of the promotion.                                                               |
+| ..promoIdentifier                    | String                | Specifies a unique string identifier for the promotion.                                                      |
+| ..promotionId                        | Integer (int32)       | Specifies the legacy numerical promotion ID.                                                                 |
+| ..createdOn                          | String (date-time)    | Indicates the creation date and time of the promotion in ISO 8601 format, returned in the server time zone.  |
+| ..lastModifiedOn                     | String (date-time)    | Indicates the last modification timestamp in ISO 8601 format, returned in the server time zone.              |
+| ..createdBy                          | Integer (int32)       | Specifies the user ID of the creator.                                                                        |
+| ..lastModifiedBy                     | Integer (int32)       | Specifies the user ID of the last modifier.                                                                  |
+| ..version                            | String                | Specifies the version string of the promotion.                                                               |
+| ..draftDetails                       | Object                | Defines details if the promotion is a draft.                                                                 |
+| ...id                                | String                | Specifies the draft's unique ID.                                                                             |
+| ...status                            | String                | Specifies the draft's status.                                                                                |
+| ...version                           | Integer (int32)       | Specifies the draft version number.                                                                          |
+| ...lastModifiedBy                    | Integer (int32)       | Specifies the user who last modified the draft.                                                              |
+| ...lastModifiedOn                    | String (date-time)    | Indicates the last modification timestamp of the draft in ISO 8601 format, returned in the server time zone. |
+| ..promotionMetadata                  | Array (Object)        | Defines a list of custom key-value metadata pairs.                                                           |
+| ...isBrandDefined                    | String                | Specifies if the metadata is defined by the brand.                                                           |
+| ...key                               | String                | Specifies the metadata key.                                                                                  |
+| ...value                             | String                | Specifies the metadata value.                                                                                |
+| ..commonStrategies                   | Object                | Defines common strategies, like expiry.                                                                      |
+| ...expiry                            | Array (Object)        | Defines a list of expiry strategies.                                                                         |
+| ....strategyTypeId                   | Integer (int32)       | Specifies the strategy type ID.                                                                              |
+| ....propertyValues                   | String                | Specifies the property values for the strategy.                                                              |
+| ....owner                            | String                | Specifies the owner of the strategy.                                                                         |
+| ....updatedViaNewUI                  | Boolean               | Indicates if the strategy was updated via the new UI.                                                        |
+| ....useCommonExpiryStrategy          | Boolean               | Indicates if the common expiry strategy is used.                                                             |
+| ....strategyRef                      | String                | Specifies the strategy reference.                                                                            |
+| ....strategySubType                  | String                | Indicates the strategy sub-type.                                                                             |
+| ..promotionMode                      | String                | Indicates the promotion mode.                                                                                |
+| .customerEnrolment                   | Object                | Defines the member enrolment rules.                                                                          |
+| ..enrolmentMethod                    | String                | Indicates the method of customer enrolment.                                                                  |
+| ..audienceGroups                     | Array (Object)        | Defines a list of audience groups for enrolment.                                                             |
+| ...audienceGroupId                   | Integer (int64)       | Specifies the unique ID for the audience group.                                                              |
+| ...audienceGroupName                 | String                | Specifies the name of the audience group.                                                                    |
+| ...description                       | String                | Specifies the description of the audience group.                                                             |
+| .activities                          | Array (Object)        | Defines a list of activities.                                                                                |
+| ..id                                 | String                | Specifies the unique ID for the activity.                                                                    |
+| ..type                               | String                | Specifies the type of the activity.                                                                          |
+| ..name                               | String                | Specifies the name of the activity.                                                                          |
+| ..parentId                           | String                | Specifies the parent activity's ID.                                                                          |
+| ..rulesetId                          | String                | Specifies the ruleset ID for the activity.                                                                   |
+| ..cycles                             | Array (Object)        | Defines a list of general cycles.                                                                            |
+| ...id                                | string                | Specifies the cycle ID.                                                                                      |
+| ...name                              | string                | Specifies the cycle name.                                                                                    |
+| ...startDate                         | string (date-time)    | Indicates the cycle's start date in ISO 8601 format, returned in the server time zone.                       |
+| ...endDate                           | string (date-time)    | Indicates the cycle's end date in ISO 8601 format, returned in the server time zone.                         |
+| ..commonCycleActionMapping           | Array (Object)        | Defines action mappings for common cycles.                                                                   |
+| ...cycle                             | String                | Specifies the cycle name/ID.                                                                                 |
+| ...defaultValue                      | Number (double)       | Specifies the default value for the action.                                                                  |
+| ...startDate                         | String (date-time)    | Indicates the cycle mapping's start date in ISO 8601 format, returned in the server time zone.               |
+| ...endDate                           | String (date-time)    | Indicates the cycle mapping's end date in ISO 8601 format, returned in the server time zone.                 |
+| ...rulesetId                         | String                | Specifies the cycle mapping ruleset ID.                                                                      |
+| ...actions                           | Array (Object)        | Defines a list of actions.                                                                                   |
+| ....id                               | String                | Specifies the action ID.                                                                                     |
+| ....actionName                       | String                | Specifies the action name.                                                                                   |
+| ....actionClass                      | String                | Specifies the action class.                                                                                  |
+| ....description                      | String                | Specifies the action description.                                                                            |
+| ....mandatoryPropertiesValues        | Object                | Defines key-value pairs for mandatory properties.                                                            |
+| ....mandatoryComplexPropertiesValues | Object                | Defines key-value pairs for mandatory complex properties.                                                    |
+| ....embeddedStrategies               | Array (Object)        | Defines a list of embedded StrategyInfo objects.                                                             |
+| ..event                              | String                | Specifies the event associated with the activity.                                                            |
+| ..ruleExpression                     | String                | Specifies the rule expression.                                                                               |
+| ..expJSON                            | String                | Specifies the rule expression in JSON format.                                                                |
+| ..frequencyType                      | String                | Specifies the frequency type.                                                                                |
+| ..targetEvaluationType               | String                | Specifies the target evaluation type.                                                                        |
+| ..targetCycleStartDate               | String (date-time)    | Indicates the target cycle's start date in ISO 8601 format, returned in the server time zone.                |
+| ..targetCycleEndDate                 | String (date-time)    | Indicates the target cycle's end date in ISO 8601 format, returned in the server time zone.                  |
+| ..activityCycles                     | Array (Object)        | Defines activity-specific cycles.                                                                            |
+| ...id                                | string                | Specifies the activity cycle ID.                                                                             |
+| ...name                              | string                | Specifies the activity cycle name.                                                                           |
+| ...startDate                         | string                | Indicates the activity cycle's start date in ISO 8601 format, returned in the server time zone.              |
+| ...endDate                           | string                | Indicates the activity cycle's end date in ISO 8601 format, returned in the server time zone.                |
+| ...refCode                           | string                | Specifies the activity cycle reference code.                                                                 |
+| ...isActive                          | boolean               | Indicates if the activity cycle is active.                                                                   |
+| ..milestones                         | Array (Object)        | Defines milestones.                                                                                          |
+| ...name                              | string                | Specifies the milestone name.                                                                                |
+| ...sameActionsForEveryCycle          | boolean               | Indicates if the same actions apply across all cycles.                                                       |
+| ...differentTargetsForEveryCycle     | boolean               | Indicates if target values differ across cycles.                                                             |
+| ...description                       | string                | Indicates the milestone description.                                                                         |
+| ...trackingType                      | string                | Specifies how the milestone is tracked.                                                                      |
+| ...targetType                        | enum                  | Defines the KPI to track.                                                                                    |
+| ...targetEntity                      | enum                  | Specifies the entity to track against.                                                                       |
+| ...defaultValue                      | string                | Specifies the target value threshold.                                                                        |
+| ...targetValue                       | string                | Specifies the target value to achieve.                                                                       |
+| ...preferredTillId                   | integer (int64)       | Indicates a preferred till ID.                                                                               |
+| ...frequencyType                     | string                | Specifies the frequency type for evaluation.                                                                 |
+| ...targetEvaluationType              | enum                  | Specifies the evaluation logic window.                                                                       |
+| ...recurringCycles                   | integer (int32)       | Specifies the number of recurring cycles.                                                                    |
+| ...targetGroupId                     | integer (int64)       | Indicates the target group ID.                                                                               |
+| ...leaderboardEnabled                | boolean               | Indicates if a leaderboard is enabled.                                                                       |
+| ...cycleActionMapping                | Array (Object)        | Specifies actions associated with milestone cycles.                                                          |
+| ...streaks                           | Array (Object)        | Defines streak configuration.                                                                                |
+| ....name                             | string                | Specifies the streak name.                                                                                   |
+| ....targetCountOfSequence            | integer (int32)       | Specifies the required count to achieve the streak.                                                          |
+| ....consecutive                      | boolean               | Indicates if the sequence must be consecutive.                                                               |
+| ...aggregateFunction                 | string                | Specifies the function to aggregate values.                                                                  |
+| ...cycles                            | Array (Object)        | Defines the evaluation cycles specific to this milestone.                                                    |
+| ...periods                           | Array (Object)        | Defines the periods for the milestone.                                                                       |
+| ...targetRuleIds                     | Array (integer int64) | Indicates associated target rule IDs.                                                                        |
+| ...individualMilestoneFileDetails    | Array (Object)        | Details related to uploaded files for individual targets.                                                    |
+| ....uploadFileName                   | string                | The original name of the uploaded file.                                                                      |
+| ....fileUrl                          | string                | The system URL where the file is stored.                                                                     |
+| ....status                           | string                | The processing status of the file.                                                                           |
+| ....totalRecords                     | integer               | The total number of records found in the file.                                                               |
+| ....successRecords                   | integer               | The number of records successfully processed.                                                                |
+| ....failureCount                     | integer               | The number of records that failed to process.                                                                |
+| ..allCycles                          | Array (Object)        | Defines a list of all cycles.                                                                                |
+| ..combinationType                    | String                | Indicates how child activities are combined.                                                                 |
+| ..children                           | Array (Object)        | Defines an array of child GroupActivity or SingleActivity objects.                                           |
+| .comments                            | String                | Specifies any comments on the promotion.                                                                     |
+| .parentId                            | String                | Specifies the ID of the parent promotion.                                                                    |
+| .parentDetails                       | Object                | Defines details of the parent promotion.                                                                     |
+| ..id                                 | String                | Specifies the parent promotion ID.                                                                           |
+| ..status                             | String                | Specifies the parent promotion status.                                                                       |
+| ..version                            | Integer (int32)       | Specifies the parent promotion version.                                                                      |
+| ..lastModifiedBy                     | Integer (int32)       | Specifies the user who last modified the parent.                                                             |
+| ..lastModifiedOn                     | String (date-time)    | Indicates the parent's last modification timestamp in ISO 8601 format, returned in the server time zone.     |
+| .version                             | Integer (int32)       | Specifies the version number of the promotion.                                                               |
+| .limits                              | Array (Object)        | Defines a list of limits for the promotion.                                                                  |
+| ..id                                 | Integer (int64)       | Specifies the limit ID (system-assigned).                                                                    |
+| ..entityScope                        | String                | Indicates the scope of the limit.                                                                            |
+| ..granularity                        | String                | Indicates the granularity of the limit.                                                                      |
+| ..entityId                           | Integer (int64)       | Specifies the entity ID the limit applies to.                                                                |
+| ..actionType                         | String                | Indicates the action type being limited.                                                                     |
+| ..actionSubTypeId                    | String                | Specifies the action sub-type ID.                                                                            |
+| ..limitType                          | String                | Indicates the type of limit.                                                                                 |
+| ..limitValue                         | Number                | Specifies the value of the limit.                                                                            |
+| ..period                             | Object                | Defines the time period for the limit.                                                                       |
+| ...id                                | Integer (int64)       | Specifies the period ID.                                                                                     |
+| ...periodType                        | String                | Indicates the type of period.                                                                                |
+| ...periodUnit                        | String                | Indicates the unit for the period.                                                                           |
+| ...periodValue                       | Integer (int32)       | Specifies the value for the period.                                                                          |
+| ...periodStartDay                    | String                | Indicates the start day for weekly periods.                                                                  |
+| ...startDate                         | String (date-time)    | Indicates the period's start date in ISO 8601 format, returned in the server time zone.                      |
+| ...endDate                           | String (date-time)    | Indicates the period's end date in ISO 8601 format, returned in the server time zone.                        |
+| ..createdOn                          | String (date-time)    | Indicates the creation timestamp of the limit in ISO 8601 format, returned in the server time zone.          |
+| ..createdBy                          | Integer (int64)       | Specifies the user ID of the limit creator.                                                                  |
+| ..lastUpdatedOn                      | String (date-time)    | Indicates the last update timestamp of the promotion in ISO 8601 format, returned in the server time zone.   |
+| ..lastUpdatedBy                      | Integer (int64)       | Specifies the user ID of the last user who updated the promotion.                                            |
+| ..active                             | Boolean               | Indicates if the limit is active.                                                                            |
+| .liabilityOwnerSplitInfo             | Array (Object)        | Defines how liability is split.                                                                              |
+| ..orgId                              | Integer (int32)       | Specifies the organization ID.                                                                               |
+| ..liabilityOwnerId                   | Integer (int32)       | Specifies the liability owner ID.                                                                            |
+| ..componentId                        | Integer (int32)       | Specifies the component ID.                                                                                  |
+| ..componentType                      | String                | Indicates the component type.                                                                                |
+| ..createdBy                          | Integer (int32)       | Specifies the user ID of the creator.                                                                        |
+| ..ratio                              | Number (double)       | Specifies the liability split ratio.                                                                         |
+| ..liabilityOwnerName                 | String                | Specifies the liability owner's name.                                                                        |
+| ..liabilityOwnerType                 | String                | Indicates the liability owner's type.                                                                        |
+| ..active                             | Boolean               | Indicates if the split info is active.                                                                       |
+| .workflowMetadata                    | Object                | Defines workflow metadata for enrolment and opt-in.                                                          |
+| ..enrolment                          | Object                | Defines enrolment workflow details.                                                                          |
+| ...basedOn                           | String                | Indicates the basis for enrolment.                                                                           |
+| ...activities                        | Array (Object)        | Defines activities triggering enrolment.                                                                     |
+| ...audienceMapping                   | Array (Object)        | Defines audience mappings for enrolment.                                                                     |
+| ....groupId                          | Integer (int64)       | Specifies the group ID.                                                                                      |
+| ....groupName                        | String                | Specifies the group name.                                                                                    |
+| ...restrictions                      | Object                | Defines enrolment restrictions.                                                                              |
+| ....optinExpiryBasedOn               | Object                | Defines opt-in expiry.                                                                                       |
+| .....value                           | Integer (int32)       | Specifies the expiry value.                                                                                  |
+| .....expiryDate                      | String (date-time)    | Indicates the opt-in expiry date in ISO 8601 format, returned in the server time zone.                       |
+| .....type                            | String                | Specifies the expiry type.                                                                                   |
+| ....enrolmentExpiryBasedOn           | Object                | Defines enrolment expiry.                                                                                    |
+| .....value                           | Integer (int32)       | Specifies the expiry value.                                                                                  |
+| .....expiryDate                      | String (date-time)    | Indicates the enrolment expiry date in ISO 8601 format, returned in the server time zone.                    |
+| .....type                            | String                | Specifies the expiry type.                                                                                   |
+| ....optinLimitPerCustomer            | Object                | Defines opt-in limit.                                                                                        |
+| .....value                           | Integer (int32)       | Specifies the limit value.                                                                                   |
+| .....type                            | String                | Specifies the limit period type.                                                                             |
+| .....periodType                      | String                | Specifies the window type.                                                                                   |
+| .....periodUnit                      | String                | Specifies the period unit.                                                                                   |
+| ....maxRedemptionsPerEarnPerCustomer | Object                | Defines redemption limit.                                                                                    |
+| .....value                           | Integer (int32)       | Specifies the limit value.                                                                                   |
+| .....type                            | String                | Specifies the limit period type.                                                                             |
+| .....periodType                      | String                | Specifies the window type.                                                                                   |
+| .....periodUnit                      | String                | Specifies the period unit.                                                                                   |
+| ....enrolmentLimitPerPromotion       | Object                | Defines total enrolment limit across all customers. Maximum value: 100,000.                                  |
+| .....value                           | Integer (int32)       | Specifies the limit value. Maximum: 100,000.                                                                 |
+| .....type                            | String                | Specifies the limit period type.                                                                             |
+| .....periodType                      | String                | Specifies the window type.                                                                                   |
+| .....periodUnit                      | String                | Specifies the period unit.                                                                                   |
+| ....enrolmentLimitPerCustomer        | Object                | Defines enrolment limit per member.                                                                          |
+| .....value                           | Integer (int32)       | Specifies the limit value.                                                                                   |
+| .....type                            | String                | Specifies the limit period type.                                                                             |
+| .....periodType                      | String                | Specifies the window type.                                                                                   |
+| .....periodUnit                      | String                | Specifies the period unit.                                                                                   |
+| ....maxPointsPerEarnPerCustomer      | Object                | Defines max points per earn limit.                                                                           |
+| .....value                           | Integer (int32)       | Specifies the limit value.                                                                                   |
+| .....type                            | String                | Specifies the limit period type.                                                                             |
+| .....periodType                      | String                | Specifies the window type.                                                                                   |
+| .....periodUnit                      | String                | Specifies the period unit.                                                                                   |
+| ..optin                              | Object                | Defines opt-in workflow details.                                                                             |
+| ...basedOn                           | String                | Indicates the basis for opt-in.                                                                              |
+| ...activities                        | Array (Object)        | Defines activities triggering opt-in.                                                                        |
+| ...audienceMapping                   | Array (Object)        | Defines audience mappings for opt-in.                                                                        |
+| ....groupId                          | Integer (int64)       | Specifies the group ID.                                                                                      |
+| ....groupName                        | String                | Specifies the group name.                                                                                    |
+| ...restrictions                      | Object                | Defines opt-in restrictions.                                                                                 |
+| ....optinExpiryBasedOn               | Object                | Defines opt-in expiry.                                                                                       |
+| .....value                           | Integer (int32)       | Specifies the expiry value.                                                                                  |
+| .....expiryDate                      | String (date-time)    | Indicates the opt-in expiry date in ISO 8601 format, returned in the server time zone.                       |
+| .....type                            | String                | Specifies the expiry type.                                                                                   |
+| ....enrolmentExpiryBasedOn           | Object                | Defines enrolment expiry.                                                                                    |
+| .....value                           | Integer (int32)       | Specifies the expiry value.                                                                                  |
+| .....expiryDate                      | String (date-time)    | Indicates the enrolment expiry date in ISO 8601 format, returned in the server time zone.                    |
+| .....type                            | String                | Specifies the expiry type.                                                                                   |
+| ....optinLimitPerCustomer            | Object                | Defines opt-in limit.                                                                                        |
+| .....value                           | Integer (int32)       | Specifies the limit value.                                                                                   |
+| .....type                            | String                | Specifies the limit period type.                                                                             |
+| .....periodType                      | String                | Specifies the window type.                                                                                   |
+| .....periodUnit                      | String                | Specifies the period unit.                                                                                   |
+| ....maxRedemptionsPerEarnPerCustomer | Object                | Defines redemption limit.                                                                                    |
+| .....value                           | Integer (int32)       | Specifies the limit value.                                                                                   |
+| .....type                            | String                | Specifies the limit period type.                                                                             |
+| .....periodType                      | String                | Specifies the window type.                                                                                   |
+| .....periodUnit                      | String                | Specifies the period unit.                                                                                   |
+| ....enrolmentLimitPerPromotion       | Object                | Defines total enrolment limit across all customers. Maximum value: 100,000.                                  |
+| .....value                           | Integer (int32)       | Specifies the limit value. Maximum: 100,000.                                                                 |
+| .....type                            | String                | Specifies the limit period type.                                                                             |
+| .....periodType                      | String                | Specifies the window type.                                                                                   |
+| .....periodUnit                      | String                | Specifies the period unit.                                                                                   |
+| ....enrolmentLimitPerCustomer        | Object                | Defines enrolment limit per member.                                                                          |
+| .....value                           | Integer (int32)       | Specifies the limit value.                                                                                   |
+| .....type                            | String                | Specifies the limit period type.                                                                             |
+| .....periodType                      | String                | Specifies the window type.                                                                                   |
+| .....periodUnit                      | String                | Specifies the period unit.                                                                                   |
+| ....maxPointsPerEarnPerCustomer      | Object                | Defines max points per earn limit.                                                                           |
+| .....value                           | Integer (int32)       | Specifies the limit value.                                                                                   |
+| .....type                            | String                | Specifies the limit period type.                                                                             |
+| .....periodType                      | String                | Specifies the window type.                                                                                   |
+| .....periodUnit                      | String                | Specifies the period unit.                                                                                   |
+| .communicationApprovalStatus         | Object                | Defines the status of communication approval.                                                                |
+| ..success                            | Boolean               | Indicates if the approval status check was successful.                                                       |
+| ..message                            | String                | Specifies the status message.                                                                                |
+| ..response                           | Object                | Defines the array of objects of response.                                                                    |
+| ..statusCode                         | Integer (int32)       | Specifies the status code.                                                                                   |
+| errors                               | Array (Object)        | Defines a list of errors that occurred, if any.                                                              |
+| .code                                | Integer (int64)       | Specifies the error code.                                                                                    |
+| .message                             | String                | Specifies the error message.                                                                                 |
+| warnings                             | Array (Object)        | Defines a list of warnings, if any.                                                                          |
+| .message                             | String                | Specifies the warning message.                                                                               |
+
+## Warning messages
+
+| Warning message                                                             | Description                                                                                                                     |
+| --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| Unable to enroll in promotions. Customer already enrolled or limit reached. | The customer is already enrolled in the promotion or the maximum enrollment limit has been reached.                             |
+| Partial Success: Milestone enrollment failed.                               | The main promotion enrollment was successful, but one or more milestone enrollments failed.                                     |
+| Unable to enroll in promotions. No Response from service.                   | The systems processed the request, but a downstream service (EMF) did not return a confirmation, leading to an uncertain state. |
+
+## Error codes
+
+| Error Code | Description                                                                                                                                                                       |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 9013       | Request not found. Use a valid `promotion_id` and ensure the promotion exists.                                                                                                    |
+| 310152     | Promotion name not editable. Promotion name cannot be modified when the promotion is in a `STOPPED` state.                                                                        |
+| 310153     | Start date not editable. The `startDate` cannot be modified once a promotion has gone live.                                                                                       |
+| 310155     | Invalid end date for live promotion. The `endDate` can only be extended into the future or reduced to the current time for active promotions.                                     |
+| 310158     | Program field immutable. The `programId` associated with the promotion cannot be changed after creation.                                                                          |
+| 310159     | Promotion identifier exists. The `promoIdentifier` must be unique across the organization.                                                                                        |
+| 310161     | Activity event immutable. The triggering event for a `SingleActivity` cannot be changed once created.                                                                             |
+| 310162     | Milestone KPI immutable. The `targetType` for a published milestone cannot be modified.                                                                                           |
+| 310174     | Edits blocked during approval. No modifications are allowed while a promotion is in `PENDING_APPROVAL` status.                                                                    |
+| 310175     | Status immutable. Promotion `status` cannot be changed via the update endpoint; use the review or status-specific actions instead.                                                |
+| 310183     | No edits allowed when stopped. Comprehensive block on all modifications for promotions in a `STOPPED` state.                                                                      |
+| 310186     | Version immutable. The promotion `version` is managed by the system and cannot be manually updated.                                                                               |
+| 310187     | Promotion name exists. Another promotion with the same `name` already exists in the organization.                                                                                 |
+| 310190     | Eligibility type not editable. Customer eligibility settings cannot be changed once the promotion is live.                                                                        |
+| 400        | `MAX_NUMBER_OF_EARN_PER_PROMOTION` exceeds limit. The value of `enrolmentLimitPerPromotion` (in either the enrolment or optin block) exceeds 100,000. Set it to 100,000 or below. |
+
+## Parameters & Headers
+
+<Expandable title="Request Headers" default-open="false">
+  <ParamField header="Authorization" param-type="string" required="false" deprecated="false" show-location="true">
+    Basic or OAuth authorization token. Example: `Basic <base64-encoded-credentials>`
+  </ParamField>
+
+  <ParamField header="Content-Type" param-type="string" required="false" deprecated="false" show-location="true">
+    Must be `application/json`.
+  </ParamField>
+</Expandable>
+
+<Expandable title="Path Parameters" default-open="false">
+  <ParamField path="promotion_id" param-type="string" required="false" deprecated="false" show-location="true">
+    The unique system-generated ID of the loyalty promotion to update. Example: `693bba55147aa26388780ffd`
+  </ParamField>
+</Expandable>
+

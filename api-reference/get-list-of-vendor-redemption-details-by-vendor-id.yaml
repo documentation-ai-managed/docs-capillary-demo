@@ -1,0 +1,117 @@
+openapi: 3.1.0
+info:
+  title: Vendor Redemption Details by Redemption & Vendor ID
+  version: '1.0'
+servers:
+- url: https://{host}
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  /api_gateway/rewards/core/v1/vendor/{vendorid}/redemption/{redemptionid}/brand/{brandid}:
+    get:
+      summary: Vendor Redemption Details by Redemption & Vendor ID
+      description: ''
+      operationId: get-list-of-vendor-redemption-details-by-vendor-id
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    status:
+                      success: true
+                      code: 5011
+                      message: Vendor redemption fetched successfully
+                    redemption:
+                      id: 36987
+                      name: UAT Vendor Redemption 6
+                      enabled: true
+                      responseKeys:
+                      - voucher
+                      lastUpdatedOn: 1764153001000
+                      lastUpdatedOnDateTime: '2025-11-26T10:30:01Z'
+                      redemptionType: INTOUCH_REWARD
+                      vendorId: 430
+                      vendorName: null
+                      createdBy: 75197372
+                      lastUpdatedBy: 75197372
+                      createdOn: 1764153001000
+                      createdOnDateTime: '2025-11-26T10:30:01Z'
+                      redemptionActionList:
+                      - id: 27321
+                        name: add good will points
+                        enabled: true
+                        apiType: POST
+                        apiUrl: https://crm-nightly-new.cc.capillarytech.com/v1.1/request/add?program_id=2851
+                        apiHeaders:
+                          Authorization: Basic bHVjaWF1dG9fdGlsbF8xMDoyMDJjYjk2MmFjNTkwNzViOTY0YjA3MTUyZDIzNGI3MA==
+                          accept: application/json
+                          Content-Type: application/json
+                        apiBody: '{"customFields_property": {"customField_1_property":
+                          "${customfield_CF1}"}, "transactionId_property": "${rewardTransactionId}",
+                          "fulfillmentStatus_property": "${fulfillmentStatus}"}'
+                        execOrder: 1
+                        contextKeys:
+                          voucher: response.requests.request.get(0).id
+                        retryAction: false
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: shell
+          code: 'curl --location ''https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/vendor/430/redemption/36987/brand/61''
+            \
+
+            --header ''Accept: application/json'' \
+
+            --header ''Content-Type: application/json'' \
+
+            --header ''accept: application/json'' \
+
+            --header ''Authorization: Basic bWFka3MjU2YQ=='' \
+
+            --header ''Cookie: _cfuvid=vN5wfiWeYZXwnooleui8wohWfs.JTIrPyd1SjnuHz_4-1764227099805-0.0.1.1-604800000'''
+          name: Sample request
+        samples-languages:
+        - shell
+      parameters:
+      - name: vendorid
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique ID of the vendor.
+      - name: brandid
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique ID of the brand.
+      - name: redemptionid
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique ID of the redemption.
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

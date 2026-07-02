@@ -1,0 +1,148 @@
+openapi: 3.1.0
+info:
+  title: Upload Coupons (Batch)
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  "/coupon/api/v1/upload/file/{couponSeriedId}":
+    post:
+      summary: Upload Coupons (Batch)
+      description: ''
+      operationId: upload-coupons-batch
+      parameters:
+      - name: couponSeriedId*
+        in: path
+        description: Unique ID of the coupon series for which you need to upload coupons.
+        schema:
+          type: integer
+          format: int64
+        required: true
+      - name: couponSeriedId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                RAW_BODY:
+                  type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Sample Response:
+                  value: "{\n    \"success\": true,\n    \"status\": 200,\n    \"\
+                    result\": {\n        \"orgId\": 100458,\n        \"couponSeriesId\"\
+                    : 541854,\n        \"uploadJobStatuses\": [\n            {\n \
+                    \               \"jobId\": 222696,\n                \"uploadStatus\"\
+                    : \"STARTED\",\n                \"createdOn\": \"1717651325445\"\
+                    ,\n                \"updatedOn\": \"1717651325445\",\n       \
+                    \         \"errorFileUrl\": null,\n                \"successFileUrl\"\
+                    : null,\n                \"uploadedFileUrl\": \"couponbatchupload_1717651325326_541854.csv\"\
+                    ,\n                \"totalUploadedCount\": 0,\n              \
+                    \  \"actualRowCount\": 0,\n                \"errorCount\": 0,\n\
+                    \                \"uploadTableName\": null,\n                \"\
+                    uploadedFileName\": \"couponbatchupload.csv\",\n             \
+                    \   \"audienceGroupId\": 0,\n                \"audienceGroupVersionId\"\
+                    : 0\n            }\n        ],\n        \"fileName\": \"couponbatchupload_1717651325326_541854.csv\"\
+                    \n    }\n}"
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                    default: true
+                  status:
+                    type: integer
+                    example: 200
+                    default: 0
+                  result:
+                    type: object
+                    properties:
+                      orgId:
+                        type: integer
+                        example: 100458
+                        default: 0
+                      couponSeriesId:
+                        type: integer
+                        example: 541854
+                        default: 0
+                      uploadJobStatuses:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            jobId:
+                              type: integer
+                              example: 222696
+                              default: 0
+                            uploadStatus:
+                              type: string
+                              example: STARTED
+                            createdOn:
+                              type: string
+                              example: '1717651325445'
+                            updatedOn:
+                              type: string
+                              example: '1717651325445'
+                            errorFileUrl: {}
+                            successFileUrl: {}
+                            uploadedFileUrl:
+                              type: string
+                              example: couponbatchupload_1717651325326_541854.csv
+                            totalUploadedCount:
+                              type: integer
+                              example: 0
+                              default: 0
+                            actualRowCount:
+                              type: integer
+                              example: 0
+                              default: 0
+                            errorCount:
+                              type: integer
+                              example: 0
+                              default: 0
+                            uploadTableName: {}
+                            uploadedFileName:
+                              type: string
+                              example: couponbatchupload.csv
+                            audienceGroupId:
+                              type: integer
+                              example: 0
+                              default: 0
+                            audienceGroupVersionId:
+                              type: integer
+                              example: 0
+                              default: 0
+                      fileName:
+                        type: string
+                        example: couponbatchupload_1717651325326_541854.csv
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

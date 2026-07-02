@@ -1,0 +1,72 @@
+openapi: 3.1.0
+info:
+  title: Generate Expression JSON
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  "/loyalty/api/v1/workflows/expJSON/{programId}/{eventType}":
+    post:
+      summary: Generate Expression JSON
+      description: Converts a rule expression string into an expressionJSON object
+        for use in loyalty promotions.
+      operationId: post_loyalty-api-v1-workflows-expjson-programid-eventtype
+      parameters:
+      - in: path
+        name: eventType
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: programId
+        schema:
+          type: string
+        required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - exp
+              properties:
+                exp:
+                  type: string
+                  description: The rule expression to convert, written in the loyalty
+                    expression language.
+                  example: currentTxn.value==1000
+      responses:
+        '200':
+          description: Expression parsed. Check isError in the response to determine
+            whether parsing succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status:
+                    type: integer
+                  result:
+                    type: object
+                    properties:
+                      expressionJSON:
+                        type: string
+                      expression:
+                        type: string
+                      isError:
+                        type: boolean
+        '401':
+          description: Missing or invalid session cookie.
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

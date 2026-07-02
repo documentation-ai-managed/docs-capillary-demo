@@ -1,0 +1,2098 @@
+openapi: 3.0.1
+info:
+  title: Sample API
+  version: 1.0.0
+  description: API specification generated from cURL for POST /v3/promotions
+servers:
+  - url: https://{host}
+paths:
+  /v3/promotions:
+    post:
+      summary: Create a Loyalty Promotion
+      description: Endpoint for POST /v3/promotions
+      operationId: postV3promotions
+      parameters:
+        - name: cookie
+          in: header
+          required: false
+          description: Session authentication cookie for browser-based or internal access.
+          schema:
+            type: string
+            example: "your-session-cookie-value"
+        - name: x-cap-remote-user
+          in: header
+          required: false
+          description: >-
+            The numeric user ID of the authenticated user. Used for
+            session-based access.
+          schema:
+            type: string
+            example: '50786981'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                Created:
+                  summary: Created
+                  value:
+                    data:
+                      metadata:
+                        name: ultimate_champion_challenge_deeply_nested
+                        description: Ultimate Champion Challenge with nested groups
+                        programId: '2607'
+                        orgId: 100737
+                        startDate: '2025-12-01T00:00:00Z'
+                        endDate: '2025-12-31T23:59:59Z'
+                        timezoneName: Asia/Kolkata
+                        promotionType: GENERIC
+                        status: DRAFT
+                        promoIdentifier: ultimate-champion-2025-12
+                        promotionId: 0
+                        createdOn: '2025-10-15T12:45:59Z'
+                        lastModifiedOn: '2025-10-15T12:45:59Z'
+                        createdBy: 50786981
+                        lastModifiedBy: 50786981
+                        loyaltyEarningType: null
+                        version: null
+                        draftDetails: null
+                        loyaltyConfigMetaData:
+                          isStackable: false
+                          isConsideredForRanking: false
+                          isExclusive: false
+                          isAlwaysApply: false
+                        promotionMetadata: []
+                        commonStrategies: null
+                      customerEnrolment:
+                        enrolmentMethod: TRANSACTION
+                      activities:
+                        - type: GROUP
+                          id: parent_group_ultimate_champion
+                          name: Ultimate Champion Main Goal
+                          commonCycleActionMapping:
+                            - cycle: Cycle_1
+                              actions:
+                                - id: action_ultimate_champion_reward
+                                  actionName: ADVANCE_CURRENCY_ALLOCATION_ACTION
+                                  actionClass: >-
+                                    com.capillary.shopbook.pointsengine.endpoint.impl.action.AdvanceCurrencyAllocationActionImpl
+                                  description: Ultimate Champion completion reward
+                                  mandatoryPropertiesValues:
+                                    PointsRoundingStrategy: ACTUAL
+                                    SourceValueRoundingStrategy: ACTUAL
+                                    DelayStrategy: AS_DEFINED_IN_ALLOCATION_STRATEGY
+                                    Event Name: TargetCompleted
+                                    ProRateOnSourceValue: DEFINED_TARGET
+                                    PointType: Main
+                                    ProrateFieldName: ''
+                                    EvaluatedEntity: USER
+                                    Currency: POINTS
+                                  mandatoryComplexPropertiesValues: {}
+                                  embeddedStrategies:
+                                    - strategyTypeId: 1
+                                      propertyValues:
+                                        allocation_type: FIXED
+                                        allocation_values: '5000'
+                                      owner: LOYALTY
+                                      updatedViaNewUI: true
+                                      useCommonExpiryStrategy: null
+                                      strategyRef: null
+                                    - strategyTypeId: 3
+                                      propertyValues:
+                                        expiry_time_units: NEVER
+                                        expiry_type: SLAB_INDEPENDENT
+                                        expiry_time_values: '5000'
+                                        expiry_from: CURRENT_DATE
+                                      owner: LOYALTY
+                                      updatedViaNewUI: true
+                                      useCommonExpiryStrategy: null
+                                      strategyRef: null
+                              startDate: '2025-12-01'
+                              endDate: '2025-12-31'
+                          combinationType: ALL
+                          children:
+                            - type: GROUP
+                              id: sub_group_elite_spending
+                              name: 'Part 1: Elite Spending Challenge'
+                              parentId: parent_group_ultimate_champion
+                              combinationType: ANY
+                              children:
+                                - type: GROUP
+                                  id: sub_sub_group_gadget_guru
+                                  name: 'Path A: The Gadget Guru'
+                                  parentId: sub_group_elite_spending
+                                  combinationType: ALL
+                                  children:
+                                    - type: SINGLE
+                                      id: activity_spend_on_smartphones
+                                      name: Spend 15k on Smartphones
+                                      parentId: sub_sub_group_gadget_guru
+                                      event: TransactionAdd
+                                      expJSON:
+                                        arity: literal
+                                        type: boolean:primitive
+                                        value: 'true'
+                                      milestones:
+                                        - name: >-
+                                            ultimate_champion_challenge_deeply_nested~Spend
+                                            15k on Smartphones~Milestone 1
+                                          sameActionsForEveryCycle: false
+                                          differentTargetsForEveryCycle: false
+                                          trackingType: DEFAULT
+                                          targetType: SALES
+                                          targetEntity: TRANSACTION
+                                          defaultValue: '15000'
+                                          preferredTillId: 50690981
+                                          targetEvaluationType: FIXED_CALENDAR_WINDOW
+                                          leaderboardEnabled: false
+                                      allCycles: []
+                                    - type: SINGLE
+                                      id: activity_buy_accessories
+                                      name: Buy 2 Mobile Accessories
+                                      parentId: sub_sub_group_gadget_guru
+                                      event: TransactionAdd
+                                      expJSON:
+                                        arity: literal
+                                        type: boolean:primitive
+                                        value: 'true'
+                                      milestones:
+                                        - name: >-
+                                            ultimate_champion_challenge_deeply_nested~Buy
+                                            2 Mobile Accessories~Milestone 1
+                                          sameActionsForEveryCycle: false
+                                          differentTargetsForEveryCycle: false
+                                          trackingType: DEFAULT
+                                          targetType: COUNT
+                                          targetEntity: TRANSACTION
+                                          defaultValue: '2'
+                                          preferredTillId: 50690981
+                                          targetEvaluationType: FIXED_CALENDAR_WINDOW
+                                          leaderboardEnabled: false
+                                      allCycles: []
+                                  ruleExpression: 'true'
+                                  expJSON:
+                                    arity: literal
+                                    type: boolean:primitive
+                                    value: 'true'
+                                - type: GROUP
+                                  id: sub_sub_group_fashion_icon
+                                  name: 'Path B: The Fashion Icon'
+                                  parentId: sub_group_elite_spending
+                                  combinationType: ALL
+                                  children:
+                                    - type: SINGLE
+                                      id: activity_spend_on_luxebrand
+                                      name: Spend 10k on LuxeBrand
+                                      parentId: sub_sub_group_fashion_icon
+                                      event: TransactionAdd
+                                      expJSON:
+                                        arity: literal
+                                        type: boolean:primitive
+                                        value: 'true'
+                                      milestones:
+                                        - name: >-
+                                            ultimate_champion_challenge_deeply_nested~Spend
+                                            10k on LuxeBrand~Milestone 1
+                                          sameActionsForEveryCycle: false
+                                          differentTargetsForEveryCycle: false
+                                          trackingType: DEFAULT
+                                          targetType: SALES
+                                          targetEntity: TRANSACTION
+                                          defaultValue: '10000'
+                                          preferredTillId: 50690981
+                                          targetEvaluationType: FIXED_CALENDAR_WINDOW
+                                          leaderboardEnabled: false
+                                      allCycles: []
+                                    - type: SINGLE
+                                      id: activity_buy_footwear
+                                      name: Buy any Footwear
+                                      parentId: sub_sub_group_fashion_icon
+                                      event: TransactionAdd
+                                      expJSON:
+                                        arity: literal
+                                        type: boolean:primitive
+                                        value: 'true'
+                                      milestones:
+                                        - name: >-
+                                            ultimate_champion_challenge_deeply_nested~Buy
+                                            any Footwear~Milestone 1
+                                          sameActionsForEveryCycle: false
+                                          differentTargetsForEveryCycle: false
+                                          trackingType: DEFAULT
+                                          targetType: COUNT
+                                          targetEntity: TRANSACTION
+                                          defaultValue: '1'
+                                          preferredTillId: 50690981
+                                          targetEvaluationType: FIXED_CALENDAR_WINDOW
+                                          leaderboardEnabled: false
+                                      allCycles: []
+                                  ruleExpression: 'true'
+                                  expJSON:
+                                    arity: literal
+                                    type: boolean:primitive
+                                    value: 'true'
+                              ruleExpression: 'true'
+                              expJSON:
+                                arity: literal
+                                type: boolean:primitive
+                                value: 'true'
+                            - type: GROUP
+                              id: sub_group_brand_engagement
+                              name: 'Part 2: Brand Engagement Challenge'
+                              parentId: parent_group_ultimate_champion
+                              combinationType: ANY
+                              children:
+                                - type: GROUP
+                                  id: sub_sub_group_frequent_shopper
+                                  name: 'Path C: The Frequent Shopper'
+                                  parentId: sub_group_brand_engagement
+                                  combinationType: ALL
+                                  children:
+                                    - type: SINGLE
+                                      id: activity_make_5_transactions
+                                      name: Make 5 transactions
+                                      parentId: sub_sub_group_frequent_shopper
+                                      event: TransactionAdd
+                                      expJSON:
+                                        arity: literal
+                                        type: boolean:primitive
+                                        value: 'true'
+                                      milestones:
+                                        - name: >-
+                                            ultimate_champion_challenge_deeply_nested~Make
+                                            5 transactions~Milestone 1
+                                          sameActionsForEveryCycle: false
+                                          differentTargetsForEveryCycle: false
+                                          trackingType: DEFAULT
+                                          targetType: COUNT
+                                          targetEntity: TRANSACTION
+                                          defaultValue: '5'
+                                          preferredTillId: 50690981
+                                          targetEvaluationType: FIXED_CALENDAR_WINDOW
+                                          leaderboardEnabled: false
+                                      allCycles: []
+                                    - type: SINGLE
+                                      id: activity_buy_on_weekend
+                                      name: Buy on a weekend
+                                      parentId: sub_sub_group_frequent_shopper
+                                      event: TransactionAdd
+                                      expJSON:
+                                        arity: literal
+                                        type: boolean:primitive
+                                        value: 'true'
+                                      milestones:
+                                        - name: >-
+                                            ultimate_champion_challenge_deeply_nested~Buy
+                                            on a weekend~Milestone 1
+                                          sameActionsForEveryCycle: false
+                                          differentTargetsForEveryCycle: false
+                                          trackingType: DEFAULT
+                                          targetType: COUNT
+                                          targetEntity: TRANSACTION
+                                          defaultValue: '1'
+                                          preferredTillId: 50690981
+                                          targetEvaluationType: FIXED_CALENDAR_WINDOW
+                                          leaderboardEnabled: false
+                                      allCycles: []
+                                  ruleExpression: 'true'
+                                  expJSON:
+                                    arity: literal
+                                    type: boolean:primitive
+                                    value: 'true'
+                                - type: GROUP
+                                  id: sub_sub_group_super_fan
+                                  name: 'Path D: The Super Fan'
+                                  parentId: sub_group_brand_engagement
+                                  combinationType: ALL
+                                  children:
+                                    - type: SINGLE
+                                      id: activity_buy_3_categories
+                                      name: Buy from 3 categories
+                                      parentId: sub_sub_group_super_fan
+                                      event: TransactionAdd
+                                      expJSON:
+                                        arity: literal
+                                        type: boolean:primitive
+                                        value: 'true'
+                                      milestones:
+                                        - name: >-
+                                            ultimate_champion_challenge_deeply_nested~Buy
+                                            from 3 categories~Milestone 1
+                                          sameActionsForEveryCycle: false
+                                          differentTargetsForEveryCycle: false
+                                          trackingType: DEFAULT
+                                          targetType: COUNT
+                                          targetEntity: TRANSACTION
+                                          defaultValue: '3'
+                                          preferredTillId: 50690981
+                                          targetEvaluationType: FIXED_CALENDAR_WINDOW
+                                          leaderboardEnabled: false
+                                      allCycles: []
+                                    - type: SINGLE
+                                      id: activity_refer_friend
+                                      name: Refer a friend
+                                      parentId: sub_sub_group_super_fan
+                                      event: FriendReferred
+                                      expJSON:
+                                        arity: literal
+                                        type: boolean:primitive
+                                        value: 'true'
+                                      milestones:
+                                        - name: >-
+                                            ultimate_champion_challenge_deeply_nested~Refer
+                                            a friend~Milestone 1
+                                          sameActionsForEveryCycle: false
+                                          differentTargetsForEveryCycle: false
+                                          trackingType: DEFAULT
+                                          targetType: COUNT
+                                          targetEntity: USER
+                                          defaultValue: '1'
+                                          preferredTillId: 50690981
+                                          targetEvaluationType: FIXED_CALENDAR_WINDOW
+                                          leaderboardEnabled: false
+                                      allCycles: []
+                                  ruleExpression: 'true'
+                                  expJSON:
+                                    arity: literal
+                                    type: boolean:primitive
+                                    value: 'true'
+                              ruleExpression: 'true'
+                              expJSON:
+                                arity: literal
+                                type: boolean:primitive
+                                value: 'true'
+                          ruleExpression: 'true'
+                          expJSON:
+                            arity: literal
+                            type: boolean:primitive
+                            value: 'true'
+                      comments: null
+                      parentId: null
+                      version: 1
+                      limits: []
+                      liabilityOwnerSplitInfo: []
+                      id: 68ef978767bab12998381c5d
+                      workflowMetadata:
+                        optin:
+                          basedOn: null
+                          audienceMapping: null
+                          activities: null
+                          restrictions: null
+                        enrolment:
+                          basedOn: null
+                          activities: null
+                          audienceMapping: null
+                          restrictions: null
+                    errors: null
+                    warnings: null
+          description: Created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                metadata:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      description: >-
+                        The display name of the promotion. Required. Maximum 255
+                        characters.
+                      example: Program Limit - Max 10k Points per Month V2
+                    description:
+                      type: string
+                      description: >-
+                        A detailed description of the promotion. Maximum 1000
+                        characters.
+                      example: >-
+                        Defines a program-wide monthly earning cap for Points
+                        currency.
+                    programId:
+                      type: integer
+                      description: >-
+                        The numeric ID of the loyalty program this promotion
+                        belongs to.
+                      example: 2607
+                    startDate:
+                      type: string
+                      format: date-time
+                      description: >-
+                        The date and time when the promotion becomes active.
+                        Required. ISO 8601 format with timezone offset (e.g.,
+                        2026-01-01T00:00:00Z or 2026-01-01T05:30:00+05:30).
+                      example: '2026-01-01T00:00:00Z'
+                    endDate:
+                      type: string
+                      format: date-time
+                      description: >-
+                        The date and time when the promotion ends. Required. ISO
+                        8601 format with timezone offset.
+                      example: '2026-12-31T23:59:59Z'
+                    promotionType:
+                      type: string
+                      description: "The type of promotion. Determines the enrollment and earning model in combination with enrolmentMethod and loyaltyEarningType. GENERIC: Neither opt-in nor enrollment is active. The promotion is triggered automatically by customer transactions. Use with enrolmentMethod: TRANSACTION and loyaltyEarningType: null. LOYALTY: Enrollment is active, opt-in is disabled. Focuses on loyalty membership status rather than a specific earning mechanism. Use with enrolmentMethod: IMPORT and loyaltyEarningType: null. LOYALTY_EARNING with loyaltyEarningType ISSUE_AND_EARN: Both enrollment and opt-in are active. Customers sign up (enroll) and then earn rewards upon qualifying events. Use with enrolmentMethod: IMPORT. LOYALTY_EARNING with loyaltyEarningType DIRECT_EARN: Opt-in is active, enrollment is disabled. Customers earn rewards directly through participation without a formal enrollment step. Use with enrolmentMethod: IMPORT."
+                      enum:
+                        - GENERIC
+                        - LOYALTY
+                        - LOYALTY_EARNING
+                      example: GENERIC
+                    status:
+                      type: string
+                      description: >-
+                        The state of the promotion. Set to DRAFT on creation.
+                        The full status lifecycle is: DRAFT → PENDING_APPROVAL →
+                        ACTIVE. Other values (PAUSED, STOPPED, COMPLETED,
+                        PUBLISH_FAILED) are set by the system or via the review
+                        endpoint.
+                      enum:
+                        - DRAFT
+                        - ACTIVE
+                        - PAUSED
+                        - PENDING_APPROVAL
+                        - STOPPED
+                        - SNAPSHOT
+                        - LIVE
+                        - UPCOMING
+                        - COMPLETED
+                        - PUBLISH_FAILED
+                      example: DRAFT
+                    timezoneName:
+                      type: string
+                      description: >-
+                        The IANA timezone identifier used to evaluate all
+                        promotion dates and cycle boundaries (e.g.,
+                        Asia/Kolkata, America/New_York, UTC).
+                      example: Asia/Kolkata
+                    promoIdentifier:
+                      type: string
+                      description: >-
+                        A unique human-readable identifier for this promotion.
+                        Maximum 255 characters.
+                      example: PROG_LIMIT_POINTS_MONTHLY_10K_V2
+                    loyaltyConfigMetaData:
+                      type: object
+                      properties:
+                        isStackable:
+                          type: boolean
+                          description: >-
+                            When true, this promotion can be earned alongside
+                            other promotions in the same transaction. When
+                            false, it cannot be combined with others.
+                          example: false
+                        isExclusive:
+                          type: boolean
+                          description: >-
+                            When true, earning this promotion prevents any other
+                            promotion from being earned in the same transaction.
+                          example: false
+                        isAlwaysApply:
+                          type: boolean
+                          description: >-
+                            When true, the promotion is automatically applied to
+                            all qualifying events without requiring explicit
+                            enrollment.
+                          example: false
+                        isConsideredForRanking:
+                          type: boolean
+                          description: >-
+                            When true, this promotion participates in the
+                            promotion ranking evaluation that determines
+                            priority when multiple promotions compete for the
+                            same transaction.
+                          example: false
+                    loyaltyEarningType:
+                      type: string
+                      nullable: true
+                      description: >-
+                        Defines the earning model. DIRECT_EARN: points are
+                        awarded immediately on the qualifying event.
+                        ISSUE_AND_EARN: points are held pending and earned after
+                        a subsequent redemption event. Set to null for default
+                        earning behavior.
+                      enum:
+                        - DIRECT_EARN
+                        - ISSUE_AND_EARN
+                      example: null
+                    promotionMetadata:
+                      type: array
+                      description: >-
+                        A list of custom key-value metadata entries for the
+                        promotion. Each entry is an object with key (string),
+                        value (string), and isBrandDefined (string) fields.
+                        Leave as an empty array if no custom metadata is needed.
+                      example: []
+                      items:
+                        type: string
+                customerEnrolment:
+                  type: object
+                  properties:
+                    enrolmentMethod:
+                      type: string
+                      description: >-
+                        Defines how customers are enrolled in the promotion.
+                        TRANSACTION: auto-enrolled upon completing a qualifying
+                        transaction. IMPORT: enrolled via bulk data import.
+                        AUDIENCE_FILTER: enrolled by matching a defined audience
+                        segment.
+                      enum:
+                        - TRANSACTION
+                        - IMPORT
+                        - AUDIENCE_FILTER
+                      example: TRANSACTION
+                activities:
+                  type: array
+                  example:
+                    - id: placeholder_activity_for_limit_promo
+                      type: SINGLE
+                      name: Placeholder Activity
+                      event: TransactionAdd
+                      expJSON: |-
+                        {
+                          "arity": "literal",
+                          "type": "boolean:primitive",
+                          "value": "true"
+                        }
+                      commonCycleActionMapping:
+                        - cycle: PlaceholderCycle
+                          actions:
+                            - id: placeholder_action
+                              actionName: NO_OP_ACTION
+                              actionClass: >-
+                                com.capillary.loyalty.engine.impl.action.NoOpAction
+                              description: Placeholder Action - Does Nothing
+                              mandatoryPropertiesValues: {}
+                  items:
+                    type: object
+                    example:
+                      id: placeholder_activity_for_limit_promo
+                      type: SINGLE
+                      name: Placeholder Activity
+                      event: TransactionAdd
+                      expJSON: |-
+                        {
+                          "arity": "literal",
+                          "type": "boolean:primitive",
+                          "value": "true"
+                        }
+                      commonCycleActionMapping:
+                        - cycle: PlaceholderCycle
+                          actions:
+                            - id: placeholder_action
+                              actionName: NO_OP_ACTION
+                              actionClass: >-
+                                com.capillary.loyalty.engine.impl.action.NoOpAction
+                              description: Placeholder Action - Does Nothing
+                              mandatoryPropertiesValues: {}
+                    properties:
+                      id:
+                        type: string
+                        description: >-
+                          A unique identifier for this activity. Caller-supplied
+                          string (e.g., activity_1234567890 or group_main_goal).
+                        example: placeholder_activity_for_limit_promo
+                      type:
+                        type: string
+                        description: >-
+                          The activity type. SINGLE: a standalone activity that
+                          tracks one event with optional milestones. GROUP: a
+                          container that groups multiple child activities using
+                          AND/OR logic defined by combinationType.
+                        enum:
+                          - SINGLE
+                          - GROUP
+                        example: SINGLE
+                      name:
+                        type: string
+                        description: >-
+                          The display name for this activity. Maximum 100
+                          characters.
+                        example: Placeholder Activity
+                      event:
+                        type: string
+                        description: >-
+                          The loyalty event that triggers this activity. Known
+                          values: TransactionAdd, VoucherRedemption,
+                          FriendReferred, TargetCompleted.
+                        example: TransactionAdd
+                      expJSON:
+                        type: string
+                        description: >-
+                          A JSON expression tree defining the eligibility
+                          condition for this activity. Each node contains arity
+                          (literal, binary_operation, object_dereference, name),
+                          type, value, and operands fields. Use
+                          {"arity":"literal","type":"boolean:primitive","value":"true"}
+                          to match all events with no additional filter.
+                        example: |-
+                          {
+                            "arity": "literal",
+                            "type": "boolean:primitive",
+                            "value": "true"
+                          }
+                      milestones:
+                        type: array
+                        description: >-
+                          A list of milestones (targets) for this activity. A
+                          SINGLE activity supports at most one milestone. Omit
+                          or leave empty when rewards fire directly via
+                          commonCycleActionMapping without a target threshold.
+                        items:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              description: >-
+                                A unique name for the milestone. Recommended
+                                convention:
+                                {promotionName}~{activityName}~Milestone {id}.
+                            trackingType:
+                              type: string
+                              description: >-
+                                How progress is tracked for this milestone.
+                                DEFAULT: standard linear tracking. CAPPING:
+                                tracks up to a defined cap. UNIFIED: tracks
+                                progress across multiple activities together.
+                                STREAKS: tracks consecutive cycle completions.
+                                NON_CONTINUOUS_STREAKS: tracks non-consecutive
+                                streak completions.
+                              enum:
+                                - DEFAULT
+                                - CAPPING
+                                - UNIFIED
+                                - STREAKS
+                                - NON_CONTINUOUS_STREAKS
+                            targetType:
+                              type: string
+                              description: >-
+                                The metric being measured. COUNT: number of
+                                qualifying events. SALES: net transaction value.
+                                GROSS_SALES: gross transaction value. QUANTITY:
+                                item quantity. VISIT: number of store visits.
+                                REGULAR_POINTS: regular points earned.
+                                PROMOTIONAL_POINTS: promotional points earned.
+                                ALL_POINTS: all points combined. EXTENDED_FIELD:
+                                value from a transaction extended field.
+                                EVENT_ATTRIBUTE: value from a custom event
+                                attribute.
+                              enum:
+                                - COUNT
+                                - SALES
+                                - GROSS_SALES
+                                - QUANTITY
+                                - VISIT
+                                - REGULAR_POINTS
+                                - PROMOTIONAL_POINTS
+                                - ALL_POINTS
+                                - EXTENDED_FIELD
+                                - EVENT_ATTRIBUTE
+                            targetEntity:
+                              type: string
+                              description: >-
+                                The entity level at which the target is tracked.
+                                TRANSACTION: counts at the full transaction
+                                level. LINEITEM: counts at the individual line
+                                item level. POINTS: tracks point values. EVENT:
+                                counts custom events. ALTERNATE_CURRENCIES:
+                                tracks alternate loyalty currency values.
+                              enum:
+                                - TRANSACTION
+                                - LINEITEM
+                                - POINTS
+                                - EVENT
+                                - ALTERNATE_CURRENCIES
+                            defaultValue:
+                              type: string
+                              description: >-
+                                The target value that must be reached to
+                                complete this milestone (e.g., '3' for 3
+                                transactions, '1000' for 1000 in sales). Passed
+                                as a string even though it represents a number.
+                            targetEvaluationType:
+                              type: string
+                              description: >-
+                                The window type used to evaluate this milestone.
+                                FIXED_CALENDAR_WINDOW: evaluates within fixed
+                                calendar periods (e.g., weekly, monthly) set by
+                                frequencyType — the system auto-generates cycles
+                                within the promotion date range. CYCLIC_WINDOW:
+                                uses recurring cycles of a fixed length.
+                                PERIOD_AGNOSTIC_WINDOW: evaluates over the
+                                entire promotion duration with no cycle
+                                boundaries. CALENDAR_CYCLIC_WINDOW: combines
+                                calendar alignment with cyclic repetition.
+                              enum:
+                                - FIXED_CALENDAR_WINDOW
+                                - CYCLIC_WINDOW
+                                - PERIOD_AGNOSTIC_WINDOW
+                                - CALENDAR_CYCLIC_WINDOW
+                            frequencyType:
+                              type: string
+                              description: >-
+                                The cycle frequency when targetEvaluationType is
+                                FIXED_CALENDAR_WINDOW. The system automatically
+                                divides the promotion period into cycles of this
+                                length. DAILY: one cycle per day. WEEKLY: one
+                                cycle per week (Mon–Sun). MONTHLY: one cycle per
+                                calendar month. QUARTERLY: one cycle per
+                                quarter. HALF_YEARLY: one cycle per half-year.
+                                YEARLY: one cycle per year. CUSTOM: boundaries
+                                defined manually in cycleActionMapping.
+                              enum:
+                                - DAILY
+                                - WEEKLY
+                                - MONTHLY
+                                - QUARTERLY
+                                - HALF_YEARLY
+                                - YEARLY
+                                - CUSTOM
+                            sameActionsForEveryCycle:
+                              type: boolean
+                              description: >-
+                                When true, the reward actions defined in
+                                commonCycleActionMapping for Cycle_1 are reused
+                                automatically for every cycle — each
+                                cycleActionMapping entry's actions array can be
+                                left empty. When false, each cycle entry in
+                                cycleActionMapping must explicitly define its
+                                own actions.
+                            differentTargetsForEveryCycle:
+                              type: boolean
+                              description: >-
+                                When true, each cycle entry in
+                                cycleActionMapping can specify a different
+                                defaultValue (target). When false, the top-level
+                                defaultValue applies uniformly to all cycles.
+                            leaderboardEnabled:
+                              type: boolean
+                              description: >-
+                                When true, a leaderboard is enabled for this
+                                milestone, ranking customers by their progress
+                                towards the target.
+                            preferredTillId:
+                              type: integer
+                              description: >-
+                                The ID of the preferred till (point-of-sale
+                                terminal) used for transaction tracking within
+                                this milestone. Set to the org's default till ID
+                                if not targeting a specific terminal.
+                            cycleActionMapping:
+                              type: array
+                              description: >-
+                                Per-cycle target and action definitions. Each
+                                entry maps a cycle to its date range, target
+                                value, and optional actions. When
+                                sameActionsForEveryCycle is true, the actions
+                                array can be left empty in every entry.
+                              items:
+                                type: object
+                                properties:
+                                  cycle:
+                                    type: string
+                                    description: >-
+                                      The cycle identifier (e.g., Cycle_1,
+                                      Cycle_2). Auto-generated by the system
+                                      based on frequencyType and the promotion
+                                      date range.
+                                  startDate:
+                                    type: string
+                                    description: >-
+                                      Start date and time of this cycle in ISO
+                                      8601 format.
+                                  endDate:
+                                    type: string
+                                    description: >-
+                                      End date and time of this cycle in ISO
+                                      8601 format.
+                                  defaultValue:
+                                    type: string
+                                    description: >-
+                                      The target value for this specific cycle.
+                                      Only used when
+                                      differentTargetsForEveryCycle is true;
+                                      otherwise the milestone-level defaultValue
+                                      applies.
+                                  actions:
+                                    type: array
+                                    description: >-
+                                      Actions to execute when this cycle's
+                                      target is met. Leave as an empty array
+                                      when sameActionsForEveryCycle is true.
+                                    items:
+                                      type: object
+                      commonCycleActionMapping:
+                        type: array
+                        description: >-
+                          Maps reward actions directly to cycles for this
+                          activity. Use commonCycleActionMapping when the
+                          promotion rewards customers on every qualifying event
+                          with no target threshold to hit. Leave this empty and
+                          populate milestones instead when the reward is
+                          conditional on reaching a defined target (e.g., spend
+                          $500, complete 10 check-ins).
+                        example:
+                          - cycle: PlaceholderCycle
+                            actions:
+                              - id: placeholder_action
+                                actionName: NO_OP_ACTION
+                                actionClass: >-
+                                  com.capillary.loyalty.engine.impl.action.NoOpAction
+                                description: Placeholder Action - Does Nothing
+                                mandatoryPropertiesValues: {}
+                        items:
+                          type: object
+                          example:
+                            cycle: PlaceholderCycle
+                            actions:
+                              - id: placeholder_action
+                                actionName: NO_OP_ACTION
+                                actionClass: >-
+                                  com.capillary.loyalty.engine.impl.action.NoOpAction
+                                description: Placeholder Action - Does Nothing
+                                mandatoryPropertiesValues: {}
+                          properties:
+                            cycle:
+                              type: string
+                              description: >-
+                                The cycle identifier this mapping applies to
+                                (e.g., Cycle_1). For promotions without
+                                milestones, use a single cycle ID spanning the
+                                full promotion period.
+                              example: PlaceholderCycle
+                            actions:
+                              type: array
+                              example:
+                                - id: placeholder_action
+                                  actionName: NO_OP_ACTION
+                                  actionClass: >-
+                                    com.capillary.loyalty.engine.impl.action.NoOpAction
+                                  description: Placeholder Action - Does Nothing
+                                  mandatoryPropertiesValues: {}
+                              items:
+                                type: object
+                                example:
+                                  id: placeholder_action
+                                  actionName: NO_OP_ACTION
+                                  actionClass: >-
+                                    com.capillary.loyalty.engine.impl.action.NoOpAction
+                                  description: Placeholder Action - Does Nothing
+                                  mandatoryPropertiesValues: {}
+                                properties:
+                                  id:
+                                    type: string
+                                    description: >-
+                                      A unique identifier for this action.
+                                      Caller-supplied string.
+                                    example: placeholder_action
+                                  actionName:
+                                    type: string
+                                    description: >-
+                                      The reward action to execute. The
+                                      corresponding implementation class must be
+                                      set in delegateActionClass inside
+                                      mandatoryPropertiesValues. Points and
+                                      currency:
+                                      ADVANCE_CURRENCY_ALLOCATION_ACTION,
+                                      AWARD_POINTS_ACTION,
+                                      AWARD_TARGET_POINTS_ACTION,
+                                      BILL_POINTS_ACTION,
+                                      DELAYED_ACCRUAL_ACTION,
+                                      TRIGGER_BASED_DELAYED_ACCRUAL_ACTION,
+                                      REDEEM_POINTS_ACTION,
+                                      POINTS_REDEMPTION_REVERSAL_ACTION,
+                                      POINTS_TRANSFER_ACTION,
+                                      POINTS_GROUP_TRANSFER_ACTION,
+                                      POINTS_GROUP_REDEMPTION_ACTION,
+                                      POINTS_CONTRIBUTION_TO_GROUP_ACTION,
+                                      AWARD_REFERRER_POINTS_ACTION,
+                                      AWARD_REFEREE_POINTS_ACTION. Tier and
+                                      slab: UPGRADE_SLAB_ACTION,
+                                      UPGRADE_SLAB_ACTION_SLAB,
+                                      UPGRADE_SLAB_ACTION_STRATEGY,
+                                      RENEW_SLAB_ACTION, TIER_ACTION_V2,
+                                      UPGRADE_TIER_BASED_ON_PARTNER_PROGRAM,
+                                      RENEW_TIER_BASED_ON_PARTNER_PROGRAM.
+                                      Voucher, promotion, and reward:
+                                      PE_ISSUE_VOUCHER_ACTION,
+                                      ISSUE_PROMOTION_ACTION,
+                                      EARN_PROMOTION_ACTION,
+                                      CONVERT_POINTS_TO_REWARD_ACTION,
+                                      BADGE_EARN_ACTION. Communication:
+                                      SEND_COMMUNICATION_ACTION,
+                                      PE_EMAIL_ACTION, PE_SMS_ACTION,
+                                      PE_MOBILE_PUSH_ACTION, PE_FACEBOOK_ACTION,
+                                      PE_WECHAT_MESSAGE_ACTION,
+                                      PE_MESSAGE_ACTION, EBILL_ACTION. Customer
+                                      and status: TAG_CUSTOMER_ACTION,
+                                      STATUS_LABEL_UPDATE_ACTION,
+                                      INITIATE_SUPPLEMENTARY_MEMBERSHIP. Other:
+                                      TRACKER_EVALUATION_ACTION,
+                                      RETURN_BILL_ACTION,
+                                      REEVALUATE_REGULAR_BILL, FORWARD,
+                                      NO_OP_ACTION (placeholder, performs no
+                                      reward).
+                                    example: NO_OP_ACTION
+                                  actionClass:
+                                    type: string
+                                    description: >-
+                                      The fully qualified Java wrapper class for
+                                      this action. For point allocation actions
+                                      (ADVANCE_CURRENCY_ALLOCATION_ACTION,
+                                      AWARD_POINTS_ACTION, BILL_POINTS_ACTION,
+                                      etc.), use
+                                      com.capillary.shopbook.pointsengine.endpoint.impl.action.CommunicationDecoratorActionImpl.
+                                      The specific action implementation is set
+                                      separately via delegateActionClass inside
+                                      mandatoryPropertiesValues.
+                                    example: >-
+                                      com.capillary.loyalty.engine.impl.action.NoOpAction
+                                  description:
+                                    type: string
+                                    description: >-
+                                      A human-readable description of what this
+                                      action does.
+                                    example: Placeholder Action - Does Nothing
+                                  mandatoryPropertiesValues:
+                                    type: object
+                                    description: >-
+                                      Key-value map of configuration properties
+                                      for this action. All values are strings.
+                                      Supported keys:
+
+                                      delegateActionClass — The specific action
+                                      implementation class. Set this to the
+                                      class that corresponds to the actionName.
+                                      For example,
+                                      ADVANCE_CURRENCY_ALLOCATION_ACTION uses
+                                      com.capillary.shopbook.pointsengine.endpoint.impl.action.AdvanceCurrencyAllocationActionImpl.
+
+                                      PointType — The point category to award.
+                                      Valid values are the point type names
+                                      configured for the org (e.g., Main,
+                                      Promotional). Defaults to the main point
+                                      type if omitted.
+
+                                      Currency — The currency type to award.
+                                      POINTS for standard loyalty points. Any
+                                      org-configured alternate currency
+                                      identifier (e.g., MILES, CASHBACK) is also
+                                      valid.
+
+                                      Event Name — The event name that this
+                                      action responds to. Must match the event
+                                      field of the parent activity (e.g.,
+                                      TransactionAdd, TargetCompleted).
+
+                                      PointsRoundingStrategy — How the final
+                                      points amount is rounded. ACTUAL
+                                      (default): rounds half-up. FLOOR: always
+                                      rounds down. ROUND: rounds to nearest.
+                                      ROUND_TO_NEAREST: rounds to nearest
+                                      (half-down variant).
+
+                                      SourceValueRoundingStrategy — How the
+                                      source value (e.g., bill amount) is
+                                      rounded before points are calculated.
+                                      ACTUAL (default): no rounding. FLOOR:
+                                      always rounds down. ROUND: rounds to
+                                      nearest. ROUND_TO_NEAREST: rounds to
+                                      nearest (half-down variant).
+
+                                      DelayStrategy — Controls when points are
+                                      accrued. AS_DEFINED_IN_ALLOCATION_STRATEGY
+                                      (default): follows the allocation
+                                      strategy.
+                                      FIXED_DELAY_FROM_ITEM_RETURN_PERIOD:
+                                      accrues after the item return period.
+                                      ON_EXTERNAL_TRIGGER: accrues only when an
+                                      external trigger fires.
+                                      FIXED_DELAY_FROM_TXN_ITEM_EXT_FIELD: delay
+                                      read from a transaction/line item extended
+                                      field. ACCRUAL_DATE_AS_PER_BE_ATTRIBUTE:
+                                      uses a backend attribute for the accrual
+                                      date.
+                                      ACCRUAL_DATE_FROM_TXN_ITEM_EXT_FIELD:
+                                      reads accrual date from a transaction/line
+                                      item extended field.
+                                      FIXED_DELAY_FROM_BE_ATTRIBUTE: delays by a
+                                      fixed duration from a backend attribute.
+
+                                      ProRateOnSourceValue — The base value used
+                                      when prorating points. EVENT_DEFAULT_VALUE
+                                      (default): the event's default value
+                                      (e.g., bill amount). AMOUNT: transaction
+                                      or line item amount. QUANTITY: item
+                                      quantity. LINEITEM_AMOUNT: individual line
+                                      item amount. LINEITEM_QUANTITY: individual
+                                      line item quantity. DEFINED_TARGET: the
+                                      defined milestone target value.
+                                      ACHIEVED_VALUE: value achieved towards a
+                                      target.
+                                      ACHIEVED_VALUE_MINUS_DEFINED_TARGET:
+                                      achieved minus target. TRACKED_VALUE: a
+                                      tracker's current tracked value.
+                                      TRACKER_EVALUATION: the tracker evaluation
+                                      result. CURRENT_AGGREGATE /
+                                      PREVIOUS_AGGREGATE: tracker aggregate
+                                      values. GENERIC_EVENT_FIELD_VALUE: a named
+                                      field from the event.
+                                      TRANSACTION_EXTENDED_FIELD /
+                                      LINEITEM_EXTENDED_FIELD /
+                                      CUSTOMER_EXTENDED_FIELD /
+                                      CUSTOMER_CUSTOM_FIELD: extended or custom
+                                      attribute values. GAP_TO_UPGRADE: gap
+                                      between next slab threshold and current
+                                      tracker value before the event.
+                                      GAP_TO_UPGRADE_AFTER_EVENT: same gap
+                                      computed after the event.
+                                      CURRENT_EVENT_TRACKED_VALUE: value tracked
+                                      in the current event.
+                                      EXCESS_AFTER_UPGRADE: amount by which the
+                                      current event exceeds the upgrade gap.
+
+                                      EvaluatedEntity — The entity the action is
+                                      evaluated against. USER (default): the
+                                      individual customer. USERGROUP2: a user
+                                      group. USER_ENTITY_REFERENCE: same as
+                                      USERGROUP2.
+
+                                      ProrateFieldName — The exact field name to
+                                      use when ProRateOnSourceValue is a
+                                      field-based value (e.g.,
+                                      TRANSACTION_EXTENDED_FIELD). Leave as an
+                                      empty string if not applicable.
+                                    additionalProperties:
+                                      type: string
+                                  mandatoryComplexPropertiesValues:
+                                    type: object
+                                    description: >-
+                                      Key-value map of complex (object or array)
+                                      configuration properties for this action.
+                                      Returns {} for most actions.
+
+                                      Only populated for actions that support
+                                      line-item filtering — restricting awards
+                                      to specific SKUs, brands, or categories.
+                                      Supported on
+                                      AdvanceCurrencyAllocationActionImpl and
+                                      badge earn actions only.
+                                    additionalProperties: true
+                                  embeddedStrategies:
+                                    type: array
+                                    description: >-
+                                      Inline strategy configurations attached to
+                                      this action. Defines how points are
+                                      allocated (strategyTypeId 1) and when they
+                                      expire (strategyTypeId 3) without
+                                      requiring a pre-configured strategy. Each
+                                      action supports at most one allocation
+                                      strategy and one expiry strategy.
+                                    items:
+                                      type: object
+                                      properties:
+                                        strategyTypeId:
+                                          type: integer
+                                          description: >-
+                                            Identifies the strategy type. 1: point
+                                            allocation strategy — defines how many
+                                            points to award per slab. 3: point
+                                            expiry strategy — defines when awarded
+                                            points expire. These are the only valid
+                                            values.
+                                          enum:
+                                            - 1
+                                            - 3
+                                        propertyValues:
+                                          type: string
+                                          description: >-
+                                            JSON string containing the strategy
+                                            configuration. Fields differ by
+                                            strategyTypeId.
+
+                                            For strategyTypeId 1 (allocation):
+                                            allocation_type (only FIXED confirmed)
+                                            and allocation_values (comma-separated
+                                            point amounts, one per slab level —
+                                            e.g., "100,100,100,100,100,100,100,100"
+                                            for 8 slabs).
+
+                                            For strategyTypeId 3 (expiry):
+                                            expiry_type (SLAB_INDEPENDENT: same
+                                            expiry for all slabs; SLAB_BASED: expiry
+                                            differs per slab), expiry_from (when the
+                                            expiry clock starts — CURRENT_DATE,
+                                            CUSTOMER_ENROLLMENT_DATE,
+                                            ACTIVITY_BASED_EXTENSION,
+                                            MEMBERSHIP_DATE,
+                                            FARTHEST_POINTS_TRANSFERRED_EXPIRY_DATE,
+                                            EXPIRY_DATE_BEFORE_REDEMPTION_REVERSAL,
+                                            EXPIRY_DATE_BEFORE_POINTS_CONTRIBUTION_TO_GROUP,
+                                            BILL_EXTENDED_FIELD,
+                                            LINEITEM_EXTENDED_FIELD,
+                                            CUSTOMER_EXTENDED_FIELD),
+                                            expiry_time_units (comma-separated unit
+                                            per slab — NUM_DAYS, MONTH_END,
+                                            NUM_MONTHS, NUM_MONTHS_END, YEAR_END,
+                                            NUM_YEARS, NEVER, FIXED_DATE,
+                                            ENROLLMENT_DATE,
+                                            FIXED_DATE_WITHOUT_YEAR),
+                                            expiry_time_values (comma-separated
+                                            values per slab — date strings when unit
+                                            is FIXED_DATE; numeric duration when
+                                            unit is NUM_DAYS/NUM_MONTHS/etc.; use
+                                            "100" as a placeholder when unit is
+                                            NEVER).
+                                        owner:
+                                          type: string
+                                          description: >-
+                                            The system that owns this strategy.
+                                            Typically LOYALTY.
+                                        strategySubType:
+                                          type: string
+                                          description: >-
+                                            The strategy sub-type. DEFAULT is the
+                                            standard value.
+                                        useCommonExpiryStrategy:
+                                          type: boolean
+                                          nullable: true
+                                          description: >-
+                                            Controls whether this embedded strategy
+                                            references a shared expiry from
+                                            commonStrategies.expiry instead of
+                                            defining expiry inline.
+
+                                            Null when using inline expiry
+                                            (propertyValues is set directly on this
+                                            strategy). True when the action's
+                                            embedded strategy should point to a
+                                            named shared expiry entry in
+                                            commonStrategies.expiry.
+
+                                            Only valid for expiry strategies
+                                            (strategyTypeId: 3). Using on a
+                                            non-expiry strategy causes a validation
+                                            error.
+
+                                            Validation rules: (1) If true,
+                                            strategyRef must be non-empty — error:
+                                            "Expiry strategy must provide a
+                                            non-empty strategyRef". (2) If true,
+                                            propertyValues must not be set — error:
+                                            "Expiry strategy cannot set
+                                            propertyValues when
+                                            useCommonExpiryStrategy=true".
+
+                                            Inline example: {"strategyTypeId": 3,
+                                            "propertyValues": "{...}",
+                                            "useCommonExpiryStrategy": null} Shared
+                                            reference example: {"strategyTypeId": 3,
+                                            "useCommonExpiryStrategy": true,
+                                            "strategyRef": "shared_expiry_90d"}
+                                        strategyRef:
+                                          type: string
+                                          nullable: true
+                                          description: >-
+                                            The name/key of the shared expiry entry
+                                            in commonStrategies.expiry to use. Null
+                                            when useCommonExpiryStrategy is null
+                                            (inline expiry mode).
+
+                                            Only valid for expiry strategies
+                                            (strategyTypeId: 3).
+
+                                            Validation rules: (1) Must be non-empty
+                                            when useCommonExpiryStrategy is true —
+                                            error: "Expiry strategy must provide a
+                                            non-empty strategyRef". (2) Must match
+                                            an existing entry in
+                                            commonStrategies.expiry — error:
+                                            "Invalid common expiry strategyRef
+                                            '<ref>'". (3) All strategyRef values in
+                                            commonStrategies.expiry must be unique.
+                                            (4) Not applicable for allocation
+                                            strategies (strategyTypeId: 1).
+
+                                            Example: "strategyRef":
+                                            "shared_expiry_90d"
+                limits:
+                  type: array
+                  example:
+                    - entityScope: PROGRAM
+                      entityId: 2607
+                      granularity: USER
+                      actionType: AWARD_CURRENCY
+                      actionSubTypeId: Points
+                      limitType: SUM
+                      limitValue: 10000
+                      period:
+                        periodType: FIXED_CALENDAR_WINDOW
+                        periodUnit: MONTHS
+                        periodValue: 1
+                      active: true
+                  items:
+                    type: object
+                    example:
+                      entityScope: PROGRAM
+                      entityId: 2607
+                      granularity: USER
+                      actionType: AWARD_CURRENCY
+                      actionSubTypeId: Points
+                      limitType: SUM
+                      limitValue: 10000
+                      period:
+                        periodType: FIXED_CALENDAR_WINDOW
+                        periodUnit: MONTHS
+                        periodValue: 1
+                      active: true
+                    properties:
+                      entityScope:
+                        type: string
+                        description: >-
+                          The scope at which this limit is enforced. PROGRAM:
+                          applies across the entire loyalty program. PROMOTION:
+                          scoped to this promotion only.
+                        enum:
+                          - PROGRAM
+                          - PROMOTION
+                        example: PROGRAM
+                      entityId:
+                        type: integer
+                        description: >-
+                          The numeric ID of the entity the limit applies to.
+                          Required when entityScope is PROGRAM — set this to the
+                          programId. Not required when entityScope is PROMOTION.
+                        example: 2607
+                      granularity:
+                        type: string
+                        description: >-
+                          The level at which the limit is tracked. USER: limit
+                          is applied per individual customer. OVERALL: limit is
+                          applied across all customers combined. PER_ACTIVITY:
+                          limit is tracked per activity within the promotion.
+                        enum:
+                          - OVERALL
+                          - USER
+                          - PER_ACTIVITY
+                        example: USER
+                      actionType:
+                        type: string
+                        description: >-
+                          The type of reward action this limit constrains.
+                          Supported values: AWARD_CURRENCY (points/currency),
+                          AWARD_BADGE, ISSUE_COUPON, ISSUE_REWARD, UPGRADE_TIER,
+                          RENEW_TIER, DOWNGRADE_TIER.
+                        enum:
+                          - AWARD_CURRENCY
+                          - AWARD_BADGE
+                          - ISSUE_COUPON
+                          - ISSUE_REWARD
+                          - UPGRADE_TIER
+                          - RENEW_TIER
+                          - DOWNGRADE_TIER
+                        example: AWARD_CURRENCY
+                      actionSubTypeId:
+                        type: string
+                        description: >-
+                          The specific currency or sub-type this limit targets.
+                          For points-based limits, use the point type name
+                          (e.g., Points).
+                        example: Points
+                      limitType:
+                        type: string
+                        description: >-
+                          How the limit is measured. SUM: caps the total value
+                          awarded (e.g., max 10,000 points per month). COUNT:
+                          caps the number of times the reward action fires
+                          (e.g., max 5 reward events).
+                        enum:
+                          - SUM
+                          - COUNT
+                        example: SUM
+                      limitValue:
+                        type: integer
+                        description: >-
+                          The maximum allowed threshold for this limit. For SUM
+                          limits this is the total points/currency cap; for
+                          COUNT limits this is the maximum number of reward
+                          occurrences.
+                        example: 10000
+                      period:
+                        type: object
+                        properties:
+                          periodType:
+                            type: string
+                            description: >-
+                              Defines the time window for this limit.
+                              NON_PERIOD_BASED: limit applies for the lifetime
+                              of the promotion with no reset.
+                              FIXED_CALENDAR_WINDOW: resets on a fixed calendar
+                              cycle (e.g., monthly on the 1st). MOVING_WINDOW: a
+                              rolling window relative to the current date (e.g.,
+                              last 30 days). FIXED_WINDOW: a specific fixed date
+                              range.
+                            enum:
+                              - MOVING_WINDOW
+                              - FIXED_CALENDAR_WINDOW
+                              - NON_PERIOD_BASED
+                              - FIXED_WINDOW
+                            example: FIXED_CALENDAR_WINDOW
+                          periodUnit:
+                            type: string
+                            description: >-
+                              The time unit for the period window. Required when
+                              periodType is FIXED_CALENDAR_WINDOW or
+                              MOVING_WINDOW.
+                            enum:
+                              - DAYS
+                              - WEEKS
+                              - MONTHS
+                            example: MONTHS
+                          periodValue:
+                            type: integer
+                            description: >-
+                              The number of time units in the window (e.g.,
+                              periodValue: 1 with periodUnit: MONTHS means a
+                              1-month window).
+                            example: 1
+                      active:
+                        type: boolean
+                        description: >-
+                          Whether this limit is currently active and being
+                          enforced.
+                        example: true
+                liabilityOwnerSplitInfo:
+                  type: array
+                  example: []
+                  items:
+                    type: string
+                workflowMetadata:
+                  type: object
+                  description: >-
+                    Configures opt-in and enrollment workflows. Required for
+                    LOYALTY and LOYALTY_EARNING promotion types. For GENERIC
+                    promotions, pass an empty object ({}) for both enrolment and
+                    optin.
+                  properties:
+                    enrolment:
+                      type: object
+                      description: >-
+                        Enrollment workflow configuration. Controls how and when
+                        customers become enrolled in the promotion.
+                      properties:
+                        basedOn:
+                          type: string
+                          description: >-
+                            The enrollment trigger. ACTIVITY: customers are
+                            enrolled upon completing a defined activity.
+                            AUDIENCE: all customers in the specified audience
+                            groups are enrolled. EXTERNAL_TRIGGER: enrollment is
+                            triggered by an external system call.
+                          enum:
+                            - ACTIVITY
+                            - AUDIENCE
+                            - EXTERNAL_TRIGGER
+                        audienceMapping:
+                          type: array
+                          description: >-
+                            The audience groups whose members will be enrolled.
+                            Required when basedOn is AUDIENCE.
+                          items:
+                            type: object
+                            properties:
+                              groupId:
+                                type: integer
+                                description: The numeric ID of the audience group.
+                              groupName:
+                                type: string
+                                description: >-
+                                  The name of the audience group. Maximum 255
+                                  characters.
+                        restrictions:
+                          type: object
+                          description: Enrollment-level constraints and expiry rules.
+                          properties:
+                            enrolmentLimitPerCustomer:
+                              type: object
+                              description: >-
+                                Maximum number of times a single customer can be
+                                enrolled in this promotion.
+                              properties:
+                                value:
+                                  type: integer
+                                  description: The maximum enrollment count per customer.
+                                type:
+                                  type: string
+                                  description: >-
+                                    NON_PERIOD_BASED: lifetime limit with no
+                                    reset. PERIOD_BASED: limit resets on a
+                                    rolling period defined by periodType and
+                                    periodUnit.
+                                  enum:
+                                    - NON_PERIOD_BASED
+                                    - PERIOD_BASED
+                            enrolmentLimitPerPromotion:
+                              type: object
+                              description: >-
+                                Maximum total enrollments allowed across all
+                                customers for this promotion.
+                              properties:
+                                value:
+                                  type: integer
+                                type:
+                                  type: string
+                                  enum:
+                                    - NON_PERIOD_BASED
+                                    - PERIOD_BASED
+                            maxRedemptionsPerEarnPerCustomer:
+                              type: object
+                              description: >-
+                                Maximum number of times a customer can redeem
+                                each earned instance of this promotion.
+                              properties:
+                                value:
+                                  type: integer
+                                type:
+                                  type: string
+                                  enum:
+                                    - NON_PERIOD_BASED
+                                    - PERIOD_BASED
+                            maxPointsPerEarnPerCustomer:
+                              type: object
+                              description: >-
+                                Maximum points a customer can earn per enrolled
+                                instance of this promotion.
+                              properties:
+                                value:
+                                  type: integer
+                                type:
+                                  type: string
+                                  enum:
+                                    - NON_PERIOD_BASED
+                                    - PERIOD_BASED
+                            enrolmentExpiryBasedOn:
+                              type: object
+                              description: Configures when an enrollment expires.
+                              properties:
+                                type:
+                                  type: string
+                                  description: >-
+                                    PROMOTION: enrollment expires when the
+                                    promotion ends. CUSTOM: expires a fixed
+                                    number of days after enrollment (set via
+                                    value). FIXED_DATE: expires on a specific
+                                    date (set via expiryDate).
+                                  enum:
+                                    - PROMOTION
+                                    - CUSTOM
+                                    - FIXED_DATE
+                                value:
+                                  type: integer
+                                  description: >-
+                                    Number of days until enrollment expires.
+                                    Used when type is CUSTOM.
+                                expiryDate:
+                                  type: string
+                                  format: date-time
+                                  description: >-
+                                    The fixed expiry date. Used when type is
+                                    FIXED_DATE.
+                    optin:
+                      type: object
+                      description: >-
+                        Opt-in workflow configuration. Controls how and when
+                        customers opt in to the promotion.
+                      properties:
+                        basedOn:
+                          type: string
+                          description: >-
+                            The opt-in trigger. ACTIVITY: opt-in is based on
+                            completing a defined activity. AUDIENCE: customers
+                            in specified audience groups are auto-opted in.
+                            EXTERNAL_TRIGGER: opt-in is triggered by an external
+                            system call.
+                          enum:
+                            - ACTIVITY
+                            - AUDIENCE
+                            - EXTERNAL_TRIGGER
+                        audienceMapping:
+                          type: array
+                          description: >-
+                            Audience groups to auto-opt in. Required when
+                            basedOn is AUDIENCE.
+                          items:
+                            type: object
+                            properties:
+                              groupId:
+                                type: integer
+                              groupName:
+                                type: string
+                        optInStartDate:
+                          type: string
+                          format: date-time
+                          description: >-
+                            The date from which customers can opt in. Optional;
+                            defaults to the promotion start date if omitted.
+                        optInEndDate:
+                          type: string
+                          format: date-time
+                          description: >-
+                            The date after which no new opt-ins are accepted.
+                            Optional; defaults to the promotion end date if
+                            omitted.
+                        restrictions:
+                          type: object
+                          description: Opt-in-level constraints and expiry rules.
+                          properties:
+                            optinLimitPerCustomer:
+                              type: object
+                              description: >-
+                                Maximum number of times a single customer can
+                                opt in to this promotion.
+                              properties:
+                                value:
+                                  type: integer
+                                type:
+                                  type: string
+                                  enum:
+                                    - NON_PERIOD_BASED
+                                    - PERIOD_BASED
+                            optinExpiryBasedOn:
+                              type: object
+                              description: Configures when an opt-in expires.
+                              properties:
+                                type:
+                                  type: string
+                                  description: >-
+                                    PROMOTION: opt-in expires when the promotion
+                                    ends. CUSTOM: expires a fixed number of days
+                                    after opt-in (set via value). FIXED_DATE:
+                                    expires on a specific date (set via
+                                    expiryDate).
+                                  enum:
+                                    - PROMOTION
+                                    - CUSTOM
+                                    - FIXED_DATE
+                                value:
+                                  type: integer
+                                  description: >-
+                                    Number of days until opt-in expires. Used
+                                    when type is CUSTOM.
+                                expiryDate:
+                                  type: string
+                                  format: date-time
+                                  description: >-
+                                    The fixed expiry date. Used when type is
+                                    FIXED_DATE.
+              description: Request body as an object
+            examples: {}
+        description: Request body
+        required: false
+      x-readme:
+        code-samples:
+          - code: >-
+              curl --location 'https://eu.api.capillarytech.com/v3/promotions' \
+
+              --header 'content-type: application/json' \
+
+              --header 'Authorization: Basic 5NGIwNDllZTk=' \
+
+              --header 'Cookie:
+              _cfuvid=BC9cwq9x9u_qIzIGlUxLEwV1ldTNVbpH1faK4-1763285329155-0.0.1.1-604800000'
+              \
+
+              --data '{
+                  "metadata": {
+                      "name": "Single Activity Promotion",
+                      "description": "A promotion with single activity",
+                      "programId": 973,
+                      "startDate": "2026-02-02T05:11:00Z",
+                      "endDate": "2026-02-28T05:11:59Z",
+                      "promotionType": "GENERIC",
+                      "status": "DRAFT",
+                      "promoIdentifier": "single-activity-promotion",
+                      "timezoneName": "Asia/Kolkata",
+                      "loyaltyConfigMetaData": {
+                          "isStackable": false,
+                          "isConsideredForRanking": false,
+                          "isExclusive": false,
+                          "isAlwaysApply": false,
+                          "skipEarnedDateCheckOnRedeem": null
+                      },
+                      "promotionMetadata": [],
+                      "createdBy": 75139931,
+                      "lastModifiedBy": 75139931,
+                      "loyaltyEarningType": null
+                  },
+                  "customerEnrolment": {
+                      "enrolmentMethod": "TRANSACTION"
+                  },
+                  "liabilityOwnerSplitInfo": [
+                      {
+                          "liabilityOwnerId": 82,
+                          "componentType": "PROMOTION",
+                          "ratio": 100,
+                          "isActive": true,
+                          "liabilityOwnerName": "DocDemoDefaultProgram",
+                          "liabilityOwnerType": "PROGRAM",
+                          "orgId": 100737
+                      }
+                  ],
+                  "activities": [
+                      {
+                          "id": "activity_1770009105303",
+                          "name": "Activity 1",
+                          "type": "SINGLE",
+                          "event": "TransactionAdd",
+                          "milestones": [],
+                          "commonCycleActionMapping": [
+                              {
+                                  "cycle": "Cycle_1",
+                                  "startDate": "2026-02-02T05:11:00Z",
+                                  "endDate": "2026-02-28T05:11:59Z",
+                                  "actions": [
+                                      {
+                                          "id": "temp_06a1a899-99e8-4f5e-8910-a3b2b51aa142",
+                                          "actionName": "ADVANCE_CURRENCY_ALLOCATION_ACTION",
+                                          "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.CommunicationDecoratorActionImpl",
+                                          "mandatoryPropertiesValues": {
+                                              "PointType": "Main",
+                                              "PointsRoundingStrategy": "ACTUAL",
+                                              "ProRateOnSourceValue": "EVENT_DEFAULT_VALUE",
+                                              "EvaluatedEntity": "USER",
+                                              "Currency": "POINTS",
+                                              "Event Name": "TransactionAdd",
+                                              "DelayStrategy": "AS_DEFINED_IN_ALLOCATION_STRATEGY",
+                                              "ProrateFieldName": "",
+                                              "SourceValueRoundingStrategy": "ACTUAL",
+                                              "delegateActionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.AdvanceCurrencyAllocationActionImpl"
+                                          },
+                                          "mandatoryComplexPropertiesValues": {},
+                                          "description": "Advanced currency allocation action",
+                                          "embeddedStrategies": [
+                                              {
+                                                  "strategyTypeId": 1,
+                                                  "propertyValues": "{\"allocation_type\":\"FIXED\",\"allocation_values\":\"100,100,100,100,100,100,100,100\"}",
+                                                  "owner": "LOYALTY",
+                                                  "updatedViaNewUI": true,
+                                                  "useCommonExpiryStrategy": null,
+                                                  "strategyRef": null,
+                                                  "strategySubType": "DEFAULT"
+                                              },
+                                              {
+                                                  "strategyTypeId": 3,
+                                                  "propertyValues": "{\"expiry_type\":\"SLAB_INDEPENDENT\",\"expiry_from\":\"CURRENT_DATE\",\"expiry_time_units\":\"FIXED_DATE,FIXED_DATE,FIXED_DATE,FIXED_DATE,FIXED_DATE,FIXED_DATE,FIXED_DATE,FIXED_DATE\",\"expiry_time_values\":\"2026-02-28,2026-02-28,2026-02-28,2026-02-28,2026-02-28,2026-02-28,2026-02-28,2026-02-28\"}",
+                                                  "owner": "LOYALTY",
+                                                  "updatedViaNewUI": true,
+                                                  "useCommonExpiryStrategy": null,
+                                                  "strategyRef": null,
+                                                  "strategySubType": "DEFAULT"
+                                              }
+                                          ]
+                                      }
+                                  ]
+                              }
+                          ],
+                          "expJSON": "{\n  \"arity\": \"binary_operation\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \">\",\n  \"operands\": [\n    {\n      \"arity\": \"object_dereference\",\n      \"type\": \"real:object:primitive\",\n      \"operands\": [\n        {\n          \"arity\": \"name\",\n          \"type\": \"tx:object:primitive\",\n          \"value\": \"currentTxn\"\n        },\n        {\n          \"arity\": \"name\",\n          \"type\": \"real:object:primitive\",\n          \"value\": \"value\"\n        }\n      ]\n    },\n    {\n      \"arity\": \"literal\",\n      \"type\": \"number:primitive\",\n      \"value\": \"1000\"\n    }\n  ]\n}"
+                      }
+                  ],
+                  "limits": [
+                      {
+                          "granularity": "USER",
+                          "actionType": "AWARD_CURRENCY",
+                          "limitType": "COUNT",
+                          "limitValue": 100,
+                          "period": {
+                              "periodType": "NON_PERIOD_BASED"
+                          },
+                          "actionSubTypeId": "Points"
+                      }
+                  ],
+                  "workflowMetadata": {
+                      "optin": {},
+                      "enrolment": {}
+                  }
+              }'
+            language: shell
+            name: Single activity
+          - code: |-
+              curl -L -g 'https://{{eu}}/v3/promotions' \
+              -H 'Content-Type: application/json' \
+              -H 'X-CAP-API-AUTH-ORG-ID: 100737' \
+              -H 'Authorization: Basic bWU6cGFzc3dvcmQ=' \
+              '{
+                  "metadata": {
+                      "name": "Single Milestone Promotion",
+                      "description": "Single Milestone Promotion",
+                      "programId": 973,
+                      "startDate": "2026-02-02T12:28:00+05:30",
+                      "endDate": "2026-02-28T12:28:59+05:30",
+                      "promotionType": "GENERIC",
+                      "status": "DRAFT",
+                      "promoIdentifier": "single-milestone-promotion",
+                      "timezoneName": "Asia/Kolkata",
+                      "loyaltyConfigMetaData": {
+                          "isStackable": false,
+                          "isExclusive": false,
+                          "isAlwaysApply": false,
+                          "isConsideredForRanking": false,
+                          "skipEarnedDateCheckOnRedeem": null
+                      },
+                      "promotionMetadata": [],
+                      "createdBy": 75139931,
+                      "lastModifiedBy": 75139931,
+                      "loyaltyEarningType": null
+                  },
+                  "customerEnrolment": {
+                      "enrolmentMethod": "TRANSACTION"
+                  },
+                  "liabilityOwnerSplitInfo": [],
+                  "activities": [
+                      {
+                          "id": "activity_1770015539223",
+                          "name": "Activity 1",
+                          "type": "SINGLE",
+                          "event": "TransactionAdd",
+                          "milestones": [
+                              {
+                                  "name": "Single Milestone Promotion~Activity 1~Milestone 1770015543",
+                                  "trackingType": "DEFAULT",
+                                  "targetEvaluationType": "FIXED_CALENDAR_WINDOW",
+                                  "frequencyType": "WEEKLY",
+                                  "sameActionsForEveryCycle": true,
+                                  "differentTargetsForEveryCycle": false,
+                                  "leaderboardEnabled": false,
+                                  "preferredTillId": 75216507,
+                                  "targetEntity": "TRANSACTION",
+                                  "targetType": "COUNT",
+                                  "cycleActionMapping": [
+                                      {
+                                          "cycle": "Cycle_1",
+                                          "startDate": "2026-02-02T12:28:00+05:30",
+                                          "endDate": "2026-02-08T23:59:59+05:30",
+                                          "defaultValue": "3",
+                                          "actions": []
+                                      },
+                                      {
+                                          "cycle": "Cycle_2",
+                                          "startDate": "2026-02-09T00:00:00+05:30",
+                                          "endDate": "2026-02-15T23:59:59+05:30",
+                                          "defaultValue": "3",
+                                          "actions": []
+                                      },
+                                      {
+                                          "cycle": "Cycle_3",
+                                          "startDate": "2026-02-16T00:00:00+05:30",
+                                          "endDate": "2026-02-22T23:59:59+05:30",
+                                          "defaultValue": "3",
+                                          "actions": []
+                                      },
+                                      {
+                                          "cycle": "Cycle_4",
+                                          "startDate": "2026-02-23T00:00:00+05:30",
+                                          "endDate": "2026-02-28T12:28:59+05:30",
+                                          "defaultValue": "3",
+                                          "actions": []
+                                      }
+                                  ]
+                              }
+                          ],
+                          "commonCycleActionMapping": [],
+                          "expJSON": "{\n  \"arity\": \"binary_operation\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \">\",\n  \"operands\": [\n    {\n      \"arity\": \"object_dereference\",\n      \"type\": \"real:object:primitive\",\n      \"operands\": [\n        {\n          \"arity\": \"name\",\n          \"type\": \"tx:object:primitive\",\n          \"value\": \"currentTxn\"\n        },\n        {\n          \"arity\": \"name\",\n          \"type\": \"real:object:primitive\",\n          \"value\": \"value\"\n        }\n      ]\n    },\n    {\n      \"arity\": \"literal\",\n      \"type\": \"number:primitive\",\n      \"value\": \"1000\"\n    }\n  ]\n}"
+                      }
+                  ],
+                  "workflowMetadata": {
+                      "optin": {},
+                      "enrolment": {}
+                  }
+              }'
+            language: shell
+            name: Single Milestone
+          - code: |-
+              curl -L -g '{
+                  "metadata": {
+                      "name": "Two Activities Promotion",
+                      "description": "Two Activities Promotion",
+                      "programId": 973,
+                      "startDate": "2026-02-02T12:31:00+05:30",
+                      "endDate": "2026-02-28T12:31:59+05:30",
+                      "promotionType": "GENERIC",
+                      "status": "DRAFT",
+                      "promoIdentifier": "two-activities-promotion",
+                      "timezoneName": "Asia/Kolkata",
+                      "loyaltyConfigMetaData": {
+                          "isStackable": false,
+                          "isExclusive": false,
+                          "isAlwaysApply": false,
+                          "isConsideredForRanking": false,
+                          "skipEarnedDateCheckOnRedeem": null
+                      },
+                      "promotionMetadata": [],
+                      "createdBy": 75139931,
+                      "lastModifiedBy": 75139931,
+                      "loyaltyEarningType": null
+                  },
+                  "customerEnrolment": {
+                      "enrolmentMethod": "TRANSACTION"
+                  },
+                  "liabilityOwnerSplitInfo": [],
+                  "activities": [
+                      {
+                          "id": "activity_1770015688839",
+                          "name": "Activity 1",
+                          "type": "SINGLE",
+                          "event": "TransactionAdd",
+                          "milestones": [],
+                          "commonCycleActionMapping": [
+                              {
+                                  "cycle": "Cycle_1",
+                                  "startDate": "2026-02-02T12:31:00+05:30",
+                                  "endDate": "2026-02-28T12:31:59+05:30",
+                                  "actions": [
+                                      {
+                                          "id": "temp_c86386d4-53c8-461e-897b-89a24298786e",
+                                          "actionName": "ADVANCE_CURRENCY_ALLOCATION_ACTION",
+                                          "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.CommunicationDecoratorActionImpl",
+                                          "mandatoryPropertiesValues": {
+                                              "PointsRoundingStrategy": "ACTUAL",
+                                              "SourceValueRoundingStrategy": "ACTUAL",
+                                              "DelayStrategy": "AS_DEFINED_IN_ALLOCATION_STRATEGY",
+                                              "Event Name": "TransactionAdd",
+                                              "ProRateOnSourceValue": "EVENT_DEFAULT_VALUE",
+                                              "PointType": "Main",
+                                              "ProrateFieldName": "",
+                                              "EvaluatedEntity": "USER",
+                                              "Currency": "POINTS",
+                                              "delegateActionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.AdvanceCurrencyAllocationActionImpl"
+                                          },
+                                          "mandatoryComplexPropertiesValues": {},
+                                          "description": "Advanced currency allocation action",
+                                          "embeddedStrategies": [
+                                              {
+                                                  "strategyTypeId": 1,
+                                                  "propertyValues": "{\"allocation_type\":\"FIXED\",\"allocation_values\":\"100,100,100,100,100,100,100,100\"}",
+                                                  "owner": "LOYALTY",
+                                                  "updatedViaNewUI": true
+                                              },
+                                              {
+                                                  "strategyTypeId": 3,
+                                                  "propertyValues": "{\"expiry_time_units\":\"NEVER,NEVER,NEVER,NEVER,NEVER,NEVER,NEVER,NEVER\",\"expiry_type\":\"SLAB_INDEPENDENT\",\"expiry_time_values\":\"100,100,100,100,100,100,100,100\",\"expiry_from\":\"CURRENT_DATE\"}",
+                                                  "owner": "LOYALTY",
+                                                  "updatedViaNewUI": true
+                                              }
+                                          ]
+                                      }
+                                  ]
+                              }
+                          ],
+                          "expJSON": "{\n  \"arity\": \"binary_operation\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \">\",\n  \"operands\": [\n    {\n      \"arity\": \"object_dereference\",\n      \"type\": \"real:object:primitive\",\n      \"operands\": [\n        {\n          \"arity\": \"name\",\n          \"type\": \"tx:object:primitive\",\n          \"value\": \"currentTxn\"\n        },\n        {\n          \"arity\": \"name\",\n          \"type\": \"real:object:primitive\",\n          \"value\": \"value\"\n        }\n      ]\n    },\n    {\n      \"arity\": \"literal\",\n      \"type\": \"number:primitive\",\n      \"value\": \"1000\"\n    }\n  ]\n}"
+                      },
+                      {
+                          "id": "activity_1770015716472",
+                          "name": "Activity 2",
+                          "type": "SINGLE",
+                          "event": "TransactionAdd",
+                          "milestones": [],
+                          "commonCycleActionMapping": [
+                              {
+                                  "cycle": "Cycle_1",
+                                  "startDate": "2026-02-02T12:31:00+05:30",
+                                  "endDate": "2026-02-28T12:31:59+05:30",
+                                  "actions": [
+                                      {
+                                          "id": "temp_1cc155bf-0bcb-4488-b290-7851982c82d6",
+                                          "actionName": "ADVANCE_CURRENCY_ALLOCATION_ACTION",
+                                          "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.CommunicationDecoratorActionImpl",
+                                          "mandatoryPropertiesValues": {
+                                              "PointsRoundingStrategy": "ACTUAL",
+                                              "SourceValueRoundingStrategy": "ACTUAL",
+                                              "DelayStrategy": "AS_DEFINED_IN_ALLOCATION_STRATEGY",
+                                              "Event Name": "TransactionAdd",
+                                              "ProRateOnSourceValue": "EVENT_DEFAULT_VALUE",
+                                              "PointType": "Main",
+                                              "ProrateFieldName": "",
+                                              "EvaluatedEntity": "USER",
+                                              "Currency": "POINTS",
+                                              "delegateActionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.AdvanceCurrencyAllocationActionImpl"
+                                          },
+                                          "mandatoryComplexPropertiesValues": {},
+                                          "description": "Advanced currency allocation action",
+                                          "embeddedStrategies": [
+                                              {
+                                                  "strategyTypeId": 1,
+                                                  "propertyValues": "{\"allocation_type\":\"FIXED\",\"allocation_values\":\"500,500,500,500,500,500,500,500\"}",
+                                                  "owner": "LOYALTY",
+                                                  "updatedViaNewUI": true
+                                              },
+                                              {
+                                                  "strategyTypeId": 3,
+                                                  "propertyValues": "{\"expiry_time_units\":\"NEVER,NEVER,NEVER,NEVER,NEVER,NEVER,NEVER,NEVER\",\"expiry_type\":\"SLAB_INDEPENDENT\",\"expiry_time_values\":\"100,100,100,100,100,100,100,100\",\"expiry_from\":\"CURRENT_DATE\"}",
+                                                  "owner": "LOYALTY",
+                                                  "updatedViaNewUI": true
+                                              }
+                                          ]
+                                      }
+                                  ]
+                              }
+                          ],
+                          "expJSON": "{\n  \"arity\": \"binary_operation\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \">\",\n  \"operands\": [\n    {\n      \"arity\": \"object_dereference\",\n      \"type\": \"real:object:primitive\",\n      \"operands\": [\n        {\n          \"arity\": \"name\",\n          \"type\": \"tx:object:primitive\",\n          \"value\": \"currentTxn\"\n        },\n        {\n          \"arity\": \"name\",\n          \"type\": \"real:object:primitive\",\n          \"value\": \"value\"\n        }\n      ]\n    },\n    {\n      \"arity\": \"literal\",\n      \"type\": \"number:primitive\",\n      \"value\": \"5000\"\n    }\n  ]\n}"
+                      },
+                      {
+                          "id": "activity_1770015742170",
+                          "name": "Activity 3",
+                          "type": "SINGLE",
+                          "event": "TransactionAdd",
+                          "milestones": [],
+                          "commonCycleActionMapping": [
+                              {
+                                  "cycle": "Cycle_1",
+                                  "startDate": "2026-02-02T12:31:00+05:30",
+                                  "endDate": "2026-02-28T12:31:59+05:30",
+                                  "actions": []
+                              }
+                          ],
+                          "expJSON": "{\n  \"arity\": \"literal\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"true\"\n}"
+                      }
+                  ],
+                  "workflowMetadata": {
+                      "optin": {},
+                      "enrolment": {}
+                  }
+              }'
+            language: shell
+            name: Two activities
+          - code: |-
+              curl -L 'https://eu.api.capillarytech.com/v3/promotions' \
+              -H 'Content-Type: application/json' \
+              -H 'X-CAP-API-AUTH-ORG-ID: 51174' \
+              -H 'key: Cookie' \
+              -d '{
+                  "metadata": {
+                      "name": "Group Promotion",
+                      "description": "Group Promotion",
+                      "programId": 973,
+                      "startDate": "2026-02-02T12:34:00+05:30",
+                      "endDate": "2026-02-28T12:34:59+05:30",
+                      "promotionType": "GENERIC",
+                      "status": "DRAFT",
+                      "promoIdentifier": "group-promotion",
+                      "timezoneName": "Asia/Kolkata",
+                      "loyaltyConfigMetaData": {
+                          "isStackable": false,
+                          "isExclusive": false,
+                          "isAlwaysApply": false,
+                          "isConsideredForRanking": false,
+                          "skipEarnedDateCheckOnRedeem": null
+                      },
+                      "promotionMetadata": [],
+                      "createdBy": 75139931,
+                      "lastModifiedBy": 75139931,
+                      "loyaltyEarningType": null
+                  },
+                  "customerEnrolment": {
+                      "enrolmentMethod": "TRANSACTION"
+                  },
+                  "liabilityOwnerSplitInfo": [],
+                  "activities": [
+                      {
+                          "id": "group_1770015857736",
+                          "type": "GROUP",
+                          "name": "Group 1",
+                          "combinationType": "ALL",
+                          "commonCycleActionMapping": [
+                              {
+                                  "cycle": "Cycle_1",
+                                  "startDate": "2026-02-02T12:34:00+05:30",
+                                  "endDate": "2026-02-28T12:34:59+05:30",
+                                  "actions": [
+                                      {
+                                          "id": "action_1770015984787",
+                                          "actionName": "ADVANCE_CURRENCY_ALLOCATION_ACTION",
+                                          "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.CommunicationDecoratorActionImpl",
+                                          "mandatoryPropertiesValues": {
+                                              "PointsRoundingStrategy": "ACTUAL",
+                                              "SourceValueRoundingStrategy": "ACTUAL",
+                                              "DelayStrategy": "AS_DEFINED_IN_ALLOCATION_STRATEGY",
+                                              "Event Name": "TargetCompleted",
+                                              "ProRateOnSourceValue": "EVENT_DEFAULT_VALUE",
+                                              "PointType": "Main",
+                                              "ProrateFieldName": "",
+                                              "EvaluatedEntity": "USER",
+                                              "Currency": "POINTS",
+                                              "delegateActionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.AdvanceCurrencyAllocationActionImpl"
+                                          },
+                                          "mandatoryComplexPropertiesValues": {},
+                                          "description": "Advanced currency allocation action",
+                                          "embeddedStrategies": [
+                                              {
+                                                  "strategyTypeId": 1,
+                                                  "propertyValues": "{\"allocation_type\":\"FIXED\",\"allocation_values\":\"100,100,100,100,100,100,100,100\"}",
+                                                  "owner": "LOYALTY",
+                                                  "updatedViaNewUI": true
+                                              },
+                                              {
+                                                  "strategyTypeId": 3,
+                                                  "propertyValues": "{\"expiry_time_units\":\"NEVER,NEVER,NEVER,NEVER,NEVER,NEVER,NEVER,NEVER\",\"expiry_type\":\"SLAB_INDEPENDENT\",\"expiry_time_values\":\"100,100,100,100,100,100,100,100\",\"expiry_from\":\"CURRENT_DATE\"}",
+                                                  "owner": "LOYALTY",
+                                                  "updatedViaNewUI": true
+                                              }
+                                          ]
+                                      }
+                                  ]
+                              }
+                          ],
+                          "expJSON": "{\n  \"arity\": \"literal\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"true\"\n}",
+                          "children": [
+                              {
+                                  "id": "sub_activity_1770015859452",
+                                  "name": "Sub-Activity 1",
+                                  "type": "SINGLE",
+                                  "event": "TransactionAdd",
+                                  "expJSON": "{\n  \"arity\": \"literal\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"true\"\n}",
+                                  "milestones": [
+                                      {
+                                          "name": "Group Promotion~Sub-Activity 1~Milestone 1770015859",
+                                          "trackingType": "DEFAULT",
+                                          "leaderboardEnabled": false,
+                                          "preferredTillId": 75216507,
+                                          "targetEntity": "TRANSACTION",
+                                          "targetType": "GROSS_SALES",
+                                          "defaultValue": "1000"
+                                      }
+                                  ]
+                              },
+                              {
+                                  "id": "sub_activity_1770015878202",
+                                  "name": "Sub-Activity 2",
+                                  "type": "SINGLE",
+                                  "event": "VoucherRedemption",
+                                  "expJSON": "{\n  \"arity\": \"binary_operation\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"==\",\n  \"operands\": [\n    {\n      \"arity\": \"object_dereference\",\n      \"type\": \"integer:number:primitive\",\n      \"operands\": [\n        {\n          \"arity\": \"name\",\n          \"type\": \"couponRedemptionEvent:object:primitive\",\n          \"value\": \"currentEvent\"\n        },\n        {\n          \"arity\": \"name\",\n          \"type\": \"integer:number:primitive\",\n          \"value\": \"redeemedCouponSeriesId\"\n        }\n      ]\n    },\n    {\n      \"arity\": \"literal\",\n      \"type\": \"number:primitive\",\n      \"value\": \"100\"\n    }\n  ]\n}",
+                                  "milestones": [
+                                      {
+                                          "name": "Group Promotion~Sub-Activity 2~Milestone 1770015878",
+                                          "trackingType": "DEFAULT",
+                                          "leaderboardEnabled": false,
+                                          "preferredTillId": 75216507,
+                                          "targetEntity": "EVENT",
+                                          "targetType": "COUNT",
+                                          "defaultValue": "1"
+                                      }
+                                  ]
+                              }
+                          ]
+                      }
+                  ],
+                  "workflowMetadata": {
+                      "optin": {},
+                      "enrolment": {}
+                  }
+              }'
+            language: shell
+            name: Group of activities
+        samples-languages:
+          - shell
+components: {}
+x-readme: {}

@@ -1,0 +1,101 @@
+openapi: 3.1.0
+info:
+  title: Cancel Cart Evaluation - Cart Promotion
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  "/v1/promotions/customer/{customerId}/evaluation/{evaluationId}/cancel":
+    put:
+      summary: Cancel Cart Evaluation - Cart Promotion
+      description: This API is used to cancel pending carts where a promotion is locked.
+      operationId: post-cancel-cart-evaluation
+      parameters:
+      - name: customerId
+        in: path
+        description: Unique Identifier of the customer
+        schema:
+          type: string
+        required: true
+      - name: evaluationId
+        in: path
+        description: Unique identifier that is generated when a cart evaluation is
+          performed.
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"data\": {\n        \"status\": true,\n        \"\
+                    code\": 201,\n        \"message\": \"Successfully closed pending\
+                    \ cart.\"\n    },\n    \"errors\": []\n}"
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      status:
+                        type: boolean
+                        example: true
+                        default: true
+                      code:
+                        type: integer
+                        example: 201
+                        default: 0
+                      message:
+                        type: string
+                        example: Successfully closed pending cart.
+                  errors:
+                    type: array
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"errors\": [\n        {\n            \"code\": 404,\n\
+                    \            \"message\": \"Passed evaluation log id is not found\"\
+                    \n        }\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          example: 404
+                          default: 0
+                        message:
+                          type: string
+                          example: Passed evaluation log id is not found
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/customer/565039518/evaluations/67e3dd673919452f135e2f23/cancel?format=json'\
+            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
+            \ application/json' \\\n--header 'accept: application/json' \\\n--header\
+            \ 'Authorization: Basic UHJlcmYV9zaW5naDoyZmFhZmZjNjY5ZDRjMTc5Y2NlMzNhYzc5OTBjMTQ1Ng=='\
+            \ \\\n--header 'Cookie: CS=2c807081dddb4e7ca19263eea37c6836; _cfuvid=vOR_5OPEjCb_tkeMx.ChSLrA0y5Twfkp2vPk7fEHVxc-1738753364650-0.0.1.1-604800000;\
+            \ _cfuvid=zP7.7RFADYbKBhOOOXaxjPMpBmiYK5v1mxmI_5t6N1g-1742997587555-0.0.1.1-604800000'\n"
+        samples-languages:
+        - curl
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

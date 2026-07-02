@@ -1,0 +1,65 @@
+openapi: 3.1.0
+info:
+  title: Enable search index of older data
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  "/api_gateway/cortex/v1/bulk/trigger/{id}":
+    post:
+      summary: Enable search index of older data
+      description: This allows you to enable the data retention policy.
+      operationId: enable-bulk-trigger
+      parameters:
+      - name: id
+        in: path
+        description: The unique search identifier obtained during creation of search
+          criteria.
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Enabled older data indexing:
+                  value: "{\n    \"data\": true,\n    \"errors\": []\n}"
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: boolean
+                    example: true
+                    default: true
+                  errors:
+                    type: array
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "https://eu.api.capillarytech.com/api_gateway/cortex/v1/bulk/trigger/64b117d756bb3f20312aae7f"
+          name: Enable indexing of older data
+        samples-languages:
+        - curl
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

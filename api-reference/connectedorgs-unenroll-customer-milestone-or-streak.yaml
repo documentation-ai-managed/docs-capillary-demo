@@ -1,0 +1,106 @@
+openapi: 3.1.0
+info:
+  title: Unenroll a Customer to from Milestone or Streak
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  "/api_gateway/intouch-api-v3/v3.1/targetGroups/{targetGroupId}/targets/{targetId}/unEnroll":
+    post:
+      summary: Unenroll a Customer to from Milestone or Streak
+      description: ''
+      operationId: connectedorgs-unenroll-customer-milestone-or-streak
+      parameters:
+      - name: targetGroupId
+        in: path
+        description: The ID of the target group associated with the item.
+        schema:
+          type: integer
+          format: int32
+        required: true
+      - name: targetId
+        in: path
+        description: The ID of the target associated.
+        schema:
+          type: integer
+          format: int32
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              properties:
+                customerId:
+                  type: string
+                  description: Unique ID of the customer.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"data\": 345651201,\n    \"errors\": null,\n   \
+                    \ \"warnings\": null\n}"
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: integer
+                    example: 345651201
+                    default: 0
+                  errors: {}
+                  warnings: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"data\": null,\n    \"errors\": [\n        {\n \
+                    \           \"code\": 310017,\n            \"message\": \"Target\
+                    \ group not found or deactivated\"\n        },\n        {\n  \
+                    \          \"code\": 310018,\n            \"message\": \"Target\
+                    \ rule not found\"\n        }\n    ],\n    \"warnings\": null\n\
+                    }"
+              schema:
+                type: object
+                properties:
+                  data: {}
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          example: 310017
+                          default: 0
+                        message:
+                          type: string
+                          example: Target group not found or deactivated
+                  warnings: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl --location 'host/api_gateway/intouch-api-v3/v3.1/targetGroups/58378/targets/124370/unEnroll'\
+            \ \\\n--header 'Content-Type: application/json' \\\n--header 'DATA-SCOPE:\
+            \ SELF' \\\n--header 'CONNECTED-ORGS: 1252' \\\n--data '[\n    {\n   \
+            \     \"customerId\":17294712\n    }\n]'"
+          name: cURL
+        samples-languages:
+        - curl
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

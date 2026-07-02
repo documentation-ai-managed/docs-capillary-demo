@@ -1,0 +1,191 @@
+openapi: 3.1.0
+info:
+  title: Get Custom Field Values for TransactionAdd event
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  /das/getTransactionAddExplodeLedger:
+    get:
+      summary: Get Custom Field Values for TransactionAdd event
+      description: ''
+      operationId: get-custom-field-for-transaction-add-event
+      parameters:
+      - name: entity_id
+        in: query
+        description: Customer ID of the customer.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: cf_names
+        in: query
+        description: Custom field names for which to retrieve values.
+        required: true
+        schema:
+          type: string
+      - name: event_log_ids
+        in: query
+        description: Unique identifier generated for the event at the time of its
+          creation.
+        required: true
+        schema:
+          type: string
+      - name: count
+        in: query
+        description: Number of results to display per page. The default value is 10.
+          The maximum supported value is 100.
+        schema:
+          type: integer
+          format: int32
+      - name: page
+        in: query
+        description: "Retrieve details of a specific page. Page count starts from\
+          \ 1.  Example: page=2 retrieves data on page 2."
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Sample Response:
+                  value: "{\n    \"request_id\": \"1bbd0bb7-de10-4fa4-8ba2-8b44aee40f9b\"\
+                    ,\n    \"data\": {\n        \"records\": [\n            {\n  \
+                    \              \"fields\": {\n                    \"eventTypeId\"\
+                    : {\n                        \"number_value\": 15\n          \
+                    \          },\n                    \"billId\": {\n           \
+                    \             \"number_value\": 2152306126\n                 \
+                    \   },\n                    \"customerId\": {\n              \
+                    \          \"number_value\": 387970841\n                    },\n\
+                    \                    \"eventTime\": {\n                      \
+                    \  \"number_value\": 1738481105000\n                    },\n \
+                    \                   \"customFieldId\": {\n                   \
+                    \     \"number_value\": 6212\n                    },\n       \
+                    \             \"eventLogId\": {\n                        \"number_value\"\
+                    : 38769078\n                    },\n                    \"tillId\"\
+                    : {\n                        \"number_value\": 50692627\n    \
+                    \                },\n                    \"customFieldValue\"\
+                    : {\n                        \"string_value\": \"CREDIT\"\n  \
+                    \                  },\n                    \"customFieldName\"\
+                    : {\n                        \"string_value\": \"ledgerentryname\"\
+                    \n                    },\n                    \"uniqueId\": {\n\
+                    \                        \"string_value\": \"tAfisFBDFB\"\n  \
+                    \                  },\n                    \"processingTime\"\
+                    : {\n                        \"number_value\": 1738481105000\n\
+                    \                    }\n                }\n            }\n   \
+                    \     ]\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                    example: 1bbd0bb7-de10-4fa4-8ba2-8b44aee40f9b
+                  data:
+                    type: object
+                    properties:
+                      records:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            fields:
+                              type: object
+                              properties:
+                                eventTypeId:
+                                  type: object
+                                  properties:
+                                    number_value:
+                                      type: integer
+                                      example: 15
+                                      default: 0
+                                billId:
+                                  type: object
+                                  properties:
+                                    number_value:
+                                      type: integer
+                                      example: 2152306126
+                                      default: 0
+                                customerId:
+                                  type: object
+                                  properties:
+                                    number_value:
+                                      type: integer
+                                      example: 387970841
+                                      default: 0
+                                eventTime:
+                                  type: object
+                                  properties:
+                                    number_value:
+                                      type: integer
+                                      example: 1738481105000
+                                      default: 0
+                                customFieldId:
+                                  type: object
+                                  properties:
+                                    number_value:
+                                      type: integer
+                                      example: 6212
+                                      default: 0
+                                eventLogId:
+                                  type: object
+                                  properties:
+                                    number_value:
+                                      type: integer
+                                      example: 38769078
+                                      default: 0
+                                tillId:
+                                  type: object
+                                  properties:
+                                    number_value:
+                                      type: integer
+                                      example: 50692627
+                                      default: 0
+                                customFieldValue:
+                                  type: object
+                                  properties:
+                                    string_value:
+                                      type: string
+                                      example: CREDIT
+                                customFieldName:
+                                  type: object
+                                  properties:
+                                    string_value:
+                                      type: string
+                                      example: ledgerentryname
+                                uniqueId:
+                                  type: object
+                                  properties:
+                                    string_value:
+                                      type: string
+                                      example: tAfisFBDFB
+                                processingTime:
+                                  type: object
+                                  properties:
+                                    number_value:
+                                      type: integer
+                                      example: 1738481105000
+                                      default: 0
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

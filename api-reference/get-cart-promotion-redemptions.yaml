@@ -1,0 +1,70 @@
+openapi: 3.1.0
+info:
+  title: Get Cart Promotion Redemptions
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  /api_gateway/v1/promotions/redemptions:
+    get:
+      summary: Get Cart Promotion Redemptions
+      description: Retrieves all promotion redemptions.
+      operationId: get-cart-promotion-redemptions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                RAW_BODY:
+                  type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    data:
+                    - id: 69ba4047e858de5b297c39ab
+                      orgId: 100737
+                      promotionId: 69ba4011eed927720584cd3b
+                      promotionName: Test Discount Promo3334
+                      code: ALAWW
+                      customerId: 566881933
+                      active: true
+                      createdOn: 1773813831669
+                      createdOnISO: "2026-03-18T06:03:51Z"
+                      validTill: 1774656000000
+                      validTillISO: "2026-03-28T00:00:00Z"
+                      mode: DISCOUNT
+                      redeemableFrom: 1773813831669
+                      redeemableFromISO: "2026-03-18T06:03:51Z"
+                      restrictions:
+                        Code:
+                        - kpi: REDEMPTION
+                          maxLimit: '1.000000'
+                          remainingRedemption: '1.000000'
+                          tempRedemption: '0.000000'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

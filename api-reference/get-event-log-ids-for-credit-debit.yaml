@@ -1,0 +1,203 @@
+openapi: 3.1.0
+info:
+  title: Get Event Log IDs with Credit or Debit for Points
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  /das/getLedgerEntriesWithEventId:
+    get:
+      summary: Get Event Log IDs with Credit or Debit for Points
+      description: ''
+      operationId: get-event-log-ids-for-credit-debit
+      parameters:
+      - name: ledger_entry_types
+        in: query
+        description: "Type of entry recorded in a customer's points ledger. Values:\
+          \ CREDIT, DEBIT"
+        required: true
+        schema:
+          type: string
+      - name: entity_id
+        in: query
+        description: Customer ID of the customer.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: end_date
+        in: query
+        description: "Last date to which you want to retrieve the ledger information.\
+          \ **Format**: YYYY-MM-DD.   **Example**: 2025-06-22"
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: start_date
+        in: query
+        description: "Start date to which you want to retrieve the ledger information.\
+          \ **Format**: YYYY-MM-DD.   **Example**: 2024-01-01"
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: till_ids
+        in: query
+        description: Till IDs used to filter the results.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: is_filter_not_based_on_date
+        in: query
+        description: "Indicates whether the API should apply a date filter.  If set\
+          \ to 1, the API does not apply any date filter. However, you must still\
+          \ pass dummy values for startDate and endDate Example, 2025-01-01.  If set\
+          \ to 0, the API filters the results based on the provided date range. In\
+          \ this case, pass the actual startDate and endDate values Example: 2024-04-01\
+          \ to 2025-03-31."
+        required: true
+        schema:
+          type: boolean
+      - name: is_till_not_present
+        in: query
+        description: "Indicates whether the API should ignore filtering by till ID.\
+          \  If set to 1, the API does not apply a till ID filter. In this case, pass\
+          \ till_ids = -1.  If set to 0, the API filters results based on the specified\
+          \ till IDs. Provide one or more comma-separated values in the till_ids parameter.\
+          \ Example:1234323432,8759345333."
+        required: true
+        schema:
+          type: boolean
+      - name: page
+        in: query
+        description: "Retrieve details of a specific page. Page count starts from\
+          \ 1.  Example: page=2 retrieves data on page 2."
+        schema:
+          type: integer
+          format: int32
+      - name: count
+        in: query
+        description: Number of results to display per page. The default value is 10.
+          The maximum supported value is 100.
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Sample Response:
+                  value: "{\n    \"request_id\": \"39dbfc61-4e8b-4c5c-a1ee-913c99fb46e7\"\
+                    ,\n    \"data\": {\n        \"records\": [\n            {\n  \
+                    \              \"fields\": {\n                    \"ledgerEntryType\"\
+                    : {\n                        \"string_value\": \"DEBIT\"\n   \
+                    \                 },\n                    \"cpsId\": {\n     \
+                    \                   \"number_value\": 85912160\n             \
+                    \       },\n                    \"configMetadata\": {\n      \
+                    \                  \"null_value\": \"NULL_VALUE\"\n          \
+                    \          },\n                    \"pointsLedgerId\": {\n   \
+                    \                     \"number_value\": 65152554\n           \
+                    \         },\n                    \"createdOn\": {\n         \
+                    \               \"number_value\": 1749573240000\n            \
+                    \        },\n                    \"pointsCategoryName\": {\n \
+                    \                       \"string_value\": \"Main\"\n         \
+                    \           },\n                    \"eventSubjectId\": {\n  \
+                    \                      \"number_value\": 2152317880\n        \
+                    \            },\n                    \"processingTime\": {\n \
+                    \                       \"number_value\": 1749105748000\n    \
+                    \                },\n                    \"points\": {\n     \
+                    \                   \"number_value\": 31\n                   \
+                    \ },\n                    \"categoryType\": {\n              \
+                    \          \"string_value\": \"REGULAR_POINTS\"\n            \
+                    \        },\n                    \"eventTypeId\": {\n        \
+                    \                \"number_value\": 5\n                    },\n\
+                    \                    \"sourceProgramId\": {\n                \
+                    \        \"number_value\": 2809\n                    },\n    \
+                    \                \"entityMetadata\": {\n                     \
+                    \   \"string_value\": \"{\\\\\"pointInTimeSlabs\\\\\": []}\"\n\
+                    \                    },\n                    \"requestId\": {\n\
+                    \                        \"string_value\": \"6ad7d91f9b543d5adf0cd4c90de35d0b\"\
+                    \n                    },\n                    \"customerId\":\
+                    \ {\n                        \"number_value\": 387457911\n   \
+                    \                 },\n                    \"eventTime\": {\n \
+                    \                       \"number_value\": 1749105748000\n    \
+                    \                },\n                    \"eventName\": {\n  \
+                    \                      \"string_value\": \"ReturnBill\"\n    \
+                    \                },\n                    \"genericEventId\": {\n\
+                    \                        \"null_value\": \"NULL_VALUE\"\n    \
+                    \                },\n                    \"eventLogId\": {\n \
+                    \                       \"number_value\": 38943074\n         \
+                    \           },\n                    \"tillId\": {\n          \
+                    \              \"number_value\": 50691660\n                  \
+                    \  },\n                    \"uniqueId\": {\n                 \
+                    \       \"string_value\": \"fFOIZvZwef\"\n                   \
+                    \ }\n                }\n            },\n            {\n      \
+                    \          \"fields\": {\n                    \"ledgerEntryType\"\
+                    : {\n                        \"string_value\": \"CREDIT\"\n  \
+                    \                  },\n                    \"cpsId\": {\n    \
+                    \                    \"number_value\": 85912160\n            \
+                    \        },\n                    \"configMetadata\": {\n     \
+                    \                   \"null_value\": \"NULL_VALUE\"\n         \
+                    \           },\n                    \"pointsLedgerId\": {\n  \
+                    \                      \"number_value\": 65152551\n          \
+                    \          },\n                    \"createdOn\": {\n        \
+                    \                \"number_value\": 1749573203000\n           \
+                    \         },\n                    \"pointsCategoryName\": {\n\
+                    \                        \"string_value\": \"Main\"\n        \
+                    \            },\n                    \"eventSubjectId\": {\n \
+                    \                       \"number_value\": 2152317882\n       \
+                    \             },\n                    \"processingTime\": {\n\
+                    \                        \"number_value\": 1748958294000\n   \
+                    \                 },\n                    \"points\": {\n    \
+                    \                    \"number_value\": 31\n                  \
+                    \  },\n                    \"categoryType\": {\n             \
+                    \           \"string_value\": \"REGULAR_POINTS\"\n           \
+                    \         },\n                    \"eventTypeId\": {\n       \
+                    \                 \"number_value\": 15\n                    },\n\
+                    \                    \"sourceProgramId\": {\n                \
+                    \        \"number_value\": 2809\n                    },\n    \
+                    \                \"entityMetadata\": {\n                     \
+                    \   \"string_value\": \"{\\\\\"pointInTimeSlabs\\\\\": [{\\\\\"\
+                    programId\\\\\": 2809, \\\\\"isDefaultProgram\\\\\": true, \\\\\
+                    \"pointInTimeSlabName\\\\\": \\\\\"Diamond\\\\\", \\\\\"pointInTimeSlabNumber\\\
+                    \\\": 5}]}\"\n                    },\n                    \"requestId\"\
+                    : {\n                        \"string_value\": \"2d27cb2119f7ca4a0c7733b6baccd20b\"\
+                    \n                    },\n                    \"customerId\":\
+                    \ {\n                        \"number_value\": 387457911\n   \
+                    \                 },\n                    \"eventTime\": {\n \
+                    \                       \"number_value\": 1748958294000\n    \
+                    \                },\n                    \"eventName\": {\n  \
+                    \                      \"string_value\": \"TransactionAdd\"\n\
+                    \                    },\n                    \"genericEventId\"\
+                    : {\n                        \"null_value\": \"NULL_VALUE\"\n\
+                    \                    },\n                    \"eventLogId\": {\n\
+                    \                        \"number_value\": 38943071\n        \
+                    \            },\n                    \"tillId\": {\n         \
+                    \               \"number_value\": 50691660\n                 \
+                    \   },\n                    \"uniqueId\": {\n                \
+                    \        \"string_value\": \"jbASNg5B0x\"\n                  \
+                    \  }\n                }\n            }\n        ]\n    }\n}"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

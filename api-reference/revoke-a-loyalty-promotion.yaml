@@ -1,0 +1,446 @@
+openapi: 3.0.1
+info:
+  title: Revoke a Loyalty Promotion
+  version: 1.0.0
+  description: API specification for POST /v3/promotions/revoke
+servers:
+  - url: https://{host}
+paths:
+  /v3/promotions/revoke:
+    post:
+      summary: Revoke a Loyalty Promotion
+      description: Revokes a customer's enrollment or opt-in from a v3 unified loyalty promotion.
+      operationId: postV3promotionsRevoke
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+            example: Basic {token}
+        - name: Content-Type
+          in: header
+          required: true
+          schema:
+            type: string
+            example: application/json
+        - name: X-CAP-API-AUTH-ENTITY-ID
+          in: header
+          required: false
+          schema:
+            type: integer
+          description: Numeric till ID to attribute the revoke to a specific till. Must be used alongside X-CAP-API-ATTRIBUTION-TILL-CODE when authenticating via OAuth.
+        - name: revokeAllEnrollments
+          in: query
+          required: false
+          schema:
+            type: boolean
+            default: false
+          description: When true, revokes all active enrollments for the customer on the specified promotion. Only valid with action=REVOKE_ENROLL. Cannot be used together with revokeAllOptIns=true.
+        - name: revokeAllOptIns
+          in: query
+          required: false
+          schema:
+            type: boolean
+            default: false
+          description: When true, revokes all active opt-ins for the customer on the specified promotion. Only valid with action=REVOKE_OPTIN. Cannot be used together with revokeAllEnrollments=true.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - action
+                - programId
+                - promotion
+                - customers
+              properties:
+                requestId:
+                  type: string
+                  maxLength: 50
+                  description: A plain string reference identifier for this revoke request. Each requestId must be unique per org — duplicate values are rejected.
+                  example: revoke-enroll-20260512-001
+                action:
+                  type: string
+                  enum:
+                    - REVOKE_ENROLL
+                    - REVOKE_OPTIN
+                  description: The revoke action to perform. Case-sensitive.
+                  example: REVOKE_ENROLL
+                programId:
+                  type: integer
+                  format: int64
+                  description: Unique identifier of the loyalty program.
+                  example: 3390
+                promotion:
+                  type: object
+                  description: Identifies the promotion to revoke from. Provide exactly one of promotionId or promotionIdentifier.
+                  properties:
+                    promotionId:
+                      type: integer
+                      format: int64
+                      description: Numeric identifier of the promotion.
+                      example: 1133617579
+                    promotionIdentifier:
+                      type: string
+                      description: UUID string identifier of the promotion.
+                      example: 46be2caf-1227-44bc-a770-5fa194dc14ea
+                customers:
+                  type: array
+                  description: List of customers to revoke. Exactly 1 entry is supported in the current release.
+                  maxItems: 1
+                  items:
+                    type: object
+                    required:
+                      - identifierName
+                      - identifierValue
+                    properties:
+                      identifierName:
+                        type: string
+                        enum:
+                          - id
+                          - mobile
+                          - email
+                          - externalId
+                        description: Customer identifier type.
+                        example: id
+                      identifierValue:
+                        type: string
+                        description: Value for the customer identifier.
+                        example: "388995213"
+                      source:
+                        type: string
+                        enum:
+                          - FACEBOOK
+                          - WEB_ENGAGE
+                          - INSTORE
+                          - MARTJACK
+                          - TMALL
+                          - TAOBAO
+                          - JD
+                          - ECOMMERCE
+                          - WEBSITE
+                          - LINE
+                          - ALL
+                        default: INSTORE
+                        description: Source of the customer's registration.
+                        example: INSTORE
+                      enrollmentIds:
+                        type: array
+                        maxItems: 10
+                        description: Enrollment IDs to revoke. Required for REVOKE_ENROLL unless revokeAllEnrollments=true. Max 10.
+                        items:
+                          type: integer
+                          format: int64
+                        example: [227111]
+                      optInIds:
+                        type: array
+                        maxItems: 10
+                        description: Opt-in IDs to revoke. Required for REVOKE_OPTIN unless revokeAllOptIns=true. Max 10.
+                        items:
+                          type: integer
+                          format: int64
+                        example: [188472]
+                optOutDate:
+                  type: string
+                  description: ISO-8601 timestamp to retroactively stamp as the revoke date. Must not be in the future.
+                  example: "2026-04-25T00:59:35+05:30"
+                storeUnitId:
+                  type: integer
+                  format: int64
+                  description: Till ID to stamp on the event log for the revoke and any cascade. Falls back to the authenticated user's till when omitted.
+                  example: 75032301
+                sourceDetails:
+                  type: object
+                  description: Audit attribution for the revoke operation.
+                  properties:
+                    source:
+                      type: string
+                      maxLength: 50
+                      description: Channel or system performing the revoke.
+                      example: CRM_SYSTEM
+                    sourceId:
+                      type: string
+                      maxLength: 50
+                      description: Workflow or correlation identifier.
+                      example: WF-20260512-001
+                    sourceActivity:
+                      type: string
+                      maxLength: 50
+                      description: Activity tag from the calling system.
+                      example: CUSTOMER_SUPPORT_REVOKE
+                    sourceMetadata:
+                      type: object
+                      description: Free-form key-value audit metadata to associate with the revoke operation.
+                      properties:
+                        revokedBy:
+                          type: integer
+                          format: int64
+                          description: ID of the admin user performing the revoke.
+                          example: 50045123
+                        reason:
+                          type: string
+                          maxLength: 250
+                          description: Reason for the revoke.
+                          example: Customer requested removal from promotion
+                        notes:
+                          type: string
+                          maxLength: 250
+                          description: Additional notes.
+                          example: Verified via support ticket #98765
+      responses:
+        '200':
+          description: Revoke processed. Check data.status and customerResults[].status for per-customer outcomes.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        example: revoke-enroll-20260512-001
+                      action:
+                        type: string
+                        example: REVOKE_ENROLL
+                      status:
+                        type: string
+                        enum:
+                          - SUCCESS
+                          - FAILED
+                          - PARTIAL_SUCCESS
+                        example: SUCCESS
+                      promotionId:
+                        type: integer
+                        format: int64
+                        example: 1133617579
+                      promotionIdentifier:
+                        type: string
+                        example: 46be2caf-1227-44bc-a770-5fa194dc14ea
+                      totalCount:
+                        type: integer
+                        example: 1
+                      failureCount:
+                        type: integer
+                        example: 0
+                      customerResults:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            identifierName:
+                              type: string
+                              example: id
+                            identifierValue:
+                              type: string
+                              example: "388995213"
+                            customerId:
+                              type: integer
+                              format: int64
+                              example: 388995213
+                            revokedEnrollmentIds:
+                              type: array
+                              items:
+                                type: integer
+                                format: int64
+                              example: [227111]
+                            revokedOptInIds:
+                              type: array
+                              items:
+                                type: integer
+                                format: int64
+                              example: []
+                            status:
+                              type: string
+                              enum:
+                                - SUCCESS
+                                - FAILED
+                              example: SUCCESS
+                            errors:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  code:
+                                    type: integer
+                                  message:
+                                    type: string
+                              example: []
+                            warnings:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  message:
+                                    type: string
+                              example: []
+                  errors:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                        message:
+                          type: string
+                    example: null
+                  warnings:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        message:
+                          type: string
+                    example: null
+              examples:
+                REVOKE_ENROLL success:
+                  value:
+                    data:
+                      requestId: revoke-enroll-20260512-001
+                      action: REVOKE_ENROLL
+                      status: SUCCESS
+                      promotionId: 1133617579
+                      promotionIdentifier: 46be2caf-1227-44bc-a770-5fa194dc14ea
+                      customerResults:
+                        - identifierName: id
+                          identifierValue: "388995213"
+                          customerId: 388995213
+                          revokedEnrollmentIds: [227111]
+                          revokedOptInIds: []
+                          status: SUCCESS
+                          errors: []
+                          warnings: []
+                      totalCount: 1
+                      failureCount: 0
+                    errors: null
+                    warnings: null
+                REVOKE_ENROLL with opt-in cascade:
+                  value:
+                    data:
+                      requestId: revoke-enroll-20260512-002
+                      action: REVOKE_ENROLL
+                      status: SUCCESS
+                      promotionId: 1133617580
+                      promotionIdentifier: a7b95d5d-d756-49aa-92f8-7b875ab99d78
+                      customerResults:
+                        - identifierName: id
+                          identifierValue: "388995215"
+                          customerId: 388995215
+                          revokedEnrollmentIds: [227160]
+                          revokedOptInIds: [188711]
+                          status: SUCCESS
+                          errors: []
+                          warnings: []
+                      totalCount: 1
+                      failureCount: 0
+                    errors: null
+                    warnings: null
+                Per-customer failure:
+                  value:
+                    data:
+                      requestId: revoke-enroll-20260512-003
+                      action: REVOKE_ENROLL
+                      status: FAILED
+                      promotionId: 1133617579
+                      promotionIdentifier: 46be2caf-1227-44bc-a770-5fa194dc14ea
+                      customerResults:
+                        - identifierName: id
+                          identifierValue: "388995213"
+                          customerId: 388995213
+                          revokedEnrollmentIds: []
+                          revokedOptInIds: []
+                          status: FAILED
+                          errors:
+                            - code: 3901
+                              message: "[NO_ACTIVE_ENROLMENT] active/non expired issual not present for the customer (orgId=52023, customerId=388995213)"
+                          warnings: []
+                      totalCount: 1
+                      failureCount: 1
+                    errors: null
+                    warnings: null
+        '400':
+          description: Request-level validation failure.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    nullable: true
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                        message:
+                          type: string
+                  warnings:
+                    type: array
+                    nullable: true
+              examples:
+                Invalid action:
+                  value:
+                    data: null
+                    errors:
+                      - code: 400
+                        message: "[INVALID_ACTION] action must be REVOKE_ENROLL or REVOKE_OPTIN"
+                    warnings: null
+                Duplicate requestId:
+                  value:
+                    data: null
+                    errors:
+                      - code: 558
+                        message: "[DUPLICATE_REQUEST_ID] Duplicate requestId"
+                    warnings: null
+      x-readme:
+        code-samples:
+          - language: shell
+            name: REVOKE_ENROLL
+            code: |-
+              curl -X POST "https://{host}/v3/promotions/revoke" \
+                -H "Authorization: Basic {token}" \
+                -H "Content-Type: application/json" \
+                -d '{
+                  "requestId": "revoke-enroll-20260512-001",
+                  "action": "REVOKE_ENROLL",
+                  "programId": 3390,
+                  "promotion": {
+                    "promotionId": 1133617579
+                  },
+                  "customers": [
+                    {
+                      "identifierName": "id",
+                      "identifierValue": "388995213",
+                      "enrollmentIds": [227111]
+                    }
+                  ]
+                }'
+          - language: shell
+            name: REVOKE_OPTIN
+            code: |-
+              curl -X POST "https://{host}/v3/promotions/revoke" \
+                -H "Authorization: Basic {token}" \
+                -H "Content-Type: application/json" \
+                -d '{
+                  "requestId": "revoke-optin-20260512-001",
+                  "action": "REVOKE_OPTIN",
+                  "programId": 3390,
+                  "promotion": {
+                    "promotionId": 1133617581
+                  },
+                  "customers": [
+                    {
+                      "identifierName": "id",
+                      "identifierValue": "388995216",
+                      "optInIds": [188472]
+                    }
+                  ]
+                }'

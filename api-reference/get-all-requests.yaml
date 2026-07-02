@@ -1,0 +1,124 @@
+openapi: 3.1.0
+info:
+  title: Get details of all requests
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  /api_gateway/v2/request-workflow/requests:
+    get:
+      summary: Get details of all requests
+      description: This API enables you to retrieve details of the all requests.
+      operationId: get-all-requests
+      parameters:
+      - name: userId
+        in: query
+        description: User ID of the customer to whom the request was created.
+        schema:
+          type: string
+      - name: sortBy
+        in: query
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        description: Specifies the sorting order (ascending/descending).
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+      - name: conceptId
+        in: query
+        description: Filters requests by concept ID.
+        schema:
+          type: string
+      - name: zoneId
+        in: query
+        description: Filters requests by zone ID.
+        schema:
+          type: string
+      - name: storeId
+        in: query
+        description: Filters requests by store ID.
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: Specifies the start date for the date range (YYYY-MM-DD format)
+        schema:
+          type: string
+          format: date
+      - name: endDate
+        in: query
+        description: Specifies the end date for the date range (YYYY-MM-DD format)
+        schema:
+          type: string
+          format: date
+      - name: states
+        in: query
+        description: Filters requests by their states.
+        schema:
+          type: string
+          enum:
+          - approved
+          - rejected
+      - name: limit
+        in: query
+        description: Specifies the maximum number of results to return.
+        schema:
+          type: string
+      - name: PageNo
+        in: query
+        description: Specifies the page number for pagination.
+        schema:
+          type: integer
+          format: int32
+      - name: requestType
+        in: query
+        description: Filters requests by their type.
+        schema:
+          type: string
+          enum:
+          - CUSTOMER-STATUS-CHANGE
+          - POINTS-REDEMPTION
+          - GOODWILL-POINTS
+          - EARN-BADGE
+          - ISSUE-BADGE
+      - name: tillId
+        in: query
+        description: Filters requests by till ID.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

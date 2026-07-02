@@ -1,0 +1,28 @@
+---
+title: Partner Program Slab History Fact Table
+---
+
+
+**Databricks Table Name:** supplementary\_partner\_program\_enrollment
+
+
+
+| Column Name                                   | Data Type | Description                                                                                                                                            | Linked Table(s)                       |
+| :-------------------------------------------- | :-------- | :----------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------ |
+| auto\_update\_time\_supp\_pp\_enrollment      | bigint    | Indicates the last update to the loyalty table record in Unix timestamp format.                                                                        | -                                     |
+| dim\_event\_date\_id                          | bigint    | Indicates the date when the slab change occurred.                                                                                                      | [date](/dimensions-tables#date)       |
+| dim\_event\_program\_id                       | Integer   | The unique identifier of the program associated with the customer's slab change.                                                                       | -                                     |
+| dim\_event\_user\_id                          | bigint    | The unique identifier/Customer ID of the user, set internally by the Capillary system.                                                                 | -                                     |
+| dim\_event\_zone\_till\_id                    | bigint    | The till ID of the  terminal within a store, where the slab change occurred. It distinguishes one checkout location from another within the same store | -                                     |
+| dim\_external\_partner\_program\_id           | Integer   | Indicates the external partner program associated with the slab history.                                                                               | -                                     |
+| dim\_last\_slab\_action\_id                   | String    | The unique identifier of the action associated with the slab change such as tier upgrade, tier renewal and tier upgrade.                               | -                                     |
+| dim\_latest\_updated\_date\_id                | bigint    | The unique identifier of the date when the data for this row was last changed in the source table.                                                     | -                                     |
+| dim\_latest\_updated\_time\_id                | bigint    | Indicates the time when the data for this row was last changed in the source table in Unix timestamp format.                                           | -                                     |
+| dim\_partner\_program\_id                     | Integer   | Indicates dimension ID for the partner program associated with the slab history.                                                                       | -                                     |
+| dim\_partner\_program\_tier\_expiry\_date\_id | Date      | Indicates the dimension ID for the partner program tier expiry date.                                                                                   | -                                     |
+| id                                            | Bigint    | A unique identifier of the table record, set by the Capillary system.                                                                                  | -                                     |
+| partner\_program\_tier\_id                    | int       | Indicates the unique identifier of the partner program tier (slab) to which the customer belongs in this history record.                               | -                                     |
+| is\_active                                    | boolean   | Indicates whether the program is currently active.                                                                                                     | [program](/dimensions-tables#program) |
+| is\_linked                                    | boolean   | Indicates whether the program is linked.                                                                                                               | -                                     |
+| year                                          | integer   | Indicates the year of the slab history record.                                                                                                         | [date](/docs/dimension-tables#date)   |
+

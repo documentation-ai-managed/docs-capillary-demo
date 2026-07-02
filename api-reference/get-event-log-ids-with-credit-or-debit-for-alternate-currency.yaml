@@ -1,0 +1,121 @@
+openapi: 3.1.0
+info:
+  title: Get Event Log IDs with Credit or Debit for Alternate Currency
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  /das/getACLedgerEntriesWithEventId:
+    get:
+      summary: Get Event Log IDs with Credit or Debit for Alternate Currency
+      description: ''
+      operationId: get-event-log-ids-with-credit-or-debit-for-alternate-currency
+      parameters:
+      - name: ledger_entry_types
+        in: query
+        description: "Type of entry recorded in a customer's points ledger. Values:\
+          \ CREDIT, DEBIT"
+        required: true
+        schema:
+          type: string
+      - name: entity_id
+        in: query
+        description: Customer ID of the customer.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: end_date
+        in: query
+        description: "Last date to which you want to retrieve the ledger information.\
+          \ **Format**: YYYY-MM-DD.   **Example**: 2025-06-22"
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: start_date
+        in: query
+        description: "Start date to which you want to retrieve the ledger information.\
+          \ **Format**: YYYY-MM-DD.   **Example**: 2024-01-01"
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: alternate_currency_names
+        in: query
+        description: Name of the alternate currency for which ledger information is
+          retrieved.
+        required: true
+        schema:
+          type: string
+      - name: till_ids
+        in: query
+        description: Till IDs used to filter the results.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: is_filter_not_based_on_date
+        in: query
+        description: "Indicates whether the API should apply a date filter.  If set\
+          \ to 1, the API does not apply any date filter. However, you must still\
+          \ pass dummy values for startDate and endDate Example, 2025-01-01.  If set\
+          \ to 0, the API filters the results based on the provided date range. In\
+          \ this case, pass the actual startDate and endDate values Example: 2024-04-01\
+          \ to 2025-03-31."
+        required: true
+        schema:
+          type: boolean
+      - name: is_till_not_present
+        in: query
+        description: "Indicates whether the API should ignore filtering by till ID.\
+          \  If set to 1, the API does not apply a till ID filter. In this case, pass\
+          \ till_ids = -1.  If set to 0, the API filters results based on the specified\
+          \ till IDs. Provide one or more comma-separated values in the till_ids parameter.\
+          \ Example:1234323432,8759345333."
+        required: true
+        schema:
+          type: boolean
+      - name: count
+        in: query
+        description: Number of results to display per page. The default value is 10.
+          The maximum supported value is 100.
+        schema:
+          type: integer
+          format: int32
+      - name: page
+        in: query
+        description: "Retrieve details of a specific page. Page count starts from\
+          \ 1.  Example: page=2 retrieves data on page 2."
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Sample Response:
+                  value: ''
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

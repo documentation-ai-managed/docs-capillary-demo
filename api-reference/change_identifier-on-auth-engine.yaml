@@ -1,0 +1,104 @@
+openapi: 3.1.0
+info:
+  title: Change identifier on Auth engine
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  /auth/v1/user/updateIdentifierValue:
+    post:
+      summary: Change identifier on Auth engine
+      description: This API enables you to change identifier values in the Auth engine
+        database.
+      operationId: change_identifier-on-auth-engine
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - newIdentifierValue
+              - identifierType
+              - identifierValue
+              - brand
+              - token
+              - deviceId
+              properties:
+                newIdentifierValue:
+                  type: string
+                  description: New identifier value for the selected identifier type.
+                identifierType:
+                  type: string
+                  description: Identifier type of the customer.
+                  enum:
+                  - MOBILE
+                  - EMAIL
+                identifierValue:
+                  type: string
+                  description: Old identifier value for the selected identifier type.
+                brand:
+                  type: string
+                  description: Organisation name.
+                token:
+                  type: string
+                  description: Token generated using auth/v1/web/token/generate
+                deviceId:
+                  type: string
+                  description: Unique ID of the device from which the customer has
+                    generated the token.
+            examples:
+              Example body:
+                value:
+                  newIdentifierValue: tom.sawyer@capillarytech.com
+                  identifierType: EMAIL
+                  identifierValue: thomas.sawyer@capillarytech.com
+                  brand: SOLAPIPOCNEW
+                  token: eyJpZHYiOlsiRU1BSUx8c2hhc3dhdHJhbmFqbi5vZGlzaGFAZ21haWwuY29tIl0sImRldiI6IjEyMzQiLCJvcmciOiJTT0xBUElQT0NORVciLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwib2djIjpbIjE0MTh8aW1wb3J0LmRiLjEiXSwiZXhwIjoxNzEyOTM2NjM5LCJpYXQiOjE3MTI5MzMwMzksInJvbCI6IlZJRVcifQ.IjskixLixCAY4FtSiwv8Xphntfx2nLdqDJ4re8CXHcw
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
+                    \   \"code\": 200,\n        \"message\": \"SUCCESS\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+                      code:
+                        type: integer
+                        example: 200
+                        default: 0
+                      message:
+                        type: string
+                        example: SUCCESS
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Invalid identifier type:
+                  value: "Can not deserialize value of type com.capillary.solutions.auth.domain.IdentifierType\
+                    \ from String \"MOBIL\": value not one of declared Enum instance\
+                    \ names: [MOBILE, EMAIL, USERNAME, EXTERNALID]\n at [Source: org.glassfish.jersey.message.internal.ReaderInterceptorExecutor$UnCloseableInputStream@497779b5;\
+                    \ line: 3, column: 21] (through reference chain: com.capillary.solutions.auth.request.ChangeIdentifierRequest[\"\
+                    identifierType\"])"
+      deprecated: false
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

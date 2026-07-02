@@ -1,0 +1,133 @@
+openapi: 3.1.0
+info:
+  title: Validate OTP
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  /auth/v1/otp/validate:
+    post:
+      summary: Validate OTP
+      description: Validates the OTP generated through the `/otp/generate` API. Applicable
+        for mobile app.
+      operationId: validate-otp-2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - identifierType
+              - identifierValue
+              - brand
+              - deviceId
+              - sessionId
+              - otp
+              properties:
+                identifierType:
+                  type: string
+                  description: "Identifier used for token generation. Values: MOBILE,\
+                    \ EMAIL, USERNAME."
+                identifierValue:
+                  type: string
+                  description: Value of the specified identifierType.
+                brand:
+                  type: string
+                  description: Name of the brand/org for which authentication needs
+                    to be verified.
+                deviceId:
+                  type: string
+                  description: Unique ID of the device from which the customer has
+                    generated the token.
+                sessionId:
+                  type: string
+                  description: Session ID generated through the `v1/token/generate`
+                    API.
+                otp:
+                  type: string
+                  description: Validation code received by the customer.
+            examples:
+              Sample POST Body:
+                value:
+                  identifierType: MOBILE
+                  identifierValue: '9940000000'
+                  deviceId: deviceid1
+                  brand: standardapp
+                  sessionId: D-502259d3-d4d6-4458-bc5f-b89d3d8e4c7b
+                  otp: '276889'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
+                    \   \"code\": 200,\n        \"message\": \"SUCCESS\"\n    },\n\
+                    \    \"auth\": {\n        \"token\": \"eyJpZHYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiXSwiZGV2IjoiZGV2aWNlaWQxIiwib3JnIjoiU1RBTkRBUkRBUFAiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI3Njg4MTYiLCJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwiaXNjIjoiZmFsc2UiLCJvZ2MiOlsiMTUxMDYwfHNhLmRlbW8uc29sdXRpb24iXSwiZXhwIjoxNTk3OTQzODU1LCJpYXQiOjE1OTc5NDAyNTUsInJvbCI6IlVTRVIifQ.Wyt_xxlqtmMH3lyReO718sDokngYGp_HSLuiBOyaEds\"\
+                    ,\n        \"key\": \"eyJpZHYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiXSwiZGV2IjoiZGV2aWNlaWQxIiwib3JnIjoiU1RBTkRBUkRBUFAiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI3Njg4MTYiLCJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwiaWF0IjoxNTk3OTQwMjU1LCJyb2wiOiJBVVRIIn0.UKCOU1oFLPsRx5YJRkClIaRVmE1lNDCjuuKQ9nnMdhE\"\
+                    \n    },\n    \"user\": {\n        \"appRegistered\": false,\n\
+                    \        \"sessionId\": null,\n        \"role\": \"USER\",\n \
+                    \       \"userRegisteredForPassword\": false\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+                      code:
+                        type: integer
+                        example: 200
+                        default: 0
+                      message:
+                        type: string
+                        example: SUCCESS
+                  auth:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                        example: eyJpZHYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiXSwiZGV2IjoiZGV2aWNlaWQxIiwib3JnIjoiU1RBTkRBUkRBUFAiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI3Njg4MTYiLCJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwiaXNjIjoiZmFsc2UiLCJvZ2MiOlsiMTUxMDYwfHNhLmRlbW8uc29sdXRpb24iXSwiZXhwIjoxNTk3OTQzODU1LCJpYXQiOjE1OTc5NDAyNTUsInJvbCI6IlVTRVIifQ.Wyt_xxlqtmMH3lyReO718sDokngYGp_HSLuiBOyaEds
+                      key:
+                        type: string
+                        example: eyJpZHYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiXSwiZGV2IjoiZGV2aWNlaWQxIiwib3JnIjoiU1RBTkRBUkRBUFAiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI3Njg4MTYiLCJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwiaWF0IjoxNTk3OTQwMjU1LCJyb2wiOiJBVVRIIn0.UKCOU1oFLPsRx5YJRkClIaRVmE1lNDCjuuKQ9nnMdhE
+                  user:
+                    type: object
+                    properties:
+                      appRegistered:
+                        type: boolean
+                        example: false
+                        default: true
+                      sessionId: {}
+                      role:
+                        type: string
+                        example: USER
+                      userRegisteredForPassword:
+                        type: boolean
+                        example: false
+                        default: true
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

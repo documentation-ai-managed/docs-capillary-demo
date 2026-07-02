@@ -1,0 +1,42 @@
+---
+title: Journeys Fact Table
+---
+
+[Journeys](https://docs.capillarytech.com/docs/journeys) is an engagement automation interface that enables brands to create scenario-based flows to nurture your customers throughout their lifecycle. Journeys are created using [building blocks](https://docs.capillarytech.com/docs/building-blocks-of-a-journey). After the entry trigger, the building blocks define the journey of a customer. Each building block has a specific purpose in the journey.
+
+The journey_block_execution_fact table captures information about each execution of a journey block, including timestamps, journey and block identifiers, user identifiers, and status.
+
+**Databricks Table Name:** journey_block_execution_fact
+
+**Journeys Fact - Entity Relationship Diagram (ERD)**
+
+Zoom in the table for more clarity. Click the table title to view its details.
+
+<SVG src="https://blob-cdn.documentation.ai/org-33a37b13-6e8e-4740-8784-efe392e052a1/doc-f5d2fac6-45c6-4928-b76b-06e4ff784712/1782798890362-emurfnlogvt-journeys-fact-table-erd.svg?fm=auto&auto=compress%2Cformat" />
+
+**Journeys Fact Table**
+
+| **Column Name** | **Data Type** | **Description** | Linked Table |
+| :--- | :---: | :--- | :---: |
+| auto_update_time_journey | bigint | Date and time when the corresponding record in the journeys table available at the source was last updated. It is in the Unix timestamp format. | _ |
+| auto_update_time_journey_block_execution | bigint | Date and time when the corresponding record in the journey_block_execution table available at the source was last updated. It is in the Unix timestamp format. | _ |
+| block_id | string | Unique identifier for the journey meta block. | _ |
+| dim_event_date_id | bigint | Journey block execution start date (that is, the date on which the user started processing the corresponding journey block). | [date](/dimensions-tables#date) |
+| dim_event_time_id | bigint | Journey block execution start time (that is, the time when the user started processing the corresponding journey block). | [time](/dimensions-tables#time) |
+| dim_event_user_id | bigint | Identifier for the user associated with the journey. | [user](/dimensions-tables#users-users) |
+| dim_journeyLevel_id | bigint | Identifier for the user journey level. | _ |
+| dim_journey_block_status_id | bigint | Identifier for the status of the journey block. Possible values are - completed, executing, failed, queued, temporary failure, etc. | [journey block status](/dimensions-tables#journey-block-status) |
+| dim_journey_block_type_id | bigint | Identifier for the type of the journey block. Possible values are - Entry, join, jump, reminder, incentives, whatsapp engagement, email engagement, sms engagement, etc. | [journey block type](/dimensions-tables#journey-block-type) |
+| dim_journey_meta_block_id | string | Identifier of the journey block. It is the combination of journeyMetaId - journeyVersion - blockId. | [journey block](/dimensions-tables#journey-block) |
+| dim_journey_status_id | bigint | Identifier for the status of the user journey. | [journey status](/dimensions-tables#journey-status) |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/row is changed in the source table. | [date](/dimensions-tables#date) |
+| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/row is changed in the source table. | [time](/dimensions-tables#time) |
+| is_control | string | Indicates whether the journey block is part of a control group. Possible values are - 'true' and 'false'. | _ |
+| journey_block_execution_id | string | Unique identifier for the execution of the user journey block. This is the primary key for the table. | _ |
+| journey_id | string | Unique identifier for the user journey. | _ |
+| journey_meta_id | string | Unique identifier for the journey meta. | _ |
+| journey_version | int | Version number of the journey meta. | _ |
+| level_id | string | Identifier for the user journey level. | _ |
+| next_block_id | string | Identifier for the next block id to be executed for the user journey. | _ |
+| year | int | Year of the user journey block execution event. | _ |
+

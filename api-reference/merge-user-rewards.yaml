@@ -1,0 +1,147 @@
+openapi: 3.1.0
+info:
+  title: Merge User Rewards
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  /api_gateway/rewards/core/v1/user-merge:
+    post:
+      summary: Merge User Rewards
+      description: Merge the rewards of two customers
+      operationId: merge-user-rewards
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - fromUserId
+              - toUserId
+              - requestId
+              properties:
+                fromUserId:
+                  type: integer
+                  description: Unique customer ID of the victim customer. This is
+                    the user account from which rewards and their data will be transferred.
+                  format: int64
+                toUserId:
+                  type: integer
+                  description: Unique customer ID of the surviving customer. This
+                    user account receives the rewards and their data data from the
+                    victim account.
+                  format: int64
+                requestId:
+                  type: string
+                  description: A unique, custom ID that you can define to identify
+                    the merge. This ID can be any value of your choice and is used
+                    to track the merge status and handle errors. There is no character
+                    limit.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Successful merge:
+                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
+                    \   \"code\": 200,\n        \"message\": \"User merged successfully\"\
+                    \n    }\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+                      code:
+                        type: integer
+                        example: 200
+                        default: 0
+                      message:
+                        type: string
+                        example: User merged successfully
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                User is already merged:
+                  value: "{\n    \"status\": {\n        \"success\": false,\n    \
+                    \    \"code\": 8012,\n        \"message\": \"User already merged\"\
+                    \n    }\n}"
+                fromUserId / toUserId not provided:
+                  value: "{\n    \"status\": {\n        \"success\": false,\n    \
+                    \    \"code\": 400,\n        \"message\": \"toUserId can't be\
+                    \ null.,fromUserId can't be null.\"\n    }\n}"
+                requestId not provided:
+                  value: "{\n    \"status\": {\n        \"success\": false,\n    \
+                    \    \"code\": 400,\n        \"message\": \"requestId can't be\
+                    \ null.\"\n    }\n}"
+              schema:
+                oneOf:
+                - title: User is already merged
+                  type: object
+                  properties:
+                    status:
+                      type: object
+                      properties:
+                        success:
+                          type: boolean
+                          example: false
+                          default: true
+                        code:
+                          type: integer
+                          example: 8012
+                          default: 0
+                        message:
+                          type: string
+                          example: User already merged
+                - title: fromUserId / toUserId not provided
+                  type: object
+                  properties:
+                    status:
+                      type: object
+                      properties:
+                        success:
+                          type: boolean
+                          example: false
+                          default: true
+                        code:
+                          type: integer
+                          example: 400
+                          default: 0
+                        message:
+                          type: string
+                          example: "toUserId can't be null.,fromUserId can't be null."
+                - title: requestId not provided
+                  type: object
+                  properties:
+                    status:
+                      type: object
+                      properties:
+                        success:
+                          type: boolean
+                          example: false
+                          default: true
+                        code:
+                          type: integer
+                          example: 400
+                          default: 0
+                        message:
+                          type: string
+                          example: "requestId can't be null."
+      deprecated: false
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

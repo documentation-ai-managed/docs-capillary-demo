@@ -1,0 +1,329 @@
+---
+title: Get Customer Promotion Details
+---
+Retrieves a consolidated benefits summary for a specific customer in a loyalty promotion, including points earned by category, alternate currencies, and a unified list of all incentive actions such as rewards, coupons, badges, tier upgrades, and enrolment events.
+
+**What this API supports**
+
+- Retrieve all points, alternate currencies, and incentive actions earned by a customer for a specific promotion in a single response.
+
+- Filter results by promotion activity using the optional `activityId` parameter.
+
+- Returns a unified `incentives` array covering all action types: rewards, coupons, badges, tier upgrades, enrolment, and opt-in events.
+
+- Supports promotions created on both the old and new loyalty promotion UI.
+
+**Limits and configuration**
+
+- Returns benefits earned on or after **June 12, 2025** only. Benefits earned before that date are not included.
+
+- Both `programId` and `promotionId` are required — the API will not return results without them.
+
+<Callout kind="note" collapsed="false">
+  * For detailed information about our APIs and for hands-on testing, refer to the [API overview](https://docs.capillarytech.com/reference/apioverview) and the [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) guide.
+
+  * This API only lists benefits earned from a promotion on or after **June 12, 2025**. Benefits earned before that date are not included.
+
+  * This API fetches results for loyalty promotions created on the [old UI](https://docs.capillarytech.com/docs/loyalty-promotions-basic-and-advanced#/) and new UI.
+
+  * To retrieve the same benefits using customer identifiers (mobile number, external ID) instead of a customer ID, use [Get Loyalty Promotion Benefits for Customer](https://docs.capillarytech.com/reference/get-promotion-benefits-for-customer).
+</Callout>
+
+## Prerequisites
+
+- Authentication: Basic/OAuth authentication
+
+- Default access group
+
+- `programId` and `promotionId`
+
+## Resource information
+
+| Pagination    | No |
+| :------------ | :- |
+| Batch support | No |
+
+## Example request
+
+<CodeGroup show-lines="true" tabs={["cURL"]}>
+  ```bash wrap="true" cURL
+  curl -X GET "https://{host}/v3/customers/388597285/customerPromotionDetails/actionSummary?programId=3334&promotionId=1133600978" \
+    -H "Authorization: Basic dGlsbGhnXXXXXXXX"
+  ```
+</CodeGroup>
+
+## Path parameters
+
+| Field        | Type | Required | Description                                         |
+| :----------- | :--- | :------- | :-------------------------------------------------- |
+| `customerId` | Long | Yes      | Unique system-generated identifier of the customer. |
+
+## Query parameters
+
+| Field         | Type   | Required | Description                                                                                                                                                                                         |
+| :------------ | :----- | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `programId`   | Long   | Yes      | Unique identifier of the loyalty program. To retrieve the `programId`, use the [Get Loyalty Programs](https://docs.capillarytech.com/reference/get-loyalty-programs) API.                           |
+| `promotionId` | Long   | Yes      | Unique identifier of the loyalty promotion. To retrieve the `promotionId`, use the [Get Details of all Loyalty Promotions](https://docs.capillarytech.com/reference/get-loyalty-promotion-all) API. |
+| `activityId`  | String | Optional | When provided, scopes the returned `incentives` and points to those associated with the specified activity. When omitted, all benefits across all activities are returned.                          |
+
+## API Quick Reference
+
+```
+GET /v3/customers/{customerId}/customerPromotionDetails/actionSummary
+└─ Response
+    ├─ orgId (number)
+    ├─ programId (number)
+    ├─ entityId (number)
+    ├─ promotionId (number)
+    ├─ incentives []
+    │   ├─ activityId (string)
+    │   ├─ action (string)
+    │   ├─ actionId (string)
+    │   ├─ actionIssuedCount (number)
+    │   └─ lastIssuedOn (number)
+    ├─ points []
+    │   ├─ pointsCategory (string)
+    │   ├─ totalPointsIssued (string)
+    │   ├─ numberOfTimesIssued (number)
+    │   └─ lastIssuedOn (number)
+    ├─ alternateCurrencies []
+    │   ├─ currencyName (string)
+    │   ├─ totalCurrencyIssued (string)
+    │   ├─ numberOfTimesIssued (number)
+    │   └─ lastIssuedOn (number)
+    └─ warnings [] (string)
+```
+
+## Example response
+
+
+
+<CodeGroup default-tab="1" show-lines="true" tabs={["Customer with benefits","No benefits found"]}>
+  ```json "Customer with benefits"
+  {
+      "orgId": 51948,
+      "programId": 3334,
+      "entityId": 388597285,
+      "promotionId": 1133600978,
+      "incentives": [
+          {
+              "activityId": "activity_reward_1",
+              "action": "REWARD",
+              "actionIssuedCount": 1,
+              "actionId": "133423",
+              "lastIssuedOn": 1734533309000
+          },
+          {
+              "activityId": "activity_badge_1",
+              "action": "BADGES",
+              "actionIssuedCount": 1,
+              "actionId": "SomeBadgeId",
+              "lastIssuedOn": 1734533309000
+          },
+          {
+              "activityId": "activity_coupon_1",
+              "action": "COUPONS",
+              "actionIssuedCount": 1,
+              "actionId": "5231232",
+              "lastIssuedOn": 1734533309000
+          }
+      ],
+      "points": [
+          {
+              "pointsCategory": "REGULAR_POINTS",
+              "totalPointsIssued": "1234.000",
+              "numberOfTimesIssued": 1,
+              "lastIssuedOn": 1734533309000
+          }
+      ],
+      "alternateCurrencies": [
+          {
+              "currencyName": "some_ac",
+              "totalCurrencyIssued": "1234.000",
+              "numberOfTimesIssued": 1,
+              "lastIssuedOn": 1734533309000
+          }
+      ],
+      "warnings": []
+  }
+  ```
+
+  ```json "No benefits found"
+  {
+      "data": {
+          "orgId": 51948,
+          "programId": 3334,
+          "entityId": 388597285,
+          "promotionId": 1133600978,
+          "incentives": [],
+          "warnings": [
+              {
+                  "status": false,
+                  "code": 8116,
+                  "message": "No promotion action summary found for the given promotionId"
+              }
+          ]
+      },
+      "errors": null,
+      "warnings": null
+  }
+  ```
+</CodeGroup>
+
+## Response parameters
+
+| Field                  | Type    | Description                                                                                                                                                                         |
+| :--------------------- | :------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `orgId`                | Integer | Unique identifier of the organisation.                                                                                                                                              |
+| `programId`            | Integer | Unique identifier of the loyalty program.                                                                                                                                           |
+| `entityId`             | Long    | Unique identifier of the customer.                                                                                                                                                  |
+| `promotionId`          | Long    | Unique identifier of the loyalty promotion.                                                                                                                                         |
+| `incentives`           | Array   | Unified list of all non-points incentive actions earned by the customer for this promotion, including rewards, coupons, badges, tier upgrades, enrolment events, and opt-in events. |
+| `.activityId`          | String  | Identifier of the promotion activity that triggered this incentive. Null when the incentive is not associated with a specific activity.                                             |
+| `.action`              | String  | Type of incentive action. Supported values: `REWARD`, `COUPONS`, `BADGES`, `ENROL`, `OPTIN`, `UPGRADE_TIER`. Case-sensitive.                                                        |
+| `.actionId`            | String  | Identifier of the specific benefit issued, for example a reward ID, badge ID, coupon series ID, or issual ID.                                                                       |
+| `.actionIssuedCount`   | Long    | Number of times this incentive action was issued for this promotion.                                                                                                                |
+| `.lastIssuedOn`        | Long    | UTC timestamp of the most recent issuance, in milliseconds since epoch.                                                                                                             |
+| `points`               | Array   | List of points earned by the customer for this promotion, grouped by category.                                                                                                      |
+| `.pointsCategory`      | String  | Category of the points earned. Supported values: `REGULAR_POINTS`, `BONUS_POINTS`.                                                                                                  |
+| `.totalPointsIssued`   | String  | Total points issued across all events for this category.                                                                                                                            |
+| `.numberOfTimesIssued` | Long    | Number of events that contributed points in this category.                                                                                                                          |
+| `.lastIssuedOn`        | Long    | UTC timestamp of the most recent points issuance in this category, in milliseconds since epoch.                                                                                     |
+| `alternateCurrencies`  | Array   | List of alternate currencies earned by the customer for this promotion, aggregated by currency name.                                                                                |
+| `.currencyName`        | String  | Name of the alternate currency, for example `STARS` or `COINS`.                                                                                                                     |
+| `.totalCurrencyIssued` | String  | Total alternate currency units issued for this promotion.                                                                                                                           |
+| `.numberOfTimesIssued` | Long    | Number of issuance events for this currency.                                                                                                                                        |
+| `.lastIssuedOn`        | Long    | UTC timestamp of the most recent alternate currency issuance, in milliseconds since epoch.                                                                                          |
+| `warnings`             | Array   | List of warning messages associated with the response. Empty when no warnings are present.                                                                                          |
+
+## Error and warning codes
+
+| Code | Type    | Description                                                                                                          |
+| :--- | :------ | :------------------------------------------------------------------------------------------------------------------- |
+| 400  | Error   | Required query parameter `programId` or `promotionId` is missing.                                                    |
+| 9002 | Error   | Customer not found. Check that the `customerId` is valid.                                                            |
+| 9001 | Error   | Program not found. Check that the `programId` is valid and belongs to your organisation.                             |
+| 3013 | Error   | Promotion not found. Check the `promotionId` and confirm the promotion exists for the loyalty program.               |
+| 500  | Error   | Internal server error. Retry the request after a short delay.                                                        |
+| 8116 | Warning | No promotion action summary found for the given promotion. The customer has no recorded benefits for this promotion. |
+
+## Parameters & Headers
+
+<Expandable title="Request Headers" default-open="false">
+  <ParamField header="Authorization" param-type="string" required="true" deprecated="false" show-location="true">
+    Basic authentication credentials. Pass the encoded credentials in the format `Basic {base64(username:password)}`. Example: `Basic dGlsbGhnXXXXXXXX`
+  </ParamField>
+</Expandable>
+
+<Expandable title="Path Parameters" default-open="false">
+  <ParamField path="customerId" param-type="integer (int64)" required="true" deprecated="false" show-location="true">
+    Unique identifier of the customer. Example: `388597285`
+  </ParamField>
+</Expandable>
+
+<Expandable title="Query Parameters" default-open="false">
+  <ParamField query="programId" param-type="integer (int64)" required="true" deprecated="false" show-location="true">
+    Unique identifier of the loyalty program. Both `programId` and `promotionId` are required — the API will not return results without them. Example: `3334`
+  </ParamField>
+
+  <ParamField query="promotionId" param-type="integer (int64)" required="true" deprecated="false" show-location="true">
+    Unique identifier of the loyalty promotion. Example: `1133600978`
+  </ParamField>
+
+  <ParamField query="activityId" param-type="string" required="false" deprecated="false" show-location="true">
+    Identifier of a specific promotion activity. When provided, filters the response to include only incentives related to that activity. Example: `activity_badge_1`
+  </ParamField>
+</Expandable>
+
+<Expandable title="Response Parameters" default-open="false">
+  <ParamField body="orgId" param-type="integer" required="false" deprecated="false" show-location="true">
+    Unique identifier of the organisation.
+  </ParamField>
+
+  <ParamField body="programId" param-type="integer" required="false" deprecated="false" show-location="true">
+    Unique identifier of the loyalty program.
+  </ParamField>
+
+  <ParamField body="entityId" param-type="long" required="false" deprecated="false" show-location="true">
+    Unique identifier of the customer.
+  </ParamField>
+
+  <ParamField body="promotionId" param-type="long" required="false" deprecated="false" show-location="true">
+    Unique identifier of the loyalty promotion.
+  </ParamField>
+
+  <ParamField body="incentives" param-type="array" required="false" deprecated="false" show-location="true">
+    Unified list of all non-points incentive actions earned by the customer for this promotion, including rewards, coupons, badges, tier upgrades, enrolment events, and opt-in events.
+
+    <Expandable title="incentives properties" default-open="false">
+      <ParamField body="activityId" param-type="string" required="false" deprecated="false" show-location="true">
+        Identifier of the promotion activity that triggered this incentive. Null when the incentive is not associated with a specific activity.
+      </ParamField>
+
+      <ParamField body="action" param-type="string" required="false" deprecated="false" show-location="true">
+        Type of incentive action. Supported values: `REWARD`, `COUPONS`, `BADGES`, `ENROL`, `OPTIN`, `UPGRADE_TIER`. Case-sensitive.
+      </ParamField>
+
+      <ParamField body="actionId" param-type="string" required="false" deprecated="false" show-location="true">
+        Identifier of the specific benefit issued — for example a reward ID, badge ID, coupon series ID, or issual ID.
+      </ParamField>
+
+      <ParamField body="actionIssuedCount" param-type="long" required="false" deprecated="false" show-location="true">
+        Number of times this incentive action was issued for this promotion.
+      </ParamField>
+
+      <ParamField body="lastIssuedOn" param-type="long" required="false" deprecated="false" show-location="true">
+        UTC timestamp of the most recent issuance, in milliseconds since epoch.
+      </ParamField>
+    </Expandable>
+  </ParamField>
+
+  <ParamField body="points" param-type="array" required="false" deprecated="false" show-location="true">
+    List of points earned by the customer for this promotion, grouped by category.
+
+    <Expandable title="points properties" default-open="false">
+      <ParamField body="pointsCategory" param-type="string" required="false" deprecated="false" show-location="true">
+        Category of the points earned. Supported values: `REGULAR_POINTS`, `BONUS_POINTS`.
+      </ParamField>
+
+      <ParamField body="totalPointsIssued" param-type="string" required="false" deprecated="false" show-location="true">
+        Total points issued across all events for this category.
+      </ParamField>
+
+      <ParamField body="numberOfTimesIssued" param-type="long" required="false" deprecated="false" show-location="true">
+        Number of events that contributed points in this category.
+      </ParamField>
+
+      <ParamField body="lastIssuedOn" param-type="long" required="false" deprecated="false" show-location="true">
+        UTC timestamp of the most recent points issuance in this category, in milliseconds since epoch.
+      </ParamField>
+    </Expandable>
+  </ParamField>
+
+  <ParamField body="alternateCurrencies" param-type="array" required="false" deprecated="false" show-location="true">
+    List of alternate currencies earned by the customer for this promotion, aggregated by currency name.
+
+    <Expandable title="alternateCurrencies properties" default-open="false">
+      <ParamField body="currencyName" param-type="string" required="false" deprecated="false" show-location="true">
+        Name of the alternate currency, for example `STARS` or `COINS`.
+      </ParamField>
+
+      <ParamField body="totalCurrencyIssued" param-type="string" required="false" deprecated="false" show-location="true">
+        Total alternate currency units issued for this promotion.
+      </ParamField>
+
+      <ParamField body="numberOfTimesIssued" param-type="long" required="false" deprecated="false" show-location="true">
+        Number of issuance events for this currency.
+      </ParamField>
+
+      <ParamField body="lastIssuedOn" param-type="long" required="false" deprecated="false" show-location="true">
+        UTC timestamp of the most recent alternate currency issuance, in milliseconds since epoch.
+      </ParamField>
+    </Expandable>
+  </ParamField>
+
+  <ParamField body="warnings" param-type="array" required="false" deprecated="false" show-location="true">
+    List of warning messages associated with the response. Empty when no warnings are present.
+  </ParamField>
+</Expandable>
+

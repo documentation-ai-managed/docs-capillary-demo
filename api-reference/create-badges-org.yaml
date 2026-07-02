@@ -1,0 +1,918 @@
+openapi: 3.1.0
+info:
+  title: Create badges
+  version: '1.0'
+servers:
+- url: https://{host}
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  /api_gateway/v1/badges/badgeMeta:
+    post:
+      summary: Create badges
+      description: ''
+      operationId: create-badges-org
+      parameters:
+      - name: X-CAP-BADGES-MIGRATION
+        in: header
+        description: Enables you to use historical badges.
+        schema:
+          type: string
+          default: migration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                RAW_BODY:
+                  type: string
+                  description: '{     "name": "Furry Friend Badge",     "description":
+                    "Purchase 5 pet products in 3 months and get a pet grooming voucher",     "startOn":
+                    1699596721,     "expiresOn": 1828754110,     "earnedBadgeExpiry":
+                    {         "expiryType": "RELATIVE",         "relativeExpirytype":
+                    "MONTHS",         "value": 3     },     "ownership": {         "restrictedToOwners":
+                    [             "Loyalty"         ]     },     "customerConstraints":
+                    [         {             "constraintType": "CUSTOMER_BADGE_FIXED_VALUE",             "maxEarnLimit":
+                    1         }     ],     "badgeConstraints": [         {             "constraintType":
+                    "BADGE_FIXED_VALUE",             "maxEarnLimit": 1000         }     ],     "earnType":
+                    "EARN",     "benefits": [         {             "benefitType":
+                    "COUPON",             "seriesId": 13686         },         {             "benefitType":
+                    "LOYALTY_POINTS",             "points": 100,             "programId":
+                    626,             "promotionId": 80332,             "allocationStrategyId":
+                    1489,             "expirationStrategyId": 3843         }     ],     "tags":
+                    [         {             "name": "Type",             "value": "Birthday"         }     ]
+                    }'
+                  format: json
+            examples:
+              Earn type- Fixed window:
+                value:
+                  name: BADGE12
+                  description: Purchase 5 pet products in 3 months and get a pet grooming
+                    voucher
+                  startOn: 1716803487
+                  expiresOn: 1726804000
+                  badgeRank: 1
+                  earnedBadgeExpiry:
+                    expiryType: ABSOLUTE
+                    type: WITH_BADGE_META
+                    expireWithBadgeMeta: true
+                  ownership:
+                    restrictedToOwners:
+                    - Loyalty
+                    - Milestones
+                  customerConstraints:
+                  - constraintType: CUSTOMER_BADGE_FIXED_WINDOW
+                    durationType: DAYS
+                    refreshRate: 3
+                    startDayOfTheWeek: TUESDAY
+                    maxEarnLimit: 1
+                  badgeConstraints:
+                  - constraintType: BADGE_FIXED_WINDOW
+                    maxEarnLimit: 2
+                    durationType: DAYS
+                    refreshRate: 3
+                    startDayOfTheWeek: 1
+                  earnType: EARN
+                  active: false
+              Active=false:
+                value:
+                  name: test6578791
+                  description: Purchase 5 pet products in 3 months and get a pet grooming
+                    voucher
+                  startOn: 1799632870
+                  expiresOn: 1828754110
+                  earnedBadgeExpiry:
+                    expiryType: ABSOLUTE
+                    type: WITH_BADGE_META
+                    expireWithBadgeMeta: true
+                  ownership:
+                    restrictedToOwners:
+                    - Loyalty
+                    - Milestones
+                    claims:
+                    - ownerType: Loyalty
+                      referenceId: '626'
+                  customerConstraints:
+                  - constraintType: CUSTOMER_BADGE_FIXED_VALUE
+                    maxEarnLimit: 100
+                  - constraintType: CUSTOMER_BADGE_ROLLING_WINDOW
+                    maxEarnForDays: 1
+                    rollForDays: 1
+                    maxEarnForWeeks: 2
+                    rollForWeeks: 1
+                    maxEarnForMonths: 10
+                    rollForMonths: 1
+                  badgeConstraints:
+                  - constraintType: BADGE_FIXED_VALUE
+                    maxEarnLimit: 1000
+                  - constraintType: BADGE_ROLLING_WINDOW
+                    rollType: DAYS
+                    rollValue: 1
+                    maxEarnLimit: 100
+                  - constraintType: BADGE_ROLLING_WINDOW
+                    rollType: WEEKS
+                    rollValue: 1
+                    maxEarnLimit: 2000
+                  - constraintType: BADGE_ROLLING_WINDOW
+                    rollType: MONTHS
+                    rollValue: 1
+                    maxEarnLimit: 10000
+                  earnType: EARN
+                  customFields:
+                    CF1: CF1
+                    CF2 INTEGER: '1'
+                  active: false
+              Historical badges:
+                value:
+                  orgId: 50933
+                  name: demo testkerl2n26df132
+                  description: string
+                  startOn: '2023-11-14T21:51:00.192Z'
+                  expiresOn: '2026-12-03T15:19:37.192Z'
+                  earnedBadgeExpiry:
+                    expiryType: ABSOLUTE
+                    type: WITH_BADGE_META
+                    expiresOn: '2024-11-03T15:19:37.192Z'
+                    expireWithBadgeMeta: true
+                  issuedBadgeExpiry:
+                    expiryType: ABSOLUTE
+                    type: WITH_BADGE_META
+                    expiresOn: '2024-11-03T15:19:37.192Z'
+                    expireWithBadgeMeta: true
+                  images:
+                  - name: string
+                    fileSvcHandle: string
+                    url: string
+                    tag: UN_EARNED
+                  ownership:
+                    restrictedToOwners:
+                    - Loyalty
+                    claims:
+                    - badgeMetaId: string
+                      ownerType: Loyalty
+                      referenceId: string
+                  customerConstraints:
+                  - constraintType: BADGE_NO_LIMIT
+                    maxEarnLimit: 0
+                  - constraintType: BADGE_NO_LIMIT
+                    maxEarnLimit: 0
+                  - constraintType: BADGE_NO_LIMIT
+                  - constraintType: BADGE_NO_LIMIT
+                  - constraintType: BADGE_NO_LIMIT
+                    rollType: DAYS
+                    rollValue: 0
+                    maxEarnLimit: 0
+                  - constraintType: BADGE_NO_LIMIT
+                    maxEarnForDays: 0
+                    rollForDays: 0
+                    maxEarnForWeeks: 0
+                    rollForWeeks: 0
+                    maxEarnForMonths: 0
+                    rollForMonths: 0
+                  badgeConstraints:
+                  - constraintType: BADGE_NO_LIMIT
+                    maxEarnLimit: 0
+                  - constraintType: BADGE_NO_LIMIT
+                    maxEarnLimit: 0
+                  - constraintType: BADGE_NO_LIMIT
+                  - constraintType: BADGE_NO_LIMIT
+                  - constraintType: BADGE_NO_LIMIT
+                    rollType: DAYS
+                    rollValue: 0
+                    maxEarnLimit: 0
+                  - constraintType: BADGE_NO_LIMIT
+                    maxEarnForDays: 0
+                    rollForDays: 0
+                    maxEarnForWeeks: 0
+                    rollForWeeks: 0
+                    maxEarnForMonths: 0
+                    rollForMonths: 0
+                  earnType: EARN
+                  issuedCount: 0
+                  earnedCount: 0
+                  status: LIVE
+                  createdOn: '2023-11-03T15:19:37.192Z'
+                  createdBy: 0
+                  lastUpdatedOn: '2023-11-03T15:19:37.192Z'
+                  lastUpdatedBy: 0
+                  customFields:
+                    CF1: CF1
+                    CF2 INTEGER: '1'
+                  active: true
+              Earn type- Rolling window:
+                value:
+                  name: Badge_Earn
+                  description: Purchase 5 pet products in 3 months and get a pet grooming
+                    voucher
+                  startOn: 1716803487
+                  expiresOn: 1726804000
+                  earnedBadgeExpiry:
+                    expiryType: ABSOLUTE
+                    type: WITH_BADGE_META
+                    expireWithBadgeMeta: true
+                  ownership:
+                    restrictedToOwners:
+                    - Loyalty
+                    - Milestones
+                  customerConstraints:
+                  - constraintType: CUSTOMER_BADGE_FIXED_VALUE
+                    maxEarnLimit: 100
+                  badgeConstraints:
+                  - constraintType: BADGE_FIXED_WINDOW
+                    maxEarnLimit: 2
+                    durationType: DAYS
+                    refreshRate: 3
+                    startDayOfTheWeek: 1
+                  earnType: EARN
+                  active: false
+              Issue earn type- Rolling window:
+                value:
+                  name: Badge_Issue_earntype
+                  description: Make 5 transactions in a month, get a badge and 10%
+                    off coupon
+                  startOn: 1716803487
+                  expiresOn: 1726804000
+                  earnType: ISSUE_EARN
+                  earnedBadgeExpiry:
+                    relativeExpirytype: WEEKS
+                    value: 2
+                    expiryType: RELATIVE
+                  issuedBadgeExpiry:
+                    type: FIXED_DATE
+                    expiresOn: 1926235957
+                    expiryType: ABSOLUTE
+                  isActive: true
+                  ownership:
+                    restrictedToOwners:
+                    - Loyalty
+                    - Audience_Campaigns
+                  customerConstraints:
+                  - constraintType: CUSTOMER_BADGE_ROLLING_WINDOW
+                    maxEarnForDays: 50
+                    rollForDays: 5
+                    maxEarnForWeeks: 100
+                    rollForWeeks: 1
+                    maxEarnForMonths: 200
+                    rollForMonths: 1
+                  - constraintType: CUSTOMER_BADGE_FIXED_VALUE
+                    maxEarnLimit: 5000
+                  badgeConstraints:
+                  - constraintType: BADGE_FIXED_VALUE
+                    maxEarnLimit: 10000
+                  - constraintType: BADGE_ROLLING_WINDOW
+                    rollType: DAYS
+                    rollValue: 1
+                    maxEarnLimit: 300
+                  - constraintType: BADGE_ROLLING_WINDOW
+                    rollType: WEEKS
+                    rollValue: 1
+                    maxEarnLimit: 3000
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Sample response for earn type- ISSUE_EARN:
+                  value:
+                    data:
+                      id: 696df3810772ad476ecf6a07
+                      badgeNumericId: 107
+                      orgId: 100737
+                      name: Badge Issue earn type
+                      description: Make 5 transactions
+                      startOn: 1716803487
+                      startOnISO: '2024-05-27T09:51:27Z'
+                      expiresOn: 1726804000
+                      expiresOnISO: '2024-09-20T03:46:40Z'
+                      earnedBadgeExpiry:
+                        expiryType: RELATIVE
+                        relativeExpirytype: WEEKS
+                        value: 2
+                      issuedBadgeExpiry:
+                        expiryType: ABSOLUTE
+                        type: FIXED_DATE
+                        expiresOn: 1926235957
+                        expiresOnISO: '2031-01-15T09:32:37Z'
+                        expireWithBadgeMeta: false
+                      images:
+                      - name: Issued
+                        fileSvcHandle: qwer-8634-8938
+                        url: https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d
+                        tag: EARNED
+                      ownership:
+                        restrictedToOwners:
+                        - Loyalty
+                        - Audience_Campaigns
+                        claims: []
+                      customerConstraints:
+                      - constraintType: CUSTOMER_BADGE_FIXED_WINDOW
+                        referenceId: e6791ec9-e92f-34af-bdc3-be2607fdf82c
+                        durationType: DAYS
+                        refreshRate: 3
+                        maxEarnLimit: 2
+                        cycleStatus: ACTIVE
+                        startDate: 1716803487
+                        startDateISO: '2024-05-27T09:51:27Z'
+                        endDate: 1926235957
+                        endDateISO: '2031-01-15T09:32:37Z'
+                      badgeConstraints:
+                      - constraintType: BADGE_FIXED_VALUE
+                        maxEarnLimit: 10000
+                      - constraintType: BADGE_ROLLING_WINDOW
+                        rollType: WEEKS
+                        rollValue: 1
+                        maxEarnLimit: 3000
+                      - constraintType: BADGE_ROLLING_WINDOW
+                        rollType: DAYS
+                        rollValue: 1
+                        maxEarnLimit: 300
+                      benefits: []
+                      tags: []
+                      badgeGroupId: null
+                      badgeRank: 3
+                      earnType: ISSUE_EARN
+                      status: EXPIRED
+                      createdOn: 1768813441.18082
+                      createdOnISO: '2026-01-19T09:04:01Z'
+                      createdBy: 75197372
+                      lastUpdatedOn: 1768813441.18082
+                      lastUpdatedOnISO: '2026-01-19T09:04:01Z'
+                      lastUpdatedBy: 75197372
+                      customFields: {}
+                      active: true
+                    errors: []
+                    warnings: []
+                  summary: Sample response for earn type- ISSUE_EARN
+                Sample response for expiry type- ABSOLUTE:
+                  value:
+                    data:
+                      id: 696df21c0772ad476ecf69d4
+                      badgeNumericId: 106
+                      orgId: 100737
+                      name: badgetestjan16 01
+                      description: null
+                      startOn: 1768714500
+                      startOnISO: '2026-01-18T05:35:00Z'
+                      expiresOn: 1769751300
+                      expiresOnISO: '2026-01-30T05:35:00Z'
+                      earnedBadgeExpiry:
+                        expiryType: ABSOLUTE
+                        type: FIXED_DATE
+                        expiresOn: 1769751300
+                        expiresOnISO: '2026-01-30T05:35:00Z'
+                        expireWithBadgeMeta: false
+                      issuedBadgeExpiry: null
+                      images: []
+                      ownership:
+                        restrictedToOwners:
+                        - Milestones
+                        - Loyalty
+                        claims: []
+                      customerConstraints:
+                      - constraintType: CUSTOMER_BADGE_FIXED_VALUE
+                        maxEarnLimit: 100
+                      - constraintType: CUSTOMER_BADGE_ROLLING_WINDOW
+                        maxEarnForDays: 1
+                        rollForDays: 1
+                        maxEarnForWeeks: 2
+                        rollForWeeks: 1
+                        maxEarnForMonths: 10
+                        rollForMonths: 1
+                      - constraintType: CUSTOMER_BADGE_FIXED_WINDOW
+                        referenceId: 53b1267d-4907-364a-a2ae-5989a9b2123a
+                        durationType: WEEKS
+                        startDayOfTheWeek: TUESDAY
+                        maxEarnLimit: 2
+                        startDateISO: null
+                        endDateISO: null
+                      badgeConstraints:
+                      - constraintType: BADGE_FIXED_VALUE
+                        maxEarnLimit: 10000
+                      benefits: []
+                      tags: []
+                      badgeGroupId: null
+                      badgeRank: null
+                      earnType: EARN
+                      status: LIVE
+                      createdOn: 1768813084.80786
+                      createdOnISO: '2026-01-19T08:58:04Z'
+                      createdBy: 75197372
+                      lastUpdatedOn: 1768813084.80786
+                      lastUpdatedOnISO: '2026-01-19T08:58:04Z'
+                      lastUpdatedBy: 75197372
+                      customFields: {}
+                      active: true
+                    errors: []
+                    warnings: []
+                  summary: Sample response for expiry type- ABSOLUTE
+              schema:
+                oneOf:
+                - title: Earn type- Response
+                  type: object
+                  properties:
+                    data:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 662749408fe258516a88fe89
+                        orgId:
+                          type: integer
+                          example: 100458
+                          default: 0
+                        name:
+                          type: string
+                          example: BADGE123
+                        description:
+                          type: string
+                          example: Purchase 5 pet products in 3 months and get a pet
+                            grooming voucher
+                        startOn:
+                          type: integer
+                          example: 1716803487
+                          default: 0
+                        expiresOn:
+                          type: integer
+                          example: 1726804000
+                          default: 0
+                        earnedBadgeExpiry:
+                          type: object
+                          properties:
+                            expiryType:
+                              type: string
+                              example: ABSOLUTE
+                            type:
+                              type: string
+                              example: WITH_BADGE_META
+                            expiresOn: {}
+                            expireWithBadgeMeta:
+                              type: boolean
+                              example: true
+                              default: true
+                        issuedBadgeExpiry: {}
+                        images:
+                          type: array
+                        ownership:
+                          type: object
+                          properties:
+                            restrictedToOwners:
+                              type: array
+                              items:
+                                type: string
+                                example: Milestones
+                            claims:
+                              type: array
+                        customerConstraints:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              constraintType:
+                                type: string
+                                example: CUSTOMER_BADGE_FIXED_WINDOW
+                              referenceId:
+                                type: string
+                                example: e6791ec9-e92f-34af-bdc3-be2607fdf82c
+                              durationType:
+                                type: string
+                                example: DAYS
+                              refreshRate:
+                                type: integer
+                                example: 3
+                                default: 0
+                              maxEarnLimit:
+                                type: integer
+                                example: 1
+                                default: 0
+                              cycleStatus:
+                                type: string
+                                example: UPCOMING
+                              startDate:
+                                type: integer
+                                example: 1716803487
+                                default: 0
+                              endDate:
+                                type: integer
+                                example: 1726804000
+                                default: 0
+                        badgeConstraints:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              constraintType:
+                                type: string
+                                example: BADGE_FIXED_WINDOW
+                              referenceId:
+                                type: string
+                                example: a1350b49-eb8e-3500-9e43-01f5493c91c1
+                              durationType:
+                                type: string
+                                example: DAYS
+                              refreshRate:
+                                type: integer
+                                example: 3
+                                default: 0
+                              maxEarnLimit:
+                                type: integer
+                                example: 2
+                                default: 0
+                              startDate:
+                                type: integer
+                                example: 1716803487
+                                default: 0
+                              endDate:
+                                type: integer
+                                example: 1726804000
+                                default: 0
+                              cycleStatus:
+                                type: string
+                                example: UPCOMING
+                        benefits:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              benefitType:
+                                type: string
+                                example: COUPON
+                              seriesId:
+                                type: integer
+                                example: 6789
+                                default: 0
+                        badgeGroupId: {}
+                        badgeRank:
+                          type: integer
+                          example: 1
+                          default: 0
+                        earnType:
+                          type: string
+                          example: EARN
+                        status:
+                          type: string
+                          example: UPCOMING
+                        createdOn:
+                          type: number
+                          example: 1713850688.8114
+                          default: 0
+                        createdBy:
+                          type: integer
+                          example: 75086856
+                          default: 0
+                        lastUpdatedOn:
+                          type: number
+                          example: 1713850688.8114
+                          default: 0
+                        lastUpdatedBy:
+                          type: integer
+                          example: 75086856
+                          default: 0
+                        customFields:
+                          type: object
+                          properties: {}
+                        active:
+                          type: boolean
+                          example: false
+                          default: true
+                    errors:
+                      type: array
+                    warnings:
+                      type: array
+                - title: Issue earn type- Response
+                  type: object
+                  properties:
+                    data:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 662748a08fe258516a88fe88
+                        orgId:
+                          type: integer
+                          example: 100458
+                          default: 0
+                        name:
+                          type: string
+                          example: Badge Issue earn
+                        description:
+                          type: string
+                          example: Make 5 transactions
+                        startOn:
+                          type: integer
+                          example: 1716803487
+                          default: 0
+                        expiresOn:
+                          type: integer
+                          example: 1726804000
+                          default: 0
+                        earnedBadgeExpiry:
+                          type: object
+                          properties:
+                            expiryType:
+                              type: string
+                              example: RELATIVE
+                            relativeExpirytype:
+                              type: string
+                              example: WEEKS
+                            value:
+                              type: integer
+                              example: 2
+                              default: 0
+                        issuedBadgeExpiry:
+                          type: object
+                          properties:
+                            expiryType:
+                              type: string
+                              example: ABSOLUTE
+                            type:
+                              type: string
+                              example: FIXED_DATE
+                            expiresOn:
+                              type: integer
+                              example: 1926235957
+                              default: 0
+                            expireWithBadgeMeta:
+                              type: boolean
+                              example: false
+                              default: true
+                        images:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                                example: Issued
+                              fileSvcHandle:
+                                type: string
+                                example: qwer-8634-8938
+                              url:
+                                type: string
+                                example: https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d
+                              tag:
+                                type: string
+                                example: EARNED
+                        ownership:
+                          type: object
+                          properties:
+                            restrictedToOwners:
+                              type: array
+                              items:
+                                type: string
+                                example: Audience_Campaigns
+                            claims:
+                              type: array
+                        customerConstraints:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              constraintType:
+                                type: string
+                                example: CUSTOMER_BADGE_FIXED_WINDOW
+                              referenceId:
+                                type: string
+                                example: e6791ec9-e92f-34af-bdc3-be2607fdf82c
+                              durationType:
+                                type: string
+                                example: DAYS
+                              refreshRate:
+                                type: integer
+                                example: 3
+                                default: 0
+                              maxEarnLimit:
+                                type: integer
+                                example: 2
+                                default: 0
+                              cycleStatus:
+                                type: string
+                                example: UPCOMING
+                              startDate:
+                                type: integer
+                                example: 1716803487
+                                default: 0
+                              endDate:
+                                type: integer
+                                example: 1926235957
+                                default: 0
+                        badgeConstraints:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              constraintType:
+                                type: string
+                                example: BADGE_FIXED_VALUE
+                              maxEarnLimit:
+                                type: integer
+                                example: 10000
+                                default: 0
+                        benefits:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              benefitType:
+                                type: string
+                                example: COUPON
+                              seriesId:
+                                type: integer
+                                example: 13745
+                                default: 0
+                        badgeGroupId: {}
+                        badgeRank:
+                          type: integer
+                          example: 3
+                          default: 0
+                        earnType:
+                          type: string
+                          example: ISSUE_EARN
+                        status:
+                          type: string
+                          example: UPCOMING
+                        createdOn:
+                          type: number
+                          example: 1713850528.63438
+                          default: 0
+                        createdBy:
+                          type: integer
+                          example: 75086856
+                          default: 0
+                        lastUpdatedOn:
+                          type: number
+                          example: 1713850528.63438
+                          default: 0
+                        lastUpdatedBy:
+                          type: integer
+                          example: 75086856
+                          default: 0
+                        customFields:
+                          type: object
+                          properties: {}
+                        active:
+                          type: boolean
+                          example: true
+                          default: true
+                    errors:
+                      type: array
+                    warnings:
+                      type: array
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"data\": null,\n    \"errors\": [\n        {\n \
+                    \           \"code\": 728,\n            \"message\": \"Atleast\
+                    \ one owner is required\",\n            \"reference\": \"ownership.restrictedToOwners\"\
+                    \n        },\n        {\n            \"code\": 725,\n        \
+                    \    \"message\": \"Badge name cannot be duplicate\",\n      \
+                    \      \"reference\": null\n        },\n        {\n          \
+                    \  \"code\": 722,\n            \"message\": \"Start Date cannot\
+                    \ be past date\",\n            \"reference\": null\n        }\n\
+                    \    ],\n    \"warnings\": null\n}"
+                Bad request:
+                  value: "{\n    \"data\": null,\n    \"errors\": [\n        {\n \
+                    \           \"code\": 714,\n            \"message\": \"Owner type\
+                    \ is not allowed, Please check the configuration\",\n        \
+                    \    \"reference\": null\n        },\n        {\n            \"\
+                    code\": 728,\n            \"message\": \"Atleast one owner is\
+                    \ required\",\n            \"reference\": \"ownership.restrictedToOwners\"\
+                    \n        }\n    ],\n    \"warnings\": null\n}"
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    data: {}
+                    errors:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          code:
+                            type: integer
+                            example: 728
+                            default: 0
+                          message:
+                            type: string
+                            example: Atleast one owner is required
+                          reference:
+                            type: string
+                            example: ownership.restrictedToOwners
+                    warnings: {}
+                - title: Bad request
+                  type: object
+                  properties:
+                    data: {}
+                    errors:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          code:
+                            type: integer
+                            example: 714
+                            default: 0
+                          message:
+                            type: string
+                            example: Owner type is not allowed, Please check the configuration
+                          reference: {}
+                    warnings: {}
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"data\": null,\n    \"errors\": [\n        {\n \
+                    \           \"code\": 999999,\n            \"message\": \"HV000028:\
+                    \ Unexpected exception during isValid call.\",\n            \"\
+                    reference\": null\n        }\n    ],\n    \"warnings\": null\n\
+                    }"
+              schema:
+                type: object
+                properties:
+                  data: {}
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          example: 999999
+                          default: 0
+                        message:
+                          type: string
+                          example: 'HV000028: Unexpected exception during isValid
+                            call.'
+                        reference: {}
+                  warnings: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta'\
+            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization:\
+            \ Basic bWFka2YQ==' \\\n--header 'Cookie: _cfuvid=rvSJsUbK4DDG1qt9p.ywFArkr5WoVyHK8rR8vhrDpB4-1768813084882-0.0.1.1-604800000'\
+            \ \\\n--data '{\n    \"name\": \"Badge Issue earn type\",\n    \"description\"\
+            : \"Make 5 transactions\",\n    \"startOn\": 1716803487,\n    \"expiresOn\"\
+            : 1726804000,\n     \"earnType\": \"ISSUE_EARN\",\n         \"badgeRank\"\
+            : 3,\n    \"earnedBadgeExpiry\": {\n        \"relativeExpirytype\": \"\
+            WEEKS\",\n        \"value\": 2,\n        \"expiryType\": \"RELATIVE\"\n\
+            \    },\n    \"issuedBadgeExpiry\": {\n        \"type\": \"FIXED_DATE\"\
+            ,\n        \"expiresOn\": 1926235957,\n        \"expiryType\": \"ABSOLUTE\"\
+            \n    },\n    \"isActive\": true,\n    \"ownership\": {\n        \"restrictedToOwners\"\
+            : [\n            \"Loyalty\",\n            \"Audience_Campaigns\"\n  \
+            \      ]\n    },\n  \"images\": [\n    {\n      \"name\": \"Issued\",\n\
+            \      \"fileSvcHandle\": \"qwer-8634-8938\",\n        \"url\": \"https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d\"\
+            ,\n        \"tag\": \"EARNED\"\n    }\n  ],\n\"customerConstraints\":\
+            \ [\n    {\n      \"constraintType\": \"CUSTOMER_BADGE_FIXED_WINDOW\"\
+            ,\n      \"maxEarnLimit\": 2,\n      \"durationType\":\"DAYS\",\n    \
+            \  \"refreshRate\":3,\n      \"startDayOfTheWeek\":1\n    }\n],\n    \"\
+            badgeConstraints\": [\n        {\n            \"constraintType\": \"BADGE_FIXED_VALUE\"\
+            ,\n            \"maxEarnLimit\": 10000\n        },\n        {\n      \
+            \      \"constraintType\": \"BADGE_ROLLING_WINDOW\",\n            \"rollType\"\
+            : \"DAYS\",\n            \"rollValue\": 1,\n            \"maxEarnLimit\"\
+            : 300\n        },\n        {\n            \"constraintType\": \"BADGE_ROLLING_WINDOW\"\
+            ,\n            \"rollType\": \"WEEKS\",\n            \"rollValue\": 1,\n\
+            \            \"maxEarnLimit\": 3000\n        }\n    ]\n}'"
+          name: Sample request for earn type- ISSUE_EARN
+        - language: curl
+          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta'\
+            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization:\
+            \ Basic bWFkaH2YQ==' \\\n--header 'Cookie: _cfuvid=rvSJsUbK4DDG1qt9p.ywFArkr5WoVyHK8rR8vhrDpB4-1768813084882-0.0.1.1-604800000'\
+            \ \\\n--data '{\n    \"name\": \"badgetestjan16 01\",\n    \n    \"startOn\"\
+            : 1768714500,\n    \"expiresOn\": 1769751300,\n    \"earnedBadgeExpiry\"\
+            : {\n        \"expiryType\": \"ABSOLUTE\",\n        \"type\": \"FIXED_DATE\"\
+            ,\n        \"expiresOn\": 1769751300\n    },\n    \"ownership\": {\n \
+            \       \"restrictedToOwners\": [\n            \"Loyalty\",\n        \
+            \    \"Milestones\"\n        ],\n        \"claims\": [\n            {\n\
+            \                \"ownerType\": \"Loyalty\",\n                \"referenceId\"\
+            : \"626\"\n            }\n        ]\n    },\n    \"customerConstraints\"\
+            : [\n        {\n            \"constraintType\": \"CUSTOMER_BADGE_FIXED_VALUE\"\
+            ,\n            \"maxEarnLimit\": 100\n        },\n        {\n        \
+            \    \"constraintType\": \"CUSTOMER_BADGE_ROLLING_WINDOW\",\n        \
+            \    \"maxEarnForDays\": 1,\n            \"rollForDays\": 1,\n       \
+            \     \"maxEarnForWeeks\": 2,\n            \"rollForWeeks\": 1,\n    \
+            \        \"maxEarnForMonths\": 10,\n            \"rollForMonths\": 1\n\
+            \        }\n    ],\n    \"badgeConstraints\": [\n        {\n         \
+            \   \"constraintType\": \"BADGE_FIXED_VALUE\",\n            \"maxEarnLimit\"\
+            : 10000\n        },\n        {\n            \"constraintType\": \"CUSTOMER_BADGE_FIXED_WINDOW\"\
+            ,\n            \"maxEarnLimit\": 2,\n            \"durationType\": \"\
+            WEEKS\",\n            \"refreshRate\": 3,\n            \"startDayOfTheWeek\"\
+            : 1\n        }\n    \n],\n\"earnType\": \"EARN\"\n}'"
+          name: Sample request for expiry type- ABSOLUTE
+        samples-languages:
+        - curl
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

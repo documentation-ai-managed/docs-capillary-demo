@@ -1,0 +1,1447 @@
+openapi: 3.1.0
+info:
+  title: Vendor List for Specific Brand
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  "/api_gateway/rewards/core/v1/vendor/brand/{brandId}":
+    get:
+      summary: Vendor List for Specific Brand
+      description: ''
+      operationId: get-vendor-list-for-specific-brand
+      parameters:
+      - name: brandId
+        in: path
+        description: Unique ID of brand
+        schema:
+          type: integer
+          format: int32
+        required: true
+      - name: enabled
+        in: query
+        description: Filters the brand with Vendor enabled as true.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                When enabled=false:
+                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
+                    \   \"code\": 5001,\n        \"message\": \"Vendor fetched successfully\"\
+                    \n    },\n    \"vendorList\": [\n        {\n            \"id\"\
+                    : 51,\n            \"name\": \"testVendor-016\",\n           \
+                    \ \"brandId\": 61,\n            \"enabled\": true,\n         \
+                    \   \"vendorTypes\": null,\n            \"vendorDetails\": {},\n\
+                    \            \"type\": \"REWARDS\",\n            \"rank\": 1,\n\
+                    \            \"code\": \"100737\",\n            \"description\"\
+                    : \"description\",\n            \"images\": [],\n            \"\
+                    videos\": [],\n            \"lastUpdatedOn\": 1739777347000,\n\
+                    \            \"lastUpdatedOnDateTime\": \"2025-02-17T07:29:07Z\"\
+                    ,\n            \"encryptionRequired\": false\n        },\n   \
+                    \     {\n            \"id\": 44,\n            \"name\": \"Clothing\"\
+                    ,\n            \"brandId\": 61,\n            \"enabled\": true,\n\
+                    \            \"vendorTypes\": null,\n            \"vendorDetails\"\
+                    : {},\n            \"type\": \"REWARDS\",\n            \"rank\"\
+                    : null,\n            \"code\": \"44\",\n            \"description\"\
+                    : null,\n            \"images\": [],\n            \"videos\":\
+                    \ [],\n            \"lastUpdatedOn\": 1739438226000,\n       \
+                    \     \"lastUpdatedOnDateTime\": \"2025-02-13T09:17:06Z\",\n \
+                    \           \"encryptionRequired\": false\n        },\n      \
+                    \  {\n            \"id\": 47,\n            \"name\": \"Nee\",\n\
+                    \            \"brandId\": 61,\n            \"enabled\": true,\n\
+                    \            \"vendorTypes\": null,\n            \"vendorDetails\"\
+                    : {\n                \"123\": \"********************************************\"\
+                    \n            },\n            \"type\": \"REWARDS\",\n       \
+                    \     \"rank\": null,\n            \"code\": \"47\",\n       \
+                    \     \"description\": null,\n            \"images\": [],\n  \
+                    \          \"videos\": [],\n            \"lastUpdatedOn\": 1739438226000,\n\
+                    \            \"lastUpdatedOnDateTime\": \"2025-02-13T09:17:06Z\"\
+                    ,\n            \"encryptionRequired\": false\n        },\n   \
+                    \     {\n            \"id\": 52,\n            \"name\": \"DocVendor\"\
+                    ,\n            \"brandId\": 61,\n            \"enabled\": true,\n\
+                    \            \"vendorTypes\": null,\n            \"vendorDetails\"\
+                    : {},\n            \"type\": \"REWARDS\",\n            \"rank\"\
+                    : 1,\n            \"code\": \"Doc001\",\n            \"description\"\
+                    : \"description\",\n            \"images\": [],\n            \"\
+                    videos\": [],\n            \"lastUpdatedOn\": 1739777392000,\n\
+                    \            \"lastUpdatedOnDateTime\": \"2025-02-17T07:29:52Z\"\
+                    ,\n            \"encryptionRequired\": false\n        },\n   \
+                    \     {\n            \"id\": 53,\n            \"name\": \"DocVendor2\"\
+                    ,\n            \"brandId\": 61,\n            \"enabled\": true,\n\
+                    \            \"vendorTypes\": null,\n            \"vendorDetails\"\
+                    : {},\n            \"type\": \"REWARDS\",\n            \"rank\"\
+                    : 1,\n            \"code\": \"Doc002\",\n            \"description\"\
+                    : \"description\",\n            \"images\": [],\n            \"\
+                    videos\": [],\n            \"lastUpdatedOn\": 1739777433000,\n\
+                    \            \"lastUpdatedOnDateTime\": \"2025-02-17T07:30:33Z\"\
+                    ,\n            \"encryptionRequired\": false\n        },\n   \
+                    \     {\n            \"id\": 55,\n            \"name\": \"DocVendor3\"\
+                    ,\n            \"brandId\": 61,\n            \"enabled\": true,\n\
+                    \            \"vendorTypes\": null,\n            \"vendorDetails\"\
+                    : {},\n            \"type\": \"REWARDS\",\n            \"rank\"\
+                    : 1,\n            \"code\": \"Doc003\",\n            \"description\"\
+                    : \"description\",\n            \"images\": [],\n            \"\
+                    videos\": [],\n            \"lastUpdatedOn\": 1739781911000,\n\
+                    \            \"lastUpdatedOnDateTime\": \"2025-02-17T08:45:11Z\"\
+                    ,\n            \"encryptionRequired\": false\n        },\n   \
+                    \     {\n            \"id\": 56,\n            \"name\": \"DocVendor4\"\
+                    ,\n            \"brandId\": 61,\n            \"enabled\": true,\n\
+                    \            \"vendorTypes\": null,\n            \"vendorDetails\"\
+                    : {},\n            \"type\": \"REWARDS\",\n            \"rank\"\
+                    : 1,\n            \"code\": \"Doc004\",\n            \"description\"\
+                    : \"thesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswiabcd\"\
+                    ,\n            \"images\": [],\n            \"videos\": [],\n\
+                    \            \"lastUpdatedOn\": 1739782052000,\n            \"\
+                    lastUpdatedOnDateTime\": \"2025-02-17T08:47:32Z\",\n         \
+                    \   \"encryptionRequired\": false\n        },\n        {\n   \
+                    \         \"id\": 57,\n            \"name\": \"DocVendor5\",\n\
+                    \            \"brandId\": 61,\n            \"enabled\": true,\n\
+                    \            \"vendorTypes\": null,\n            \"vendorDetails\"\
+                    : {},\n            \"type\": \"REWARDS\",\n            \"rank\"\
+                    : 1,\n            \"code\": \"Doc005\",\n            \"description\"\
+                    : \"thesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswiabcdthesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswiabcdthesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswiabcdthesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswiabcd\"\
+                    ,\n            \"images\": [],\n            \"videos\": [],\n\
+                    \            \"lastUpdatedOn\": 1739782082000,\n            \"\
+                    lastUpdatedOnDateTime\": \"2025-02-17T08:48:02Z\",\n         \
+                    \   \"encryptionRequired\": false\n        },\n        {\n   \
+                    \         \"id\": 58,\n            \"name\": \"DocVendor6\",\n\
+                    \            \"brandId\": 61,\n            \"enabled\": true,\n\
+                    \            \"vendorTypes\": null,\n            \"vendorDetails\"\
+                    : {},\n            \"type\": \"REWARDS\",\n            \"rank\"\
+                    : null,\n            \"code\": \"Doc006\",\n            \"description\"\
+                    : null,\n            \"images\": [\n                {\n      \
+                    \              \"name\": \"imageName001\",\n                 \
+                    \   \"altText\": null,\n                    \"id\": null,\n  \
+                    \                  \"url\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6RFSqYEgenJSDc0Wo_eoEKzxd0iXvTOO-LQ&s\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"videos\": [],\n            \"lastUpdatedOn\"\
+                    : 1739783325000,\n            \"lastUpdatedOnDateTime\": \"2025-02-17T09:08:45Z\"\
+                    ,\n            \"encryptionRequired\": false\n        },\n   \
+                    \     {\n            \"id\": 59,\n            \"name\": \"DocVendor7\"\
+                    ,\n            \"brandId\": 61,\n            \"enabled\": true,\n\
+                    \            \"vendorTypes\": null,\n            \"vendorDetails\"\
+                    : {},\n            \"type\": \"REWARDS\",\n            \"rank\"\
+                    : null,\n            \"code\": \"Doc007\",\n            \"description\"\
+                    : null,\n            \"images\": [\n                {\n      \
+                    \              \"name\": \"imageName001\",\n                 \
+                    \   \"altText\": null,\n                    \"id\": null,\n  \
+                    \                  \"url\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6RFSqYEgenJSDc0Wo_eoEKzxd0iXvTOO-LQ&s\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"videos\": [\n                {\n\
+                    \                    \"name\": \"videoName001\",\n           \
+                    \         \"altText\": null,\n                    \"id\": null,\n\
+                    \                    \"url\": \"https://videos.pexels.com/video-files/6265096/6265096-uhd_1440_2560_30fps.mp4\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"lastUpdatedOn\": 1739783601000,\n\
+                    \            \"lastUpdatedOnDateTime\": \"2025-02-17T09:13:21Z\"\
+                    ,\n            \"encryptionRequired\": false\n        },\n   \
+                    \     {\n            \"id\": 61,\n            \"name\": \"DocVendor9\"\
+                    ,\n            \"brandId\": 61,\n            \"enabled\": true,\n\
+                    \            \"vendorTypes\": null,\n            \"vendorDetails\"\
+                    : {},\n            \"type\": \"REWARDS\",\n            \"rank\"\
+                    : null,\n            \"code\": \"Doc009\",\n            \"description\"\
+                    : null,\n            \"images\": [\n                {\n      \
+                    \              \"name\": \"imageName001\",\n                 \
+                    \   \"altText\": null,\n                    \"id\": null,\n  \
+                    \                  \"url\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6RFSqYEgenJSDc0Wo_eoEKzxd0iXvTOO-LQ&s\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"videos\": [\n                {\n\
+                    \                    \"name\": \"videoName001\",\n           \
+                    \         \"altText\": null,\n                    \"id\": null,\n\
+                    \                    \"url\": \"https://videos.pexels.com/video-files/6265096/6265096-uhd_1440_2560_30fps.mp4\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"lastUpdatedOn\": 1739791885000,\n\
+                    \            \"lastUpdatedOnDateTime\": \"2025-02-17T11:31:25Z\"\
+                    ,\n            \"encryptionRequired\": false\n        },\n   \
+                    \     {\n            \"id\": 63,\n            \"name\": \"DocVendor10\"\
+                    ,\n            \"brandId\": 61,\n            \"enabled\": true,\n\
+                    \            \"vendorTypes\": null,\n            \"vendorDetails\"\
+                    : {},\n            \"type\": \"REWARDS\",\n            \"rank\"\
+                    : null,\n            \"code\": \"Doc010\",\n            \"description\"\
+                    : null,\n            \"images\": [],\n            \"videos\":\
+                    \ [],\n            \"lastUpdatedOn\": 1739855739000,\n       \
+                    \     \"lastUpdatedOnDateTime\": \"2025-02-18T05:15:39Z\",\n \
+                    \           \"encryptionRequired\": false\n        },\n      \
+                    \  {\n            \"id\": 64,\n            \"name\": \"DocVendor11\"\
+                    ,\n            \"brandId\": 61,\n            \"enabled\": true,\n\
+                    \            \"vendorTypes\": null,\n            \"vendorDetails\"\
+                    : {},\n            \"type\": \"REWARDS\",\n            \"rank\"\
+                    : null,\n            \"code\": \"Doc011\",\n            \"description\"\
+                    : null,\n            \"images\": [\n                {\n      \
+                    \              \"name\": \"imageName001\",\n                 \
+                    \   \"altText\": null,\n                    \"id\": \"bdacb6a7-d4ce-4dea-bf38-134a1200b8b9\"\
+                    ,\n                    \"url\": \"https://s3.amazonaws.com/fileservice.in/solutions/c3d28860-1e11-4a01-8a7c-ea12b56.jpeg?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEF4aCWV1LXdlc3QtMSJHMEUCIAXwTUz5Dfh2tBPRKcMVkL1xU%2B%2B19fTIZeOPtck2I8QPAiEA%2B9Wp2mvKDbjvbHGQQYVWN3gjzxgAGc4bZ0iEU09wtQkqugIIhv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw1MDI4MTI3NzkyNjciDA7ia22iVxU7nAbnhyqOAg4TFHTVxe8xzxyLWPQvBNja45Lwb2ZAL%2F%2BN1VQDXX6cNY5sOiT1%2FGB7cXqAy2xVBOeC9er1mQdWflcrdYJBiTOsLnsG7u5x9NYYSOAfWFEp5xtxTG%2BmdWWl4OdE4BZwyoDEmKjBR%2BR3jm7nBop5ZhYRoWxyOhX%2BVlnX3JmTng%2BPYH6USdEbpfmDw83KAA2QTYrCO463hxEwgsBB6a%2Fus%2BadZjZlyIHBxo%2FmfnGH5qiPgX94S7g5iYRLuwvYxO28sLqTFTAPYY5QPaEWbuT4X4whfNXSsgNVr5tcQa%2B6UoiI0biU0nzr1SJeceK6WUamt6Os6rzw0KDYbHIOxYWnCgFkSzK3MiB1jVRR6H3N0DCErdC9BjqdAQq9nL8BJoImTZ9u00EDqo5uZhySGh7BLpAt4mQO%2Fra%2Bp9g9xjSTtUEXsBzdHa8l0g%2FH02JyHADqqcWisFWuvPONl91PyrYJtbgqO2ojAYvsaHmx%2FzxhYeZ2b5jqBsaIERu0FtxBN05Z1E6mUMWxmCfFMBafnlTz9TYRA8enpo%2FdoKcjgcEuuoRhpefogOHh3qhyG0E0fHeUhd7PuGU%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250218T051557Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=ASIAXKEP2EMBVGDWQZ6R%2F20250218%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=dbdc8746ad5823b7f64932ae27783fd6e3cc583e14c44a888484b81c1f0641e2\"\
+                    ,\n                    \"isExternal\": false\n               \
+                    \ }\n            ],\n            \"videos\": [],\n           \
+                    \ \"lastUpdatedOn\": 1739855757000,\n            \"lastUpdatedOnDateTime\"\
+                    : \"2025-02-18T05:15:57Z\",\n            \"encryptionRequired\"\
+                    : false\n        },\n        {\n            \"id\": 68,\n    \
+                    \        \"name\": \"DocVendor12\",\n            \"brandId\":\
+                    \ 61,\n            \"enabled\": true,\n            \"vendorTypes\"\
+                    : null,\n            \"vendorDetails\": {},\n            \"type\"\
+                    : \"REWARDS\",\n            \"rank\": null,\n            \"code\"\
+                    : \"Doc012\",\n            \"description\": null,\n          \
+                    \  \"images\": [\n                {\n                    \"name\"\
+                    : \"imageName001\",\n                    \"altText\": null,\n\
+                    \                    \"id\": null,\n                    \"url\"\
+                    : \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6RFSqYEgenJSDc0Wo_eoEKzxd0iXvTOO-LQ&s\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"videos\": [\n                {\n\
+                    \                    \"name\": \"videoName001\",\n           \
+                    \         \"altText\": null,\n                    \"id\": null,\n\
+                    \                    \"url\": \"https://videos.pexels.com/video-files/6265096/6265096-uhd_1440_2560_30fps.mp4\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"lastUpdatedOn\": 1740637585000,\n\
+                    \            \"lastUpdatedOnDateTime\": \"2025-02-27T06:26:25Z\"\
+                    ,\n            \"encryptionRequired\": false\n        },\n   \
+                    \     {\n            \"id\": 69,\n            \"name\": \"DocVendor13\"\
+                    ,\n            \"brandId\": 61,\n            \"enabled\": true,\n\
+                    \            \"vendorTypes\": null,\n            \"vendorDetails\"\
+                    : {},\n            \"type\": \"REWARDS\",\n            \"rank\"\
+                    : null,\n            \"code\": \"Doc013\",\n            \"description\"\
+                    : null,\n            \"images\": [\n                {\n      \
+                    \              \"name\": \"imageName001\",\n                 \
+                    \   \"altText\": null,\n                    \"id\": null,\n  \
+                    \                  \"url\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6RFSqYEgenJSDc0Wo_eoEKzxd0iXvTOO-LQ&s\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"videos\": [\n                {\n\
+                    \                    \"name\": \"videoName001\",\n           \
+                    \         \"altText\": null,\n                    \"id\": null,\n\
+                    \                    \"url\": \"https://videos.pexels.com/video-files/6265096/6265096-uhd_1440_2560_30fps.mp4\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"lastUpdatedOn\": 1740637658000,\n\
+                    \            \"lastUpdatedOnDateTime\": \"2025-02-27T06:27:38Z\"\
+                    ,\n            \"encryptionRequired\": false\n        },\n   \
+                    \     {\n            \"id\": 86,\n            \"name\": \"VendorDoc\"\
+                    ,\n            \"brandId\": 61,\n            \"enabled\": true,\n\
+                    \            \"vendorTypes\": null,\n            \"vendorDetails\"\
+                    : {},\n            \"type\": \"REWARDS\",\n            \"rank\"\
+                    : null,\n            \"code\": \"Doc100\",\n            \"description\"\
+                    : null,\n            \"images\": [],\n            \"videos\":\
+                    \ [],\n            \"lastUpdatedOn\": 1741171688000,\n       \
+                    \     \"lastUpdatedOnDateTime\": \"2025-03-05T10:48:08Z\",\n \
+                    \           \"encryptionRequired\": false\n        }\n    ]\n}"
+                When enabled=true:
+                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
+                    \   \"code\": 5001,\n        \"message\": \"Vendor fetched successfully\"\
+                    \n    },\n    \"vendorList\": [\n        {\n            \"id\"\
+                    : 2,\n            \"name\": \"BonusLink\",\n            \"brandId\"\
+                    : 1,\n            \"enabled\": false,\n            \"vendorTypes\"\
+                    : null,\n            \"vendorDetails\": {},\n            \"type\"\
+                    : \"REWARDS\",\n            \"lastUpdatedOn\": 1697634702000,\n\
+                    \            \"encryptionRequired\": false\n        },\n     \
+                    \   {\n            \"id\": 4,\n            \"name\": \"OVO\",\n\
+                    \            \"brandId\": 1,\n            \"enabled\": false,\n\
+                    \            \"vendorTypes\": \"LINKAJA\",\n            \"vendorDetails\"\
+                    : {},\n            \"type\": \"REWARDS\",\n            \"lastUpdatedOn\"\
+                    : 1717759204000,\n            \"encryptionRequired\": true\n \
+                    \       },\n        {\n            \"id\": 6,\n            \"\
+                    name\": \"sadfhlk\",\n            \"brandId\": 1,\n          \
+                    \  \"enabled\": false,\n            \"vendorTypes\": null,\n \
+                    \           \"vendorDetails\": {},\n            \"type\": \"REWARDS\"\
+                    ,\n            \"lastUpdatedOn\": 1697634705000,\n           \
+                    \ \"encryptionRequired\": false\n        },\n        {\n     \
+                    \       \"id\": 7,\n            \"name\": \"Test 123\",\n    \
+                    \        \"brandId\": 1,\n            \"enabled\": false,\n  \
+                    \          \"vendorTypes\": null,\n            \"vendorDetails\"\
+                    : {\n                \"Test\": \"********************************************\"\
+                    \n            },\n            \"type\": \"REWARDS\",\n       \
+                    \     \"lastUpdatedOn\": 1717759201000,\n            \"encryptionRequired\"\
+                    : false\n        },\n        {\n            \"id\": 58,\n    \
+                    \        \"name\": \"DocVendor6\",\n            \"brandId\": 61,\n\
+                    \            \"enabled\": true,\n            \"vendorTypes\":\
+                    \ null,\n            \"vendorDetails\": {},\n            \"type\"\
+                    : \"REWARDS\",\n            \"rank\": null,\n            \"code\"\
+                    : \"Doc006\",\n            \"description\": null,\n          \
+                    \  \"images\": [\n                {\n                    \"name\"\
+                    : \"imageName001\",\n                    \"altText\": null,\n\
+                    \                    \"id\": null,\n                    \"url\"\
+                    : \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6RFSqYEgenJSDc0Wo_eoEKzxd0iXvTOO-LQ&s\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"videos\": [],\n            \"lastUpdatedOn\"\
+                    : 1739783325000,\n            \"encryptionRequired\": false\n\
+                    \        }\n    ]\n}"
+                "Failure: Invalid Brand ID":
+                  value: "{\n    \"status\": {\n        \"success\": false,\n    \
+                    \    \"code\": 3004,\n        \"message\": \"Brand not found\"\
+                    \n    }\n}"
+                With sortBy=lastUpdatedOn:
+                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
+                    \   \"code\": 5001,\n        \"message\": \"Vendor fetched successfully\"\
+                    \n    },\n    \"vendorList\": [\n        {\n            \"id\"\
+                    : 44,\n            \"name\": \"Clothing\",\n            \"brandId\"\
+                    : 61,\n            \"enabled\": true,\n            \"vendorTypes\"\
+                    : null,\n            \"vendorDetails\": {},\n            \"type\"\
+                    : \"REWARDS\",\n            \"rank\": null,\n            \"code\"\
+                    : \"44\",\n            \"description\": null,\n            \"\
+                    images\": [],\n            \"videos\": [],\n            \"lastUpdatedOn\"\
+                    : 1739438226000,\n            \"createdOn\": 1735816449000,\n\
+                    \            \"createdOnDateTime\": \"2025-01-02T11:14:09Z\",\n\
+                    \            \"lastUpdatedOnDateTime\": \"2025-02-13T09:17:06Z\"\
+                    ,\n            \"createdBy\": null,\n            \"lastUpdatedBy\"\
+                    : null,\n            \"encryptionRequired\": false\n        },\n\
+                    \        {\n            \"id\": 47,\n            \"name\": \"\
+                    Nee\",\n            \"brandId\": 61,\n            \"enabled\"\
+                    : true,\n            \"vendorTypes\": null,\n            \"vendorDetails\"\
+                    : {\n                \"123\": \"********************************************\"\
+                    \n            },\n            \"type\": \"REWARDS\",\n       \
+                    \     \"rank\": null,\n            \"code\": \"47\",\n       \
+                    \     \"description\": null,\n            \"images\": [],\n  \
+                    \          \"videos\": [],\n            \"lastUpdatedOn\": 1739438226000,\n\
+                    \            \"createdOn\": 1738646869000,\n            \"createdOnDateTime\"\
+                    : \"2025-02-04T05:27:49Z\",\n            \"lastUpdatedOnDateTime\"\
+                    : \"2025-02-13T09:17:06Z\",\n            \"createdBy\": null,\n\
+                    \            \"lastUpdatedBy\": null,\n            \"encryptionRequired\"\
+                    : false\n        },\n        {\n            \"id\": 51,\n    \
+                    \        \"name\": \"testVendor-016\",\n            \"brandId\"\
+                    : 61,\n            \"enabled\": true,\n            \"vendorTypes\"\
+                    : null,\n            \"vendorDetails\": {},\n            \"type\"\
+                    : \"REWARDS\",\n            \"rank\": 1,\n            \"code\"\
+                    : \"100737\",\n            \"description\": \"description\",\n\
+                    \            \"images\": [],\n            \"videos\": [],\n  \
+                    \          \"lastUpdatedOn\": 1739777347000,\n            \"createdOn\"\
+                    : 1739777347000,\n            \"createdOnDateTime\": \"2025-02-17T07:29:07Z\"\
+                    ,\n            \"lastUpdatedOnDateTime\": \"2025-02-17T07:29:07Z\"\
+                    ,\n            \"createdBy\": null,\n            \"lastUpdatedBy\"\
+                    : null,\n            \"encryptionRequired\": false\n        },\n\
+                    \        {\n            \"id\": 52,\n            \"name\": \"\
+                    DocVendor\",\n            \"brandId\": 61,\n            \"enabled\"\
+                    : true,\n            \"vendorTypes\": null,\n            \"vendorDetails\"\
+                    : {},\n            \"type\": \"REWARDS\",\n            \"rank\"\
+                    : 1,\n            \"code\": \"Doc001\",\n            \"description\"\
+                    : \"description\",\n            \"images\": [],\n            \"\
+                    videos\": [],\n            \"lastUpdatedOn\": 1739777392000,\n\
+                    \            \"createdOn\": 1739777392000,\n            \"createdOnDateTime\"\
+                    : \"2025-02-17T07:29:52Z\",\n            \"lastUpdatedOnDateTime\"\
+                    : \"2025-02-17T07:29:52Z\",\n            \"createdBy\": null,\n\
+                    \            \"lastUpdatedBy\": null,\n            \"encryptionRequired\"\
+                    : false\n        },\n        {\n            \"id\": 53,\n    \
+                    \        \"name\": \"DocVendor2\",\n            \"brandId\": 61,\n\
+                    \            \"enabled\": true,\n            \"vendorTypes\":\
+                    \ null,\n            \"vendorDetails\": {},\n            \"type\"\
+                    : \"REWARDS\",\n            \"rank\": 1,\n            \"code\"\
+                    : \"Doc002\",\n            \"description\": \"description\",\n\
+                    \            \"images\": [],\n            \"videos\": [],\n  \
+                    \          \"lastUpdatedOn\": 1739777433000,\n            \"createdOn\"\
+                    : 1739777433000,\n            \"createdOnDateTime\": \"2025-02-17T07:30:33Z\"\
+                    ,\n            \"lastUpdatedOnDateTime\": \"2025-02-17T07:30:33Z\"\
+                    ,\n            \"createdBy\": null,\n            \"lastUpdatedBy\"\
+                    : null,\n            \"encryptionRequired\": false\n        },\n\
+                    \        {\n            \"id\": 55,\n            \"name\": \"\
+                    DocVendor3\",\n            \"brandId\": 61,\n            \"enabled\"\
+                    : true,\n            \"vendorTypes\": null,\n            \"vendorDetails\"\
+                    : {},\n            \"type\": \"REWARDS\",\n            \"rank\"\
+                    : 1,\n            \"code\": \"Doc003\",\n            \"description\"\
+                    : \"description\",\n            \"images\": [],\n            \"\
+                    videos\": [],\n            \"lastUpdatedOn\": 1739781911000,\n\
+                    \            \"createdOn\": 1739781911000,\n            \"createdOnDateTime\"\
+                    : \"2025-02-17T08:45:11Z\",\n            \"lastUpdatedOnDateTime\"\
+                    : \"2025-02-17T08:45:11Z\",\n            \"createdBy\": null,\n\
+                    \            \"lastUpdatedBy\": null,\n            \"encryptionRequired\"\
+                    : false\n        },\n        {\n            \"id\": 56,\n    \
+                    \        \"name\": \"DocVendor4\",\n            \"brandId\": 61,\n\
+                    \            \"enabled\": true,\n            \"vendorTypes\":\
+                    \ null,\n            \"vendorDetails\": {},\n            \"type\"\
+                    : \"REWARDS\",\n            \"rank\": 1,\n            \"code\"\
+                    : \"Doc004\",\n            \"description\": \"thesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswiabcd\"\
+                    ,\n            \"images\": [],\n            \"videos\": [],\n\
+                    \            \"lastUpdatedOn\": 1739782052000,\n            \"\
+                    createdOn\": 1739782052000,\n            \"createdOnDateTime\"\
+                    : \"2025-02-17T08:47:32Z\",\n            \"lastUpdatedOnDateTime\"\
+                    : \"2025-02-17T08:47:32Z\",\n            \"createdBy\": null,\n\
+                    \            \"lastUpdatedBy\": null,\n            \"encryptionRequired\"\
+                    : false\n        },\n        {\n            \"id\": 57,\n    \
+                    \        \"name\": \"DocVendor5\",\n            \"brandId\": 61,\n\
+                    \            \"enabled\": true,\n            \"vendorTypes\":\
+                    \ null,\n            \"vendorDetails\": {},\n            \"type\"\
+                    : \"REWARDS\",\n            \"rank\": 1,\n            \"code\"\
+                    : \"Doc005\",\n            \"description\": \"thesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswiabcdthesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswiabcdthesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswiabcdthesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswiabcd\"\
+                    ,\n            \"images\": [],\n            \"videos\": [],\n\
+                    \            \"lastUpdatedOn\": 1739782082000,\n            \"\
+                    createdOn\": 1739782082000,\n            \"createdOnDateTime\"\
+                    : \"2025-02-17T08:48:02Z\",\n            \"lastUpdatedOnDateTime\"\
+                    : \"2025-02-17T08:48:02Z\",\n            \"createdBy\": null,\n\
+                    \            \"lastUpdatedBy\": null,\n            \"encryptionRequired\"\
+                    : false\n        },\n        {\n            \"id\": 58,\n    \
+                    \        \"name\": \"DocVendor6\",\n            \"brandId\": 61,\n\
+                    \            \"enabled\": true,\n            \"vendorTypes\":\
+                    \ null,\n            \"vendorDetails\": {},\n            \"type\"\
+                    : \"REWARDS\",\n            \"rank\": null,\n            \"code\"\
+                    : \"Doc006\",\n            \"description\": null,\n          \
+                    \  \"images\": [\n                {\n                    \"name\"\
+                    : \"imageName001\",\n                    \"altText\": null,\n\
+                    \                    \"id\": null,\n                    \"url\"\
+                    : \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6RFSqYEgenJSDc0Wo_eoEKzxd0iXvTOO-LQ&s\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"videos\": [],\n            \"lastUpdatedOn\"\
+                    : 1739783325000,\n            \"createdOn\": 1739783325000,\n\
+                    \            \"createdOnDateTime\": \"2025-02-17T09:08:45Z\",\n\
+                    \            \"lastUpdatedOnDateTime\": \"2025-02-17T09:08:45Z\"\
+                    ,\n            \"createdBy\": null,\n            \"lastUpdatedBy\"\
+                    : null,\n            \"encryptionRequired\": false\n        },\n\
+                    \        {\n            \"id\": 59,\n            \"name\": \"\
+                    DocVendor7\",\n            \"brandId\": 61,\n            \"enabled\"\
+                    : true,\n            \"vendorTypes\": null,\n            \"vendorDetails\"\
+                    : {},\n            \"type\": \"REWARDS\",\n            \"rank\"\
+                    : null,\n            \"code\": \"Doc007\",\n            \"description\"\
+                    : null,\n            \"images\": [\n                {\n      \
+                    \              \"name\": \"imageName001\",\n                 \
+                    \   \"altText\": null,\n                    \"id\": null,\n  \
+                    \                  \"url\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6RFSqYEgenJSDc0Wo_eoEKzxd0iXvTOO-LQ&s\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"videos\": [\n                {\n\
+                    \                    \"name\": \"videoName001\",\n           \
+                    \         \"altText\": null,\n                    \"id\": null,\n\
+                    \                    \"url\": \"https://videos.pexels.com/video-files/6265096/6265096-uhd_1440_2560_30fps.mp4\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"lastUpdatedOn\": 1739783601000,\n\
+                    \            \"createdOn\": 1739783601000,\n            \"createdOnDateTime\"\
+                    : \"2025-02-17T09:13:21Z\",\n            \"lastUpdatedOnDateTime\"\
+                    : \"2025-02-17T09:13:21Z\",\n            \"createdBy\": null,\n\
+                    \            \"lastUpdatedBy\": null,\n            \"encryptionRequired\"\
+                    : false\n        },\n        {\n            \"id\": 61,\n    \
+                    \        \"name\": \"DocVendor9\",\n            \"brandId\": 61,\n\
+                    \            \"enabled\": true,\n            \"vendorTypes\":\
+                    \ null,\n            \"vendorDetails\": {},\n            \"type\"\
+                    : \"REWARDS\",\n            \"rank\": null,\n            \"code\"\
+                    : \"Doc009\",\n            \"description\": null,\n          \
+                    \  \"images\": [\n                {\n                    \"name\"\
+                    : \"imageName001\",\n                    \"altText\": null,\n\
+                    \                    \"id\": null,\n                    \"url\"\
+                    : \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6RFSqYEgenJSDc0Wo_eoEKzxd0iXvTOO-LQ&s\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"videos\": [\n                {\n\
+                    \                    \"name\": \"videoName001\",\n           \
+                    \         \"altText\": null,\n                    \"id\": null,\n\
+                    \                    \"url\": \"https://videos.pexels.com/video-files/6265096/6265096-uhd_1440_2560_30fps.mp4\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"lastUpdatedOn\": 1739791885000,\n\
+                    \            \"createdOn\": 1739791885000,\n            \"createdOnDateTime\"\
+                    : \"2025-02-17T11:31:25Z\",\n            \"lastUpdatedOnDateTime\"\
+                    : \"2025-02-17T11:31:25Z\",\n            \"createdBy\": null,\n\
+                    \            \"lastUpdatedBy\": null,\n            \"encryptionRequired\"\
+                    : false\n        },\n        {\n            \"id\": 63,\n    \
+                    \        \"name\": \"DocVendor10\",\n            \"brandId\":\
+                    \ 61,\n            \"enabled\": true,\n            \"vendorTypes\"\
+                    : null,\n            \"vendorDetails\": {},\n            \"type\"\
+                    : \"REWARDS\",\n            \"rank\": null,\n            \"code\"\
+                    : \"Doc010\",\n            \"description\": null,\n          \
+                    \  \"images\": [],\n            \"videos\": [],\n            \"\
+                    lastUpdatedOn\": 1739855739000,\n            \"createdOn\": 1739855739000,\n\
+                    \            \"createdOnDateTime\": \"2025-02-18T05:15:39Z\",\n\
+                    \            \"lastUpdatedOnDateTime\": \"2025-02-18T05:15:39Z\"\
+                    ,\n            \"createdBy\": null,\n            \"lastUpdatedBy\"\
+                    : null,\n            \"encryptionRequired\": false\n        },\n\
+                    \        {\n            \"id\": 64,\n            \"name\": \"\
+                    DocVendor11\",\n            \"brandId\": 61,\n            \"enabled\"\
+                    : true,\n            \"vendorTypes\": null,\n            \"vendorDetails\"\
+                    : {},\n            \"type\": \"REWARDS\",\n            \"rank\"\
+                    : null,\n            \"code\": \"Doc011\",\n            \"description\"\
+                    : null,\n            \"images\": [\n                {\n      \
+                    \              \"name\": \"imageName001\",\n                 \
+                    \   \"altText\": null,\n                    \"id\": \"bdacb6a7-d4ce-4dea-bf38-134a1200b8b9\"\
+                    ,\n                    \"url\": \"https://s3.amazonaws.com/fileservice.in/solutions/c3d28860-1e11-4a01-8a7c-ea12b56.jpeg?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEF4aCWV1LXdlc3QtMSJHMEUCIAXwTUz5Dfh2tBPRKcMVkL1xU%2B%2B19fTIZeOPtck2I8QPAiEA%2B9Wp2mvKDbjvbHGQQYVWN3gjzxgAGc4bZ0iEU09wtQkqugIIhv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw1MDI4MTI3NzkyNjciDA7ia22iVxU7nAbnhyqOAg4TFHTVxe8xzxyLWPQvBNja45Lwb2ZAL%2F%2BN1VQDXX6cNY5sOiT1%2FGB7cXqAy2xVBOeC9er1mQdWflcrdYJBiTOsLnsG7u5x9NYYSOAfWFEp5xtxTG%2BmdWWl4OdE4BZwyoDEmKjBR%2BR3jm7nBop5ZhYRoWxyOhX%2BVlnX3JmTng%2BPYH6USdEbpfmDw83KAA2QTYrCO463hxEwgsBB6a%2Fus%2BadZjZlyIHBxo%2FmfnGH5qiPgX94S7g5iYRLuwvYxO28sLqTFTAPYY5QPaEWbuT4X4whfNXSsgNVr5tcQa%2B6UoiI0biU0nzr1SJeceK6WUamt6Os6rzw0KDYbHIOxYWnCgFkSzK3MiB1jVRR6H3N0DCErdC9BjqdAQq9nL8BJoImTZ9u00EDqo5uZhySGh7BLpAt4mQO%2Fra%2Bp9g9xjSTtUEXsBzdHa8l0g%2FH02JyHADqqcWisFWuvPONl91PyrYJtbgqO2ojAYvsaHmx%2FzxhYeZ2b5jqBsaIERu0FtxBN05Z1E6mUMWxmCfFMBafnlTz9TYRA8enpo%2FdoKcjgcEuuoRhpefogOHh3qhyG0E0fHeUhd7PuGU%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250218T051557Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=ASIAXKEP2EMBVGDWQZ6R%2F20250218%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=dbdc8746ad5823b7f64932ae27783fd6e3cc583e14c44a888484b81c1f0641e2\"\
+                    ,\n                    \"isExternal\": false\n               \
+                    \ }\n            ],\n            \"videos\": [],\n           \
+                    \ \"lastUpdatedOn\": 1739855757000,\n            \"createdOn\"\
+                    : 1739855757000,\n            \"createdOnDateTime\": \"2025-02-18T05:15:57Z\"\
+                    ,\n            \"lastUpdatedOnDateTime\": \"2025-02-18T05:15:57Z\"\
+                    ,\n            \"createdBy\": null,\n            \"lastUpdatedBy\"\
+                    : null,\n            \"encryptionRequired\": false\n        },\n\
+                    \        {\n            \"id\": 68,\n            \"name\": \"\
+                    DocVendor12\",\n            \"brandId\": 61,\n            \"enabled\"\
+                    : true,\n            \"vendorTypes\": null,\n            \"vendorDetails\"\
+                    : {},\n            \"type\": \"REWARDS\",\n            \"rank\"\
+                    : null,\n            \"code\": \"Doc012\",\n            \"description\"\
+                    : null,\n            \"images\": [\n                {\n      \
+                    \              \"name\": \"imageName001\",\n                 \
+                    \   \"altText\": null,\n                    \"id\": null,\n  \
+                    \                  \"url\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6RFSqYEgenJSDc0Wo_eoEKzxd0iXvTOO-LQ&s\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"videos\": [\n                {\n\
+                    \                    \"name\": \"videoName001\",\n           \
+                    \         \"altText\": null,\n                    \"id\": null,\n\
+                    \                    \"url\": \"https://videos.pexels.com/video-files/6265096/6265096-uhd_1440_2560_30fps.mp4\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"lastUpdatedOn\": 1740637585000,\n\
+                    \            \"createdOn\": 1740637585000,\n            \"createdOnDateTime\"\
+                    : \"2025-02-27T06:26:25Z\",\n            \"lastUpdatedOnDateTime\"\
+                    : \"2025-02-27T06:26:25Z\",\n            \"createdBy\": null,\n\
+                    \            \"lastUpdatedBy\": null,\n            \"encryptionRequired\"\
+                    : false\n        },\n        {\n            \"id\": 69,\n    \
+                    \        \"name\": \"DocVendor13\",\n            \"brandId\":\
+                    \ 61,\n            \"enabled\": true,\n            \"vendorTypes\"\
+                    : null,\n            \"vendorDetails\": {},\n            \"type\"\
+                    : \"REWARDS\",\n            \"rank\": null,\n            \"code\"\
+                    : \"Doc013\",\n            \"description\": null,\n          \
+                    \  \"images\": [\n                {\n                    \"name\"\
+                    : \"imageName001\",\n                    \"altText\": null,\n\
+                    \                    \"id\": null,\n                    \"url\"\
+                    : \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6RFSqYEgenJSDc0Wo_eoEKzxd0iXvTOO-LQ&s\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"videos\": [\n                {\n\
+                    \                    \"name\": \"videoName001\",\n           \
+                    \         \"altText\": null,\n                    \"id\": null,\n\
+                    \                    \"url\": \"https://videos.pexels.com/video-files/6265096/6265096-uhd_1440_2560_30fps.mp4\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"lastUpdatedOn\": 1740637658000,\n\
+                    \            \"createdOn\": 1740637658000,\n            \"createdOnDateTime\"\
+                    : \"2025-02-27T06:27:38Z\",\n            \"lastUpdatedOnDateTime\"\
+                    : \"2025-02-27T06:27:38Z\",\n            \"createdBy\": null,\n\
+                    \            \"lastUpdatedBy\": null,\n            \"encryptionRequired\"\
+                    : false\n        },\n        {\n            \"id\": 86,\n    \
+                    \        \"name\": \"VendorDoc\",\n            \"brandId\": 61,\n\
+                    \            \"enabled\": true,\n            \"vendorTypes\":\
+                    \ null,\n            \"vendorDetails\": {},\n            \"type\"\
+                    : \"REWARDS\",\n            \"rank\": null,\n            \"code\"\
+                    : \"Doc100\",\n            \"description\": null,\n          \
+                    \  \"images\": [],\n            \"videos\": [],\n            \"\
+                    lastUpdatedOn\": 1741171688000,\n            \"createdOn\": 1741171688000,\n\
+                    \            \"createdOnDateTime\": \"2025-03-05T10:48:08Z\",\n\
+                    \            \"lastUpdatedOnDateTime\": \"2025-03-05T10:48:08Z\"\
+                    ,\n            \"createdBy\": null,\n            \"lastUpdatedBy\"\
+                    : null,\n            \"encryptionRequired\": false\n        },\n\
+                    \        {\n            \"id\": 118,\n            \"name\": \"\
+                    pretest1\",\n            \"brandId\": 61,\n            \"enabled\"\
+                    : true,\n            \"vendorTypes\": null,\n            \"vendorDetails\"\
+                    : {},\n            \"type\": \"REWARDS\",\n            \"rank\"\
+                    : 1,\n            \"code\": \"BOC01\",\n            \"description\"\
+                    : \"The top priority vendor\",\n            \"images\": [\n  \
+                    \              {\n                    \"name\": \"pretest\",\n\
+                    \                    \"altText\": null,\n                    \"\
+                    id\": null,\n                    \"url\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6RFSqYEgenJSDc0Wo_eoEKzxd0iXvTOO-LQ&s\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"videos\": [\n                {\n\
+                    \                    \"name\": \"videoName001\",\n           \
+                    \         \"altText\": null,\n                    \"id\": null,\n\
+                    \                    \"url\": \"https://videos.pexels.com/video-files/6265096/6265096-uhd_1440_2560_30fps.mp4\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"lastUpdatedOn\": 1743678522000,\n\
+                    \            \"createdOn\": 1743678522000,\n            \"createdOnDateTime\"\
+                    : \"2025-04-03T11:08:42Z\",\n            \"lastUpdatedOnDateTime\"\
+                    : \"2025-04-03T11:08:42Z\",\n            \"createdBy\": null,\n\
+                    \            \"lastUpdatedBy\": null,\n            \"encryptionRequired\"\
+                    : false\n        },\n        {\n            \"id\": 119,\n   \
+                    \         \"name\": \"Intouch Vendor\",\n            \"brandId\"\
+                    : 61,\n            \"enabled\": true,\n            \"vendorTypes\"\
+                    : \"LINKAJA\",\n            \"vendorDetails\": {\n           \
+                    \     \"key1\": \"************************************************\"\
+                    ,\n                \"key2\": \"************************************************\"\
+                    \n            },\n            \"type\": \"REWARDS\",\n       \
+                    \     \"rank\": 1,\n            \"code\": \"4e5c14a6-6a57-48b3-9f3d-d72032c0b179\"\
+                    ,\n            \"description\": \"Intouch vendor description\"\
+                    ,\n            \"images\": [],\n            \"videos\": [],\n\
+                    \            \"lastUpdatedOn\": 1744085165000,\n            \"\
+                    createdOn\": 1744085165000,\n            \"createdOnDateTime\"\
+                    : \"2025-04-08T04:06:05Z\",\n            \"lastUpdatedOnDateTime\"\
+                    : \"2025-04-08T04:06:05Z\",\n            \"createdBy\": null,\n\
+                    \            \"lastUpdatedBy\": null,\n            \"encryptionRequired\"\
+                    : false\n        },\n        {\n            \"id\": 124,\n   \
+                    \         \"name\": \"DocVendor3GEORGE\",\n            \"brandId\"\
+                    : 61,\n            \"enabled\": true,\n            \"vendorTypes\"\
+                    : null,\n            \"vendorDetails\": {},\n            \"type\"\
+                    : \"REWARDS\",\n            \"rank\": 1,\n            \"code\"\
+                    : \"Doc0003\",\n            \"description\": \"The top priority\
+                    \ vendor\",\n            \"images\": [\n                {\n  \
+                    \                  \"name\": \"imageName001\",\n             \
+                    \       \"altText\": null,\n                    \"id\": null,\n\
+                    \                    \"url\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6RFSqYEgenJSDc0Wo_eoEKzxd0iXvTOO-LQ&s\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"videos\": [\n                {\n\
+                    \                    \"name\": \"videoName001\",\n           \
+                    \         \"altText\": null,\n                    \"id\": null,\n\
+                    \                    \"url\": \"https://videos.pexels.com/video-files/6265096/6265096-uhd_1440_2560_30fps.mp4\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"lastUpdatedOn\": 1744720043000,\n\
+                    \            \"createdOn\": 1744720043000,\n            \"createdOnDateTime\"\
+                    : \"2025-04-15T12:27:23Z\",\n            \"lastUpdatedOnDateTime\"\
+                    : \"2025-04-15T12:27:23Z\",\n            \"createdBy\": null,\n\
+                    \            \"lastUpdatedBy\": null,\n            \"encryptionRequired\"\
+                    : false\n        },\n        {\n            \"id\": 133,\n   \
+                    \         \"name\": \"VENDORHIRE\",\n            \"brandId\":\
+                    \ 61,\n            \"enabled\": true,\n            \"vendorTypes\"\
+                    : null,\n            \"vendorDetails\": {},\n            \"type\"\
+                    : \"REWARDS\",\n            \"rank\": 1,\n            \"code\"\
+                    : \"Doc0036\",\n            \"description\": \"The top priority\
+                    \ vendor\",\n            \"images\": [\n                {\n  \
+                    \                  \"name\": \"imageName001\",\n             \
+                    \       \"altText\": null,\n                    \"id\": null,\n\
+                    \                    \"url\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6RFSqYEgenJSDc0Wo_eoEKzxd0iXvTOO-LQ&s\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"videos\": [\n                {\n\
+                    \                    \"name\": \"videoName001\",\n           \
+                    \         \"altText\": null,\n                    \"id\": null,\n\
+                    \                    \"url\": \"https://videos.pexels.com/video-files/6265096/6265096-uhd_1440_2560_30fps.mp4\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"lastUpdatedOn\": 1747307907000,\n\
+                    \            \"createdOn\": 1747307907000,\n            \"createdOnDateTime\"\
+                    : \"2025-05-15T11:18:27Z\",\n            \"lastUpdatedOnDateTime\"\
+                    : \"2025-05-15T11:18:27Z\",\n            \"createdBy\": 75161973,\n\
+                    \            \"lastUpdatedBy\": 75161973,\n            \"encryptionRequired\"\
+                    : false\n        }\n    ]\n}"
+                With Vendor code Filter:
+                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
+                    \   \"code\": 5001,\n        \"message\": \"Vendor fetched successfully\"\
+                    \n    },\n    \"vendorList\": [\n        {\n            \"id\"\
+                    : 142,\n            \"name\": \"VENDORgold2\",\n            \"\
+                    brandId\": 61,\n            \"enabled\": true,\n            \"\
+                    vendorTypes\": null,\n            \"vendorDetails\": {},\n   \
+                    \         \"type\": \"REWARDS\",\n            \"rank\": 1,\n \
+                    \           \"code\": \"1234\",\n            \"description\":\
+                    \ \"The top priority vendor\",\n            \"images\": [\n  \
+                    \              {\n                    \"name\": \"imageName001\"\
+                    ,\n                    \"altText\": null,\n                  \
+                    \  \"id\": null,\n                    \"url\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6RFSqYEgenJSDc0Wo_eoEKzxd0iXvTOO-LQ&s\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"videos\": [\n                {\n\
+                    \                    \"name\": \"videoName001\",\n           \
+                    \         \"altText\": null,\n                    \"id\": null,\n\
+                    \                    \"url\": \"https://videos.pexels.com/video-files/6265096/6265096-uhd_1440_2560_30fps.mp4\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"lastUpdatedOn\": 1747910878000,\n\
+                    \            \"createdOn\": 1747910878000,\n            \"createdOnDateTime\"\
+                    : \"2025-05-22T10:47:58Z\",\n            \"lastUpdatedOnDateTime\"\
+                    : \"2025-05-22T10:47:58Z\",\n            \"createdBy\": 75161973,\n\
+                    \            \"lastUpdatedBy\": 75161973,\n            \"encryptionRequired\"\
+                    : false\n        }\n    ]\n}"
+                Generic:
+                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
+                    \   \"code\": 5001,\n        \"message\": \"Vendor fetched successfully\"\
+                    \n    },\n    \"vendorList\": [\n        {\n            \"id\"\
+                    : 44,\n            \"name\": \"Clothing\",\n            \"brandId\"\
+                    : 61,\n            \"enabled\": true,\n            \"vendorTypes\"\
+                    : null,\n            \"vendorDetails\": {},\n            \"type\"\
+                    : \"REWARDS\",\n            \"rank\": null,\n            \"code\"\
+                    : \"44\",\n            \"description\": null,\n            \"\
+                    images\": [],\n            \"videos\": [],\n            \"lastUpdatedOn\"\
+                    : 1739438226000,\n            \"createdOn\": 1735816449000,\n\
+                    \            \"createdOnDateTime\": \"2025-01-02T11:14:09Z\",\n\
+                    \            \"lastUpdatedOnDateTime\": \"2025-02-13T09:17:06Z\"\
+                    ,\n            \"createdBy\": null,\n            \"lastUpdatedBy\"\
+                    : null,\n            \"encryptionRequired\": false\n        },\n\
+                    \        {\n            \"id\": 47,\n            \"name\": \"\
+                    Nee\",\n            \"brandId\": 61,\n            \"enabled\"\
+                    : true,\n            \"vendorTypes\": null,\n            \"vendorDetails\"\
+                    : {\n                \"123\": \"********************************************\"\
+                    \n            },\n            \"type\": \"REWARDS\",\n       \
+                    \     \"rank\": null,\n            \"code\": \"47\",\n       \
+                    \     \"description\": null,\n            \"images\": [],\n  \
+                    \          \"videos\": [],\n            \"lastUpdatedOn\": 1739438226000,\n\
+                    \            \"createdOn\": 1738646869000,\n            \"createdOnDateTime\"\
+                    : \"2025-02-04T05:27:49Z\",\n            \"lastUpdatedOnDateTime\"\
+                    : \"2025-02-13T09:17:06Z\",\n            \"createdBy\": null,\n\
+                    \            \"lastUpdatedBy\": null,\n            \"encryptionRequired\"\
+                    : false\n        },\n        {\n            \"id\": 51,\n    \
+                    \        \"name\": \"testVendor-016\",\n            \"brandId\"\
+                    : 61,\n            \"enabled\": true,\n            \"vendorTypes\"\
+                    : null,\n            \"vendorDetails\": {},\n            \"type\"\
+                    : \"REWARDS\",\n            \"rank\": 1,\n            \"code\"\
+                    : \"100737\",\n            \"description\": \"description\",\n\
+                    \            \"images\": [],\n            \"videos\": [],\n  \
+                    \          \"lastUpdatedOn\": 1739777347000,\n            \"createdOn\"\
+                    : 1739777347000,\n            \"createdOnDateTime\": \"2025-02-17T07:29:07Z\"\
+                    ,\n            \"lastUpdatedOnDateTime\": \"2025-02-17T07:29:07Z\"\
+                    ,\n            \"createdBy\": null,\n            \"lastUpdatedBy\"\
+                    : null,\n            \"encryptionRequired\": false\n        },\n\
+                    \        {\n            \"id\": 52,\n            \"name\": \"\
+                    DocVendor\",\n            \"brandId\": 61,\n            \"enabled\"\
+                    : true,\n            \"vendorTypes\": null,\n            \"vendorDetails\"\
+                    : {},\n            \"type\": \"REWARDS\",\n            \"rank\"\
+                    : 1,\n            \"code\": \"Doc001\",\n            \"description\"\
+                    : \"description\",\n            \"images\": [],\n            \"\
+                    videos\": [],\n            \"lastUpdatedOn\": 1739777392000,\n\
+                    \            \"createdOn\": 1739777392000,\n            \"createdOnDateTime\"\
+                    : \"2025-02-17T07:29:52Z\",\n            \"lastUpdatedOnDateTime\"\
+                    : \"2025-02-17T07:29:52Z\",\n            \"createdBy\": null,\n\
+                    \            \"lastUpdatedBy\": null,\n            \"encryptionRequired\"\
+                    : false\n        },\n        {\n            \"id\": 53,\n    \
+                    \        \"name\": \"DocVendor2\",\n            \"brandId\": 61,\n\
+                    \            \"enabled\": true,\n            \"vendorTypes\":\
+                    \ null,\n            \"vendorDetails\": {},\n            \"type\"\
+                    : \"REWARDS\",\n            \"rank\": 1,\n            \"code\"\
+                    : \"Doc002\",\n            \"description\": \"description\",\n\
+                    \            \"images\": [],\n            \"videos\": [],\n  \
+                    \          \"lastUpdatedOn\": 1739777433000,\n            \"createdOn\"\
+                    : 1739777433000,\n            \"createdOnDateTime\": \"2025-02-17T07:30:33Z\"\
+                    ,\n            \"lastUpdatedOnDateTime\": \"2025-02-17T07:30:33Z\"\
+                    ,\n            \"createdBy\": null,\n            \"lastUpdatedBy\"\
+                    : null,\n            \"encryptionRequired\": false\n        },\n\
+                    \        {\n            \"id\": 55,\n            \"name\": \"\
+                    DocVendor3\",\n            \"brandId\": 61,\n            \"enabled\"\
+                    : true,\n            \"vendorTypes\": null,\n            \"vendorDetails\"\
+                    : {},\n            \"type\": \"REWARDS\",\n            \"rank\"\
+                    : 1,\n            \"code\": \"Doc003\",\n            \"description\"\
+                    : \"description\",\n            \"images\": [],\n            \"\
+                    videos\": [],\n            \"lastUpdatedOn\": 1739781911000,\n\
+                    \            \"createdOn\": 1739781911000,\n            \"createdOnDateTime\"\
+                    : \"2025-02-17T08:45:11Z\",\n            \"lastUpdatedOnDateTime\"\
+                    : \"2025-02-17T08:45:11Z\",\n            \"createdBy\": null,\n\
+                    \            \"lastUpdatedBy\": null,\n            \"encryptionRequired\"\
+                    : false\n        },\n        {\n            \"id\": 56,\n    \
+                    \        \"name\": \"DocVendor4\",\n            \"brandId\": 61,\n\
+                    \            \"enabled\": true,\n            \"vendorTypes\":\
+                    \ null,\n            \"vendorDetails\": {},\n            \"type\"\
+                    : \"REWARDS\",\n            \"rank\": 1,\n            \"code\"\
+                    : \"Doc004\",\n            \"description\": \"thesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswiabcd\"\
+                    ,\n            \"images\": [],\n            \"videos\": [],\n\
+                    \            \"lastUpdatedOn\": 1739782052000,\n            \"\
+                    createdOn\": 1739782052000,\n            \"createdOnDateTime\"\
+                    : \"2025-02-17T08:47:32Z\",\n            \"lastUpdatedOnDateTime\"\
+                    : \"2025-02-17T08:47:32Z\",\n            \"createdBy\": null,\n\
+                    \            \"lastUpdatedBy\": null,\n            \"encryptionRequired\"\
+                    : false\n        },\n        {\n            \"id\": 57,\n    \
+                    \        \"name\": \"DocVendor5\",\n            \"brandId\": 61,\n\
+                    \            \"enabled\": true,\n            \"vendorTypes\":\
+                    \ null,\n            \"vendorDetails\": {},\n            \"type\"\
+                    : \"REWARDS\",\n            \"rank\": 1,\n            \"code\"\
+                    : \"Doc005\",\n            \"description\": \"thesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswiabcdthesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswiabcdthesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswiabcdthesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswithesunwasearlyandbrightlightingupthefieldofgrasswiabcd\"\
+                    ,\n            \"images\": [],\n            \"videos\": [],\n\
+                    \            \"lastUpdatedOn\": 1739782082000,\n            \"\
+                    createdOn\": 1739782082000,\n            \"createdOnDateTime\"\
+                    : \"2025-02-17T08:48:02Z\",\n            \"lastUpdatedOnDateTime\"\
+                    : \"2025-02-17T08:48:02Z\",\n            \"createdBy\": null,\n\
+                    \            \"lastUpdatedBy\": null,\n            \"encryptionRequired\"\
+                    : false\n        },\n        {\n            \"id\": 58,\n    \
+                    \        \"name\": \"DocVendor6\",\n            \"brandId\": 61,\n\
+                    \            \"enabled\": true,\n            \"vendorTypes\":\
+                    \ null,\n            \"vendorDetails\": {},\n            \"type\"\
+                    : \"REWARDS\",\n            \"rank\": null,\n            \"code\"\
+                    : \"Doc006\",\n            \"description\": null,\n          \
+                    \  \"images\": [\n                {\n                    \"name\"\
+                    : \"imageName001\",\n                    \"altText\": null,\n\
+                    \                    \"id\": null,\n                    \"url\"\
+                    : \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6RFSqYEgenJSDc0Wo_eoEKzxd0iXvTOO-LQ&s\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"videos\": [],\n            \"lastUpdatedOn\"\
+                    : 1739783325000,\n            \"createdOn\": 1739783325000,\n\
+                    \            \"createdOnDateTime\": \"2025-02-17T09:08:45Z\",\n\
+                    \            \"lastUpdatedOnDateTime\": \"2025-02-17T09:08:45Z\"\
+                    ,\n            \"createdBy\": null,\n            \"lastUpdatedBy\"\
+                    : null,\n            \"encryptionRequired\": false\n        },\n\
+                    \        {\n            \"id\": 59,\n            \"name\": \"\
+                    DocVendor7\",\n            \"brandId\": 61,\n            \"enabled\"\
+                    : true,\n            \"vendorTypes\": null,\n            \"vendorDetails\"\
+                    : {},\n            \"type\": \"REWARDS\",\n            \"rank\"\
+                    : null,\n            \"code\": \"Doc007\",\n            \"description\"\
+                    : null,\n            \"images\": [\n                {\n      \
+                    \              \"name\": \"imageName001\",\n                 \
+                    \   \"altText\": null,\n                    \"id\": null,\n  \
+                    \                  \"url\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6RFSqYEgenJSDc0Wo_eoEKzxd0iXvTOO-LQ&s\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"videos\": [\n                {\n\
+                    \                    \"name\": \"videoName001\",\n           \
+                    \         \"altText\": null,\n                    \"id\": null,\n\
+                    \                    \"url\": \"https://videos.pexels.com/video-files/6265096/6265096-uhd_1440_2560_30fps.mp4\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"lastUpdatedOn\": 1739783601000,\n\
+                    \            \"createdOn\": 1739783601000,\n            \"createdOnDateTime\"\
+                    : \"2025-02-17T09:13:21Z\",\n            \"lastUpdatedOnDateTime\"\
+                    : \"2025-02-17T09:13:21Z\",\n            \"createdBy\": null,\n\
+                    \            \"lastUpdatedBy\": null,\n            \"encryptionRequired\"\
+                    : false\n        },\n        {\n            \"id\": 61,\n    \
+                    \        \"name\": \"DocVendor9\",\n            \"brandId\": 61,\n\
+                    \            \"enabled\": true,\n            \"vendorTypes\":\
+                    \ null,\n            \"vendorDetails\": {},\n            \"type\"\
+                    : \"REWARDS\",\n            \"rank\": null,\n            \"code\"\
+                    : \"Doc009\",\n            \"description\": null,\n          \
+                    \  \"images\": [\n                {\n                    \"name\"\
+                    : \"imageName001\",\n                    \"altText\": null,\n\
+                    \                    \"id\": null,\n                    \"url\"\
+                    : \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6RFSqYEgenJSDc0Wo_eoEKzxd0iXvTOO-LQ&s\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"videos\": [\n                {\n\
+                    \                    \"name\": \"videoName001\",\n           \
+                    \         \"altText\": null,\n                    \"id\": null,\n\
+                    \                    \"url\": \"https://videos.pexels.com/video-files/6265096/6265096-uhd_1440_2560_30fps.mp4\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"lastUpdatedOn\": 1739791885000,\n\
+                    \            \"createdOn\": 1739791885000,\n            \"createdOnDateTime\"\
+                    : \"2025-02-17T11:31:25Z\",\n            \"lastUpdatedOnDateTime\"\
+                    : \"2025-02-17T11:31:25Z\",\n            \"createdBy\": null,\n\
+                    \            \"lastUpdatedBy\": null,\n            \"encryptionRequired\"\
+                    : false\n        },\n        {\n            \"id\": 63,\n    \
+                    \        \"name\": \"DocVendor10\",\n            \"brandId\":\
+                    \ 61,\n            \"enabled\": true,\n            \"vendorTypes\"\
+                    : null,\n            \"vendorDetails\": {},\n            \"type\"\
+                    : \"REWARDS\",\n            \"rank\": null,\n            \"code\"\
+                    : \"Doc010\",\n            \"description\": null,\n          \
+                    \  \"images\": [],\n            \"videos\": [],\n            \"\
+                    lastUpdatedOn\": 1739855739000,\n            \"createdOn\": 1739855739000,\n\
+                    \            \"createdOnDateTime\": \"2025-02-18T05:15:39Z\",\n\
+                    \            \"lastUpdatedOnDateTime\": \"2025-02-18T05:15:39Z\"\
+                    ,\n            \"createdBy\": null,\n            \"lastUpdatedBy\"\
+                    : null,\n            \"encryptionRequired\": false\n        },\n\
+                    \        {\n            \"id\": 64,\n            \"name\": \"\
+                    DocVendor11\",\n            \"brandId\": 61,\n            \"enabled\"\
+                    : true,\n            \"vendorTypes\": null,\n            \"vendorDetails\"\
+                    : {},\n            \"type\": \"REWARDS\",\n            \"rank\"\
+                    : null,\n            \"code\": \"Doc011\",\n            \"description\"\
+                    : null,\n            \"images\": [\n                {\n      \
+                    \              \"name\": \"imageName001\",\n                 \
+                    \   \"altText\": null,\n                    \"id\": \"bdacb6a7-d4ce-4dea-bf38-134a1200b8b9\"\
+                    ,\n                    \"url\": \"https://s3.amazonaws.com/fileservice.in/solutions/c3d28860-1e11-4a01-8a7c-ea12b56.jpeg?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEF4aCWV1LXdlc3QtMSJHMEUCIAXwTUz5Dfh2tBPRKcMVkL1xU%2B%2B19fTIZeOPtck2I8QPAiEA%2B9Wp2mvKDbjvbHGQQYVWN3gjzxgAGc4bZ0iEU09wtQkqugIIhv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw1MDI4MTI3NzkyNjciDA7ia22iVxU7nAbnhyqOAg4TFHTVxe8xzxyLWPQvBNja45Lwb2ZAL%2F%2BN1VQDXX6cNY5sOiT1%2FGB7cXqAy2xVBOeC9er1mQdWflcrdYJBiTOsLnsG7u5x9NYYSOAfWFEp5xtxTG%2BmdWWl4OdE4BZwyoDEmKjBR%2BR3jm7nBop5ZhYRoWxyOhX%2BVlnX3JmTng%2BPYH6USdEbpfmDw83KAA2QTYrCO463hxEwgsBB6a%2Fus%2BadZjZlyIHBxo%2FmfnGH5qiPgX94S7g5iYRLuwvYxO28sLqTFTAPYY5QPaEWbuT4X4whfNXSsgNVr5tcQa%2B6UoiI0biU0nzr1SJeceK6WUamt6Os6rzw0KDYbHIOxYWnCgFkSzK3MiB1jVRR6H3N0DCErdC9BjqdAQq9nL8BJoImTZ9u00EDqo5uZhySGh7BLpAt4mQO%2Fra%2Bp9g9xjSTtUEXsBzdHa8l0g%2FH02JyHADqqcWisFWuvPONl91PyrYJtbgqO2ojAYvsaHmx%2FzxhYeZ2b5jqBsaIERu0FtxBN05Z1E6mUMWxmCfFMBafnlTz9TYRA8enpo%2FdoKcjgcEuuoRhpefogOHh3qhyG0E0fHeUhd7PuGU%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250218T051557Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=ASIAXKEP2EMBVGDWQZ6R%2F20250218%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=dbdc8746ad5823b7f64932ae27783fd6e3cc583e14c44a888484b81c1f0641e2\"\
+                    ,\n                    \"isExternal\": false\n               \
+                    \ }\n            ],\n            \"videos\": [],\n           \
+                    \ \"lastUpdatedOn\": 1739855757000,\n            \"createdOn\"\
+                    : 1739855757000,\n            \"createdOnDateTime\": \"2025-02-18T05:15:57Z\"\
+                    ,\n            \"lastUpdatedOnDateTime\": \"2025-02-18T05:15:57Z\"\
+                    ,\n            \"createdBy\": null,\n            \"lastUpdatedBy\"\
+                    : null,\n            \"encryptionRequired\": false\n        },\n\
+                    \        {\n            \"id\": 68,\n            \"name\": \"\
+                    DocVendor12\",\n            \"brandId\": 61,\n            \"enabled\"\
+                    : true,\n            \"vendorTypes\": null,\n            \"vendorDetails\"\
+                    : {},\n            \"type\": \"REWARDS\",\n            \"rank\"\
+                    : null,\n            \"code\": \"Doc012\",\n            \"description\"\
+                    : null,\n            \"images\": [\n                {\n      \
+                    \              \"name\": \"imageName001\",\n                 \
+                    \   \"altText\": null,\n                    \"id\": null,\n  \
+                    \                  \"url\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6RFSqYEgenJSDc0Wo_eoEKzxd0iXvTOO-LQ&s\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"videos\": [\n                {\n\
+                    \                    \"name\": \"videoName001\",\n           \
+                    \         \"altText\": null,\n                    \"id\": null,\n\
+                    \                    \"url\": \"https://videos.pexels.com/video-files/6265096/6265096-uhd_1440_2560_30fps.mp4\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"lastUpdatedOn\": 1740637585000,\n\
+                    \            \"createdOn\": 1740637585000,\n            \"createdOnDateTime\"\
+                    : \"2025-02-27T06:26:25Z\",\n            \"lastUpdatedOnDateTime\"\
+                    : \"2025-02-27T06:26:25Z\",\n            \"createdBy\": null,\n\
+                    \            \"lastUpdatedBy\": null,\n            \"encryptionRequired\"\
+                    : false\n        },\n        {\n            \"id\": 69,\n    \
+                    \        \"name\": \"DocVendor13\",\n            \"brandId\":\
+                    \ 61,\n            \"enabled\": true,\n            \"vendorTypes\"\
+                    : null,\n            \"vendorDetails\": {},\n            \"type\"\
+                    : \"REWARDS\",\n            \"rank\": null,\n            \"code\"\
+                    : \"Doc013\",\n            \"description\": null,\n          \
+                    \  \"images\": [\n                {\n                    \"name\"\
+                    : \"imageName001\",\n                    \"altText\": null,\n\
+                    \                    \"id\": null,\n                    \"url\"\
+                    : \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6RFSqYEgenJSDc0Wo_eoEKzxd0iXvTOO-LQ&s\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"videos\": [\n                {\n\
+                    \                    \"name\": \"videoName001\",\n           \
+                    \         \"altText\": null,\n                    \"id\": null,\n\
+                    \                    \"url\": \"https://videos.pexels.com/video-files/6265096/6265096-uhd_1440_2560_30fps.mp4\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"lastUpdatedOn\": 1740637658000,\n\
+                    \            \"createdOn\": 1740637658000,\n            \"createdOnDateTime\"\
+                    : \"2025-02-27T06:27:38Z\",\n            \"lastUpdatedOnDateTime\"\
+                    : \"2025-02-27T06:27:38Z\",\n            \"createdBy\": null,\n\
+                    \            \"lastUpdatedBy\": null,\n            \"encryptionRequired\"\
+                    : false\n        },\n        {\n            \"id\": 86,\n    \
+                    \        \"name\": \"VendorDoc\",\n            \"brandId\": 61,\n\
+                    \            \"enabled\": true,\n            \"vendorTypes\":\
+                    \ null,\n            \"vendorDetails\": {},\n            \"type\"\
+                    : \"REWARDS\",\n            \"rank\": null,\n            \"code\"\
+                    : \"Doc100\",\n            \"description\": null,\n          \
+                    \  \"images\": [],\n            \"videos\": [],\n            \"\
+                    lastUpdatedOn\": 1741171688000,\n            \"createdOn\": 1741171688000,\n\
+                    \            \"createdOnDateTime\": \"2025-03-05T10:48:08Z\",\n\
+                    \            \"lastUpdatedOnDateTime\": \"2025-03-05T10:48:08Z\"\
+                    ,\n            \"createdBy\": null,\n            \"lastUpdatedBy\"\
+                    : null,\n            \"encryptionRequired\": false\n        },\n\
+                    \        {\n            \"id\": 118,\n            \"name\": \"\
+                    pretest1\",\n            \"brandId\": 61,\n            \"enabled\"\
+                    : true,\n            \"vendorTypes\": null,\n            \"vendorDetails\"\
+                    : {},\n            \"type\": \"REWARDS\",\n            \"rank\"\
+                    : 1,\n            \"code\": \"BOC01\",\n            \"description\"\
+                    : \"The top priority vendor\",\n            \"images\": [\n  \
+                    \              {\n                    \"name\": \"pretest\",\n\
+                    \                    \"altText\": null,\n                    \"\
+                    id\": null,\n                    \"url\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6RFSqYEgenJSDc0Wo_eoEKzxd0iXvTOO-LQ&s\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"videos\": [\n                {\n\
+                    \                    \"name\": \"videoName001\",\n           \
+                    \         \"altText\": null,\n                    \"id\": null,\n\
+                    \                    \"url\": \"https://videos.pexels.com/video-files/6265096/6265096-uhd_1440_2560_30fps.mp4\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"lastUpdatedOn\": 1743678522000,\n\
+                    \            \"createdOn\": 1743678522000,\n            \"createdOnDateTime\"\
+                    : \"2025-04-03T11:08:42Z\",\n            \"lastUpdatedOnDateTime\"\
+                    : \"2025-04-03T11:08:42Z\",\n            \"createdBy\": null,\n\
+                    \            \"lastUpdatedBy\": null,\n            \"encryptionRequired\"\
+                    : false\n        },\n        {\n            \"id\": 119,\n   \
+                    \         \"name\": \"Intouch Vendor\",\n            \"brandId\"\
+                    : 61,\n            \"enabled\": true,\n            \"vendorTypes\"\
+                    : \"LINKAJA\",\n            \"vendorDetails\": {\n           \
+                    \     \"key1\": \"************************************************\"\
+                    ,\n                \"key2\": \"************************************************\"\
+                    \n            },\n            \"type\": \"REWARDS\",\n       \
+                    \     \"rank\": 1,\n            \"code\": \"4e5c14a6-6a57-48b3-9f3d-d72032c0b179\"\
+                    ,\n            \"description\": \"Intouch vendor description\"\
+                    ,\n            \"images\": [],\n            \"videos\": [],\n\
+                    \            \"lastUpdatedOn\": 1744085165000,\n            \"\
+                    createdOn\": 1744085165000,\n            \"createdOnDateTime\"\
+                    : \"2025-04-08T04:06:05Z\",\n            \"lastUpdatedOnDateTime\"\
+                    : \"2025-04-08T04:06:05Z\",\n            \"createdBy\": null,\n\
+                    \            \"lastUpdatedBy\": null,\n            \"encryptionRequired\"\
+                    : false\n        },\n        {\n            \"id\": 124,\n   \
+                    \         \"name\": \"DocVendor3GEORGE\",\n            \"brandId\"\
+                    : 61,\n            \"enabled\": true,\n            \"vendorTypes\"\
+                    : null,\n            \"vendorDetails\": {},\n            \"type\"\
+                    : \"REWARDS\",\n            \"rank\": 1,\n            \"code\"\
+                    : \"Doc0003\",\n            \"description\": \"The top priority\
+                    \ vendor\",\n            \"images\": [\n                {\n  \
+                    \                  \"name\": \"imageName001\",\n             \
+                    \       \"altText\": null,\n                    \"id\": null,\n\
+                    \                    \"url\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6RFSqYEgenJSDc0Wo_eoEKzxd0iXvTOO-LQ&s\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"videos\": [\n                {\n\
+                    \                    \"name\": \"videoName001\",\n           \
+                    \         \"altText\": null,\n                    \"id\": null,\n\
+                    \                    \"url\": \"https://videos.pexels.com/video-files/6265096/6265096-uhd_1440_2560_30fps.mp4\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"lastUpdatedOn\": 1744720043000,\n\
+                    \            \"createdOn\": 1744720043000,\n            \"createdOnDateTime\"\
+                    : \"2025-04-15T12:27:23Z\",\n            \"lastUpdatedOnDateTime\"\
+                    : \"2025-04-15T12:27:23Z\",\n            \"createdBy\": null,\n\
+                    \            \"lastUpdatedBy\": null,\n            \"encryptionRequired\"\
+                    : false\n        },\n        {\n            \"id\": 133,\n   \
+                    \         \"name\": \"VENDORHIRE\",\n            \"brandId\":\
+                    \ 61,\n            \"enabled\": false,\n            \"vendorTypes\"\
+                    : null,\n            \"vendorDetails\": {},\n            \"type\"\
+                    : \"REWARDS\",\n            \"rank\": 1,\n            \"code\"\
+                    : \"Doc0036\",\n            \"description\": \"The top priority\
+                    \ vendor\",\n            \"images\": [\n                {\n  \
+                    \                  \"name\": \"imageName001\",\n             \
+                    \       \"altText\": null,\n                    \"id\": null,\n\
+                    \                    \"url\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6RFSqYEgenJSDc0Wo_eoEKzxd0iXvTOO-LQ&s\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"videos\": [\n                {\n\
+                    \                    \"name\": \"videoName001\",\n           \
+                    \         \"altText\": null,\n                    \"id\": null,\n\
+                    \                    \"url\": \"https://videos.pexels.com/video-files/6265096/6265096-uhd_1440_2560_30fps.mp4\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"lastUpdatedOn\": 1748350778000,\n\
+                    \            \"createdOn\": 1747307907000,\n            \"createdOnDateTime\"\
+                    : \"2025-05-15T11:18:27Z\",\n            \"lastUpdatedOnDateTime\"\
+                    : \"2025-05-27T12:59:38Z\",\n            \"createdBy\": 75161973,\n\
+                    \            \"lastUpdatedBy\": 75161973,\n            \"encryptionRequired\"\
+                    : false\n        },\n        {\n            \"id\": 141,\n   \
+                    \         \"name\": \"VENDORgold\",\n            \"brandId\":\
+                    \ 61,\n            \"enabled\": true,\n            \"vendorTypes\"\
+                    : null,\n            \"vendorDetails\": {},\n            \"type\"\
+                    : \"REWARDS\",\n            \"rank\": 1,\n            \"code\"\
+                    : \"123\",\n            \"description\": \"The top priority vendor\"\
+                    ,\n            \"images\": [\n                {\n            \
+                    \        \"name\": \"imageName001\",\n                    \"altText\"\
+                    : null,\n                    \"id\": null,\n                 \
+                    \   \"url\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6RFSqYEgenJSDc0Wo_eoEKzxd0iXvTOO-LQ&s\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"videos\": [\n                {\n\
+                    \                    \"name\": \"videoName001\",\n           \
+                    \         \"altText\": null,\n                    \"id\": null,\n\
+                    \                    \"url\": \"https://videos.pexels.com/video-files/6265096/6265096-uhd_1440_2560_30fps.mp4\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"lastUpdatedOn\": 1747910865000,\n\
+                    \            \"createdOn\": 1747910865000,\n            \"createdOnDateTime\"\
+                    : \"2025-05-22T10:47:45Z\",\n            \"lastUpdatedOnDateTime\"\
+                    : \"2025-05-22T10:47:45Z\",\n            \"createdBy\": 75161973,\n\
+                    \            \"lastUpdatedBy\": 75161973,\n            \"encryptionRequired\"\
+                    : false\n        },\n        {\n            \"id\": 142,\n   \
+                    \         \"name\": \"VENDORgold2\",\n            \"brandId\"\
+                    : 61,\n            \"enabled\": true,\n            \"vendorTypes\"\
+                    : null,\n            \"vendorDetails\": {},\n            \"type\"\
+                    : \"REWARDS\",\n            \"rank\": 1,\n            \"code\"\
+                    : \"1234\",\n            \"description\": \"The top priority vendor\"\
+                    ,\n            \"images\": [\n                {\n            \
+                    \        \"name\": \"imageName001\",\n                    \"altText\"\
+                    : null,\n                    \"id\": null,\n                 \
+                    \   \"url\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6RFSqYEgenJSDc0Wo_eoEKzxd0iXvTOO-LQ&s\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"videos\": [\n                {\n\
+                    \                    \"name\": \"videoName001\",\n           \
+                    \         \"altText\": null,\n                    \"id\": null,\n\
+                    \                    \"url\": \"https://videos.pexels.com/video-files/6265096/6265096-uhd_1440_2560_30fps.mp4\"\
+                    ,\n                    \"isExternal\": true\n                }\n\
+                    \            ],\n            \"lastUpdatedOn\": 1747910878000,\n\
+                    \            \"createdOn\": 1747910878000,\n            \"createdOnDateTime\"\
+                    : \"2025-05-22T10:47:58Z\",\n            \"lastUpdatedOnDateTime\"\
+                    : \"2025-05-22T10:47:58Z\",\n            \"createdBy\": 75161973,\n\
+                    \            \"lastUpdatedBy\": 75161973,\n            \"encryptionRequired\"\
+                    : false\n        },\n        {\n            \"id\": 143,\n   \
+                    \         \"name\": \"vendorRedemptionCreate\",\n            \"\
+                    brandId\": 61,\n            \"enabled\": true,\n            \"\
+                    vendorTypes\": null,\n            \"vendorDetails\": {},\n   \
+                    \         \"type\": \"REWARDS\",\n            \"rank\": 20,\n\
+                    \            \"code\": \"174477980\",\n            \"description\"\
+                    : \"test description for test_Rewards_createAndGetVendorsWithMediaAndAdditionalMeta\"\
+                    ,\n            \"images\": [],\n            \"videos\": [],\n\
+                    \            \"lastUpdatedOn\": 1748340573000,\n            \"\
+                    createdOn\": 1748340573000,\n            \"createdOnDateTime\"\
+                    : \"2025-05-27T10:09:33Z\",\n            \"lastUpdatedOnDateTime\"\
+                    : \"2025-05-27T10:09:33Z\",\n            \"createdBy\": 75161973,\n\
+                    \            \"lastUpdatedBy\": 75161973,\n            \"encryptionRequired\"\
+                    : false\n        },\n        {\n            \"id\": 144,\n   \
+                    \         \"name\": \"vendor33\",\n            \"brandId\": 61,\n\
+                    \            \"enabled\": true,\n            \"vendorTypes\":\
+                    \ null,\n            \"vendorDetails\": {},\n            \"type\"\
+                    : \"REWARDS\",\n            \"rank\": 20,\n            \"code\"\
+                    : \"17447780\",\n            \"description\": \"test description\
+                    \ for test_Rewards_createAndGetVendorsWithMediaAndAdditionalMeta\"\
+                    ,\n            \"images\": [],\n            \"videos\": [],\n\
+                    \            \"lastUpdatedOn\": 1748343833000,\n            \"\
+                    createdOn\": 1748343833000,\n            \"createdOnDateTime\"\
+                    : \"2025-05-27T11:03:53Z\",\n            \"lastUpdatedOnDateTime\"\
+                    : \"2025-05-27T11:03:53Z\",\n            \"createdBy\": 75161973,\n\
+                    \            \"lastUpdatedBy\": 75161973,\n            \"encryptionRequired\"\
+                    : false\n        },\n        {\n            \"id\": 145,\n   \
+                    \         \"name\": \"vendorRedemptionCrete\",\n            \"\
+                    brandId\": 61,\n            \"enabled\": true,\n            \"\
+                    vendorTypes\": null,\n            \"vendorDetails\": {},\n   \
+                    \         \"type\": \"REWARDS\",\n            \"rank\": 20,\n\
+                    \            \"code\": \"17447980\",\n            \"description\"\
+                    : \"test description for test_Rewards_createAndGetVendorsWithMediaAndAdditionalMeta\"\
+                    ,\n            \"images\": [],\n            \"videos\": [],\n\
+                    \            \"lastUpdatedOn\": 1748350401000,\n            \"\
+                    createdOn\": 1748350401000,\n            \"createdOnDateTime\"\
+                    : \"2025-05-27T12:53:21Z\",\n            \"lastUpdatedOnDateTime\"\
+                    : \"2025-05-27T12:53:21Z\",\n            \"createdBy\": 75161973,\n\
+                    \            \"lastUpdatedBy\": 75161973,\n            \"encryptionRequired\"\
+                    : false\n        }\n    ]\n}"
+              schema:
+                oneOf:
+                - title: When enabled=false
+                  type: object
+                  properties:
+                    status:
+                      type: object
+                      properties:
+                        success:
+                          type: boolean
+                          example: true
+                          default: true
+                        code:
+                          type: integer
+                          example: 5001
+                          default: 0
+                        message:
+                          type: string
+                          example: Vendor fetched successfully
+                    vendorList:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 51
+                            default: 0
+                          name:
+                            type: string
+                            example: testVendor-016
+                          brandId:
+                            type: integer
+                            example: 61
+                            default: 0
+                          enabled:
+                            type: boolean
+                            example: true
+                            default: true
+                          vendorTypes: {}
+                          vendorDetails:
+                            type: object
+                            properties: {}
+                          type:
+                            type: string
+                            example: REWARDS
+                          rank:
+                            type: integer
+                            example: 1
+                            default: 0
+                          code:
+                            type: string
+                            example: '100737'
+                          description:
+                            type: string
+                            example: description
+                          images:
+                            type: array
+                          videos:
+                            type: array
+                          lastUpdatedOn:
+                            type: integer
+                            example: 1739777347000
+                            default: 0
+                          lastUpdatedOnDateTime:
+                            type: string
+                            example: "2025-02-17T07:29:07Z"
+                          encryptionRequired:
+                            type: boolean
+                            example: false
+                            default: true
+                - title: When enabled=true
+                  type: object
+                  properties:
+                    status:
+                      type: object
+                      properties:
+                        success:
+                          type: boolean
+                          example: true
+                          default: true
+                        code:
+                          type: integer
+                          example: 5001
+                          default: 0
+                        message:
+                          type: string
+                          example: Vendor fetched successfully
+                    vendorList:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 2
+                            default: 0
+                          name:
+                            type: string
+                            example: BonusLink
+                          brandId:
+                            type: integer
+                            example: 1
+                            default: 0
+                          enabled:
+                            type: boolean
+                            example: false
+                            default: true
+                          vendorTypes: {}
+                          vendorDetails:
+                            type: object
+                            properties: {}
+                          type:
+                            type: string
+                            example: REWARDS
+                          lastUpdatedOn:
+                            type: integer
+                            example: 1697634702000
+                            default: 0
+                          encryptionRequired:
+                            type: boolean
+                            example: false
+                            default: true
+                - title: "Failure: Invalid Brand ID"
+                  type: object
+                  properties:
+                    status:
+                      type: object
+                      properties:
+                        success:
+                          type: boolean
+                          example: false
+                          default: true
+                        code:
+                          type: integer
+                          example: 3004
+                          default: 0
+                        message:
+                          type: string
+                          example: Brand not found
+                - title: With sortBy=lastUpdatedOn
+                  type: object
+                  properties:
+                    status:
+                      type: object
+                      properties:
+                        success:
+                          type: boolean
+                          example: true
+                          default: true
+                        code:
+                          type: integer
+                          example: 5001
+                          default: 0
+                        message:
+                          type: string
+                          example: Vendor fetched successfully
+                    vendorList:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 44
+                            default: 0
+                          name:
+                            type: string
+                            example: Clothing
+                          brandId:
+                            type: integer
+                            example: 61
+                            default: 0
+                          enabled:
+                            type: boolean
+                            example: true
+                            default: true
+                          vendorTypes: {}
+                          vendorDetails:
+                            type: object
+                            properties: {}
+                          type:
+                            type: string
+                            example: REWARDS
+                          rank: {}
+                          code:
+                            type: string
+                            example: '44'
+                          description: {}
+                          images:
+                            type: array
+                          videos:
+                            type: array
+                          lastUpdatedOn:
+                            type: integer
+                            example: 1739438226000
+                            default: 0
+                          createdOn:
+                            type: integer
+                            example: 1735816449000
+                            default: 0
+                          createdOnDateTime:
+                            type: string
+                            example: "2025-01-02T11:14:09Z"
+                          lastUpdatedOnDateTime:
+                            type: string
+                            example: "2025-02-13T09:17:06Z"
+                          createdBy: {}
+                          lastUpdatedBy: {}
+                          encryptionRequired:
+                            type: boolean
+                            example: false
+                            default: true
+                - title: With Vendor code Filter
+                  type: object
+                  properties:
+                    status:
+                      type: object
+                      properties:
+                        success:
+                          type: boolean
+                          example: true
+                          default: true
+                        code:
+                          type: integer
+                          example: 5001
+                          default: 0
+                        message:
+                          type: string
+                          example: Vendor fetched successfully
+                    vendorList:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 142
+                            default: 0
+                          name:
+                            type: string
+                            example: VENDORgold2
+                          brandId:
+                            type: integer
+                            example: 61
+                            default: 0
+                          enabled:
+                            type: boolean
+                            example: true
+                            default: true
+                          vendorTypes: {}
+                          vendorDetails:
+                            type: object
+                            properties: {}
+                          type:
+                            type: string
+                            example: REWARDS
+                          rank:
+                            type: integer
+                            example: 1
+                            default: 0
+                          code:
+                            type: string
+                            example: '1234'
+                          description:
+                            type: string
+                            example: The top priority vendor
+                          images:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                name:
+                                  type: string
+                                  example: imageName001
+                                altText: {}
+                                id: {}
+                                url:
+                                  type: string
+                                  example: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6RFSqYEgenJSDc0Wo_eoEKzxd0iXvTOO-LQ&s"
+                                isExternal:
+                                  type: boolean
+                                  example: true
+                                  default: true
+                          videos:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                name:
+                                  type: string
+                                  example: videoName001
+                                altText: {}
+                                id: {}
+                                url:
+                                  type: string
+                                  example: "https://videos.pexels.com/video-files/6265096/6265096-uhd_1440_2560_30fps.mp4"
+                                isExternal:
+                                  type: boolean
+                                  example: true
+                                  default: true
+                          lastUpdatedOn:
+                            type: integer
+                            example: 1747910878000
+                            default: 0
+                          createdOn:
+                            type: integer
+                            example: 1747910878000
+                            default: 0
+                          createdOnDateTime:
+                            type: string
+                            example: "2025-05-22T10:47:58Z"
+                          lastUpdatedOnDateTime:
+                            type: string
+                            example: "2025-05-22T10:47:58Z"
+                          createdBy:
+                            type: integer
+                            example: 75161973
+                            default: 0
+                          lastUpdatedBy:
+                            type: integer
+                            example: 75161973
+                            default: 0
+                          encryptionRequired:
+                            type: boolean
+                            example: false
+                            default: true
+                - title: Generic
+                  type: object
+                  properties:
+                    status:
+                      type: object
+                      properties:
+                        success:
+                          type: boolean
+                          example: true
+                          default: true
+                        code:
+                          type: integer
+                          example: 5001
+                          default: 0
+                        message:
+                          type: string
+                          example: Vendor fetched successfully
+                    vendorList:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 44
+                            default: 0
+                          name:
+                            type: string
+                            example: Clothing
+                          brandId:
+                            type: integer
+                            example: 61
+                            default: 0
+                          enabled:
+                            type: boolean
+                            example: true
+                            default: true
+                          vendorTypes: {}
+                          vendorDetails:
+                            type: object
+                            properties: {}
+                          type:
+                            type: string
+                            example: REWARDS
+                          rank: {}
+                          code:
+                            type: string
+                            example: '44'
+                          description: {}
+                          images:
+                            type: array
+                          videos:
+                            type: array
+                          lastUpdatedOn:
+                            type: integer
+                            example: 1739438226000
+                            default: 0
+                          createdOn:
+                            type: integer
+                            example: 1735816449000
+                            default: 0
+                          createdOnDateTime:
+                            type: string
+                            example: "2025-01-02T11:14:09Z"
+                          lastUpdatedOnDateTime:
+                            type: string
+                            example: "2025-02-13T09:17:06Z"
+                          createdBy: {}
+                          lastUpdatedBy: {}
+                          encryptionRequired:
+                            type: boolean
+                            example: false
+                            default: true
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: ''
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/vendor/brand/1?enabled=false'\
+            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
+            \ application/json' \\\n--header 'Authorization: Basic aWFtc2hpdmFblahblahODM4ZjhlMzRkNWI1YTI5MWY='\
+            \ \\\n--header 'Cookie: _cfuvid=fmRA3Hit0aFMwbfKLvt4ueC_cBYGp6.izrIrTxsLCds-1727420270955-0.0.1.1-604800000'"
+        - language: curl
+          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/vendor/brand/61?sortBy=lastUpdatedOn&orderBy=ASC'\
+            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
+            \ application/json' \\\n--header 'Authorization: Basic Z2VvcmdlLmpvaG5zb246OTg4OTU2NWI4ODVhMmY4ZWE1MTk1MjA2NWEwYTEzNzg='\
+            \ \\\n--header 'Cookie: _cfuvid=fmRA3Hit0aFMwbfKLvt4ueC_cBYGp6.izrIrTxsLCds-1727420270955-0.0.1.1-604800000;\
+            \ _cfuvid=mwKQqt7DCUZsTkcj_rglhDNIQmcSwrbV6vuL0ivceZE-1747306541010-0.0.1.1-604800000;\
+            \ _cfuvid=fUmBd935rmGsApqf1rYLG1M2QWI_fYSTy7P0wHTVZIs-1747377050702-0.0.1.1-604800000'"
+          name: With sortBy=lastUpdatedOn
+        - language: curl
+          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/vendor/brand/61?code=1234'\
+            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
+            \ application/json' \\\n--header 'Authorization: Basic Z2VvcmdlLmpvaG5zb246OTg4OTU2NWI4ODVhMmY4ZWE1MTk1MjA2NWEwYTEzNzg='\
+            \ \\\n--header 'Cookie: _cfuvid=fmRA3Hit0aFMwbfKLvt4ueC_cBYGp6.izrIrTxsLCds-1727420270955-0.0.1.1-604800000;\
+            \ _cfuvid=6xC4hLz.xgsLkmOzK9BEBxZpSHY.D.Pu7yaeeLK6XQ8-1747911871335-0.0.1.1-604800000'"
+          name: With Vendor code Filter
+        samples-languages:
+        - curl
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

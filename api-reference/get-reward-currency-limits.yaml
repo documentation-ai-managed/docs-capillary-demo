@@ -1,0 +1,437 @@
+openapi: 3.1.0
+info:
+  title: Get Reward Currency Limits
+  version: '1.0'
+servers:
+- url: "https://{host}"
+  variables:
+    host:
+      default: host
+security:
+- sec0: []
+paths:
+  "/api_gateway/loyalty/v1/programs/{programId}/cappings":
+    get:
+      summary: Get Reward Currency Limits
+      description: ''
+      operationId: get-reward-currency-limits
+      parameters:
+      - name: programId
+        in: path
+        description: Unique ID of the loyalty program.
+        schema:
+          type: integer
+          format: int32
+        required: true
+      - name: skip
+        in: query
+        description: Page number to retrieve. To view the first page, set the value
+          to 0.
+        schema:
+          type: integer
+          format: int32
+      - name: limit
+        in: query
+        description: Number of entries to display per page. For example, if the total
+          entires are 15 and the limit is 5, the first page will display the first
+          5 records. The maximum supported limit is 100.
+        schema:
+          type: integer
+          format: int32
+      - name: eventName
+        in: query
+        description: Filter limits criteria based on the event associated.
+        schema:
+          type: string
+          enum:
+          - TransactionAdd
+          - TransactionUpdate
+          - CustomerRegistration
+          - CustomerUpdate
+          - GenericEvent
+          - NewBill
+          - PointsContributionToGroup
+          - PointsTransfer
+          - ReturnBill
+          - TargetCompleted
+          - PointsRedemption
+          - VoucherRedemption
+          - PartnerProgramDeLinking
+          - PartnerProgramLinking
+          - PartnerProgramTierUpdate
+      - name: cappingName
+        in: query
+        description: Filter limits criteria by providing the name.
+        schema:
+          type: string
+      - name: scope
+        in: query
+        description: Filter limits criteria based on the scope associated.
+        schema:
+          type: string
+          enum:
+          - INDIVIDUAL_EVENT
+          - INDIVIDUAL_CUSTOMER
+      - name: entity
+        in: query
+        description: Filter limits criteria based on the reward currency being limited.
+        schema:
+          type: string
+          enum:
+          - POINTS
+          - ALTERNATE_CURRENCIES
+      - name: cappingEntity
+        in: query
+        description: Filter limits criteria based on the entity associated with it.
+        schema:
+          type: string
+          enum:
+          - ALL_EVENTS
+          - PROMOTION
+          - TRANSACTION_ADD
+      - name: status
+        in: query
+        description: Filter limits criteria based on the current active status.
+        schema:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+      - name: identifier
+        in: query
+        description: Filter limits criteria based on the alternate currency identifier.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"cappingConfigResponses\": {\n        \"content\"\
+                    : [\n            {\n                \"eventName\": null,\n   \
+                    \             \"cappingName\": \"Test Capping\",\n           \
+                    \     \"scope\": \"INDIVIDUAL_CUSTOMER\",\n                \"\
+                    status\": true,\n                \"cappingOn\": null,\n      \
+                    \          \"targetGroups\": {\n                    \"active\"\
+                    : true,\n                    \"id\": 1939,\n                 \
+                    \   \"name\": \"CappingTG2\",\n                    \"periods\"\
+                    : [\n                        {\n                            \"\
+                    startDate\": \"2025-02-01\",\n                            \"endDate\"\
+                    : \"2025-04-28\",\n                            \"refCode\": \"\
+                    Cycle_1\",\n                            \"periodStatus\": \"RUNNING\"\
+                    ,\n                            \"active\": true,\n           \
+                    \                 \"targetGroupId\": 1939,\n                 \
+                    \           \"attribution\": {\n                             \
+                    \   \"createdOn\": \"2025-04-04T00:00:00.000+0000\",\n       \
+                    \                         \"lastUpdatedOn\": \"2025-04-04T00:00:00.000+0000\"\
+                    \n                            }\n                        }\n \
+                    \                   ],\n                    \"targets\": [\n \
+                    \                       {\n                            \"id\"\
+                    : 2087,\n                            \"orgId\": null,\n      \
+                    \                      \"targetGroupId\": 1939,\n            \
+                    \                \"name\": \"CappingTG2\",\n                 \
+                    \           \"targetType\": \"REGULAR_POINTS\",\n            \
+                    \                \"targetEntity\": \"POINTS\",\n             \
+                    \               \"eventName\": \"TransactionAdd\",\n         \
+                    \                   \"active\": true,\n                      \
+                    \      \"enrolmentMethod\": \"TRANSACTION\",\n               \
+                    \             \"defaultValues\": [\n                         \
+                    \       {\n                                    \"id\": 14584,\n\
+                    \                                    \"periodId\": 12242,\n  \
+                    \                                  \"defaultValue\": 100.000\n\
+                    \                                }\n                         \
+                    \   ],\n                            \"targetMilestoneTriggers\"\
+                    : [],\n                            \"targetAudienceFilter\": null,\n\
+                    \                            \"targetRuleMetaData\": null,\n \
+                    \                           \"extendedFieldInfo\": null\n    \
+                    \                    }\n                    ],\n             \
+                    \       \"totalPeriods\": 1,\n                    \"targetEvaluationType\"\
+                    : \"FIXED_CALENDAR_WINDOW\",\n                    \"recurringCycles\"\
+                    : -1,\n                    \"frequency\": 0,\n               \
+                    \     \"targetCycleStartDate\": \"2025-02-01T00:00:00.000+0000\"\
+                    ,\n                    \"targetCycleEndDate\": \"2025-04-28T00:00:00.000+0000\"\
+                    ,\n                    \"frequencyType\": \"CUSTOM\",\n      \
+                    \              \"trackingType\": \"CAPPING\"\n               \
+                    \ },\n                \"additionalFilters\": {\n             \
+                    \       \"pointsFilters\": {},\n                    \"lineItemFilters\"\
+                    : {\n                        \"includedSkus\": [],\n         \
+                    \               \"includedBrands\": [],\n                    \
+                    \    \"includedCategories\": [],\n                        \"includedAttributes\"\
+                    : {}\n                    }\n                },\n            \
+                    \    \"entity\": \"POINTS\",\n                \"limitValue\":\
+                    \ 100,\n                \"enrollType\": null\n            }\n\
+                    \        ],\n        \"totalPages\": 4,\n        \"totalElements\"\
+                    : 4,\n        \"size\": 1,\n        \"number\": 0\n    },\n  \
+                    \  \"activeIndividualEvents\": 0,\n    \"activeIndividualCustomers\"\
+                    : 4\n}"
+              schema:
+                type: object
+                properties:
+                  cappingConfigResponses:
+                    type: object
+                    properties:
+                      content:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            eventName: {}
+                            cappingName:
+                              type: string
+                              example: Test Capping
+                            scope:
+                              type: string
+                              example: INDIVIDUAL_CUSTOMER
+                            status:
+                              type: boolean
+                              example: true
+                              default: true
+                            cappingOn: {}
+                            targetGroups:
+                              type: object
+                              properties:
+                                active:
+                                  type: boolean
+                                  example: true
+                                  default: true
+                                id:
+                                  type: integer
+                                  example: 1939
+                                  default: 0
+                                name:
+                                  type: string
+                                  example: CappingTG2
+                                periods:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      startDate:
+                                        type: string
+                                        example: '2025-02-01'
+                                      endDate:
+                                        type: string
+                                        example: '2025-04-28'
+                                      refCode:
+                                        type: string
+                                        example: Cycle_1
+                                      periodStatus:
+                                        type: string
+                                        example: RUNNING
+                                      active:
+                                        type: boolean
+                                        example: true
+                                        default: true
+                                      targetGroupId:
+                                        type: integer
+                                        example: 1939
+                                        default: 0
+                                      attribution:
+                                        type: object
+                                        properties:
+                                          createdOn:
+                                            type: string
+                                            example: "2025-04-04T00:00:00.000+0000"
+                                          lastUpdatedOn:
+                                            type: string
+                                            example: "2025-04-04T00:00:00.000+0000"
+                                targets:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: integer
+                                        example: 2087
+                                        default: 0
+                                      orgId: {}
+                                      targetGroupId:
+                                        type: integer
+                                        example: 1939
+                                        default: 0
+                                      name:
+                                        type: string
+                                        example: CappingTG2
+                                      targetType:
+                                        type: string
+                                        example: REGULAR_POINTS
+                                      targetEntity:
+                                        type: string
+                                        example: POINTS
+                                      eventName:
+                                        type: string
+                                        example: TransactionAdd
+                                      active:
+                                        type: boolean
+                                        example: true
+                                        default: true
+                                      enrolmentMethod:
+                                        type: string
+                                        example: TRANSACTION
+                                      defaultValues:
+                                        type: array
+                                        items:
+                                          type: object
+                                          properties:
+                                            id:
+                                              type: integer
+                                              example: 14584
+                                              default: 0
+                                            periodId:
+                                              type: integer
+                                              example: 12242
+                                              default: 0
+                                            defaultValue:
+                                              type: integer
+                                              example: 100
+                                              default: 0
+                                      targetMilestoneTriggers:
+                                        type: array
+                                      targetAudienceFilter: {}
+                                      targetRuleMetaData: {}
+                                      extendedFieldInfo: {}
+                                totalPeriods:
+                                  type: integer
+                                  example: 1
+                                  default: 0
+                                targetEvaluationType:
+                                  type: string
+                                  example: FIXED_CALENDAR_WINDOW
+                                recurringCycles:
+                                  type: integer
+                                  example: -1
+                                  default: 0
+                                frequency:
+                                  type: integer
+                                  example: 0
+                                  default: 0
+                                targetCycleStartDate:
+                                  type: string
+                                  example: "2025-02-01T00:00:00.000+0000"
+                                targetCycleEndDate:
+                                  type: string
+                                  example: "2025-04-28T00:00:00.000+0000"
+                                frequencyType:
+                                  type: string
+                                  example: CUSTOM
+                                trackingType:
+                                  type: string
+                                  example: CAPPING
+                            additionalFilters:
+                              type: object
+                              properties:
+                                pointsFilters:
+                                  type: object
+                                  properties: {}
+                                lineItemFilters:
+                                  type: object
+                                  properties:
+                                    includedSkus:
+                                      type: array
+                                    includedBrands:
+                                      type: array
+                                    includedCategories:
+                                      type: array
+                                    includedAttributes:
+                                      type: object
+                                      properties: {}
+                            entity:
+                              type: string
+                              example: POINTS
+                            limitValue:
+                              type: integer
+                              example: 100
+                              default: 0
+                            enrollType: {}
+                      totalPages:
+                        type: integer
+                        example: 4
+                        default: 0
+                      totalElements:
+                        type: integer
+                        example: 4
+                        default: 0
+                      size:
+                        type: integer
+                        example: 1
+                        default: 0
+                      number:
+                        type: integer
+                        example: 0
+                        default: 0
+                  activeIndividualEvents:
+                    type: integer
+                    example: 0
+                    default: 0
+                  activeIndividualCustomers:
+                    type: integer
+                    example: 4
+                    default: 0
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                limit value provided is less than 1:
+                  value: "{\n    \"error\": \"Invalid limit: less than 1 is not allowed\"\
+                    \n}"
+                offset value provided is negative or invalid:
+                  value: "{\n    \"error\": \"Invalid offset: Must be 0 or greater\"\
+                    \n}"
+                entity value provided is invalid:
+                  value: "{\n    \"error\": \"Invalid entity value: XZ\"\n}"
+                cappingEntity value provided is invalid:
+                  value: "{\n    \"error\": \"Invalid cappingEntity value: XYZ\"\n\
+                    }"
+                scopevalue provided is invalid:
+                  value: "{\n    \"error\": \"Invalid scope value: XYZ\"\n}"
+              schema:
+                oneOf:
+                - title: limit value provided is less than 1
+                  type: object
+                  properties:
+                    error:
+                      type: string
+                      example: "Invalid limit: less than 1 is not allowed"
+                - title: offset value provided is negative or invalid
+                  type: object
+                  properties:
+                    error:
+                      type: string
+                      example: "Invalid offset: Must be 0 or greater"
+                - title: entity value provided is invalid
+                  type: object
+                  properties:
+                    error:
+                      type: string
+                      example: "Invalid entity value: XZ"
+                - title: cappingEntity value provided is invalid
+                  type: object
+                  properties:
+                    error:
+                      type: string
+                      example: "Invalid cappingEntity value: XYZ"
+                - title: scopevalue provided is invalid
+                  type: object
+                  properties:
+                    error:
+                      type: string
+                      example: "Invalid scope value: XYZ"
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl --location 'http://eu.api.capillarytech.com/api_gateway/loyalty/v1/programs/973/cappings?sortBy=desc&skip=0&limit=1'\
+            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Accept:\
+            \ application/json' \\\n--header 'Authorization: Basic bmFtYW5fZG9jMWJmM5OGM5ZmM2YjZlY2I2MmEy'\
+            \ \\\n--header 'Cookie: _cfuvid=.IB5iiDWhIzd8FVm0jCIsaXd5y7tmMiRb03tbNu3Fv0-1744020716241-0.0.1.1-604800000'\
+            \ \\"
+        samples-languages:
+        - curl
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic

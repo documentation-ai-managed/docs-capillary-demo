@@ -1,0 +1,153 @@
+---
+title: 'Update Promotion Status '
+---
+## Update Promotion Status
+
+Updates the status of a loyalty promotion to manage its lifecycle. Supports submitting a promotion for approval, withdrawing it from review, pausing or resuming an active promotion, and stopping a promotion permanently.
+
+Updates the status of a loyalty promotion to manage its lifecycle. Use this endpoint to submit a promotion for approval, withdraw it from review, pause or resume an active promotion, or stop a promotion permanently.
+
+## Supported transitions
+
+| `existingStatus`   | `promotionStatus`  | Outcome                                                      |
+| :----------------- | :----------------- | :----------------------------------------------------------- |
+| `DRAFT`            | `PENDING_APPROVAL` | Submits the promotion for checker review                     |
+| `PENDING_APPROVAL` | `REVOKE`           | Withdraws the promotion from review, reverting it to `DRAFT` |
+| `ACTIVE`           | `PAUSE`            | Pauses the promotion                                         |
+| `ACTIVE`           | `STOP`             | Stops the promotion permanently                              |
+| `PAUSED`           | `RESUME`           | Resumes the promotion, returning it to `ACTIVE`              |
+| `PAUSED`           | `STOP`             | Stops the promotion permanently                              |
+
+<Callout kind="info" collapsed="false">
+  `STOPPED` is a terminal state — no further transitions are possible. To move a promotion from `PENDING_APPROVAL` to `ACTIVE`, use the [Review Loyalty Promotion](https://docs.capillarytech.com/reference/review-loyalty-promotion) endpoint.
+</Callout>
+
+## Example requests
+
+<CodeGroup show-lines="true" tabs={["DRAFT → PENDING_APPROVAL","PENDING_APPROVAL → DRAFT","ACTIVE → PAUSED","ACTIVE → STOPPED","PAUSED → ACTIVE","PAUSED → STOPPED"]}>
+  ```bash "DRAFT → PENDING_APPROVAL"
+  curl --location --request PUT 'https://eu.api.capillarytech.com/v3/requests/PROMOTION/{promotionId}/status?existingStatus=DRAFT' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Basic <token>' \
+  --data '{
+      "promotionStatus": "PENDING_APPROVAL"
+  }'
+  ```
+
+  ```bash "PENDING_APPROVAL → DRAFT"
+  curl --location --request PUT 'https://eu.api.capillarytech.com/v3/requests/PROMOTION/{promotionId}/status?existingStatus=PENDING_APPROVAL' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Basic <token>' \
+  --data '{
+      "promotionStatus": "REVOKE"
+  }'
+  ```
+
+  ```bash "ACTIVE → PAUSED"
+  curl --location --request PUT 'https://eu.api.capillarytech.com/v3/requests/PROMOTION/{promotionId}/status?existingStatus=ACTIVE' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Basic <token>' \ 
+  --data '{
+      "promotionStatus": "PAUSE"
+  }'
+  ```
+
+  ```bash "ACTIVE → STOPPED"
+  curl --location --request PUT 'https://eu.api.capillarytech.com/v3/requests/PROMOTION/{promotionId}/status?existingStatus=ACTIVE' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Basic <token>' \
+  --data '{
+      "promotionStatus": "STOP"
+  }'
+  ```
+
+  ```bash "PAUSED → ACTIVE"
+  curl --location --request PUT 'https://eu.api.capillarytech.com/v3/requests/PROMOTION/{promotionId}/status?existingStatus=PAUSED' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Basic <token>' \
+  --data '{
+      "promotionStatus": "RESUME"
+  }'
+  ```
+
+  ```bash "PAUSED → STOPPED"
+  curl --location --request PUT 'https://eu.api.capillarytech.com/v3/requests/PROMOTION/{promotionId}/status?existingStatus=PAUSED' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Basic <token>' \
+  --data '{
+      "promotionStatus": "STOP"
+  }'
+  ```
+</CodeGroup>
+
+## Prerequisites
+
+- Authentication: Basic or OAuth authentication.
+
+- The promotion must exist and be in the status specified by `existingStatus`.
+
+## Path parameters
+
+| Field       | Type   | Required | Description                                                                                   |
+| :---------- | :----- | :------- | :-------------------------------------------------------------------------------------------- |
+| promotionId | string | Yes      | The unique identifier of the promotion to update. Example: `19551632ee4c4107aba369486036f993` |
+
+## Query parameters
+
+| Field          | Type   | Required | Description                                                                                                                                                                           |
+| :------------- | :----- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| existingStatus | string | Yes      | The current status of the promotion. Supported values: `DRAFT`, `PENDING_APPROVAL`, `ACTIVE`, `PAUSED`. The request fails if the promotion's actual status does not match this value. |
+
+## Request body parameters
+
+| Field           | Type   | Required | Description                                                                                                                                                                                                                                                                                                         |
+| :-------------- | :----- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| promotionStatus | string | Yes      | The target status for the promotion. Supported values: `PENDING_APPROVAL` (use with `existingStatus=DRAFT`), `REVOKE` (use with `existingStatus=PENDING_APPROVAL`), `PAUSE` (use with `existingStatus=ACTIVE`), `RESUME` (use with `existingStatus=PAUSED`), `STOP` (use with `existingStatus=ACTIVE` or `PAUSED`). |
+
+## Response
+
+A successful request returns the updated promotion object with `metadata.status` reflecting the new status.
+
+## Error codes
+
+| Error Code | Description                                                                                                                                                                                                                                      |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 310191     | Promotion not found, or the promotion's actual status does not match the value passed in `existingStatus`. Verify the `promotionId` and confirm the promotion is in the expected status. Note: this error returns with HTTP status 200, not 404. |
+| 300009     | `promotionStatus` is required. Include a valid `promotionStatus` value in the request body.                                                                                                                                                      |
+| 300008     | Invalid `promotionStatus` value. Supported values are: `PENDING_APPROVAL`, `REVOKE`, `RESUME`, `PAUSE`, `STOP`.                                                                                                                                  |
+| 400        | Invalid `existingStatus` value. Supported values are: `DRAFT`, `PENDING_APPROVAL`, `ACTIVE`, `PAUSED`.                                                                                                                                           |
+
+## Parameters & Headers
+
+<Expandable title="Request Headers" default-open="false">
+  <ParamField header="Authorization" param-type="string" required="true" deprecated="false" show-location="true">
+    Basic or OAuth authentication credentials.
+  </ParamField>
+
+  <ParamField header="Content-Type" param-type="string" required="true" deprecated="false" show-location="true" />
+</Expandable>
+
+<Expandable title="Path Parameters" default-open="false">
+  <ParamField path="promotionId" param-type="string" required="true" deprecated="false" show-location="true">
+    The unique identifier of the promotion to update.
+  </ParamField>
+</Expandable>
+
+<Expandable title="Query Parameters" default-open="false">
+  <ParamField query="existingStatus" param-type="string enum" required="true" deprecated="false" show-location="true">
+    The current status of the promotion. The request fails if the promotion's actual status does not match this value.
+  </ParamField>
+</Expandable>
+
+<Expandable title="Request Body" default-open="false">
+  <ParamField body="promotionStatus" param-type="string enum" required="true" deprecated="false" show-location="true">
+    The target status for the promotion. Valid values depend on the current `existingStatus`:
+
+    - `PENDING_APPROVAL` — from `DRAFT`
+    - `REVOKE` — from `PENDING_APPROVAL`
+    - `PAUSE` — from `ACTIVE`
+    - `STOP` — from `ACTIVE` or `PAUSED`
+    - `RESUME` — from `PAUSED`
+  </ParamField>
+</Expandable>
+
