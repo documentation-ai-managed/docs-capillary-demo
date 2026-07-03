@@ -3,7 +3,7 @@ info:
   title: Generate OTP
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -28,28 +28,24 @@ paths:
               properties:
                 identifierType:
                   type: string
-                  description: "Identifier used for token generation. Values: MOBILE,\
-                    \ EMAIL, USERNAME."
+                  description: 'Identifier used for token generation. Values: MOBILE, EMAIL, USERNAME.'
                 mobile:
                   type: string
-                  description: Mobile number of the customer. Either mobile number
-                    or email ID is required to authenticate with username.
+                  description: Mobile number of the customer. Either mobile number or email ID is required
+                    to authenticate with username.
                 email:
                   type: string
-                  description: Email ID of the customer. Either mobile number or email
-                    ID is required to authenticate with username.
+                  description: Email ID of the customer. Either mobile number or email ID is required
+                    to authenticate with username.
                 brand:
                   type: string
-                  description: Name of the brand/org for which authentication needs
-                    to be verified.
+                  description: Name of the brand/org for which authentication needs to be verified.
                 deviceId:
                   type: string
-                  description: Unique ID of the device from which the customer has
-                    generated the token.
+                  description: Unique ID of the device from which the customer has generated the token.
                 sessionId:
                   type: string
-                  description: Session ID generated through the `v1/token/generate`
-                    API.
+                  description: Session ID generated through the `v1/token/generate` API.
             examples:
               Sample POST Body:
                 value:
@@ -101,30 +97,34 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
       deprecated: false
       x-readme:
         code-samples:
-        - code: "curl --location 'https://eu.api.capillarytech.com/auth/v1/otp/generate'\
-            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
-            \ application/json' \\\n--header 'accept: application/json' \\\n--header\
-            \ 'Cookie: _cfuvid=omyxxTL4JKRyz4yJ6akXXwAQb4MsROzdNed9SczptHs-1760004859086-0.0.1.1-604800000'\
-            \ \\\n--data '{\n    \"identifierType\": \"MOBILE\",\n    \"identifierValue\"\
-            : \"919999999993\",\n    \"brand\": \"DocDemo\",\n    \"deviceId\": \"\
-            123456785\",\n    \"sessionId\": \"P-7df5e433-17bb-4f02-9ce0-7420ba69c7b4\"\
-            \n}'"
+        - code: |-
+            curl --location 'https://eu.api.capillarytech.com/auth/v1/otp/generate' \
+            --header 'Accept: application/json' \
+            --header 'Content-Type: application/json' \
+            --header 'accept: application/json' \
+            --header 'Cookie: _cfuvid=omyxxTL4JKRyz4yJ6akXXwAQb4MsROzdNed9SczptHs-1760004859086-0.0.1.1-604800000' \
+            --data '{
+                "identifierType": "MOBILE",
+                "identifierValue": "919999999993",
+                "brand": "DocDemo",
+                "deviceId": "123456785",
+                "sessionId": "P-7df5e433-17bb-4f02-9ce0-7420ba69c7b4"
+            }'
           language: shell
           name: Sample request using mobile application
-        - code: "curl --location 'https://eu.api.capillarytech.com/auth/v1/web/otp/generate'\
-            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
-            \ application/json' \\\n--header 'accept: application/json' \\\n--header\
-            \ 'Cookie: _cfuvid=omyxxTL4JKRyz4yJ6akXXwAQb4MsROzdNed9SczptHs-1760004859086-0.0.1.1-604800000'\
-            \ \\\n--data-raw '{\n    \"identifierType\": \"EMAIL\",\n    \"identifierValue\"\
-            : \"captest@gmail.com\",\n    \"brand\": \"DocDemo\",\n    \n    \"sessionId\"\
-            : \"P-e766af2a-f676-489e-9b24-8571f7af057b\"\n}'"
+        - code: "curl --location 'https://eu.api.capillarytech.com/auth/v1/web/otp/generate' \\\n--header\
+            \ 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--header 'accept:\
+            \ application/json' \\\n--header 'Cookie: _cfuvid=omyxxTL4JKRyz4yJ6akXXwAQb4MsROzdNed9SczptHs-1760004859086-0.0.1.1-604800000'\
+            \ \\\n--data-raw '{\n    \"identifierType\": \"EMAIL\",\n    \"identifierValue\": \"captest@gmail.com\"\
+            ,\n    \"brand\": \"DocDemo\",\n    \n    \"sessionId\": \"P-e766af2a-f676-489e-9b24-8571f7af057b\"\
+            \n}'"
           language: shell
           name: Sample request using web application
         samples-languages:

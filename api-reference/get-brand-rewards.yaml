@@ -53,8 +53,8 @@ paths:
           type: string
       - name: sortBy
         in: query
-        description: Pass asc to sort the results in ascending order of sortBy value,
-          desc to order in descending order.
+        description: Pass asc to sort the results in ascending order of sortBy value, desc to order in
+          descending order.
         schema:
           type: string
           enum:
@@ -71,10 +71,9 @@ paths:
           - intouchPoints
       - name: language
         in: query
-        description: Specify the ISO language code to get reward details in that particular
-          language. For example, zh for Chinese, ar for Arabic, en for English (default
-          language). You can configure a reward in different languages and retrieve
-          in a specific language only if it is configured.
+        description: Specify the ISO language code to get reward details in that particular language.
+          For example, zh for Chinese, ar for Arabic, en for English (default language). You can configure
+          a reward in different languages and retrieve in a specific language only if it is configured.
         schema:
           type: string
       - name: area
@@ -115,8 +114,8 @@ paths:
           format: int64
       - name: page
         in: query
-        description: To retrieve details of a specific page. Pass 0 to not apply pagination.
-          For example, page=2&size=10 shows 10 results on page 2.
+        description: To retrieve details of a specific page. Pass 0 to not apply pagination. For example,
+          page=2&size=10 shows 10 results on page 2.
         schema:
           type: integer
           format: int32
@@ -127,51 +126,74 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n   \"status\":{\n      \"success\":true,\n      \"code\"\
-                    :200,\n      \"message\":\"User Reward fetched successfully\"\n\
-                    \   },\n   \"rewardList\":[\n      {\n         \"id\":489,\n \
-                    \        \"name\":\"50 NFR Discount Voucher\",\n         \"description\"\
-                    :\"50 NFR Discount Voucher\",\n         \"imageId\":\"49J2711828.image/jpeg\"\
-                    ,\n         \"imageUrl\":\"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49J2711828.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20201028T143336Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Signature=21d7bc16a4af1d99894a235bb53e4e08f79d81e524572f75ec475799e983c425\"\
-                    ,\n         \"thumbnailId\":\"49J2719V29.image/jpeg\",\n     \
-                    \    \"thumbnailUrl\":\"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49J2719V29.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20201028T143336Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Signature=e3ce9dcae77d8dd0680ac28ba6745fcbcfcf795ee6922eabeced5234f8bd8657\"\
-                    ,\n         \"termAndConditionsId\":\"49J271AC30.html\",\n   \
-                    \      \"termAndConditionsUrl\":\"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49J271AC30.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20201028T143336Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Signature=1c71e0cfb2573537747f8fa01771fbe95756ecabe57cdcc404a8b724393fb0fd\"\
-                    ,\n         \"tier\":\"\",\n         \"label\":\"\",\n       \
-                    \  \"priority\":3,\n         \"intouchPoints\":100,\n        \
-                    \ \"group\":\"\",\n         \"startTime\":\"2020-10-17 14:00:36\"\
-                    ,\n         \"endTime\":\"2026-12-31 03:00:36\",\n         \"\
-                    expired\":false,\n         \"started\":true\n      },\n      {\n\
-                    \         \"id\":488,\n         \"name\":\"Ferrari Merchandise\"\
-                    ,\n         \"description\":\"Ferrari Merchandise\",\n       \
-                    \  \"imageId\":\"49J2H0VB31.image/jpeg\",\n         \"imageUrl\"\
-                    :\"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49J2H0VB31.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20201028T143336Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Signature=3e04f3284253d58ffef1a44ce704c57846f1a401f16451cc4caf923314b36616\"\
-                    ,\n         \"thumbnailId\":\"49J2H12D32.image/jpeg\",\n     \
-                    \    \"thumbnailUrl\":\"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49J2H12D32.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20201028T143336Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Signature=6e3a36312b7f1bf1de3ec578f91a8f50e761e9c85332592507f1a2d9dc3f0f90\"\
-                    ,\n         \"termAndConditionsId\":\"49J3M0Y134.html\",\n   \
-                    \      \"termAndConditionsUrl\":\"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49J3M0Y134.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20201028T143336Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Signature=e7fabaa9221d48ccef0172bee64554a5e98566d2ebd5b2a0af6c71e018dab5be\"\
-                    ,\n         \"tier\":\"GIFT\",\n         \"label\":\"\",\n   \
-                    \      \"priority\":1,\n         \"intouchPoints\":300,\n    \
-                    \     \"group\":\"\",\n         \"startTime\":\"2020-10-16 09:34:39\"\
-                    ,\n         \"endTime\":\"2021-01-27 00:34:39\",\n         \"\
-                    expired\":false,\n         \"started\":true\n      },\n      {\n\
-                    \         \"id\":380,\n         \"name\":\"200 Fuel Discount Voucher\"\
-                    ,\n         \"description\":\"200 Fuel Discount Voucher\",\n \
-                    \        \"imageId\":\"49H500SIB1.image/png\",\n         \"imageUrl\"\
-                    :\"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49H500SIB1.image/png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20201028T143336Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Signature=e8935ddf0b679032b963212f3f8bfcb6b1ef7adbac6c1dd6baf6b3b795291e44\"\
-                    ,\n         \"thumbnailId\":\"49H500Z2B2.image/png\",\n      \
-                    \   \"thumbnailUrl\":\"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49H500Z2B2.image/png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20201028T143336Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Signature=4cf5a4ab4c03c04344914d6431f31b5887fd8899ae93252d0cacca97a590c67e\"\
-                    ,\n         \"termAndConditionsId\":\"49H5010FB3.html\",\n   \
-                    \      \"termAndConditionsUrl\":\"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49H5010FB3.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20201028T143336Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Signature=d20daa142088a398d2ec73fe747fbafc98a62b3a526e4008eec129f48255ffdd\"\
-                    ,\n         \"tier\":\"\",\n         \"label\":\"\",\n       \
-                    \  \"priority\":1,\n         \"intouchPoints\":250,\n        \
-                    \ \"group\":\"\",\n         \"startTime\":\"2020-09-02 12:50:53\"\
-                    ,\n         \"endTime\":\"2026-12-29 05:50:53\",\n         \"\
-                    expired\":false,\n         \"started\":true\n      }\n   ],\n\
-                    \   \"pagingDto\":{\n      \"last\":true,\n      \"totalElements\"\
-                    :3,\n      \"totalPages\":1,\n      \"numberOfElements\":3,\n\
-                    \      \"first\":true,\n      \"size\":1000,\n      \"number\"\
-                    :0\n   }\n}"
+                  value:
+                    status:
+                      success: true
+                      code: 200
+                      message: User Reward fetched successfully
+                    rewardList:
+                    - id: 489
+                      name: 50 NFR Discount Voucher
+                      description: 50 NFR Discount Voucher
+                      imageId: 49J2711828.image/jpeg
+                      imageUrl: https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49J2711828.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20201028T143336Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Signature=21d7bc16a4af1d99894a235bb53e4e08f79d81e524572f75ec475799e983c425
+                      thumbnailId: 49J2719V29.image/jpeg
+                      thumbnailUrl: https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49J2719V29.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20201028T143336Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Signature=e3ce9dcae77d8dd0680ac28ba6745fcbcfcf795ee6922eabeced5234f8bd8657
+                      termAndConditionsId: 49J271AC30.html
+                      termAndConditionsUrl: https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49J271AC30.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20201028T143336Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Signature=1c71e0cfb2573537747f8fa01771fbe95756ecabe57cdcc404a8b724393fb0fd
+                      tier: ''
+                      label: ''
+                      priority: 3
+                      intouchPoints: 100
+                      group: ''
+                      startTime: '2020-10-17 14:00:36'
+                      endTime: '2026-12-31 03:00:36'
+                      expired: false
+                      started: true
+                    - id: 488
+                      name: Ferrari Merchandise
+                      description: Ferrari Merchandise
+                      imageId: 49J2H0VB31.image/jpeg
+                      imageUrl: https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49J2H0VB31.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20201028T143336Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Signature=3e04f3284253d58ffef1a44ce704c57846f1a401f16451cc4caf923314b36616
+                      thumbnailId: 49J2H12D32.image/jpeg
+                      thumbnailUrl: https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49J2H12D32.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20201028T143336Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Signature=6e3a36312b7f1bf1de3ec578f91a8f50e761e9c85332592507f1a2d9dc3f0f90
+                      termAndConditionsId: 49J3M0Y134.html
+                      termAndConditionsUrl: https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49J3M0Y134.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20201028T143336Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Signature=e7fabaa9221d48ccef0172bee64554a5e98566d2ebd5b2a0af6c71e018dab5be
+                      tier: GIFT
+                      label: ''
+                      priority: 1
+                      intouchPoints: 300
+                      group: ''
+                      startTime: '2020-10-16 09:34:39'
+                      endTime: '2021-01-27 00:34:39'
+                      expired: false
+                      started: true
+                    - id: 380
+                      name: 200 Fuel Discount Voucher
+                      description: 200 Fuel Discount Voucher
+                      imageId: 49H500SIB1.image/png
+                      imageUrl: https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49H500SIB1.image/png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20201028T143336Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Signature=e8935ddf0b679032b963212f3f8bfcb6b1ef7adbac6c1dd6baf6b3b795291e44
+                      thumbnailId: 49H500Z2B2.image/png
+                      thumbnailUrl: https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49H500Z2B2.image/png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20201028T143336Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Signature=4cf5a4ab4c03c04344914d6431f31b5887fd8899ae93252d0cacca97a590c67e
+                      termAndConditionsId: 49H5010FB3.html
+                      termAndConditionsUrl: https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49H5010FB3.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20201028T143336Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Signature=d20daa142088a398d2ec73fe747fbafc98a62b3a526e4008eec129f48255ffdd
+                      tier: ''
+                      label: ''
+                      priority: 1
+                      intouchPoints: 250
+                      group: ''
+                      startTime: '2020-09-02 12:50:53'
+                      endTime: '2026-12-29 05:50:53'
+                      expired: false
+                      started: true
+                    pagingDto:
+                      last: true
+                      totalElements: 3
+                      totalPages: 1
+                      numberOfElements: 3
+                      first: true
+                      size: 1000
+                      number: 0
               schema:
                 type: object
                 properties:
@@ -290,7 +312,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: '{}'
+                  value: {}
               schema:
                 type: object
                 properties: {}

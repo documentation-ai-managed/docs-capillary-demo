@@ -3,14 +3,14 @@ info:
   title: Get all brand rewards using Brand ID
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/api_gateway/rewards/core/v1/reward/list/brand/{brandID}":
+  /api_gateway/rewards/core/v1/reward/list/brand/{brandID}:
     get:
       summary: Get all brand rewards using Brand ID
       description: ''
@@ -51,9 +51,9 @@ paths:
           type: string
       - name: language
         in: query
-        description: Filters the response based on the reward language. Use this parameter
-          to retrieve rewards in a specific language. For example, to display rewards
-          in English, set the parameter to en
+        description: Filters the response based on the reward language. Use this parameter to retrieve
+          rewards in a specific language. For example, to display rewards in English, set the parameter
+          to en
         schema:
           type: string
           enum:
@@ -71,84 +71,127 @@ paths:
             application/json:
               examples:
                 With OwnerType:
-                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
-                    \   \"code\": 6101,\n        \"message\": \"Reward details fetched\
-                    \ successfully\"\n    },\n    \"rewardList\": [\n        {\n \
-                    \           \"id\": 345839,\n            \"name\": \"New year\
-                    \ tes\",\n            \"startTime\": \"2025-04-02 10:20:10\",\n\
-                    \            \"startDateTime\": \"2025-04-02T10:20:10Z\",\n  \
-                    \          \"endTime\": \"2025-04-02 10:25:10\",\n           \
-                    \ \"endDateTime\": \"2025-04-02T10:25:10Z\",\n            \"type\"\
-                    : \"VOUCHER\",\n            \"priority\": 1,\n            \"enabled\"\
-                    : true,\n            \"intouchPoints\": 0,\n            \"redemptionType\"\
-                    : \"MILES\",\n            \"customFields\": {\n              \
-                    \  \"A\": \"1\",\n                \"CF1233\": \"1\",\n       \
-                    \         \"EnumCF2\": \"r1\",\n                \"EnumCF1\": \"\
-                    white\"\n            },\n            \"owners\": null,\n     \
-                    \       \"paymentConfigs\": [\n                {\n           \
-                    \         \"paymentMode\": \"FREE\",\n                    \"id\"\
-                    : 5717\n                }\n            ],\n            \"groups\"\
-                    : [],\n            \"rewardRank\": null,\n            \"status\"\
-                    : \"ENDED\",\n            \"intouchSeriesId\": null,\n       \
-                    \     \"vendorRedemptionId\": 13417,\n            \"vendorRedemptionName\"\
-                    : \"Delta\",\n            \"vendorId\": 21,\n            \"vendorName\"\
-                    : \"Delta\",\n            \"lastUpdatedOn\": 1743667380000,\n\
-                    \            \"lastUpdatedOnDateTime\": \"2025-04-03T08:03:00Z\"\
-                    ,\n            \"lastUpdatedBy\": 75106389,\n            \"createdBy\"\
-                    : 75106389\n        },\n        {\n            \"id\": 346323,\n\
-                    \            \"name\": \"Go Test fastest\",\n            \"startTime\"\
-                    : \"2025-04-03 05:29:47\",\n            \"startDateTime\": \"\
-                    2025-04-03T05:29:47Z\",\n            \"endTime\": \"2025-04-03\
-                    \ 05:34:47\",\n            \"endDateTime\": \"2025-04-03T05:34:47Z\"\
-                    ,\n            \"type\": \"VOUCHER\",\n            \"priority\"\
-                    : null,\n            \"enabled\": true,\n            \"intouchPoints\"\
-                    : 0,\n            \"redemptionType\": \"MILES\",\n           \
-                    \ \"customFields\": {\n                \"A\": \"1\",\n       \
-                    \         \"CF1233\": \"1\",\n                \"EnumCF2\": \"\
-                    r1\",\n                \"EnumCF1\": \"white\",\n             \
-                    \   \"CF1\": \"test\"\n            },\n            \"owners\"\
-                    : null,\n            \"paymentConfigs\": [\n                {\n\
-                    \                    \"paymentMode\": \"FREE\",\n            \
-                    \        \"id\": 5751\n                }\n            ],\n   \
-                    \         \"groups\": [],\n            \"rewardRank\": null,\n\
-                    \            \"status\": \"ENDED\",\n            \"intouchSeriesId\"\
-                    : null,\n            \"vendorRedemptionId\": 13417,\n        \
-                    \    \"vendorRedemptionName\": \"Delta\",\n            \"vendorId\"\
-                    : 21,\n            \"vendorName\": \"Delta\",\n            \"\
-                    lastUpdatedOn\": 1743666079000,\n            \"lastUpdatedOnDateTime\"\
-                    : \"2025-04-03T07:41:19Z\",\n            \"lastUpdatedBy\": 75106389,\n\
-                    \            \"createdBy\": 75106389\n        }\n    ],\n    \"\
-                    pagingDto\": {\n        \"last\": false,\n        \"totalElements\"\
-                    : 759,\n        \"totalPages\": 380,\n        \"numberOfElements\"\
-                    : 2,\n        \"first\": false,\n        \"size\": 2,\n      \
-                    \  \"number\": 2\n    }\n}"
+                  value:
+                    status:
+                      success: true
+                      code: 6101
+                      message: Reward details fetched successfully
+                    rewardList:
+                    - id: 345839
+                      name: New year tes
+                      startTime: '2025-04-02 10:20:10'
+                      startDateTime: '2025-04-02T10:20:10Z'
+                      endTime: '2025-04-02 10:25:10'
+                      endDateTime: '2025-04-02T10:25:10Z'
+                      type: VOUCHER
+                      priority: 1
+                      enabled: true
+                      intouchPoints: 0
+                      redemptionType: MILES
+                      customFields:
+                        A: '1'
+                        CF1233: '1'
+                        EnumCF2: r1
+                        EnumCF1: white
+                      owners: null
+                      paymentConfigs:
+                      - paymentMode: FREE
+                        id: 5717
+                      groups: []
+                      rewardRank: null
+                      status: ENDED
+                      intouchSeriesId: null
+                      vendorRedemptionId: 13417
+                      vendorRedemptionName: Delta
+                      vendorId: 21
+                      vendorName: Delta
+                      lastUpdatedOn: 1743667380000
+                      lastUpdatedOnDateTime: '2025-04-03T08:03:00Z'
+                      lastUpdatedBy: 75106389
+                      createdBy: 75106389
+                    - id: 346323
+                      name: Go Test fastest
+                      startTime: '2025-04-03 05:29:47'
+                      startDateTime: '2025-04-03T05:29:47Z'
+                      endTime: '2025-04-03 05:34:47'
+                      endDateTime: '2025-04-03T05:34:47Z'
+                      type: VOUCHER
+                      priority: null
+                      enabled: true
+                      intouchPoints: 0
+                      redemptionType: MILES
+                      customFields:
+                        A: '1'
+                        CF1233: '1'
+                        EnumCF2: r1
+                        EnumCF1: white
+                        CF1: test
+                      owners: null
+                      paymentConfigs:
+                      - paymentMode: FREE
+                        id: 5751
+                      groups: []
+                      rewardRank: null
+                      status: ENDED
+                      intouchSeriesId: null
+                      vendorRedemptionId: 13417
+                      vendorRedemptionName: Delta
+                      vendorId: 21
+                      vendorName: Delta
+                      lastUpdatedOn: 1743666079000
+                      lastUpdatedOnDateTime: '2025-04-03T07:41:19Z'
+                      lastUpdatedBy: 75106389
+                      createdBy: 75106389
+                    pagingDto:
+                      last: false
+                      totalElements: 759
+                      totalPages: 380
+                      numberOfElements: 2
+                      first: false
+                      size: 2
+                      number: 2
                 Result:
-                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
-                    \   \"code\": 6101,\n        \"message\": \"Reward details fetched\
-                    \ successfully\"\n    },\n    \"rewardList\": [\n        {\n \
-                    \           \"id\": 20867,\n            \"name\": \"name_first\"\
-                    ,\n            \"startTime\": \"2024-11-01 03:53:01\",\n     \
-                    \       \"endTime\": \"2027-01-15 07:26:45\",\n            \"\
-                    type\": \"VOUCHER\",\n            \"priority\": 1,\n         \
-                    \   \"enabled\": true,\n            \"intouchPoints\": 1,\n  \
-                    \          \"redemptionType\": \"SWEEPSTAKES\",\n            \"\
-                    customFields\": {},\n            \"owners\": null,\n         \
-                    \   \"paymentConfigs\": [\n                {\n               \
-                    \     \"paymentMode\": \"CASH\",\n                    \"id\":\
-                    \ 813,\n                    \"cash\": 25.0000\n              \
-                    \  }\n            ],\n            \"groups\": [\n            \
-                    \    {\n                    \"groupName\": \"groupName014\",\n\
-                    \                    \"groupRank\": 8\n                }\n   \
-                    \         ],\n            \"rewardRank\": 10,\n            \"\
-                    status\": \"UPCOMING\",\n            \"intouchSeriesId\": null,\n\
-                    \            \"vendorRedemptionId\": 1627,\n            \"vendorRedemptionName\"\
-                    : \"demo vendor for physicalReward\",\n            \"vendorId\"\
-                    : 17,\n            \"vendorName\": \"testVendor002\",\n      \
-                    \      \"lastUpdatedOn\": 1725359777000,\n            \"lastUpdatedBy\"\
-                    : null\n        }\n    ],\n    \"pagingDto\": {\n        \"last\"\
-                    : true,\n        \"totalElements\": 1,\n        \"totalPages\"\
-                    : 1,\n        \"numberOfElements\": 1,\n        \"first\": true,\n\
-                    \        \"size\": 10,\n        \"number\": 0\n    }\n}"
+                  value:
+                    status:
+                      success: true
+                      code: 6101
+                      message: Reward details fetched successfully
+                    rewardList:
+                    - id: 20867
+                      name: name_first
+                      startTime: '2024-11-01 03:53:01'
+                      endTime: '2027-01-15 07:26:45'
+                      type: VOUCHER
+                      priority: 1
+                      enabled: true
+                      intouchPoints: 1
+                      redemptionType: SWEEPSTAKES
+                      customFields: {}
+                      owners: null
+                      paymentConfigs:
+                      - paymentMode: CASH
+                        id: 813
+                        cash: 25.0
+                      groups:
+                      - groupName: groupName014
+                        groupRank: 8
+                      rewardRank: 10
+                      status: UPCOMING
+                      intouchSeriesId: null
+                      vendorRedemptionId: 1627
+                      vendorRedemptionName: demo vendor for physicalReward
+                      vendorId: 17
+                      vendorName: testVendor002
+                      lastUpdatedOn: 1725359777000
+                      lastUpdatedBy: null
+                    pagingDto:
+                      last: true
+                      totalElements: 1
+                      totalPages: 1
+                      numberOfElements: 1
+                      first: true
+                      size: 10
+                      number: 0
               schema:
                 oneOf:
                 - title: With OwnerType
@@ -182,16 +225,16 @@ paths:
                             example: New year tes
                           startTime:
                             type: string
-                            example: "2025-04-02 10:20:10"
+                            example: '2025-04-02 10:20:10'
                           startDateTime:
                             type: string
-                            example: "2025-04-02T10:20:10Z"
+                            example: '2025-04-02T10:20:10Z'
                           endTime:
                             type: string
-                            example: "2025-04-02 10:25:10"
+                            example: '2025-04-02 10:25:10'
                           endDateTime:
                             type: string
-                            example: "2025-04-02T10:25:10Z"
+                            example: '2025-04-02T10:25:10Z'
                           type:
                             type: string
                             example: VOUCHER
@@ -265,7 +308,7 @@ paths:
                             default: 0
                           lastUpdatedOnDateTime:
                             type: string
-                            example: "2025-04-03T08:03:00Z"
+                            example: '2025-04-03T08:03:00Z'
                           lastUpdatedBy:
                             type: integer
                             example: 75106389
@@ -335,10 +378,10 @@ paths:
                             example: name_first
                           startTime:
                             type: string
-                            example: "2024-11-01 03:53:01"
+                            example: '2024-11-01 03:53:01'
                           endTime:
                             type: string
-                            example: "2027-01-15 07:26:45"
+                            example: '2027-01-15 07:26:45'
                           type:
                             type: string
                             example: VOUCHER
@@ -453,7 +496,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
@@ -461,9 +504,10 @@ paths:
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/list/brand/1?page=0&size=20'\
-            \ \\\n--header 'Authorization: Basic aWFtc2hpdmFhbms6NDAblahblahkNWI1YTI5MWY='\
-            \ \\\n--header 'Cookie: _cfuvid=QbjsRhi.Ql7ZC6uSBP98acGYFfR9hGAQv4cQ2w34JpU-1727244469000-0.0.1.1-604800000'"
+          code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/list/brand/1?page=0&size=20' \
+            --header 'Authorization: Basic aWFtc2hpdmFhbms6NDAblahblahkNWI1YTI5MWY=' \
+            --header 'Cookie: _cfuvid=QbjsRhi.Ql7ZC6uSBP98acGYFfR9hGAQv4cQ2w34JpU-1727244469000-0.0.1.1-604800000'
         samples-languages:
         - curl
 components:

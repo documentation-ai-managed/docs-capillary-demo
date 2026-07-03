@@ -3,7 +3,7 @@ info:
   title: Evaluate Promotion
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -52,26 +52,33 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"data\": {\n        \"amount\": \"2000.000000\"\
-                    ,\n        \"customerId\": 319630259,\n        \"cartItems\":\
-                    \ [\n            {\n                \"referenceId\": \"7caa090c-9278-4f25-b587-575a6f1f1405\"\
-                    ,\n                \"sku\": \"d5a5ef5f-1f96-4180-9f31-81940469fbce\"\
-                    ,\n                \"amount\": \"800.000000\",\n             \
-                    \   \"qty\": \"2.000000\",\n                \"discount\": \"0\"\
-                    ,\n                \"appliedPromotions\": []\n            },\n\
-                    \            {\n                \"referenceId\": \"fdc78567-bf4a-494b-9386-83045a910dcb\"\
-                    ,\n                \"sku\": \"6676557b-a2ee-4334-aa6e-7a64ba15be37\"\
-                    ,\n                \"amount\": \"200.000000\",\n             \
-                    \   \"qty\": \"2.000000\",\n                \"discount\": \"0\"\
-                    ,\n                \"appliedPromotions\": []\n            }\n\
-                    \        ],\n        \"evaluationId\": \"62ac29f8ab178d6d72d41734\"\
-                    ,\n        \"appliedPromotions\": [],\n        \"appliedPaymentVouchers\"\
-                    : [],\n        \"promoCodeEvaluationLogs\": [],\n        \"paymentVoucherEvaluationLogs\"\
-                    : [],\n        \"cartTenders\": [\n            {\n           \
-                    \     \"identifier\": \"CASH\",\n                \"amount\": \"\
-                    2000.00\",\n                \"adjustedAmount\": \"2000.00\"\n\
-                    \            }\n        ],\n        \"categoryHierarchySentInPayload\"\
-                    : false\n    }\n}"
+                  value:
+                    data:
+                      amount: '2000.000000'
+                      customerId: 319630259
+                      cartItems:
+                      - referenceId: 7caa090c-9278-4f25-b587-575a6f1f1405
+                        sku: d5a5ef5f-1f96-4180-9f31-81940469fbce
+                        amount: '800.000000'
+                        qty: '2.000000'
+                        discount: '0'
+                        appliedPromotions: []
+                      - referenceId: fdc78567-bf4a-494b-9386-83045a910dcb
+                        sku: 6676557b-a2ee-4334-aa6e-7a64ba15be37
+                        amount: '200.000000'
+                        qty: '2.000000'
+                        discount: '0'
+                        appliedPromotions: []
+                      evaluationId: 62ac29f8ab178d6d72d41734
+                      appliedPromotions: []
+                      appliedPaymentVouchers: []
+                      promoCodeEvaluationLogs: []
+                      paymentVoucherEvaluationLogs: []
+                      cartTenders:
+                      - identifier: CASH
+                        amount: '2000.00'
+                        adjustedAmount: '2000.00'
+                      categoryHierarchySentInPayload: false
               schema:
                 type: object
                 properties:
@@ -142,7 +149,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}

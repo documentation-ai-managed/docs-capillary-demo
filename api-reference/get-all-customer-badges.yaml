@@ -3,14 +3,14 @@ info:
   title: Get all customer badges
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/api_gateway/v1/badges/management/{customerId}":
+  /api_gateway/v1/badges/management/{customerId}:
     get:
       summary: Get all customer badges
       description: ''
@@ -95,16 +95,15 @@ paths:
           type: string
       - name: lastEarnEventDate
         in: query
-        description: "Date and time when a triggering event (transactional or behavioural)\
-          \ occurred, initiating the badge earning. Time format: Epoch format (UNIX\
-          \ timestamp in milliseconds)."
+        description: 'Date and time when a triggering event (transactional or behavioural) occurred, initiating
+          the badge earning. Time format: Epoch format (UNIX timestamp in milliseconds).'
         schema:
           type: number
           format: float
       - name: lastEarnedOnDate
         in: query
-        description: "Date and time when the badge was awarded to the customer. Time\
-          \ format: Epoch format (UNIX timestamp in milliseconds)."
+        description: 'Date and time when the badge was awarded to the customer. Time format: Epoch format
+          (UNIX timestamp in milliseconds).'
         schema:
           type: number
           format: float
@@ -115,860 +114,1014 @@ paths:
             application/json:
               examples:
                 when BadgeType=EARNED:
-                  value: "{\n    \"data\": {\n        \"customerBadges\": [\n    \
-                    \        {\n                \"name\": \"demoBadgeName001\",\n\
-                    \                \"description\": \"testing-fixed-window-7-2\"\
-                    ,\n                \"badgeMetaId\": \"666638f0ae20cb256ec13e23\"\
-                    ,\n                \"badgeType\": \"EARN\",\n                \"\
-                    badgeGroupId\": null,\n                \"badgeGroupName\": null,\n\
-                    \                \"badgeRank\": null,\n                \"createdOn\"\
-                    : 1717975279.579000000,\n                \"lastUpdatedOn\": 1717975460.583000000,\n\
-                    \                \"images\": [\n                    {\n      \
-                    \                  \"name\": \"string\",\n                   \
-                    \     \"fileSvcHandle\": \"string\",\n                       \
-                    \ \"url\": \"string\",\n                        \"tag\": \"UN_EARNED\"\
-                    \n                    }\n                ],\n                \"\
-                    badgeStatus\": \"LIVE\",\n                \"lastEarnedOn\": 1718083872.611000000,\n\
-                    \                \"startsOn\": 1707523237.192000000,\n       \
-                    \         \"expiresOn\": 1730246437.192000000,\n             \
-                    \   \"earnCount\": 2,\n                \"ownership\": {\n    \
-                    \                \"restrictedToOwners\": [\n                 \
-                    \       \"Loyalty_Promotion\"\n                    ],\n      \
-                    \              \"claims\": [\n                        {\n    \
-                    \                        \"ownerType\": \"Loyalty_Promotion\"\
-                    ,\n                            \"referenceId\": \"12332345\",\n\
-                    \                            \"isActive\": true\n            \
-                    \            }\n                    ]\n                },\n  \
-                    \              \"issueStatus\": null,\n                \"active\"\
-                    : true\n            },\n            {\n                \"name\"\
-                    : \"demoBadgeName002\",\n                \"description\": \"testing-fixed-window-7-2\"\
-                    ,\n                \"badgeMetaId\": \"6667e2ad120a7b6e9be4fa21\"\
-                    ,\n                \"badgeType\": \"EARN\",\n                \"\
-                    badgeGroupId\": null,\n                \"badgeGroupName\": null,\n\
-                    \                \"badgeRank\": null,\n                \"createdOn\"\
-                    : 1718084269.488000000,\n                \"lastUpdatedOn\": 1718084355.481000000,\n\
-                    \                \"images\": [\n                    {\n      \
-                    \                  \"name\": \"string\",\n                   \
-                    \     \"fileSvcHandle\": \"string\",\n                       \
-                    \ \"url\": \"string\",\n                        \"tag\": \"UN_EARNED\"\
-                    \n                    }\n                ],\n                \"\
-                    badgeStatus\": \"LIVE\",\n                \"lastEarnedOn\": 1718084406.185000000,\n\
-                    \                \"startsOn\": 1707523237.192000000,\n       \
-                    \         \"expiresOn\": 1730246437.192000000,\n             \
-                    \   \"earnCount\": 1,\n                \"ownership\": {\n    \
-                    \                \"restrictedToOwners\": [\n                 \
-                    \       \"Loyalty_Promotion\"\n                    ],\n      \
-                    \              \"claims\": [\n                        {\n    \
-                    \                        \"ownerType\": \"Loyalty_Promotion\"\
-                    ,\n                            \"referenceId\": \"12332345\",\n\
-                    \                            \"isActive\": true\n            \
-                    \            }\n                    ]\n                },\n  \
-                    \              \"issueStatus\": null,\n                \"active\"\
-                    : true\n            },\n            {\n                \"name\"\
-                    : \"badgeName_004\",\n                \"description\": \"demoDescription\"\
-                    ,\n                \"badgeMetaId\": \"6667e615120a7b6e9be4fa25\"\
-                    ,\n                \"badgeType\": \"EARN\",\n                \"\
-                    badgeGroupId\": null,\n                \"badgeGroupName\": null,\n\
-                    \                \"badgeRank\": null,\n                \"createdOn\"\
-                    : 1718085141.752000000,\n                \"lastUpdatedOn\": 1718085178.688000000,\n\
-                    \                \"images\": [\n                    {\n      \
-                    \                  \"name\": \"string\",\n                   \
-                    \     \"fileSvcHandle\": \"string\",\n                       \
-                    \ \"url\": \"string\",\n                        \"tag\": \"UN_EARNED\"\
-                    \n                    }\n                ],\n                \"\
-                    badgeStatus\": \"LIVE\",\n                \"lastEarnedOn\": 1718342251.498000000,\n\
-                    \                \"startsOn\": 1707523237.192000000,\n       \
-                    \         \"expiresOn\": 1724976037.192000000,\n             \
-                    \   \"earnCount\": 1,\n                \"ownership\": {\n    \
-                    \                \"restrictedToOwners\": [\n                 \
-                    \       \"Loyalty_Promotion\"\n                    ],\n      \
-                    \              \"claims\": [\n                        {\n    \
-                    \                        \"ownerType\": \"Loyalty_Promotion\"\
-                    ,\n                            \"referenceId\": \"12332345\",\n\
-                    \                            \"isActive\": true\n            \
-                    \            }\n                    ]\n                },\n  \
-                    \              \"issueStatus\": null,\n                \"active\"\
-                    : true\n            },\n            {\n                \"name\"\
-                    : \"badgeName_002\",\n                \"description\": \"demoDescription\"\
-                    ,\n                \"badgeMetaId\": \"6667e0cc120a7b6e9be4fa1a\"\
-                    ,\n                \"badgeType\": \"EARN\",\n                \"\
-                    badgeGroupId\": null,\n                \"badgeGroupName\": null,\n\
-                    \                \"badgeRank\": null,\n                \"createdOn\"\
-                    : 1718083788.379000000,\n                \"lastUpdatedOn\": 1718083993.258000000,\n\
-                    \                \"images\": [\n                    {\n      \
-                    \                  \"name\": \"string\",\n                   \
-                    \     \"fileSvcHandle\": \"string\",\n                       \
-                    \ \"url\": \"string\",\n                        \"tag\": \"UN_EARNED\"\
-                    \n                    }\n                ],\n                \"\
-                    badgeStatus\": \"LIVE\",\n                \"lastEarnedOn\": 1718083996.431000000,\n\
-                    \                \"startsOn\": 1707523237.192000000,\n       \
-                    \         \"expiresOn\": 1724976037.192000000,\n             \
-                    \   \"earnCount\": 1,\n                \"ownership\": {\n    \
-                    \                \"restrictedToOwners\": [\n                 \
-                    \       \"Loyalty_Promotion\"\n                    ],\n      \
-                    \              \"claims\": [\n                        {\n    \
-                    \                        \"ownerType\": \"Loyalty_Promotion\"\
-                    ,\n                            \"referenceId\": \"12332345\",\n\
-                    \                            \"isActive\": true\n            \
-                    \            }\n                    ]\n                },\n  \
-                    \              \"issueStatus\": null,\n                \"active\"\
-                    : true\n            }\n        ],\n        \"pagination\": {\n\
-                    \            \"page\": 0,\n            \"size\": 4,\n        \
-                    \    \"total\": 4,\n            \"totalPages\": 1\n        }\n\
-                    \    },\n    \"errors\": [],\n    \"warnings\": []\n}"
+                  value:
+                    data:
+                      customerBadges:
+                      - name: demoBadgeName001
+                        description: testing-fixed-window-7-2
+                        badgeMetaId: 666638f0ae20cb256ec13e23
+                        badgeType: EARN
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: null
+                        createdOn: 1717975279.579
+                        lastUpdatedOn: 1717975460.583
+                        images:
+                        - name: string
+                          fileSvcHandle: string
+                          url: string
+                          tag: UN_EARNED
+                        badgeStatus: LIVE
+                        lastEarnedOn: 1718083872.611
+                        startsOn: 1707523237.192
+                        expiresOn: 1730246437.192
+                        earnCount: 2
+                        ownership:
+                          restrictedToOwners:
+                          - Loyalty_Promotion
+                          claims:
+                          - ownerType: Loyalty_Promotion
+                            referenceId: '12332345'
+                            isActive: true
+                        issueStatus: null
+                        active: true
+                      - name: demoBadgeName002
+                        description: testing-fixed-window-7-2
+                        badgeMetaId: 6667e2ad120a7b6e9be4fa21
+                        badgeType: EARN
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: null
+                        createdOn: 1718084269.488
+                        lastUpdatedOn: 1718084355.481
+                        images:
+                        - name: string
+                          fileSvcHandle: string
+                          url: string
+                          tag: UN_EARNED
+                        badgeStatus: LIVE
+                        lastEarnedOn: 1718084406.185
+                        startsOn: 1707523237.192
+                        expiresOn: 1730246437.192
+                        earnCount: 1
+                        ownership:
+                          restrictedToOwners:
+                          - Loyalty_Promotion
+                          claims:
+                          - ownerType: Loyalty_Promotion
+                            referenceId: '12332345'
+                            isActive: true
+                        issueStatus: null
+                        active: true
+                      - name: badgeName_004
+                        description: demoDescription
+                        badgeMetaId: 6667e615120a7b6e9be4fa25
+                        badgeType: EARN
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: null
+                        createdOn: 1718085141.752
+                        lastUpdatedOn: 1718085178.688
+                        images:
+                        - name: string
+                          fileSvcHandle: string
+                          url: string
+                          tag: UN_EARNED
+                        badgeStatus: LIVE
+                        lastEarnedOn: 1718342251.498
+                        startsOn: 1707523237.192
+                        expiresOn: 1724976037.192
+                        earnCount: 1
+                        ownership:
+                          restrictedToOwners:
+                          - Loyalty_Promotion
+                          claims:
+                          - ownerType: Loyalty_Promotion
+                            referenceId: '12332345'
+                            isActive: true
+                        issueStatus: null
+                        active: true
+                      - name: badgeName_002
+                        description: demoDescription
+                        badgeMetaId: 6667e0cc120a7b6e9be4fa1a
+                        badgeType: EARN
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: null
+                        createdOn: 1718083788.379
+                        lastUpdatedOn: 1718083993.258
+                        images:
+                        - name: string
+                          fileSvcHandle: string
+                          url: string
+                          tag: UN_EARNED
+                        badgeStatus: LIVE
+                        lastEarnedOn: 1718083996.431
+                        startsOn: 1707523237.192
+                        expiresOn: 1724976037.192
+                        earnCount: 1
+                        ownership:
+                          restrictedToOwners:
+                          - Loyalty_Promotion
+                          claims:
+                          - ownerType: Loyalty_Promotion
+                            referenceId: '12332345'
+                            isActive: true
+                        issueStatus: null
+                        active: true
+                      pagination:
+                        page: 0
+                        size: 4
+                        total: 4
+                        totalPages: 1
+                    errors: []
+                    warnings: []
                 When badgeType= EARNED and badgeStatus= LIVE:
-                  value: "{\n    \"data\": {\n        \"customerBadges\": [\n    \
-                    \        {\n                \"name\": \"demoBadgeName001\",\n\
-                    \                \"description\": \"testing-fixed-window-7-2\"\
-                    ,\n                \"badgeMetaId\": \"666638f0ae20cb256ec13e23\"\
-                    ,\n                \"badgeType\": \"EARN\",\n                \"\
-                    badgeGroupId\": null,\n                \"badgeGroupName\": null,\n\
-                    \                \"badgeRank\": null,\n                \"createdOn\"\
-                    : 1717975279.579000000,\n                \"lastUpdatedOn\": 1717975460.583000000,\n\
-                    \                \"images\": [\n                    {\n      \
-                    \                  \"name\": \"string\",\n                   \
-                    \     \"fileSvcHandle\": \"string\",\n                       \
-                    \ \"url\": \"string\",\n                        \"tag\": \"UN_EARNED\"\
-                    \n                    }\n                ],\n                \"\
-                    badgeStatus\": \"LIVE\",\n                \"lastEarnedOn\": 1718083872.611000000,\n\
-                    \                \"startsOn\": 1707523237.192000000,\n       \
-                    \         \"expiresOn\": 1730246437.192000000,\n             \
-                    \   \"earnCount\": 2,\n                \"ownership\": {\n    \
-                    \                \"restrictedToOwners\": [\n                 \
-                    \       \"Loyalty_Promotion\"\n                    ],\n      \
-                    \              \"claims\": [\n                        {\n    \
-                    \                        \"ownerType\": \"Loyalty_Promotion\"\
-                    ,\n                            \"referenceId\": \"12332345\",\n\
-                    \                            \"isActive\": true\n            \
-                    \            }\n                    ]\n                },\n  \
-                    \              \"issueStatus\": null,\n                \"active\"\
-                    : true\n            },\n            {\n                \"name\"\
-                    : \"demoBadgeName002\",\n                \"description\": \"testing-fixed-window-7-2\"\
-                    ,\n                \"badgeMetaId\": \"6667e2ad120a7b6e9be4fa21\"\
-                    ,\n                \"badgeType\": \"EARN\",\n                \"\
-                    badgeGroupId\": null,\n                \"badgeGroupName\": null,\n\
-                    \                \"badgeRank\": null,\n                \"createdOn\"\
-                    : 1718084269.488000000,\n                \"lastUpdatedOn\": 1718084355.481000000,\n\
-                    \                \"images\": [\n                    {\n      \
-                    \                  \"name\": \"string\",\n                   \
-                    \     \"fileSvcHandle\": \"string\",\n                       \
-                    \ \"url\": \"string\",\n                        \"tag\": \"UN_EARNED\"\
-                    \n                    }\n                ],\n                \"\
-                    badgeStatus\": \"LIVE\",\n                \"lastEarnedOn\": 1718084406.185000000,\n\
-                    \                \"startsOn\": 1707523237.192000000,\n       \
-                    \         \"expiresOn\": 1730246437.192000000,\n             \
-                    \   \"earnCount\": 1,\n                \"ownership\": {\n    \
-                    \                \"restrictedToOwners\": [\n                 \
-                    \       \"Loyalty_Promotion\"\n                    ],\n      \
-                    \              \"claims\": [\n                        {\n    \
-                    \                        \"ownerType\": \"Loyalty_Promotion\"\
-                    ,\n                            \"referenceId\": \"12332345\",\n\
-                    \                            \"isActive\": true\n            \
-                    \            }\n                    ]\n                },\n  \
-                    \              \"issueStatus\": null,\n                \"active\"\
-                    : true\n            },\n            {\n                \"name\"\
-                    : \"badgeName_004\",\n                \"description\": \"demoDescription\"\
-                    ,\n                \"badgeMetaId\": \"6667e615120a7b6e9be4fa25\"\
-                    ,\n                \"badgeType\": \"EARN\",\n                \"\
-                    badgeGroupId\": null,\n                \"badgeGroupName\": null,\n\
-                    \                \"badgeRank\": null,\n                \"createdOn\"\
-                    : 1718085141.752000000,\n                \"lastUpdatedOn\": 1718085178.688000000,\n\
-                    \                \"images\": [\n                    {\n      \
-                    \                  \"name\": \"string\",\n                   \
-                    \     \"fileSvcHandle\": \"string\",\n                       \
-                    \ \"url\": \"string\",\n                        \"tag\": \"UN_EARNED\"\
-                    \n                    }\n                ],\n                \"\
-                    badgeStatus\": \"LIVE\",\n                \"lastEarnedOn\": 1718342251.498000000,\n\
-                    \                \"startsOn\": 1707523237.192000000,\n       \
-                    \         \"expiresOn\": 1724976037.192000000,\n             \
-                    \   \"earnCount\": 1,\n                \"ownership\": {\n    \
-                    \                \"restrictedToOwners\": [\n                 \
-                    \       \"Loyalty_Promotion\"\n                    ],\n      \
-                    \              \"claims\": [\n                        {\n    \
-                    \                        \"ownerType\": \"Loyalty_Promotion\"\
-                    ,\n                            \"referenceId\": \"12332345\",\n\
-                    \                            \"isActive\": true\n            \
-                    \            }\n                    ]\n                },\n  \
-                    \              \"issueStatus\": null,\n                \"active\"\
-                    : true\n            },\n            {\n                \"name\"\
-                    : \"badgeName_002\",\n                \"description\": \"demoDescription\"\
-                    ,\n                \"badgeMetaId\": \"6667e0cc120a7b6e9be4fa1a\"\
-                    ,\n                \"badgeType\": \"EARN\",\n                \"\
-                    badgeGroupId\": null,\n                \"badgeGroupName\": null,\n\
-                    \                \"badgeRank\": null,\n                \"createdOn\"\
-                    : 1718083788.379000000,\n                \"lastUpdatedOn\": 1718083993.258000000,\n\
-                    \                \"images\": [\n                    {\n      \
-                    \                  \"name\": \"string\",\n                   \
-                    \     \"fileSvcHandle\": \"string\",\n                       \
-                    \ \"url\": \"string\",\n                        \"tag\": \"UN_EARNED\"\
-                    \n                    }\n                ],\n                \"\
-                    badgeStatus\": \"LIVE\",\n                \"lastEarnedOn\": 1718083996.431000000,\n\
-                    \                \"startsOn\": 1707523237.192000000,\n       \
-                    \         \"expiresOn\": 1724976037.192000000,\n             \
-                    \   \"earnCount\": 1,\n                \"ownership\": {\n    \
-                    \                \"restrictedToOwners\": [\n                 \
-                    \       \"Loyalty_Promotion\"\n                    ],\n      \
-                    \              \"claims\": [\n                        {\n    \
-                    \                        \"ownerType\": \"Loyalty_Promotion\"\
-                    ,\n                            \"referenceId\": \"12332345\",\n\
-                    \                            \"isActive\": true\n            \
-                    \            }\n                    ]\n                },\n  \
-                    \              \"issueStatus\": null,\n                \"active\"\
-                    : true\n            }\n        ],\n        \"pagination\": {\n\
-                    \            \"page\": 0,\n            \"size\": 4,\n        \
-                    \    \"total\": 4,\n            \"totalPages\": 1\n        }\n\
-                    \    },\n    \"errors\": [],\n    \"warnings\": []\n}"
+                  value:
+                    data:
+                      customerBadges:
+                      - name: demoBadgeName001
+                        description: testing-fixed-window-7-2
+                        badgeMetaId: 666638f0ae20cb256ec13e23
+                        badgeType: EARN
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: null
+                        createdOn: 1717975279.579
+                        lastUpdatedOn: 1717975460.583
+                        images:
+                        - name: string
+                          fileSvcHandle: string
+                          url: string
+                          tag: UN_EARNED
+                        badgeStatus: LIVE
+                        lastEarnedOn: 1718083872.611
+                        startsOn: 1707523237.192
+                        expiresOn: 1730246437.192
+                        earnCount: 2
+                        ownership:
+                          restrictedToOwners:
+                          - Loyalty_Promotion
+                          claims:
+                          - ownerType: Loyalty_Promotion
+                            referenceId: '12332345'
+                            isActive: true
+                        issueStatus: null
+                        active: true
+                      - name: demoBadgeName002
+                        description: testing-fixed-window-7-2
+                        badgeMetaId: 6667e2ad120a7b6e9be4fa21
+                        badgeType: EARN
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: null
+                        createdOn: 1718084269.488
+                        lastUpdatedOn: 1718084355.481
+                        images:
+                        - name: string
+                          fileSvcHandle: string
+                          url: string
+                          tag: UN_EARNED
+                        badgeStatus: LIVE
+                        lastEarnedOn: 1718084406.185
+                        startsOn: 1707523237.192
+                        expiresOn: 1730246437.192
+                        earnCount: 1
+                        ownership:
+                          restrictedToOwners:
+                          - Loyalty_Promotion
+                          claims:
+                          - ownerType: Loyalty_Promotion
+                            referenceId: '12332345'
+                            isActive: true
+                        issueStatus: null
+                        active: true
+                      - name: badgeName_004
+                        description: demoDescription
+                        badgeMetaId: 6667e615120a7b6e9be4fa25
+                        badgeType: EARN
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: null
+                        createdOn: 1718085141.752
+                        lastUpdatedOn: 1718085178.688
+                        images:
+                        - name: string
+                          fileSvcHandle: string
+                          url: string
+                          tag: UN_EARNED
+                        badgeStatus: LIVE
+                        lastEarnedOn: 1718342251.498
+                        startsOn: 1707523237.192
+                        expiresOn: 1724976037.192
+                        earnCount: 1
+                        ownership:
+                          restrictedToOwners:
+                          - Loyalty_Promotion
+                          claims:
+                          - ownerType: Loyalty_Promotion
+                            referenceId: '12332345'
+                            isActive: true
+                        issueStatus: null
+                        active: true
+                      - name: badgeName_002
+                        description: demoDescription
+                        badgeMetaId: 6667e0cc120a7b6e9be4fa1a
+                        badgeType: EARN
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: null
+                        createdOn: 1718083788.379
+                        lastUpdatedOn: 1718083993.258
+                        images:
+                        - name: string
+                          fileSvcHandle: string
+                          url: string
+                          tag: UN_EARNED
+                        badgeStatus: LIVE
+                        lastEarnedOn: 1718083996.431
+                        startsOn: 1707523237.192
+                        expiresOn: 1724976037.192
+                        earnCount: 1
+                        ownership:
+                          restrictedToOwners:
+                          - Loyalty_Promotion
+                          claims:
+                          - ownerType: Loyalty_Promotion
+                            referenceId: '12332345'
+                            isActive: true
+                        issueStatus: null
+                        active: true
+                      pagination:
+                        page: 0
+                        size: 4
+                        total: 4
+                        totalPages: 1
+                    errors: []
+                    warnings: []
                 when Owner=Loyalty and badgeType= EARNED:
-                  value: "{\n    \"data\": {\n        \"customerBadges\": [\n    \
-                    \        {\n                \"name\": \"string9\",\n         \
-                    \       \"description\": \"string\",\n                \"badgeMetaId\"\
-                    : \"664442c560646c1208ede8f4\",\n                \"badgeType\"\
-                    : \"EARN\",\n                \"badgeGroupId\": null,\n       \
-                    \         \"badgeGroupName\": null,\n                \"badgeRank\"\
-                    : null,\n                \"createdOn\": 1715749573.082000000,\n\
-                    \                \"lastUpdatedOn\": 1715749613.449000000,\n  \
-                    \              \"images\": [\n                    {\n        \
-                    \                \"name\": \"string\",\n                     \
-                    \   \"fileSvcHandle\": \"string\",\n                        \"\
-                    url\": \"string\",\n                        \"tag\": \"UN_EARNED\"\
-                    \n                    }\n                ],\n                \"\
-                    badgeStatus\": \"LIVE\",\n                \"lastEarnedOn\": 1715749689.729000000,\n\
-                    \                \"startsOn\": 1684087053.290000000,\n       \
-                    \         \"expiresOn\": 1778781453.290000000,\n             \
-                    \   \"earnCount\": 1,\n                \"ownership\": {\n    \
-                    \                \"restrictedToOwners\": [\n                 \
-                    \       \"Loyalty\"\n                    ],\n                \
-                    \    \"claims\": [\n                        {\n              \
-                    \              \"ownerType\": \"Loyalty\",\n                 \
-                    \           \"referenceId\": \"string\",\n                   \
-                    \         \"isActive\": true\n                        }\n    \
-                    \                ]\n                },\n                \"issueStatus\"\
-                    : null,\n                \"active\": true\n            }\n   \
-                    \     ],\n        \"pagination\": {\n            \"page\": 0,\n\
-                    \            \"size\": 1,\n            \"total\": 1,\n       \
-                    \     \"totalPages\": 1\n        }\n    },\n    \"errors\": [],\n\
-                    \    \"warnings\": []\n}"
+                  value:
+                    data:
+                      customerBadges:
+                      - name: string9
+                        description: string
+                        badgeMetaId: 664442c560646c1208ede8f4
+                        badgeType: EARN
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: null
+                        createdOn: 1715749573.082
+                        lastUpdatedOn: 1715749613.449
+                        images:
+                        - name: string
+                          fileSvcHandle: string
+                          url: string
+                          tag: UN_EARNED
+                        badgeStatus: LIVE
+                        lastEarnedOn: 1715749689.729
+                        startsOn: 1684087053.29
+                        expiresOn: 1778781453.29
+                        earnCount: 1
+                        ownership:
+                          restrictedToOwners:
+                          - Loyalty
+                          claims:
+                          - ownerType: Loyalty
+                            referenceId: string
+                            isActive: true
+                        issueStatus: null
+                        active: true
+                      pagination:
+                        page: 0
+                        size: 1
+                        total: 1
+                        totalPages: 1
+                    errors: []
+                    warnings: []
                 when badgeStatus=UPCOMING and badgeType=AVAILABLE:
-                  value: "{\n    \"data\": {\n        \"customerBadges\": [\n    \
-                    \        {\n                \"name\": \"badge issual3\",\n   \
-                    \             \"description\": \"Purchase products worth minimum\
-                    \ 1K in the month of March and get this badge\",\n           \
-                    \     \"badgeMetaId\": \"6673b08c39c6a546eb054726\",\n       \
-                    \         \"badgeType\": \"EARN\",\n                \"badgeGroupId\"\
-                    : null,\n                \"badgeGroupName\": null,\n         \
-                    \       \"badgeRank\": 1,\n                \"createdOn\": 1718857868.451,\n\
-                    \                \"lastUpdatedOn\": 1718857868.451,\n        \
-                    \        \"images\": [],\n                \"badgeStatus\": \"\
-                    UPCOMING\",\n                \"lastEarnedOn\": null,\n       \
-                    \         \"startsOn\": 1818857606,\n                \"expiresOn\"\
-                    : 1828857606,\n                \"earnCount\": 0,\n           \
-                    \     \"ownership\": {\n                    \"restrictedToOwners\"\
-                    : [\n                        \"Loyalty\"\n                   \
-                    \ ],\n                    \"claims\": []\n                },\n\
-                    \                \"issueStatus\": null,\n                \"active\"\
-                    : true\n            }\n        ],\n        \"pagination\": {\n\
-                    \            \"page\": 0,\n            \"size\": 1,\n        \
-                    \    \"total\": 1,\n            \"totalPages\": 1\n        }\n\
-                    \    },\n    \"errors\": [],\n    \"warnings\": []\n}"
+                  value:
+                    data:
+                      customerBadges:
+                      - name: badge issual3
+                        description: Purchase products worth minimum 1K in the month of March and get
+                          this badge
+                        badgeMetaId: 6673b08c39c6a546eb054726
+                        badgeType: EARN
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: 1
+                        createdOn: 1718857868.451
+                        lastUpdatedOn: 1718857868.451
+                        images: []
+                        badgeStatus: UPCOMING
+                        lastEarnedOn: null
+                        startsOn: 1818857606
+                        expiresOn: 1828857606
+                        earnCount: 0
+                        ownership:
+                          restrictedToOwners:
+                          - Loyalty
+                          claims: []
+                        issueStatus: null
+                        active: true
+                      pagination:
+                        page: 0
+                        size: 1
+                        total: 1
+                        totalPages: 1
+                    errors: []
+                    warnings: []
                 when badgeType=AVAILABLE_TO_ISSUE:
-                  value: "{\n    \"data\": {\n        \"customerBadges\": [\n    \
-                    \        {\n                \"name\": \"Automation_Test_Badge_Issue_2023-12-11\
-                    \ 13:20:36.812999\",\n                \"description\": \"Automation_Test_Badge_Issue_2023-12-11\
-                    \ 13:20:36.812999\",\n                \"badgeMetaId\": \"6576bf1191e0b01c659ad5d6\"\
-                    ,\n                \"badgeType\": \"ISSUE_EARN\",\n          \
-                    \      \"badgeGroupId\": null,\n                \"badgeGroupName\"\
-                    : null,\n                \"badgeRank\": null,\n              \
-                    \  \"createdOn\": 1702280977.051000000,\n                \"lastUpdatedOn\"\
-                    : 1702280979.343000000,\n                \"images\": [\n     \
-                    \               {\n                        \"name\": \"unearned1\"\
-                    ,\n                        \"fileSvcHandle\": \"qwer-8634-8938\"\
-                    ,\n                        \"url\": \"https://badge.url\",\n \
-                    \                       \"tag\": \"UN_EARNED\"\n             \
-                    \       },\n                    {\n                        \"\
-                    name\": \"unearned\",\n                        \"fileSvcHandle\"\
-                    : \"qwer-8634-8938\",\n                        \"url\": \"https://badge.url\"\
-                    ,\n                        \"tag\": \"IN_PROGRESS\"\n        \
-                    \            }\n                ],\n                \"badgeStatus\"\
-                    : \"EXPIRED\",\n                \"lastEarnedOn\": null,\n    \
-                    \            \"startsOn\": 1701416976.000000000,\n           \
-                    \     \"expiresOn\": 1702367376.000000000,\n                \"\
-                    earnCount\": 0,\n                \"ownership\": {\n          \
-                    \          \"restrictedToOwners\": [\n                       \
-                    \ \"Audience_Campaigns\"\n                    ],\n           \
-                    \         \"claims\": [\n                        {\n         \
-                    \                   \"ownerType\": \"Audience_Campaigns\",\n \
-                    \                           \"referenceId\": \"1175688\",\n  \
-                    \                          \"isActive\": true\n              \
-                    \          }\n                    ]\n                },\n    \
-                    \            \"issueStatus\": null,\n                \"active\"\
-                    : true\n            },\n            {\n                \"name\"\
-                    : \"Automation_Test_Badge_Issue_2023-12-11 12:45:45.409511\",\n\
-                    \                \"description\": \"Automation_Test_Badge_Issue_2023-12-11\
-                    \ 12:45:45.409511\",\n                \"badgeMetaId\": \"6576b6e591e0b01c659ad5d1\"\
-                    ,\n                \"badgeType\": \"ISSUE_EARN\",\n          \
-                    \      \"badgeGroupId\": null,\n                \"badgeGroupName\"\
-                    : null,\n                \"badgeRank\": null,\n              \
-                    \  \"createdOn\": 1702278885.490000000,\n                \"lastUpdatedOn\"\
-                    : 1702278885.490000000,\n                \"images\": [\n     \
-                    \               {\n                        \"name\": \"unearned1\"\
-                    ,\n                        \"fileSvcHandle\": \"qwer-8634-8938\"\
-                    ,\n                        \"url\": \"https://badge.url\",\n \
-                    \                       \"tag\": \"UN_EARNED\"\n             \
-                    \       },\n                    {\n                        \"\
-                    name\": \"unearned\",\n                        \"fileSvcHandle\"\
-                    : \"qwer-8634-8938\",\n                        \"url\": \"https://badge.url\"\
-                    ,\n                        \"tag\": \"IN_PROGRESS\"\n        \
-                    \            }\n                ],\n                \"badgeStatus\"\
-                    : \"EXPIRED\",\n                \"lastEarnedOn\": null,\n    \
-                    \            \"startsOn\": 1701414885.000000000,\n           \
-                    \     \"expiresOn\": 1702365285.000000000,\n                \"\
-                    earnCount\": 0,\n                \"ownership\": {\n          \
-                    \          \"restrictedToOwners\": [\n                       \
-                    \ \"Audience_Campaigns\"\n                    ],\n           \
-                    \         \"claims\": []\n                },\n               \
-                    \ \"issueStatus\": null,\n                \"active\": true\n \
-                    \           },\n            {\n                \"name\": \"Automation_Test_Badge_Issue_2023-12-06\
-                    \ 16:26:12.341557\",\n                \"description\": \"Automation_Test_Badge_Issue_2023-12-06\
-                    \ 16:26:12.341557\",\n                \"badgeMetaId\": \"65705311c71fce4220eb0e30\"\
-                    ,\n                \"badgeType\": \"ISSUE_EARN\",\n          \
-                    \      \"badgeGroupId\": null,\n                \"badgeGroupName\"\
-                    : null,\n                \"badgeRank\": null,\n              \
-                    \  \"createdOn\": 1701860113.271000000,\n                \"lastUpdatedOn\"\
-                    : 1701860119.622000000,\n                \"images\": [\n     \
-                    \               {\n                        \"name\": \"unearned1\"\
-                    ,\n                        \"fileSvcHandle\": \"qwer-8634-8938\"\
-                    ,\n                        \"url\": \"https://badge.url\",\n \
-                    \                       \"tag\": \"UN_EARNED\"\n             \
-                    \       },\n                    {\n                        \"\
-                    name\": \"unearned\",\n                        \"fileSvcHandle\"\
-                    : \"qwer-8634-8938\",\n                        \"url\": \"https://badge.url\"\
-                    ,\n                        \"tag\": \"IN_PROGRESS\"\n        \
-                    \            }\n                ],\n                \"badgeStatus\"\
-                    : \"EXPIRED\",\n                \"lastEarnedOn\": null,\n    \
-                    \            \"startsOn\": 1700996112.000000000,\n           \
-                    \     \"expiresOn\": 1701946512.000000000,\n                \"\
-                    earnCount\": 0,\n                \"ownership\": {\n          \
-                    \          \"restrictedToOwners\": [\n                       \
-                    \ \"Audience_Campaigns\"\n                    ],\n           \
-                    \         \"claims\": [\n                        {\n         \
-                    \                   \"ownerType\": \"Audience_Campaigns\",\n \
-                    \                           \"referenceId\": \"1175436\",\n  \
-                    \                          \"isActive\": true\n              \
-                    \          }\n                    ]\n                },\n    \
-                    \            \"issueStatus\": null,\n                \"active\"\
-                    : true\n            },\n            {\n                \"name\"\
-                    : \"Automation_Test_Badge_Issue_2023-12-06 14:45:38.971644\",\n\
-                    \                \"description\": \"Automation_Test_Badge_Issue_2023-12-06\
-                    \ 14:45:38.971644\",\n                \"badgeMetaId\": \"65703b7fc374ec3a66394c66\"\
-                    ,\n                \"badgeType\": \"ISSUE_EARN\",\n          \
-                    \      \"badgeGroupId\": null,\n                \"badgeGroupName\"\
-                    : null,\n                \"badgeRank\": null,\n              \
-                    \  \"createdOn\": 1701854079.165000000,\n                \"lastUpdatedOn\"\
-                    : 1701854081.274000000,\n                \"images\": [\n     \
-                    \               {\n                        \"name\": \"unearned1\"\
-                    ,\n                        \"fileSvcHandle\": \"qwer-8634-8938\"\
-                    ,\n                        \"url\": \"https://badge.url\",\n \
-                    \                       \"tag\": \"UN_EARNED\"\n             \
-                    \       },\n                    {\n                        \"\
-                    name\": \"unearned\",\n                        \"fileSvcHandle\"\
-                    : \"qwer-8634-8938\",\n                        \"url\": \"https://badge.url\"\
-                    ,\n                        \"tag\": \"IN_PROGRESS\"\n        \
-                    \            }\n                ],\n                \"badgeStatus\"\
-                    : \"EXPIRED\",\n                \"lastEarnedOn\": null,\n    \
-                    \            \"startsOn\": 1700990078.971000000,\n           \
-                    \     \"expiresOn\": 1701940478.971000000,\n                \"\
-                    earnCount\": 0,\n                \"ownership\": {\n          \
-                    \          \"restrictedToOwners\": [\n                       \
-                    \ \"Audience_Campaigns\"\n                    ],\n           \
-                    \         \"claims\": [\n                        {\n         \
-                    \                   \"ownerType\": \"Audience_Campaigns\",\n \
-                    \                           \"referenceId\": \"1175427\",\n  \
-                    \                          \"isActive\": true\n              \
-                    \          }\n                    ]\n                },\n    \
-                    \            \"issueStatus\": null,\n                \"active\"\
-                    : true\n            },\n            {\n                \"name\"\
-                    : \"Automation_Test_Badge_Issue_2023-12-06 14:06:41.897753\",\n\
-                    \                \"description\": \"Automation_Test_Badge_Issue_2023-12-06\
-                    \ 14:06:41.897753\",\n                \"badgeMetaId\": \"65703260c374ec3a66394c62\"\
-                    ,\n                \"badgeType\": \"ISSUE_EARN\",\n          \
-                    \      \"badgeGroupId\": null,\n                \"badgeGroupName\"\
-                    : null,\n                \"badgeRank\": null,\n              \
-                    \  \"createdOn\": 1701851744.536000000,\n                \"lastUpdatedOn\"\
-                    : 1701851749.241000000,\n                \"images\": [\n     \
-                    \               {\n                        \"name\": \"unearned\"\
-                    ,\n                        \"fileSvcHandle\": \"qwer-8634-8938\"\
-                    ,\n                        \"url\": \"https://badge.url\",\n \
-                    \                       \"tag\": \"IN_PROGRESS\"\n           \
-                    \         },\n                    {\n                        \"\
-                    name\": \"unearned1\",\n                        \"fileSvcHandle\"\
-                    : \"qwer-8634-8938\",\n                        \"url\": \"https://badge.url\"\
-                    ,\n                        \"tag\": \"UN_EARNED\"\n          \
-                    \          }\n                ],\n                \"badgeStatus\"\
-                    : \"EXPIRED\",\n                \"lastEarnedOn\": null,\n    \
-                    \            \"startsOn\": 1700987741.897000000,\n           \
-                    \     \"expiresOn\": 1701938141.897000000,\n                \"\
-                    earnCount\": 0,\n                \"ownership\": {\n          \
-                    \          \"restrictedToOwners\": [\n                       \
-                    \ \"Audience_Campaigns\"\n                    ],\n           \
-                    \         \"claims\": [\n                        {\n         \
-                    \                   \"ownerType\": \"Audience_Campaigns\",\n \
-                    \                           \"referenceId\": \"1175420\",\n  \
-                    \                          \"isActive\": true\n              \
-                    \          }\n                    ]\n                },\n    \
-                    \            \"issueStatus\": null,\n                \"active\"\
-                    : true\n            },\n            {\n                \"name\"\
-                    : \"Automation_Test_Badge_Issue_2023-12-06 12:07:18.916219\",\n\
-                    \                \"description\": \"Automation_Test_Badge_Issue_2023-12-06\
-                    \ 12:07:18.916219\",\n                \"badgeMetaId\": \"6570166372fdda318e1bf46d\"\
-                    ,\n                \"badgeType\": \"ISSUE_EARN\",\n          \
-                    \      \"badgeGroupId\": null,\n                \"badgeGroupName\"\
-                    : null,\n                \"badgeRank\": null,\n              \
-                    \  \"createdOn\": 1701844579.216000000,\n                \"lastUpdatedOn\"\
-                    : 1701844579.216000000,\n                \"images\": [\n     \
-                    \               {\n                        \"name\": \"unearned1\"\
-                    ,\n                        \"fileSvcHandle\": \"qwer-8634-8938\"\
-                    ,\n                        \"url\": \"https://badge.url\",\n \
-                    \                       \"tag\": \"UN_EARNED\"\n             \
-                    \       },\n                    {\n                        \"\
-                    name\": \"unearned\",\n                        \"fileSvcHandle\"\
-                    : \"qwer-8634-8938\",\n                        \"url\": \"https://badge.url\"\
-                    ,\n                        \"tag\": \"IN_PROGRESS\"\n        \
-                    \            }\n                ],\n                \"badgeStatus\"\
-                    : \"EXPIRED\",\n                \"lastEarnedOn\": null,\n    \
-                    \            \"startsOn\": 1700980578.916000000,\n           \
-                    \     \"expiresOn\": 1701930978.916000000,\n                \"\
-                    earnCount\": 0,\n                \"ownership\": {\n          \
-                    \          \"restrictedToOwners\": [\n                       \
-                    \ \"Audience_Campaigns\"\n                    ],\n           \
-                    \         \"claims\": []\n                },\n               \
-                    \ \"issueStatus\": null,\n                \"active\": true\n \
-                    \           },\n            {\n                \"name\": \"Automation_Test_Badge_Issue_2023-12-06\
-                    \ 11:20:48.799005\",\n                \"description\": \"Automation_Test_Badge_Issue_2023-12-06\
-                    \ 11:20:48.799005\",\n                \"badgeMetaId\": \"65700b7f72fdda318e1bf46c\"\
-                    ,\n                \"badgeType\": \"ISSUE_EARN\",\n          \
-                    \      \"badgeGroupId\": null,\n                \"badgeGroupName\"\
-                    : null,\n                \"badgeRank\": null,\n              \
-                    \  \"createdOn\": 1701841790.816000000,\n                \"lastUpdatedOn\"\
-                    : 1701841790.816000000,\n                \"images\": [\n     \
-                    \               {\n                        \"name\": \"unearned\"\
-                    ,\n                        \"fileSvcHandle\": \"qwer-8634-8938\"\
-                    ,\n                        \"url\": \"https://badge.url\",\n \
-                    \                       \"tag\": \"IN_PROGRESS\"\n           \
-                    \         },\n                    {\n                        \"\
-                    name\": \"unearned1\",\n                        \"fileSvcHandle\"\
-                    : \"qwer-8634-8938\",\n                        \"url\": \"https://badge.url\"\
-                    ,\n                        \"tag\": \"UN_EARNED\"\n          \
-                    \          }\n                ],\n                \"badgeStatus\"\
-                    : \"EXPIRED\",\n                \"lastEarnedOn\": null,\n    \
-                    \            \"startsOn\": 1700977788.798000000,\n           \
-                    \     \"expiresOn\": 1701928188.798000000,\n                \"\
-                    earnCount\": 0,\n                \"ownership\": {\n          \
-                    \          \"restrictedToOwners\": [\n                       \
-                    \ \"Audience_Campaigns\"\n                    ],\n           \
-                    \         \"claims\": []\n                },\n               \
-                    \ \"issueStatus\": null,\n                \"active\": true\n \
-                    \           },\n            {\n                \"name\": \"Automation_Test_Badge_Issue_2023-12-05\
-                    \ 16:03:31.490835\",\n                \"description\": \"Automation_Test_Badge_Issue_2023-12-05\
-                    \ 16:03:31.490835\",\n                \"badgeMetaId\": \"656efc3fcb54506265bcf9d3\"\
-                    ,\n                \"badgeType\": \"ISSUE_EARN\",\n          \
-                    \      \"badgeGroupId\": null,\n                \"badgeGroupName\"\
-                    : null,\n                \"badgeRank\": null,\n              \
-                    \  \"createdOn\": 1701772351.825000000,\n                \"lastUpdatedOn\"\
-                    : 1701772351.825000000,\n                \"images\": [\n     \
-                    \               {\n                        \"name\": \"unearned1\"\
-                    ,\n                        \"fileSvcHandle\": \"qwer-8634-8938\"\
-                    ,\n                        \"url\": \"https://badge.url\",\n \
-                    \                       \"tag\": \"UN_EARNED\"\n             \
-                    \       },\n                    {\n                        \"\
-                    name\": \"unearned\",\n                        \"fileSvcHandle\"\
-                    : \"qwer-8634-8938\",\n                        \"url\": \"https://badge.url\"\
-                    ,\n                        \"tag\": \"IN_PROGRESS\"\n        \
-                    \            }\n                ],\n                \"badgeStatus\"\
-                    : \"EXPIRED\",\n                \"lastEarnedOn\": null,\n    \
-                    \            \"startsOn\": 1700908351.490000000,\n           \
-                    \     \"expiresOn\": 1701858751.490000000,\n                \"\
-                    earnCount\": 0,\n                \"ownership\": {\n          \
-                    \          \"restrictedToOwners\": [\n                       \
-                    \ \"Audience_Campaigns\"\n                    ],\n           \
-                    \         \"claims\": []\n                },\n               \
-                    \ \"issueStatus\": null,\n                \"active\": true\n \
-                    \           },\n            {\n                \"name\": \"Automation_Test_Badge_Issue_2023-12-05\
-                    \ 12:49:11.906793\",\n                \"description\": \"Automation_Test_Badge_Issue_2023-12-05\
-                    \ 12:49:11.906793\",\n                \"badgeMetaId\": \"656eceb4cb54506265bcf9d1\"\
-                    ,\n                \"badgeType\": \"ISSUE_EARN\",\n          \
-                    \      \"badgeGroupId\": null,\n                \"badgeGroupName\"\
-                    : null,\n                \"badgeRank\": null,\n              \
-                    \  \"createdOn\": 1701760692.318000000,\n                \"lastUpdatedOn\"\
-                    : 1701760692.318000000,\n                \"images\": [\n     \
-                    \               {\n                        \"name\": \"unearned1\"\
-                    ,\n                        \"fileSvcHandle\": \"qwer-8634-8938\"\
-                    ,\n                        \"url\": \"https://badge.url\",\n \
-                    \                       \"tag\": \"UN_EARNED\"\n             \
-                    \       },\n                    {\n                        \"\
-                    name\": \"unearned\",\n                        \"fileSvcHandle\"\
-                    : \"qwer-8634-8938\",\n                        \"url\": \"https://badge.url\"\
-                    ,\n                        \"tag\": \"IN_PROGRESS\"\n        \
-                    \            }\n                ],\n                \"badgeStatus\"\
-                    : \"EXPIRED\",\n                \"lastEarnedOn\": null,\n    \
-                    \            \"startsOn\": 1700896691.906000000,\n           \
-                    \     \"expiresOn\": 1701847091.906000000,\n                \"\
-                    earnCount\": 0,\n                \"ownership\": {\n          \
-                    \          \"restrictedToOwners\": [\n                       \
-                    \ \"Audience_Campaigns\"\n                    ],\n           \
-                    \         \"claims\": []\n                },\n               \
-                    \ \"issueStatus\": null,\n                \"active\": true\n \
-                    \           },\n            {\n                \"name\": \"Automation_Test_Badge_Issue_2023-12-05\
-                    \ 12:16:16.271285\",\n                \"description\": \"Automation_Test_Badge_Issue_2023-12-05\
-                    \ 12:16:16.271285\",\n                \"badgeMetaId\": \"656ec6fdcb54506265bcf9d0\"\
-                    ,\n                \"badgeType\": \"ISSUE_EARN\",\n          \
-                    \      \"badgeGroupId\": null,\n                \"badgeGroupName\"\
-                    : null,\n                \"badgeRank\": null,\n              \
-                    \  \"createdOn\": 1701758717.618000000,\n                \"lastUpdatedOn\"\
-                    : 1701758717.618000000,\n                \"images\": [\n     \
-                    \               {\n                        \"name\": \"unearned1\"\
-                    ,\n                        \"fileSvcHandle\": \"qwer-8634-8938\"\
-                    ,\n                        \"url\": \"https://badge.url\",\n \
-                    \                       \"tag\": \"UN_EARNED\"\n             \
-                    \       },\n                    {\n                        \"\
-                    name\": \"unearned\",\n                        \"fileSvcHandle\"\
-                    : \"qwer-8634-8938\",\n                        \"url\": \"https://badge.url\"\
-                    ,\n                        \"tag\": \"IN_PROGRESS\"\n        \
-                    \            }\n                ],\n                \"badgeStatus\"\
-                    : \"EXPIRED\",\n                \"lastEarnedOn\": null,\n    \
-                    \            \"startsOn\": 1700894716.271000000,\n           \
-                    \     \"expiresOn\": 1701845116.271000000,\n                \"\
-                    earnCount\": 0,\n                \"ownership\": {\n          \
-                    \          \"restrictedToOwners\": [\n                       \
-                    \ \"Audience_Campaigns\"\n                    ],\n           \
-                    \         \"claims\": []\n                },\n               \
-                    \ \"issueStatus\": null,\n                \"active\": true\n \
-                    \           }\n        ],\n        \"pagination\": {\n       \
-                    \     \"page\": 0,\n            \"size\": 10,\n            \"\
-                    total\": 11,\n            \"totalPages\": 2\n        }\n    },\n\
-                    \    \"errors\": [],\n    \"warnings\": []\n}"
+                  value:
+                    data:
+                      customerBadges:
+                      - name: Automation_Test_Badge_Issue_2023-12-11 13:20:36.812999
+                        description: Automation_Test_Badge_Issue_2023-12-11 13:20:36.812999
+                        badgeMetaId: 6576bf1191e0b01c659ad5d6
+                        badgeType: ISSUE_EARN
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: null
+                        createdOn: 1702280977.051
+                        lastUpdatedOn: 1702280979.343
+                        images:
+                        - name: unearned1
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://badge.url
+                          tag: UN_EARNED
+                        - name: unearned
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://badge.url
+                          tag: IN_PROGRESS
+                        badgeStatus: EXPIRED
+                        lastEarnedOn: null
+                        startsOn: 1701416976.0
+                        expiresOn: 1702367376.0
+                        earnCount: 0
+                        ownership:
+                          restrictedToOwners:
+                          - Audience_Campaigns
+                          claims:
+                          - ownerType: Audience_Campaigns
+                            referenceId: '1175688'
+                            isActive: true
+                        issueStatus: null
+                        active: true
+                      - name: Automation_Test_Badge_Issue_2023-12-11 12:45:45.409511
+                        description: Automation_Test_Badge_Issue_2023-12-11 12:45:45.409511
+                        badgeMetaId: 6576b6e591e0b01c659ad5d1
+                        badgeType: ISSUE_EARN
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: null
+                        createdOn: 1702278885.49
+                        lastUpdatedOn: 1702278885.49
+                        images:
+                        - name: unearned1
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://badge.url
+                          tag: UN_EARNED
+                        - name: unearned
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://badge.url
+                          tag: IN_PROGRESS
+                        badgeStatus: EXPIRED
+                        lastEarnedOn: null
+                        startsOn: 1701414885.0
+                        expiresOn: 1702365285.0
+                        earnCount: 0
+                        ownership:
+                          restrictedToOwners:
+                          - Audience_Campaigns
+                          claims: []
+                        issueStatus: null
+                        active: true
+                      - name: Automation_Test_Badge_Issue_2023-12-06 16:26:12.341557
+                        description: Automation_Test_Badge_Issue_2023-12-06 16:26:12.341557
+                        badgeMetaId: 65705311c71fce4220eb0e30
+                        badgeType: ISSUE_EARN
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: null
+                        createdOn: 1701860113.271
+                        lastUpdatedOn: 1701860119.622
+                        images:
+                        - name: unearned1
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://badge.url
+                          tag: UN_EARNED
+                        - name: unearned
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://badge.url
+                          tag: IN_PROGRESS
+                        badgeStatus: EXPIRED
+                        lastEarnedOn: null
+                        startsOn: 1700996112.0
+                        expiresOn: 1701946512.0
+                        earnCount: 0
+                        ownership:
+                          restrictedToOwners:
+                          - Audience_Campaigns
+                          claims:
+                          - ownerType: Audience_Campaigns
+                            referenceId: '1175436'
+                            isActive: true
+                        issueStatus: null
+                        active: true
+                      - name: Automation_Test_Badge_Issue_2023-12-06 14:45:38.971644
+                        description: Automation_Test_Badge_Issue_2023-12-06 14:45:38.971644
+                        badgeMetaId: 65703b7fc374ec3a66394c66
+                        badgeType: ISSUE_EARN
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: null
+                        createdOn: 1701854079.165
+                        lastUpdatedOn: 1701854081.274
+                        images:
+                        - name: unearned1
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://badge.url
+                          tag: UN_EARNED
+                        - name: unearned
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://badge.url
+                          tag: IN_PROGRESS
+                        badgeStatus: EXPIRED
+                        lastEarnedOn: null
+                        startsOn: 1700990078.971
+                        expiresOn: 1701940478.971
+                        earnCount: 0
+                        ownership:
+                          restrictedToOwners:
+                          - Audience_Campaigns
+                          claims:
+                          - ownerType: Audience_Campaigns
+                            referenceId: '1175427'
+                            isActive: true
+                        issueStatus: null
+                        active: true
+                      - name: Automation_Test_Badge_Issue_2023-12-06 14:06:41.897753
+                        description: Automation_Test_Badge_Issue_2023-12-06 14:06:41.897753
+                        badgeMetaId: 65703260c374ec3a66394c62
+                        badgeType: ISSUE_EARN
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: null
+                        createdOn: 1701851744.536
+                        lastUpdatedOn: 1701851749.241
+                        images:
+                        - name: unearned
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://badge.url
+                          tag: IN_PROGRESS
+                        - name: unearned1
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://badge.url
+                          tag: UN_EARNED
+                        badgeStatus: EXPIRED
+                        lastEarnedOn: null
+                        startsOn: 1700987741.897
+                        expiresOn: 1701938141.897
+                        earnCount: 0
+                        ownership:
+                          restrictedToOwners:
+                          - Audience_Campaigns
+                          claims:
+                          - ownerType: Audience_Campaigns
+                            referenceId: '1175420'
+                            isActive: true
+                        issueStatus: null
+                        active: true
+                      - name: Automation_Test_Badge_Issue_2023-12-06 12:07:18.916219
+                        description: Automation_Test_Badge_Issue_2023-12-06 12:07:18.916219
+                        badgeMetaId: 6570166372fdda318e1bf46d
+                        badgeType: ISSUE_EARN
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: null
+                        createdOn: 1701844579.216
+                        lastUpdatedOn: 1701844579.216
+                        images:
+                        - name: unearned1
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://badge.url
+                          tag: UN_EARNED
+                        - name: unearned
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://badge.url
+                          tag: IN_PROGRESS
+                        badgeStatus: EXPIRED
+                        lastEarnedOn: null
+                        startsOn: 1700980578.916
+                        expiresOn: 1701930978.916
+                        earnCount: 0
+                        ownership:
+                          restrictedToOwners:
+                          - Audience_Campaigns
+                          claims: []
+                        issueStatus: null
+                        active: true
+                      - name: Automation_Test_Badge_Issue_2023-12-06 11:20:48.799005
+                        description: Automation_Test_Badge_Issue_2023-12-06 11:20:48.799005
+                        badgeMetaId: 65700b7f72fdda318e1bf46c
+                        badgeType: ISSUE_EARN
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: null
+                        createdOn: 1701841790.816
+                        lastUpdatedOn: 1701841790.816
+                        images:
+                        - name: unearned
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://badge.url
+                          tag: IN_PROGRESS
+                        - name: unearned1
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://badge.url
+                          tag: UN_EARNED
+                        badgeStatus: EXPIRED
+                        lastEarnedOn: null
+                        startsOn: 1700977788.798
+                        expiresOn: 1701928188.798
+                        earnCount: 0
+                        ownership:
+                          restrictedToOwners:
+                          - Audience_Campaigns
+                          claims: []
+                        issueStatus: null
+                        active: true
+                      - name: Automation_Test_Badge_Issue_2023-12-05 16:03:31.490835
+                        description: Automation_Test_Badge_Issue_2023-12-05 16:03:31.490835
+                        badgeMetaId: 656efc3fcb54506265bcf9d3
+                        badgeType: ISSUE_EARN
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: null
+                        createdOn: 1701772351.825
+                        lastUpdatedOn: 1701772351.825
+                        images:
+                        - name: unearned1
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://badge.url
+                          tag: UN_EARNED
+                        - name: unearned
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://badge.url
+                          tag: IN_PROGRESS
+                        badgeStatus: EXPIRED
+                        lastEarnedOn: null
+                        startsOn: 1700908351.49
+                        expiresOn: 1701858751.49
+                        earnCount: 0
+                        ownership:
+                          restrictedToOwners:
+                          - Audience_Campaigns
+                          claims: []
+                        issueStatus: null
+                        active: true
+                      - name: Automation_Test_Badge_Issue_2023-12-05 12:49:11.906793
+                        description: Automation_Test_Badge_Issue_2023-12-05 12:49:11.906793
+                        badgeMetaId: 656eceb4cb54506265bcf9d1
+                        badgeType: ISSUE_EARN
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: null
+                        createdOn: 1701760692.318
+                        lastUpdatedOn: 1701760692.318
+                        images:
+                        - name: unearned1
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://badge.url
+                          tag: UN_EARNED
+                        - name: unearned
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://badge.url
+                          tag: IN_PROGRESS
+                        badgeStatus: EXPIRED
+                        lastEarnedOn: null
+                        startsOn: 1700896691.906
+                        expiresOn: 1701847091.906
+                        earnCount: 0
+                        ownership:
+                          restrictedToOwners:
+                          - Audience_Campaigns
+                          claims: []
+                        issueStatus: null
+                        active: true
+                      - name: Automation_Test_Badge_Issue_2023-12-05 12:16:16.271285
+                        description: Automation_Test_Badge_Issue_2023-12-05 12:16:16.271285
+                        badgeMetaId: 656ec6fdcb54506265bcf9d0
+                        badgeType: ISSUE_EARN
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: null
+                        createdOn: 1701758717.618
+                        lastUpdatedOn: 1701758717.618
+                        images:
+                        - name: unearned1
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://badge.url
+                          tag: UN_EARNED
+                        - name: unearned
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://badge.url
+                          tag: IN_PROGRESS
+                        badgeStatus: EXPIRED
+                        lastEarnedOn: null
+                        startsOn: 1700894716.271
+                        expiresOn: 1701845116.271
+                        earnCount: 0
+                        ownership:
+                          restrictedToOwners:
+                          - Audience_Campaigns
+                          claims: []
+                        issueStatus: null
+                        active: true
+                      pagination:
+                        page: 0
+                        size: 10
+                        total: 11
+                        totalPages: 2
+                    errors: []
+                    warnings: []
                 when badgeType= EXPIRED:
-                  value: "{\n    \"data\": {\n        \"customerBadges\": [\n    \
-                    \        {\n                \"name\": \"demoName\",\n        \
-                    \        \"description\": \"demoDescription\",\n             \
-                    \   \"badgeMetaId\": \"6655729a8be1b54e57d602f1\",\n         \
-                    \       \"badgeType\": \"EARN\",\n                \"badgeGroupId\"\
-                    : null,\n                \"badgeGroupName\": null,\n         \
-                    \       \"badgeRank\": null,\n                \"createdOn\": 1716875930.419,\n\
-                    \                \"lastUpdatedOn\": 1716875930.419,\n        \
-                    \        \"images\": [\n                    {\n              \
-                    \          \"name\": \"string\",\n                        \"fileSvcHandle\"\
-                    : \"string\",\n                        \"url\": \"string\",\n\
-                    \                        \"tag\": \"UN_EARNED\"\n            \
-                    \        }\n                ],\n                \"badgeStatus\"\
-                    : \"EXPIRED\",\n                \"lastEarnedOn\": null,\n    \
-                    \            \"startsOn\": 1707523237.192,\n                \"\
-                    expiresOn\": 1711756837.192,\n                \"earnCount\": 0,\n\
-                    \                \"ownership\": {\n                    \"restrictedToOwners\"\
-                    : [\n                        \"Loyalty_Promotion\"\n         \
-                    \           ],\n                    \"claims\": []\n         \
-                    \       },\n                \"issueStatus\": null,\n         \
-                    \       \"active\": true\n            },\n            {\n    \
-                    \            \"name\": \"demoName\",\n                \"description\"\
-                    : \"demoDescription\",\n                \"badgeMetaId\": \"6655746d8be1b54e57d60346\"\
-                    ,\n                \"badgeType\": \"EARN\",\n                \"\
-                    badgeGroupId\": null,\n                \"badgeGroupName\": null,\n\
-                    \                \"badgeRank\": null,\n                \"createdOn\"\
-                    : 1716876397.275,\n                \"lastUpdatedOn\": 1716876397.275,\n\
-                    \                \"images\": [\n                    {\n      \
-                    \                  \"name\": \"string\",\n                   \
-                    \     \"fileSvcHandle\": \"string\",\n                       \
-                    \ \"url\": \"string\",\n                        \"tag\": \"UN_EARNED\"\
-                    \n                    }\n                ],\n                \"\
-                    badgeStatus\": \"EXPIRED\",\n                \"lastEarnedOn\"\
-                    : null,\n                \"startsOn\": 1707523237.192,\n     \
-                    \           \"expiresOn\": 1711756837.192,\n                \"\
-                    earnCount\": 0,\n                \"ownership\": {\n          \
-                    \          \"restrictedToOwners\": [\n                       \
-                    \ \"Loyalty_Promotion\"\n                    ],\n            \
-                    \        \"claims\": []\n                },\n                \"\
-                    issueStatus\": null,\n                \"active\": true\n     \
-                    \       },\n            {\n                \"name\": \"testName001\"\
-                    ,\n                \"description\": \"testing-fixed-window-7-2\"\
-                    ,\n                \"badgeMetaId\": \"665574ff8be1b54e57d60347\"\
-                    ,\n                \"badgeType\": \"EARN\",\n                \"\
-                    badgeGroupId\": null,\n                \"badgeGroupName\": null,\n\
-                    \                \"badgeRank\": null,\n                \"createdOn\"\
-                    : 1716876543.525,\n                \"lastUpdatedOn\": 1716876645.707,\n\
-                    \                \"images\": [\n                    {\n      \
-                    \                  \"name\": \"string\",\n                   \
-                    \     \"fileSvcHandle\": \"string\",\n                       \
-                    \ \"url\": \"string\",\n                        \"tag\": \"UN_EARNED\"\
-                    \n                    }\n                ],\n                \"\
-                    badgeStatus\": \"EXPIRED\",\n                \"lastEarnedOn\"\
-                    : null,\n                \"startsOn\": 1707523237.192,\n     \
-                    \           \"expiresOn\": 1711756837.192,\n                \"\
-                    earnCount\": 0,\n                \"ownership\": {\n          \
-                    \          \"restrictedToOwners\": [\n                       \
-                    \ \"Loyalty_Promotion\"\n                    ],\n            \
-                    \        \"claims\": []\n                },\n                \"\
-                    issueStatus\": null,\n                \"active\": true\n     \
-                    \       },\n            {\n                \"name\": \"demoName\"\
-                    ,\n                \"description\": \"demoDescription\",\n   \
-                    \             \"badgeMetaId\": \"665572068be1b54e57d602f0\",\n\
-                    \                \"badgeType\": \"EARN\",\n                \"\
-                    badgeGroupId\": null,\n                \"badgeGroupName\": null,\n\
-                    \                \"badgeRank\": null,\n                \"createdOn\"\
-                    : 1716875781.376,\n                \"lastUpdatedOn\": 1716875781.376,\n\
-                    \                \"images\": [\n                    {\n      \
-                    \                  \"name\": \"string\",\n                   \
-                    \     \"fileSvcHandle\": \"string\",\n                       \
-                    \ \"url\": \"string\",\n                        \"tag\": \"UN_EARNED\"\
-                    \n                    }\n                ],\n                \"\
-                    badgeStatus\": \"EXPIRED\",\n                \"lastEarnedOn\"\
-                    : null,\n                \"startsOn\": 1707523237.192,\n     \
-                    \           \"expiresOn\": 1711756837.192,\n                \"\
-                    earnCount\": 0,\n                \"ownership\": {\n          \
-                    \          \"restrictedToOwners\": [\n                       \
-                    \ \"Loyalty_Promotion\"\n                    ],\n            \
-                    \        \"claims\": []\n                },\n                \"\
-                    issueStatus\": null,\n                \"active\": true\n     \
-                    \       },\n            {\n                \"name\": \"demoName\"\
-                    ,\n                \"description\": \"demoDescription\",\n   \
-                    \             \"badgeMetaId\": \"6655731b8be1b54e57d60304\",\n\
-                    \                \"badgeType\": \"EARN\",\n                \"\
-                    badgeGroupId\": null,\n                \"badgeGroupName\": null,\n\
-                    \                \"badgeRank\": null,\n                \"createdOn\"\
-                    : 1716876059.101,\n                \"lastUpdatedOn\": 1716876059.101,\n\
-                    \                \"images\": [\n                    {\n      \
-                    \                  \"name\": \"string\",\n                   \
-                    \     \"fileSvcHandle\": \"string\",\n                       \
-                    \ \"url\": \"string\",\n                        \"tag\": \"UN_EARNED\"\
-                    \n                    }\n                ],\n                \"\
-                    badgeStatus\": \"EXPIRED\",\n                \"lastEarnedOn\"\
-                    : null,\n                \"startsOn\": 1707523237.192,\n     \
-                    \           \"expiresOn\": 1711756837.192,\n                \"\
-                    earnCount\": 0,\n                \"ownership\": {\n          \
-                    \          \"restrictedToOwners\": [\n                       \
-                    \ \"Loyalty_Promotion\"\n                    ],\n            \
-                    \        \"claims\": []\n                },\n                \"\
-                    issueStatus\": null,\n                \"active\": true\n     \
-                    \       },\n            {\n                \"name\": \"demoName\"\
-                    ,\n                \"description\": \"demoDescription\",\n   \
-                    \             \"badgeMetaId\": \"665572b48be1b54e57d602f2\",\n\
-                    \                \"badgeType\": \"EARN\",\n                \"\
-                    badgeGroupId\": null,\n                \"badgeGroupName\": null,\n\
-                    \                \"badgeRank\": null,\n                \"createdOn\"\
-                    : 1716875956.673,\n                \"lastUpdatedOn\": 1716875956.673,\n\
-                    \                \"images\": [\n                    {\n      \
-                    \                  \"name\": \"string\",\n                   \
-                    \     \"fileSvcHandle\": \"string\",\n                       \
-                    \ \"url\": \"string\",\n                        \"tag\": \"UN_EARNED\"\
-                    \n                    }\n                ],\n                \"\
-                    badgeStatus\": \"EXPIRED\",\n                \"lastEarnedOn\"\
-                    : null,\n                \"startsOn\": 1707523237.192,\n     \
-                    \           \"expiresOn\": 1711756837.192,\n                \"\
-                    earnCount\": 0,\n                \"ownership\": {\n          \
-                    \          \"restrictedToOwners\": [\n                       \
-                    \ \"Loyalty_Promotion\"\n                    ],\n            \
-                    \        \"claims\": []\n                },\n                \"\
-                    issueStatus\": null,\n                \"active\": true\n     \
-                    \       },\n            {\n                \"name\": \"Automation_Test_Badge_Issue_2023-12-11\
-                    \ 13:20:36.812999\",\n                \"description\": \"Automation_Test_Badge_Issue_2023-12-11\
-                    \ 13:20:36.812999\",\n                \"badgeMetaId\": \"6576bf1191e0b01c659ad5d6\"\
-                    ,\n                \"badgeType\": \"ISSUE_EARN\",\n          \
-                    \      \"badgeGroupId\": null,\n                \"badgeGroupName\"\
-                    : null,\n                \"badgeRank\": null,\n              \
-                    \  \"createdOn\": 1702280977.051,\n                \"lastUpdatedOn\"\
-                    : 1702280979.343,\n                \"images\": [\n           \
-                    \         {\n                        \"name\": \"unearned\",\n\
-                    \                        \"fileSvcHandle\": \"qwer-8634-8938\"\
-                    ,\n                        \"url\": \"https://badge.url\",\n \
-                    \                       \"tag\": \"IN_PROGRESS\"\n           \
-                    \         },\n                    {\n                        \"\
-                    name\": \"unearned1\",\n                        \"fileSvcHandle\"\
-                    : \"qwer-8634-8938\",\n                        \"url\": \"https://badge.url\"\
-                    ,\n                        \"tag\": \"UN_EARNED\"\n          \
-                    \          }\n                ],\n                \"badgeStatus\"\
-                    : \"EXPIRED\",\n                \"lastEarnedOn\": null,\n    \
-                    \            \"startsOn\": 1701416976,\n                \"expiresOn\"\
-                    : 1702367376,\n                \"earnCount\": 0,\n           \
-                    \     \"ownership\": {\n                    \"restrictedToOwners\"\
-                    : [\n                        \"Audience_Campaigns\"\n        \
-                    \            ],\n                    \"claims\": [\n         \
-                    \               {\n                            \"ownerType\":\
-                    \ \"Audience_Campaigns\",\n                            \"referenceId\"\
-                    : \"1175688\",\n                            \"isActive\": true\n\
-                    \                        }\n                    ]\n          \
-                    \      },\n                \"issueStatus\": null,\n          \
-                    \      \"active\": true\n            },\n            {\n     \
-                    \           \"name\": \"Automation_Test_Badge_Issue_2023-12-11\
-                    \ 12:45:45.409511\",\n                \"description\": \"Automation_Test_Badge_Issue_2023-12-11\
-                    \ 12:45:45.409511\",\n                \"badgeMetaId\": \"6576b6e591e0b01c659ad5d1\"\
-                    ,\n                \"badgeType\": \"ISSUE_EARN\",\n          \
-                    \      \"badgeGroupId\": null,\n                \"badgeGroupName\"\
-                    : null,\n                \"badgeRank\": null,\n              \
-                    \  \"createdOn\": 1702278885.49,\n                \"lastUpdatedOn\"\
-                    : 1702278885.49,\n                \"images\": [\n            \
-                    \        {\n                        \"name\": \"unearned1\",\n\
-                    \                        \"fileSvcHandle\": \"qwer-8634-8938\"\
-                    ,\n                        \"url\": \"https://badge.url\",\n \
-                    \                       \"tag\": \"UN_EARNED\"\n             \
-                    \       },\n                    {\n                        \"\
-                    name\": \"unearned\",\n                        \"fileSvcHandle\"\
-                    : \"qwer-8634-8938\",\n                        \"url\": \"https://badge.url\"\
-                    ,\n                        \"tag\": \"IN_PROGRESS\"\n        \
-                    \            }\n                ],\n                \"badgeStatus\"\
-                    : \"EXPIRED\",\n                \"lastEarnedOn\": null,\n    \
-                    \            \"startsOn\": 1701414885,\n                \"expiresOn\"\
-                    : 1702365285,\n                \"earnCount\": 0,\n           \
-                    \     \"ownership\": {\n                    \"restrictedToOwners\"\
-                    : [\n                        \"Audience_Campaigns\"\n        \
-                    \            ],\n                    \"claims\": []\n        \
-                    \        },\n                \"issueStatus\": null,\n        \
-                    \        \"active\": true\n            },\n            {\n   \
-                    \             \"name\": \"Automation_Test_Badge_Issue_2023-12-06\
-                    \ 16:26:12.341557\",\n                \"description\": \"Automation_Test_Badge_Issue_2023-12-06\
-                    \ 16:26:12.341557\",\n                \"badgeMetaId\": \"65705311c71fce4220eb0e30\"\
-                    ,\n                \"badgeType\": \"ISSUE_EARN\",\n          \
-                    \      \"badgeGroupId\": null,\n                \"badgeGroupName\"\
-                    : null,\n                \"badgeRank\": null,\n              \
-                    \  \"createdOn\": 1701860113.271,\n                \"lastUpdatedOn\"\
-                    : 1701860119.622,\n                \"images\": [\n           \
-                    \         {\n                        \"name\": \"unearned\",\n\
-                    \                        \"fileSvcHandle\": \"qwer-8634-8938\"\
-                    ,\n                        \"url\": \"https://badge.url\",\n \
-                    \                       \"tag\": \"IN_PROGRESS\"\n           \
-                    \         },\n                    {\n                        \"\
-                    name\": \"unearned1\",\n                        \"fileSvcHandle\"\
-                    : \"qwer-8634-8938\",\n                        \"url\": \"https://badge.url\"\
-                    ,\n                        \"tag\": \"UN_EARNED\"\n          \
-                    \          }\n                ],\n                \"badgeStatus\"\
-                    : \"EXPIRED\",\n                \"lastEarnedOn\": null,\n    \
-                    \            \"startsOn\": 1700996112,\n                \"expiresOn\"\
-                    : 1701946512,\n                \"earnCount\": 0,\n           \
-                    \     \"ownership\": {\n                    \"restrictedToOwners\"\
-                    : [\n                        \"Audience_Campaigns\"\n        \
-                    \            ],\n                    \"claims\": [\n         \
-                    \               {\n                            \"ownerType\":\
-                    \ \"Audience_Campaigns\",\n                            \"referenceId\"\
-                    : \"1175436\",\n                            \"isActive\": true\n\
-                    \                        }\n                    ]\n          \
-                    \      },\n                \"issueStatus\": null,\n          \
-                    \      \"active\": true\n            },\n            {\n     \
-                    \           \"name\": \"Automation_Test_Badge_Issue_2023-12-06\
-                    \ 14:45:38.971644\",\n                \"description\": \"Automation_Test_Badge_Issue_2023-12-06\
-                    \ 14:45:38.971644\",\n                \"badgeMetaId\": \"65703b7fc374ec3a66394c66\"\
-                    ,\n                \"badgeType\": \"ISSUE_EARN\",\n          \
-                    \      \"badgeGroupId\": null,\n                \"badgeGroupName\"\
-                    : null,\n                \"badgeRank\": null,\n              \
-                    \  \"createdOn\": 1701854079.165,\n                \"lastUpdatedOn\"\
-                    : 1701854081.274,\n                \"images\": [\n           \
-                    \         {\n                        \"name\": \"unearned1\",\n\
-                    \                        \"fileSvcHandle\": \"qwer-8634-8938\"\
-                    ,\n                        \"url\": \"https://badge.url\",\n \
-                    \                       \"tag\": \"UN_EARNED\"\n             \
-                    \       },\n                    {\n                        \"\
-                    name\": \"unearned\",\n                        \"fileSvcHandle\"\
-                    : \"qwer-8634-8938\",\n                        \"url\": \"https://badge.url\"\
-                    ,\n                        \"tag\": \"IN_PROGRESS\"\n        \
-                    \            }\n                ],\n                \"badgeStatus\"\
-                    : \"EXPIRED\",\n                \"lastEarnedOn\": null,\n    \
-                    \            \"startsOn\": 1700990078.971,\n                \"\
-                    expiresOn\": 1701940478.971,\n                \"earnCount\": 0,\n\
-                    \                \"ownership\": {\n                    \"restrictedToOwners\"\
-                    : [\n                        \"Audience_Campaigns\"\n        \
-                    \            ],\n                    \"claims\": [\n         \
-                    \               {\n                            \"ownerType\":\
-                    \ \"Audience_Campaigns\",\n                            \"referenceId\"\
-                    : \"1175427\",\n                            \"isActive\": true\n\
-                    \                        }\n                    ]\n          \
-                    \      },\n                \"issueStatus\": null,\n          \
-                    \      \"active\": true\n            }\n        ],\n        \"\
-                    pagination\": {\n            \"page\": 0,\n            \"size\"\
-                    : 10,\n            \"total\": 17,\n            \"totalPages\"\
-                    : 2\n        }\n    },\n    \"errors\": [],\n    \"warnings\"\
-                    : []\n}"
+                  value:
+                    data:
+                      customerBadges:
+                      - name: demoName
+                        description: demoDescription
+                        badgeMetaId: 6655729a8be1b54e57d602f1
+                        badgeType: EARN
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: null
+                        createdOn: 1716875930.419
+                        lastUpdatedOn: 1716875930.419
+                        images:
+                        - name: string
+                          fileSvcHandle: string
+                          url: string
+                          tag: UN_EARNED
+                        badgeStatus: EXPIRED
+                        lastEarnedOn: null
+                        startsOn: 1707523237.192
+                        expiresOn: 1711756837.192
+                        earnCount: 0
+                        ownership:
+                          restrictedToOwners:
+                          - Loyalty_Promotion
+                          claims: []
+                        issueStatus: null
+                        active: true
+                      - name: demoName
+                        description: demoDescription
+                        badgeMetaId: 6655746d8be1b54e57d60346
+                        badgeType: EARN
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: null
+                        createdOn: 1716876397.275
+                        lastUpdatedOn: 1716876397.275
+                        images:
+                        - name: string
+                          fileSvcHandle: string
+                          url: string
+                          tag: UN_EARNED
+                        badgeStatus: EXPIRED
+                        lastEarnedOn: null
+                        startsOn: 1707523237.192
+                        expiresOn: 1711756837.192
+                        earnCount: 0
+                        ownership:
+                          restrictedToOwners:
+                          - Loyalty_Promotion
+                          claims: []
+                        issueStatus: null
+                        active: true
+                      - name: testName001
+                        description: testing-fixed-window-7-2
+                        badgeMetaId: 665574ff8be1b54e57d60347
+                        badgeType: EARN
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: null
+                        createdOn: 1716876543.525
+                        lastUpdatedOn: 1716876645.707
+                        images:
+                        - name: string
+                          fileSvcHandle: string
+                          url: string
+                          tag: UN_EARNED
+                        badgeStatus: EXPIRED
+                        lastEarnedOn: null
+                        startsOn: 1707523237.192
+                        expiresOn: 1711756837.192
+                        earnCount: 0
+                        ownership:
+                          restrictedToOwners:
+                          - Loyalty_Promotion
+                          claims: []
+                        issueStatus: null
+                        active: true
+                      - name: demoName
+                        description: demoDescription
+                        badgeMetaId: 665572068be1b54e57d602f0
+                        badgeType: EARN
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: null
+                        createdOn: 1716875781.376
+                        lastUpdatedOn: 1716875781.376
+                        images:
+                        - name: string
+                          fileSvcHandle: string
+                          url: string
+                          tag: UN_EARNED
+                        badgeStatus: EXPIRED
+                        lastEarnedOn: null
+                        startsOn: 1707523237.192
+                        expiresOn: 1711756837.192
+                        earnCount: 0
+                        ownership:
+                          restrictedToOwners:
+                          - Loyalty_Promotion
+                          claims: []
+                        issueStatus: null
+                        active: true
+                      - name: demoName
+                        description: demoDescription
+                        badgeMetaId: 6655731b8be1b54e57d60304
+                        badgeType: EARN
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: null
+                        createdOn: 1716876059.101
+                        lastUpdatedOn: 1716876059.101
+                        images:
+                        - name: string
+                          fileSvcHandle: string
+                          url: string
+                          tag: UN_EARNED
+                        badgeStatus: EXPIRED
+                        lastEarnedOn: null
+                        startsOn: 1707523237.192
+                        expiresOn: 1711756837.192
+                        earnCount: 0
+                        ownership:
+                          restrictedToOwners:
+                          - Loyalty_Promotion
+                          claims: []
+                        issueStatus: null
+                        active: true
+                      - name: demoName
+                        description: demoDescription
+                        badgeMetaId: 665572b48be1b54e57d602f2
+                        badgeType: EARN
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: null
+                        createdOn: 1716875956.673
+                        lastUpdatedOn: 1716875956.673
+                        images:
+                        - name: string
+                          fileSvcHandle: string
+                          url: string
+                          tag: UN_EARNED
+                        badgeStatus: EXPIRED
+                        lastEarnedOn: null
+                        startsOn: 1707523237.192
+                        expiresOn: 1711756837.192
+                        earnCount: 0
+                        ownership:
+                          restrictedToOwners:
+                          - Loyalty_Promotion
+                          claims: []
+                        issueStatus: null
+                        active: true
+                      - name: Automation_Test_Badge_Issue_2023-12-11 13:20:36.812999
+                        description: Automation_Test_Badge_Issue_2023-12-11 13:20:36.812999
+                        badgeMetaId: 6576bf1191e0b01c659ad5d6
+                        badgeType: ISSUE_EARN
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: null
+                        createdOn: 1702280977.051
+                        lastUpdatedOn: 1702280979.343
+                        images:
+                        - name: unearned
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://badge.url
+                          tag: IN_PROGRESS
+                        - name: unearned1
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://badge.url
+                          tag: UN_EARNED
+                        badgeStatus: EXPIRED
+                        lastEarnedOn: null
+                        startsOn: 1701416976
+                        expiresOn: 1702367376
+                        earnCount: 0
+                        ownership:
+                          restrictedToOwners:
+                          - Audience_Campaigns
+                          claims:
+                          - ownerType: Audience_Campaigns
+                            referenceId: '1175688'
+                            isActive: true
+                        issueStatus: null
+                        active: true
+                      - name: Automation_Test_Badge_Issue_2023-12-11 12:45:45.409511
+                        description: Automation_Test_Badge_Issue_2023-12-11 12:45:45.409511
+                        badgeMetaId: 6576b6e591e0b01c659ad5d1
+                        badgeType: ISSUE_EARN
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: null
+                        createdOn: 1702278885.49
+                        lastUpdatedOn: 1702278885.49
+                        images:
+                        - name: unearned1
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://badge.url
+                          tag: UN_EARNED
+                        - name: unearned
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://badge.url
+                          tag: IN_PROGRESS
+                        badgeStatus: EXPIRED
+                        lastEarnedOn: null
+                        startsOn: 1701414885
+                        expiresOn: 1702365285
+                        earnCount: 0
+                        ownership:
+                          restrictedToOwners:
+                          - Audience_Campaigns
+                          claims: []
+                        issueStatus: null
+                        active: true
+                      - name: Automation_Test_Badge_Issue_2023-12-06 16:26:12.341557
+                        description: Automation_Test_Badge_Issue_2023-12-06 16:26:12.341557
+                        badgeMetaId: 65705311c71fce4220eb0e30
+                        badgeType: ISSUE_EARN
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: null
+                        createdOn: 1701860113.271
+                        lastUpdatedOn: 1701860119.622
+                        images:
+                        - name: unearned
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://badge.url
+                          tag: IN_PROGRESS
+                        - name: unearned1
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://badge.url
+                          tag: UN_EARNED
+                        badgeStatus: EXPIRED
+                        lastEarnedOn: null
+                        startsOn: 1700996112
+                        expiresOn: 1701946512
+                        earnCount: 0
+                        ownership:
+                          restrictedToOwners:
+                          - Audience_Campaigns
+                          claims:
+                          - ownerType: Audience_Campaigns
+                            referenceId: '1175436'
+                            isActive: true
+                        issueStatus: null
+                        active: true
+                      - name: Automation_Test_Badge_Issue_2023-12-06 14:45:38.971644
+                        description: Automation_Test_Badge_Issue_2023-12-06 14:45:38.971644
+                        badgeMetaId: 65703b7fc374ec3a66394c66
+                        badgeType: ISSUE_EARN
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: null
+                        createdOn: 1701854079.165
+                        lastUpdatedOn: 1701854081.274
+                        images:
+                        - name: unearned1
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://badge.url
+                          tag: UN_EARNED
+                        - name: unearned
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://badge.url
+                          tag: IN_PROGRESS
+                        badgeStatus: EXPIRED
+                        lastEarnedOn: null
+                        startsOn: 1700990078.971
+                        expiresOn: 1701940478.971
+                        earnCount: 0
+                        ownership:
+                          restrictedToOwners:
+                          - Audience_Campaigns
+                          claims:
+                          - ownerType: Audience_Campaigns
+                            referenceId: '1175427'
+                            isActive: true
+                        issueStatus: null
+                        active: true
+                      pagination:
+                        page: 0
+                        size: 10
+                        total: 17
+                        totalPages: 2
+                    errors: []
+                    warnings: []
                 Filter by group ID:
-                  value: "{\n    \"data\": {\n        \"customerBadges\": [\n    \
-                    \        {\n                \"name\": \"Birthday Badge\",\n  \
-                    \              \"description\": \"Make a purchase during your\
-                    \ birthday month and get a 40% discount coupon\",\n          \
-                    \      \"badgeMetaId\": \"653dea07b3cda7078c7c68ee\",\n      \
-                    \          \"badgeType\": \"ISSUE_EARN\",\n                \"\
-                    badgeGroupId\": \"65c3600c60d9261bdd8a6410\",\n              \
-                    \  \"badgeGroupName\": \"2024 Badges\",\n                \"badgeRank\"\
-                    : 2,\n                \"createdOn\": 1698556674.481000000,\n \
-                    \               \"lastUpdatedOn\": 1716454946.522000000,\n   \
-                    \             \"images\": [\n                    {\n         \
-                    \               \"name\": \"\",\n                        \"fileSvcHandle\"\
-                    : \"6d5bbab0-e75c-46c4-ac61-e9f7efeb8863\",\n                \
-                    \        \"url\": \"https://storage.crm.eu.content-cdn.io/fs.capillary.eu/incentives_assets/badges/images/100606/653dea07b3cda7078c7c68ee_EARNED_P-Hmb96D.png\"\
-                    ,\n                        \"tag\": \"EARNED\"\n             \
-                    \       },\n                    {\n                        \"\
-                    name\": \"\",\n                        \"fileSvcHandle\": \"8be2b78e-b1d6-4127-926a-2cbed7eb2785\"\
-                    ,\n                        \"url\": \"https://storage.crm.eu.content-cdn.io/fs.capillary.eu/incentives_assets/badges/images/100606/653dea07b3cda7078c7c68ee_UN_EARNED_vDx_DRdk.png\"\
-                    ,\n                        \"tag\": \"UN_EARNED\"\n          \
-                    \          }\n                ],\n                \"badgeStatus\"\
-                    : \"LIVE\",\n                \"lastEarnedOn\": null,\n       \
-                    \         \"startsOn\": 1698557400.000000000,\n              \
-                    \  \"expiresOn\": 1828754110.000000000,\n                \"earnCount\"\
-                    : null,\n                \"ownership\": {\n                  \
-                    \  \"restrictedToOwners\": [\n                        \"Loyalty\"\
-                    \n                    ],\n                    \"claims\": [\n\
-                    \                        {\n                            \"ownerType\"\
-                    : \"Loyalty\",\n                            \"referenceId\": \"\
-                    626\",\n                            \"isActive\": true\n     \
-                    \                   },\n                        {\n          \
-                    \                  \"ownerType\": \"Loyalty\",\n             \
-                    \               \"referenceId\": \"626_TransactionAdd\",\n   \
-                    \                         \"isActive\": true\n               \
-                    \         },\n                        {\n                    \
-                    \        \"ownerType\": \"Loyalty\",\n                       \
-                    \     \"referenceId\": \"123\",\n                            \"\
-                    isActive\": true\n                        }\n                \
-                    \    ]\n                },\n                \"issueStatus\": null,\n\
-                    \                \"active\": true\n            },\n          \
-                    \  {\n                \"name\": \"Fuel Master\",\n           \
-                    \     \"description\": \"Spend $500 on fuel purchases and get\
-                    \ 10% off on next fuel purchase and 100 bonus points\",\n    \
-                    \            \"badgeMetaId\": \"653df084b3cda7078c7c68f1\",\n\
-                    \                \"badgeType\": \"ISSUE_EARN\",\n            \
-                    \    \"badgeGroupId\": \"65c3600c60d9261bdd8a6410\",\n       \
-                    \         \"badgeGroupName\": \"2024 Badges\",\n             \
-                    \   \"badgeRank\": 1,\n                \"createdOn\": 1698558084.664000000,\n\
-                    \                \"lastUpdatedOn\": 1707304090.322000000,\n  \
-                    \              \"images\": [\n                    {\n        \
-                    \                \"name\": \"\",\n                        \"fileSvcHandle\"\
-                    : \"b7d6460d-471f-4c73-9e6e-2a2ee5bad45e\",\n                \
-                    \        \"url\": \"https://storage.crm.eu.content-cdn.io/fs.capillary.eu/incentives_assets/badges/images/100606/653df084b3cda7078c7c68f1_UN_EARNED_KYgyN232.png\"\
-                    ,\n                        \"tag\": \"UN_EARNED\"\n          \
-                    \          },\n                    {\n                       \
-                    \ \"name\": \"\",\n                        \"fileSvcHandle\":\
-                    \ \"98ddc200-fa9a-4e64-abc1-cf4ca52ac434\",\n                \
-                    \        \"url\": \"https://storage.crm.eu.content-cdn.io/fs.capillary.eu/incentives_assets/badges/images/100606/653df084b3cda7078c7c68f1_EARNED_3BX5SiLR.jpeg\"\
-                    ,\n                        \"tag\": \"EARNED\"\n             \
-                    \       }\n                ],\n                \"badgeStatus\"\
-                    : \"LIVE\",\n                \"lastEarnedOn\": null,\n       \
-                    \         \"startsOn\": 1698559200.000000000,\n              \
-                    \  \"expiresOn\": 1828754110.000000000,\n                \"earnCount\"\
-                    : null,\n                \"ownership\": {\n                  \
-                    \  \"restrictedToOwners\": [\n                        \"Loyalty\"\
-                    \n                    ],\n                    \"claims\": [\n\
-                    \                        {\n                            \"ownerType\"\
-                    : \"Loyalty\",\n                            \"referenceId\": \"\
-                    1234\",\n                            \"isActive\": true\n    \
-                    \                    },\n                        {\n         \
-                    \                   \"ownerType\": \"Loyalty\",\n            \
-                    \                \"referenceId\": \"626\",\n                 \
-                    \           \"isActive\": true\n                        },\n \
-                    \                       {\n                            \"ownerType\"\
-                    : \"Loyalty\",\n                            \"referenceId\": \"\
-                    980\",\n                            \"isActive\": true\n     \
-                    \                   },\n                        {\n          \
-                    \                  \"ownerType\": \"Loyalty\",\n             \
-                    \               \"referenceId\": \"123\",\n                  \
-                    \          \"isActive\": true\n                        }\n   \
-                    \                 ]\n                },\n                \"issueStatus\"\
-                    : null,\n                \"active\": true\n            }\n   \
-                    \     ],\n        \"pagination\": {\n            \"page\": 0,\n\
-                    \            \"size\": 2,\n            \"total\": 2,\n       \
-                    \     \"totalPages\": 1\n        }\n    },\n    \"errors\": [],\n\
-                    \    \"warnings\": []\n}"
+                  value:
+                    data:
+                      customerBadges:
+                      - name: Birthday Badge
+                        description: Make a purchase during your birthday month and get a 40% discount
+                          coupon
+                        badgeMetaId: 653dea07b3cda7078c7c68ee
+                        badgeType: ISSUE_EARN
+                        badgeGroupId: 65c3600c60d9261bdd8a6410
+                        badgeGroupName: 2024 Badges
+                        badgeRank: 2
+                        createdOn: 1698556674.481
+                        lastUpdatedOn: 1716454946.522
+                        images:
+                        - name: ''
+                          fileSvcHandle: 6d5bbab0-e75c-46c4-ac61-e9f7efeb8863
+                          url: https://storage.crm.eu.content-cdn.io/fs.capillary.eu/incentives_assets/badges/images/100606/653dea07b3cda7078c7c68ee_EARNED_P-Hmb96D.png
+                          tag: EARNED
+                        - name: ''
+                          fileSvcHandle: 8be2b78e-b1d6-4127-926a-2cbed7eb2785
+                          url: https://storage.crm.eu.content-cdn.io/fs.capillary.eu/incentives_assets/badges/images/100606/653dea07b3cda7078c7c68ee_UN_EARNED_vDx_DRdk.png
+                          tag: UN_EARNED
+                        badgeStatus: LIVE
+                        lastEarnedOn: null
+                        startsOn: 1698557400.0
+                        expiresOn: 1828754110.0
+                        earnCount: null
+                        ownership:
+                          restrictedToOwners:
+                          - Loyalty
+                          claims:
+                          - ownerType: Loyalty
+                            referenceId: '626'
+                            isActive: true
+                          - ownerType: Loyalty
+                            referenceId: 626_TransactionAdd
+                            isActive: true
+                          - ownerType: Loyalty
+                            referenceId: '123'
+                            isActive: true
+                        issueStatus: null
+                        active: true
+                      - name: Fuel Master
+                        description: Spend $500 on fuel purchases and get 10% off on next fuel purchase
+                          and 100 bonus points
+                        badgeMetaId: 653df084b3cda7078c7c68f1
+                        badgeType: ISSUE_EARN
+                        badgeGroupId: 65c3600c60d9261bdd8a6410
+                        badgeGroupName: 2024 Badges
+                        badgeRank: 1
+                        createdOn: 1698558084.664
+                        lastUpdatedOn: 1707304090.322
+                        images:
+                        - name: ''
+                          fileSvcHandle: b7d6460d-471f-4c73-9e6e-2a2ee5bad45e
+                          url: https://storage.crm.eu.content-cdn.io/fs.capillary.eu/incentives_assets/badges/images/100606/653df084b3cda7078c7c68f1_UN_EARNED_KYgyN232.png
+                          tag: UN_EARNED
+                        - name: ''
+                          fileSvcHandle: 98ddc200-fa9a-4e64-abc1-cf4ca52ac434
+                          url: https://storage.crm.eu.content-cdn.io/fs.capillary.eu/incentives_assets/badges/images/100606/653df084b3cda7078c7c68f1_EARNED_3BX5SiLR.jpeg
+                          tag: EARNED
+                        badgeStatus: LIVE
+                        lastEarnedOn: null
+                        startsOn: 1698559200.0
+                        expiresOn: 1828754110.0
+                        earnCount: null
+                        ownership:
+                          restrictedToOwners:
+                          - Loyalty
+                          claims:
+                          - ownerType: Loyalty
+                            referenceId: '1234'
+                            isActive: true
+                          - ownerType: Loyalty
+                            referenceId: '626'
+                            isActive: true
+                          - ownerType: Loyalty
+                            referenceId: '980'
+                            isActive: true
+                          - ownerType: Loyalty
+                            referenceId: '123'
+                            isActive: true
+                        issueStatus: null
+                        active: true
+                      pagination:
+                        page: 0
+                        size: 2
+                        total: 2
+                        totalPages: 1
+                    errors: []
+                    warnings: []
                 Sample response:
                   value:
                     data:
@@ -981,21 +1134,21 @@ paths:
                         badgeGroupName: null
                         badgeRank: 3
                         createdOn: 1765185213.63
-                        createdOnISO: "2025-12-08T09:13:33Z"
+                        createdOnISO: '2025-12-08T09:13:33Z'
                         lastUpdatedOn: 1765185213.63
-                        lastUpdatedOnISO: "2025-12-08T09:13:33Z"
+                        lastUpdatedOnISO: '2025-12-08T09:13:33Z'
                         images:
                         - name: Issued
                           fileSvcHandle: qwer-8634-8938
-                          url: "https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d"
+                          url: https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d
                           tag: EARNED
                         badgeStatus: UPCOMING
                         lastEarnedOn: null
                         lastEarnedOnISO: null
                         startsOn: 1765178896000
-                        startsOnISO: "+57906-04-18T07:06:40Z"
+                        startsOnISO: +57906-04-18T07:06:40Z
                         expiresOn: 1796275142001
-                        expiresOnISO: "+58891-09-10T13:13:21Z"
+                        expiresOnISO: +58891-09-10T13:13:21Z
                         earnCount: null
                         ownership:
                           restrictedToOwners:
@@ -1023,17 +1176,17 @@ paths:
                         badgeGroupName: null
                         badgeRank: 3
                         createdOn: 1743491286.437
-                        createdOnISO: "2025-04-01T07:08:06Z"
+                        createdOnISO: '2025-04-01T07:08:06Z'
                         lastUpdatedOn: 1743491286.437
-                        lastUpdatedOnISO: "2025-04-01T07:08:06Z"
+                        lastUpdatedOnISO: '2025-04-01T07:08:06Z'
                         images: []
                         badgeStatus: LIVE
                         lastEarnedOn: null
                         lastEarnedOnISO: null
                         startsOn: 1716803487
-                        startsOnISO: "2024-05-27T09:51:27Z"
+                        startsOnISO: '2024-05-27T09:51:27Z'
                         expiresOn: 1926804000
-                        expiresOnISO: "2031-01-21T23:20:00Z"
+                        expiresOnISO: '2031-01-21T23:20:00Z'
                         earnCount: null
                         ownership:
                           restrictedToOwners:
@@ -1053,17 +1206,17 @@ paths:
                         badgeGroupName: null
                         badgeRank: 3
                         createdOn: 1743489178.905
-                        createdOnISO: "2025-04-01T06:32:58Z"
+                        createdOnISO: '2025-04-01T06:32:58Z'
                         lastUpdatedOn: 1760094029.252
-                        lastUpdatedOnISO: "2025-10-10T11:00:29Z"
+                        lastUpdatedOnISO: '2025-10-10T11:00:29Z'
                         images: []
                         badgeStatus: LIVE
                         lastEarnedOn: null
                         lastEarnedOnISO: null
                         startsOn: 1716803487
-                        startsOnISO: "2024-05-27T09:51:27Z"
+                        startsOnISO: '2024-05-27T09:51:27Z'
                         expiresOn: 1926804000
-                        expiresOnISO: "2031-01-21T23:20:00Z"
+                        expiresOnISO: '2031-01-21T23:20:00Z'
                         earnCount: null
                         ownership:
                           restrictedToOwners:
@@ -1095,17 +1248,17 @@ paths:
                         badgeGroupName: null
                         badgeRank: 3
                         createdOn: 1743491179.359
-                        createdOnISO: "2025-04-01T07:06:19Z"
+                        createdOnISO: '2025-04-01T07:06:19Z'
                         lastUpdatedOn: 1743491179.359
-                        lastUpdatedOnISO: "2025-04-01T07:06:19Z"
+                        lastUpdatedOnISO: '2025-04-01T07:06:19Z'
                         images: []
                         badgeStatus: LIVE
                         lastEarnedOn: null
                         lastEarnedOnISO: null
                         startsOn: 1716803487
-                        startsOnISO: "2024-05-27T09:51:27Z"
+                        startsOnISO: '2024-05-27T09:51:27Z'
                         expiresOn: 1926804000
-                        expiresOnISO: "2031-01-21T23:20:00Z"
+                        expiresOnISO: '2031-01-21T23:20:00Z'
                         earnCount: null
                         ownership:
                           restrictedToOwners:
@@ -1125,17 +1278,17 @@ paths:
                         badgeGroupName: null
                         badgeRank: null
                         createdOn: 1764567956.978
-                        createdOnISO: "2025-12-01T05:45:56Z"
+                        createdOnISO: '2025-12-01T05:45:56Z'
                         lastUpdatedOn: 1764751747.024
-                        lastUpdatedOnISO: "2025-12-03T08:49:07Z"
+                        lastUpdatedOnISO: '2025-12-03T08:49:07Z'
                         images: []
                         badgeStatus: LIVE
                         lastEarnedOn: null
                         lastEarnedOnISO: null
                         startsOn: 1753056000
-                        startsOnISO: "2025-07-21T00:00:00Z"
+                        startsOnISO: '2025-07-21T00:00:00Z'
                         expiresOn: 1884570400
-                        expiresOnISO: "2029-09-20T03:46:40Z"
+                        expiresOnISO: '2029-09-20T03:46:40Z'
                         earnCount: null
                         ownership:
                           restrictedToOwners:
@@ -1163,17 +1316,17 @@ paths:
                         badgeGroupName: null
                         badgeRank: 3
                         createdOn: 1760522998.146
-                        createdOnISO: "2025-10-15T10:09:58Z"
+                        createdOnISO: '2025-10-15T10:09:58Z'
                         lastUpdatedOn: 1760522998.146
-                        lastUpdatedOnISO: "2025-10-15T10:09:58Z"
+                        lastUpdatedOnISO: '2025-10-15T10:09:58Z'
                         images: []
                         badgeStatus: LIVE
                         lastEarnedOn: null
                         lastEarnedOnISO: null
                         startsOn: 1767252758
-                        startsOnISO: "2026-01-01T07:32:38Z"
+                        startsOnISO: '2026-01-01T07:32:38Z'
                         expiresOn: 1798788758
-                        expiresOnISO: "2027-01-01T07:32:38Z"
+                        expiresOnISO: '2027-01-01T07:32:38Z'
                         earnCount: null
                         ownership:
                           restrictedToOwners:
@@ -1194,21 +1347,21 @@ paths:
                         badgeGroupName: null
                         badgeRank: 3
                         createdOn: 1765282336.927
-                        createdOnISO: "2025-12-09T12:12:16Z"
+                        createdOnISO: '2025-12-09T12:12:16Z'
                         lastUpdatedOn: 1769694743.164
-                        lastUpdatedOnISO: "2026-01-29T13:52:23Z"
+                        lastUpdatedOnISO: '2026-01-29T13:52:23Z'
                         images:
                         - name: Issued
                           fileSvcHandle: qwer-8634-8938
-                          url: "https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d"
+                          url: https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d
                           tag: EARNED
                         badgeStatus: LIVE
                         lastEarnedOn: null
                         lastEarnedOnISO: null
                         startsOn: 1740960000
-                        startsOnISO: "2025-03-03T00:00:00Z"
+                        startsOnISO: '2025-03-03T00:00:00Z'
                         expiresOn: 1797738400
-                        expiresOnISO: "2026-12-20T03:46:40Z"
+                        expiresOnISO: '2026-12-20T03:46:40Z'
                         earnCount: null
                         ownership:
                           restrictedToOwners:
@@ -1239,9 +1392,9 @@ paths:
                         badgeGroupName: null
                         badgeRank: null
                         createdOn: 1758882483.3
-                        createdOnISO: "2025-09-26T10:28:03Z"
+                        createdOnISO: '2025-09-26T10:28:03Z'
                         lastUpdatedOn: 1761544535.284
-                        lastUpdatedOnISO: "2025-10-27T05:55:35Z"
+                        lastUpdatedOnISO: '2025-10-27T05:55:35Z'
                         images:
                         - name: string
                           fileSvcHandle: string
@@ -1251,9 +1404,9 @@ paths:
                         lastEarnedOn: null
                         lastEarnedOnISO: null
                         startsOn: 1699998660.192
-                        startsOnISO: "2023-11-14T21:51:00Z"
+                        startsOnISO: '2023-11-14T21:51:00Z'
                         expiresOn: 1796311177.192
-                        expiresOnISO: "2026-12-03T15:19:37Z"
+                        expiresOnISO: '2026-12-03T15:19:37Z'
                         earnCount: null
                         ownership:
                           restrictedToOwners:
@@ -1276,21 +1429,21 @@ paths:
                         badgeGroupName: null
                         badgeRank: 3
                         createdOn: 1765186101.816
-                        createdOnISO: "2025-12-08T09:28:21Z"
+                        createdOnISO: '2025-12-08T09:28:21Z'
                         lastUpdatedOn: 1765186101.816
-                        lastUpdatedOnISO: "2025-12-08T09:28:21Z"
+                        lastUpdatedOnISO: '2025-12-08T09:28:21Z'
                         images:
                         - name: Issued
                           fileSvcHandle: qwer-8634-8938
-                          url: "https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d"
+                          url: https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d
                           tag: EARNED
                         badgeStatus: LIVE
                         lastEarnedOn: null
                         lastEarnedOnISO: null
                         startsOn: 1765178896
-                        startsOnISO: "2025-12-08T07:28:16Z"
+                        startsOnISO: '2025-12-08T07:28:16Z'
                         expiresOn: 1796275142
-                        expiresOnISO: "2026-12-03T05:19:02Z"
+                        expiresOnISO: '2026-12-03T05:19:02Z'
                         earnCount: null
                         ownership:
                           restrictedToOwners:
@@ -1318,21 +1471,21 @@ paths:
                         badgeGroupName: null
                         badgeRank: 3
                         createdOn: 1765185490.425
-                        createdOnISO: "2025-12-08T09:18:10Z"
+                        createdOnISO: '2025-12-08T09:18:10Z'
                         lastUpdatedOn: 1765185490.425
-                        lastUpdatedOnISO: "2025-12-08T09:18:10Z"
+                        lastUpdatedOnISO: '2025-12-08T09:18:10Z'
                         images:
                         - name: Issued
                           fileSvcHandle: qwer-8634-8938
-                          url: "https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d"
+                          url: https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d
                           tag: EARNED
                         badgeStatus: LIVE
                         lastEarnedOn: null
                         lastEarnedOnISO: null
                         startsOn: 1765178896
-                        startsOnISO: "2025-12-08T07:28:16Z"
+                        startsOnISO: '2025-12-08T07:28:16Z'
                         expiresOn: 1796275142
-                        expiresOnISO: "2026-12-03T05:19:02Z"
+                        expiresOnISO: '2026-12-03T05:19:02Z'
                         earnCount: null
                         ownership:
                           restrictedToOwners:
@@ -1411,7 +1564,7 @@ paths:
                                       example: qwer-8634-8938
                                     url:
                                       type: string
-                                      example: "https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d"
+                                      example: https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d
                                     tag:
                                       type: string
                                       example: EARNED
@@ -1860,8 +2013,8 @@ paths:
                                 example: badge issual3
                               description:
                                 type: string
-                                example: Purchase products worth minimum 1K in the
-                                  month of March and get this badge
+                                example: Purchase products worth minimum 1K in the month of March and
+                                  get this badge
                               badgeMetaId:
                                 type: string
                                 example: 6673b08c39c6a546eb054726
@@ -1951,10 +2104,10 @@ paths:
                             properties:
                               name:
                                 type: string
-                                example: "Automation_Test_Badge_Issue_2023-12-11 13:20:36.812999"
+                                example: Automation_Test_Badge_Issue_2023-12-11 13:20:36.812999
                               description:
                                 type: string
-                                example: "Automation_Test_Badge_Issue_2023-12-11 13:20:36.812999"
+                                example: Automation_Test_Badge_Issue_2023-12-11 13:20:36.812999
                               badgeMetaId:
                                 type: string
                                 example: 6576bf1191e0b01c659ad5d6
@@ -1985,7 +2138,7 @@ paths:
                                       example: qwer-8634-8938
                                     url:
                                       type: string
-                                      example: "https://badge.url"
+                                      example: https://badge.url
                                     tag:
                                       type: string
                                       example: UN_EARNED
@@ -2177,8 +2330,8 @@ paths:
                                 example: Birthday Badge
                               description:
                                 type: string
-                                example: Make a purchase during your birthday month
-                                  and get a 40% discount coupon
+                                example: Make a purchase during your birthday month and get a 40% discount
+                                  coupon
                               badgeMetaId:
                                 type: string
                                 example: 653dea07b3cda7078c7c68ee
@@ -2216,7 +2369,7 @@ paths:
                                       example: 6d5bbab0-e75c-46c4-ac61-e9f7efeb8863
                                     url:
                                       type: string
-                                      example: "https://storage.crm.eu.content-cdn.io/fs.capillary.eu/incentives_assets/badges/images/100606/653dea07b3cda7078c7c68ee_EARNED_P-Hmb96D.png"
+                                      example: https://storage.crm.eu.content-cdn.io/fs.capillary.eu/incentives_assets/badges/images/100606/653dea07b3cda7078c7c68ee_EARNED_P-Hmb96D.png
                                     tag:
                                       type: string
                                       example: EARNED
@@ -2290,7 +2443,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
@@ -2298,11 +2451,13 @@ paths:
       x-readme:
         code-samples:
         - language: shell
-          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/management/566881933'\
-            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
-            \ application/json' \\\n--header 'accept: application/json' \\\n--header\
-            \ 'Authorization: Basic Z2VvcmdlLDVWEwYTEzNzg=' \\\n--header 'Cookie:\
-            \ _cfuvid=rHwzSJOniFI97PucMl_02NXhwhPtbRZOYtNRTbJ8qj0-1745210859098-0.0.1.1-604800000'"
+          code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/management/566881933' \
+            --header 'Accept: application/json' \
+            --header 'Content-Type: application/json' \
+            --header 'accept: application/json' \
+            --header 'Authorization: Basic Z2VvcmdlLDVWEwYTEzNzg=' \
+            --header 'Cookie: _cfuvid=rHwzSJOniFI97PucMl_02NXhwhPtbRZOYtNRTbJ8qj0-1745210859098-0.0.1.1-604800000'
           name: Sample request
         samples-languages:
         - shell

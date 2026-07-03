@@ -3,7 +3,7 @@ info:
   title: Get User Reward Merge Details
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -18,30 +18,29 @@ paths:
       parameters:
       - name: fromUserId
         in: query
-        description: Unique customer ID of the victim customer. This is the user account
-          from which rewards and their data were transferred.
+        description: Unique customer ID of the victim customer. This is the user account from which rewards
+          and their data were transferred.
         schema:
           type: integer
           format: int64
       - name: toUserId
         in: query
-        description: Unique customer ID of the surviving customer. This is the user
-          account that received the rewards and their data from the victim account.
+        description: Unique customer ID of the surviving customer. This is the user account that received
+          the rewards and their data from the victim account.
         schema:
           type: integer
           format: int64
       - name: page
         in: query
-        description: Page number to retrieve. To view the first page, set the value
-          to 0.
+        description: Page number to retrieve. To view the first page, set the value to 0.
         schema:
           type: integer
           format: int32
       - name: size
         in: query
-        description: Number of entries to display per page. For example, if the total
-          records are 15 and the limit is 5, the first page will display the first
-          5 records. The maximum supported limit is 50.
+        description: Number of entries to display per page. For example, if the total records are 15 and
+          the limit is 5, the first page will display the first 5 records. The maximum supported limit
+          is 50.
         schema:
           type: integer
           format: int32
@@ -52,14 +51,20 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"userMerge\": [\n        {\n            \"fromUserId\"\
-                    : 423930934,\n            \"toUserId\": 423930935,\n         \
-                    \   \"requestId\": \"merge_123\",\n            \"mergeUserStatus\"\
-                    : \"SUCCESS\"\n        }\n    ],\n    \"pagingDto\": {\n     \
-                    \   \"last\": false,\n        \"totalElements\": 66,\n       \
-                    \ \"totalPages\": 66,\n        \"numberOfElements\": 1,\n    \
-                    \    \"first\": true,\n        \"size\": 1,\n        \"number\"\
-                    : 0\n    }\n}"
+                  value:
+                    userMerge:
+                    - fromUserId: 423930934
+                      toUserId: 423930935
+                      requestId: merge_123
+                      mergeUserStatus: SUCCESS
+                    pagingDto:
+                      last: false
+                      totalElements: 66
+                      totalPages: 66
+                      numberOfElements: 1
+                      first: true
+                      size: 1
+                      number: 0
               schema:
                 type: object
                 properties:
@@ -119,9 +124,11 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"status\": {\n        \"success\": false,\n    \
-                    \    \"code\": 400,\n        \"message\": \"size should be less\
-                    \ than or equal to 50.\"\n    }\n}"
+                  value:
+                    status:
+                      success: false
+                      code: 400
+                      message: size should be less than or equal to 50.
               schema:
                 type: object
                 properties:
@@ -143,10 +150,11 @@ paths:
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/user-merge?fromUserId=100&toUserId=null&page=1&size=5'\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization:\
-            \ Basic YXV0b3N0YWM1OTA3NWI5NbruhjRiMDcxNTJkMjM0Yjcw' \\\n--header 'Cookie:\
-            \ _cfuvid=uaERq9xlkg3etKQty4bclbq216ZQ4fmsGKEGNKW9xJI-1739870550295-0.0.1.1-604800000'"
+          code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/user-merge?fromUserId=100&toUserId=null&page=1&size=5' \
+            --header 'Content-Type: application/json' \
+            --header 'Authorization: Basic YXV0b3N0YWM1OTA3NWI5NbruhjRiMDcxNTJkMjM0Yjcw' \
+            --header 'Cookie: _cfuvid=uaERq9xlkg3etKQty4bclbq216ZQ4fmsGKEGNKW9xJI-1739870550295-0.0.1.1-604800000'
         samples-languages:
         - curl
 components:

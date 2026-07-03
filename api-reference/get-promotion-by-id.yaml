@@ -3,14 +3,14 @@ info:
   title: Get Loyalty Promotion by ID
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/api_gateway/loyalty/v1/programs/{programId}/promotions/{promotionId}/get":
+  /api_gateway/loyalty/v1/programs/{programId}/promotions/{promotionId}/get:
     get:
       summary: Get Loyalty Promotion by ID
       description: Get details of the promotion using promotion ID.
@@ -47,7 +47,7 @@ paths:
                       name: AllRewards
                       description: ''
                       promotionStatus: COMPLETED
-                      lastUpdateDate: "2025-06-23T08:02:58Z"
+                      lastUpdateDate: '2025-06-23T08:02:58Z'
                       lastUpdatedBy: 75155288
                       rulesetInfos:
                       - id: 126408744
@@ -58,8 +58,13 @@ paths:
                         rules:
                         - id: 126595178
                           exp: 'true'
-                          expJSON: "\n{\n  \"arity\":\"literal\",\n  \"value\":\"\
-                            true\",\n  \"type\":\"boolean:primitive\"\n}"
+                          expJSON: |2-
+
+                            {
+                              "arity":"literal",
+                              "value":"true",
+                              "type":"boolean:primitive"
+                            }
                           jsonType: JNODE
                           isActive: true
                           priority: -1
@@ -169,8 +174,8 @@ paths:
                         private: false
                       programName: DocDemoDefaultProgram
                       programId: 973
-                      startDate: "2025-06-09T00:00Z"
-                      endDate: "2025-06-30T23:59:59Z"
+                      startDate: 2025-06-09T00:00Z
+                      endDate: '2025-06-30T23:59:59Z'
                       identifier: 0b89574e-aab9-49ad-812f-c1ea709f5daf
                       isActive: true
                       eventName: TRANSACTIONADD
@@ -230,7 +235,7 @@ paths:
                           example: LIVE
                         lastUpdateDate:
                           type: string
-                          example: "2025-04-25T06:43:35Z"
+                          example: '2025-04-25T06:43:35Z'
                         lastUpdatedBy:
                           type: integer
                           example: 75139931
@@ -272,9 +277,10 @@ paths:
                                       example: 'true'
                                     expJSON:
                                       type: string
-                                      example: "{ \"arity\": \"literal\", \"value\"\
-                                        : \"true\", \"type\": \"boolean:primitive\"\
-                                        \ }"
+                                      example:
+                                        arity: literal
+                                        value: 'true'
+                                        type: boolean:primitive
                                     jsonType:
                                       type: string
                                       example: JNODE
@@ -425,10 +431,10 @@ paths:
                           default: 0
                         startDate:
                           type: string
-                          example: "2025-04-25T00:00Z"
+                          example: 2025-04-25T00:00Z
                         endDate:
                           type: string
-                          example: "2025-04-30T23:59:59Z"
+                          example: '2025-04-30T23:59:59Z'
                         identifier:
                           type: string
                           example: 68254aca-2f85-4d28-a01b-14c2229ccbda
@@ -561,17 +567,20 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
       deprecated: false
       x-readme:
         code-samples:
-        - code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/loyalty/v1/programs/973/promotions/95085/get'\
-            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
-            \ application/json' \\\n--header 'accept: application/json' \\\n--header\
-            \ 'Authorization: Basic **********' \\\n--header 'Cookie: _cfuvid=PalohBnIeOaJn_i7_SIjlvuMVIMKCKUXffaPvYTwUdU-1758871239198-0.0.1.1-604800000'"
+        - code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/loyalty/v1/programs/973/promotions/95085/get' \
+            --header 'Accept: application/json' \
+            --header 'Content-Type: application/json' \
+            --header 'accept: application/json' \
+            --header 'Authorization: Basic **********' \
+            --header 'Cookie: _cfuvid=PalohBnIeOaJn_i7_SIjlvuMVIMKCKUXffaPvYTwUdU-1758871239198-0.0.1.1-604800000'
           language: shell
           name: ''
         samples-languages:

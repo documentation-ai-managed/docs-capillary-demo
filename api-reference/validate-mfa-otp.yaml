@@ -3,7 +3,7 @@ info:
   title: Validate MFA OTP
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -47,8 +47,7 @@ paths:
                   description: Name of the brand or organisation that needs verification.
                 sessionId:
                   type: string
-                  description: Unique session ID created from `/mfa/token/generate`
-                    API.
+                  description: Unique session ID created from `/mfa/token/generate` API.
                 otp:
                   type: string
                   description: OTP that needs validation.
@@ -59,7 +58,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
@@ -69,7 +68,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}

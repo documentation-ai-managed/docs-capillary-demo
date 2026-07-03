@@ -3,7 +3,7 @@ info:
   title: Create custom field for badges
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -35,7 +35,7 @@ paths:
                   description: The default value of the custom field.
                 dataType:
                   type: string
-                  description: "The data type of the custom field's value."
+                  description: The data type of the custom field's value.
                   enum:
                   - INTEGER
                   - BOOLEAN
@@ -65,10 +65,10 @@ paths:
                       isActive: true
                       dataType: STRING
                       createdOn: 1774248392.63756
-                      createdOnISO: "2026-03-23T06:46:32Z"
+                      createdOnISO: '2026-03-23T06:46:32Z'
                       createdBy: 75197372
                       lastUpdatedOn: 1774248392.63756
-                      lastUpdatedOnISO: "2026-03-23T06:46:32Z"
+                      lastUpdatedOnISO: '2026-03-23T06:46:32Z'
                       lastUpdatedBy: 75197372
                     errors: []
                     warnings: []
@@ -129,19 +129,28 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
       deprecated: false
       x-readme:
         code-samples:
-        - code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/customField'\
-            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
-            \ application/json' \\\n--header 'accept: application/json' \\\n--header\
-            \ 'Authorization: Basic bWFkaHMjU2YQ==' \\\n--header 'Cookie: _cfuvid=2wODcKsHz5O4nH9if.oAaM9mGGlxP9toYWBAik.SBbc-1773312258300-0.0.1.1-604800000'\
-            \ \\\n--data '\n{\n  \"name\": \"CF20 dates\",\n  \"isMandatory\": false,\n\
-            \  \"defaultValue\": \"0\",\n  \"dataType\": \"STRING\"\n}\n'"
+        - code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/customField' \
+            --header 'Accept: application/json' \
+            --header 'Content-Type: application/json' \
+            --header 'accept: application/json' \
+            --header 'Authorization: Basic bWFkaHMjU2YQ==' \
+            --header 'Cookie: _cfuvid=2wODcKsHz5O4nH9if.oAaM9mGGlxP9toYWBAik.SBbc-1773312258300-0.0.1.1-604800000' \
+            --data '
+            {
+              "name": "CF20 dates",
+              "isMandatory": false,
+              "defaultValue": "0",
+              "dataType": "STRING"
+            }
+            '
           language: shell
           name: Sample request
         samples-languages:

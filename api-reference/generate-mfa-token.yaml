@@ -3,7 +3,7 @@ info:
   title: Generate MFA token
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -40,15 +40,13 @@ paths:
                   description: Value of the identifier.
                 deviceId:
                   type: string
-                  description: Unique ID of the device from which the customer generates
-                    the token.
+                  description: Unique ID of the device from which the customer generates the token.
                 brand:
                   type: string
                   description: Name of the brand or organisation that needs verification.
                 authorizedToken:
                   type: string
-                  description: Authentication token from `/otp/validate\` of First
-                    factor.
+                  description: Authentication token from `/otp/validate\` of First factor.
       responses:
         '200':
           description: '200'
@@ -56,13 +54,19 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
-                    \   \"code\": 200,\n        \"message\": \"SUCCESS\"\n    },\n\
-                    \    \"auth\": {\n        \"token\": \"eyJpZHYiOlsiTU9CSUxFfDE4Nzk1Nzc0NzU0Il0sImRldiI6IjEyMzQiLCJvcmciOiJCVUtMIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwib2djIjpbIjEwMDQ1OHxidWtsLmluZC5zb2x1dGlvbiJdLCJleHAiOjE3MTY4OTA4MjIsImlhdCI6MTcxNjg4OTkyMiwicm9sIjoiVklFVyJ9.nL6iCjXIrfEb02uDnnJTyj0uPi8teQjAgnQPVU0_aqQ\"\
-                    ,\n        \"key\": null\n    },\n    \"user\": {\n        \"\
-                    appRegistered\": false,\n        \"sessionId\": \"P-a2996f83-a72d-405c-aa23-0eed7a7dba1e\"\
-                    ,\n        \"role\": \"VIEW\",\n        \"userRegisteredForPassword\"\
-                    : false\n    }\n}"
+                  value:
+                    status:
+                      success: true
+                      code: 200
+                      message: SUCCESS
+                    auth:
+                      token: eyJpZHYiOlsiTU9CSUxFfDE4Nzk1Nzc0NzU0Il0sImRldiI6IjEyMzQiLCJvcmciOiJCVUtMIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwib2djIjpbIjEwMDQ1OHxidWtsLmluZC5zb2x1dGlvbiJdLCJleHAiOjE3MTY4OTA4MjIsImlhdCI6MTcxNjg4OTkyMiwicm9sIjoiVklFVyJ9.nL6iCjXIrfEb02uDnnJTyj0uPi8teQjAgnQPVU0_aqQ
+                      key: null
+                    user:
+                      appRegistered: false
+                      sessionId: P-a2996f83-a72d-405c-aa23-0eed7a7dba1e
+                      role: VIEW
+                      userRegisteredForPassword: false
               schema:
                 type: object
                 properties:
@@ -110,20 +114,24 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
       deprecated: false
       x-readme:
         code-samples:
-        - code: "curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/token/generate'\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Cookie:\
-            \ _cfuvid=TQelvcvKiKe5DWhd.tGG6g.Hq0IJI4FnRacxB4UYCyI-1716799831120-0.0.1.1-604800000'\
-            \ \\\n--data '{\n   \"identifierType\":\"MOBILE\",\n   \"identifierValue\"\
-            :\"18795774754\",\n    \"deviceId\": \"1234\",\n    \"brand\": \"Bukl\"\
-            ,\n    \"authorizedToken\":\"eyJpZHYiOlsiTU9CSUxFfDE4Nzk1Nzc0NzU0Il0sImRldiI6IjEyMzQiLCJvcmciOiJCVUtMIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOiIxNzc2NDI4IiwiaXNzIjoiQ0FQSUxMQVJZIFRFQ0hOT0xPR0dJRVMiLCJpc2MiOiJmYWxzZSIsIm9nYyI6WyIxMDA0NTh8YnVrbC5pbmQuc29sdXRpb24iXSwiZXhwIjoxNzE2ODkzNDc3LCJpYXQiOjE3MTY4ODk4NzcsInJvbCI6IlVTRVIifQ.yGDKE9uFYx_UdCfQNG8lDHVqr1VBjcIzZa1vxdsO97o\"\
-            \n}'"
+        - code: |-
+            curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/token/generate' \
+            --header 'Content-Type: application/json' \
+            --header 'Cookie: _cfuvid=TQelvcvKiKe5DWhd.tGG6g.Hq0IJI4FnRacxB4UYCyI-1716799831120-0.0.1.1-604800000' \
+            --data '{
+               "identifierType":"MOBILE",
+               "identifierValue":"18795774754",
+                "deviceId": "1234",
+                "brand": "Bukl",
+                "authorizedToken":"eyJpZHYiOlsiTU9CSUxFfDE4Nzk1Nzc0NzU0Il0sImRldiI6IjEyMzQiLCJvcmciOiJCVUtMIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOiIxNzc2NDI4IiwiaXNzIjoiQ0FQSUxMQVJZIFRFQ0hOT0xPR0dJRVMiLCJpc2MiOiJmYWxzZSIsIm9nYyI6WyIxMDA0NTh8YnVrbC5pbmQuc29sdXRpb24iXSwiZXhwIjoxNzE2ODkzNDc3LCJpYXQiOjE3MTY4ODk4NzcsInJvbCI6IlVTRVIifQ.yGDKE9uFYx_UdCfQNG8lDHVqr1VBjcIzZa1vxdsO97o"
+            }'
           language: shell
           name: Sample request
         samples-languages:

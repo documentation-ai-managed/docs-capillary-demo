@@ -3,19 +3,18 @@ info:
   title: Upload Redeemed Coupons
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/upload/redeemFile/{couponSeriesId}":
+  /upload/redeemFile/{couponSeriesId}:
     post:
       summary: Upload Redeemed Coupons
-      description: "Lets you upload coupons that are redeemed for a coupon series\
-        \ in bulk. \n\nYou can also import coupons (Capillary CRM) that are redeemed\
-        \ externally using an endpoint."
+      description: "Lets you upload coupons that are redeemed for a coupon series in bulk. \n\nYou can\
+        \ also import coupons (Capillary CRM) that are redeemed externally using an endpoint."
       operationId: upload-redeemed-coupons
       parameters:
       - name: Content-Type
@@ -41,8 +40,7 @@ paths:
               properties:
                 customerIdentifier:
                   type: string
-                  description: Unique identifier of the customer to update redeemed
-                    coupons.
+                  description: Unique identifier of the customer to update redeemed coupons.
                   enum:
                   - MOBILE
                   - EXTERNAL_ID
@@ -56,9 +54,8 @@ paths:
                   - COUPON_CODE
                 file:
                   type: string
-                  description: The CSV file that contains information of redeemed
-                    coupons. Each row in CSV file can contain following fields(columns
-                    marked with * are mandatory).
+                  description: The CSV file that contains information of redeemed coupons. Each row in
+                    CSV file can contain following fields(columns marked with * are mandatory).
       responses:
         '200':
           description: '200'
@@ -66,19 +63,26 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n   \"success\":true,\n   \"status\":200,\n   \"result\"\
-                    :{\n      \"orgId\":9619,\n      \"couponSeriesId\":953234,\n\
-                    \      \"redeemUploadJobStatuses\":[\n         {\n           \
-                    \ \"jobId\":9137,\n            \"uploadRedeemedCouponStatus\"\
-                    :\"QUEUED\",\n            \"createdOn\":\"1603263535389\",\n \
-                    \           \"updatedOn\":\"1603263535389\",\n            \"errorFileUrl\"\
-                    :null,\n            \"successFileUrl\":null,\n            \"uploadedFileUrl\"\
-                    :\"couponCode_9603263533789_253294.csv\",\n            \"totalUploadedCount\"\
-                    :0,\n            \"actualRowCount\":0,\n            \"errorCount\"\
-                    :0,\n            \"uploadTableName\":null,\n            \"uploadedFileName\"\
-                    :\"couponCode_9603263533789_253294.csv\"\n         }\n      ],\n\
-                    \      \"fileName\":\"couponCode_9603263533789_253294.csv\"\n\
-                    \   }\n}\n"
+                  value:
+                    success: true
+                    status: 200
+                    result:
+                      orgId: 9619
+                      couponSeriesId: 953234
+                      redeemUploadJobStatuses:
+                      - jobId: 9137
+                        uploadRedeemedCouponStatus: QUEUED
+                        createdOn: '1603263535389'
+                        updatedOn: '1603263535389'
+                        errorFileUrl: null
+                        successFileUrl: null
+                        uploadedFileUrl: couponCode_9603263533789_253294.csv
+                        totalUploadedCount: 0
+                        actualRowCount: 0
+                        errorCount: 0
+                        uploadTableName: null
+                        uploadedFileName: couponCode_9603263533789_253294.csv
+                      fileName: couponCode_9603263533789_253294.csv
               schema:
                 type: object
                 properties:
@@ -149,7 +153,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
@@ -160,9 +164,8 @@ paths:
           code: "curl -i -X POST \nhttps://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/redeemFile/253234\
             \ -H 'Content-Type: multipart/form-data' \n-H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6WyI0Il0sIm9yZ0lEIjowLCJleHAiOjE2MDM4OTIxNTYsImlhdCI6MTYwMzgwNTc1NiwiaXNzIjoiY2FwaWxsYXJ5dGVjaC5jb20iLCJhdWQiOiJjYXBpbGxhcnksaW50b3VjaCxhcnlhLHJlb24sYXBwcyIsInNvdXJjZSI6IldFQkFQUCJ9.APtFDqTh7Yf26lzhmwFm4OwPQBo24E_MTNl6CcnIr9A'\
             \ \n-F file=@couponCode.csv \n-F customerIdentifier=USER_ID \n-F couponIdentifier=COUPON_ID\
-            \ \n-F uploadHeaders='{\"redeemedAt\": 1, \"billNumber\": 5, \"couponCode\"\
-            : 3, \"userId\": 2, \"billId\": 4, \"redeemedDateInMillis\": 0, \"details\"\
-            : 6}'"
+            \ \n-F uploadHeaders='{\"redeemedAt\": 1, \"billNumber\": 5, \"couponCode\": 3, \"userId\"\
+            : 2, \"billId\": 4, \"redeemedDateInMillis\": 0, \"details\": 6}'"
         samples-languages:
         - curl
 components:

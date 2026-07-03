@@ -3,7 +3,7 @@ info:
   title: Get Point Allocation Details by Event ID
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -18,10 +18,9 @@ paths:
       parameters:
       - name: entity_id
         in: query
-        description: "Specifies the identifier used to fetch event-specific details.\
-          \ This can be one of the following:  The event ID of the event, such as\
-          \ TransactionAdd or a behavioral event  The unique ID of the event  The\
-          \ server-generated request ID of a behavioral event"
+        description: 'Specifies the identifier used to fetch event-specific details. This can be one of
+          the following:  The event ID of the event, such as TransactionAdd or a behavioral event  The
+          unique ID of the event  The server-generated request ID of a behavioral event'
         required: true
         schema:
           type: string
@@ -41,15 +40,15 @@ paths:
           format: int32
       - name: page
         in: query
-        description: "Retrieve details of a specific page. Page count starts from\
-          \ 1.  Example: page=2 retrieves data on page 2."
+        description: 'Retrieve details of a specific page. Page count starts from 1.  Example: page=2
+          retrieves data on page 2.'
         schema:
           type: integer
           format: int32
       - name: count
         in: query
-        description: Number of results to display per page. The default value is 10.
-          The maximum supported value is 100.
+        description: Number of results to display per page. The default value is 10. The maximum supported
+          value is 100.
         schema:
           type: integer
           format: int32
@@ -68,21 +67,34 @@ paths:
             application/json:
               examples:
                 Sample Response:
-                  value: "[\n    {\n        \"till_id\": 50140377,\n        \"point_category_id\"\
-                    : 17383,\n        \"program_id\": 2282,\n        \"event_log_id\"\
-                    : 10072893,\n        \"event_type_id\": 15,\n        \"points_source_type_id\"\
-                    : 1,\n        \"original_points\": 0,\n        \"awarded_date\"\
-                    : 1648489472000,\n        \"returned_exclusive_value\": 0,\n \
-                    \       \"points_source_id\": 2148434124,\n        \"id\": 31787856,\n\
-                    \        \"cps_id\": 51368957,\n        \"original_customer_id\"\
-                    : 374819205,\n        \"expiry_strategy_id\": 105602,\n      \
-                    \  \"returned_value\": 0,\n        \"redeemed_exclusive_value\"\
-                    : 0,\n        \"expiry_date\": 1648578599000,\n        \"auto_update_time\"\
-                    : 1648596913000,\n        \"redeemed_value\": 0,\n        \"expired_exclusive_value\"\
-                    : 50,\n        \"allocation_strategy_id\": 105773,\n        \"\
-                    points_value\": 0,\n        \"org_id\": 50914,\n        \"expired_value\"\
-                    : 0,\n        \"customer_id\": 374819205,\n        \"points_exclusive\"\
-                    : 50,\n        \"status\": \"EXPIRED\"\n    }\n]"
+                  value:
+                  - till_id: 50140377
+                    point_category_id: 17383
+                    program_id: 2282
+                    event_log_id: 10072893
+                    event_type_id: 15
+                    points_source_type_id: 1
+                    original_points: 0
+                    awarded_date: 1648489472000
+                    returned_exclusive_value: 0
+                    points_source_id: 2148434124
+                    id: 31787856
+                    cps_id: 51368957
+                    original_customer_id: 374819205
+                    expiry_strategy_id: 105602
+                    returned_value: 0
+                    redeemed_exclusive_value: 0
+                    expiry_date: 1648578599000
+                    auto_update_time: 1648596913000
+                    redeemed_value: 0
+                    expired_exclusive_value: 50
+                    allocation_strategy_id: 105773
+                    points_value: 0
+                    org_id: 50914
+                    expired_value: 0
+                    customer_id: 374819205
+                    points_exclusive: 50
+                    status: EXPIRED
               schema:
                 type: array
                 items:
@@ -201,7 +213,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
@@ -209,11 +221,12 @@ paths:
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location 'https://nightly.api.capillarytech.com/x/neo/pointsAllocation/event?entity_id=hfjWDK0dek&customer_id=374819205&event_type_id=15'\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'x-cap-neo-dag-scope:\
-            \ global' \\\n--header 'Authorization: Basic RiMDcJkMjM0Yjcw' \\\n--header\
-            \ 'Cookie: _cfuvid=aipDF8qJJabNkC6ofNg0_4.3nMtpbVSQI9mVehJNjMw-1749448275226-0.0.1.1-604800000;\
-            \ _cfuvid=v57gtlQUtWUPppXkFQEmDIwmVy3hK1VROA7UHTl9fS0-1750313687627-0.0.1.1-604800000'"
+          code: |-
+            curl --location 'https://nightly.api.capillarytech.com/x/neo/pointsAllocation/event?entity_id=hfjWDK0dek&customer_id=374819205&event_type_id=15' \
+            --header 'Content-Type: application/json' \
+            --header 'x-cap-neo-dag-scope: global' \
+            --header 'Authorization: Basic RiMDcJkMjM0Yjcw' \
+            --header 'Cookie: _cfuvid=aipDF8qJJabNkC6ofNg0_4.3nMtpbVSQI9mVehJNjMw-1749448275226-0.0.1.1-604800000; _cfuvid=v57gtlQUtWUPppXkFQEmDIwmVy3hK1VROA7UHTl9fS0-1750313687627-0.0.1.1-604800000'
           name: Sample Request
         samples-languages:
         - curl

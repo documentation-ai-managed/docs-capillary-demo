@@ -3,7 +3,7 @@ info:
   title: Get User Recommendations
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -13,16 +13,15 @@ paths:
   /api_gateway/v1/recommendations/user:
     get:
       summary: Get User Recommendations
-      description: Retrieves the list of recommended products of a user based on past
-        activities such as orders, frequent orders, search items, and trending items.
+      description: Retrieves the list of recommended products of a user based on past activities such
+        as orders, frequent orders, search items, and trending items.
       operationId: get-user-recommendations
       parameters:
       - name: model
         in: path
-        description: Recommendation type to fetch results. <br>you-may-also-like to
-          retrieve product recommendations on the user’s currently viewing products
-          (during online shopping). trending to retrieve recommended products based
-          on previous orders, searches, items viewed, and other user activities. buy-it-again
+        description: Recommendation type to fetch results. <br>you-may-also-like to retrieve product recommendations
+          on the user’s currently viewing products (during online shopping). trending to retrieve recommended
+          products based on previous orders, searches, items viewed, and other user activities. buy-it-again
           to retrieve products that were bought by the user earlier (for reordering).
         schema:
           type: string
@@ -43,41 +42,38 @@ paths:
           - email
       - name: uvalue
         in: query
-        description: The unique identifier value of the utype. For example, if utype=mobile,
-          uvalue=9988221100 (mobile number).
+        description: The unique identifier value of the utype. For example, if utype=mobile, uvalue=9988221100
+          (mobile number).
         required: true
         schema:
           type: string
       - name: limit
         in: query
-        description: Limit the number of results to retrieve. You can retrieve a maximum
-          of 25 results.
+        description: Limit the number of results to retrieve. You can retrieve a maximum of 25 results.
         required: true
         schema:
           type: integer
           format: int32
       - name: offset
         in: query
-        description: Number of results to ignore from top (where the recommendations
-          array to start fetching). Set 0 to ignore the first result, 1 to ignore
-          the first two results and so on.
+        description: Number of results to ignore from top (where the recommendations array to start fetching).
+          Set 0 to ignore the first result, 1 to ignore the first two results and so on.
         required: true
         schema:
           type: integer
           format: int32
       - name: categories
         in: query
-        description: "Filter recommended products by one or more categories. Pass\
-          \ comma separated category codes. Maximum of 10 categories are supported.\
-          \ Example: categories=Shirts,Bottomwear"
+        description: 'Filter recommended products by one or more categories. Pass comma separated category
+          codes. Maximum of 10 categories are supported. Example: categories=Shirts,Bottomwear'
         schema:
           type: array
           items:
             type: string
       - name: stores
         in: query
-        description: "Filter products by stores. Pass comma separated store codes.\
-          \ Max limit is 10. Example: stores=store.1,store.2"
+        description: 'Filter products by stores. Pass comma separated store codes. Max limit is 10. Example:
+          stores=store.1,store.2'
         schema:
           type: array
           items:
@@ -113,29 +109,45 @@ paths:
             application/json:
               examples:
                 Sample Response:
-                  value: "{\n   \"status\":{\n      \"success\":true,\n      \"code\"\
-                    :200\n   },\n   \"group\":\"TEST\",\n   \"boxType\":\"you-may-also-like\"\
-                    ,\n   \"totalResults\":2,\n   \"recommendedItems\":{\n      \"\
-                    items\":[\n         {\n            \"sku\":\"564714\",\n     \
-                    \       \"score\":10,\n            \"rank\":1,\n            \"\
-                    values\":{\n               \"name\":\"T-Shirts\",\n          \
-                    \     \"description\":\"Reebok T-Shirts\",\n               \"\
-                    categories\":[\n                  \"Shirts\"\n               ],\n\
-                    \               \"image\":{\n                  \"label\":\"\"\
-                    ,\n                  \"url\":\"\"\n               },\n       \
-                    \        \"smallImage\":{\n                  \"label\":\"\",\n\
-                    \                  \"url\":\"\"\n               },\n         \
-                    \      \"productUrl\":\"\"\n            }\n         },\n     \
-                    \    {\n            \"sku\":\"564716\",\n            \"score\"\
-                    :9,\n            \"rank\":2,\n            \"values\":{\n     \
-                    \          \"name\":\"Trackpants\",\n               \"description\"\
-                    :\"Puma Trackpants\",\n               \"categories\":[\n     \
-                    \             \"Bottomwear\"\n               ],\n            \
-                    \   \"image\":{\n                  \"label\":\"\",\n         \
-                    \         \"url\":\"\"\n               },\n               \"smallImage\"\
-                    :{\n                  \"label\":\"\",\n                  \"url\"\
-                    :\"\"\n               },\n               \"productUrl\":\"\"\n\
-                    \            }\n         }\n      ]\n   }\n}\n"
+                  value:
+                    status:
+                      success: true
+                      code: 200
+                    group: TEST
+                    boxType: you-may-also-like
+                    totalResults: 2
+                    recommendedItems:
+                      items:
+                      - sku: '564714'
+                        score: 10
+                        rank: 1
+                        values:
+                          name: T-Shirts
+                          description: Reebok T-Shirts
+                          categories:
+                          - Shirts
+                          image:
+                            label: ''
+                            url: ''
+                          smallImage:
+                            label: ''
+                            url: ''
+                          productUrl: ''
+                      - sku: '564716'
+                        score: 9
+                        rank: 2
+                        values:
+                          name: Trackpants
+                          description: Puma Trackpants
+                          categories:
+                          - Bottomwear
+                          image:
+                            label: ''
+                            url: ''
+                          smallImage:
+                            label: ''
+                            url: ''
+                          productUrl: ''
               schema:
                 type: object
                 properties:
@@ -220,7 +232,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
@@ -228,7 +240,7 @@ paths:
       x-readme:
         code-samples:
         - language: html
-          code: "https://incrm.cc.capillarytech.com/api_gateway/v1/recommendations/user/you-may-also-like?utype=user_id&uvalue=123456&limit=5&offset=0&categories"
+          code: https://incrm.cc.capillarytech.com/api_gateway/v1/recommendations/user/you-may-also-like?utype=user_id&uvalue=123456&limit=5&offset=0&categories
           name: Sample Request URL
         samples-languages:
         - html

@@ -3,7 +3,7 @@ info:
   title: Update fulfillment status and transaction custom fields for issued rewards
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -12,16 +12,14 @@ security:
 paths:
   /api_gateway/rewards/core/v1/management/transactions:
     put:
-      summary: Update fulfillment status and transaction custom fields for issued
-        rewards
+      summary: Update fulfillment status and transaction custom fields for issued rewards
       description: ''
       operationId: update-fulfilment-status-and-txn-custom-fields
       parameters:
       - name: skip_validation
         in: query
-        description: A validation code is used to redeem points for the transaction.
-          skip_validation is set to true as brands configured in Marvel bypass validation
-          code.
+        description: A validation code is used to redeem points for the transaction. skip_validation is
+          set to true as brands configured in Marvel bypass validation code.
         schema:
           type: string
       responses:
@@ -31,18 +29,23 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"transactions\": [\n        {\n            \"transactionId\"\
-                    : 3482445,\n            \"rewardId\": 177657,\n            \"\
-                    customerId\": 85076836,\n            \"fulfillmentDetails\": {\n\
-                    \                \"id\": 9,\n                \"status\": \"Confirmed\"\
-                    \n            },\n            \"transactionCustomFields\": {\n\
-                    \                \"Partner_Order_Id\": \"6565454987656\",\n  \
-                    \              \"Date\": \"10/09/2024\",\n                \"Time\"\
-                    : \"evening\",\n                \"Seat_Section\": \"Orchestra\"\
-                    ,\n                \"Seat_Row\": \"Q\",\n                \"Seat_Number\"\
-                    : \"205\",\n                \"Paypal_Order_Id\": \"45678\",\n\
-                    \                \"Paypal_amout\": \"30$\"\n            }\n  \
-                    \      }\n    ]\n}"
+                  value:
+                    transactions:
+                    - transactionId: 3482445
+                      rewardId: 177657
+                      customerId: 85076836
+                      fulfillmentDetails:
+                        id: 9
+                        status: Confirmed
+                      transactionCustomFields:
+                        Partner_Order_Id: '6565454987656'
+                        Date: 10/09/2024
+                        Time: evening
+                        Seat_Section: Orchestra
+                        Seat_Row: Q
+                        Seat_Number: '205'
+                        Paypal_Order_Id: '45678'
+                        Paypal_amout: 30$
               schema:
                 type: object
                 properties:
@@ -106,7 +109,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
@@ -114,19 +117,33 @@ paths:
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location --request PUT 'https://uscrm.cc.capillarytech.com/api_gateway/rewards/core/v1/management/transactions?skip_validation=true&skip_validation=true'\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization:\
-            \ Basic DljMQ==' \\\n--data '{\n    \"transactions\": [\n        {\n \
-            \           \"transactionId\": 3482445,\n            \"customerId\": 85076836,\n\
-            \            \"rewardId\": 177657,\n            \"transactionCustomFields\"\
-            : {\n                \"Partner_Order_Id\" : \"6565454987656\",\n     \
-            \           \"Date\" : \"10/09/2024\",\n                \"Time\" : \"\
-            evening\",\n                \"Seat_Section\" : \"Orchestra\",\n      \
-            \          \"Seat_Row\" : \"Q\",\n                \"Seat_Number\" : \"\
-            205\",\n                \"Paypal_Order_Id\" : \"45678\",\n           \
-            \     \"Paypal_amout\" : \"30$\"\n            },\n            \"fulfillmentDetails\"\
-            : {\n                \"status\": \"Confirmed\"\n            }\n      \
-            \  }\n    ]\n}\n'"
+          code: |-
+            curl --location --request PUT 'https://uscrm.cc.capillarytech.com/api_gateway/rewards/core/v1/management/transactions?skip_validation=true&skip_validation=true' \
+            --header 'Content-Type: application/json' \
+            --header 'Authorization: Basic DljMQ==' \
+            --data '{
+                "transactions": [
+                    {
+                        "transactionId": 3482445,
+                        "customerId": 85076836,
+                        "rewardId": 177657,
+                        "transactionCustomFields": {
+                            "Partner_Order_Id" : "6565454987656",
+                            "Date" : "10/09/2024",
+                            "Time" : "evening",
+                            "Seat_Section" : "Orchestra",
+                            "Seat_Row" : "Q",
+                            "Seat_Number" : "205",
+                            "Paypal_Order_Id" : "45678",
+                            "Paypal_amout" : "30$"
+                        },
+                        "fulfillmentDetails": {
+                            "status": "Confirmed"
+                        }
+                    }
+                ]
+            }
+            '
         samples-languages:
         - curl
 components:

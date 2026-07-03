@@ -3,14 +3,14 @@ info:
   title: Get individual badge details of a customer
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/api_gateway/v1/badges/management/{customerId}/badge/{badgeId}":
+  /api_gateway/v1/badges/management/{customerId}/badge/{badgeId}:
     get:
       summary: Get individual badge details of a customer
       description: ''
@@ -30,8 +30,7 @@ paths:
         required: true
       - name: includeStatistics
         in: query
-        description: Set true to retrieve customer and badge constraints, and earn
-          and issue badge details.
+        description: Set true to retrieve customer and badge constraints, and earn and issue badge details.
         schema:
           type: boolean
       responses:
@@ -41,267 +40,393 @@ paths:
             application/json:
               examples:
                 Rolling window with includeStatistics=true:
-                  value: "{\n    \"data\": {\n        \"id\": \"662724bb8fe258516a88fde2\"\
-                    ,\n        \"name\": \"OGBadge2\",\n        \"description\": \"\
-                    Moving window\",\n        \"createdOn\": 1713841339.861,\n   \
-                    \     \"lastUpdatedOn\": 1713841339.861,\n        \"startsOn\"\
-                    : 1707523237.192,\n        \"expiresOn\": 1715299237.192,\n  \
-                    \      \"action\": \"ACTIVATED\",\n        \"badgeType\": \"EARN\"\
-                    ,\n        \"badgeStatus\": \"EXPIRED\",\n        \"owner\": [\n\
-                    \            \"Loyalty\"\n        ],\n        \"claimedBy\": [],\n\
-                    \        \"images\": [\n            {\n                \"name\"\
-                    : \"string\",\n                \"fileSvcHandle\": \"string\",\n\
-                    \                \"url\": \"string\",\n                \"tag\"\
-                    : \"UN_EARNED\"\n            }\n        ],\n        \"earnExpiry\"\
-                    : {\n            \"expiryType\": \"RELATIVE\",\n            \"\
-                    relativeExpirytype\": \"DAYS\",\n            \"value\": 2\n  \
-                    \      },\n        \"issueExpiry\": {\n            \"expiryType\"\
-                    : \"RELATIVE\",\n            \"relativeExpirytype\": \"DAYS\"\
-                    ,\n            \"value\": 2\n        },\n        \"customerConstraints\"\
-                    : [\n            {\n                \"constraintLevel\": \"CUSTOMER\"\
-                    ,\n                \"constraintType\": \"OVERALL\",\n        \
-                    \        \"rollType\": null,\n                \"refreshRate\"\
-                    : null,\n                \"durationType\": null,\n           \
-                    \     \"cycleStatus\": null,\n                \"startDayOfTheWeek\"\
-                    : null,\n                \"rollValue\": null,\n              \
-                    \  \"maxEarnLimit\": 100,\n                \"earnConstraintBlockStatistics\"\
-                    : {\n                    \"currentEarnCount\": 0,\n          \
-                    \          \"currentEarnCountDays\": null,\n                 \
-                    \   \"currentEarnCountWeeks\": null,\n                    \"currentEarnCountMonths\"\
-                    : null\n                },\n                \"fixedWindowCycle\"\
-                    : null,\n                \"fixedWindowReferenceId\": null\n  \
-                    \          }\n        ],\n        \"badgeConstraints\": [\n  \
-                    \          {\n                \"constraintLevel\": \"BADGE\",\n\
-                    \                \"constraintType\": \"OVERALL\",\n          \
-                    \      \"rollType\": null,\n                \"refreshRate\": null,\n\
-                    \                \"durationType\": null,\n                \"cycleStatus\"\
-                    : null,\n                \"startDayOfTheWeek\": null,\n      \
-                    \          \"rollValue\": null,\n                \"maxEarnLimit\"\
-                    : 1000,\n                \"earnConstraintBlockStatistics\": {\n\
-                    \                    \"currentEarnCount\": 0,\n              \
-                    \      \"currentEarnCountDays\": null,\n                    \"\
-                    currentEarnCountWeeks\": null,\n                    \"currentEarnCountMonths\"\
-                    : null\n                },\n                \"fixedWindowCycle\"\
-                    : null,\n                \"fixedWindowReferenceId\": null\n  \
-                    \          }\n        ],\n        \"issualDetails\": {\n     \
-                    \       \"issuedCount\": 0,\n            \"issuals\": []\n   \
-                    \     },\n        \"earnDetails\": {\n            \"earnCount\"\
-                    : 0,\n            \"earns\": []\n        },\n        \"activeEarnedCount\"\
-                    : 0,\n        \"customFields\": {}\n    },\n    \"errors\": [],\n\
-                    \    \"warnings\": []\n}"
+                  value:
+                    data:
+                      id: 662724bb8fe258516a88fde2
+                      name: OGBadge2
+                      description: Moving window
+                      createdOn: 1713841339.861
+                      lastUpdatedOn: 1713841339.861
+                      startsOn: 1707523237.192
+                      expiresOn: 1715299237.192
+                      action: ACTIVATED
+                      badgeType: EARN
+                      badgeStatus: EXPIRED
+                      owner:
+                      - Loyalty
+                      claimedBy: []
+                      images:
+                      - name: string
+                        fileSvcHandle: string
+                        url: string
+                        tag: UN_EARNED
+                      earnExpiry:
+                        expiryType: RELATIVE
+                        relativeExpirytype: DAYS
+                        value: 2
+                      issueExpiry:
+                        expiryType: RELATIVE
+                        relativeExpirytype: DAYS
+                        value: 2
+                      customerConstraints:
+                      - constraintLevel: CUSTOMER
+                        constraintType: OVERALL
+                        rollType: null
+                        refreshRate: null
+                        durationType: null
+                        cycleStatus: null
+                        startDayOfTheWeek: null
+                        rollValue: null
+                        maxEarnLimit: 100
+                        earnConstraintBlockStatistics:
+                          currentEarnCount: 0
+                          currentEarnCountDays: null
+                          currentEarnCountWeeks: null
+                          currentEarnCountMonths: null
+                        fixedWindowCycle: null
+                        fixedWindowReferenceId: null
+                      badgeConstraints:
+                      - constraintLevel: BADGE
+                        constraintType: OVERALL
+                        rollType: null
+                        refreshRate: null
+                        durationType: null
+                        cycleStatus: null
+                        startDayOfTheWeek: null
+                        rollValue: null
+                        maxEarnLimit: 1000
+                        earnConstraintBlockStatistics:
+                          currentEarnCount: 0
+                          currentEarnCountDays: null
+                          currentEarnCountWeeks: null
+                          currentEarnCountMonths: null
+                        fixedWindowCycle: null
+                        fixedWindowReferenceId: null
+                      issualDetails:
+                        issuedCount: 0
+                        issuals: []
+                      earnDetails:
+                        earnCount: 0
+                        earns: []
+                      activeEarnedCount: 0
+                      customFields: {}
+                    errors: []
+                    warnings: []
                 Fixed window with includeStatistics=true:
-                  value: "{\n    \"data\": {\n        \"id\": \"662749408fe258516a88fe89\"\
-                    ,\n        \"name\": \"BADGE123\",\n        \"description\": \"\
-                    Purchase 5 pet products in 3 months and get a pet grooming voucher\"\
-                    ,\n        \"createdOn\": 1713850688.811,\n        \"lastUpdatedOn\"\
-                    : 1713850688.811,\n        \"startsOn\": 1716803487,\n       \
-                    \ \"expiresOn\": 1726804000,\n        \"action\": \"DE_ACTIVATED\"\
-                    ,\n        \"badgeType\": \"EARN\",\n        \"badgeStatus\":\
-                    \ \"LIVE\",\n        \"owner\": [\n            \"Milestones\"\
-                    ,\n            \"Loyalty\"\n        ],\n        \"claimedBy\"\
-                    : [],\n        \"images\": [],\n        \"earnExpiry\": {\n  \
-                    \          \"expiryType\": \"ABSOLUTE\",\n            \"type\"\
-                    : \"WITH_BADGE_META\",\n            \"expiresOn\": null,\n   \
-                    \         \"expireWithBadgeMeta\": true\n        },\n        \"\
-                    badgeRank\": 1,\n        \"customerConstraints\": [\n        \
-                    \    {\n                \"constraintLevel\": \"CUSTOMER\",\n \
-                    \               \"constraintType\": \"FIXED_WINDOW\",\n      \
-                    \          \"rollType\": null,\n                \"refreshRate\"\
-                    : 3,\n                \"durationType\": \"DAYS\",\n          \
-                    \      \"cycleStatus\": \"ACTIVE\",\n                \"startDayOfTheWeek\"\
-                    : null,\n                \"rollValue\": null,\n              \
-                    \  \"maxEarnLimit\": 1,\n                \"earnConstraintBlockStatistics\"\
-                    : {\n                    \"currentEarnCount\": 0,\n          \
-                    \          \"currentEarnCountDays\": null,\n                 \
-                    \   \"currentEarnCountWeeks\": null,\n                    \"currentEarnCountMonths\"\
-                    : null\n                },\n                \"fixedWindowCycle\"\
-                    : {\n                    \"startDate\": 1719900534.389096,\n \
-                    \                   \"endDate\": 1720073334.389096\n         \
-                    \       },\n                \"fixedWindowReferenceId\": \"e6791ec9-e92f-34af-bdc3-be2607fdf82c\"\
-                    \n            }\n        ],\n        \"badgeConstraints\": [\n\
-                    \            {\n                \"constraintLevel\": \"BADGE\"\
-                    ,\n                \"constraintType\": \"FIXED_WINDOW\",\n   \
-                    \             \"rollType\": null,\n                \"refreshRate\"\
-                    : 3,\n                \"durationType\": \"DAYS\",\n          \
-                    \      \"cycleStatus\": \"ACTIVE\",\n                \"startDayOfTheWeek\"\
-                    : null,\n                \"rollValue\": null,\n              \
-                    \  \"maxEarnLimit\": 2,\n                \"earnConstraintBlockStatistics\"\
-                    : {\n                    \"currentEarnCount\": 0,\n          \
-                    \          \"currentEarnCountDays\": null,\n                 \
-                    \   \"currentEarnCountWeeks\": null,\n                    \"currentEarnCountMonths\"\
-                    : null\n                },\n                \"fixedWindowCycle\"\
-                    : {\n                    \"startDate\": 1719900534.389096,\n \
-                    \                   \"endDate\": 1720073334.389096\n         \
-                    \       },\n                \"fixedWindowReferenceId\": \"a1350b49-eb8e-3500-9e43-01f5493c91c1\"\
-                    \n            }\n        ],\n        \"issualDetails\": {\n  \
-                    \          \"issuedCount\": 0,\n            \"issuals\": []\n\
-                    \        },\n        \"earnDetails\": {\n            \"earnCount\"\
-                    : 0,\n            \"earns\": []\n        },\n        \"activeEarnedCount\"\
-                    : 0,\n        \"customFields\": {}\n    },\n    \"errors\": [],\n\
-                    \    \"warnings\": []\n}"
+                  value:
+                    data:
+                      id: 662749408fe258516a88fe89
+                      name: BADGE123
+                      description: Purchase 5 pet products in 3 months and get a pet grooming voucher
+                      createdOn: 1713850688.811
+                      lastUpdatedOn: 1713850688.811
+                      startsOn: 1716803487
+                      expiresOn: 1726804000
+                      action: DE_ACTIVATED
+                      badgeType: EARN
+                      badgeStatus: LIVE
+                      owner:
+                      - Milestones
+                      - Loyalty
+                      claimedBy: []
+                      images: []
+                      earnExpiry:
+                        expiryType: ABSOLUTE
+                        type: WITH_BADGE_META
+                        expiresOn: null
+                        expireWithBadgeMeta: true
+                      badgeRank: 1
+                      customerConstraints:
+                      - constraintLevel: CUSTOMER
+                        constraintType: FIXED_WINDOW
+                        rollType: null
+                        refreshRate: 3
+                        durationType: DAYS
+                        cycleStatus: ACTIVE
+                        startDayOfTheWeek: null
+                        rollValue: null
+                        maxEarnLimit: 1
+                        earnConstraintBlockStatistics:
+                          currentEarnCount: 0
+                          currentEarnCountDays: null
+                          currentEarnCountWeeks: null
+                          currentEarnCountMonths: null
+                        fixedWindowCycle:
+                          startDate: 1719900534.389096
+                          endDate: 1720073334.389096
+                        fixedWindowReferenceId: e6791ec9-e92f-34af-bdc3-be2607fdf82c
+                      badgeConstraints:
+                      - constraintLevel: BADGE
+                        constraintType: FIXED_WINDOW
+                        rollType: null
+                        refreshRate: 3
+                        durationType: DAYS
+                        cycleStatus: ACTIVE
+                        startDayOfTheWeek: null
+                        rollValue: null
+                        maxEarnLimit: 2
+                        earnConstraintBlockStatistics:
+                          currentEarnCount: 0
+                          currentEarnCountDays: null
+                          currentEarnCountWeeks: null
+                          currentEarnCountMonths: null
+                        fixedWindowCycle:
+                          startDate: 1719900534.389096
+                          endDate: 1720073334.389096
+                        fixedWindowReferenceId: a1350b49-eb8e-3500-9e43-01f5493c91c1
+                      issualDetails:
+                        issuedCount: 0
+                        issuals: []
+                      earnDetails:
+                        earnCount: 0
+                        earns: []
+                      activeEarnedCount: 0
+                      customFields: {}
+                    errors: []
+                    warnings: []
                 Fixed window with includeStatistics=false:
-                  value: "{\n    \"data\": {\n        \"id\": \"662749408fe258516a88fe89\"\
-                    ,\n        \"name\": \"BADGE123\",\n        \"description\": \"\
-                    Purchase 5 pet products in 3 months and get a pet grooming voucher\"\
-                    ,\n        \"createdOn\": 1713850688.811,\n        \"lastUpdatedOn\"\
-                    : 1713850688.811,\n        \"startsOn\": 1716803487,\n       \
-                    \ \"expiresOn\": 1726804000,\n        \"action\": \"DE_ACTIVATED\"\
-                    ,\n        \"badgeType\": \"EARN\",\n        \"badgeStatus\":\
-                    \ \"LIVE\",\n        \"owner\": [\n            \"Milestones\"\
-                    ,\n            \"Loyalty\"\n        ],\n        \"claimedBy\"\
-                    : [],\n        \"images\": [],\n        \"earnExpiry\": {\n  \
-                    \          \"expiryType\": \"ABSOLUTE\",\n            \"type\"\
-                    : \"WITH_BADGE_META\",\n            \"expiresOn\": null,\n   \
-                    \         \"expireWithBadgeMeta\": true\n        },\n        \"\
-                    badgeRank\": 1,\n        \"activeEarnedCount\": 0,\n        \"\
-                    customFields\": {}\n    },\n    \"errors\": [],\n    \"warnings\"\
-                    : []\n}"
+                  value:
+                    data:
+                      id: 662749408fe258516a88fe89
+                      name: BADGE123
+                      description: Purchase 5 pet products in 3 months and get a pet grooming voucher
+                      createdOn: 1713850688.811
+                      lastUpdatedOn: 1713850688.811
+                      startsOn: 1716803487
+                      expiresOn: 1726804000
+                      action: DE_ACTIVATED
+                      badgeType: EARN
+                      badgeStatus: LIVE
+                      owner:
+                      - Milestones
+                      - Loyalty
+                      claimedBy: []
+                      images: []
+                      earnExpiry:
+                        expiryType: ABSOLUTE
+                        type: WITH_BADGE_META
+                        expiresOn: null
+                        expireWithBadgeMeta: true
+                      badgeRank: 1
+                      activeEarnedCount: 0
+                      customFields: {}
+                    errors: []
+                    warnings: []
                 Rolling window with includeStatistics=false:
-                  value: "{\n    \"data\": {\n        \"id\": \"662724bb8fe258516a88fde2\"\
-                    ,\n        \"name\": \"OGBadge2\",\n        \"description\": \"\
-                    Moving window\",\n        \"createdOn\": 1713841339.861,\n   \
-                    \     \"lastUpdatedOn\": 1713841339.861,\n        \"startsOn\"\
-                    : 1707523237.192,\n        \"expiresOn\": 1715299237.192,\n  \
-                    \      \"action\": \"ACTIVATED\",\n        \"badgeType\": \"EARN\"\
-                    ,\n        \"badgeStatus\": \"EXPIRED\",\n        \"owner\": [\n\
-                    \            \"Loyalty\"\n        ],\n        \"claimedBy\": [],\n\
-                    \        \"images\": [\n            {\n                \"name\"\
-                    : \"string\",\n                \"fileSvcHandle\": \"string\",\n\
-                    \                \"url\": \"string\",\n                \"tag\"\
-                    : \"UN_EARNED\"\n            }\n        ],\n        \"earnExpiry\"\
-                    : {\n            \"expiryType\": \"RELATIVE\",\n            \"\
-                    relativeExpirytype\": \"DAYS\",\n            \"value\": 2\n  \
-                    \      },\n        \"issueExpiry\": {\n            \"expiryType\"\
-                    : \"RELATIVE\",\n            \"relativeExpirytype\": \"DAYS\"\
-                    ,\n            \"value\": 2\n        },\n        \"activeEarnedCount\"\
-                    : 0,\n        \"customFields\": {}\n    },\n    \"errors\": [],\n\
-                    \    \"warnings\": []\n}"
+                  value:
+                    data:
+                      id: 662724bb8fe258516a88fde2
+                      name: OGBadge2
+                      description: Moving window
+                      createdOn: 1713841339.861
+                      lastUpdatedOn: 1713841339.861
+                      startsOn: 1707523237.192
+                      expiresOn: 1715299237.192
+                      action: ACTIVATED
+                      badgeType: EARN
+                      badgeStatus: EXPIRED
+                      owner:
+                      - Loyalty
+                      claimedBy: []
+                      images:
+                      - name: string
+                        fileSvcHandle: string
+                        url: string
+                        tag: UN_EARNED
+                      earnExpiry:
+                        expiryType: RELATIVE
+                        relativeExpirytype: DAYS
+                        value: 2
+                      issueExpiry:
+                        expiryType: RELATIVE
+                        relativeExpirytype: DAYS
+                        value: 2
+                      activeEarnedCount: 0
+                      customFields: {}
+                    errors: []
+                    warnings: []
                 Filter by Group ID:
-                  value: "{\n    \"data\": {\n        \"id\": \"66cfffb195551c6e7d962a8a\"\
-                    ,\n        \"name\": \"Copy of Test 2\",\n        \"description\"\
-                    : \"Test 2\",\n        \"createdOn\": 1724907441.472,\n      \
-                    \  \"lastUpdatedOn\": 1724907441.472,\n        \"startsOn\": 1725129000,\n\
-                    \        \"expiresOn\": 1727634600,\n        \"action\": \"ACTIVATED\"\
-                    ,\n        \"badgeType\": \"ISSUE_EARN\",\n        \"badgeStatus\"\
-                    : \"UPCOMING\",\n        \"owner\": [\n            \"Loyalty_Promotion\"\
-                    ,\n            \"Milestones\",\n            \"Rewards_Catalog\"\
-                    ,\n            \"Goodwill_Module\",\n            \"Loyalty\",\n\
-                    \            \"Audience_Campaigns\",\n            \"Journeys\"\
-                    ,\n            \"Referral_Campaigns\"\n        ],\n        \"\
-                    claimedBy\": [],\n        \"images\": [],\n        \"earnExpiry\"\
-                    : {\n            \"expiryType\": \"ABSOLUTE\",\n            \"\
-                    type\": \"FIXED_DATE\",\n            \"expiresOn\": 1727375400,\n\
-                    \            \"expireWithBadgeMeta\": false\n        },\n    \
-                    \    \"issueExpiry\": {\n            \"expiryType\": \"ABSOLUTE\"\
-                    ,\n            \"type\": \"FIXED_DATE\",\n            \"expiresOn\"\
-                    : 1756319400,\n            \"expireWithBadgeMeta\": false\n  \
-                    \      },\n        \"badgeGroupId\": \"6628a81728b59f41667acd23\"\
-                    ,\n        \"badgeGroupName\": \"group_1\",\n        \"badgeRank\"\
-                    : 2,\n        \"activeEarnedCount\": 0,\n        \"customFields\"\
-                    : {\n            \"tets-3\": \"2024-06-13 14:20:42\",\n      \
-                    \      \"test-19\": \"2024-06-11 14:24:43\",\n            \"test-16\"\
-                    : \"2024-06-10 14:24:06\",\n            \"msd-1\": \"true\",\n\
-                    \            \"HiNikhil\": \"Helo\",\n            \"test-23456\"\
-                    : \"2024-06-11 16:48:22\",\n            \"AKV\": \"hi1\",\n  \
-                    \          \"test-21\": \"2024-06-06 14:25:14\",\n           \
-                    \ \"ka_test_1\": \"false\",\n            \"test-789\": \"true\"\
-                    \n        }\n    },\n    \"errors\": [],\n    \"warnings\": []\n\
-                    }"
+                  value:
+                    data:
+                      id: 66cfffb195551c6e7d962a8a
+                      name: Copy of Test 2
+                      description: Test 2
+                      createdOn: 1724907441.472
+                      lastUpdatedOn: 1724907441.472
+                      startsOn: 1725129000
+                      expiresOn: 1727634600
+                      action: ACTIVATED
+                      badgeType: ISSUE_EARN
+                      badgeStatus: UPCOMING
+                      owner:
+                      - Loyalty_Promotion
+                      - Milestones
+                      - Rewards_Catalog
+                      - Goodwill_Module
+                      - Loyalty
+                      - Audience_Campaigns
+                      - Journeys
+                      - Referral_Campaigns
+                      claimedBy: []
+                      images: []
+                      earnExpiry:
+                        expiryType: ABSOLUTE
+                        type: FIXED_DATE
+                        expiresOn: 1727375400
+                        expireWithBadgeMeta: false
+                      issueExpiry:
+                        expiryType: ABSOLUTE
+                        type: FIXED_DATE
+                        expiresOn: 1756319400
+                        expireWithBadgeMeta: false
+                      badgeGroupId: 6628a81728b59f41667acd23
+                      badgeGroupName: group_1
+                      badgeRank: 2
+                      activeEarnedCount: 0
+                      customFields:
+                        tets-3: '2024-06-13 14:20:42'
+                        test-19: '2024-06-11 14:24:43'
+                        test-16: '2024-06-10 14:24:06'
+                        msd-1: 'true'
+                        HiNikhil: Helo
+                        test-23456: '2024-06-11 16:48:22'
+                        AKV: hi1
+                        test-21: '2024-06-06 14:25:14'
+                        ka_test_1: 'false'
+                        test-789: 'true'
+                    errors: []
+                    warnings: []
                 With issueId and includeStatistics=true:
-                  value: "{\n    \"data\": {\n        \"id\": \"67037d51d33ceb2ad0a69b1b\"\
-                    ,\n        \"name\": \"Badge Issue earn283\",\n        \"description\"\
-                    : \"Make 5 transactions\",\n        \"createdOn\": 1728281937.271000000,\n\
-                    \        \"lastUpdatedOn\": 1728281937.271000000,\n        \"\
-                    startsOn\": 1721520000.000000000,\n        \"expiresOn\": 1730957428.000000000,\n\
-                    \        \"action\": \"ACTIVATED\",\n        \"badgeType\": \"\
-                    ISSUE_EARN\",\n        \"badgeStatus\": \"LIVE\",\n        \"\
-                    owner\": [\n            \"Referral_Campaigns\",\n            \"\
-                    Rewards_Catalog\",\n            \"Goodwill_Module\",\n       \
-                    \     \"Historical_Import\",\n            \"Loyalty_Promotion\"\
-                    ,\n            \"Milestones\",\n            \"Journeys\",\n  \
-                    \          \"Loyalty\",\n            \"Audience_Campaigns\"\n\
-                    \        ],\n        \"claimedBy\": [],\n        \"images\": [\n\
-                    \            {\n                \"name\": \"Issued\",\n      \
-                    \          \"fileSvcHandle\": \"qwer-8634-8938\",\n          \
-                    \      \"url\": \"https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d\"\
-                    ,\n                \"tag\": \"EARNED\"\n            }\n      \
-                    \  ],\n        \"earnExpiry\": {\n            \"expiryType\":\
-                    \ \"RELATIVE\",\n            \"relativeExpirytype\": \"WEEKS\"\
-                    ,\n            \"value\": 2\n        },\n        \"issueExpiry\"\
-                    : {\n            \"expiryType\": \"ABSOLUTE\",\n            \"\
-                    type\": \"FIXED_DATE\",\n            \"expiresOn\": 1926235957.000000000,\n\
-                    \            \"expireWithBadgeMeta\": false\n        },\n    \
-                    \    \"badgeRank\": 3,\n        \"customerConstraints\": [\n \
-                    \           {\n                \"constraintLevel\": \"CUSTOMER\"\
-                    ,\n                \"constraintType\": \"FIXED_WINDOW\",\n   \
-                    \             \"rollType\": null,\n                \"refreshRate\"\
-                    : 3,\n                \"durationType\": \"DAYS\",\n          \
-                    \      \"cycleStatus\": \"ACTIVE\",\n                \"startDayOfTheWeek\"\
-                    : null,\n                \"rollValue\": null,\n              \
-                    \  \"maxEarnLimit\": 2,\n                \"earnConstraintBlockStatistics\"\
-                    : {\n                    \"currentEarnCount\": 0,\n          \
-                    \          \"currentEarnCountDays\": null,\n                 \
-                    \   \"currentEarnCountWeeks\": null,\n                    \"currentEarnCountMonths\"\
-                    : null\n                },\n                \"fixedWindowCycle\"\
-                    : {\n                    \"startDate\": 1728282321.257903000,\n\
-                    \                    \"endDate\": 1728455121.257903000\n     \
-                    \           },\n                \"fixedWindowReferenceId\": \"\
-                    e6791ec9-e92f-34af-bdc3-be2607fdf82c\",\n                \"rollingWindowLimits\"\
-                    : null\n            }\n        ],\n        \"badgeConstraints\"\
-                    : [\n            {\n                \"constraintLevel\": \"BADGE\"\
-                    ,\n                \"constraintType\": \"OVERALL\",\n        \
-                    \        \"rollType\": null,\n                \"refreshRate\"\
-                    : null,\n                \"durationType\": null,\n           \
-                    \     \"cycleStatus\": null,\n                \"startDayOfTheWeek\"\
-                    : null,\n                \"rollValue\": null,\n              \
-                    \  \"maxEarnLimit\": 10000,\n                \"earnConstraintBlockStatistics\"\
-                    : {\n                    \"currentEarnCount\": 0,\n          \
-                    \          \"currentEarnCountDays\": null,\n                 \
-                    \   \"currentEarnCountWeeks\": null,\n                    \"currentEarnCountMonths\"\
-                    : null\n                },\n                \"fixedWindowCycle\"\
-                    : null,\n                \"fixedWindowReferenceId\": null,\n \
-                    \               \"rollingWindowLimits\": null\n            },\n\
-                    \            {\n                \"constraintLevel\": \"BADGE\"\
-                    ,\n                \"constraintType\": \"ROLLING_WINDOW\",\n \
-                    \               \"rollType\": \"WEEKS\",\n                \"refreshRate\"\
-                    : null,\n                \"durationType\": null,\n           \
-                    \     \"cycleStatus\": null,\n                \"startDayOfTheWeek\"\
-                    : null,\n                \"rollValue\": 1,\n                \"\
-                    maxEarnLimit\": 3000,\n                \"earnConstraintBlockStatistics\"\
-                    : {\n                    \"currentEarnCount\": 0,\n          \
-                    \          \"currentEarnCountDays\": null,\n                 \
-                    \   \"currentEarnCountWeeks\": null,\n                    \"currentEarnCountMonths\"\
-                    : null\n                },\n                \"fixedWindowCycle\"\
-                    : null,\n                \"fixedWindowReferenceId\": null,\n \
-                    \               \"rollingWindowLimits\": null\n            },\n\
-                    \            {\n                \"constraintLevel\": \"BADGE\"\
-                    ,\n                \"constraintType\": \"ROLLING_WINDOW\",\n \
-                    \               \"rollType\": \"DAYS\",\n                \"refreshRate\"\
-                    : null,\n                \"durationType\": null,\n           \
-                    \     \"cycleStatus\": null,\n                \"startDayOfTheWeek\"\
-                    : null,\n                \"rollValue\": 1,\n                \"\
-                    maxEarnLimit\": 300,\n                \"earnConstraintBlockStatistics\"\
-                    : {\n                    \"currentEarnCount\": 0,\n          \
-                    \          \"currentEarnCountDays\": null,\n                 \
-                    \   \"currentEarnCountWeeks\": null,\n                    \"currentEarnCountMonths\"\
-                    : null\n                },\n                \"fixedWindowCycle\"\
-                    : null,\n                \"fixedWindowReferenceId\": null,\n \
-                    \               \"rollingWindowLimits\": null\n            }\n\
-                    \        ],\n        \"issualDetails\": {\n            \"issuedCount\"\
-                    : 1,\n            \"issuals\": [\n                {\n        \
-                    \            \"issuedOn\": 1728281969.300000000,\n           \
-                    \         \"issuedStatus\": \"REVOKED\",\n                   \
-                    \ \"issueExpiresOn\": 1926235957.000000000,\n                \
-                    \    \"issueId\": \"67037d71d33ceb2ad0a69b1c\",\n            \
-                    \        \"ownerType\": \"Loyalty\",\n                    \"ownerReferenceId\"\
-                    : \"123456789\",\n                    \"revokedOn\": 1728282201.451000000,\n\
-                    \                    \"issueEventDate\": 1728279028.000000000\n\
-                    \                }\n            ]\n        },\n        \"issuedStatus\"\
-                    : \"REVOKED\",\n        \"earnDetails\": {\n            \"earnCount\"\
-                    : 0,\n            \"earns\": []\n        },\n        \"activeEarnedCount\"\
-                    : 0,\n        \"customFields\": {\n            \"Terms and Condition\"\
-                    : \"<Enter your terms and condition here>\"\n        }\n    },\n\
-                    \    \"errors\": [],\n    \"warnings\": []\n}"
+                  value:
+                    data:
+                      id: 67037d51d33ceb2ad0a69b1b
+                      name: Badge Issue earn283
+                      description: Make 5 transactions
+                      createdOn: 1728281937.271
+                      lastUpdatedOn: 1728281937.271
+                      startsOn: 1721520000.0
+                      expiresOn: 1730957428.0
+                      action: ACTIVATED
+                      badgeType: ISSUE_EARN
+                      badgeStatus: LIVE
+                      owner:
+                      - Referral_Campaigns
+                      - Rewards_Catalog
+                      - Goodwill_Module
+                      - Historical_Import
+                      - Loyalty_Promotion
+                      - Milestones
+                      - Journeys
+                      - Loyalty
+                      - Audience_Campaigns
+                      claimedBy: []
+                      images:
+                      - name: Issued
+                        fileSvcHandle: qwer-8634-8938
+                        url: https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d
+                        tag: EARNED
+                      earnExpiry:
+                        expiryType: RELATIVE
+                        relativeExpirytype: WEEKS
+                        value: 2
+                      issueExpiry:
+                        expiryType: ABSOLUTE
+                        type: FIXED_DATE
+                        expiresOn: 1926235957.0
+                        expireWithBadgeMeta: false
+                      badgeRank: 3
+                      customerConstraints:
+                      - constraintLevel: CUSTOMER
+                        constraintType: FIXED_WINDOW
+                        rollType: null
+                        refreshRate: 3
+                        durationType: DAYS
+                        cycleStatus: ACTIVE
+                        startDayOfTheWeek: null
+                        rollValue: null
+                        maxEarnLimit: 2
+                        earnConstraintBlockStatistics:
+                          currentEarnCount: 0
+                          currentEarnCountDays: null
+                          currentEarnCountWeeks: null
+                          currentEarnCountMonths: null
+                        fixedWindowCycle:
+                          startDate: 1728282321.257903
+                          endDate: 1728455121.257903
+                        fixedWindowReferenceId: e6791ec9-e92f-34af-bdc3-be2607fdf82c
+                        rollingWindowLimits: null
+                      badgeConstraints:
+                      - constraintLevel: BADGE
+                        constraintType: OVERALL
+                        rollType: null
+                        refreshRate: null
+                        durationType: null
+                        cycleStatus: null
+                        startDayOfTheWeek: null
+                        rollValue: null
+                        maxEarnLimit: 10000
+                        earnConstraintBlockStatistics:
+                          currentEarnCount: 0
+                          currentEarnCountDays: null
+                          currentEarnCountWeeks: null
+                          currentEarnCountMonths: null
+                        fixedWindowCycle: null
+                        fixedWindowReferenceId: null
+                        rollingWindowLimits: null
+                      - constraintLevel: BADGE
+                        constraintType: ROLLING_WINDOW
+                        rollType: WEEKS
+                        refreshRate: null
+                        durationType: null
+                        cycleStatus: null
+                        startDayOfTheWeek: null
+                        rollValue: 1
+                        maxEarnLimit: 3000
+                        earnConstraintBlockStatistics:
+                          currentEarnCount: 0
+                          currentEarnCountDays: null
+                          currentEarnCountWeeks: null
+                          currentEarnCountMonths: null
+                        fixedWindowCycle: null
+                        fixedWindowReferenceId: null
+                        rollingWindowLimits: null
+                      - constraintLevel: BADGE
+                        constraintType: ROLLING_WINDOW
+                        rollType: DAYS
+                        refreshRate: null
+                        durationType: null
+                        cycleStatus: null
+                        startDayOfTheWeek: null
+                        rollValue: 1
+                        maxEarnLimit: 300
+                        earnConstraintBlockStatistics:
+                          currentEarnCount: 0
+                          currentEarnCountDays: null
+                          currentEarnCountWeeks: null
+                          currentEarnCountMonths: null
+                        fixedWindowCycle: null
+                        fixedWindowReferenceId: null
+                        rollingWindowLimits: null
+                      issualDetails:
+                        issuedCount: 1
+                        issuals:
+                        - issuedOn: 1728281969.3
+                          issuedStatus: REVOKED
+                          issueExpiresOn: 1926235957.0
+                          issueId: 67037d71d33ceb2ad0a69b1c
+                          ownerType: Loyalty
+                          ownerReferenceId: '123456789'
+                          revokedOn: 1728282201.451
+                          issueEventDate: 1728279028.0
+                      issuedStatus: REVOKED
+                      earnDetails:
+                        earnCount: 0
+                        earns: []
+                      activeEarnedCount: 0
+                      customFields:
+                        Terms and Condition: <Enter your terms and condition here>
+                    errors: []
+                    warnings: []
                 Sample response:
                   summary: Sample response
                   value:
@@ -310,13 +435,13 @@ paths:
                       name: 'Badge Issueds_Test6 '
                       description: Make 5 transactions
                       createdOn: 1765185213.63
-                      createdOnISO: "2025-12-08T09:13:33Z"
+                      createdOnISO: '2025-12-08T09:13:33Z'
                       lastUpdatedOn: 1765185213.63
-                      lastUpdatedOnISO: "2025-12-08T09:13:33Z"
+                      lastUpdatedOnISO: '2025-12-08T09:13:33Z'
                       startsOn: 1765178896000
-                      startsOnISO: "+57906-04-18T07:06:40Z"
+                      startsOnISO: +57906-04-18T07:06:40Z
                       expiresOn: 1796275142001
-                      expiresOnISO: "+58891-09-10T13:13:21Z"
+                      expiresOnISO: +58891-09-10T13:13:21Z
                       action: ACTIVATED
                       badgeType: ISSUE_EARN
                       badgeStatus: UPCOMING
@@ -334,7 +459,7 @@ paths:
                       images:
                       - name: Issued
                         fileSvcHandle: qwer-8634-8938
-                        url: "https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d"
+                        url: https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d
                         tag: EARNED
                       earnExpiry:
                         expiryType: RELATIVE
@@ -344,7 +469,7 @@ paths:
                         expiryType: ABSOLUTE
                         type: FIXED_DATE
                         expiresOn: 1796277042000
-                        expiresOnISO: "+58891-10-02T13:00:00Z"
+                        expiresOnISO: +58891-10-02T13:00:00Z
                         expireWithBadgeMeta: false
                       tags: []
                       badgeRank: 3
@@ -641,8 +766,7 @@ paths:
                           example: BADGE123
                         description:
                           type: string
-                          example: Purchase 5 pet products in 3 months and get a pet
-                            grooming voucher
+                          example: Purchase 5 pet products in 3 months and get a pet grooming voucher
                         createdOn:
                           type: number
                           example: 1713850688.811
@@ -842,8 +966,7 @@ paths:
                           example: BADGE123
                         description:
                           type: string
-                          example: Purchase 5 pet products in 3 months and get a pet
-                            grooming voucher
+                          example: Purchase 5 pet products in 3 months and get a pet grooming voucher
                         createdOn:
                           type: number
                           example: 1713850688.811
@@ -1110,13 +1233,13 @@ paths:
                           properties:
                             tets-3:
                               type: string
-                              example: "2024-06-13 14:20:42"
+                              example: '2024-06-13 14:20:42'
                             test-19:
                               type: string
-                              example: "2024-06-11 14:24:43"
+                              example: '2024-06-11 14:24:43'
                             test-16:
                               type: string
-                              example: "2024-06-10 14:24:06"
+                              example: '2024-06-10 14:24:06'
                             msd-1:
                               type: string
                               example: 'true'
@@ -1125,13 +1248,13 @@ paths:
                               example: Helo
                             test-23456:
                               type: string
-                              example: "2024-06-11 16:48:22"
+                              example: '2024-06-11 16:48:22'
                             AKV:
                               type: string
                               example: hi1
                             test-21:
                               type: string
-                              example: "2024-06-06 14:25:14"
+                              example: '2024-06-06 14:25:14'
                             ka_test_1:
                               type: string
                               example: 'false'
@@ -1202,7 +1325,7 @@ paths:
                                 example: qwer-8634-8938
                               url:
                                 type: string
-                                example: "https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d"
+                                example: https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d
                               tag:
                                 type: string
                                 example: EARNED
@@ -1399,7 +1522,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
@@ -1407,9 +1530,10 @@ paths:
       x-readme:
         code-samples:
         - language: shell
-          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/management/919999999994/badge/693696bdcebb9648d89735b3?includeStatistics=true'\
-            \ \\\n--header 'Authorization: Basic bWFkaMjU2YQ==' \\\n--header 'Cookie:\
-            \ _cfuvid=LbgLgMATQVG7rxgU6obNtuTjuntKzGkHg15XluHdUPI-1768984490920-0.0.1.1-604800000'"
+          code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/management/919999999994/badge/693696bdcebb9648d89735b3?includeStatistics=true' \
+            --header 'Authorization: Basic bWFkaMjU2YQ==' \
+            --header 'Cookie: _cfuvid=LbgLgMATQVG7rxgU6obNtuTjuntKzGkHg15XluHdUPI-1768984490920-0.0.1.1-604800000'
           name: Sample request
         samples-languages:
         - shell

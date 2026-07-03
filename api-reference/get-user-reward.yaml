@@ -3,14 +3,14 @@ info:
   title: Get purchased rewards for user (Old API)
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/api_gateway/rewards/core/v1/user/vouchers/brand/{brandName}":
+  /api_gateway/rewards/core/v1/user/vouchers/brand/{brandName}:
     get:
       summary: Get purchased rewards for user (Old API)
       description: ''
@@ -78,41 +78,68 @@ paths:
             application/json:
               examples:
                 with payment config info:
-                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
-                    \   \"code\": 200,\n        \"message\": \"User Reward fetched\
-                    \ successfully\"\n    },\n    \"reward\": {\n        \"id\": 121879,\n\
-                    \        \"name\": \"Flat 100 off on protein powder\",\n     \
-                    \   \"description\": \"Burn 100 points and get a Flat 100 off\
-                    \ on protein powder coupon\",\n        \"imageId\": \"0f1aee40-3e4d-474d-8070-546eb2ac777e\"\
-                    ,\n        \"imageUrl\": \"https://eucrm-solutions.s3.amazonaws.com/rewards/5bea603b-6ff2-4e00-88fb-8610012b.jpg\"\
-                    ,\n        \"thumbnailId\": \"2f6fc242-58c1-4a41-9e2f-66bc9acac52e\"\
-                    ,\n        \"thumbnailUrl\": \"https://eucrm-solutions.s3.amazonaws.com/rewards/ae890c7e-9c8f-47d9-b5e2-1c62265e.jpg\"\
-                    ,\n        \"termAndConditionsId\": \"9303b31a-6042-475e-bb46-3129bc22baa1\"\
-                    ,\n        \"termAndConditionsUrl\": \"https://eucrm-solutions.s3.amazonaws.com/rewards/b7bb1e12-8b1e-4089-888d-3f13723.html\"\
-                    ,\n        \"tier\": \"4\",\n        \"label\": \"4\",\n     \
-                    \   \"priority\": 1,\n        \"intouchPoints\": 100,\n      \
-                    \  \"group\": \"Protein\",\n        \"startTime\": \"2024-01-24\
-                    \ 08:28:16\",\n        \"endTime\": \"2028-07-31 02:58:16\",\n\
-                    \        \"expired\": false,\n        \"started\": true,\n   \
-                    \     \"programId\": null,\n        \"categoryList\": [\n    \
-                    \        {\n                \"id\": 2,\n                \"name\"\
-                    : \"accessories\",\n                \"enabled\": true\n      \
-                    \      }\n        ],\n        \"customFields\": {\n          \
-                    \  \"CF2\": \"value\"\n        },\n        \"loyaltyProgramCriteria\"\
-                    : [],\n        \"restrictions\": {\n            \"isValid\": true\n\
-                    \        },\n        \"appliedPromotions\": [],\n        \"groupName\"\
-                    : TOP,\n        \"groupRank\": 1,\n        \"rewardRank\": 5,\n\
-                    \        \"images\": [],\n        \"videos\": []\n    }\n}"
+                  value: |-
+                    {
+                        "status": {
+                            "success": true,
+                            "code": 200,
+                            "message": "User Reward fetched successfully"
+                        },
+                        "reward": {
+                            "id": 121879,
+                            "name": "Flat 100 off on protein powder",
+                            "description": "Burn 100 points and get a Flat 100 off on protein powder coupon",
+                            "imageId": "0f1aee40-3e4d-474d-8070-546eb2ac777e",
+                            "imageUrl": "https://eucrm-solutions.s3.amazonaws.com/rewards/5bea603b-6ff2-4e00-88fb-8610012b.jpg",
+                            "thumbnailId": "2f6fc242-58c1-4a41-9e2f-66bc9acac52e",
+                            "thumbnailUrl": "https://eucrm-solutions.s3.amazonaws.com/rewards/ae890c7e-9c8f-47d9-b5e2-1c62265e.jpg",
+                            "termAndConditionsId": "9303b31a-6042-475e-bb46-3129bc22baa1",
+                            "termAndConditionsUrl": "https://eucrm-solutions.s3.amazonaws.com/rewards/b7bb1e12-8b1e-4089-888d-3f13723.html",
+                            "tier": "4",
+                            "label": "4",
+                            "priority": 1,
+                            "intouchPoints": 100,
+                            "group": "Protein",
+                            "startTime": "2024-01-24 08:28:16",
+                            "endTime": "2028-07-31 02:58:16",
+                            "expired": false,
+                            "started": true,
+                            "programId": null,
+                            "categoryList": [
+                                {
+                                    "id": 2,
+                                    "name": "accessories",
+                                    "enabled": true
+                                }
+                            ],
+                            "customFields": {
+                                "CF2": "value"
+                            },
+                            "loyaltyProgramCriteria": [],
+                            "restrictions": {
+                                "isValid": true
+                            },
+                            "appliedPromotions": [],
+                            "groupName": TOP,
+                            "groupRank": 1,
+                            "rewardRank": 5,
+                            "images": [],
+                            "videos": []
+                        }
+                    }
         '400':
           description: '400'
           content:
             application/json:
               examples:
                 Result:
-                  value: "{\n   \"status\": {\n       \"success\": false,\n      \
-                    \ \"code\": 1014,\n       \"message\": \"Cannot find customer\
-                    \ for provided mobile/external-id/e-mail/id\"\n   },\n   \"userVouchers\"\
-                    : null,\n   \"pagingDto\": null\n}\n\n"
+                  value:
+                    status:
+                      success: false
+                      code: 1014
+                      message: Cannot find customer for provided mobile/external-id/e-mail/id
+                    userVouchers: null
+                    pagingDto: null
               schema:
                 type: object
                 properties:

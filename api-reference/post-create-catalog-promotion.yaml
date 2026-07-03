@@ -3,7 +3,7 @@ info:
   title: Create catalog promotion
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -24,20 +24,16 @@ paths:
                 RAW_BODY:
                   type: string
                   description: Sample request body
-                  default: "{     \"startTime\": \"2024-05-04T20:58:49.000Z\",   \
-                    \  \"endTime\": \"2025-10-25T05:46Z\",     \"discountType\": \"\
-                    ABSOLUTE\",     \"discountValue\": 1,     \"brandId\": \"1\",\
-                    \     \"enabled\": true,     \"languageSpecificInfo\":     [ \
-                    \        {             \"languageCode\": \"en\",             \"\
-                    name\": \"test1\",             \"description\": \"description\"\
-                    ,             \"enabled\": true         }     ],     \"rewardIds\"\
-                    :     [         112295     ] }"
+                  default: '{     "startTime": "2024-05-04T20:58:49.000Z",     "endTime": "2025-10-25T05:46Z",     "discountType":
+                    "ABSOLUTE",     "discountValue": 1,     "brandId": "1",     "enabled": true,     "languageSpecificInfo":     [         {             "languageCode":
+                    "en",             "name": "test1",             "description": "description",             "enabled":
+                    true         }     ],     "rewardIds":     [         112295     ] }'
                   format: json
             examples:
               Request Body:
                 value:
-                  startTime: "2024-05-04T20:58:49.000Z"
-                  endTime: "2025-10-25T05:46Z"
+                  startTime: '2024-05-04T20:58:49.000Z'
+                  endTime: 2025-10-25T05:46Z
                   discountType: ABSOLUTE
                   discountValue: 1
                   brandId: '1'
@@ -97,29 +93,41 @@ paths:
             application/json:
               examples:
                 '11004':
-                  value: "{\n   \"status\": {\n       \"success\": false,\n      \
-                    \ \"code\": 11004,\n       \"message\": \"Reward already linked\
-                    \ to active catalog promotion.\"\n   },\n   \"catalogPromotion\"\
-                    : null,\n   \"failedRewards\": [\n       {\n           \"id\"\
-                    : 49827,\n           \"name\": \"20% off on women's wear\",\n\
-                    \           \"startTime\": \"2023-04-18 13:03:00\",\n        \
-                    \   \"endTime\": \"2023-10-29 04:59:30\",\n           \"type\"\
-                    : \"VOUCHER\",\n           \"priority\": 1,\n           \"enabled\"\
-                    : true,\n           \"intouchPoints\": 100,\n           \"redemptionType\"\
-                    : \"INTOUCH_REWARD\",\n           \"customFields\": {}\n     \
-                    \  }\n   ]\n}\n\n"
+                  value:
+                    status:
+                      success: false
+                      code: 11004
+                      message: Reward already linked to active catalog promotion.
+                    catalogPromotion: null
+                    failedRewards:
+                    - id: 49827
+                      name: 20% off on women's wear
+                      startTime: '2023-04-18 13:03:00'
+                      endTime: '2023-10-29 04:59:30'
+                      type: VOUCHER
+                      priority: 1
+                      enabled: true
+                      intouchPoints: 100
+                      redemptionType: INTOUCH_REWARD
+                      customFields: {}
                 '11015':
-                  value: "{\n   \"status\": {\n       \"success\": false,\n      \
-                    \ \"code\": 11015,\n       \"message\": \"Reward expired or disabled\
-                    \ or free. Cannot apply  catalog promotion.\"\n   },\n   \"catalogPromotion\"\
-                    : null,\n   \"failedRewards\": [\n       {\n           \"id\"\
-                    : 49499,\n           \"name\": \"20 off on 2000\",\n         \
-                    \  \"startTime\": \"2023-04-17 09:17:08\",\n           \"endTime\"\
-                    : \"2023-12-29 02:17:08\",\n           \"type\": \"VOUCHER\",\n\
-                    \           \"priority\": 1,\n           \"enabled\": false,\n\
-                    \           \"intouchPoints\": 150,\n           \"redemptionType\"\
-                    : \"INTOUCH_REWARD\",\n           \"customFields\": {}\n     \
-                    \  }\n   ]\n}\n\n"
+                  value:
+                    status:
+                      success: false
+                      code: 11015
+                      message: Reward expired or disabled or free. Cannot apply  catalog promotion.
+                    catalogPromotion: null
+                    failedRewards:
+                    - id: 49499
+                      name: 20 off on 2000
+                      startTime: '2023-04-17 09:17:08'
+                      endTime: '2023-12-29 02:17:08'
+                      type: VOUCHER
+                      priority: 1
+                      enabled: false
+                      intouchPoints: 150
+                      redemptionType: INTOUCH_REWARD
+                      customFields: {}
               schema:
                 oneOf:
                 - title: '11015'
@@ -138,8 +146,7 @@ paths:
                           default: 0
                         message:
                           type: string
-                          example: Reward expired or disabled or free. Cannot apply  catalog
-                            promotion.
+                          example: Reward expired or disabled or free. Cannot apply  catalog promotion.
                     catalogPromotion: {}
                     failedRewards:
                       type: array
@@ -155,10 +162,10 @@ paths:
                             example: 20 off on 2000
                           startTime:
                             type: string
-                            example: "2023-04-17 09:17:08"
+                            example: '2023-04-17 09:17:08'
                           endTime:
                             type: string
-                            example: "2023-12-29 02:17:08"
+                            example: '2023-12-29 02:17:08'
                           type:
                             type: string
                             example: VOUCHER
@@ -209,13 +216,13 @@ paths:
                             default: 0
                           name:
                             type: string
-                            example: "20% off on women's wear"
+                            example: 20% off on women's wear
                           startTime:
                             type: string
-                            example: "2023-04-18 13:03:00"
+                            example: '2023-04-18 13:03:00'
                           endTime:
                             type: string
-                            example: "2023-10-29 04:59:30"
+                            example: '2023-10-29 04:59:30'
                           type:
                             type: string
                             example: VOUCHER
@@ -240,17 +247,33 @@ paths:
       deprecated: false
       x-readme:
         code-samples:
-        - code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/promotion/create'\
-            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
-            \ application/json' \\\n--header 'accept: application/json' \\\n--header\
-            \ 'Authorization: Basic bWFkaHVf3MjU2YQ==' \\\n--header 'Cookie: _cfuvid=qrR26fiL9O7hSaVDD64eltEicRcuyxTkMuk2MPS2moc-1764581884487-0.0.1.1-604800000'\
-            \ \\\n--data '\n{\n  \"startTime\": \"2025-12-04T10:08:00.000Z\",\n  \"\
-            endTime\": \"2025-12-14T06:10:00.000Z\",\n  \"discountType\": \"PERCENTAGE\"\
-            ,\n  \"discountValue\": 20,\n  \"brandId\": \"61\",\n  \"languageSpecificInfo\"\
-            : [\n    {\n      \"languageCode\": \"en\",\n      \"name\": \"UAT Catalog\
-            \ Promotion \",\n      \"description\": \"Catalog Promotion for UAT team\"\
-            ,\n      \"enabled\": true\n    }\n  ],\n  \"rewardIds\": [\n    496584\n\
-            \  ]\n}\n'"
+        - code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/promotion/create' \
+            --header 'Accept: application/json' \
+            --header 'Content-Type: application/json' \
+            --header 'accept: application/json' \
+            --header 'Authorization: Basic bWFkaHVf3MjU2YQ==' \
+            --header 'Cookie: _cfuvid=qrR26fiL9O7hSaVDD64eltEicRcuyxTkMuk2MPS2moc-1764581884487-0.0.1.1-604800000' \
+            --data '
+            {
+              "startTime": "2025-12-04T10:08:00.000Z",
+              "endTime": "2025-12-14T06:10:00.000Z",
+              "discountType": "PERCENTAGE",
+              "discountValue": 20,
+              "brandId": "61",
+              "languageSpecificInfo": [
+                {
+                  "languageCode": "en",
+                  "name": "UAT Catalog Promotion ",
+                  "description": "Catalog Promotion for UAT team",
+                  "enabled": true
+                }
+              ],
+              "rewardIds": [
+                496584
+              ]
+            }
+            '
           language: shell
           name: Sample request
         samples-languages:

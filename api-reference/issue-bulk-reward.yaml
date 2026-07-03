@@ -3,7 +3,7 @@ info:
   title: Issue bulk reward
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -58,47 +58,66 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
-                    \   \"code\": 200,\n        \"message\": \"Reward issued successfully\"\
-                    \n    },\n    \"rewards\": [\n        {\n            \"status\"\
-                    : {\n                \"success\": false,\n                \"code\"\
-                    : 8010,\n                \"message\": \"Reward issued partially\"\
-                    \n            },\n            \"transactionId\": 397107,\n   \
-                    \         \"rewardId\": 225086,\n            \"requestedQuantity\"\
-                    : 1,\n            \"quantity\": 2,\n            \"pointsReferenceId\"\
-                    : null,\n            \"pointsReferenceIds\": [],\n           \
-                    \ \"eventLogId\": null,\n            \"requestId\": null,\n  \
-                    \          \"intouch\": [\n                {\n               \
-                    \     \"pointsRedeemed\": \"0\",\n                    \"couponCode\"\
-                    : \"1908009843\",\n                    \"codeExpiry\": \"2025-10-31\
-                    \ 00:00:00\",\n                    \"codeExpiryDateTime\": \"\
-                    2025-10-31T00:00:00Z\"\n                },\n                {\n\
-                    \                    \"pointsRedeemed\": \"0\",\n            \
-                    \        \"couponCode\": \"2088404495\",\n                   \
-                    \ \"codeExpiry\": \"2025-10-31 00:00:00\",\n                 \
-                    \   \"codeExpiryDateTime\": \"2025-10-31T00:00:00Z\"\n       \
-                    \         }\n            ],\n            \"promotions\": [],\n\
-                    \            \"vendor\": [],\n            \"eventDateTime\": \"\
-                    2025-05-08T13:48:13Z\",\n            \"restrictions\": null,\n\
-                    \            \"paymentConfig\": {\n                \"paymentMode\"\
-                    : \"FREE\",\n                \"id\": 463\n            },\n   \
-                    \         \"fulfillmentDetails\": null,\n            \"customFields\"\
-                    : null,\n            \"redemptionDetails\": null\n        },\n\
-                    \        {\n            \"status\": {\n                \"success\"\
-                    : false,\n                \"code\": 8003,\n                \"\
-                    message\": \"fail to issue reward\"\n            },\n        \
-                    \    \"transactionId\": 397108,\n            \"rewardId\": 225087,\n\
-                    \            \"requestedQuantity\": 1,\n            \"quantity\"\
-                    : 0,\n            \"pointsReferenceId\": null,\n            \"\
-                    pointsReferenceIds\": [],\n            \"eventLogId\": null,\n\
-                    \            \"requestId\": null,\n            \"intouch\": null,\n\
-                    \            \"promotions\": [],\n            \"vendor\": [],\n\
-                    \            \"eventDateTime\": \"2025-05-08T13:48:13Z\",\n  \
-                    \          \"restrictions\": null,\n            \"paymentConfig\"\
-                    : {\n                \"paymentMode\": \"FREE\",\n            \
-                    \    \"id\": 464\n            },\n            \"fulfillmentDetails\"\
-                    : null,\n            \"customFields\": null,\n            \"redemptionDetails\"\
-                    : null\n        }\n    ]\n}"
+                  value:
+                    status:
+                      success: true
+                      code: 200
+                      message: Reward issued successfully
+                    rewards:
+                    - status:
+                        success: false
+                        code: 8010
+                        message: Reward issued partially
+                      transactionId: 397107
+                      rewardId: 225086
+                      requestedQuantity: 1
+                      quantity: 2
+                      pointsReferenceId: null
+                      pointsReferenceIds: []
+                      eventLogId: null
+                      requestId: null
+                      intouch:
+                      - pointsRedeemed: '0'
+                        couponCode: '1908009843'
+                        codeExpiry: '2025-10-31 00:00:00'
+                        codeExpiryDateTime: '2025-10-31T00:00:00Z'
+                      - pointsRedeemed: '0'
+                        couponCode: '2088404495'
+                        codeExpiry: '2025-10-31 00:00:00'
+                        codeExpiryDateTime: '2025-10-31T00:00:00Z'
+                      promotions: []
+                      vendor: []
+                      eventDateTime: '2025-05-08T13:48:13Z'
+                      restrictions: null
+                      paymentConfig:
+                        paymentMode: FREE
+                        id: 463
+                      fulfillmentDetails: null
+                      customFields: null
+                      redemptionDetails: null
+                    - status:
+                        success: false
+                        code: 8003
+                        message: fail to issue reward
+                      transactionId: 397108
+                      rewardId: 225087
+                      requestedQuantity: 1
+                      quantity: 0
+                      pointsReferenceId: null
+                      pointsReferenceIds: []
+                      eventLogId: null
+                      requestId: null
+                      intouch: null
+                      promotions: []
+                      vendor: []
+                      eventDateTime: '2025-05-08T13:48:13Z'
+                      restrictions: null
+                      paymentConfig:
+                        paymentMode: FREE
+                        id: 464
+                      fulfillmentDetails: null
+                      customFields: null
+                      redemptionDetails: null
               schema:
                 type: object
                 properties:
@@ -169,17 +188,17 @@ paths:
                                 example: '1908009843'
                               codeExpiry:
                                 type: string
-                                example: "2025-10-31 00:00:00"
+                                example: '2025-10-31 00:00:00'
                               codeExpiryDateTime:
                                 type: string
-                                example: "2025-10-31T00:00:00Z"
+                                example: '2025-10-31T00:00:00Z'
                         promotions:
                           type: array
                         vendor:
                           type: array
                         eventDateTime:
                           type: string
-                          example: "2025-05-08T13:48:13Z"
+                          example: '2025-05-08T13:48:13Z'
                         restrictions: {}
                         paymentConfig:
                           type: object
@@ -200,39 +219,56 @@ paths:
             application/json:
               examples:
                 '8003':
-                  value: "{\n   \"status\": {\n       \"success\": false,\n      \
-                    \ \"code\": 8003,\n       \"message\": \"fail to issue reward\"\
-                    \n   },\n   \"rewards\": [\n       {\n           \"status\": {\n\
-                    \               \"success\": false,\n               \"code\":\
-                    \ 12005,\n               \"message\": \"Reward constraint evaluation\
-                    \ failed. Request failed. Max limit for the DAYS is reached. Allowed\
-                    \ limit is 15 For Level CUSTOMER\"\n           },\n          \
-                    \ \"rewardId\": 49827,\n           \"requestedQuantity\": 1,\n\
-                    \           \"pointsReferenceId\": null,\n           \"intouch\"\
-                    : null,\n           \"promotions\": null,\n           \"vendor\"\
-                    : null,\n           \"restrictions\": null\n       }\n   ]\n}\n\
-                    \n"
+                  value:
+                    status:
+                      success: false
+                      code: 8003
+                      message: fail to issue reward
+                    rewards:
+                    - status:
+                        success: false
+                        code: 12005
+                        message: Reward constraint evaluation failed. Request failed. Max limit for the
+                          DAYS is reached. Allowed limit is 15 For Level CUSTOMER
+                      rewardId: 49827
+                      requestedQuantity: 1
+                      pointsReferenceId: null
+                      intouch: null
+                      promotions: null
+                      vendor: null
+                      restrictions: null
                 Result:
-                  value: "{\n   \"status\": {\n       \"success\": false,\n      \
-                    \ \"code\": 8010,\n       \"message\": \"Reward issued partially\"\
-                    \n   },\n   \"rewards\": [\n       {\n           \"status\": {\n\
-                    \               \"success\": true,\n               \"code\": 200,\n\
-                    \               \"message\": \"Reward issued successfully\"\n\
-                    \           },\n           \"rewardId\": 13,\n           \"requestedQuantity\"\
-                    : 1,\n           \"pointsReferenceId\": \"ZGxGVD\",\n        \
-                    \   \"intouch\": [\n               {\n                   \"pointsRedeemed\"\
-                    : \"50\",\n                   \"couponCode\": \"42FU1ZP3\",\n\
-                    \                   \"codeExpiry\": \"2023-06-09 00:00:00\"\n\
-                    \               }\n           ],\n           \"promotions\": [],\n\
-                    \           \"vendor\": [],\n           \"restrictions\": null\n\
-                    \       },\n       {\n           \"status\": {\n             \
-                    \  \"success\": false,\n               \"code\": 8004,\n     \
-                    \          \"message\": \"fail to issue reward as  Coupon has\
-                    \ expired\"\n           },\n           \"rewardId\": 12,\n   \
-                    \        \"requestedQuantity\": 1,\n           \"pointsReferenceId\"\
-                    : \"ZGxGVD\",\n           \"intouch\": null,\n           \"promotions\"\
-                    : [],\n           \"vendor\": [],\n           \"restrictions\"\
-                    : null\n       }\n   ]\n}\n\n"
+                  value:
+                    status:
+                      success: false
+                      code: 8010
+                      message: Reward issued partially
+                    rewards:
+                    - status:
+                        success: true
+                        code: 200
+                        message: Reward issued successfully
+                      rewardId: 13
+                      requestedQuantity: 1
+                      pointsReferenceId: ZGxGVD
+                      intouch:
+                      - pointsRedeemed: '50'
+                        couponCode: 42FU1ZP3
+                        codeExpiry: '2023-06-09 00:00:00'
+                      promotions: []
+                      vendor: []
+                      restrictions: null
+                    - status:
+                        success: false
+                        code: 8004
+                        message: fail to issue reward as  Coupon has expired
+                      rewardId: 12
+                      requestedQuantity: 1
+                      pointsReferenceId: ZGxGVD
+                      intouch: null
+                      promotions: []
+                      vendor: []
+                      restrictions: null
               schema:
                 oneOf:
                 - type: object
@@ -294,7 +330,7 @@ paths:
                                   example: 42FU1ZP3
                                 codeExpiry:
                                   type: string
-                                  example: "2023-06-09 00:00:00"
+                                  example: '2023-06-09 00:00:00'
                           promotions:
                             type: array
                           vendor:
@@ -335,9 +371,8 @@ paths:
                                 default: 0
                               message:
                                 type: string
-                                example: Reward constraint evaluation failed. Request
-                                  failed. Max limit for the DAYS is reached. Allowed
-                                  limit is 15 For Level CUSTOMER
+                                example: Reward constraint evaluation failed. Request failed. Max limit
+                                  for the DAYS is reached. Allowed limit is 15 For Level CUSTOMER
                           rewardId:
                             type: integer
                             example: 49827

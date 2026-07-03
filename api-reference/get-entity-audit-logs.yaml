@@ -3,7 +3,7 @@ info:
   title: Get audit logs of entities
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -34,7 +34,7 @@ paths:
           format: int64
       - name: limit
         in: query
-        description: "The number of results you wish to retrieve. Default value: 10."
+        description: 'The number of results you wish to retrieve. Default value: 10.'
         schema:
           type: integer
           format: int32
@@ -48,15 +48,13 @@ paths:
           default: 0
       - name: sortBy
         in: query
-        description: "The field by which results should be sorted. Default value:\
-          \ autoUpdateTime."
+        description: 'The field by which results should be sorted. Default value: autoUpdateTime.'
         schema:
           type: string
           default: autoUpdateTime
       - name: sortOrder
         in: query
-        description: "The order in which results should be sorted. Supported values:\
-          \ ASC, DESC."
+        description: 'The order in which results should be sorted. Supported values: ASC, DESC.'
         schema:
           type: string
           enum:
@@ -64,20 +62,20 @@ paths:
           - DESC
       - name: startDate
         in: query
-        description: "The start date of the date range. Example: 2022-08-18 16:00:00."
+        description: 'The start date of the date range. Example: 2022-08-18 16:00:00.'
         schema:
           type: string
           format: date
       - name: endDate
         in: query
-        description: "The end date of the date range. Example: 2022-08-18 16:00:00."
+        description: 'The end date of the date range. Example: 2022-08-18 16:00:00.'
         schema:
           type: string
           format: date
       - name: referenceType
         in: query
-        description: The reference type. For Extended fields and Custom fields, audit
-          logging is allowed for a maximum of 5 fields each.
+        description: The reference type. For Extended fields and Custom fields, audit logging is allowed
+          for a maximum of 5 fields each.
         schema:
           type: string
           enum:
@@ -114,128 +112,167 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"data\": [\n        {\n            \"updatedByUser\"\
-                    : null,\n            \"updatedBy\": 75083604,\n            \"\
-                    orgId\": 100458,\n            \"entityType\": \"CUSTOMER\",\n\
-                    \            \"entityId\": 98662653,\n            \"createdOn\"\
-                    : 1700733054030,\n            \"requestId\": \"25b7780ed479ce80cd95326bcd2a3d91\"\
-                    ,\n            \"till\": null,\n            \"store\": null,\n\
-                    \            \"userContextDetails\": null,\n            \"victimUserDetails\"\
-                    : null,\n            \"survivorUserDetails\": null,\n        \
-                    \    \"source\": \"INSTORE\",\n            \"updatedByMode\":\
-                    \ \"API\",\n            \"autoUpdateTime\": 1700733053872,\n \
-                    \           \"events\": [\n                {\n               \
-                    \     \"eventType\": \"Identifiers\",\n                    \"\
-                    updatedField\": \"cardnumber\",\n                    \"additionalFields\"\
-                    : {\n                        \"previousValue\": \"NA\",\n    \
-                    \                    \"currentValue\": \"DIWALI000000001620232\"\
-                    \n                    },\n                    \"associateEntities\"\
-                    : null\n                }\n            ]\n        },\n       \
-                    \ {\n            \"updatedByUser\": null,\n            \"updatedBy\"\
-                    : 75070896,\n            \"orgId\": 100458,\n            \"entityType\"\
-                    : \"CUSTOMER\",\n            \"entityId\": 98662653,\n       \
-                    \     \"createdOn\": 1695899825615,\n            \"requestId\"\
-                    : \"2b47b859fa4e0d692b0cac7a200ef9cc\",\n            \"till\"\
-                    : null,\n            \"store\": null,\n            \"userContextDetails\"\
-                    : null,\n            \"victimUserDetails\": null,\n          \
-                    \  \"survivorUserDetails\": null,\n            \"source\": \"\
-                    INSTORE\",\n            \"updatedByMode\": \"API\",\n        \
-                    \    \"autoUpdateTime\": 1695899825494,\n            \"events\"\
-                    : [\n                {\n                    \"eventType\": \"\
-                    Identifiers\",\n                    \"updatedField\": \"mobile\"\
-                    ,\n                    \"additionalFields\": {\n             \
-                    \           \"previousValue\": \"9988776655\",\n             \
-                    \           \"currentValue\": \"9986000581\"\n               \
-                    \     },\n                    \"associateEntities\": null\n  \
-                    \              }\n            ]\n        },\n        {\n     \
-                    \       \"updatedByUser\": null,\n            \"updatedBy\": 75083604,\n\
-                    \            \"orgId\": 100458,\n            \"entityType\": \"\
-                    CUSTOMER\",\n            \"entityId\": 98662653,\n           \
-                    \ \"createdOn\": 1689238507261,\n            \"requestId\": \"\
-                    a272b65e26901f2d2959068543cfb509\",\n            \"till\": null,\n\
-                    \            \"store\": null,\n            \"userContextDetails\"\
-                    : null,\n            \"victimUserDetails\": null,\n          \
-                    \  \"survivorUserDetails\": null,\n            \"source\": \"\
-                    INSTORE\",\n            \"updatedByMode\": \"API\",\n        \
-                    \    \"autoUpdateTime\": 1689238507163,\n            \"events\"\
-                    : [\n                {\n                    \"eventType\": \"\
-                    Identifiers\",\n                    \"updatedField\": \"mobile\"\
-                    ,\n                    \"additionalFields\": {\n             \
-                    \           \"previousValue\": \"9353995291\",\n             \
-                    \           \"currentValue\": \"9988776655\"\n               \
-                    \     },\n                    \"associateEntities\": null\n  \
-                    \              }\n            ]\n        },\n        {\n     \
-                    \       \"updatedByUser\": null,\n            \"updatedBy\": 75083604,\n\
-                    \            \"orgId\": 100458,\n            \"entityType\": \"\
-                    CUSTOMER\",\n            \"entityId\": 98662653,\n           \
-                    \ \"createdOn\": 1689238436465,\n            \"requestId\": \"\
-                    020cf7e0f9827af77f22f6e7833dd0e4\",\n            \"till\": null,\n\
-                    \            \"store\": null,\n            \"userContextDetails\"\
-                    : null,\n            \"victimUserDetails\": null,\n          \
-                    \  \"survivorUserDetails\": null,\n            \"source\": \"\
-                    INSTORE\",\n            \"updatedByMode\": \"API\",\n        \
-                    \    \"autoUpdateTime\": 1689238436360,\n            \"events\"\
-                    : [\n                {\n                    \"eventType\": \"\
-                    Identifiers\",\n                    \"updatedField\": \"mobile\"\
-                    ,\n                    \"additionalFields\": {\n             \
-                    \           \"previousValue\": \"9345644382\",\n             \
-                    \           \"currentValue\": \"9353995291\"\n               \
-                    \     },\n                    \"associateEntities\": null\n  \
-                    \              }\n            ]\n        },\n        {\n     \
-                    \       \"updatedByUser\": null,\n            \"updatedBy\": 75083604,\n\
-                    \            \"orgId\": 100458,\n            \"entityType\": \"\
-                    CUSTOMER\",\n            \"entityId\": 98662653,\n           \
-                    \ \"createdOn\": 1688374431078,\n            \"requestId\": \"\
-                    4bfddb9d-8f0f-4535-8c9e-d72a1922a2f2\",\n            \"till\"\
-                    : null,\n            \"store\": null,\n            \"userContextDetails\"\
-                    : null,\n            \"victimUserDetails\": null,\n          \
-                    \  \"survivorUserDetails\": null,\n            \"source\": \"\
-                    INSTORE\",\n            \"updatedByMode\": \"API\",\n        \
-                    \    \"autoUpdateTime\": 1688374430917,\n            \"events\"\
-                    : [\n                {\n                    \"eventType\": \"\
-                    Identifiers\",\n                    \"updatedField\": \"cardnumber\"\
-                    ,\n                    \"additionalFields\": {\n             \
-                    \           \"previousValue\": \"NA\",\n                     \
-                    \   \"currentValue\": \"GOLD400000000000011162020\"\n        \
-                    \            },\n                    \"associateEntities\": null\n\
-                    \                }\n            ]\n        },\n        {\n   \
-                    \         \"updatedByUser\": null,\n            \"updatedBy\"\
-                    : 75083604,\n            \"orgId\": 100458,\n            \"entityType\"\
-                    : \"CUSTOMER\",\n            \"entityId\": 98662653,\n       \
-                    \     \"createdOn\": 1687954900362,\n            \"requestId\"\
-                    : \"91a3cfc4b2bbcb9426bbfb51966b6549\",\n            \"till\"\
-                    : null,\n            \"store\": null,\n            \"userContextDetails\"\
-                    : null,\n            \"victimUserDetails\": null,\n          \
-                    \  \"survivorUserDetails\": null,\n            \"source\": \"\
-                    INSTORE\",\n            \"updatedByMode\": \"API\",\n        \
-                    \    \"autoUpdateTime\": 1687954900155,\n            \"events\"\
-                    : [\n                {\n                    \"eventType\": \"\
-                    Identifiers\",\n                    \"updatedField\": \"cardnumber\"\
-                    ,\n                    \"additionalFields\": {\n             \
-                    \           \"previousValue\": \"NA\",\n                     \
-                    \   \"currentValue\": \"BUK0000044849PR\"\n                  \
-                    \  },\n                    \"associateEntities\": null\n     \
-                    \           }\n            ]\n        },\n        {\n        \
-                    \    \"updatedByUser\": null,\n            \"updatedBy\": 75036445,\n\
-                    \            \"orgId\": 100458,\n            \"entityType\": \"\
-                    CUSTOMER\",\n            \"entityId\": 98662653,\n           \
-                    \ \"createdOn\": 1670992526580,\n            \"requestId\": \"\
-                    2e8a8897bc351889b17d45b6d10feec5\",\n            \"till\": null,\n\
-                    \            \"store\": null,\n            \"userContextDetails\"\
-                    : null,\n            \"victimUserDetails\": null,\n          \
-                    \  \"survivorUserDetails\": null,\n            \"source\": \"\
-                    INSTORE\",\n            \"updatedByMode\": \"API\",\n        \
-                    \    \"autoUpdateTime\": 1670992526552,\n            \"events\"\
-                    : [\n                {\n                    \"eventType\": \"\
-                    Identifiers\",\n                    \"updatedField\": \"email\"\
-                    ,\n                    \"additionalFields\": {\n             \
-                    \           \"previousValue\": \"NA\",\n                     \
-                    \   \"currentValue\": \"tom.sawyer@capillarytech.com\"\n     \
-                    \               },\n                    \"associateEntities\"\
-                    : null\n                }\n            ]\n        }\n    ],\n\
-                    \    \"pagination\": {\n        \"totalElements\": 7,\n      \
-                    \  \"totalPages\": 1,\n        \"numberOfElements\": 7,\n    \
-                    \    \"number\": 0\n    }\n}"
+                  value:
+                    data:
+                    - updatedByUser: null
+                      updatedBy: 75083604
+                      orgId: 100458
+                      entityType: CUSTOMER
+                      entityId: 98662653
+                      createdOn: 1700733054030
+                      requestId: 25b7780ed479ce80cd95326bcd2a3d91
+                      till: null
+                      store: null
+                      userContextDetails: null
+                      victimUserDetails: null
+                      survivorUserDetails: null
+                      source: INSTORE
+                      updatedByMode: API
+                      autoUpdateTime: 1700733053872
+                      events:
+                      - eventType: Identifiers
+                        updatedField: cardnumber
+                        additionalFields:
+                          previousValue: NA
+                          currentValue: DIWALI000000001620232
+                        associateEntities: null
+                    - updatedByUser: null
+                      updatedBy: 75070896
+                      orgId: 100458
+                      entityType: CUSTOMER
+                      entityId: 98662653
+                      createdOn: 1695899825615
+                      requestId: 2b47b859fa4e0d692b0cac7a200ef9cc
+                      till: null
+                      store: null
+                      userContextDetails: null
+                      victimUserDetails: null
+                      survivorUserDetails: null
+                      source: INSTORE
+                      updatedByMode: API
+                      autoUpdateTime: 1695899825494
+                      events:
+                      - eventType: Identifiers
+                        updatedField: mobile
+                        additionalFields:
+                          previousValue: '9988776655'
+                          currentValue: '9986000581'
+                        associateEntities: null
+                    - updatedByUser: null
+                      updatedBy: 75083604
+                      orgId: 100458
+                      entityType: CUSTOMER
+                      entityId: 98662653
+                      createdOn: 1689238507261
+                      requestId: a272b65e26901f2d2959068543cfb509
+                      till: null
+                      store: null
+                      userContextDetails: null
+                      victimUserDetails: null
+                      survivorUserDetails: null
+                      source: INSTORE
+                      updatedByMode: API
+                      autoUpdateTime: 1689238507163
+                      events:
+                      - eventType: Identifiers
+                        updatedField: mobile
+                        additionalFields:
+                          previousValue: '9353995291'
+                          currentValue: '9988776655'
+                        associateEntities: null
+                    - updatedByUser: null
+                      updatedBy: 75083604
+                      orgId: 100458
+                      entityType: CUSTOMER
+                      entityId: 98662653
+                      createdOn: 1689238436465
+                      requestId: 020cf7e0f9827af77f22f6e7833dd0e4
+                      till: null
+                      store: null
+                      userContextDetails: null
+                      victimUserDetails: null
+                      survivorUserDetails: null
+                      source: INSTORE
+                      updatedByMode: API
+                      autoUpdateTime: 1689238436360
+                      events:
+                      - eventType: Identifiers
+                        updatedField: mobile
+                        additionalFields:
+                          previousValue: '9345644382'
+                          currentValue: '9353995291'
+                        associateEntities: null
+                    - updatedByUser: null
+                      updatedBy: 75083604
+                      orgId: 100458
+                      entityType: CUSTOMER
+                      entityId: 98662653
+                      createdOn: 1688374431078
+                      requestId: 4bfddb9d-8f0f-4535-8c9e-d72a1922a2f2
+                      till: null
+                      store: null
+                      userContextDetails: null
+                      victimUserDetails: null
+                      survivorUserDetails: null
+                      source: INSTORE
+                      updatedByMode: API
+                      autoUpdateTime: 1688374430917
+                      events:
+                      - eventType: Identifiers
+                        updatedField: cardnumber
+                        additionalFields:
+                          previousValue: NA
+                          currentValue: GOLD400000000000011162020
+                        associateEntities: null
+                    - updatedByUser: null
+                      updatedBy: 75083604
+                      orgId: 100458
+                      entityType: CUSTOMER
+                      entityId: 98662653
+                      createdOn: 1687954900362
+                      requestId: 91a3cfc4b2bbcb9426bbfb51966b6549
+                      till: null
+                      store: null
+                      userContextDetails: null
+                      victimUserDetails: null
+                      survivorUserDetails: null
+                      source: INSTORE
+                      updatedByMode: API
+                      autoUpdateTime: 1687954900155
+                      events:
+                      - eventType: Identifiers
+                        updatedField: cardnumber
+                        additionalFields:
+                          previousValue: NA
+                          currentValue: BUK0000044849PR
+                        associateEntities: null
+                    - updatedByUser: null
+                      updatedBy: 75036445
+                      orgId: 100458
+                      entityType: CUSTOMER
+                      entityId: 98662653
+                      createdOn: 1670992526580
+                      requestId: 2e8a8897bc351889b17d45b6d10feec5
+                      till: null
+                      store: null
+                      userContextDetails: null
+                      victimUserDetails: null
+                      survivorUserDetails: null
+                      source: INSTORE
+                      updatedByMode: API
+                      autoUpdateTime: 1670992526552
+                      events:
+                      - eventType: Identifiers
+                        updatedField: email
+                        additionalFields:
+                          previousValue: NA
+                          currentValue: tom.sawyer@capillarytech.com
+                        associateEntities: null
+                    pagination:
+                      totalElements: 7
+                      totalPages: 1
+                      numberOfElements: 7
+                      number: 0
               schema:
                 type: object
                 properties:
@@ -328,7 +365,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
@@ -336,10 +373,10 @@ paths:
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/v2/audits?entityType=CUSTOMER&entityId=98662653&source=INSTORE'\
-            \ \\\n--header 'Authorization: Basic bmVlc3RvcmV0aWxsc3blahblah5784393485TkwNzViOTY0YjA3MTUyZDIzNGI3MA=='\
-            \ \\\n--header 'Cookie: _cfuvid=G4EZ7m3VgBPYcMd9fhihHyQmvFmV74lEv6ViPSik2eI-1721025986040-0.0.1.1-604800000;\
-            \ _cfuvid=uMR4BVLIZQrSJ32SAvIJO5lJbORqEZo7MeYVpiOnbRI-1721287584295-0.0.1.1-604800000'"
+          code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/v2/audits?entityType=CUSTOMER&entityId=98662653&source=INSTORE' \
+            --header 'Authorization: Basic bmVlc3RvcmV0aWxsc3blahblah5784393485TkwNzViOTY0YjA3MTUyZDIzNGI3MA==' \
+            --header 'Cookie: _cfuvid=G4EZ7m3VgBPYcMd9fhihHyQmvFmV74lEv6ViPSik2eI-1721025986040-0.0.1.1-604800000; _cfuvid=uMR4BVLIZQrSJ32SAvIJO5lJbORqEZo7MeYVpiOnbRI-1721287584295-0.0.1.1-604800000'
         samples-languages:
         - curl
 components:

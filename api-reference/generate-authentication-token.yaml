@@ -3,7 +3,7 @@ info:
   title: Generate Authentication Token
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -36,12 +36,12 @@ paths:
                   - USERNAME.
                 mobile:
                   type: string
-                  description: Mobile number of the customer. Either mobile number
-                    or email ID is required to authenticate with username.
+                  description: Mobile number of the customer. Either mobile number or email ID is required
+                    to authenticate with username.
                 email:
                   type: string
-                  description: Email ID of the customer. Either mobile number or email
-                    ID is required to authenticate with username.
+                  description: Email ID of the customer. Either mobile number or email ID is required
+                    to authenticate with username.
                 password:
                   type: string
                   description: Password to login to the app.
@@ -50,12 +50,10 @@ paths:
                   description: Reenter the password.
                 brand:
                   type: string
-                  description: Name of the brand/org for which authentication needs
-                    to be verified.
+                  description: Name of the brand/org for which authentication needs to be verified.
                 deviceId:
                   type: string
-                  description: Unique ID of the device from which the customer has
-                    generated the token.
+                  description: Unique ID of the device from which the customer has generated the token.
             examples:
               Authenticate with mobile/email:
                 value:
@@ -80,13 +78,19 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
-                    \   \"code\": 200,\n        \"message\": \"SUCCESS\"\n    },\n\
-                    \    \"auth\": {\n        \"token\": \"eyJpZHYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiXSwiZGV2IjoiMzJydHNkZXJlZCIsIm9yZyI6IlNUQU5EQVJEQVBQIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwib2djIjpbIjE1MTA2MHxzYS5kZW1vLnNvbHV0aW9uIl0sImV4cCI6MTU5NzY1NTgxMywiaWF0IjoxNTk3NjUyMjEzLCJyb2wiOiJWSUVXIn0.2LqAg3tDVu8VwasSXuwiL6p917NCxgpKEt76qqrARgQ\"\
-                    ,\n        \"key\": null\n    },\n    \"user\": {\n        \"\
-                    appRegistered\": false,\n        \"sessionId\": \"D-12c177af-dac7-4383-a0fb-6c09e148af8e\"\
-                    ,\n        \"role\": \"VIEW\",\n        \"userRegisteredForPassword\"\
-                    : false\n    }\n}"
+                  value:
+                    status:
+                      success: true
+                      code: 200
+                      message: SUCCESS
+                    auth:
+                      token: eyJpZHYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiXSwiZGV2IjoiMzJydHNkZXJlZCIsIm9yZyI6IlNUQU5EQVJEQVBQIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwib2djIjpbIjE1MTA2MHxzYS5kZW1vLnNvbHV0aW9uIl0sImV4cCI6MTU5NzY1NTgxMywiaWF0IjoxNTk3NjUyMjEzLCJyb2wiOiJWSUVXIn0.2LqAg3tDVu8VwasSXuwiL6p917NCxgpKEt76qqrARgQ
+                      key: null
+                    user:
+                      appRegistered: false
+                      sessionId: D-12c177af-dac7-4383-a0fb-6c09e148af8e
+                      role: VIEW
+                      userRegisteredForPassword: false
               schema:
                 type: object
                 properties:
@@ -134,7 +138,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}

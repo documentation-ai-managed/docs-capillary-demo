@@ -3,14 +3,14 @@ info:
   title: Enable or Disable Reward Categories
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/api_gateway/rewards/core/v1/metadata/category/{categoryId}/status/{action}/brand/{brandId}":
+  /api_gateway/rewards/core/v1/metadata/category/{categoryId}/status/{action}/brand/{brandId}:
     put:
       summary: Enable or Disable Reward Categories
       description: Enable or disable a particular reward category.
@@ -25,8 +25,7 @@ paths:
         required: true
       - name: brandId
         in: path
-        description: Unique identifier for the brand under which the reward category
-          is associated.
+        description: Unique identifier for the brand under which the reward category is associated.
         schema:
           type: integer
           format: int64
@@ -47,9 +46,11 @@ paths:
             application/json:
               examples:
                 Sample Response:
-                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
-                    \   \"code\": 2006,\n        \"message\": \"Category updated successfully\"\
-                    \n    }\n}"
+                  value:
+                    status:
+                      success: true
+                      code: 2006
+                      message: Category updated successfully
               schema:
                 type: object
                 properties:
@@ -73,7 +74,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
@@ -81,14 +82,18 @@ paths:
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location --request PUT 'https://eucrm.cc.capillarytech.com/api_gateway/rewards/core/v1/metadata/category/129/status/enable/brand/55'\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Accept:\
-            \ */*' \\\n--header 'Authorization: Basic Ymxpc3M6MWYjNzU5MWI1NzY='"
+          code: |-
+            curl --location --request PUT 'https://eucrm.cc.capillarytech.com/api_gateway/rewards/core/v1/metadata/category/129/status/enable/brand/55' \
+            --header 'Content-Type: application/json' \
+            --header 'Accept: */*' \
+            --header 'Authorization: Basic Ymxpc3M6MWYjNzU5MWI1NzY='
           name: Sample Request for Enabling Reward Category
         - language: curl
-          code: "curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/metadata/category/129/status/disable/brand/55'\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Accept:\
-            \ */*' \\\n--header 'Authorization: Basic Ymxpc3M6MWY5U5MWI1NzY='"
+          code: |-
+            curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/metadata/category/129/status/disable/brand/55' \
+            --header 'Content-Type: application/json' \
+            --header 'Accept: */*' \
+            --header 'Authorization: Basic Ymxpc3M6MWY5U5MWI1NzY='
           name: Sample Request for Disabling Reward Category
         samples-languages:
         - curl

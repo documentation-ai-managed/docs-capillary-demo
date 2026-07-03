@@ -3,7 +3,7 @@ info:
   title: Create custom field for reward
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -31,8 +31,8 @@ paths:
                   description: Unique name identifier for the custom field.
                 orgId:
                   type: string
-                  description: Unique identifier of the organisation. To retrieve
-                    the orgId, use the Get Org Details API.
+                  description: Unique identifier of the organisation. To retrieve the orgId, use the Get
+                    Org Details API.
                 description:
                   type: string
                   description: Description for the custom field.
@@ -42,8 +42,7 @@ paths:
                   default: false
                 isActive:
                   type: boolean
-                  description: Parameter to define if the custom field is active or
-                    not
+                  description: Parameter to define if the custom field is active or not
                   default: true
                 scope:
                   type: string
@@ -54,8 +53,8 @@ paths:
                   - CATALOGUE_PROMOTION
                 dataType:
                   type: string
-                  description: Type of data for the custom field. 255 is the character
-                    limit with datatype as string
+                  description: Type of data for the custom field. 255 is the character limit with datatype
+                    as string
                   enum:
                   - BOOLEAN
                   - ENUM
@@ -64,8 +63,8 @@ paths:
                   - INTEGER
                 enumValues:
                   type: array
-                  description: Object containing the enum values. This parameter is
-                    required if dataType is ENUM.
+                  description: Object containing the enum values. This parameter is required if dataType
+                    is ENUM.
                   items:
                     type: string
             examples:
@@ -79,7 +78,7 @@ paths:
                   scope: REWARD
                   defaultValue: null
                   dataType: STRING
-              "scope : Catalogue Promotion":
+              'scope : Catalogue Promotion':
                 value:
                   orgId: 100458
                   name: Order confirmed
@@ -89,7 +88,7 @@ paths:
                   scope: CATALOGUE_PROMOTION
                   defaultValue: null
                   dataType: STRING
-              "scope: Issue Reward":
+              'scope: Issue Reward':
                 value:
                   orgId: 100458
                   name: Order confirmed
@@ -105,38 +104,67 @@ paths:
           content:
             application/json:
               examples:
-                "Scope: REWARD":
-                  value: "{\n    \"id\": 18833,\n    \"orgId\": 100737,\n    \"name\"\
-                    : \"CustomField1\",\n    \"description\": \"CustomField1\",\n\
-                    \    \"isMandatory\": false,\n    \"isActive\": true,\n    \"\
-                    scope\": \"REWARD\",\n    \"defaultValue\": null,\n    \"dataType\"\
-                    : \"STRING\",\n    \"createdBy\": 75152721,\n    \"createdOn\"\
-                    : 1741934782959,\n    \"createdOnDateTime\": \"2025-03-14T06:46:22Z\"\
-                    ,\n    \"lastUpdatedBy\": 75152721,\n    \"lastUpdatedOn\": 1741934782959,\n\
-                    \    \"enumValues\": null,\n    \"lastUpdatedOnDateTime\": \"\
-                    2025-03-14T06:46:22Z\"\n}"
-                "Scope: CATALOGUE_PROMOTION":
-                  value: "{\n    \"id\": 6913,\n    \"orgId\": 100458,\n    \"name\"\
-                    : \"Order confirmed\",\n    \"description\": \"Reward is processing\"\
-                    ,\n    \"isMandatory\": false,\n    \"isActive\": true,\n    \"\
-                    scope\": \"CATALOGUE_PROMOTION\",\n    \"defaultValue\": null,\n\
-                    \    \"dataType\": \"STRING\",\n    \"createdBy\": 75130850,\n\
-                    \    \"createdOn\": null,\n    \"lastUpdatedBy\": 75130850,\n\
-                    \    \"lastUpdatedOn\": null\n}"
-                "Scope: ISSUE_REWARD":
-                  value: "{\n    \"id\": 210,\n    \"orgId\": 100458,\n    \"name\"\
-                    : \"CF1A112\",\n    \"description\": \"CF1A112\",\n    \"isMandatory\"\
-                    : false,\n    \"isActive\": true,\n    \"scope\": \"ISSUE_REWARD\"\
-                    ,\n    \"defaultValue\": null,\n    \"dataType\": \"STRING\",\n\
-                    \    \"createdBy\": 75086856,\n    \"createdOn\": null,\n    \"\
-                    lastUpdatedBy\": 75086856,\n    \"lastUpdatedOn\": null\n}"
-                "dataType: ENUM":
-                  value: "{\n    \"orgId\": 100458,\n    \"name\": \"CustomField\"\
-                    ,\n    \"description\": \"\",\n    \"isMandatory\": false,\n \
-                    \   \"isActive\": false,\n    \"defaultValue\": \"PRIMARY\",\n\
-                    \    \"dataType\": \"ENUM\",\n    \"scope\": \"ISSUE_REWARD\"\
-                    ,\n    \"enumValues\": [\n        \"PRIMARY\",\n        \"SECONDARY\"\
-                    \n    ]\n}"
+                'Scope: REWARD':
+                  value:
+                    id: 18833
+                    orgId: 100737
+                    name: CustomField1
+                    description: CustomField1
+                    isMandatory: false
+                    isActive: true
+                    scope: REWARD
+                    defaultValue: null
+                    dataType: STRING
+                    createdBy: 75152721
+                    createdOn: 1741934782959
+                    createdOnDateTime: '2025-03-14T06:46:22Z'
+                    lastUpdatedBy: 75152721
+                    lastUpdatedOn: 1741934782959
+                    enumValues: null
+                    lastUpdatedOnDateTime: '2025-03-14T06:46:22Z'
+                'Scope: CATALOGUE_PROMOTION':
+                  value:
+                    id: 6913
+                    orgId: 100458
+                    name: Order confirmed
+                    description: Reward is processing
+                    isMandatory: false
+                    isActive: true
+                    scope: CATALOGUE_PROMOTION
+                    defaultValue: null
+                    dataType: STRING
+                    createdBy: 75130850
+                    createdOn: null
+                    lastUpdatedBy: 75130850
+                    lastUpdatedOn: null
+                'Scope: ISSUE_REWARD':
+                  value:
+                    id: 210
+                    orgId: 100458
+                    name: CF1A112
+                    description: CF1A112
+                    isMandatory: false
+                    isActive: true
+                    scope: ISSUE_REWARD
+                    defaultValue: null
+                    dataType: STRING
+                    createdBy: 75086856
+                    createdOn: null
+                    lastUpdatedBy: 75086856
+                    lastUpdatedOn: null
+                'dataType: ENUM':
+                  value:
+                    orgId: 100458
+                    name: CustomField
+                    description: ''
+                    isMandatory: false
+                    isActive: false
+                    defaultValue: PRIMARY
+                    dataType: ENUM
+                    scope: ISSUE_REWARD
+                    enumValues:
+                    - PRIMARY
+                    - SECONDARY
                 Sample response:
                   summary: Sample response
                   value:
@@ -158,7 +186,7 @@ paths:
                     lastUpdatedOnDateTime: null
               schema:
                 oneOf:
-                - title: "Scope: REWARD"
+                - title: 'Scope: REWARD'
                   type: object
                   properties:
                     id:
@@ -200,7 +228,7 @@ paths:
                       default: 0
                     createdOnDateTime:
                       type: string
-                      example: "2025-03-14T06:46:22Z"
+                      example: '2025-03-14T06:46:22Z'
                     lastUpdatedBy:
                       type: integer
                       example: 75152721
@@ -212,8 +240,8 @@ paths:
                     enumValues: {}
                     lastUpdatedOnDateTime:
                       type: string
-                      example: "2025-03-14T06:46:22Z"
-                - title: "Scope: CATALOGUE_PROMOTION"
+                      example: '2025-03-14T06:46:22Z'
+                - title: 'Scope: CATALOGUE_PROMOTION'
                   type: object
                   properties:
                     id:
@@ -255,7 +283,7 @@ paths:
                       example: 75130850
                       default: 0
                     lastUpdatedOn: {}
-                - title: "Scope: ISSUE_REWARD"
+                - title: 'Scope: ISSUE_REWARD'
                   type: object
                   properties:
                     id:
@@ -297,7 +325,7 @@ paths:
                       example: 75086856
                       default: 0
                     lastUpdatedOn: {}
-                - title: "dataType: ENUM"
+                - title: 'dataType: ENUM'
                   type: object
                   properties:
                     orgId:
@@ -338,30 +366,42 @@ paths:
             application/json:
               examples:
                 Wrong default value:
-                  value: "{\n    \"status\": {\n        \"success\": false,\n    \
-                    \    \"code\": 3025,\n        \"message\": \"Default value not\
-                    \ found in the enum list\"\n    }\n}"
+                  value:
+                    status:
+                      success: false
+                      code: 3025
+                      message: Default value not found in the enum list
                 ENUM value empty:
-                  value: "{\n    \"status\": {\n        \"success\": false,\n    \
-                    \    \"code\": 3030,\n        \"message\": \"Enum value cannot\
-                    \ be empty\"\n    }\n}"
+                  value:
+                    status:
+                      success: false
+                      code: 3030
+                      message: Enum value cannot be empty
                 Unsupported character in ENUM:
-                  value: "{\n    \"status\": {\n        \"success\": false,\n    \
-                    \    \"code\": 3024,\n        \"message\": \"Invalid characters\
-                    \ in enum value. Allowed characters: [a-z,A-Z,0-9,[]()-_ ]\"\n\
-                    \    }\n}"
+                  value:
+                    status:
+                      success: false
+                      code: 3024
+                      message: 'Invalid characters in enum value. Allowed characters: [a-z,A-Z,0-9,[]()-_
+                        ]'
                 No ENUM provided:
-                  value: "{\n    \"status\": {\n        \"success\": false,\n    \
-                    \    \"code\": 400,\n        \"message\": \"ENUM's list size is\
-                    \ out of limit\"\n    }\n}"
+                  value:
+                    status:
+                      success: false
+                      code: 400
+                      message: ENUM's list size is out of limit
                 ENUM character limit exceeded:
-                  value: "{\n    \"status\": {\n        \"success\": false,\n    \
-                    \    \"code\": 3028,\n        \"message\": \"Enum value exceeds\
-                    \ the limit of 80 characters\"\n    }\n}"
+                  value:
+                    status:
+                      success: false
+                      code: 3028
+                      message: Enum value exceeds the limit of 80 characters
                 Duplicate ENUM values provided:
-                  value: "{\n    \"status\": {\n        \"success\": false,\n    \
-                    \    \"code\": 3029,\n        \"message\": \"Duplicate enum values\
-                    \ found\"\n    }\n}"
+                  value:
+                    status:
+                      success: false
+                      code: 3029
+                      message: Duplicate enum values found
               schema:
                 oneOf:
                 - title: Wrong default value
@@ -414,8 +454,8 @@ paths:
                           default: 0
                         message:
                           type: string
-                          example: "Invalid characters in enum value. Allowed characters:\
-                            \ [a-z,A-Z,0-9,[]()-_ ]"
+                          example: 'Invalid characters in enum value. Allowed characters: [a-z,A-Z,0-9,[]()-_
+                            ]'
                 - title: No ENUM provided
                   type: object
                   properties:
@@ -432,7 +472,7 @@ paths:
                           default: 0
                         message:
                           type: string
-                          example: "ENUM's list size is out of limit"
+                          example: ENUM's list size is out of limit
                 - title: ENUM character limit exceeded
                   type: object
                   properties:
@@ -470,20 +510,26 @@ paths:
       deprecated: false
       x-readme:
         code-samples:
-        - code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/customfield'\
-            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
-            \ application/json' \\\n--header 'accept: application/json' \\\n--header\
-            \ 'Authorization: Basic bWFkaHVfcjU2YQ==' \\\n--header 'Cookie: _cfuvid=EZk.XAGmnGytGPQFxLHCnFm_v4YhnMy7zloRQ46HJuo-1763640364440-0.0.1.1-604800000'\
-            \ \\\n--data '{\n     Mandatory Parameters\n    \"name\": \"terrorz\"\
-            ,\n    \"description\": \"Custom Field of STRING Type\",\n    \"scope\"\
-            : \"CATALOGUE_PROMOTION\",\n    \"dataType\": \"STRING\",\n     Non-Mandatory\
-            \ Parameters\n    \"orgId\": 100737,\n    \"isMandatory\": false,\n  \
-            \  \"isActive\": true,\n     \"defaultValue\": \"EV3\",\n     \"enumValues\"\
-            : [\"EV1\", \"EV2\", \"EV3\", \"EV4\", \"EV5\", \"EV6\", \"EV7\", \"EV8\"\
-            , \"EV9\", \"EV10\", \"EV11\", \"EV12\", \"EV13\", \"EV14\", \"EV15\"\
-            , \"EV16\", \"EV17\", \"EV18\", \"EV19\", \"EV20\", \"EV21\", \"EV22\"\
-            , \"EV23\", \"EV24\", \"EV25\", \"EV26\", \"EV27\", \"EV28\", \"EV29\"\
-            , \"EV30\"]\n}"
+        - code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/customfield' \
+            --header 'Accept: application/json' \
+            --header 'Content-Type: application/json' \
+            --header 'accept: application/json' \
+            --header 'Authorization: Basic bWFkaHVfcjU2YQ==' \
+            --header 'Cookie: _cfuvid=EZk.XAGmnGytGPQFxLHCnFm_v4YhnMy7zloRQ46HJuo-1763640364440-0.0.1.1-604800000' \
+            --data '{
+                 Mandatory Parameters
+                "name": "terrorz",
+                "description": "Custom Field of STRING Type",
+                "scope": "CATALOGUE_PROMOTION",
+                "dataType": "STRING",
+                 Non-Mandatory Parameters
+                "orgId": 100737,
+                "isMandatory": false,
+                "isActive": true,
+                 "defaultValue": "EV3",
+                 "enumValues": ["EV1", "EV2", "EV3", "EV4", "EV5", "EV6", "EV7", "EV8", "EV9", "EV10", "EV11", "EV12", "EV13", "EV14", "EV15", "EV16", "EV17", "EV18", "EV19", "EV20", "EV21", "EV22", "EV23", "EV24", "EV25", "EV26", "EV27", "EV28", "EV29", "EV30"]
+            }
           language: shell
           name: Sample request
         samples-languages:

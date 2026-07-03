@@ -3,7 +3,7 @@ info:
   title: Retrieve Custom Event Config Details of Org
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -22,22 +22,27 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"data\": [\n        {\n            \"orgId\": 100737,\n\
-                    \            \"entityType\": \"TRANSACTION\",\n            \"\
-                    transformEndpoint\": \"/transform/transaction/custom\",\n    \
-                    \        \"active\": true,\n            \"auditInfo\": {\n   \
-                    \             \"createdOn\": \"2025-04-23T06:59:56.411+00:00\"\
-                    ,\n                \"createdBy\": 75155282,\n                \"\
-                    lastUpdatedOn\": \"2025-04-23T07:06:33.947+00:00\",\n        \
-                    \        \"lastUpdatedBy\": 75155282\n            }\n        },\n\
-                    \        {\n            \"orgId\": 100737,\n            \"entityType\"\
-                    : \"CUSTOMER\",\n            \"transformEndpoint\": \"/transform/customer/custom\"\
-                    ,\n            \"active\": true,\n            \"auditInfo\": {\n\
-                    \                \"createdOn\": \"2025-04-23T10:22:01.792+00:00\"\
-                    ,\n                \"createdBy\": 75155282,\n                \"\
-                    lastUpdatedOn\": \"2025-04-23T10:22:01.792+00:00\",\n        \
-                    \        \"lastUpdatedBy\": 75155282\n            }\n        }\n\
-                    \    ],\n    \"errors\": []\n}"
+                  value:
+                    data:
+                    - orgId: 100737
+                      entityType: TRANSACTION
+                      transformEndpoint: /transform/transaction/custom
+                      active: true
+                      auditInfo:
+                        createdOn: '2025-04-23T06:59:56.411+00:00'
+                        createdBy: 75155282
+                        lastUpdatedOn: '2025-04-23T07:06:33.947+00:00'
+                        lastUpdatedBy: 75155282
+                    - orgId: 100737
+                      entityType: CUSTOMER
+                      transformEndpoint: /transform/customer/custom
+                      active: true
+                      auditInfo:
+                        createdOn: '2025-04-23T10:22:01.792+00:00'
+                        createdBy: 75155282
+                        lastUpdatedOn: '2025-04-23T10:22:01.792+00:00'
+                        lastUpdatedBy: 75155282
+                    errors: []
               schema:
                 type: object
                 properties:
@@ -65,14 +70,14 @@ paths:
                           properties:
                             createdOn:
                               type: string
-                              example: "2025-04-23T06:59:56.411+00:00"
+                              example: '2025-04-23T06:59:56.411+00:00'
                             createdBy:
                               type: integer
                               example: 75155282
                               default: 0
                             lastUpdatedOn:
                               type: string
-                              example: "2025-04-23T07:06:33.947+00:00"
+                              example: '2025-04-23T07:06:33.947+00:00'
                             lastUpdatedBy:
                               type: integer
                               example: 75155282
@@ -85,7 +90,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
@@ -93,13 +98,17 @@ paths:
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location --request GET 'eu.api.capillarytech.com/api_gateway/cortex/v1/neo-config'\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization:\
-            \ Basic bmVlcmFqLmRvYzpiNGFmODA0MDA5Y2IwMzZhNGNjZGMzMzQzMWVmOWFjOQ=='\
-            \ \\\n--header 'Cookie: _cfuvid=dfGNwl01cEi2PH5VITS.zzfnmaVvZHqjsz8uMcy6KNA-1745384630231-0.0.1.1-604800000'\
-            \ \\\n--data '{\n  \"orgId\": 100737,\n  \"entityType\": \"TRANSACTION\"\
-            ,\n  \"transformEndpoint\": \"/transform/transaction/custom\",\n  \"active\"\
-            : true\n}'"
+          code: |-
+            curl --location --request GET 'eu.api.capillarytech.com/api_gateway/cortex/v1/neo-config' \
+            --header 'Content-Type: application/json' \
+            --header 'Authorization: Basic bmVlcmFqLmRvYzpiNGFmODA0MDA5Y2IwMzZhNGNjZGMzMzQzMWVmOWFjOQ==' \
+            --header 'Cookie: _cfuvid=dfGNwl01cEi2PH5VITS.zzfnmaVvZHqjsz8uMcy6KNA-1745384630231-0.0.1.1-604800000' \
+            --data '{
+              "orgId": 100737,
+              "entityType": "TRANSACTION",
+              "transformEndpoint": "/transform/transaction/custom",
+              "active": true
+            }'
         samples-languages:
         - curl
 components:

@@ -3,7 +3,7 @@ info:
   title: Change identifier on Auth engine
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -13,8 +13,7 @@ paths:
   /auth/v1/user/updateIdentifierValue:
     post:
       summary: Change identifier on Auth engine
-      description: This API enables you to change identifier values in the Auth engine
-        database.
+      description: This API enables you to change identifier values in the Auth engine database.
       operationId: change_identifier-on-auth-engine
       requestBody:
         content:
@@ -49,8 +48,7 @@ paths:
                   description: Token generated using auth/v1/web/token/generate
                 deviceId:
                   type: string
-                  description: Unique ID of the device from which the customer has
-                    generated the token.
+                  description: Unique ID of the device from which the customer has generated the token.
             examples:
               Example body:
                 value:
@@ -66,8 +64,11 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
-                    \   \"code\": 200,\n        \"message\": \"SUCCESS\"\n    }\n}"
+                  value:
+                    status:
+                      success: true
+                      code: 200
+                      message: SUCCESS
               schema:
                 type: object
                 properties:
@@ -91,11 +92,9 @@ paths:
             application/json:
               examples:
                 Invalid identifier type:
-                  value: "Can not deserialize value of type com.capillary.solutions.auth.domain.IdentifierType\
-                    \ from String \"MOBIL\": value not one of declared Enum instance\
-                    \ names: [MOBILE, EMAIL, USERNAME, EXTERNALID]\n at [Source: org.glassfish.jersey.message.internal.ReaderInterceptorExecutor$UnCloseableInputStream@497779b5;\
-                    \ line: 3, column: 21] (through reference chain: com.capillary.solutions.auth.request.ChangeIdentifierRequest[\"\
-                    identifierType\"])"
+                  value: |-
+                    Can not deserialize value of type com.capillary.solutions.auth.domain.IdentifierType from String "MOBIL": value not one of declared Enum instance names: [MOBILE, EMAIL, USERNAME, EXTERNALID]
+                     at [Source: org.glassfish.jersey.message.internal.ReaderInterceptorExecutor$UnCloseableInputStream@497779b5; line: 3, column: 21] (through reference chain: com.capillary.solutions.auth.request.ChangeIdentifierRequest["identifierType"])
       deprecated: false
 components:
   securitySchemes:

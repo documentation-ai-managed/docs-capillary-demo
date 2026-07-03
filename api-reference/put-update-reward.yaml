@@ -3,14 +3,14 @@ info:
   title: Update Reward
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/api_gateway/rewards/core/v1/reward/{rewardId}/brand/{brandId}":
+  /api_gateway/rewards/core/v1/reward/{rewardId}/brand/{brandId}:
     put:
       summary: Update Reward
       description: ''
@@ -38,40 +38,24 @@ paths:
                 RAW_BODY:
                   type: string
                   description: Request body
-                  default: "{     \"name\": \"testreward1poi\",     \"description\"\
-                    : \"testreward1\",     \"startTime\": \"2025-09-26T20:00:00\"\
-                    ,     \"endTime\": \"2026-10-31T11:59:30\",     \"priority\":\
-                    \ 1,     \"type\": \"VOUCHER\",     \"brandId\": \"1\",     \"\
-                    enabled\": true,     \"intouchPoints\": 500,     \"geography\"\
-                    : [         {             \"countryId\": 1         }     ],  \
-                    \   \"categories\": [         4     ],     \"rewardRank\":\"1\"\
-                    ,     \"intouchSeriesId\": \"301233\",     \"redemptionType\"\
-                    : \"INTOUCH_REWARD\",     \"vendorRedemption\": null,     \"communications\"\
-                    : [         \"1\"     ],     \"restrictions\": {         \"customerLevel\"\
-                    : [             {                 \"kpi\": \"QUANTITY\",     \
-                    \            \"limit\": 10,                 \"repeatFrequencyType\"\
-                    : \"DAYS\",                 \"interval\": \"30\"             },\
-                    \             {                 \"kpi\": \"QUANTITY\",       \
-                    \          \"limit\": 50,                 \"repeatFrequencyType\"\
-                    : \"MONTHS\",                 \"interval\": \"12\"           \
-                    \  }         ],         \"rewardLevel\": [             {     \
-                    \            \"kpi\": \"QUANTITY\",                 \"limit\"\
-                    : 10000,                 \"repeatFrequencyType\": \"NO_LIMIT\"\
-                    \             }         ]     },     \"supplementaryCriteriaRO\"\
-                    : [         {             \"loyaltyProgramId\": 469,         \
-                    \    \"tierIds\": null,             \"partnerProgramIds\": [ \
-                    \                48             ]         },         {       \
-                    \      \"loyaltyProgramId\": 690,             \"tierIds\": null,\
-                    \             \"partnerProgramIds\": null         }     ],   \
-                    \  \"customFields\": {         \"CF1\": \"Custom field 1\"   \
-                    \  },     \"languageSpecificInfo\": [         {             \"\
-                    languageCode\": \"en\",             \"name\": \"testreward1\"\
-                    ,             \"description\": \"testreward1\",             \"\
-                    imageId\": \"bef4d522-2cf8-4fea-8087-376c449d5c85\",         \
-                    \    \"termNConditions\": \"t&c\",             \"thumbnailId\"\
-                    : \"c886f064-2b3f-4c19-9e86-7f7e5ab5ae04\",             \"termNConditionsId\"\
-                    : \"820a3d7f-2601-405b-9f56-4a3ba8e9df73\",             \"enabled\"\
-                    : true         }     ],     \"isactive\" : true }"
+                  default: '{     "name": "testreward1poi",     "description": "testreward1",     "startTime":
+                    "2025-09-26T20:00:00",     "endTime": "2026-10-31T11:59:30",     "priority": 1,     "type":
+                    "VOUCHER",     "brandId": "1",     "enabled": true,     "intouchPoints": 500,     "geography":
+                    [         {             "countryId": 1         }     ],     "categories": [         4     ],     "rewardRank":"1",     "intouchSeriesId":
+                    "301233",     "redemptionType": "INTOUCH_REWARD",     "vendorRedemption": null,     "communications":
+                    [         "1"     ],     "restrictions": {         "customerLevel": [             {                 "kpi":
+                    "QUANTITY",                 "limit": 10,                 "repeatFrequencyType": "DAYS",                 "interval":
+                    "30"             },             {                 "kpi": "QUANTITY",                 "limit":
+                    50,                 "repeatFrequencyType": "MONTHS",                 "interval": "12"             }         ],         "rewardLevel":
+                    [             {                 "kpi": "QUANTITY",                 "limit": 10000,                 "repeatFrequencyType":
+                    "NO_LIMIT"             }         ]     },     "supplementaryCriteriaRO": [         {             "loyaltyProgramId":
+                    469,             "tierIds": null,             "partnerProgramIds": [                 48             ]         },         {             "loyaltyProgramId":
+                    690,             "tierIds": null,             "partnerProgramIds": null         }     ],     "customFields":
+                    {         "CF1": "Custom field 1"     },     "languageSpecificInfo": [         {             "languageCode":
+                    "en",             "name": "testreward1",             "description": "testreward1",             "imageId":
+                    "bef4d522-2cf8-4fea-8087-376c449d5c85",             "termNConditions": "t&c",             "thumbnailId":
+                    "c886f064-2b3f-4c19-9e86-7f7e5ab5ae04",             "termNConditionsId": "820a3d7f-2601-405b-9f56-4a3ba8e9df73",             "enabled":
+                    true         }     ],     "isactive" : true }'
                   format: json
       responses:
         '200':
@@ -117,20 +101,25 @@ paths:
             application/json:
               examples:
                 '3014':
-                  value: "{\n   \"status\": {\n       \"success\": false,\n      \
-                    \ \"code\": 3014,\n       \"message\": \"Unable to update reward\
-                    \ as Org doesn't have the custom field/s: labels,tag\"\n   },\n\
-                    \   \"reward\": null\n}\n\n"
+                  value:
+                    status:
+                      success: false
+                      code: 3014
+                      message: 'Unable to update reward as Org doesn''t have the custom field/s: labels,tag'
+                    reward: null
                 Result:
-                  value: "{\n    \"status\": {\n        \"success\": false,\n    \
-                    \    \"code\": 400,\n        \"message\": \"Multiple payments\
-                    \ is not supported within FREE and CONV_RATIO modes,Conversion\
-                    \ ratio can be set only for MILES, CASH_WALLET and CHARITY content\
-                    \ types\"\n    }\n}"
+                  value:
+                    status:
+                      success: false
+                      code: 400
+                      message: Multiple payments is not supported within FREE and CONV_RATIO modes,Conversion
+                        ratio can be set only for MILES, CASH_WALLET and CHARITY content types
                 bad request 1:
-                  value: "{\n    \"status\": {\n        \"success\": false,\n    \
-                    \    \"code\": 400,\n        \"message\": \"Passed entityId is\
-                    \ not exists\"\n    }\n}"
+                  value:
+                    status:
+                      success: false
+                      code: 400
+                      message: Passed entityId is not exists
               schema:
                 oneOf:
                 - title: '3014'
@@ -149,8 +138,7 @@ paths:
                           default: 0
                         message:
                           type: string
-                          example: "Unable to update reward as Org doesn't have the\
-                            \ custom field/s: labels,tag"
+                          example: 'Unable to update reward as Org doesn''t have the custom field/s: labels,tag'
                     reward: {}
                 - type: object
                   properties:
@@ -200,154 +188,245 @@ paths:
                           default: 0
                         message:
                           type: string
-                          example: Multiple payments is not supported within FREE
-                            and CONV_RATIO modes,Conversion ratio can be set only
-                            for MILES, CASH_WALLET and CHARITY content types
+                          example: Multiple payments is not supported within FREE and CONV_RATIO modes,Conversion
+                            ratio can be set only for MILES, CASH_WALLET and CHARITY content types
       deprecated: false
       x-readme:
         code-samples:
         - language: curl
-          code: "curl -L -X PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/458081/brand/61'\
-            \ \\\n-H 'Content-Type: application/json' \\\n-H 'Authorization: Basic\
-            \ GM5ZmM2YjZlY2I2MmEy' \\\n-H 'Cookie: _cfuvid=PZ2Qs9Lv6_ngy2fSsa2ZHebqE7qq7WrhJNpax_n8cXA-1759145375283-0.0.1.1-604800000'\
-            \ \\\n-d '{\n    \"startTime\": \"2025-08-31T06:00:00Z\",\n    \"endTime\"\
-            : \"2025-09-30T11:59:30Z\",\n    \"type\": \"VOUCHER\",\n    \"brandId\"\
-            : \"61\",\n    \"redemptionType\": \"INTOUCH_REWARD\",\n    \"priority\"\
-            : 1,\n    \"enabled\": true,\n    \"intouchSeriesId\": \"849480\",\n \
-            \   \"intouchPoints\": 500,\n    \"geography\": [\n        {\n       \
-            \     \"countryId\": 1\n        }\n    ],\n    \"categories\": [\n   \
-            \     486\n    ],\n    \"languageSpecificInfo\": [\n        {\n      \
-            \      \"languageCode\": \"en\",\n            \"name\": \"UAT Reward 10\"\
-            ,\n            \"description\": \"Test Reward for UAT Team\",\n      \
-            \      \"enabled\": true,\n            \"richContentRO\": {\n        \
-            \        \"UAT_RCT_1\": {\n                    \"content\": \"Rich Content\
-            \ Text for UAT\",\n                    \"isEnabled\": true\n         \
-            \       }\n            }\n        }\n    ],\n    \"paymentConfigs\": [\n\
-            \       {\n            \"paymentMode\": \"POINTS\",\n            \"conversionRatio\"\
-            :0.33,\n            \"points\": 100\n        }\n    ],\n    \"rewardRank\"\
-            :\"1\",\n    \"intouchSeriesId\": \"301233\",\n    \"vendorRedemption\"\
-            : null,\n    \"communications\": [\n        \"1\"\n    ],\n    \"restrictions\"\
-            : {\n        \"customerLevel\": [\n            {\n                \"kpi\"\
-            : \"QUANTITY\",\n                \"limit\": 10,\n                \"repeatFrequencyType\"\
-            : \"DAYS\",\n                \"interval\": \"30\"\n            },\n  \
-            \          {\n                \"kpi\": \"QUANTITY\",\n               \
-            \ \"limit\": 50,\n                \"repeatFrequencyType\": \"MONTHS\"\
-            ,\n                \"interval\": \"12\"\n            }\n        ],\n \
-            \       \"rewardLevel\": [\n            {\n                \"kpi\": \"\
-            QUANTITY\",\n                \"limit\": 10000,\n                \"repeatFrequencyType\"\
-            : \"NO_LIMIT\"\n            }\n        ]\n    },\n    \"supplementaryCriteriaRO\"\
-            : [\n        {\n            \"loyaltyProgramId\": 469,\n            \"\
-            tierIds\": null,\n            \"partnerProgramIds\": [\n             \
-            \   48\n            ]\n        },\n        {\n            \"loyaltyProgramId\"\
-            : 690,\n            \"tierIds\": null,\n            \"partnerProgramIds\"\
-            : null\n        }\n    ],\n    \"customFields\": {\n        \"CF1\": \"\
-            Custom field 1\"\n    },\n    \"languageSpecificInfo\": [\n        {\n\
-            \            \"languageCode\": \"en\",\n            \"name\": \"testreward1\"\
-            ,\n            \"description\": \"testreward1\",\n            \"imageId\"\
-            : \"bef4d522-2cf8-4fea-8087-376c449d5c85\",\n            \"termNConditions\"\
-            : \"t&c\",\n            \"thumbnailId\": \"c886f064-2b3f-4c19-9e86-7f7e5ab5ae04\"\
-            ,\n            \"termNConditionsId\": \"820a3d7f-2601-405b-9f56-4a3ba8e9df73\"\
-            ,\n            \"enabled\": true\n        }\n    ],\n    \"isactive\"\
-            \ : true\n}'"
+          code: |-
+            curl -L -X PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/458081/brand/61' \
+            -H 'Content-Type: application/json' \
+            -H 'Authorization: Basic GM5ZmM2YjZlY2I2MmEy' \
+            -H 'Cookie: _cfuvid=PZ2Qs9Lv6_ngy2fSsa2ZHebqE7qq7WrhJNpax_n8cXA-1759145375283-0.0.1.1-604800000' \
+            -d '{
+                "startTime": "2025-08-31T06:00:00Z",
+                "endTime": "2025-09-30T11:59:30Z",
+                "type": "VOUCHER",
+                "brandId": "61",
+                "redemptionType": "INTOUCH_REWARD",
+                "priority": 1,
+                "enabled": true,
+                "intouchSeriesId": "849480",
+                "intouchPoints": 500,
+                "geography": [
+                    {
+                        "countryId": 1
+                    }
+                ],
+                "categories": [
+                    486
+                ],
+                "languageSpecificInfo": [
+                    {
+                        "languageCode": "en",
+                        "name": "UAT Reward 10",
+                        "description": "Test Reward for UAT Team",
+                        "enabled": true,
+                        "richContentRO": {
+                            "UAT_RCT_1": {
+                                "content": "Rich Content Text for UAT",
+                                "isEnabled": true
+                            }
+                        }
+                    }
+                ],
+                "paymentConfigs": [
+                   {
+                        "paymentMode": "POINTS",
+                        "conversionRatio":0.33,
+                        "points": 100
+                    }
+                ],
+                "rewardRank":"1",
+                "intouchSeriesId": "301233",
+                "vendorRedemption": null,
+                "communications": [
+                    "1"
+                ],
+                "restrictions": {
+                    "customerLevel": [
+                        {
+                            "kpi": "QUANTITY",
+                            "limit": 10,
+                            "repeatFrequencyType": "DAYS",
+                            "interval": "30"
+                        },
+                        {
+                            "kpi": "QUANTITY",
+                            "limit": 50,
+                            "repeatFrequencyType": "MONTHS",
+                            "interval": "12"
+                        }
+                    ],
+                    "rewardLevel": [
+                        {
+                            "kpi": "QUANTITY",
+                            "limit": 10000,
+                            "repeatFrequencyType": "NO_LIMIT"
+                        }
+                    ]
+                },
+                "supplementaryCriteriaRO": [
+                    {
+                        "loyaltyProgramId": 469,
+                        "tierIds": null,
+                        "partnerProgramIds": [
+                            48
+                        ]
+                    },
+                    {
+                        "loyaltyProgramId": 690,
+                        "tierIds": null,
+                        "partnerProgramIds": null
+                    }
+                ],
+                "customFields": {
+                    "CF1": "Custom field 1"
+                },
+                "languageSpecificInfo": [
+                    {
+                        "languageCode": "en",
+                        "name": "testreward1",
+                        "description": "testreward1",
+                        "imageId": "bef4d522-2cf8-4fea-8087-376c449d5c85",
+                        "termNConditions": "t&c",
+                        "thumbnailId": "c886f064-2b3f-4c19-9e86-7f7e5ab5ae04",
+                        "termNConditionsId": "820a3d7f-2601-405b-9f56-4a3ba8e9df73",
+                        "enabled": true
+                    }
+                ],
+                "isactive" : true
+            }'
           name: Sample cURL
         - language: curl
           code: "curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/{rewardId}/brand/{brandId}'\
-            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
-            \ application/json'\\\n--header 'Authorization: Basic {token}' \\\n--data\
-            \ '{\n  \t\"name\":\"ABCD\",\n  \t\"description\":\"Reward\",\n    \"\
-            startTime\": \"2025-02-06T07:43:30.00Z\",\n    \"endTime\": \"2026-11-29T05:39:49.00Z\"\
-            ,\n    \"type\": \"POINTS\",\n    \"brandId\": 3,\n    \"priority\": 1,\n\
-            \    \"enabled\": true,\n    \"intouchPoints\": 1,\n    \"intouchSeriesId\"\
-            : \"6538e3ac60ce5c504144bb07\",\n    \"tier\": \"SILVER\",\n    \"geography\"\
-            : [\n        {\n            \"countryId\": 7\n        }\n    ],\n    \"\
-            languageSpecificInfo\": [\n        {\n            \"languageCode\": \"\
-            en\",\n            \"name\": \" INTOUCH Enabled\",\n            \"description\"\
-            : \"Description\",\n            \"termNConditionsId\": \"EXDR12987R\"\
-            ,\n            \"imageId\": \"EXDR12987U\",\n            \"thumbnailId\"\
-            : \"EXDR12987T\",\n            \"enabled\": true,\n            \"images\"\
-            : [\n                {\n                    \"name\": \"imagename1\",\n\
-            \                    \"id\": \"9b648b66-5700-4c6d-84ea-01ddf73927c6\"\n\
-            \                },\n                {\n                    \"name\":\
-            \ \"imagename2\",\n                    \"id\": \"9b648b66-5700-4c6d-84ea-01ddf73927c6\"\
-            \n                },\n                {\n                    \"name\"\
-            : \"imagename2\",\n                    \"id\": \"9b648b66-5700-4c6d-84ea-01ddf73927c6\"\
-            \n                }\n            ],\n            \"videos\": [\n     \
-            \           {\n                    \"name\": \"videoname1\",\n       \
-            \             \"id\": \"9b648b66-5700-4c6d-84ea-01ddf73927c6\",\n    \
-            \                \"isExternal\": false\n                },\n         \
-            \       {\n                    \"name\": \"videoname1\",\n           \
-            \         \"isExternal\": true\n                }\n            ]\n   \
-            \     }\n    ],\n    \"categories\": [\n        5\n    ],\n    \"redemptionType\"\
-            : \"CART_PROMOTION\",\n    \"communications\": [\n        4\n    ],\n\
-            \    \"owners\": [\n        {\n            \"ownerType\": \"LOYALTY_PROGRAM\"\
-            ,\n            \"ownerId\": \"123\"\n        }\n    ]\n}'"
+            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json'\\\n\
+            --header 'Authorization: Basic {token}' \\\n--data '{\n  \t\"name\":\"ABCD\",\n  \t\"description\"\
+            :\"Reward\",\n    \"startTime\": \"2025-02-06T07:43:30.00Z\",\n    \"endTime\": \"2026-11-29T05:39:49.00Z\"\
+            ,\n    \"type\": \"POINTS\",\n    \"brandId\": 3,\n    \"priority\": 1,\n    \"enabled\":\
+            \ true,\n    \"intouchPoints\": 1,\n    \"intouchSeriesId\": \"6538e3ac60ce5c504144bb07\"\
+            ,\n    \"tier\": \"SILVER\",\n    \"geography\": [\n        {\n            \"countryId\":\
+            \ 7\n        }\n    ],\n    \"languageSpecificInfo\": [\n        {\n            \"languageCode\"\
+            : \"en\",\n            \"name\": \" INTOUCH Enabled\",\n            \"description\": \"Description\"\
+            ,\n            \"termNConditionsId\": \"EXDR12987R\",\n            \"imageId\": \"EXDR12987U\"\
+            ,\n            \"thumbnailId\": \"EXDR12987T\",\n            \"enabled\": true,\n        \
+            \    \"images\": [\n                {\n                    \"name\": \"imagename1\",\n   \
+            \                 \"id\": \"9b648b66-5700-4c6d-84ea-01ddf73927c6\"\n                },\n \
+            \               {\n                    \"name\": \"imagename2\",\n                    \"id\"\
+            : \"9b648b66-5700-4c6d-84ea-01ddf73927c6\"\n                },\n                {\n      \
+            \              \"name\": \"imagename2\",\n                    \"id\": \"9b648b66-5700-4c6d-84ea-01ddf73927c6\"\
+            \n                }\n            ],\n            \"videos\": [\n                {\n      \
+            \              \"name\": \"videoname1\",\n                    \"id\": \"9b648b66-5700-4c6d-84ea-01ddf73927c6\"\
+            ,\n                    \"isExternal\": false\n                },\n                {\n    \
+            \                \"name\": \"videoname1\",\n                    \"isExternal\": true\n   \
+            \             }\n            ]\n        }\n    ],\n    \"categories\": [\n        5\n    ],\n\
+            \    \"redemptionType\": \"CART_PROMOTION\",\n    \"communications\": [\n        4\n    ],\n\
+            \    \"owners\": [\n        {\n            \"ownerType\": \"LOYALTY_PROGRAM\",\n         \
+            \   \"ownerId\": \"123\"\n        }\n    ]\n}'"
           name: With image support
         - language: curl
           code: "curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/{rewardId}/brand/{brandId}'\
-            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
-            \ application/json'\\\n--header 'Authorization: Basic {token}' \\\n--data\
-            \ '{\n    \"startTime\": \"2024-03-07T08:53:49.00Z\",\n    \"endTime\"\
-            : \"2024-03-14T05:39:49.00Z\",\n    \"type\": \"POINTS\",\n    \"brandId\"\
-            : \"8\",\n    \"priority\": 1,\n    \"enabled\": true,\n    \"intouchPoints\"\
-            : 3,\n    \"intouchSeriesId\": \"73684275\",\n    \"tier\": \"GOLD\",\n\
-            \    \"geography\":\n    [\n        {\n            \"countryId\": \"14\"\
-            \n        }\n    ],\n    \"languageSpecificInfo\":\n    [\n        {\n\
-            \            \"name\": \" INTOUCH Enabledsd\",\n            \"description\"\
+            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json'\\\n\
+            --header 'Authorization: Basic {token}' \\\n--data '{\n    \"startTime\": \"2024-03-07T08:53:49.00Z\"\
+            ,\n    \"endTime\": \"2024-03-14T05:39:49.00Z\",\n    \"type\": \"POINTS\",\n    \"brandId\"\
+            : \"8\",\n    \"priority\": 1,\n    \"enabled\": true,\n    \"intouchPoints\": 3,\n    \"\
+            intouchSeriesId\": \"73684275\",\n    \"tier\": \"GOLD\",\n    \"geography\":\n    [\n   \
+            \     {\n            \"countryId\": \"14\"\n        }\n    ],\n    \"languageSpecificInfo\"\
+            :\n    [\n        {\n            \"name\": \" INTOUCH Enabledsd\",\n            \"description\"\
             : \"Description\",\n            \"termNConditions\": \"https://s3.amazonaws.com/crm-nightly-new-solutions/IRISV2BRAND/EXDR12987R?X-Amz-Security-Token=FwoGZXIvYXdzEAgaDImRT4Rv3I22aidrESLdAQJokVqNlcxpwvh%2FuileYhmM7vAPvlqLv4pA3icQ0z4opwko8bn2w1y2412RtCR1AXAhlB82T%2FT%2Fr4lMjSRbBy1i4lsWgIVWWQ00NMLW2TDumQcnFwQq1p%2BQFAofb1GS%2BcE4zoWTMieFVV3%2F15l2stJ7ZmwnyDYkDyqGzCk0AWoeQQw%2F%2BHu6DbeIcBJrEakvjZvLjqzeIACunRAYgrXAMlI5HfPenJl8CmEfvhgluUkUNQ25vrL6KhXEQKG4rdVjWG%2BxnkMgcZqBLth64qvfYES1wVyYz1OvneIhOdKbKO3tpZoGMi0%2F3wHyU2g0g7XXMM1cLRtUIn6x6%2BEzEdHMArLUdsCYy%2BnDOfaViZiRnhOtV6U%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20221014T145408Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIAXCQYYRKNMI6TM5YP%2F20221014%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=c17682bb64da475b6163148797a0c21dbb75fde352c2947fd94504d7f88535fe\"\
-            ,\n            \"thumbnailId\": \"EXDR12987T\",\n            \"imageId\"\
-            : \"EXDR12987U\",\n            \"enabled\": true,\n            \"termNConditionsId\"\
-            : \"EXDR12987R\",\n            \"languageCode\": \"en\",\n           \
-            \  \"customFields\":{\n               \"mandatory - CF1\": \"englishvalue1\"\
-            \n               \n            }\n        },\n        {\n            \"\
-            name\": \" INTOUCH Enabledsd\",\n            \"description\": \"Description\"\
-            ,\n            \"termNConditions\": \"https://s3.amazonaws.com/crm-nightly-new-solutions/IRISV2BRAND/EXDR12987R?X-Amz-Security-Token=FwoGZXIvYXdzEAgaDImRT4Rv3I22aidrESLdAQJokVqNlcxpwvh%2FuileYhmM7vAPvlqLv4pA3icQ0z4opwko8bn2w1y2412RtCR1AXAhlB82T%2FT%2Fr4lMjSRbBy1i4lsWgIVWWQ00NMLW2TDumQcnFwQq1p%2BQFAofb1GS%2BcE4zoWTMieFVV3%2F15l2stJ7ZmwnyDYkDyqGzCk0AWoeQQw%2F%2BHu6DbeIcBJrEakvjZvLjqzeIACunRAYgrXAMlI5HfPenJl8CmEfvhgluUkUNQ25vrL6KhXEQKG4rdVjWG%2BxnkMgcZqBLth64qvfYES1wVyYz1OvneIhOdKbKO3tpZoGMi0%2F3wHyU2g0g7XXMM1cLRtUIn6x6%2BEzEdHMArLUdsCYy%2BnDOfaViZiRnhOtV6U%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20221014T145408Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIAXCQYYRKNMI6TM5YP%2F20221014%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=c17682bb64da475b6163148797a0c21dbb75fde352c2947fd94504d7f88535fe\"\
-            ,\n            \"thumbnailId\": \"EXDR12987T\",\n            \"imageId\"\
-            : \"EXDR12987U\",\n            \"enabled\": true,\n            \"termNConditionsId\"\
-            : \"EXDR12987R\",\n            \"languageCode\": \"fr\",\n           \
-            \ \"customFields\":{\n               \"non_mandatory-CF4\":\"frenchvalue4\"\
-            \n            }\n        }\n    ],\n    \"categories\":\n    [\n     \
-            \   \"11\"\n    ],\n    \"redemptionType\": \"INTOUCH_REWARD\",\n    \"\
-            communications\":\n    [\n        \"11\"\n    ],\n    \"vendorRedemption\"\
-            : null,\n    \"group\": null,\n    \"label\": null\n}'"
+            ,\n            \"thumbnailId\": \"EXDR12987T\",\n            \"imageId\": \"EXDR12987U\",\n\
+            \            \"enabled\": true,\n            \"termNConditionsId\": \"EXDR12987R\",\n    \
+            \        \"languageCode\": \"en\",\n             \"customFields\":{\n               \"mandatory\
+            \ - CF1\": \"englishvalue1\"\n               \n            }\n        },\n        {\n    \
+            \        \"name\": \" INTOUCH Enabledsd\",\n            \"description\": \"Description\",\n\
+            \            \"termNConditions\": \"https://s3.amazonaws.com/crm-nightly-new-solutions/IRISV2BRAND/EXDR12987R?X-Amz-Security-Token=FwoGZXIvYXdzEAgaDImRT4Rv3I22aidrESLdAQJokVqNlcxpwvh%2FuileYhmM7vAPvlqLv4pA3icQ0z4opwko8bn2w1y2412RtCR1AXAhlB82T%2FT%2Fr4lMjSRbBy1i4lsWgIVWWQ00NMLW2TDumQcnFwQq1p%2BQFAofb1GS%2BcE4zoWTMieFVV3%2F15l2stJ7ZmwnyDYkDyqGzCk0AWoeQQw%2F%2BHu6DbeIcBJrEakvjZvLjqzeIACunRAYgrXAMlI5HfPenJl8CmEfvhgluUkUNQ25vrL6KhXEQKG4rdVjWG%2BxnkMgcZqBLth64qvfYES1wVyYz1OvneIhOdKbKO3tpZoGMi0%2F3wHyU2g0g7XXMM1cLRtUIn6x6%2BEzEdHMArLUdsCYy%2BnDOfaViZiRnhOtV6U%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20221014T145408Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIAXCQYYRKNMI6TM5YP%2F20221014%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=c17682bb64da475b6163148797a0c21dbb75fde352c2947fd94504d7f88535fe\"\
+            ,\n            \"thumbnailId\": \"EXDR12987T\",\n            \"imageId\": \"EXDR12987U\",\n\
+            \            \"enabled\": true,\n            \"termNConditionsId\": \"EXDR12987R\",\n    \
+            \        \"languageCode\": \"fr\",\n            \"customFields\":{\n               \"non_mandatory-CF4\"\
+            :\"frenchvalue4\"\n            }\n        }\n    ],\n    \"categories\":\n    [\n        \"\
+            11\"\n    ],\n    \"redemptionType\": \"INTOUCH_REWARD\",\n    \"communications\":\n    [\n\
+            \        \"11\"\n    ],\n    \"vendorRedemption\": null,\n    \"group\": null,\n    \"label\"\
+            : null\n}'"
           name: With multi lingual custom field
         - language: curl
-          code: "curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/{rewardId}/brand/{brandId}'\
-            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
-            \ application/json'\\\n--header 'Authorization: Basic {token}' \\\n--data\
-            \ '{\n    \"startTime\": \"2024-10-07T17:04:30.00Z\",\n    \"endTime\"\
-            : \"2027-10-31T05:39:49.00Z\",\n    \"rewardRevenueMeta\" : [\n      \
-            \  {\n            \"commissionParticipant\": \"BRAND\",\n            \"\
-            commissionRate\": \"1.5\",\n            \"cycleStartDate\": \"2024-11-07T17:04:30.000Z\"\
-            ,\n            \"cycleEndDate\": \"2025-10-06T07:43:30.000Z\"\n      \
-            \  },\n        {\n            \"commissionParticipant\": \"AFFILIATE\"\
-            ,\n            \"commissionRate\": \"1.2\",\n            \"cycleStartDate\"\
-            : \"2024-11-07T17:04:30.000Z\",\n            \"cycleEndDate\": \"2026-10-06T07:43:30.000Z\"\
-            \n        }\n    ],\n    \"rewardRevenueDefaults\": [\n        {\n   \
-            \         \"commissionParticipant\": \"AFFILIATE\",\n            \"defaultValue\"\
-            : \"1.1\"\n        },\n        {\n            \"commissionParticipant\"\
-            : \"END_CUSTOMER\",\n            \"defaultValue\": \"1.3\"\n        }\n\
-            \    ],\n      \"type\": \"VOUCHER\",\n  \"brandId\": 3,\n  \"priority\"\
-            : 1,\n  \"enabled\": true,\n  \"intouchPoints\": 1,\n  \"intouchSeriesId\"\
-            : \"1135336\",\n  \"tier\": \"SILVER\",\n  \"geography\": [\n    {\n \
-            \     \"countryId\": 7\n    }\n  ],\n  \"languageSpecificInfo\": [\n \
-            \   {\n      \"languageCode\": \"en\",\n      \"name\": \" INTOUCH Enabled\"\
-            ,\n      \"description\": \"Description\",\n      \"termNConditionsId\"\
-            : \"EXDR12987R\",\n      \"imageId\": \"EXDR12987U\",\n      \"thumbnailId\"\
-            : \"EXDR12987T\",\n      \"enabled\": true\n    }\n  ],\n  \"categories\"\
-            : [\n    5\n  ],\n  \"redemptionType\": \"INTOUCH_REWARD\",\n  \"communications\"\
-            : [\n    4\n  ],\n  \"owners\":[{\n      \"ownerType\":\"LOYALTY_PROGRAM\"\
-            ,\n      \"ownerId\":\"123\"\n      }\n  ]\n}'"
+          code: |-
+            curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/{rewardId}/brand/{brandId}' \
+            --header 'Accept: application/json' \
+            --header 'Content-Type: application/json'\
+            --header 'Authorization: Basic {token}' \
+            --data '{
+                "startTime": "2024-10-07T17:04:30.00Z",
+                "endTime": "2027-10-31T05:39:49.00Z",
+                "rewardRevenueMeta" : [
+                    {
+                        "commissionParticipant": "BRAND",
+                        "commissionRate": "1.5",
+                        "cycleStartDate": "2024-11-07T17:04:30.000Z",
+                        "cycleEndDate": "2025-10-06T07:43:30.000Z"
+                    },
+                    {
+                        "commissionParticipant": "AFFILIATE",
+                        "commissionRate": "1.2",
+                        "cycleStartDate": "2024-11-07T17:04:30.000Z",
+                        "cycleEndDate": "2026-10-06T07:43:30.000Z"
+                    }
+                ],
+                "rewardRevenueDefaults": [
+                    {
+                        "commissionParticipant": "AFFILIATE",
+                        "defaultValue": "1.1"
+                    },
+                    {
+                        "commissionParticipant": "END_CUSTOMER",
+                        "defaultValue": "1.3"
+                    }
+                ],
+                  "type": "VOUCHER",
+              "brandId": 3,
+              "priority": 1,
+              "enabled": true,
+              "intouchPoints": 1,
+              "intouchSeriesId": "1135336",
+              "tier": "SILVER",
+              "geography": [
+                {
+                  "countryId": 7
+                }
+              ],
+              "languageSpecificInfo": [
+                {
+                  "languageCode": "en",
+                  "name": " INTOUCH Enabled",
+                  "description": "Description",
+                  "termNConditionsId": "EXDR12987R",
+                  "imageId": "EXDR12987U",
+                  "thumbnailId": "EXDR12987T",
+                  "enabled": true
+                }
+              ],
+              "categories": [
+                5
+              ],
+              "redemptionType": "INTOUCH_REWARD",
+              "communications": [
+                4
+              ],
+              "owners":[{
+                  "ownerType":"LOYALTY_PROGRAM",
+                  "ownerId":"123"
+                  }
+              ]
+            }'
           name: With revenue metadata
         - language: curl
           code: "curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/367568/brand/61'\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization:\
-            \ Basic Z2VvcmdlLmpvaG5zb246OTg4OTU2NWI4ODVhMmY4ZWE1MTk1MjA2NWEwYTEzNzg='\
+            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic Z2VvcmdlLmpvaG5zb246OTg4OTU2NWI4ODVhMmY4ZWE1MTk1MjA2NWEwYTEzNzg='\
             \ \\\n--header 'Cookie: _cfuvid=qYQuCnm5.jAQe_tPrTV3.owL5NayLpGKA6eWAxMixcQ-1747723697739-0.0.1.1-604800000'\
-            \ \\\n--data '{\n  \"name\": \"gold\",\n  \"description\": \"testreward1\"\
-            ,\n  \"startTime\": \"2025-01-26T20:00:00Z\",\n  \"endTime\": \"2026-10-31T11:59:30Z\"\
-            ,\n  \"type\": \"VOUCHER\",\n  \"brandId\": 61,  \n  \"enabled\": true,\n\
-            \  \"intouchPoints\": 500,\n  \"categories\": [229],\n  \"redemptionType\"\
-            : \"VOUCHER\",  \n  \"paymentConfigs\": [\n    {\n      \"paymentMode\"\
+            \ \\\n--data '{\n  \"name\": \"gold\",\n  \"description\": \"testreward1\",\n  \"startTime\"\
+            : \"2025-01-26T20:00:00Z\",\n  \"endTime\": \"2026-10-31T11:59:30Z\",\n  \"type\": \"VOUCHER\"\
+            ,\n  \"brandId\": 61,  \n  \"enabled\": true,\n  \"intouchPoints\": 500,\n  \"categories\"\
+            : [229],\n  \"redemptionType\": \"VOUCHER\",  \n  \"paymentConfigs\": [\n    {\n      \"paymentMode\"\
             : \"POINTS\",\n      \"points\": 300  \n    }\n  ]\n}'"
           name: With paymentConfigs
         samples-languages:

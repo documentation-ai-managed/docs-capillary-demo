@@ -3,7 +3,7 @@ info:
   title: Get all badges
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -69,14 +69,14 @@ paths:
         schema:
           type: string
           format: date
-          default: "2023-02-16T00:00:00Z"
+          default: '2023-02-16T00:00:00Z'
       - name: expiresOn
         in: query
         description: Filter based on expiry of the badge.
         schema:
           type: string
           format: date
-          default: "2024-02-16T00:00:00Z"
+          default: '2024-02-16T00:00:00Z'
       responses:
         '200':
           description: '200'
@@ -84,337 +84,415 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"data\": {\n        \"metaBasicDetails\": [\n  \
-                    \          {\n                \"id\": \"66868a683778145cbb91193a\"\
-                    ,\n                \"orgId\": 100458,\n                \"name\"\
-                    : \"Badge Issue earn27\",\n                \"badgeGroupId\": null,\n\
-                    \                \"badgeGroupName\": null,\n                \"\
-                    badgeRank\": 3,\n                \"description\": \"Make 5 transactions\"\
-                    ,\n                \"startOn\": 1721520000.000000000,\n      \
-                    \          \"expiresOn\": 1726804000.000000000,\n            \
-                    \    \"status\": \"UPCOMING\",\n                \"images\": [\n\
-                    \                    {\n                        \"name\": \"Issued\"\
-                    ,\n                        \"fileSvcHandle\": \"qwer-8634-8938\"\
-                    ,\n                        \"url\": \"https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d\"\
-                    ,\n                        \"tag\": \"EARNED\"\n             \
-                    \       }\n                ],\n                \"earnType\": \"\
-                    ISSUE_EARN\",\n                \"earnedBadgeExpiry\": {\n    \
-                    \                \"expiryType\": \"RELATIVE\",\n             \
-                    \       \"relativeExpirytype\": \"WEEKS\",\n                 \
-                    \   \"value\": 2\n                },\n                \"ownership\"\
-                    : {\n                    \"restrictedToOwners\": [\n         \
-                    \               \"Rewards_Catalog\",\n                       \
-                    \ \"Journeys\",\n                        \"Loyalty_Promotion\"\
-                    ,\n                        \"Referral_Campaigns\",\n         \
-                    \               \"Audience_Campaigns\",\n                    \
-                    \    \"Historical_Import\",\n                        \"Loyalty\"\
-                    ,\n                        \"Goodwill_Module\",\n            \
-                    \            \"Milestones\"\n                    ],\n        \
-                    \            \"claims\": [\n                        {\n      \
-                    \                      \"ownerType\": \"Historical_Import\",\n\
-                    \                            \"referenceId\": \"123\",\n     \
-                    \                       \"isActive\": true\n                 \
-                    \       }\n                    ]\n                },\n       \
-                    \         \"issuedCount\": 0,\n                \"earnedCount\"\
-                    : 0,\n                \"createdOn\": 1720093288.334000000,\n \
-                    \               \"createdBy\": 75130850,\n                \"lastUpdatedOn\"\
-                    : 1720093422.070000000,\n                \"lastUpdatedBy\": 75130850,\n\
-                    \                \"customFields\": {},\n                \"active\"\
-                    : true\n            },\n            {\n                \"id\"\
-                    : \"66866fc03778145cbb9118ae\",\n                \"orgId\": 100458,\n\
-                    \                \"name\": \"Badge Issue earn26\",\n         \
-                    \       \"badgeGroupId\": null,\n                \"badgeGroupName\"\
-                    : null,\n                \"badgeRank\": 3,\n                \"\
-                    description\": \"Make 5 transactions\",\n                \"startOn\"\
-                    : 1721520000.000000000,\n                \"expiresOn\": 1726804000.000000000,\n\
-                    \                \"status\": \"UPCOMING\",\n                \"\
-                    images\": [\n                    {\n                        \"\
-                    name\": \"Issued\",\n                        \"fileSvcHandle\"\
-                    : \"qwer-8634-8938\",\n                        \"url\": \"https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d\"\
-                    ,\n                        \"tag\": \"EARNED\"\n             \
-                    \       }\n                ],\n                \"earnType\": \"\
-                    ISSUE_EARN\",\n                \"earnedBadgeExpiry\": {\n    \
-                    \                \"expiryType\": \"RELATIVE\",\n             \
-                    \       \"relativeExpirytype\": \"WEEKS\",\n                 \
-                    \   \"value\": 2\n                },\n                \"ownership\"\
-                    : {\n                    \"restrictedToOwners\": [\n         \
-                    \               \"Rewards_Catalog\",\n                       \
-                    \ \"Journeys\",\n                        \"Loyalty_Promotion\"\
-                    ,\n                        \"Referral_Campaigns\",\n         \
-                    \               \"Audience_Campaigns\",\n                    \
-                    \    \"Loyalty\",\n                        \"Goodwill_Module\"\
-                    ,\n                        \"Milestones\"\n                  \
-                    \  ],\n                    \"claims\": [\n                   \
-                    \     {\n                            \"ownerType\": \"Loyalty\"\
-                    ,\n                            \"referenceId\": \"123\",\n   \
-                    \                         \"isActive\": true\n               \
-                    \         }\n                    ]\n                },\n     \
-                    \           \"issuedCount\": 0,\n                \"earnedCount\"\
-                    : 0,\n                \"createdOn\": 1720086464.541000000,\n \
-                    \               \"createdBy\": 75130850,\n                \"lastUpdatedOn\"\
-                    : 1720086473.848000000,\n                \"lastUpdatedBy\": 75130850,\n\
-                    \                \"customFields\": {},\n                \"active\"\
-                    : true\n            },\n            {\n                \"id\"\
-                    : \"66866e3798592f327b849a48\",\n                \"orgId\": 100458,\n\
-                    \                \"name\": \"Badge Issue earn25\",\n         \
-                    \       \"badgeGroupId\": null,\n                \"badgeGroupName\"\
-                    : null,\n                \"badgeRank\": 3,\n                \"\
-                    description\": \"Make 5 transactions\",\n                \"startOn\"\
-                    : 1721520000.000000000,\n                \"expiresOn\": 1726804000.000000000,\n\
-                    \                \"status\": \"UPCOMING\",\n                \"\
-                    images\": [\n                    {\n                        \"\
-                    name\": \"Issued\",\n                        \"fileSvcHandle\"\
-                    : \"qwer-8634-8938\",\n                        \"url\": \"https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d\"\
-                    ,\n                        \"tag\": \"EARNED\"\n             \
-                    \       }\n                ],\n                \"earnType\": \"\
-                    ISSUE_EARN\",\n                \"earnedBadgeExpiry\": {\n    \
-                    \                \"expiryType\": \"RELATIVE\",\n             \
-                    \       \"relativeExpirytype\": \"WEEKS\",\n                 \
-                    \   \"value\": 2\n                },\n                \"ownership\"\
-                    : {\n                    \"restrictedToOwners\": [\n         \
-                    \               \"Loyalty\",\n                        \"Loyalty_Promotion\"\
-                    ,\n                        \"Milestones\",\n                 \
-                    \       \"Rewards_Catalog\",\n                        \"Referral_Campaigns\"\
-                    ,\n                        \"Audience_Campaigns\"\n          \
-                    \          ],\n                    \"claims\": [\n           \
-                    \             {\n                            \"ownerType\": \"\
-                    Loyalty\",\n                            \"referenceId\": \"123\"\
-                    ,\n                            \"isActive\": true\n          \
-                    \              }\n                    ]\n                },\n\
-                    \                \"issuedCount\": 0,\n                \"earnedCount\"\
-                    : 0,\n                \"createdOn\": 1720086071.229000000,\n \
-                    \               \"createdBy\": 75130850,\n                \"lastUpdatedOn\"\
-                    : 1720086089.352000000,\n                \"lastUpdatedBy\": 75130850,\n\
-                    \                \"customFields\": {},\n                \"active\"\
-                    : true\n            },\n            {\n                \"id\"\
-                    : \"66866d2198592f327b849a47\",\n                \"orgId\": 100458,\n\
-                    \                \"name\": \"Badge Issue earn24\",\n         \
-                    \       \"badgeGroupId\": null,\n                \"badgeGroupName\"\
-                    : null,\n                \"badgeRank\": 3,\n                \"\
-                    description\": \"Make 5 transactions\",\n                \"startOn\"\
-                    : 1721520000.000000000,\n                \"expiresOn\": 1726804000.000000000,\n\
-                    \                \"status\": \"UPCOMING\",\n                \"\
-                    images\": [\n                    {\n                        \"\
-                    name\": \"Issued\",\n                        \"fileSvcHandle\"\
-                    : \"qwer-8634-8938\",\n                        \"url\": \"https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d\"\
-                    ,\n                        \"tag\": \"EARNED\"\n             \
-                    \       }\n                ],\n                \"earnType\": \"\
-                    ISSUE_EARN\",\n                \"earnedBadgeExpiry\": {\n    \
-                    \                \"expiryType\": \"RELATIVE\",\n             \
-                    \       \"relativeExpirytype\": \"WEEKS\",\n                 \
-                    \   \"value\": 2\n                },\n                \"ownership\"\
-                    : {\n                    \"restrictedToOwners\": [\n         \
-                    \               \"Loyalty\",\n                        \"Loyalty_Promotion\"\
-                    ,\n                        \"Membercare\",\n                 \
-                    \       \"Rewards_Catalog\",\n                        \"Referral_Campaigns\"\
-                    ,\n                        \"Audience_Campaigns\"\n          \
-                    \          ],\n                    \"claims\": []\n          \
-                    \      },\n                \"issuedCount\": 0,\n             \
-                    \   \"earnedCount\": 0,\n                \"createdOn\": 1720085793.761000000,\n\
-                    \                \"createdBy\": 75130850,\n                \"\
-                    lastUpdatedOn\": 1720085793.761000000,\n                \"lastUpdatedBy\"\
-                    : 75130850,\n                \"customFields\": {},\n         \
-                    \       \"active\": true\n            },\n            {\n    \
-                    \            \"id\": \"66866ce13778145cbb9118aa\",\n         \
-                    \       \"orgId\": 100458,\n                \"name\": \"Badge\
-                    \ Issue earn23\",\n                \"badgeGroupId\": null,\n \
-                    \               \"badgeGroupName\": null,\n                \"\
-                    badgeRank\": 3,\n                \"description\": \"Make 5 transactions\"\
-                    ,\n                \"startOn\": 1721520000.000000000,\n      \
-                    \          \"expiresOn\": 1726804000.000000000,\n            \
-                    \    \"status\": \"UPCOMING\",\n                \"images\": [\n\
-                    \                    {\n                        \"name\": \"Issued\"\
-                    ,\n                        \"fileSvcHandle\": \"qwer-8634-8938\"\
-                    ,\n                        \"url\": \"https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d\"\
-                    ,\n                        \"tag\": \"EARNED\"\n             \
-                    \       }\n                ],\n                \"earnType\": \"\
-                    ISSUE_EARN\",\n                \"earnedBadgeExpiry\": {\n    \
-                    \                \"expiryType\": \"RELATIVE\",\n             \
-                    \       \"relativeExpirytype\": \"WEEKS\",\n                 \
-                    \   \"value\": 2\n                },\n                \"ownership\"\
-                    : {\n                    \"restrictedToOwners\": [\n         \
-                    \               \"Rewards_Catalog\",\n                       \
-                    \ \"Loyalty_Promotion\",\n                        \"Referral_Campaigns\"\
-                    ,\n                        \"Audience_Campaigns\",\n         \
-                    \               \"Loyalty\"\n                    ],\n        \
-                    \            \"claims\": [\n                        {\n      \
-                    \                      \"ownerType\": \"Loyalty_Promotion\",\n\
-                    \                            \"referenceId\": \"123\",\n     \
-                    \                       \"isActive\": true\n                 \
-                    \       }\n                    ]\n                },\n       \
-                    \         \"issuedCount\": 0,\n                \"earnedCount\"\
-                    : 0,\n                \"createdOn\": 1720085729.393000000,\n \
-                    \               \"createdBy\": 75130850,\n                \"lastUpdatedOn\"\
-                    : 1720085756.697000000,\n                \"lastUpdatedBy\": 75130850,\n\
-                    \                \"customFields\": {},\n                \"active\"\
-                    : true\n            },\n            {\n                \"id\"\
-                    : \"66866c2698592f327b849a46\",\n                \"orgId\": 100458,\n\
-                    \                \"name\": \"Badge Issue earn21\",\n         \
-                    \       \"badgeGroupId\": null,\n                \"badgeGroupName\"\
-                    : null,\n                \"badgeRank\": 3,\n                \"\
-                    description\": \"Make 5 transactions\",\n                \"startOn\"\
-                    : 1721520000.000000000,\n                \"expiresOn\": 1726804000.000000000,\n\
-                    \                \"status\": \"UPCOMING\",\n                \"\
-                    images\": [\n                    {\n                        \"\
-                    name\": \"Issued\",\n                        \"fileSvcHandle\"\
-                    : \"qwer-8634-8938\",\n                        \"url\": \"https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d\"\
-                    ,\n                        \"tag\": \"EARNED\"\n             \
-                    \       }\n                ],\n                \"earnType\": \"\
-                    ISSUE_EARN\",\n                \"earnedBadgeExpiry\": {\n    \
-                    \                \"expiryType\": \"RELATIVE\",\n             \
-                    \       \"relativeExpirytype\": \"WEEKS\",\n                 \
-                    \   \"value\": 2\n                },\n                \"ownership\"\
-                    : {\n                    \"restrictedToOwners\": [\n         \
-                    \               \"Loyalty\",\n                        \"Loyalty_Promotion\"\
-                    ,\n                        \"Rewards_Catalog\",\n            \
-                    \            \"Referral_Campaigns\",\n                       \
-                    \ \"Audience_Campaigns\"\n                    ],\n           \
-                    \         \"claims\": [\n                        {\n         \
-                    \                   \"ownerType\": \"Rewards_Catalog\",\n    \
-                    \                        \"referenceId\": \"123\",\n         \
-                    \                   \"isActive\": true\n                     \
-                    \   }\n                    ]\n                },\n           \
-                    \     \"issuedCount\": 0,\n                \"earnedCount\": 0,\n\
-                    \                \"createdOn\": 1720085542.402000000,\n      \
-                    \          \"createdBy\": 75130850,\n                \"lastUpdatedOn\"\
-                    : 1720085557.163000000,\n                \"lastUpdatedBy\": 75130850,\n\
-                    \                \"customFields\": {},\n                \"active\"\
-                    : true\n            },\n            {\n                \"id\"\
-                    : \"66866bdc3778145cbb9118a8\",\n                \"orgId\": 100458,\n\
-                    \                \"name\": \"Badge Issue earn20\",\n         \
-                    \       \"badgeGroupId\": null,\n                \"badgeGroupName\"\
-                    : null,\n                \"badgeRank\": 3,\n                \"\
-                    description\": \"Make 5 transactions\",\n                \"startOn\"\
-                    : 1721520000.000000000,\n                \"expiresOn\": 1726804000.000000000,\n\
-                    \                \"status\": \"UPCOMING\",\n                \"\
-                    images\": [\n                    {\n                        \"\
-                    name\": \"Issued\",\n                        \"fileSvcHandle\"\
-                    : \"qwer-8634-8938\",\n                        \"url\": \"https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d\"\
-                    ,\n                        \"tag\": \"EARNED\"\n             \
-                    \       }\n                ],\n                \"earnType\": \"\
-                    ISSUE_EARN\",\n                \"earnedBadgeExpiry\": {\n    \
-                    \                \"expiryType\": \"RELATIVE\",\n             \
-                    \       \"relativeExpirytype\": \"WEEKS\",\n                 \
-                    \   \"value\": 2\n                },\n                \"ownership\"\
-                    : {\n                    \"restrictedToOwners\": [\n         \
-                    \               \"Membercare\",\n                        \"Journeys\"\
-                    ,\n                        \"Loyalty_Promotion\",\n          \
-                    \              \"Referral_Campaigns\",\n                     \
-                    \   \"Audience_Campaigns\",\n                        \"Loyalty\"\
-                    \n                    ],\n                    \"claims\": []\n\
-                    \                },\n                \"issuedCount\": 0,\n   \
-                    \             \"earnedCount\": 0,\n                \"createdOn\"\
-                    : 1720085468.169000000,\n                \"createdBy\": 75130850,\n\
-                    \                \"lastUpdatedOn\": 1720085468.169000000,\n  \
-                    \              \"lastUpdatedBy\": 75130850,\n                \"\
-                    customFields\": {},\n                \"active\": true\n      \
-                    \      },\n            {\n                \"id\": \"66866ba73778145cbb9118a7\"\
-                    ,\n                \"orgId\": 100458,\n                \"name\"\
-                    : \"Badge Issue earn19\",\n                \"badgeGroupId\": null,\n\
-                    \                \"badgeGroupName\": null,\n                \"\
-                    badgeRank\": 3,\n                \"description\": \"Make 5 transactions\"\
-                    ,\n                \"startOn\": 1721520000.000000000,\n      \
-                    \          \"expiresOn\": 1726804000.000000000,\n            \
-                    \    \"status\": \"UPCOMING\",\n                \"images\": [\n\
-                    \                    {\n                        \"name\": \"Issued\"\
-                    ,\n                        \"fileSvcHandle\": \"qwer-8634-8938\"\
-                    ,\n                        \"url\": \"https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d\"\
-                    ,\n                        \"tag\": \"EARNED\"\n             \
-                    \       }\n                ],\n                \"earnType\": \"\
-                    ISSUE_EARN\",\n                \"earnedBadgeExpiry\": {\n    \
-                    \                \"expiryType\": \"RELATIVE\",\n             \
-                    \       \"relativeExpirytype\": \"WEEKS\",\n                 \
-                    \   \"value\": 2\n                },\n                \"ownership\"\
-                    : {\n                    \"restrictedToOwners\": [\n         \
-                    \               \"Journeys\",\n                        \"Loyalty_Promotion\"\
-                    ,\n                        \"Referral_Campaigns\",\n         \
-                    \               \"Audience_Campaigns\",\n                    \
-                    \    \"Loyalty\"\n                    ],\n                   \
-                    \ \"claims\": [\n                        {\n                 \
-                    \           \"ownerType\": \"Journeys\",\n                   \
-                    \         \"referenceId\": \"123\",\n                        \
-                    \    \"isActive\": true\n                        },\n        \
-                    \                {\n                            \"ownerType\"\
-                    : \"Audience_Campaigns\",\n                            \"referenceId\"\
-                    : \"123\",\n                            \"isActive\": true\n \
-                    \                       }\n                    ]\n           \
-                    \     },\n                \"issuedCount\": 0,\n              \
-                    \  \"earnedCount\": 0,\n                \"createdOn\": 1720085415.780000000,\n\
-                    \                \"createdBy\": 75130850,\n                \"\
-                    lastUpdatedOn\": 1720085432.962000000,\n                \"lastUpdatedBy\"\
-                    : 75130850,\n                \"customFields\": {},\n         \
-                    \       \"active\": true\n            },\n            {\n    \
-                    \            \"id\": \"66866b763778145cbb9118a6\",\n         \
-                    \       \"orgId\": 100458,\n                \"name\": \"Badge\
-                    \ Issue earn18\",\n                \"badgeGroupId\": null,\n \
-                    \               \"badgeGroupName\": null,\n                \"\
-                    badgeRank\": 3,\n                \"description\": \"Make 5 transactions\"\
-                    ,\n                \"startOn\": 1721520000.000000000,\n      \
-                    \          \"expiresOn\": 1726804000.000000000,\n            \
-                    \    \"status\": \"UPCOMING\",\n                \"images\": [\n\
-                    \                    {\n                        \"name\": \"Issued\"\
-                    ,\n                        \"fileSvcHandle\": \"qwer-8634-8938\"\
-                    ,\n                        \"url\": \"https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d\"\
-                    ,\n                        \"tag\": \"EARNED\"\n             \
-                    \       }\n                ],\n                \"earnType\": \"\
-                    ISSUE_EARN\",\n                \"earnedBadgeExpiry\": {\n    \
-                    \                \"expiryType\": \"RELATIVE\",\n             \
-                    \       \"relativeExpirytype\": \"WEEKS\",\n                 \
-                    \   \"value\": 2\n                },\n                \"ownership\"\
-                    : {\n                    \"restrictedToOwners\": [\n         \
-                    \               \"Journeys\",\n                        \"Loyalty_Promotion\"\
-                    ,\n                        \"Referral_Campaigns\",\n         \
-                    \               \"Audience_Campaigns\",\n                    \
-                    \    \"Loyalty\"\n                    ],\n                   \
-                    \ \"claims\": [\n                        {\n                 \
-                    \           \"ownerType\": \"Referral_Campaigns\",\n         \
-                    \                   \"referenceId\": \"123\",\n              \
-                    \              \"isActive\": true\n                        },\n\
-                    \                        {\n                            \"ownerType\"\
-                    : \"Journeys\",\n                            \"referenceId\":\
-                    \ \"123\",\n                            \"isActive\": true\n \
-                    \                       }\n                    ]\n           \
-                    \     },\n                \"issuedCount\": 0,\n              \
-                    \  \"earnedCount\": 0,\n                \"createdOn\": 1720085366.401000000,\n\
-                    \                \"createdBy\": 75130850,\n                \"\
-                    lastUpdatedOn\": 1720085384.589000000,\n                \"lastUpdatedBy\"\
-                    : 75130850,\n                \"customFields\": {},\n         \
-                    \       \"active\": true\n            },\n            {\n    \
-                    \            \"id\": \"66866b3798592f327b849a45\",\n         \
-                    \       \"orgId\": 100458,\n                \"name\": \"Badge\
-                    \ Issue earn17\",\n                \"badgeGroupId\": null,\n \
-                    \               \"badgeGroupName\": null,\n                \"\
-                    badgeRank\": 3,\n                \"description\": \"Make 5 transactions\"\
-                    ,\n                \"startOn\": 1721520000.000000000,\n      \
-                    \          \"expiresOn\": 1726804000.000000000,\n            \
-                    \    \"status\": \"UPCOMING\",\n                \"images\": [\n\
-                    \                    {\n                        \"name\": \"Issued\"\
-                    ,\n                        \"fileSvcHandle\": \"qwer-8634-8938\"\
-                    ,\n                        \"url\": \"https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d\"\
-                    ,\n                        \"tag\": \"EARNED\"\n             \
-                    \       }\n                ],\n                \"earnType\": \"\
-                    ISSUE_EARN\",\n                \"earnedBadgeExpiry\": {\n    \
-                    \                \"expiryType\": \"RELATIVE\",\n             \
-                    \       \"relativeExpirytype\": \"WEEKS\",\n                 \
-                    \   \"value\": 2\n                },\n                \"ownership\"\
-                    : {\n                    \"restrictedToOwners\": [\n         \
-                    \               \"Loyalty\",\n                        \"Loyalty_Promotion\"\
-                    ,\n                        \"Referral_Campaigns\",\n         \
-                    \               \"Audience_Campaigns\"\n                    ],\n\
-                    \                    \"claims\": [\n                        {\n\
-                    \                            \"ownerType\": \"Referral_Campaigns\"\
-                    ,\n                            \"referenceId\": \"123\",\n   \
-                    \                         \"isActive\": true\n               \
-                    \         }\n                    ]\n                },\n     \
-                    \           \"issuedCount\": 0,\n                \"earnedCount\"\
-                    : 0,\n                \"createdOn\": 1720085303.650000000,\n \
-                    \               \"createdBy\": 75130850,\n                \"lastUpdatedOn\"\
-                    : 1720085327.908000000,\n                \"lastUpdatedBy\": 75130850,\n\
-                    \                \"customFields\": {},\n                \"active\"\
-                    : true\n            }\n        ],\n        \"pagination\": {\n\
-                    \            \"page\": 0,\n            \"size\": 10,\n       \
-                    \     \"total\": 122,\n            \"totalPages\": 13\n      \
-                    \  }\n    },\n    \"errors\": [],\n    \"warnings\": []\n}"
+                  value:
+                    data:
+                      metaBasicDetails:
+                      - id: 66868a683778145cbb91193a
+                        orgId: 100458
+                        name: Badge Issue earn27
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: 3
+                        description: Make 5 transactions
+                        startOn: 1721520000.0
+                        expiresOn: 1726804000.0
+                        status: UPCOMING
+                        images:
+                        - name: Issued
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d
+                          tag: EARNED
+                        earnType: ISSUE_EARN
+                        earnedBadgeExpiry:
+                          expiryType: RELATIVE
+                          relativeExpirytype: WEEKS
+                          value: 2
+                        ownership:
+                          restrictedToOwners:
+                          - Rewards_Catalog
+                          - Journeys
+                          - Loyalty_Promotion
+                          - Referral_Campaigns
+                          - Audience_Campaigns
+                          - Historical_Import
+                          - Loyalty
+                          - Goodwill_Module
+                          - Milestones
+                          claims:
+                          - ownerType: Historical_Import
+                            referenceId: '123'
+                            isActive: true
+                        issuedCount: 0
+                        earnedCount: 0
+                        createdOn: 1720093288.334
+                        createdBy: 75130850
+                        lastUpdatedOn: 1720093422.07
+                        lastUpdatedBy: 75130850
+                        customFields: {}
+                        active: true
+                      - id: 66866fc03778145cbb9118ae
+                        orgId: 100458
+                        name: Badge Issue earn26
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: 3
+                        description: Make 5 transactions
+                        startOn: 1721520000.0
+                        expiresOn: 1726804000.0
+                        status: UPCOMING
+                        images:
+                        - name: Issued
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d
+                          tag: EARNED
+                        earnType: ISSUE_EARN
+                        earnedBadgeExpiry:
+                          expiryType: RELATIVE
+                          relativeExpirytype: WEEKS
+                          value: 2
+                        ownership:
+                          restrictedToOwners:
+                          - Rewards_Catalog
+                          - Journeys
+                          - Loyalty_Promotion
+                          - Referral_Campaigns
+                          - Audience_Campaigns
+                          - Loyalty
+                          - Goodwill_Module
+                          - Milestones
+                          claims:
+                          - ownerType: Loyalty
+                            referenceId: '123'
+                            isActive: true
+                        issuedCount: 0
+                        earnedCount: 0
+                        createdOn: 1720086464.541
+                        createdBy: 75130850
+                        lastUpdatedOn: 1720086473.848
+                        lastUpdatedBy: 75130850
+                        customFields: {}
+                        active: true
+                      - id: 66866e3798592f327b849a48
+                        orgId: 100458
+                        name: Badge Issue earn25
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: 3
+                        description: Make 5 transactions
+                        startOn: 1721520000.0
+                        expiresOn: 1726804000.0
+                        status: UPCOMING
+                        images:
+                        - name: Issued
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d
+                          tag: EARNED
+                        earnType: ISSUE_EARN
+                        earnedBadgeExpiry:
+                          expiryType: RELATIVE
+                          relativeExpirytype: WEEKS
+                          value: 2
+                        ownership:
+                          restrictedToOwners:
+                          - Loyalty
+                          - Loyalty_Promotion
+                          - Milestones
+                          - Rewards_Catalog
+                          - Referral_Campaigns
+                          - Audience_Campaigns
+                          claims:
+                          - ownerType: Loyalty
+                            referenceId: '123'
+                            isActive: true
+                        issuedCount: 0
+                        earnedCount: 0
+                        createdOn: 1720086071.229
+                        createdBy: 75130850
+                        lastUpdatedOn: 1720086089.352
+                        lastUpdatedBy: 75130850
+                        customFields: {}
+                        active: true
+                      - id: 66866d2198592f327b849a47
+                        orgId: 100458
+                        name: Badge Issue earn24
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: 3
+                        description: Make 5 transactions
+                        startOn: 1721520000.0
+                        expiresOn: 1726804000.0
+                        status: UPCOMING
+                        images:
+                        - name: Issued
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d
+                          tag: EARNED
+                        earnType: ISSUE_EARN
+                        earnedBadgeExpiry:
+                          expiryType: RELATIVE
+                          relativeExpirytype: WEEKS
+                          value: 2
+                        ownership:
+                          restrictedToOwners:
+                          - Loyalty
+                          - Loyalty_Promotion
+                          - Membercare
+                          - Rewards_Catalog
+                          - Referral_Campaigns
+                          - Audience_Campaigns
+                          claims: []
+                        issuedCount: 0
+                        earnedCount: 0
+                        createdOn: 1720085793.761
+                        createdBy: 75130850
+                        lastUpdatedOn: 1720085793.761
+                        lastUpdatedBy: 75130850
+                        customFields: {}
+                        active: true
+                      - id: 66866ce13778145cbb9118aa
+                        orgId: 100458
+                        name: Badge Issue earn23
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: 3
+                        description: Make 5 transactions
+                        startOn: 1721520000.0
+                        expiresOn: 1726804000.0
+                        status: UPCOMING
+                        images:
+                        - name: Issued
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d
+                          tag: EARNED
+                        earnType: ISSUE_EARN
+                        earnedBadgeExpiry:
+                          expiryType: RELATIVE
+                          relativeExpirytype: WEEKS
+                          value: 2
+                        ownership:
+                          restrictedToOwners:
+                          - Rewards_Catalog
+                          - Loyalty_Promotion
+                          - Referral_Campaigns
+                          - Audience_Campaigns
+                          - Loyalty
+                          claims:
+                          - ownerType: Loyalty_Promotion
+                            referenceId: '123'
+                            isActive: true
+                        issuedCount: 0
+                        earnedCount: 0
+                        createdOn: 1720085729.393
+                        createdBy: 75130850
+                        lastUpdatedOn: 1720085756.697
+                        lastUpdatedBy: 75130850
+                        customFields: {}
+                        active: true
+                      - id: 66866c2698592f327b849a46
+                        orgId: 100458
+                        name: Badge Issue earn21
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: 3
+                        description: Make 5 transactions
+                        startOn: 1721520000.0
+                        expiresOn: 1726804000.0
+                        status: UPCOMING
+                        images:
+                        - name: Issued
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d
+                          tag: EARNED
+                        earnType: ISSUE_EARN
+                        earnedBadgeExpiry:
+                          expiryType: RELATIVE
+                          relativeExpirytype: WEEKS
+                          value: 2
+                        ownership:
+                          restrictedToOwners:
+                          - Loyalty
+                          - Loyalty_Promotion
+                          - Rewards_Catalog
+                          - Referral_Campaigns
+                          - Audience_Campaigns
+                          claims:
+                          - ownerType: Rewards_Catalog
+                            referenceId: '123'
+                            isActive: true
+                        issuedCount: 0
+                        earnedCount: 0
+                        createdOn: 1720085542.402
+                        createdBy: 75130850
+                        lastUpdatedOn: 1720085557.163
+                        lastUpdatedBy: 75130850
+                        customFields: {}
+                        active: true
+                      - id: 66866bdc3778145cbb9118a8
+                        orgId: 100458
+                        name: Badge Issue earn20
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: 3
+                        description: Make 5 transactions
+                        startOn: 1721520000.0
+                        expiresOn: 1726804000.0
+                        status: UPCOMING
+                        images:
+                        - name: Issued
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d
+                          tag: EARNED
+                        earnType: ISSUE_EARN
+                        earnedBadgeExpiry:
+                          expiryType: RELATIVE
+                          relativeExpirytype: WEEKS
+                          value: 2
+                        ownership:
+                          restrictedToOwners:
+                          - Membercare
+                          - Journeys
+                          - Loyalty_Promotion
+                          - Referral_Campaigns
+                          - Audience_Campaigns
+                          - Loyalty
+                          claims: []
+                        issuedCount: 0
+                        earnedCount: 0
+                        createdOn: 1720085468.169
+                        createdBy: 75130850
+                        lastUpdatedOn: 1720085468.169
+                        lastUpdatedBy: 75130850
+                        customFields: {}
+                        active: true
+                      - id: 66866ba73778145cbb9118a7
+                        orgId: 100458
+                        name: Badge Issue earn19
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: 3
+                        description: Make 5 transactions
+                        startOn: 1721520000.0
+                        expiresOn: 1726804000.0
+                        status: UPCOMING
+                        images:
+                        - name: Issued
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d
+                          tag: EARNED
+                        earnType: ISSUE_EARN
+                        earnedBadgeExpiry:
+                          expiryType: RELATIVE
+                          relativeExpirytype: WEEKS
+                          value: 2
+                        ownership:
+                          restrictedToOwners:
+                          - Journeys
+                          - Loyalty_Promotion
+                          - Referral_Campaigns
+                          - Audience_Campaigns
+                          - Loyalty
+                          claims:
+                          - ownerType: Journeys
+                            referenceId: '123'
+                            isActive: true
+                          - ownerType: Audience_Campaigns
+                            referenceId: '123'
+                            isActive: true
+                        issuedCount: 0
+                        earnedCount: 0
+                        createdOn: 1720085415.78
+                        createdBy: 75130850
+                        lastUpdatedOn: 1720085432.962
+                        lastUpdatedBy: 75130850
+                        customFields: {}
+                        active: true
+                      - id: 66866b763778145cbb9118a6
+                        orgId: 100458
+                        name: Badge Issue earn18
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: 3
+                        description: Make 5 transactions
+                        startOn: 1721520000.0
+                        expiresOn: 1726804000.0
+                        status: UPCOMING
+                        images:
+                        - name: Issued
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d
+                          tag: EARNED
+                        earnType: ISSUE_EARN
+                        earnedBadgeExpiry:
+                          expiryType: RELATIVE
+                          relativeExpirytype: WEEKS
+                          value: 2
+                        ownership:
+                          restrictedToOwners:
+                          - Journeys
+                          - Loyalty_Promotion
+                          - Referral_Campaigns
+                          - Audience_Campaigns
+                          - Loyalty
+                          claims:
+                          - ownerType: Referral_Campaigns
+                            referenceId: '123'
+                            isActive: true
+                          - ownerType: Journeys
+                            referenceId: '123'
+                            isActive: true
+                        issuedCount: 0
+                        earnedCount: 0
+                        createdOn: 1720085366.401
+                        createdBy: 75130850
+                        lastUpdatedOn: 1720085384.589
+                        lastUpdatedBy: 75130850
+                        customFields: {}
+                        active: true
+                      - id: 66866b3798592f327b849a45
+                        orgId: 100458
+                        name: Badge Issue earn17
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: 3
+                        description: Make 5 transactions
+                        startOn: 1721520000.0
+                        expiresOn: 1726804000.0
+                        status: UPCOMING
+                        images:
+                        - name: Issued
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d
+                          tag: EARNED
+                        earnType: ISSUE_EARN
+                        earnedBadgeExpiry:
+                          expiryType: RELATIVE
+                          relativeExpirytype: WEEKS
+                          value: 2
+                        ownership:
+                          restrictedToOwners:
+                          - Loyalty
+                          - Loyalty_Promotion
+                          - Referral_Campaigns
+                          - Audience_Campaigns
+                          claims:
+                          - ownerType: Referral_Campaigns
+                            referenceId: '123'
+                            isActive: true
+                        issuedCount: 0
+                        earnedCount: 0
+                        createdOn: 1720085303.65
+                        createdBy: 75130850
+                        lastUpdatedOn: 1720085327.908
+                        lastUpdatedBy: 75130850
+                        customFields: {}
+                        active: true
+                      pagination:
+                        page: 0
+                        size: 10
+                        total: 122
+                        totalPages: 13
+                    errors: []
+                    warnings: []
               schema:
                 type: object
                 properties:
@@ -469,7 +547,7 @@ paths:
                                     example: qwer-8634-8938
                                   url:
                                     type: string
-                                    example: "https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d"
+                                    example: https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d
                                   tag:
                                     type: string
                                     example: EARNED
@@ -570,9 +648,10 @@ paths:
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta/getFixedWindowDetails?badgeMetaId=693804d8cebb9648d8974489'\
-            \ \\\n--header 'Authorization: Basic Z2VvcRvY2RlbW86NjVhMDgzYjk1MWY5MGY1NTY5NDk1YmNkNzUxYmJiY2U='\
-            \ \\\n--header 'Cookie: _cfuvid=xqa2vacPzz6hoOC_9d5xoORuyNOUReJ4nYUCw-1765278778115-0.0.1.1-604800000'"
+          code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta/getFixedWindowDetails?badgeMetaId=693804d8cebb9648d8974489' \
+            --header 'Authorization: Basic Z2VvcRvY2RlbW86NjVhMDgzYjk1MWY5MGY1NTY5NDk1YmNkNzUxYmJiY2U=' \
+            --header 'Cookie: _cfuvid=xqa2vacPzz6hoOC_9d5xoORuyNOUReJ4nYUCw-1765278778115-0.0.1.1-604800000'
         samples-languages:
         - curl
 components:

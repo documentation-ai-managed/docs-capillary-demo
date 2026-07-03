@@ -3,7 +3,7 @@ info:
   title: Validate OTP
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -30,23 +30,19 @@ paths:
               properties:
                 identifierType:
                   type: string
-                  description: "Identifier used for token generation. Values: MOBILE,\
-                    \ EMAIL, USERNAME."
+                  description: 'Identifier used for token generation. Values: MOBILE, EMAIL, USERNAME.'
                 identifierValue:
                   type: string
                   description: Value of the specified identifierType.
                 brand:
                   type: string
-                  description: Name of the brand/org for which authentication needs
-                    to be verified.
+                  description: Name of the brand/org for which authentication needs to be verified.
                 deviceId:
                   type: string
-                  description: Unique ID of the device from which the customer has
-                    generated the token.
+                  description: Unique ID of the device from which the customer has generated the token.
                 sessionId:
                   type: string
-                  description: Session ID generated through the `v1/token/generate`
-                    API.
+                  description: Session ID generated through the `v1/token/generate` API.
                 otp:
                   type: string
                   description: Validation code received by the customer.
@@ -138,31 +134,35 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
       deprecated: false
       x-readme:
         code-samples:
-        - code: "curl --location 'https://eu.api.capillarytech.com/auth/v1/otp/validate'\
-            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
-            \ application/json' \\\n--header 'accept: application/json' \\\n--header\
-            \ 'Cookie: _cfuvid=4cDcLYjTxIP0ezb6fRYB0epcC4lTjAo5Uwd.pLnw9Ag-1760013365505-0.0.1.1-604800000'\
-            \ \\\n--data '{\n    \"identifierType\": \"MOBILE\",\n    \"identifierValue\"\
-            : \"919999999993\",\n    \"brand\": \"DocDemo\",\n    \"deviceId\": \"\
-            123456785\",\n    \"sessionId\": \"P-6e195d03-a643-4d24-bbda-0d6e3810b06d\"\
-            ,\n    \"otp\": \"999999\"\n}'"
+        - code: |-
+            curl --location 'https://eu.api.capillarytech.com/auth/v1/otp/validate' \
+            --header 'Accept: application/json' \
+            --header 'Content-Type: application/json' \
+            --header 'accept: application/json' \
+            --header 'Cookie: _cfuvid=4cDcLYjTxIP0ezb6fRYB0epcC4lTjAo5Uwd.pLnw9Ag-1760013365505-0.0.1.1-604800000' \
+            --data '{
+                "identifierType": "MOBILE",
+                "identifierValue": "919999999993",
+                "brand": "DocDemo",
+                "deviceId": "123456785",
+                "sessionId": "P-6e195d03-a643-4d24-bbda-0d6e3810b06d",
+                "otp": "999999"
+            }'
           language: shell
           name: Sample request using mobile application
-        - code: "curl --location 'https://eu.api.capillarytech.com/auth/v1/web/otp/validate'\
-            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
-            \ application/json' \\\n--header 'accept: application/json' \\\n--header\
-            \ 'Cookie: _cfuvid=XCyqCZlwYDamaqrRf8xpmEpz1ZwdbLmtWOS4zHmfliY-1760013652075-0.0.1.1-604800000'\
-            \ \\\n--data-raw '{\n    \"identifierType\": \"EMAIL\",\n    \"identifierValue\"\
-            : \"captest@gmail.com\",\n    \"brand\": \"DocDemo\",\n   \n    \"sessionId\"\
-            : \"P-db0a6a4b-14e9-4b0b-998e-72203c39aa45\",\n    \"otp\": \"999999\"\
-            \n}'"
+        - code: "curl --location 'https://eu.api.capillarytech.com/auth/v1/web/otp/validate' \\\n--header\
+            \ 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--header 'accept:\
+            \ application/json' \\\n--header 'Cookie: _cfuvid=XCyqCZlwYDamaqrRf8xpmEpz1ZwdbLmtWOS4zHmfliY-1760013652075-0.0.1.1-604800000'\
+            \ \\\n--data-raw '{\n    \"identifierType\": \"EMAIL\",\n    \"identifierValue\": \"captest@gmail.com\"\
+            ,\n    \"brand\": \"DocDemo\",\n   \n    \"sessionId\": \"P-db0a6a4b-14e9-4b0b-998e-72203c39aa45\"\
+            ,\n    \"otp\": \"999999\"\n}'"
           language: shell
           name: Sample request using web application
         samples-languages:

@@ -35,41 +35,56 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
-                    \   \"code\": 11008,\n        \"message\": \"Catalog promotion\
-                    \ fetched successfully.\"\n    },\n    \"catalogPromotion\": {\n\
-                    \        \"id\": 8800,\n        \"name\": \"test1\",\n       \
-                    \ \"orgId\": 100458,\n        \"isEnabled\": true,\n        \"\
-                    startTime\": \"2025-03-14 20:58:49\",\n        \"startDateTime\"\
-                    : \"2025-03-14T20:58:49Z\",\n        \"endTime\": \"2025-10-25\
-                    \ 05:46:00\",\n        \"endDateTime\": \"2025-10-25T05:46:00Z\"\
-                    ,\n        \"discountType\": \"ABSOLUTE\",\n        \"discountValue\"\
-                    : 1.00,\n        \"lastUpdatedOn\": \"2025-03-13 09:48:42\",\n\
-                    \        \"lastUpdatedOnDateTime\": \"2025-03-13T09:48:42Z\",\n\
-                    \        \"createdOn\": \"2025-03-13 09:48:42\",\n        \"createdOnDateTime\"\
-                    : \"2025-03-13T09:48:42Z\",\n        \"lastUpdatedBy\": 75140757,\n\
-                    \        \"createdBy\": 75140757,\n        \"languageSpecificInfo\"\
-                    : [\n            {\n                \"languageCode\": \"en\",\n\
-                    \                \"name\": \"test1\",\n                \"description\"\
-                    : \"description\",\n                \"enabled\": true,\n     \
-                    \           \"createdBy\": 75140757,\n                \"createdOn\"\
-                    : \"2025-03-13 09:48:42\",\n                \"createdOnDateTime\"\
-                    : \"2025-03-13T09:48:42Z\",\n                \"lastUpdatedBy\"\
-                    : 75140757,\n                \"lastUpdateOn\": \"2025-03-13 09:48:42\"\
-                    ,\n                \"lastUpdateOnDateTime\": \"2025-03-13T09:48:42Z\"\
-                    \n            }\n        ],\n        \"customFields\": {\n   \
-                    \         \"A\": \"1\",\n            \"CF1233\": \"1\",\n    \
-                    \        \"EnumCF2\": \"r1\",\n            \"EnumCF1\": \"white\"\
-                    \n        },\n        \"rewards\": [\n            {\n        \
-                    \        \"id\": 8799,\n                \"rewardId\": 308795,\n\
-                    \                \"promotionId\": 8800,\n                \"startTime\"\
-                    : \"2025-03-14 20:58:49\",\n                \"startDateTime\"\
-                    : \"2025-03-14T20:58:49Z\",\n                \"endTime\": \"2025-10-25\
-                    \ 05:46:00\",\n                \"endDateTime\": \"2025-10-25T05:46:00Z\"\
-                    ,\n                \"expired\": false,\n                \"started\"\
-                    : false,\n                \"intouchPointsPostDiscount\": 99,\n\
-                    \                \"configId\": 3914\n            }\n        ]\n\
-                    \    }\n}\n    "
+                  value:
+                    status:
+                      success: true
+                      code: 11008
+                      message: Catalog promotion fetched successfully.
+                    catalogPromotion:
+                      id: 8800
+                      name: test1
+                      orgId: 100458
+                      isEnabled: true
+                      startTime: '2025-03-14 20:58:49'
+                      startDateTime: '2025-03-14T20:58:49Z'
+                      endTime: '2025-10-25 05:46:00'
+                      endDateTime: '2025-10-25T05:46:00Z'
+                      discountType: ABSOLUTE
+                      discountValue: 1.0
+                      lastUpdatedOn: '2025-03-13 09:48:42'
+                      lastUpdatedOnDateTime: '2025-03-13T09:48:42Z'
+                      createdOn: '2025-03-13 09:48:42'
+                      createdOnDateTime: '2025-03-13T09:48:42Z'
+                      lastUpdatedBy: 75140757
+                      createdBy: 75140757
+                      languageSpecificInfo:
+                      - languageCode: en
+                        name: test1
+                        description: description
+                        enabled: true
+                        createdBy: 75140757
+                        createdOn: '2025-03-13 09:48:42'
+                        createdOnDateTime: '2025-03-13T09:48:42Z'
+                        lastUpdatedBy: 75140757
+                        lastUpdateOn: '2025-03-13 09:48:42'
+                        lastUpdateOnDateTime: '2025-03-13T09:48:42Z'
+                      customFields:
+                        A: '1'
+                        CF1233: '1'
+                        EnumCF2: r1
+                        EnumCF1: white
+                      rewards:
+                      - id: 8799
+                        rewardId: 308795
+                        promotionId: 8800
+                        startTime: '2025-03-14 20:58:49'
+                        startDateTime: '2025-03-14T20:58:49Z'
+                        endTime: '2025-10-25 05:46:00'
+                        endDateTime: '2025-10-25T05:46:00Z'
+                        expired: false
+                        started: false
+                        intouchPointsPostDiscount: 99
+                        configId: 3914
               schema:
                 type: object
                 properties:
@@ -248,9 +263,12 @@ paths:
             application/json:
               examples:
                 '11007':
-                  value: "{\n   \"status\": {\n       \"success\": false,\n      \
-                    \ \"code\": 11007,\n       \"message\": \"Catalog promotion not\
-                    \ found.\"\n   },\n   \"catalogPromotion\": null\n}\n\n"
+                  value:
+                    status:
+                      success: false
+                      code: 11007
+                      message: Catalog promotion not found.
+                    catalogPromotion: null
               schema:
                 type: object
                 properties:

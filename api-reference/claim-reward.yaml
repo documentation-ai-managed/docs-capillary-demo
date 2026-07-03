@@ -3,7 +3,7 @@ info:
   title: Claim Reward
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -56,9 +56,13 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
-                    \   \"code\": 6013,\n        \"message\": \"Reward claimed successfully\"\
-                    \n    },\n    \"reward\": {\n        \"id\": 28359\n    }\n}"
+                  value:
+                    status:
+                      success: true
+                      code: 6013
+                      message: Reward claimed successfully
+                    reward:
+                      id: 28359
               schema:
                 type: object
                 properties:
@@ -89,7 +93,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}

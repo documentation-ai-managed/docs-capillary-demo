@@ -3,7 +3,7 @@ info:
   title: Merge User Rewards
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -27,21 +27,19 @@ paths:
               properties:
                 fromUserId:
                   type: integer
-                  description: Unique customer ID of the victim customer. This is
-                    the user account from which rewards and their data will be transferred.
+                  description: Unique customer ID of the victim customer. This is the user account from
+                    which rewards and their data will be transferred.
                   format: int64
                 toUserId:
                   type: integer
-                  description: Unique customer ID of the surviving customer. This
-                    user account receives the rewards and their data data from the
-                    victim account.
+                  description: Unique customer ID of the surviving customer. This user account receives
+                    the rewards and their data data from the victim account.
                   format: int64
                 requestId:
                   type: string
-                  description: A unique, custom ID that you can define to identify
-                    the merge. This ID can be any value of your choice and is used
-                    to track the merge status and handle errors. There is no character
-                    limit.
+                  description: A unique, custom ID that you can define to identify the merge. This ID
+                    can be any value of your choice and is used to track the merge status and handle errors.
+                    There is no character limit.
       responses:
         '200':
           description: '200'
@@ -49,9 +47,11 @@ paths:
             application/json:
               examples:
                 Successful merge:
-                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
-                    \   \"code\": 200,\n        \"message\": \"User merged successfully\"\
-                    \n    }\n}"
+                  value:
+                    status:
+                      success: true
+                      code: 200
+                      message: User merged successfully
               schema:
                 type: object
                 properties:
@@ -75,17 +75,23 @@ paths:
             application/json:
               examples:
                 User is already merged:
-                  value: "{\n    \"status\": {\n        \"success\": false,\n    \
-                    \    \"code\": 8012,\n        \"message\": \"User already merged\"\
-                    \n    }\n}"
+                  value:
+                    status:
+                      success: false
+                      code: 8012
+                      message: User already merged
                 fromUserId / toUserId not provided:
-                  value: "{\n    \"status\": {\n        \"success\": false,\n    \
-                    \    \"code\": 400,\n        \"message\": \"toUserId can't be\
-                    \ null.,fromUserId can't be null.\"\n    }\n}"
+                  value:
+                    status:
+                      success: false
+                      code: 400
+                      message: toUserId can't be null.,fromUserId can't be null.
                 requestId not provided:
-                  value: "{\n    \"status\": {\n        \"success\": false,\n    \
-                    \    \"code\": 400,\n        \"message\": \"requestId can't be\
-                    \ null.\"\n    }\n}"
+                  value:
+                    status:
+                      success: false
+                      code: 400
+                      message: requestId can't be null.
               schema:
                 oneOf:
                 - title: User is already merged
@@ -121,7 +127,7 @@ paths:
                           default: 0
                         message:
                           type: string
-                          example: "toUserId can't be null.,fromUserId can't be null."
+                          example: toUserId can't be null.,fromUserId can't be null.
                 - title: requestId not provided
                   type: object
                   properties:
@@ -138,7 +144,7 @@ paths:
                           default: 0
                         message:
                           type: string
-                          example: "requestId can't be null."
+                          example: requestId can't be null.
       deprecated: false
 components:
   securitySchemes:

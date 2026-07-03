@@ -3,7 +3,7 @@ info:
   title: Get Points Ledger Explode Info in Connected Orgs
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -36,16 +36,15 @@ paths:
           type: string
       - name: eventIds
         in: query
-        description: The list of eventId’s with comma separated values. These are
-          eventLogIds, corresponding to the events in loyalty like TransactionAdd,
-          CustomerRegistration etc.
+        description: The list of eventId’s with comma separated values. These are eventLogIds, corresponding
+          to the events in loyalty like TransactionAdd, CustomerRegistration etc.
         required: true
         schema:
           type: string
       - name: accountId
         in: query
-        description: For a source with multiple accounts, pass the specific accountId
-          in which the customer identifier is available.
+        description: For a source with multiple accounts, pass the specific accountId in which the customer
+          identifier is available.
         schema:
           type: string
       - name: DATA-SCOPE-ORG
@@ -61,47 +60,42 @@ paths:
           type: string
       - name: getBillDetails
         in: query
-        description: Setting this to true will return Bill details like the bill no,
-          amount, discount, line items etc
+        description: Setting this to true will return Bill details like the bill no, amount, discount,
+          line items etc
         schema:
           type: boolean
       - name: getPointsEarnedBreakup
         in: query
-        description: Setting this to true will return the points breakup details like
-          points category Name, points allocation strategy Name, expiry strategy etc
+        description: Setting this to true will return the points breakup details like points category
+          Name, points allocation strategy Name, expiry strategy etc
         schema:
           type: boolean
       - name: getCustomFields
         in: query
-        description: Setting this value will return the custom fields set up by the
-          brand
+        description: Setting this value will return the custom fields set up by the brand
         schema:
           type: boolean
       - name: getExtendedFields
         in: query
-        description: Setting this field will return the extended fields set up by
-          the brand
+        description: Setting this field will return the extended fields set up by the brand
         schema:
           type: boolean
       - name: getMaxConversionDetails
         in: query
-        description: Setting this field to true will return the max conversion details
-          which is set for Add txn, for all line items where delayed accrual is based
-          on fixed or return date, max of all dates is calculated and show in the
-          field name “maxConversionDate”
+        description: Setting this field to true will return the max conversion details which is set for
+          Add txn, for all line items where delayed accrual is based on fixed or return date, max of all
+          dates is calculated and show in the field name “maxConversionDate”
         schema:
           type: boolean
       - name: getPaymentMode
         in: query
-        description: Setting this field will show an array of payment modes used ex
-          UPI, CASH etc
+        description: Setting this field will show an array of payment modes used ex UPI, CASH etc
         schema:
           type: string
       - name: type
         in: query
-        description: Setting this filed returns entries for type of user, whether
-          individual customer or a group. Only two values are allowed here - CUTSOMER,
-          USERGROUP2
+        description: Setting this filed returns entries for type of user, whether individual customer
+          or a group. Only two values are allowed here - CUTSOMER, USERGROUP2
         schema:
           type: string
       - name: isPrimaryUser
@@ -111,16 +105,16 @@ paths:
           type: boolean
       - name: includeAlternateCurrencies
         in: query
-        description: Pass includeAlternateCurrencies=true to retrieve all alternate
-          currencies available with the customer.
+        description: Pass includeAlternateCurrencies=true to retrieve all alternate currencies available
+          with the customer.
         schema:
           type: boolean
       - name: alternateCurrencyNames
         in: query
-        description: Filter alternate currencies for the customer based on the name.
-          You can also pass a list of comma-separated alternate currency names. Set
-          the parameter includeAlternateCurrencies to false when you use this. If
-          the value is true, includeAlternateCurrencies lists all the available currencies.
+        description: Filter alternate currencies for the customer based on the name. You can also pass
+          a list of comma-separated alternate currency names. Set the parameter includeAlternateCurrencies
+          to false when you use this. If the value is true, includeAlternateCurrencies lists all the available
+          currencies.
         schema:
           type: string
       - name: eventName
@@ -141,284 +135,403 @@ paths:
             application/json:
               examples:
                 NewBill/Txn Add:
-                  value: "{\n  \"events\": [\n    {\n      \"eventLogId\": 549393345,\n\
-                    \      \"eventName\": \"TransactionAdd\",\n      \"eventDetails\"\
-                    : {\n        \"eventTime\": \"2023-08-02 16:24:44.0\",\n     \
-                    \   \"tillId\": 100004318\n      },\n      \"billDetails\": {\n\
-                    \        \"type\": \"loyalty\",\n        \"billNumber\": \"TC300051690458\"\
-                    ,\n        \"grossAmount\": 0,\n        \"discount\": 0,\n   \
-                    \     \"billAmount\": 11691,\n        \"note\": \"\",\n      \
-                    \  \"source\": \"instore\",\n        \"pointsEarned\": {\n   \
-                    \       \"regular\": [],\n          \"promo\": [],\n         \
-                    \ \"promised\": []\n        },\n        \"lineItems\": [\n   \
-                    \       {\n            \"id\": 310201424,\n            \"itemCode\"\
-                    : \"243593\",\n            \"source\": \"instore\",\n        \
-                    \    \"grossAmount\": 0,\n            \"discount\": 0,\n     \
-                    \       \"amount\": 11691,\n            \"rate\": 0,\n       \
-                    \     \"qty\": 1,\n            \"pointsEarned\": {\n         \
-                    \     \"regular\": [\n                {\n                  \"\
-                    value\": 0,\n                  \"expiresOn\": \"2024-08-01 23:59:59.0\"\
-                    ,\n                  \"programId\": 1000013,\n               \
-                    \   \"programName\": \"Croma\",\n                  \"expiryType\"\
-                    : \"rolling\"\n                }\n              ],\n         \
-                    \     \"promo\": [\n                {\n                  \"promotionId\"\
-                    : 9418,\n                  \"promotionName\": \"Min 5% Drop 2_Croma\"\
-                    ,\n                  \"programId\": 1000007,\n               \
-                    \   \"programName\": \"TataNeu\",\n                  \"value\"\
-                    : 0,\n                  \"expiresOn\": \"2024-08-01 23:59:59.0\"\
-                    ,\n                  \"expiryType\": \"rolling\"\n           \
-                    \     }\n              ],\n              \"promised\": []\n  \
-                    \          }\n          }\n        ]\n      },\n      \"customFields\"\
-                    : [\n        {\n          \"name\": \"txn_source\",\n        \
-                    \  \"value\": \"tcp\"\n        }\n      ],\n      \"extendedFields\"\
-                    : [],\n      \"paymentModes\": [\n        \"Others\"\n      ],\n\
-                    \      \"pointInTimeSlabs\": [\n        {\n          \"pointInTimeSlabNumber\"\
-                    : 1,\n          \"pointInTimeSlabName\": \"NONE\",\n         \
-                    \ \"programId\": 1000007,\n          \"isDefaultProgram\": true\n\
-                    \        },\n        {\n          \"pointInTimeSlabNumber\": 1,\n\
-                    \          \"pointInTimeSlabName\": \"Privilege\",\n         \
-                    \ \"programId\": 1000013,\n          \"isDefaultProgram\": false\n\
-                    \        }\n      ],\n      \"eventReferenceId\": \"2151165932\"\
-                    ,\n      \"orgId\": 4000218\n    }\n  ],\n  \"warnings\": []\n\
-                    }"
+                  value:
+                    events:
+                    - eventLogId: 549393345
+                      eventName: TransactionAdd
+                      eventDetails:
+                        eventTime: '2023-08-02 16:24:44.0'
+                        tillId: 100004318
+                      billDetails:
+                        type: loyalty
+                        billNumber: TC300051690458
+                        grossAmount: 0
+                        discount: 0
+                        billAmount: 11691
+                        note: ''
+                        source: instore
+                        pointsEarned:
+                          regular: []
+                          promo: []
+                          promised: []
+                        lineItems:
+                        - id: 310201424
+                          itemCode: '243593'
+                          source: instore
+                          grossAmount: 0
+                          discount: 0
+                          amount: 11691
+                          rate: 0
+                          qty: 1
+                          pointsEarned:
+                            regular:
+                            - value: 0
+                              expiresOn: '2024-08-01 23:59:59.0'
+                              programId: 1000013
+                              programName: Croma
+                              expiryType: rolling
+                            promo:
+                            - promotionId: 9418
+                              promotionName: Min 5% Drop 2_Croma
+                              programId: 1000007
+                              programName: TataNeu
+                              value: 0
+                              expiresOn: '2024-08-01 23:59:59.0'
+                              expiryType: rolling
+                            promised: []
+                      customFields:
+                      - name: txn_source
+                        value: tcp
+                      extendedFields: []
+                      paymentModes:
+                      - Others
+                      pointInTimeSlabs:
+                      - pointInTimeSlabNumber: 1
+                        pointInTimeSlabName: NONE
+                        programId: 1000007
+                        isDefaultProgram: true
+                      - pointInTimeSlabNumber: 1
+                        pointInTimeSlabName: Privilege
+                        programId: 1000013
+                        isDefaultProgram: false
+                      eventReferenceId: '2151165932'
+                      orgId: 4000218
+                    warnings: []
                 GenericEvent/ImportEvents:
-                  value: "{\n  \"events\": [\n    {\n      \"eventLogId\": 296576878,\n\
-                    \      \"eventName\": \"GenericEvent\",\n      \"eventDetails\"\
-                    : {\n        \"eventDisplayName\": \"first_bill_pay\",\n     \
-                    \   \"tillId\": 100011485,\n        \"displayName\": \"first_bill_pay\"\
-                    \n      },\n      \"pointsEarned\": {\n        \"regular\": [],\n\
-                    \        \"promo\": [\n          {\n            \"promotionId\"\
-                    : 7125,\n            \"promotionName\": \"Earn at BillPay – December\
-                    \ Mid Month Sale\",\n            \"programId\": 1000055,\n   \
-                    \         \"programName\": \"bill payments\",\n            \"\
-                    value\": 0,\n            \"promotionStartDate\": \"2022-12-19\
-                    \ 00:00:00.0\",\n            \"promotionEndDate\": \"2022-12-22\
-                    \ 23:59:59.0\"\n          }\n        ],\n        \"promised\"\
-                    : []\n      },\n      \"behavioralEventMetadata\": {\n       \
-                    \ \"label\": \"first_bill_pay\",\n        \"fields\": [\n    \
-                    \      {\n            \"fieldName\": \"externalid\",\n       \
-                    \     \"fieldType\": \"customer\",\n            \"attributes\"\
-                    : {\n              \"accountId\": {\n                \"valueType\"\
-                    : \"ENUM\"\n              },\n              \"addCustomerIfNotExists\"\
-                    : {\n                \"valueType\": \"BOOLEAN\",\n           \
-                    \     \"value\": \"false\"\n              },\n              \"\
-                    identifierType\": {\n                \"valueType\": \"ENUM\",\n\
-                    \                \"value\": \"externalId\"\n              },\n\
-                    \              \"isRequired\": {\n                \"valueType\"\
-                    : \"BOOLEAN\",\n                \"value\": \"true\"\n        \
-                    \      },\n              \"source\": {\n                \"valueType\"\
-                    : \"ENUM\",\n                \"value\": \"INSTORE\"\n        \
-                    \      }\n            }\n          },\n          {\n         \
-                    \   \"fieldName\": \"billamount\",\n            \"fieldType\"\
-                    : \"double\",\n            \"attributes\": {\n              \"\
-                    isRequired\": {\n                \"valueType\": \"BOOLEAN\",\n\
-                    \                \"value\": \"false\"\n              }\n     \
-                    \       }\n          },\n          {\n            \"fieldName\"\
-                    : \"date\",\n            \"fieldType\": \"date\",\n          \
-                    \  \"attributes\": {\n              \"isRequired\": {\n      \
-                    \          \"valueType\": \"BOOLEAN\",\n                \"value\"\
-                    : \"false\"\n              }\n            }\n          },\n  \
-                    \        {\n            \"fieldName\": \"tillcode\",\n       \
-                    \     \"fieldType\": \"tillCode\",\n            \"attributes\"\
-                    : {\n              \"isRequired\": {\n                \"valueType\"\
-                    : \"BOOLEAN\",\n                \"value\": \"false\"\n       \
-                    \       }\n            }\n          },\n          {\n        \
-                    \    \"fieldName\": \"upipayment\",\n            \"fieldType\"\
-                    : \"string\",\n            \"attributes\": {\n              \"\
-                    isRequired\": {\n                \"valueType\": \"BOOLEAN\",\n\
-                    \                \"value\": \"false\"\n              },\n    \
-                    \          \"regex\": {\n                \"valueType\": \"STRING\"\
-                    \n              }\n            }\n          }\n        ]\n   \
-                    \   },\n      \"eventReferenceId\": \"2151165932\",\n      \"\
-                    orgId\": 4000218\n    }\n  ],\n  \"warnings\": []\n}"
+                  value:
+                    events:
+                    - eventLogId: 296576878
+                      eventName: GenericEvent
+                      eventDetails:
+                        eventDisplayName: first_bill_pay
+                        tillId: 100011485
+                        displayName: first_bill_pay
+                      pointsEarned:
+                        regular: []
+                        promo:
+                        - promotionId: 7125
+                          promotionName: Earn at BillPay – December Mid Month Sale
+                          programId: 1000055
+                          programName: bill payments
+                          value: 0
+                          promotionStartDate: '2022-12-19 00:00:00.0'
+                          promotionEndDate: '2022-12-22 23:59:59.0'
+                        promised: []
+                      behavioralEventMetadata:
+                        label: first_bill_pay
+                        fields:
+                        - fieldName: externalid
+                          fieldType: customer
+                          attributes:
+                            accountId:
+                              valueType: ENUM
+                            addCustomerIfNotExists:
+                              valueType: BOOLEAN
+                              value: 'false'
+                            identifierType:
+                              valueType: ENUM
+                              value: externalId
+                            isRequired:
+                              valueType: BOOLEAN
+                              value: 'true'
+                            source:
+                              valueType: ENUM
+                              value: INSTORE
+                        - fieldName: billamount
+                          fieldType: double
+                          attributes:
+                            isRequired:
+                              valueType: BOOLEAN
+                              value: 'false'
+                        - fieldName: date
+                          fieldType: date
+                          attributes:
+                            isRequired:
+                              valueType: BOOLEAN
+                              value: 'false'
+                        - fieldName: tillcode
+                          fieldType: tillCode
+                          attributes:
+                            isRequired:
+                              valueType: BOOLEAN
+                              value: 'false'
+                        - fieldName: upipayment
+                          fieldType: string
+                          attributes:
+                            isRequired:
+                              valueType: BOOLEAN
+                              value: 'false'
+                            regex:
+                              valueType: STRING
+                      eventReferenceId: '2151165932'
+                      orgId: 4000218
+                    warnings: []
                 CustomerRegistration:
-                  value: "{\n  \"events\": [\n    {\n      \"eventLogId\": 20229363,\n\
-                    \      \"eventName\": \"CustomerRegistration\",\n      \"eventDetails\"\
-                    : {\n        \"eventTime\": \"2023-08-31 06:25:40.0\",\n     \
-                    \   \"tillId\": 50137565\n      },\n      \"pointsEarned\": {\n\
-                    \        \"regular\": [\n          {\n            \"value\": 100,\n\
-                    \            \"expiresOn\": \"2023-09-15 23:59:59.0\",\n     \
-                    \       \"programId\": 1933,\n            \"programName\": \"\
-                    PellDungaAgarUseKiyaTohDefaultProgram\",\n            \"expiryType\"\
-                    : \"fixed\"\n          }\n        ],\n        \"promo\": [\n \
-                    \         {\n            \"promotionId\": 1133561326,\n      \
-                    \      \"promotionName\": \"delayedAccrualpromo\",\n         \
-                    \   \"programId\": 1933,\n            \"programName\": \"PellDungaAgarUseKiyaTohDefaultProgram\"\
-                    ,\n            \"value\": 100,\n            \"expiresOn\": \"\
-                    2023-09-15 23:59:59.0\",\n            \"expiryType\": \"fixed\"\
-                    \n          }\n        ],\n        \"promised\": [\n         \
-                    \ {\n            \"value\": 1001,\n            \"conversionDate\"\
-                    : \"2023-09-06 00:00:00.0\",\n            \"programId\": 1933,\n\
-                    \            \"programName\": \"PellDungaAgarUseKiyaTohDefaultProgram\"\
-                    \n          }\n        ]\n      },\n      \"eventReferenceId\"\
-                    : \"2151165932\",\n      \"orgId\": 4000218\n    }\n  ],\n  \"\
-                    warnings\": []\n}"
+                  value:
+                    events:
+                    - eventLogId: 20229363
+                      eventName: CustomerRegistration
+                      eventDetails:
+                        eventTime: '2023-08-31 06:25:40.0'
+                        tillId: 50137565
+                      pointsEarned:
+                        regular:
+                        - value: 100
+                          expiresOn: '2023-09-15 23:59:59.0'
+                          programId: 1933
+                          programName: PellDungaAgarUseKiyaTohDefaultProgram
+                          expiryType: fixed
+                        promo:
+                        - promotionId: 1133561326
+                          promotionName: delayedAccrualpromo
+                          programId: 1933
+                          programName: PellDungaAgarUseKiyaTohDefaultProgram
+                          value: 100
+                          expiresOn: '2023-09-15 23:59:59.0'
+                          expiryType: fixed
+                        promised:
+                        - value: 1001
+                          conversionDate: '2023-09-06 00:00:00.0'
+                          programId: 1933
+                          programName: PellDungaAgarUseKiyaTohDefaultProgram
+                      eventReferenceId: '2151165932'
+                      orgId: 4000218
+                    warnings: []
                 GoodWillPoints:
-                  value: "{\n  \"events\": [\n    {\n      \"eventLogId\": 579442157,\n\
-                    \      \"eventName\": \"AllocateGoodwillPoints\",\n      \"eventDetails\"\
-                    : {\n        \"eventTime\": \"2023-08-29 19:12:17.0\",\n     \
-                    \   \"reason\": \"CS: Cx received Rs 500 TNRL voucher which can\
-                    \ be u\",\n        \"requestId\": 2828197\n      },\n      \"\
-                    pointsEarned\": {\n        \"regular\": [],\n        \"promo\"\
-                    : [\n          {\n            \"promotionId\": 5486,\n       \
-                    \     \"promotionName\": \"Goodwill Promotion\",\n           \
-                    \ \"programId\": 1000019,\n            \"programName\": \"AirAsia\
-                    \ India\",\n            \"value\": 500,\n            \"expiresOn\"\
-                    : \"2024-08-28 23:59:59.0\",\n            \"expiryType\": \"rolling\"\
-                    \n          }\n        ],\n        \"promised\": []\n      },\n\
-                    \      \"eventReferenceId\": \"2151165932\",\n      \"orgId\"\
-                    : 4000218\n    }\n  ],\n  \"warnings\": []\n}"
+                  value:
+                    events:
+                    - eventLogId: 579442157
+                      eventName: AllocateGoodwillPoints
+                      eventDetails:
+                        eventTime: '2023-08-29 19:12:17.0'
+                        reason: 'CS: Cx received Rs 500 TNRL voucher which can be u'
+                        requestId: 2828197
+                      pointsEarned:
+                        regular: []
+                        promo:
+                        - promotionId: 5486
+                          promotionName: Goodwill Promotion
+                          programId: 1000019
+                          programName: AirAsia India
+                          value: 500
+                          expiresOn: '2024-08-28 23:59:59.0'
+                          expiryType: rolling
+                        promised: []
+                      eventReferenceId: '2151165932'
+                      orgId: 4000218
+                    warnings: []
                 TargetCompleted:
-                  value: "{\n  \"events\": [\n    {\n      \"eventLogId\": 404150880,\n\
-                    \      \"eventName\": \"TargetCompleted\",\n      \"eventDetails\"\
-                    : {\n        \"eventTime\": \"2023-03-26 21:31:49.0\",\n     \
-                    \   \"tillId\": 100008816\n      },\n      \"targetCompletedDetails\"\
-                    : {\n        \"targetGroupID\": 106,\n        \"targetGroupName\"\
-                    : \"Offer_March2023_CFT_Milestone\",\n        \"targetId\": 199,\n\
-                    \        \"targetName\": \"Offer_March2023_CFT_Milestone_1\",\n\
-                    \        \"targetPeriodID\": 44,\n        \"targetPeriodName\"\
-                    : \"B1\",\n        \"targetValue\": \"2.000\",\n        \"achievedValue\"\
-                    : \"2.000\",\n        \"sourceId\": 5020906,\n        \"sourceType\"\
-                    : \"USERTARGET\",\n        \"pointsEarned\": {\n          \"promised\"\
-                    : [\n            {\n              \"value\": 0,\n            \
-                    \  \"conversionDate\": \"2023-04-26 00:00:00.0\",\n          \
-                    \    \"programId\": 1000007,\n              \"programName\": \"\
-                    TataNeu\"\n            }\n          ]\n        }\n      },\n \
-                    \     \"eventReferenceId\": \"2151165932\",\n      \"orgId\":\
-                    \ 4000218\n    }\n  ],\n  \"warnings\": []\n}"
+                  value:
+                    events:
+                    - eventLogId: 404150880
+                      eventName: TargetCompleted
+                      eventDetails:
+                        eventTime: '2023-03-26 21:31:49.0'
+                        tillId: 100008816
+                      targetCompletedDetails:
+                        targetGroupID: 106
+                        targetGroupName: Offer_March2023_CFT_Milestone
+                        targetId: 199
+                        targetName: Offer_March2023_CFT_Milestone_1
+                        targetPeriodID: 44
+                        targetPeriodName: B1
+                        targetValue: '2.000'
+                        achievedValue: '2.000'
+                        sourceId: 5020906
+                        sourceType: USERTARGET
+                        pointsEarned:
+                          promised:
+                          - value: 0
+                            conversionDate: '2023-04-26 00:00:00.0'
+                            programId: 1000007
+                            programName: TataNeu
+                      eventReferenceId: '2151165932'
+                      orgId: 4000218
+                    warnings: []
                 PointsTransfer:
-                  value: "{\n  \"events\": [\n    {\n      \"eventLogId\": 498243059,\n\
-                    \      \"eventName\": \"PointsTransfer\",\n      \"eventDetails\"\
-                    : {\n        \"eventTime\": \"2023-06-19 10:04:32.0\"\n      },\n\
-                    \      \"transferredFrom\": {\n        \"userId\": \"4811870\"\
-                    ,\n        \"firstName\": \"\",\n        \"lastName\": \"\",\n\
-                    \        \"transferType\": \"TRANSFER\",\n        \"pointsTransferDetails\"\
-                    : [\n          {\n            \"points\": \"62718.260\",\n   \
-                    \         \"programId\": \"1000014\",\n            \"programName\"\
-                    : \"IHCL\"\n          }\n        ]\n      },\n      \"transferredTo\"\
-                    : {\n        \"userId\": \"68519328\",\n        \"firstName\"\
-                    : \"3e64ec7fb438a54abc003b95942a5e9a\",\n        \"lastName\"\
-                    : \"3e64ec7fb438a54abc003b95942a5e9a\",\n        \"transferType\"\
-                    : \"TRANSFER\",\n        \"pointsTransferDetails\": [\n      \
-                    \    {\n            \"points\": \"62718.260\",\n            \"\
-                    programId\": \"1000014\",\n            \"programName\": \"IHCL\"\
-                    \n          }\n        ]\n      },\n      \"notes\": \"2023-06-19T04:34:32.327770699\"\
-                    ,\n      \"eventReferenceId\": \"2151165932\",\n      \"orgId\"\
-                    : 4000218\n    }\n  ],\n  \"warnings\": []\n}"
+                  value:
+                    events:
+                    - eventLogId: 498243059
+                      eventName: PointsTransfer
+                      eventDetails:
+                        eventTime: '2023-06-19 10:04:32.0'
+                      transferredFrom:
+                        userId: '4811870'
+                        firstName: ''
+                        lastName: ''
+                        transferType: TRANSFER
+                        pointsTransferDetails:
+                        - points: '62718.260'
+                          programId: '1000014'
+                          programName: IHCL
+                      transferredTo:
+                        userId: '68519328'
+                        firstName: 3e64ec7fb438a54abc003b95942a5e9a
+                        lastName: 3e64ec7fb438a54abc003b95942a5e9a
+                        transferType: TRANSFER
+                        pointsTransferDetails:
+                        - points: '62718.260'
+                          programId: '1000014'
+                          programName: IHCL
+                      notes: '2023-06-19T04:34:32.327770699'
+                      eventReferenceId: '2151165932'
+                      orgId: 4000218
+                    warnings: []
                 PointsRedemption:
-                  value: "{\n  \"events\": [\n    {\n      \"eventLogId\": 469585846,\n\
-                    \      \"eventName\": \"PointsRedemption\",\n      \"eventDetails\"\
-                    : {\n        \"eventTime\": \"2023-05-23 12:20:18.0\",\n     \
-                    \   \"tillId\": 100007771,\n        \"redemptionDetails\": {\n\
-                    \          \"pointsRedeemed\": \"1131.870\",\n          \"transactionNumber\"\
-                    : \"TBN-1222183117-20230523\",\n          \"billingTime\": \"\
-                    2023-05-23 12:20:18.0\",\n          \"externalReferenceNumber\"\
-                    : \"26ec1bca2ccb9cea9ef2\",\n          \"notes\": \"\",\n    \
-                    \      \"groupRedemption\": true\n        }\n      },\n      \"\
-                    customFields\": [],\n      \"pointsBreakup\": [\n        {\n \
-                    \         \"points\": \"803.009\",\n          \"programId\": \"\
-                    1000007\",\n          \"programName\": \"TataNeu\"\n        },\n\
-                    \        {\n          \"points\": \"0.121\",\n          \"programId\"\
-                    : \"1000028\",\n          \"programName\": \"bigbasket\"\n   \
-                    \     },\n        {\n          \"points\": \"328.740\",\n    \
-                    \      \"programId\": \"1000086\",\n          \"programName\"\
-                    : \"TataNeu HDFC\"\n        }\n      ],\n      \"eventReferenceId\"\
-                    : \"2151165932\",\n      \"orgId\": 4000218\n    }\n  ],\n  \"\
-                    warnings\": []\n}"
+                  value:
+                    events:
+                    - eventLogId: 469585846
+                      eventName: PointsRedemption
+                      eventDetails:
+                        eventTime: '2023-05-23 12:20:18.0'
+                        tillId: 100007771
+                        redemptionDetails:
+                          pointsRedeemed: '1131.870'
+                          transactionNumber: TBN-1222183117-20230523
+                          billingTime: '2023-05-23 12:20:18.0'
+                          externalReferenceNumber: 26ec1bca2ccb9cea9ef2
+                          notes: ''
+                          groupRedemption: true
+                      customFields: []
+                      pointsBreakup:
+                      - points: '803.009'
+                        programId: '1000007'
+                        programName: TataNeu
+                      - points: '0.121'
+                        programId: '1000028'
+                        programName: bigbasket
+                      - points: '328.740'
+                        programId: '1000086'
+                        programName: TataNeu HDFC
+                      eventReferenceId: '2151165932'
+                      orgId: 4000218
+                    warnings: []
                 ReturnTxn:
-                  value: "{\n  \"events\": [\n    {\n      \"eventLogId\": 529902660,\n\
-                    \      \"eventName\": \"ReturnBill\",\n      \"eventDetails\"\
-                    : {\n        \"eventTime\": \"2023-07-15 20:43:33.0\",\n     \
-                    \   \"tillId\": 100004318\n      },\n      \"billDetails\": {\n\
-                    \        \"billNumber\": \"TC300049941700\",\n        \"billAmount\"\
-                    : 32999,\n        \"note\": \"\",\n        \"returnDate\": \"\
-                    2023-07-15 20:43:33.0\",\n        \"returnAmount\": 32999,\n \
-                    \       \"billDate\": \"2023-07-13 23:52:48.0\",\n        \"returnType\"\
-                    : \"LINE_ITEM\",\n        \"pointsEarned\": {\n          \"regular\"\
-                    : [],\n          \"promo\": [],\n          \"promised\": []\n\
-                    \        },\n        \"pointsEarnedBreakup\": {\n          \"\
-                    regular\": [],\n          \"promised\": []\n        },\n     \
-                    \   \"lineItems\": [\n          {\n            \"id\": 303060102,\n\
-                    \            \"itemCode\": \"274277\",\n            \"grossAmount\"\
-                    : 0,\n            \"amount\": 32999,\n            \"rate\": 0,\n\
-                    \            \"qty\": 1,\n            \"serialNumber\": 1,\n \
-                    \           \"returnAmount\": 32999,\n            \"returnRate\"\
-                    : 0,\n            \"returnQty\": 1,\n            \"returnValue\"\
-                    : 0,\n            \"pointsEarned\": {\n              \"regular\"\
-                    : [\n                {\n                  \"value\": 0,\n    \
-                    \              \"expiresOn\": \"2024-07-12 23:59:59.0\",\n   \
-                    \               \"programId\": 1000013,\n                  \"\
-                    programName\": \"Croma\",\n                  \"returnPoints\"\
-                    : 108.897,\n                  \"expiryType\": \"rolling\"\n  \
-                    \              }\n              ],\n              \"promo\": [\n\
-                    \                {\n                  \"promotionId\": 6444,\n\
-                    \                  \"promotionName\": \"Min 5% Drop 1_Croma\"\
-                    ,\n                  \"programId\": 1000007,\n               \
-                    \   \"programName\": \"TataNeu\",\n                  \"value\"\
-                    : 0,\n                  \"expiresOn\": \"2024-07-12 23:59:59.0\"\
-                    ,\n                  \"returnedPoints\": 1541.053,\n         \
-                    \         \"expiryType\": \"rolling\"\n                }\n   \
-                    \           ],\n              \"promised\": []\n            },\n\
-                    \            \"pointsEarnedBreakup\": {\n              \"regular\"\
-                    : [\n                {\n                  \"value\": 1541.053,\n\
-                    \                  \"expiresOn\": \"2024-07-12 23:59:59.0\",\n\
-                    \                  \"awardedOn\": \"2023-07-29 00:00:00.0\",\n\
-                    \                  \"sourceValue\": 32999,\n                 \
-                    \ \"awardActionDetails\": {\n                    \"id\": 235074156,\n\
-                    \                    \"name\": \"AWARD_POINTS_ACTION\",\n    \
-                    \                \"rulesetId\": 1356,\n                    \"\
-                    rulesetName\": \"ruleset_20220329234517\"\n                  },\n\
-                    \                  \"programId\": 1000007,\n                 \
-                    \ \"programName\": \"TataNeu\",\n                  \"allocationStrategyId\"\
-                    : 1048,\n                  \"allocationStrategyName\": \"TD_croma\
-                    \ 4.67\",\n                  \"pointsCategoryId\": 102,\n    \
-                    \              \"pointsCategoryName\": \"DelayedAccrualPointCategory\"\
-                    ,\n                  \"expiryStrategyId\": 572,\n            \
-                    \      \"expiryStrategyName\": \"1_year_Rolling expiry\",\n  \
-                    \                \"promotionDetails\": {\n                   \
-                    \ \"promotionId\": 6444,\n                    \"promotionName\"\
-                    : \"Min 5% Drop 1_Croma\"\n                  },\n            \
-                    \      \"returnPoints\": 1541.053,\n                  \"expiryType\"\
-                    : \"rolling\"\n                },\n                {\n       \
-                    \           \"value\": 108.897,\n                  \"expiresOn\"\
-                    : \"2024-07-12 23:59:59.0\",\n                  \"awardedOn\"\
-                    : \"2023-07-29 00:00:00.0\",\n                  \"sourceValue\"\
-                    : 32999,\n                  \"awardActionDetails\": {\n      \
-                    \              \"id\": 235074155,\n                    \"name\"\
-                    : \"BILL_POINTS_ACTION\",\n                    \"rulesetId\":\
-                    \ 2256,\n                    \"rulesetName\": \"ruleset_20220810231204\"\
-                    \n                  },\n                  \"programId\": 1000013,\n\
-                    \                  \"programName\": \"Croma\",\n             \
-                    \     \"allocationStrategyId\": 198,\n                  \"allocationStrategyName\"\
-                    : \"Croma Points\",\n                  \"pointsCategoryId\": 26,\n\
-                    \                  \"pointsCategoryName\": \"DelayedAccrualPointCategory\"\
-                    ,\n                  \"expiryStrategyId\": 201,\n            \
-                    \      \"expiryStrategyName\": \"Croma Rolling Expiry\",\n   \
-                    \               \"returnPoints\": 108.897,\n                 \
-                    \ \"expiryType\": \"rolling\"\n                }\n           \
-                    \   ],\n              \"promised\": []\n            }\n      \
-                    \    }\n        ]\n      },\n      \"eventReferenceId\": \"2151165932\"\
-                    ,\n      \"orgId\": 4000218\n    }\n  ],\n  \"warnings\": []\n\
-                    }"
+                  value:
+                    events:
+                    - eventLogId: 529902660
+                      eventName: ReturnBill
+                      eventDetails:
+                        eventTime: '2023-07-15 20:43:33.0'
+                        tillId: 100004318
+                      billDetails:
+                        billNumber: TC300049941700
+                        billAmount: 32999
+                        note: ''
+                        returnDate: '2023-07-15 20:43:33.0'
+                        returnAmount: 32999
+                        billDate: '2023-07-13 23:52:48.0'
+                        returnType: LINE_ITEM
+                        pointsEarned:
+                          regular: []
+                          promo: []
+                          promised: []
+                        pointsEarnedBreakup:
+                          regular: []
+                          promised: []
+                        lineItems:
+                        - id: 303060102
+                          itemCode: '274277'
+                          grossAmount: 0
+                          amount: 32999
+                          rate: 0
+                          qty: 1
+                          serialNumber: 1
+                          returnAmount: 32999
+                          returnRate: 0
+                          returnQty: 1
+                          returnValue: 0
+                          pointsEarned:
+                            regular:
+                            - value: 0
+                              expiresOn: '2024-07-12 23:59:59.0'
+                              programId: 1000013
+                              programName: Croma
+                              returnPoints: 108.897
+                              expiryType: rolling
+                            promo:
+                            - promotionId: 6444
+                              promotionName: Min 5% Drop 1_Croma
+                              programId: 1000007
+                              programName: TataNeu
+                              value: 0
+                              expiresOn: '2024-07-12 23:59:59.0'
+                              returnedPoints: 1541.053
+                              expiryType: rolling
+                            promised: []
+                          pointsEarnedBreakup:
+                            regular:
+                            - value: 1541.053
+                              expiresOn: '2024-07-12 23:59:59.0'
+                              awardedOn: '2023-07-29 00:00:00.0'
+                              sourceValue: 32999
+                              awardActionDetails:
+                                id: 235074156
+                                name: AWARD_POINTS_ACTION
+                                rulesetId: 1356
+                                rulesetName: ruleset_20220329234517
+                              programId: 1000007
+                              programName: TataNeu
+                              allocationStrategyId: 1048
+                              allocationStrategyName: TD_croma 4.67
+                              pointsCategoryId: 102
+                              pointsCategoryName: DelayedAccrualPointCategory
+                              expiryStrategyId: 572
+                              expiryStrategyName: 1_year_Rolling expiry
+                              promotionDetails:
+                                promotionId: 6444
+                                promotionName: Min 5% Drop 1_Croma
+                              returnPoints: 1541.053
+                              expiryType: rolling
+                            - value: 108.897
+                              expiresOn: '2024-07-12 23:59:59.0'
+                              awardedOn: '2023-07-29 00:00:00.0'
+                              sourceValue: 32999
+                              awardActionDetails:
+                                id: 235074155
+                                name: BILL_POINTS_ACTION
+                                rulesetId: 2256
+                                rulesetName: ruleset_20220810231204
+                              programId: 1000013
+                              programName: Croma
+                              allocationStrategyId: 198
+                              allocationStrategyName: Croma Points
+                              pointsCategoryId: 26
+                              pointsCategoryName: DelayedAccrualPointCategory
+                              expiryStrategyId: 201
+                              expiryStrategyName: Croma Rolling Expiry
+                              returnPoints: 108.897
+                              expiryType: rolling
+                            promised: []
+                      eventReferenceId: '2151165932'
+                      orgId: 4000218
+                    warnings: []
                 CustomerPromotionImport:
-                  value: "{\n  \"events\": [\n    {\n      \"eventLogId\": 564778187,\n\
-                    \      \"eventName\": \"CustomerPromotionImport\",\n      \"eventDetails\"\
-                    : {\n        \"eventDisplayName\": \"Tata Neu HDFC Bank Credit\
-                    \ Card – Last billing cycle NeuCoins\",\n        \"tillId\": -1\n\
-                    \      },\n      \"pointsEarned\": {\n        \"regular\": [],\n\
-                    \        \"promo\": [\n          {\n            \"promotionId\"\
-                    : 6877,\n            \"promotionName\": \"Tata Neu HDFC Bank Credit\
-                    \ Card – Last billing cycle NeuCoins\",\n            \"programId\"\
-                    : 1000086,\n            \"programName\": \"TataNeu HDFC\",\n \
-                    \           \"value\": 8754\n          }\n        ],\n       \
-                    \ \"promised\": []\n      },\n      \"importMeta\": {\n      \
-                    \  \"fileName\": \"cap_data_16082023_031522_16August2023_09_01_14am.csv\"\
-                    ,\n        \"importStartTime\": \"2023-08-16 09:01:15.0\",\n \
-                    \       \"importEndTime\": \"2023-08-16 09:02:13.0\",\n      \
-                    \  \"profileName\": \"Customer Promotion\",\n        \"profileType\"\
-                    : \"Promotional Rewards \"\n      },\n      \"eventReferenceId\"\
-                    : \"2151165932\",\n      \"orgId\": 4000218\n    }\n  ],\n  \"\
-                    warnings\": []\n}"
+                  value:
+                    events:
+                    - eventLogId: 564778187
+                      eventName: CustomerPromotionImport
+                      eventDetails:
+                        eventDisplayName: Tata Neu HDFC Bank Credit Card – Last billing cycle NeuCoins
+                        tillId: -1
+                      pointsEarned:
+                        regular: []
+                        promo:
+                        - promotionId: 6877
+                          promotionName: Tata Neu HDFC Bank Credit Card – Last billing cycle NeuCoins
+                          programId: 1000086
+                          programName: TataNeu HDFC
+                          value: 8754
+                        promised: []
+                      importMeta:
+                        fileName: cap_data_16082023_031522_16August2023_09_01_14am.csv
+                        importStartTime: '2023-08-16 09:01:15.0'
+                        importEndTime: '2023-08-16 09:02:13.0'
+                        profileName: Customer Promotion
+                        profileType: 'Promotional Rewards '
+                      eventReferenceId: '2151165932'
+                      orgId: 4000218
+                    warnings: []
               schema:
                 oneOf:
                 - title: NewBill/Txn Add
@@ -441,7 +554,7 @@ paths:
                             properties:
                               eventTime:
                                 type: string
-                                example: "2023-08-02 16:24:44.0"
+                                example: '2023-08-02 16:24:44.0'
                               tillId:
                                 type: integer
                                 example: 100004318
@@ -531,7 +644,7 @@ paths:
                                                 default: 0
                                               expiresOn:
                                                 type: string
-                                                example: "2024-08-01 23:59:59.0"
+                                                example: '2024-08-01 23:59:59.0'
                                               programId:
                                                 type: integer
                                                 example: 1000013
@@ -567,7 +680,7 @@ paths:
                                                 default: 0
                                               expiresOn:
                                                 type: string
-                                                example: "2024-08-01 23:59:59.0"
+                                                example: '2024-08-01 23:59:59.0'
                                               expiryType:
                                                 type: string
                                                 example: rolling
@@ -664,8 +777,7 @@ paths:
                                       default: 0
                                     promotionName:
                                       type: string
-                                      example: Earn at BillPay – December Mid Month
-                                        Sale
+                                      example: Earn at BillPay – December Mid Month Sale
                                     programId:
                                       type: integer
                                       example: 1000055
@@ -679,10 +791,10 @@ paths:
                                       default: 0
                                     promotionStartDate:
                                       type: string
-                                      example: "2022-12-19 00:00:00.0"
+                                      example: '2022-12-19 00:00:00.0'
                                     promotionEndDate:
                                       type: string
-                                      example: "2022-12-22 23:59:59.0"
+                                      example: '2022-12-22 23:59:59.0'
                               promised:
                                 type: array
                           behavioralEventMetadata:
@@ -776,7 +888,7 @@ paths:
                             properties:
                               eventTime:
                                 type: string
-                                example: "2023-08-31 06:25:40.0"
+                                example: '2023-08-31 06:25:40.0'
                               tillId:
                                 type: integer
                                 example: 50137565
@@ -795,7 +907,7 @@ paths:
                                       default: 0
                                     expiresOn:
                                       type: string
-                                      example: "2023-09-15 23:59:59.0"
+                                      example: '2023-09-15 23:59:59.0'
                                     programId:
                                       type: integer
                                       example: 1933
@@ -831,7 +943,7 @@ paths:
                                       default: 0
                                     expiresOn:
                                       type: string
-                                      example: "2023-09-15 23:59:59.0"
+                                      example: '2023-09-15 23:59:59.0'
                                     expiryType:
                                       type: string
                                       example: fixed
@@ -846,7 +958,7 @@ paths:
                                       default: 0
                                     conversionDate:
                                       type: string
-                                      example: "2023-09-06 00:00:00.0"
+                                      example: '2023-09-06 00:00:00.0'
                                     programId:
                                       type: integer
                                       example: 1933
@@ -883,11 +995,10 @@ paths:
                             properties:
                               eventTime:
                                 type: string
-                                example: "2023-08-29 19:12:17.0"
+                                example: '2023-08-29 19:12:17.0'
                               reason:
                                 type: string
-                                example: "CS: Cx received Rs 500 TNRL voucher which\
-                                  \ can be u"
+                                example: 'CS: Cx received Rs 500 TNRL voucher which can be u'
                               requestId:
                                 type: integer
                                 example: 2828197
@@ -922,7 +1033,7 @@ paths:
                                       default: 0
                                     expiresOn:
                                       type: string
-                                      example: "2024-08-28 23:59:59.0"
+                                      example: '2024-08-28 23:59:59.0'
                                     expiryType:
                                       type: string
                                       example: rolling
@@ -957,7 +1068,7 @@ paths:
                             properties:
                               eventTime:
                                 type: string
-                                example: "2023-03-26 21:31:49.0"
+                                example: '2023-03-26 21:31:49.0'
                               tillId:
                                 type: integer
                                 example: 100008816
@@ -1013,7 +1124,7 @@ paths:
                                           default: 0
                                         conversionDate:
                                           type: string
-                                          example: "2023-04-26 00:00:00.0"
+                                          example: '2023-04-26 00:00:00.0'
                                         programId:
                                           type: integer
                                           example: 1000007
@@ -1050,7 +1161,7 @@ paths:
                             properties:
                               eventTime:
                                 type: string
-                                example: "2023-06-19 10:04:32.0"
+                                example: '2023-06-19 10:04:32.0'
                           transferredFrom:
                             type: object
                             properties:
@@ -1111,7 +1222,7 @@ paths:
                                       example: IHCL
                           notes:
                             type: string
-                            example: "2023-06-19T04:34:32.327770699"
+                            example: '2023-06-19T04:34:32.327770699'
                           eventReferenceId:
                             type: string
                             example: '2151165932'
@@ -1141,7 +1252,7 @@ paths:
                             properties:
                               eventTime:
                                 type: string
-                                example: "2023-05-23 12:20:18.0"
+                                example: '2023-05-23 12:20:18.0'
                               tillId:
                                 type: integer
                                 example: 100007771
@@ -1157,7 +1268,7 @@ paths:
                                     example: TBN-1222183117-20230523
                                   billingTime:
                                     type: string
-                                    example: "2023-05-23 12:20:18.0"
+                                    example: '2023-05-23 12:20:18.0'
                                   externalReferenceNumber:
                                     type: string
                                     example: 26ec1bca2ccb9cea9ef2
@@ -1213,7 +1324,7 @@ paths:
                             properties:
                               eventTime:
                                 type: string
-                                example: "2023-07-15 20:43:33.0"
+                                example: '2023-07-15 20:43:33.0'
                               tillId:
                                 type: integer
                                 example: 100004318
@@ -1233,14 +1344,14 @@ paths:
                                 example: ''
                               returnDate:
                                 type: string
-                                example: "2023-07-15 20:43:33.0"
+                                example: '2023-07-15 20:43:33.0'
                               returnAmount:
                                 type: integer
                                 example: 32999
                                 default: 0
                               billDate:
                                 type: string
-                                example: "2023-07-13 23:52:48.0"
+                                example: '2023-07-13 23:52:48.0'
                               returnType:
                                 type: string
                                 example: LINE_ITEM
@@ -1322,7 +1433,7 @@ paths:
                                                 default: 0
                                               expiresOn:
                                                 type: string
-                                                example: "2024-07-12 23:59:59.0"
+                                                example: '2024-07-12 23:59:59.0'
                                               programId:
                                                 type: integer
                                                 example: 1000013
@@ -1362,7 +1473,7 @@ paths:
                                                 default: 0
                                               expiresOn:
                                                 type: string
-                                                example: "2024-07-12 23:59:59.0"
+                                                example: '2024-07-12 23:59:59.0'
                                               returnedPoints:
                                                 type: number
                                                 example: 1541.053
@@ -1386,10 +1497,10 @@ paths:
                                                 default: 0
                                               expiresOn:
                                                 type: string
-                                                example: "2024-07-12 23:59:59.0"
+                                                example: '2024-07-12 23:59:59.0'
                                               awardedOn:
                                                 type: string
-                                                example: "2023-07-29 00:00:00.0"
+                                                example: '2023-07-29 00:00:00.0'
                                               sourceValue:
                                                 type: integer
                                                 example: 32999
@@ -1487,8 +1598,7 @@ paths:
                             properties:
                               eventDisplayName:
                                 type: string
-                                example: Tata Neu HDFC Bank Credit Card – Last billing
-                                  cycle NeuCoins
+                                example: Tata Neu HDFC Bank Credit Card – Last billing cycle NeuCoins
                               tillId:
                                 type: integer
                                 example: -1
@@ -1509,8 +1619,7 @@ paths:
                                       default: 0
                                     promotionName:
                                       type: string
-                                      example: Tata Neu HDFC Bank Credit Card – Last
-                                        billing cycle NeuCoins
+                                      example: Tata Neu HDFC Bank Credit Card – Last billing cycle NeuCoins
                                     programId:
                                       type: integer
                                       example: 1000086
@@ -1532,10 +1641,10 @@ paths:
                                 example: cap_data_16082023_031522_16August2023_09_01_14am.csv
                               importStartTime:
                                 type: string
-                                example: "2023-08-16 09:01:15.0"
+                                example: '2023-08-16 09:01:15.0'
                               importEndTime:
                                 type: string
-                                example: "2023-08-16 09:02:13.0"
+                                example: '2023-08-16 09:02:13.0'
                               profileName:
                                 type: string
                                 example: Customer Promotion
@@ -1557,16 +1666,17 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"errors\": [\n        {\n            \"status\"\
-                    : false,\n            \"message\": \"Invalid source\",\n     \
-                    \       \"code\": 8003\n        }\n}      "
+                  value: "{\n    \"errors\": [\n        {\n            \"status\": false,\n          \
+                    \  \"message\": \"Invalid source\",\n            \"code\": 8003\n        }\n}    \
+                    \  "
       deprecated: false
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location 'https://host/v2.1/pointsLedger/getLedgerExplodeInfo?identifierName=mobile&identifierValue=9988221100&source=INSTORE&eventIds=13499088'\
-            \ \\\n--header 'DATA-SCOPE: OTHER' \\\n--header 'DATA-SCOPE-ORG: 50405'\
-            \ \\"
+          code: |-
+            curl --location 'https://host/v2.1/pointsLedger/getLedgerExplodeInfo?identifierName=mobile&identifierValue=9988221100&source=INSTORE&eventIds=13499088' \
+            --header 'DATA-SCOPE: OTHER' \
+            --header 'DATA-SCOPE-ORG: 50405' \
           name: cURL
         samples-languages:
         - curl

@@ -3,14 +3,14 @@ info:
   title: Enable search index of older data
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/api_gateway/cortex/v1/bulk/trigger/{id}":
+  /api_gateway/cortex/v1/bulk/trigger/{id}:
     post:
       summary: Enable search index of older data
       description: This allows you to enable the data retention policy.
@@ -18,8 +18,7 @@ paths:
       parameters:
       - name: id
         in: path
-        description: The unique search identifier obtained during creation of search
-          criteria.
+        description: The unique search identifier obtained during creation of search criteria.
         schema:
           type: string
         required: true
@@ -30,7 +29,9 @@ paths:
             application/json:
               examples:
                 Enabled older data indexing:
-                  value: "{\n    \"data\": true,\n    \"errors\": []\n}"
+                  value:
+                    data: true
+                    errors: []
               schema:
                 type: object
                 properties:
@@ -46,7 +47,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
@@ -54,7 +55,7 @@ paths:
       x-readme:
         code-samples:
         - language: curl
-          code: "https://eu.api.capillarytech.com/api_gateway/cortex/v1/bulk/trigger/64b117d756bb3f20312aae7f"
+          code: https://eu.api.capillarytech.com/api_gateway/cortex/v1/bulk/trigger/64b117d756bb3f20312aae7f
           name: Enable indexing of older data
         samples-languages:
         - curl

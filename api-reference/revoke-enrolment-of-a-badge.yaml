@@ -3,7 +3,7 @@ info:
   title: Revoke enrolled badges
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -54,41 +54,61 @@ paths:
             application/json:
               examples:
                 Single Customer:
-                  value: "{\n    \"data\": {\n        \"badgeMetaId\": \"653de84db3cda7078c7c68ed\"\
-                    ,\n        \"revokedIssuedBadges\": [\n            {\n       \
-                    \         \"customerId\": 62090013,\n                \"issuedId\"\
-                    : \"653e024bb3cda7078c7c6903\",\n                \"error\": null\n\
-                    \            }\n        ],\n        \"requestId\": null\n    },\n\
-                    \    \"errors\": [],\n    \"warnings\": []\n}"
-                "Failure: Customer is not issued":
-                  value: "{\n    \"data\": {\n        \"badgeMetaId\": \"653de84db3cda7078c7c68ed\"\
-                    ,\n        \"revokedIssuedBadges\": [\n            {\n       \
-                    \         \"customerId\": 123,\n                \"issuedId\":\
-                    \ null,\n                \"error\": {\n                    \"\
-                    code\": 404,\n                    \"message\": \"Customer doesn't\
-                    \ have issue instance\",\n                    \"reference\": null\n\
-                    \                }\n            }\n        ],\n        \"requestId\"\
-                    : null\n    },\n    \"errors\": [],\n    \"warnings\": []\n}"
+                  value:
+                    data:
+                      badgeMetaId: 653de84db3cda7078c7c68ed
+                      revokedIssuedBadges:
+                      - customerId: 62090013
+                        issuedId: 653e024bb3cda7078c7c6903
+                        error: null
+                      requestId: null
+                    errors: []
+                    warnings: []
+                'Failure: Customer is not issued':
+                  value:
+                    data:
+                      badgeMetaId: 653de84db3cda7078c7c68ed
+                      revokedIssuedBadges:
+                      - customerId: 123
+                        issuedId: null
+                        error:
+                          code: 404
+                          message: Customer doesn't have issue instance
+                          reference: null
+                      requestId: null
+                    errors: []
+                    warnings: []
                 Multiple Customer:
-                  value: "{\n    \"data\": {\n        \"badgeMetaId\": \"654bb48766a87827bb61e631\"\
-                    ,\n        \"revokedIssuedBadges\": [\n            {\n       \
-                    \         \"customerId\": 123,\n                \"issuedId\":\
-                    \ \"654cc02b6bccde1274b6d3a7\",\n                \"error\": null\n\
-                    \            },\n            {\n                \"customerId\"\
-                    : 62090013,\n                \"issuedId\": \"654cc03e6bccde1274b6d3a9\"\
-                    ,\n                \"error\": null\n            }\n        ],\n\
-                    \        \"requestId\": null\n    },\n    \"errors\": [],\n  \
-                    \  \"warnings\": []\n}"
+                  value:
+                    data:
+                      badgeMetaId: 654bb48766a87827bb61e631
+                      revokedIssuedBadges:
+                      - customerId: 123
+                        issuedId: 654cc02b6bccde1274b6d3a7
+                        error: null
+                      - customerId: 62090013
+                        issuedId: 654cc03e6bccde1274b6d3a9
+                        error: null
+                      requestId: null
+                    errors: []
+                    warnings: []
                 With Revoke Issual:
-                  value: "{\n   \"data\": {\n       \"badgeMetaId\": \"66e3ef1b5abea9582ae4f301\"\
-                    ,\n       \"revokedIssuedBadges\": [\n           { \"customerId\"\
-                    : 12323, \"issuedId\": \"66e3ef1e5abea9582ae4f302\" }\n      \
-                    \ ]\n   },\n   \"errors\": [],\n   \"warnings\": []\n}"
-                "Failure: RevokeIssuals or CustomerId is not passed":
-                  value: "{\n    \"data\": null,\n    \"errors\": [\n        {\n \
-                    \           \"code\": 1051,\n            \"message\": \"RevokeIssuals\
-                    \ or CustomerId is mandatory\",\n            \"reference\": null\n\
-                    \        }\n    ],\n    \"warnings\": null\n}"
+                  value:
+                    data:
+                      badgeMetaId: 66e3ef1b5abea9582ae4f301
+                      revokedIssuedBadges:
+                      - customerId: 12323
+                        issuedId: 66e3ef1e5abea9582ae4f302
+                    errors: []
+                    warnings: []
+                'Failure: RevokeIssuals or CustomerId is not passed':
+                  value:
+                    data: null
+                    errors:
+                    - code: 1051
+                      message: RevokeIssuals or CustomerId is mandatory
+                      reference: null
+                    warnings: null
               schema:
                 oneOf:
                 - title: Single Customer
@@ -118,7 +138,7 @@ paths:
                       type: array
                     warnings:
                       type: array
-                - title: "Failure: Customer is not issued"
+                - title: 'Failure: Customer is not issued'
                   type: object
                   properties:
                     data:
@@ -146,7 +166,7 @@ paths:
                                     default: 0
                                   message:
                                     type: string
-                                    example: "Customer doesn't have issue instance"
+                                    example: Customer doesn't have issue instance
                                   reference: {}
                         requestId: {}
                     errors:
@@ -205,7 +225,7 @@ paths:
                       type: array
                     warnings:
                       type: array
-                - title: "Failure: RevokeIssuals or CustomerId is not passed"
+                - title: 'Failure: RevokeIssuals or CustomerId is not passed'
                   type: object
                   properties:
                     data: {}
@@ -229,10 +249,13 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"data\": null,\n    \"errors\": [\n        {\n \
-                    \           \"code\": 404,\n            \"message\": \"Passed\
-                    \ badge is not found\",\n            \"reference\": null\n   \
-                    \     }\n    ],\n    \"warnings\": null\n}"
+                  value:
+                    data: null
+                    errors:
+                    - code: 404
+                      message: Passed badge is not found
+                      reference: null
+                    warnings: null
               schema:
                 type: object
                 properties:

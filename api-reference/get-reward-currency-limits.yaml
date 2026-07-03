@@ -3,14 +3,14 @@ info:
   title: Get Reward Currency Limits
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/api_gateway/loyalty/v1/programs/{programId}/cappings":
+  /api_gateway/loyalty/v1/programs/{programId}/cappings:
     get:
       summary: Get Reward Currency Limits
       description: ''
@@ -25,16 +25,15 @@ paths:
         required: true
       - name: skip
         in: query
-        description: Page number to retrieve. To view the first page, set the value
-          to 0.
+        description: Page number to retrieve. To view the first page, set the value to 0.
         schema:
           type: integer
           format: int32
       - name: limit
         in: query
-        description: Number of entries to display per page. For example, if the total
-          entires are 15 and the limit is 5, the first page will display the first
-          5 records. The maximum supported limit is 100.
+        description: Number of entries to display per page. For example, if the total entires are 15 and
+          the limit is 5, the first page will display the first 5 records. The maximum supported limit
+          is 100.
         schema:
           type: integer
           format: int32
@@ -109,63 +108,70 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"cappingConfigResponses\": {\n        \"content\"\
-                    : [\n            {\n                \"eventName\": null,\n   \
-                    \             \"cappingName\": \"Test Capping\",\n           \
-                    \     \"scope\": \"INDIVIDUAL_CUSTOMER\",\n                \"\
-                    status\": true,\n                \"cappingOn\": null,\n      \
-                    \          \"targetGroups\": {\n                    \"active\"\
-                    : true,\n                    \"id\": 1939,\n                 \
-                    \   \"name\": \"CappingTG2\",\n                    \"periods\"\
-                    : [\n                        {\n                            \"\
-                    startDate\": \"2025-02-01\",\n                            \"endDate\"\
-                    : \"2025-04-28\",\n                            \"refCode\": \"\
-                    Cycle_1\",\n                            \"periodStatus\": \"RUNNING\"\
-                    ,\n                            \"active\": true,\n           \
-                    \                 \"targetGroupId\": 1939,\n                 \
-                    \           \"attribution\": {\n                             \
-                    \   \"createdOn\": \"2025-04-04T00:00:00.000+0000\",\n       \
-                    \                         \"lastUpdatedOn\": \"2025-04-04T00:00:00.000+0000\"\
-                    \n                            }\n                        }\n \
-                    \                   ],\n                    \"targets\": [\n \
-                    \                       {\n                            \"id\"\
-                    : 2087,\n                            \"orgId\": null,\n      \
-                    \                      \"targetGroupId\": 1939,\n            \
-                    \                \"name\": \"CappingTG2\",\n                 \
-                    \           \"targetType\": \"REGULAR_POINTS\",\n            \
-                    \                \"targetEntity\": \"POINTS\",\n             \
-                    \               \"eventName\": \"TransactionAdd\",\n         \
-                    \                   \"active\": true,\n                      \
-                    \      \"enrolmentMethod\": \"TRANSACTION\",\n               \
-                    \             \"defaultValues\": [\n                         \
-                    \       {\n                                    \"id\": 14584,\n\
-                    \                                    \"periodId\": 12242,\n  \
-                    \                                  \"defaultValue\": 100.000\n\
-                    \                                }\n                         \
-                    \   ],\n                            \"targetMilestoneTriggers\"\
-                    : [],\n                            \"targetAudienceFilter\": null,\n\
-                    \                            \"targetRuleMetaData\": null,\n \
-                    \                           \"extendedFieldInfo\": null\n    \
-                    \                    }\n                    ],\n             \
-                    \       \"totalPeriods\": 1,\n                    \"targetEvaluationType\"\
-                    : \"FIXED_CALENDAR_WINDOW\",\n                    \"recurringCycles\"\
-                    : -1,\n                    \"frequency\": 0,\n               \
-                    \     \"targetCycleStartDate\": \"2025-02-01T00:00:00.000+0000\"\
-                    ,\n                    \"targetCycleEndDate\": \"2025-04-28T00:00:00.000+0000\"\
-                    ,\n                    \"frequencyType\": \"CUSTOM\",\n      \
-                    \              \"trackingType\": \"CAPPING\"\n               \
-                    \ },\n                \"additionalFilters\": {\n             \
-                    \       \"pointsFilters\": {},\n                    \"lineItemFilters\"\
-                    : {\n                        \"includedSkus\": [],\n         \
-                    \               \"includedBrands\": [],\n                    \
-                    \    \"includedCategories\": [],\n                        \"includedAttributes\"\
-                    : {}\n                    }\n                },\n            \
-                    \    \"entity\": \"POINTS\",\n                \"limitValue\":\
-                    \ 100,\n                \"enrollType\": null\n            }\n\
-                    \        ],\n        \"totalPages\": 4,\n        \"totalElements\"\
-                    : 4,\n        \"size\": 1,\n        \"number\": 0\n    },\n  \
-                    \  \"activeIndividualEvents\": 0,\n    \"activeIndividualCustomers\"\
-                    : 4\n}"
+                  value:
+                    cappingConfigResponses:
+                      content:
+                      - eventName: null
+                        cappingName: Test Capping
+                        scope: INDIVIDUAL_CUSTOMER
+                        status: true
+                        cappingOn: null
+                        targetGroups:
+                          active: true
+                          id: 1939
+                          name: CappingTG2
+                          periods:
+                          - startDate: '2025-02-01'
+                            endDate: '2025-04-28'
+                            refCode: Cycle_1
+                            periodStatus: RUNNING
+                            active: true
+                            targetGroupId: 1939
+                            attribution:
+                              createdOn: 2025-04-04T00:00:00.000+0000
+                              lastUpdatedOn: 2025-04-04T00:00:00.000+0000
+                          targets:
+                          - id: 2087
+                            orgId: null
+                            targetGroupId: 1939
+                            name: CappingTG2
+                            targetType: REGULAR_POINTS
+                            targetEntity: POINTS
+                            eventName: TransactionAdd
+                            active: true
+                            enrolmentMethod: TRANSACTION
+                            defaultValues:
+                            - id: 14584
+                              periodId: 12242
+                              defaultValue: 100.0
+                            targetMilestoneTriggers: []
+                            targetAudienceFilter: null
+                            targetRuleMetaData: null
+                            extendedFieldInfo: null
+                          totalPeriods: 1
+                          targetEvaluationType: FIXED_CALENDAR_WINDOW
+                          recurringCycles: -1
+                          frequency: 0
+                          targetCycleStartDate: 2025-02-01T00:00:00.000+0000
+                          targetCycleEndDate: 2025-04-28T00:00:00.000+0000
+                          frequencyType: CUSTOM
+                          trackingType: CAPPING
+                        additionalFilters:
+                          pointsFilters: {}
+                          lineItemFilters:
+                            includedSkus: []
+                            includedBrands: []
+                            includedCategories: []
+                            includedAttributes: {}
+                        entity: POINTS
+                        limitValue: 100
+                        enrollType: null
+                      totalPages: 4
+                      totalElements: 4
+                      size: 1
+                      number: 0
+                    activeIndividualEvents: 0
+                    activeIndividualCustomers: 4
               schema:
                 type: object
                 properties:
@@ -233,10 +239,10 @@ paths:
                                         properties:
                                           createdOn:
                                             type: string
-                                            example: "2025-04-04T00:00:00.000+0000"
+                                            example: 2025-04-04T00:00:00.000+0000
                                           lastUpdatedOn:
                                             type: string
-                                            example: "2025-04-04T00:00:00.000+0000"
+                                            example: 2025-04-04T00:00:00.000+0000
                                 targets:
                                   type: array
                                   items:
@@ -309,10 +315,10 @@ paths:
                                   default: 0
                                 targetCycleStartDate:
                                   type: string
-                                  example: "2025-02-01T00:00:00.000+0000"
+                                  example: 2025-02-01T00:00:00.000+0000
                                 targetCycleEndDate:
                                   type: string
-                                  example: "2025-04-28T00:00:00.000+0000"
+                                  example: 2025-04-28T00:00:00.000+0000
                                 frequencyType:
                                   type: string
                                   example: CUSTOM
@@ -375,18 +381,20 @@ paths:
             application/json:
               examples:
                 limit value provided is less than 1:
-                  value: "{\n    \"error\": \"Invalid limit: less than 1 is not allowed\"\
-                    \n}"
+                  value:
+                    error: 'Invalid limit: less than 1 is not allowed'
                 offset value provided is negative or invalid:
-                  value: "{\n    \"error\": \"Invalid offset: Must be 0 or greater\"\
-                    \n}"
+                  value:
+                    error: 'Invalid offset: Must be 0 or greater'
                 entity value provided is invalid:
-                  value: "{\n    \"error\": \"Invalid entity value: XZ\"\n}"
+                  value:
+                    error: 'Invalid entity value: XZ'
                 cappingEntity value provided is invalid:
-                  value: "{\n    \"error\": \"Invalid cappingEntity value: XYZ\"\n\
-                    }"
+                  value:
+                    error: 'Invalid cappingEntity value: XYZ'
                 scopevalue provided is invalid:
-                  value: "{\n    \"error\": \"Invalid scope value: XYZ\"\n}"
+                  value:
+                    error: 'Invalid scope value: XYZ'
               schema:
                 oneOf:
                 - title: limit value provided is less than 1
@@ -394,40 +402,41 @@ paths:
                   properties:
                     error:
                       type: string
-                      example: "Invalid limit: less than 1 is not allowed"
+                      example: 'Invalid limit: less than 1 is not allowed'
                 - title: offset value provided is negative or invalid
                   type: object
                   properties:
                     error:
                       type: string
-                      example: "Invalid offset: Must be 0 or greater"
+                      example: 'Invalid offset: Must be 0 or greater'
                 - title: entity value provided is invalid
                   type: object
                   properties:
                     error:
                       type: string
-                      example: "Invalid entity value: XZ"
+                      example: 'Invalid entity value: XZ'
                 - title: cappingEntity value provided is invalid
                   type: object
                   properties:
                     error:
                       type: string
-                      example: "Invalid cappingEntity value: XYZ"
+                      example: 'Invalid cappingEntity value: XYZ'
                 - title: scopevalue provided is invalid
                   type: object
                   properties:
                     error:
                       type: string
-                      example: "Invalid scope value: XYZ"
+                      example: 'Invalid scope value: XYZ'
       deprecated: false
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location 'http://eu.api.capillarytech.com/api_gateway/loyalty/v1/programs/973/cappings?sortBy=desc&skip=0&limit=1'\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Accept:\
-            \ application/json' \\\n--header 'Authorization: Basic bmFtYW5fZG9jMWJmM5OGM5ZmM2YjZlY2I2MmEy'\
-            \ \\\n--header 'Cookie: _cfuvid=.IB5iiDWhIzd8FVm0jCIsaXd5y7tmMiRb03tbNu3Fv0-1744020716241-0.0.1.1-604800000'\
-            \ \\"
+          code: |-
+            curl --location 'http://eu.api.capillarytech.com/api_gateway/loyalty/v1/programs/973/cappings?sortBy=desc&skip=0&limit=1' \
+            --header 'Content-Type: application/json' \
+            --header 'Accept: application/json' \
+            --header 'Authorization: Basic bmFtYW5fZG9jMWJmM5OGM5ZmM2YjZlY2I2MmEy' \
+            --header 'Cookie: _cfuvid=.IB5iiDWhIzd8FVm0jCIsaXd5y7tmMiRb03tbNu3Fv0-1744020716241-0.0.1.1-604800000' \
         samples-languages:
         - curl
 components:

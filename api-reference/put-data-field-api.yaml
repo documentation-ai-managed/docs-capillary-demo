@@ -13,8 +13,7 @@ paths:
   /api_gateway/cortex/v1/dataFields/{id}:
     put:
       summary: Update Data Field
-      description: This API allows you to update data fields that you defined for
-        the org.
+      description: This API allows you to update data fields that you defined for the org.
       operationId: put-data-field-api
       responses:
         '200':
@@ -23,58 +22,78 @@ paths:
             application/json:
               examples:
                 Customer:
-                  value: "{\n  \"searchStrategyType\" : \"PREFIX\",\n  \"entityType\"\
-                    \ : \"CUSTOMER\",\n  \"dataFieldDefinitions\" : [\n\t\t{\n\t\t\
-                    \t\"fieldId\" : \"firstName\",\n\t\t\t\"fieldAlias\" : \"firstName\"\
-                    ,\n\t\t\t\"fieldType\" : \"DATA\",\n\t\t\t\"dataSourceDetails\"\
-                    \ : {\n\t\t\t\t\"fieldReference\" : \"firstName\"\n\t\t\t},\n\t\
-                    \t\t\"dataType\" : \"STRING\"\n\t\t},\n\t\t{\n\t\t\t\"fieldId\"\
-                    \ : \"lastName\",\n\t\t\t\"fieldAlias\" : \"lastName\",\n\t\t\t\
-                    \"fieldType\" : \"DATA\",\n\t\t\t\"dataSourceDetails\" : {\n\t\
-                    \t\t\t\"fieldReference\" : \"lastName\"\n\t\t\t},\n\t\t\t\"dataType\"\
-                    \ : \"STRING\"\n\t\t},\n\t\t{\n\t\t\t\"fieldId\" : \"mobile\"\
-                    ,\n\t\t\t\"fieldAlias\" : \"mobile\",\n\t\t\t\"fieldType\" : \"\
-                    DATA\",\n\t\t\t\"dataSourceDetails\" : {\n\t\t\t\t\"fieldReference\"\
-                    \ : \"mobile\"\n\t\t\t},\n\t\t\t\"dataType\" : \"STRING\"\n\t\t\
-                    },\n\t\t{\n\t\t\t\"fieldId\" : \"email\",\n\t\t\t\"fieldAlias\"\
-                    \ : \"email\",\n\t\t\t\"fieldType\" : \"DATA\",\n\t\t\t\"dataSourceDetails\"\
-                    \ : {\n\t\t\t\t\"fieldReference\" : \"email\"\n\t\t\t},\n\t\t\t\
-                    \"dataType\" : \"STRING\"\n\t\t},\n    {\n\t\t\t\"fieldId\" :\
-                    \ \"externalId\",\n\t\t\t\"fieldAlias\" : \"externalId\",\n\t\t\
-                    \t\"fieldType\" : \"DATA\",\n\t\t\t\"dataSourceDetails\" : {\n\
-                    \t\t\t\t\"fieldReference\" : \"externalId\"\n\t\t\t},\n\t\t\t\"\
-                    dataType\" : \"STRING\"\n\t\t}\n\n\t]\n}"
+                  value:
+                    searchStrategyType: PREFIX
+                    entityType: CUSTOMER
+                    dataFieldDefinitions:
+                    - fieldId: firstName
+                      fieldAlias: firstName
+                      fieldType: DATA
+                      dataSourceDetails:
+                        fieldReference: firstName
+                      dataType: STRING
+                    - fieldId: lastName
+                      fieldAlias: lastName
+                      fieldType: DATA
+                      dataSourceDetails:
+                        fieldReference: lastName
+                      dataType: STRING
+                    - fieldId: mobile
+                      fieldAlias: mobile
+                      fieldType: DATA
+                      dataSourceDetails:
+                        fieldReference: mobile
+                      dataType: STRING
+                    - fieldId: email
+                      fieldAlias: email
+                      fieldType: DATA
+                      dataSourceDetails:
+                        fieldReference: email
+                      dataType: STRING
+                    - fieldId: externalId
+                      fieldAlias: externalId
+                      fieldType: DATA
+                      dataSourceDetails:
+                        fieldReference: externalId
+                      dataType: STRING
                 Transaction:
-                  value: "{\n    \"data\": {\n        \"id\": \"67ebcbe9730aa850fc504145\"\
-                    ,\n        \"orgId\": 100737,\n        \"searchStrategyType\"\
-                    : \"COMBINATION\",\n        \"entityType\": \"TRANSACTION\",\n\
-                    \        \"dataFieldDefinitions\": [\n            {\n        \
-                    \        \"fieldId\": \"billNumber\",\n                \"fieldAlias\"\
-                    : \"billNumber\",\n                \"fieldType\": \"DATA\",\n\
-                    \                \"dataSourceDetails\": {\n                  \
-                    \  \"fieldReference\": \"billNumber\"\n                },\n  \
-                    \              \"dataType\": \"STRING\"\n            },\n    \
-                    \        {\n                \"fieldId\": \"billDate\",\n     \
-                    \           \"fieldAlias\": \"billDate\",\n                \"\
-                    fieldType\": \"DATA\",\n                \"dataSourceDetails\"\
-                    : {\n                    \"fieldReference\": \"billDate\"\n  \
-                    \              },\n                \"dataType\": \"DATE\"\n  \
-                    \          },\n            {\n                \"fieldId\": \"\
-                    storename\",\n                \"fieldAlias\": \"storename\",\n\
-                    \                \"fieldType\": \"DATA\",\n                \"\
-                    dataSourceDetails\": {\n                    \"fieldReference\"\
-                    : \"additionalFields.storename\"\n                },\n       \
-                    \         \"dataType\": \"STRING\"\n            },\n         \
-                    \   {\n                \"fieldId\": \"storecode\",\n         \
-                    \       \"fieldAlias\": \"storecode\",\n                \"fieldType\"\
-                    : \"DATA\",\n                \"dataSourceDetails\": {\n      \
-                    \              \"fieldReference\": \"additionalFields.storecode\"\
-                    \n                },\n                \"dataType\": \"STRING\"\
-                    \n            }\n        ],\n        \"auditInfo\": {\n      \
-                    \      \"createdOn\": \"2025-04-01T11:20:09.793+00:00\",\n   \
-                    \         \"createdBy\": 75155282,\n            \"lastUpdatedOn\"\
-                    : \"2025-04-01T11:20:09.793+00:00\",\n            \"lastUpdatedBy\"\
-                    : 75155282\n        }\n    },\n    \"errors\": []\n}"
+                  value:
+                    data:
+                      id: 67ebcbe9730aa850fc504145
+                      orgId: 100737
+                      searchStrategyType: COMBINATION
+                      entityType: TRANSACTION
+                      dataFieldDefinitions:
+                      - fieldId: billNumber
+                        fieldAlias: billNumber
+                        fieldType: DATA
+                        dataSourceDetails:
+                          fieldReference: billNumber
+                        dataType: STRING
+                      - fieldId: billDate
+                        fieldAlias: billDate
+                        fieldType: DATA
+                        dataSourceDetails:
+                          fieldReference: billDate
+                        dataType: DATE
+                      - fieldId: storename
+                        fieldAlias: storename
+                        fieldType: DATA
+                        dataSourceDetails:
+                          fieldReference: additionalFields.storename
+                        dataType: STRING
+                      - fieldId: storecode
+                        fieldAlias: storecode
+                        fieldType: DATA
+                        dataSourceDetails:
+                          fieldReference: additionalFields.storecode
+                        dataType: STRING
+                      auditInfo:
+                        createdOn: '2025-04-01T11:20:09.793+00:00'
+                        createdBy: 75155282
+                        lastUpdatedOn: '2025-04-01T11:20:09.793+00:00'
+                        lastUpdatedBy: 75155282
+                    errors: []
               schema:
                 oneOf:
                 - title: Customer
@@ -176,7 +195,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: '{}'
+                  value: {}
               schema:
                 type: object
                 properties: {}
@@ -185,54 +204,44 @@ paths:
         code-samples:
         - language: curl
           code: "curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/cortex/v1/dataFields/67c13be980eaa45a46519efa'\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization:\
-            \ Basic cHJlcmFuYV9zaW5naDoyZmFhZmZjNZDRjMTc5Y2NlMzNhYzc5OTBjMTQ1Ng=='\
+            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic cHJlcmFuYV9zaW5naDoyZmFhZmZjNZDRjMTc5Y2NlMzNhYzc5OTBjMTQ1Ng=='\
             \ \\\n--header 'Cookie: _cfuvid=257QQtZKKeLsnIKUrPVpHcKPHvi2s4LSYFlH8VLHtc0-1743065149089-0.0.1.1-604800000;\
-            \ _cfuvid=Wp9DM7jKlGaLVdZEYrh2ApStBYz0xLZsHFHOWo.VnBw-1743484167715-0.0.1.1-604800000'\
-            \ \\\n--data '{\n  \"searchStrategyType\" : \"PREFIX\",\n  \"entityType\"\
-            \ : \"CUSTOMER\",\n  \"dataFieldDefinitions\" : [\n\t\t{\n\t\t\t\"fieldId\"\
-            \ : \"firstName\",\n\t\t\t\"fieldAlias\" : \"firstName\",\n\t\t\t\"fieldType\"\
-            \ : \"DATA\",\n\t\t\t\"dataSourceDetails\" : {\n\t\t\t\t\"fieldReference\"\
-            \ : \"firstName\"\n\t\t\t},\n\t\t\t\"dataType\" : \"STRING\"\n\t\t},\n\
-            \t\t{\n\t\t\t\"fieldId\" : \"lastName\",\n\t\t\t\"fieldAlias\" : \"lastName\"\
-            ,\n\t\t\t\"fieldType\" : \"DATA\",\n\t\t\t\"dataSourceDetails\" : {\n\t\
-            \t\t\t\"fieldReference\" : \"lastName\"\n\t\t\t},\n\t\t\t\"dataType\"\
-            \ : \"STRING\"\n\t\t},\n\t\t{\n\t\t\t\"fieldId\" : \"mobile\",\n\t\t\t\
-            \"fieldAlias\" : \"mobile\",\n\t\t\t\"fieldType\" : \"DATA\",\n\t\t\t\"\
-            dataSourceDetails\" : {\n\t\t\t\t\"fieldReference\" : \"mobile\"\n\t\t\
-            \t},\n\t\t\t\"dataType\" : \"STRING\"\n\t\t},\n\t\t{\n\t\t\t\"fieldId\"\
-            \ : \"email\",\n\t\t\t\"fieldAlias\" : \"email\",\n\t\t\t\"fieldType\"\
-            \ : \"DATA\",\n\t\t\t\"dataSourceDetails\" : {\n\t\t\t\t\"fieldReference\"\
-            \ : \"email\"\n\t\t\t},\n\t\t\t\"dataType\" : \"STRING\"\n\t\t},\n   \
-            \ {\n\t\t\t\"fieldId\" : \"externalId\",\n\t\t\t\"fieldAlias\" : \"externalId\"\
-            ,\n\t\t\t\"fieldType\" : \"DATA\",\n\t\t\t\"dataSourceDetails\" : {\n\t\
-            \t\t\t\"fieldReference\" : \"externalId\"\n\t\t\t},\n\t\t\t\"dataType\"\
-            \ : \"STRING\"\n\t\t}\n\n\t]\n}'"
+            \ _cfuvid=Wp9DM7jKlGaLVdZEYrh2ApStBYz0xLZsHFHOWo.VnBw-1743484167715-0.0.1.1-604800000' \\\n\
+            --data '{\n  \"searchStrategyType\" : \"PREFIX\",\n  \"entityType\" : \"CUSTOMER\",\n  \"\
+            dataFieldDefinitions\" : [\n\t\t{\n\t\t\t\"fieldId\" : \"firstName\",\n\t\t\t\"fieldAlias\"\
+            \ : \"firstName\",\n\t\t\t\"fieldType\" : \"DATA\",\n\t\t\t\"dataSourceDetails\" : {\n\t\t\
+            \t\t\"fieldReference\" : \"firstName\"\n\t\t\t},\n\t\t\t\"dataType\" : \"STRING\"\n\t\t},\n\
+            \t\t{\n\t\t\t\"fieldId\" : \"lastName\",\n\t\t\t\"fieldAlias\" : \"lastName\",\n\t\t\t\"fieldType\"\
+            \ : \"DATA\",\n\t\t\t\"dataSourceDetails\" : {\n\t\t\t\t\"fieldReference\" : \"lastName\"\n\
+            \t\t\t},\n\t\t\t\"dataType\" : \"STRING\"\n\t\t},\n\t\t{\n\t\t\t\"fieldId\" : \"mobile\",\n\
+            \t\t\t\"fieldAlias\" : \"mobile\",\n\t\t\t\"fieldType\" : \"DATA\",\n\t\t\t\"dataSourceDetails\"\
+            \ : {\n\t\t\t\t\"fieldReference\" : \"mobile\"\n\t\t\t},\n\t\t\t\"dataType\" : \"STRING\"\n\
+            \t\t},\n\t\t{\n\t\t\t\"fieldId\" : \"email\",\n\t\t\t\"fieldAlias\" : \"email\",\n\t\t\t\"\
+            fieldType\" : \"DATA\",\n\t\t\t\"dataSourceDetails\" : {\n\t\t\t\t\"fieldReference\" : \"\
+            email\"\n\t\t\t},\n\t\t\t\"dataType\" : \"STRING\"\n\t\t},\n    {\n\t\t\t\"fieldId\" : \"\
+            externalId\",\n\t\t\t\"fieldAlias\" : \"externalId\",\n\t\t\t\"fieldType\" : \"DATA\",\n\t\
+            \t\t\"dataSourceDetails\" : {\n\t\t\t\t\"fieldReference\" : \"externalId\"\n\t\t\t},\n\t\t\
+            \t\"dataType\" : \"STRING\"\n\t\t}\n\n\t]\n}'"
           name: Customer
         - language: curl
-          code: "curl --location 'eu.api.capillarytech.com/api_gateway/cortex/v1/dataFields'\
-            \ \\\n--header 'Authorization: Basic bmVlcmFqLmRvNGFmDA0MDAY2IwMzZhNGNjZGMzMzQzMWVmOWFjOQ=='\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Cookie:\
-            \ _cfuvid=NIG4hPIouTlCOXgwODX50uFuouza2nwDNThbawZibQM-1743137683215-0.0.1.1-604800000'\
-            \ \\\n--data '{\n  \"searchStrategyType\" : \"PREFIX\",\n  \"entityType\"\
-            \ : \"CUSTOMER\",\n  \"dataFieldDefinitions\" : [\n\t\t{\n\t\t\t\"fieldId\"\
-            \ : \"firstName\",\n\t\t\t\"fieldAlias\" : \"firstName\",\n\t\t\t\"fieldType\"\
-            \ : \"DATA\",\n\t\t\t\"dataSourceDetails\" : {\n\t\t\t\t\"fieldReference\"\
-            \ : \"firstName\"\n\t\t\t},\n\t\t\t\"dataType\" : \"STRING\"\n\t\t},\n\
-            \t\t{\n\t\t\t\"fieldId\" : \"lastName\",\n\t\t\t\"fieldAlias\" : \"lastName\"\
-            ,\n\t\t\t\"fieldType\" : \"DATA\",\n\t\t\t\"dataSourceDetails\" : {\n\t\
-            \t\t\t\"fieldReference\" : \"lastName\"\n\t\t\t},\n\t\t\t\"dataType\"\
-            \ : \"STRING\"\n\t\t},\n\t\t{\n\t\t\t\"fieldId\" : \"mobile\",\n\t\t\t\
-            \"fieldAlias\" : \"mobile\",\n\t\t\t\"fieldType\" : \"DATA\",\n\t\t\t\"\
-            dataSourceDetails\" : {\n\t\t\t\t\"fieldReference\" : \"mobile\"\n\t\t\
-            \t},\n\t\t\t\"dataType\" : \"STRING\"\n\t\t},\n\t\t{\n\t\t\t\"fieldId\"\
-            \ : \"email\",\n\t\t\t\"fieldAlias\" : \"email\",\n\t\t\t\"fieldType\"\
-            \ : \"DATA\",\n\t\t\t\"dataSourceDetails\" : {\n\t\t\t\t\"fieldReference\"\
-            \ : \"email\"\n\t\t\t},\n\t\t\t\"dataType\" : \"STRING\"\n\t\t},\n   \
-            \ {\n\t\t\t\"fieldId\" : \"externalId\",\n\t\t\t\"fieldAlias\" : \"externalId\"\
-            ,\n\t\t\t\"fieldType\" : \"DATA\",\n\t\t\t\"dataSourceDetails\" : {\n\t\
-            \t\t\t\"fieldReference\" : \"externalId\"\n\t\t\t},\n\t\t\t\"dataType\"\
-            \ : \"STRING\"\n\t\t}\n\n\t]\n}'"
+          code: "curl --location 'eu.api.capillarytech.com/api_gateway/cortex/v1/dataFields' \\\n--header\
+            \ 'Authorization: Basic bmVlcmFqLmRvNGFmDA0MDAY2IwMzZhNGNjZGMzMzQzMWVmOWFjOQ==' \\\n--header\
+            \ 'Content-Type: application/json' \\\n--header 'Cookie: _cfuvid=NIG4hPIouTlCOXgwODX50uFuouza2nwDNThbawZibQM-1743137683215-0.0.1.1-604800000'\
+            \ \\\n--data '{\n  \"searchStrategyType\" : \"PREFIX\",\n  \"entityType\" : \"CUSTOMER\",\n\
+            \  \"dataFieldDefinitions\" : [\n\t\t{\n\t\t\t\"fieldId\" : \"firstName\",\n\t\t\t\"fieldAlias\"\
+            \ : \"firstName\",\n\t\t\t\"fieldType\" : \"DATA\",\n\t\t\t\"dataSourceDetails\" : {\n\t\t\
+            \t\t\"fieldReference\" : \"firstName\"\n\t\t\t},\n\t\t\t\"dataType\" : \"STRING\"\n\t\t},\n\
+            \t\t{\n\t\t\t\"fieldId\" : \"lastName\",\n\t\t\t\"fieldAlias\" : \"lastName\",\n\t\t\t\"fieldType\"\
+            \ : \"DATA\",\n\t\t\t\"dataSourceDetails\" : {\n\t\t\t\t\"fieldReference\" : \"lastName\"\n\
+            \t\t\t},\n\t\t\t\"dataType\" : \"STRING\"\n\t\t},\n\t\t{\n\t\t\t\"fieldId\" : \"mobile\",\n\
+            \t\t\t\"fieldAlias\" : \"mobile\",\n\t\t\t\"fieldType\" : \"DATA\",\n\t\t\t\"dataSourceDetails\"\
+            \ : {\n\t\t\t\t\"fieldReference\" : \"mobile\"\n\t\t\t},\n\t\t\t\"dataType\" : \"STRING\"\n\
+            \t\t},\n\t\t{\n\t\t\t\"fieldId\" : \"email\",\n\t\t\t\"fieldAlias\" : \"email\",\n\t\t\t\"\
+            fieldType\" : \"DATA\",\n\t\t\t\"dataSourceDetails\" : {\n\t\t\t\t\"fieldReference\" : \"\
+            email\"\n\t\t\t},\n\t\t\t\"dataType\" : \"STRING\"\n\t\t},\n    {\n\t\t\t\"fieldId\" : \"\
+            externalId\",\n\t\t\t\"fieldAlias\" : \"externalId\",\n\t\t\t\"fieldType\" : \"DATA\",\n\t\
+            \t\t\"dataSourceDetails\" : {\n\t\t\t\t\"fieldReference\" : \"externalId\"\n\t\t\t},\n\t\t\
+            \t\"dataType\" : \"STRING\"\n\t\t}\n\n\t]\n}'"
           name: Transaction
         samples-languages:
         - curl

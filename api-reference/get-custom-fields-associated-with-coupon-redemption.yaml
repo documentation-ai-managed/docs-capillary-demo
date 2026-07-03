@@ -3,7 +3,7 @@ info:
   title: Get Custom Fields Associated with Coupon Redemption
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -18,24 +18,23 @@ paths:
       parameters:
       - name: redemption_ids
         in: query
-        description: A unique identifier for the redemption instance. This ID is generated
-          when a coupon is redeemed. You can provide multiple redemption IDs, separated
-          by commas.
+        description: A unique identifier for the redemption instance. This ID is generated when a coupon
+          is redeemed. You can provide multiple redemption IDs, separated by commas.
         required: true
         schema:
           type: integer
           format: int64
       - name: page
         in: query
-        description: "Retrieve details of a specific page. Page count starts from\
-          \ 1. Example: page=2 results on page 2."
+        description: 'Retrieve details of a specific page. Page count starts from 1. Example: page=2 results
+          on page 2.'
         schema:
           type: integer
           format: int32
       - name: count
         in: query
-        description: Number of results to display per page. Default value is 10. Maximum
-          supported value is 100.
+        description: Number of results to display per page. Default value is 10. Maximum supported value
+          is 100.
         schema:
           type: integer
           format: int32
@@ -46,20 +45,23 @@ paths:
             application/json:
               examples:
                 Sample Response:
-                  value: "[\n    {\n        \"redemptionId\": 1046094,\n        \"\
-                    redemptionCustomFields\": [\n            {\n                \"\
-                    name\": \"age\",\n                \"value\": \"12\"\n        \
-                    \    },\n            {\n                \"name\": \"redem_gender\"\
-                    ,\n                \"value\": \"Female1\"\n            }\n   \
-                    \     ]\n    },\n    {\n        \"redemptionId\": 1046095,\n \
-                    \       \"redemptionCustomFields\": [\n            {\n       \
-                    \         \"name\": \"age\",\n                \"value\": \"10\"\
-                    \n            }\n        ]\n    },\n    {\n        \"redemptionId\"\
-                    : 1046096,\n        \"redemptionCustomFields\": [\n          \
-                    \  {\n                \"name\": \"age\",\n                \"value\"\
-                    : \"12\"\n            },\n            {\n                \"name\"\
-                    : \"redem_gender\",\n                \"value\": \"Female2\"\n\
-                    \            }\n        ]\n    }\n]"
+                  value:
+                  - redemptionId: 1046094
+                    redemptionCustomFields:
+                    - name: age
+                      value: '12'
+                    - name: redem_gender
+                      value: Female1
+                  - redemptionId: 1046095
+                    redemptionCustomFields:
+                    - name: age
+                      value: '10'
+                  - redemptionId: 1046096
+                    redemptionCustomFields:
+                    - name: age
+                      value: '12'
+                    - name: redem_gender
+                      value: Female2
               schema:
                 type: array
                 items:
@@ -86,7 +88,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}

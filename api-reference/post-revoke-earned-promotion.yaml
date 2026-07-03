@@ -3,7 +3,7 @@ info:
   title: Post Revoke Earned Cart Promotion
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -47,11 +47,23 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n  \"data\": {\n    \"code\": 0,\n    \"message\": \"\
-                    string\"\n  },\n  \"errors\": [\n    {\n      \"code\": 0,\n \
-                    \     \"message\": \"string\",\n      \"promotionId\": \"string\"\
-                    , //Unique id assigned to any promotion created\n      \"earnIds\"\
-                    : [\n        \"string\"\n      ]\n    }\n  ]\n}\n"
+                  value: |
+                    {
+                      "data": {
+                        "code": 0,
+                        "message": "string"
+                      },
+                      "errors": [
+                        {
+                          "code": 0,
+                          "message": "string",
+                          "promotionId": "string", //Unique id assigned to any promotion created
+                          "earnIds": [
+                            "string"
+                          ]
+                        }
+                      ]
+                    }
               schema:
                 type: object
                 properties:
@@ -91,7 +103,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}

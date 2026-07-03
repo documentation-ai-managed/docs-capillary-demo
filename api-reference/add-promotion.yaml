@@ -1,18 +1,18 @@
 openapi: 3.1.0
 info:
-  title: "Add Promotion : don't make it public"
+  title: 'Add Promotion : don''t make it public'
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/api_gateway/loyalty/v1/programs/{programId}/promotions/add/{promotionType}":
+  /api_gateway/loyalty/v1/programs/{programId}/promotions/add/{promotionType}:
     post:
-      summary: "Add Promotion : don't make it public"
+      summary: 'Add Promotion : don''t make it public'
       description: Lets you create a promotion for a specific loyalty program.
       operationId: add-promotion
       parameters:
@@ -60,48 +60,42 @@ paths:
                   description: Unique name for the ruleset
                 programId:
                   type: integer
-                  description: Unique ID of the loyalty program to associate with
-                    the promotion. You can create multiple promotions under a single
-                    loyalty program.
+                  description: Unique ID of the loyalty program to associate with the promotion. You can
+                    create multiple promotions under a single loyalty program.
                   format: int32
                 startDate:
                   type: string
-                  description: "Validity of the promotion. Pass the date range in\
-                    \ `startDate` and `endDate` (ISO standard - `yyyy-mm-ddThh:mm:ss.s+z`)."
+                  description: Validity of the promotion. Pass the date range in `startDate` and `endDate`
+                    (ISO standard - `yyyy-mm-ddThh:mm:ss.s+z`).
                   format: date
                 endDate:
                   type: string
-                  description: "Validity of the promotion. Pass the ISO date range\
-                    \ in `startDate` and `endDate` (ISO standard - `yyyy-mm-ddThh:mm:ss.s+z`)."
+                  description: Validity of the promotion. Pass the ISO date range in `startDate` and `endDate`
+                    (ISO standard - `yyyy-mm-ddThh:mm:ss.s+z`).
                   format: date
                 allocatePointsOn:
                   type: string
-                  description: Enter event action name that generates promotional
-                    points. For example,  `Bill`
+                  description: Enter event action name that generates promotional points. For example,  `Bill`
                 identifier:
                   type: string
                   description: Unique identifier of the promotion
                 eventName:
                   type: string
-                  description: Name of the event to associate with the promotion.
-                    For example, `TRANSACTIONADD`, `CUSTOMERUPDATE`, `OfferScan`,
-                    `spinTheWheel`, and more
+                  description: Name of the event to associate with the promotion. For example, `TRANSACTIONADD`,
+                    `CUSTOMERUPDATE`, `OfferScan`, `spinTheWheel`, and more
                   enum:
                   - ''
                 metadata:
                   type: object
-                  description: metadataEnter meta information of the promotion in
-                    key and value.
+                  description: metadataEnter meta information of the promotion in key and value.
                   properties: {}
                 allocationActions:
                   type: object
-                  description: Allocation attributes like allocation type, expiry
-                    days, and more.
+                  description: Allocation attributes like allocation type, expiry days, and more.
                   properties: {}
                 qualifyingConditions:
                   type: array
-                  description: Array of different conditions like KPI, parameters,
-                    and more.
+                  description: Array of different conditions like KPI, parameters, and more.
                   items:
                     type: string
                 conditionExpression:
@@ -114,28 +108,25 @@ paths:
                     type: string
                 limits:
                   type: object
-                  description: Set the maximum number of promotional points issued
-                    to a customer during a specific promotion period. Set the maximum
-                    number of times points can be issued to a customer during a promotion
-                    period. Set the total number of points that can be generated during
-                    a promotion period.
+                  description: Set the maximum number of promotional points issued to a customer during
+                    a specific promotion period. Set the maximum number of times points can be issued
+                    to a customer during a promotion period. Set the total number of points that can be
+                    generated during a promotion period.
                   properties: {}
                 rulesetInfos:
                   type: object
-                  description: Information about the ruleset associated with the promotion.
-                    The rulesets define the rules and conditions under which a promotion
-                    operates.
+                  description: Information about the ruleset associated with the promotion. The rulesets
+                    define the rules and conditions under which a promotion operates.
                   properties: {}
                 id:
                   type: integer
-                  description: The ID of the ruleset. Set the value to -1. This indicates
-                    that a new promotion request is being created.
+                  description: The ID of the ruleset. Set the value to -1. This indicates that a new promotion
+                    request is being created.
                   format: int32
                 contextID:
                   type: integer
-                  description: "Unique ID of the promotion. Refer to the documentation\
-                    \ on [promotion IDs](https://docs.capillarytech.com/reference/get-promotion-by-id)\
-                    \ for more information."
+                  description: Unique ID of the promotion. Refer to the documentation on [promotion IDs](https://docs.capillarytech.com/reference/get-promotion-by-id)
+                    for more information.
                   format: int32
                 orgID:
                   type: integer
@@ -152,8 +143,8 @@ paths:
                   description: Type of ruleset.
                 active:
                   type: boolean
-                  description: Status of the promotion. Set to true when creating
-                    a promotion for the first time
+                  description: Status of the promotion. Set to true when creating a promotion for the
+                    first time
                 rules:
                   type: array
                   description: The rules defined for the promotion
@@ -166,16 +157,15 @@ paths:
                         format: int32
                       exp:
                         type: boolean
-                        description: Enable rule expression. Rule expressions are conditions
-                          that determine whether a statement is true or false. Refer
-                          to rule writing for more information.
+                        description: Enable rule expression. Rule expressions are conditions that determine
+                          whether a statement is true or false. Refer to rule writing for more information.
                       expJSON:
                         type: string
                         description: The rule expression in JSON format.
                       isActive:
                         type: boolean
-                        description: Indicates whether the rule is active. Set to true
-                          when creating a promotion for the first time
+                        description: Indicates whether the rule is active. Set to true when creating a
+                          promotion for the first time
                       priority:
                         type: integer
                         description: The priority of the rule.
@@ -190,21 +180,19 @@ paths:
                         format: int32
                       createdOn:
                         type: integer
-                        description: The timestamp when the rule was created. ISO 8601
-                          Date Format
+                        description: The timestamp when the rule was created. ISO 8601 Date Format
                         format: int32
                 caseToActions:
                   type: object
-                  description: The actions to be taken based on the rule. Refer to
-                    actions for more information
+                  description: The actions to be taken based on the rule. Refer to actions for more information
                   properties:
                     name:
                       type: string
                       description: Name of the action
                     mandatoryPropertiesValues:
                       type: string
-                      description: "As a set of key pair values  eg:   \"key\": \"ProRateOnSourceValue\"\
-                        , \"value\": \"EVENT_DEFAULT_VALUE\""
+                      description: 'As a set of key pair values  eg:   "key": "ProRateOnSourceValue",
+                        "value": "EVENT_DEFAULT_VALUE"'
       responses:
         '200':
           description: '200'
@@ -212,68 +200,76 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"status\": {\n        \"code\": 200,\n        \"\
-                    message\": \"success\"\n    },\n    \"validationErrors\": null,\n\
-                    \    \"data\": [\n        {\n            \"id\": 74116,\n    \
-                    \        \"name\": \"promotion_nov27th\",\n            \"promotionStatus\"\
-                    : \"UPCOMING\",\n            \"programId\": 699,\n           \
-                    \ \"startDate\": \"2024-11-27T00:00:00.856Z\",\n            \"\
-                    endDate\": \"2024-12-27T23:59:59.856Z\",\n            \"identifier\"\
-                    : \"promotion_nov27th\",\n            \"isActive\": true,\n  \
-                    \          \"promotionSourceType\": \"PROMOTION_API\",\n     \
-                    \       \"eventName\": \"TRANSACTIONADD\",\n            \"allocatePointsOn\"\
-                    : \"BILL\",\n            \"allocationActions\": [\n          \
-                    \      {\n                    \"A1\": {\n                    \
-                    \    \"allocation\": {\n                            \"type\":\
-                    \ \"FIXED\",\n                            \"value\": 1.25\n  \
-                    \                      },\n                        \"expiry\"\
-                    : {\n                            \"type\": \"DAYS\",\n       \
-                    \                     \"value\": \"2\"\n                     \
-                    \   },\n                        \"rounding\": \"ROUND\"\n    \
-                    \                }\n                }\n            ],\n      \
-                    \      \"limits\": {\n                \"pointsPerCustomer\": -1,\n\
-                    \                \"numberOfTimesPerCustomer\": -1,\n         \
-                    \       \"totalPointsInPromotion\": -1,\n                \"totalPointsPerEventLimit\"\
-                    : -1\n            },\n            \"pointsOfferType\": \"LOYALTY\"\
-                    ,\n            \"promotionRestrictions\": {\n                \"\
-                    restrictions\": {\n                    \"redemptionRestrictions\"\
-                    : [\n                        {\n                            \"\
-                    name\": \"MAX_ALLOWED_TIMES_PER_CUSTOMER\",\n                \
-                    \            \"value\": 3,\n                            \"type\"\
-                    : \"PERIOD_BASED\",\n                            \"periodType\"\
-                    : \"MOVING_WINDOW\",\n                            \"periodUnit\"\
-                    : \"WEEKLY\"\n                        },\n                   \
-                    \     {\n                            \"name\": \"MAX_ALLOWED_TIMES_PER_PROMOTION\"\
-                    ,\n                            \"value\": 3,\n               \
-                    \             \"type\": \"NON_PERIOD_BASED\",\n              \
-                    \              \"periodType\": null,\n                       \
-                    \     \"periodUnit\": null\n                        },\n     \
-                    \                   {\n                            \"name\": \"\
-                    MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER\",\n                   \
-                    \         \"value\": 100,\n                            \"type\"\
-                    : \"NON_PERIOD_BASED\",\n                            \"periodType\"\
-                    : null,\n                            \"periodUnit\": null\n  \
-                    \                      }\n                    ],\n           \
-                    \         \"issualRestrictions\": [\n                        {\n\
-                    \                            \"name\": \"MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER\"\
-                    ,\n                            \"value\": 3\n                \
-                    \        }\n                    ],\n                    \"earnRestrictions\"\
-                    : [\n                        {\n                            \"\
-                    name\": \"MAX_NUMBER_OF_EARNS_PER_CUSTOMER\",\n              \
-                    \              \"value\": 3\n                        }\n     \
-                    \               ],\n                    \"expiryRestrictions\"\
-                    : [\n                        {\n                            \"\
-                    name\": \"ISSUAL_PROMOTION_EXPIRY_BASED_ON\",\n              \
-                    \              \"value\": 10,\n                            \"\
-                    type\": \"PROMOTION\"\n                        }\n           \
-                    \         ]\n                },\n                \"scope\": null,\n\
-                    \                \"isStackable\": true,\n                \"isConsideredForRanking\"\
-                    : true,\n                \"loyaltyEarningType\": \"ISSUE_AND_EARN\"\
-                    ,\n                \"expiryReminder\": null,\n               \
-                    \ \"isExclusive\": false,\n                \"isAlwaysApply\":\
-                    \ false,\n                \"targetGroupIds\": null,\n        \
-                    \        \"targetRuleIds\": null,\n                \"linkedTargetGroupVsTargetRuleIdMap\"\
-                    : null\n            }\n        }\n    ]\n}"
+                  value:
+                    status:
+                      code: 200
+                      message: success
+                    validationErrors: null
+                    data:
+                    - id: 74116
+                      name: promotion_nov27th
+                      promotionStatus: UPCOMING
+                      programId: 699
+                      startDate: '2024-11-27T00:00:00.856Z'
+                      endDate: '2024-12-27T23:59:59.856Z'
+                      identifier: promotion_nov27th
+                      isActive: true
+                      promotionSourceType: PROMOTION_API
+                      eventName: TRANSACTIONADD
+                      allocatePointsOn: BILL
+                      allocationActions:
+                      - A1:
+                          allocation:
+                            type: FIXED
+                            value: 1.25
+                          expiry:
+                            type: DAYS
+                            value: '2'
+                          rounding: ROUND
+                      limits:
+                        pointsPerCustomer: -1
+                        numberOfTimesPerCustomer: -1
+                        totalPointsInPromotion: -1
+                        totalPointsPerEventLimit: -1
+                      pointsOfferType: LOYALTY
+                      promotionRestrictions:
+                        restrictions:
+                          redemptionRestrictions:
+                          - name: MAX_ALLOWED_TIMES_PER_CUSTOMER
+                            value: 3
+                            type: PERIOD_BASED
+                            periodType: MOVING_WINDOW
+                            periodUnit: WEEKLY
+                          - name: MAX_ALLOWED_TIMES_PER_PROMOTION
+                            value: 3
+                            type: NON_PERIOD_BASED
+                            periodType: null
+                            periodUnit: null
+                          - name: MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER
+                            value: 100
+                            type: NON_PERIOD_BASED
+                            periodType: null
+                            periodUnit: null
+                          issualRestrictions:
+                          - name: MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER
+                            value: 3
+                          earnRestrictions:
+                          - name: MAX_NUMBER_OF_EARNS_PER_CUSTOMER
+                            value: 3
+                          expiryRestrictions:
+                          - name: ISSUAL_PROMOTION_EXPIRY_BASED_ON
+                            value: 10
+                            type: PROMOTION
+                        scope: null
+                        isStackable: true
+                        isConsideredForRanking: true
+                        loyaltyEarningType: ISSUE_AND_EARN
+                        expiryReminder: null
+                        isExclusive: false
+                        isAlwaysApply: false
+                        targetGroupIds: null
+                        targetRuleIds: null
+                        linkedTargetGroupVsTargetRuleIdMap: null
               schema:
                 type: object
                 properties:
@@ -309,10 +305,10 @@ paths:
                           default: 0
                         startDate:
                           type: string
-                          example: "2024-11-27T00:00:00.856Z"
+                          example: '2024-11-27T00:00:00.856Z'
                         endDate:
                           type: string
-                          example: "2024-12-27T23:59:59.856Z"
+                          example: '2024-12-27T23:59:59.856Z'
                         identifier:
                           type: string
                           example: promotion_nov27th
@@ -475,50 +471,104 @@ paths:
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/loyalty/v1/programs/699/promotions/add/simple'\
-            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
-            \ application/json' \\\n--header 'Authorization: Basic bmFtYW46Y2FiYvbraf2U5OGM4MWFlNDM5ZTQ1Yjk3ZTM5YTY0NTY0MTY='\
-            \ \\\n--header 'Cookie: _cfuvid=4eFmg.rN4cmzr9LZsrD0ys2FUFL4EdH9c200UfliHiM-1732856907850-0.0.1.1-604800000'\
-            \ \\\n--data '{\n    \"id\": -1,\n    \"name\": \"promotion_nov27th\"\
-            ,\n    \"programId\": 699,\n    \"startDate\": \"2024-11-27T12:00:00+01:00\"\
-            ,\n    \"endDate\": \"2024-12-27T12:00:00+01:00\",\n    \"allocatePointsOn\"\
-            : \"BILL\",\n    \"identifier\": \"promotion_nov27th\",\n    \"eventName\"\
-            : \"TRANSACTIONADD\",\n    \"pointsOfferType\": \"LOYALTY\",\n    \"rulesetInfo\"\
-            : [],\n    \"promotionRestrictions\": {\n        \"linkedTargetGroupVsTargetRuleIdMap\"\
-            : {},\n        \"loyaltyEarningType\": \"ISSUE_AND_EARN\",\n        \"\
-            isStackable\": true,\n        \"isExclusive\": false,\n        \"isConsideredForRanking\"\
-            : true,\n        \"restrictions\": {\n            \"redemptionRestrictions\"\
-            : [\n                {\n                    \"name\": \"MAX_ALLOWED_TIMES_PER_CUSTOMER\"\
-            ,\n                    \"value\": 3,\n                    \"type\": \"\
-            PERIOD_BASED\",\n                    \"periodType\": \"MOVING_WINDOW\"\
-            ,\n                    \"periodUnit\": \"WEEKLY\"\n                },\n\
-            \                {\n                    \"name\": \"MAX_ALLOWED_TIMES_PER_PROMOTION\"\
-            ,\n                    \"value\": 3,\n                    \"type\": \"\
-            NON_PERIOD_BASED\"\n                }\n            ],\n            \"\
-            issualRestrictions\": [\n                {\n                    \"name\"\
-            : \"MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER\",\n                    \"value\"\
-            : 3,\n                    \"type\": \"NON_PERIOD_BASED\"\n           \
-            \     }\n            ],\n            \"earnRestrictions\": [\n       \
-            \         {\n                    \"name\": \"MAX_NUMBER_OF_EARNS_PER_CUSTOMER\"\
-            ,\n                    \"value\": 3\n                }\n            ],\n\
-            \            \"expiryRestrictions\": [\n                {\n          \
-            \          \"name\": \"ISSUAL_PROMOTION_EXPIRY_BASED_ON\",\n         \
-            \           \"type\": \"PROMOTION\",\n                    \"value\": 10\n\
-            \                }\n            ]\n        }\n    },\n    \"allocationActions\"\
-            : [\n        {\n            \"A1\": {\n                \"allocation\"\
-            : {\n                    \"type\": \"FIXED\",\n                    \"\
-            value\": 1.25\n                },\n                \"expiry\": {\n   \
-            \                 \"type\": \"DAYS\",\n                    \"value\":\
-            \ 2\n                },\n                \"rounding\": \"ROUND\"\n   \
-            \         }\n        }\n    ],\n    \"qualifyingConditions\": [\n    \
-            \    {\n            \"C1\": {\n                \"kpi\": \"value\",\n \
-            \               \"params\": null,\n                \"matchValue\": \"\
-            100\",\n                \"entity\": \"BILL\",\n                \"operator\"\
-            : \"GREATER_THAN\"\n            }\n        }\n    ],\n    \"conditionExpression\"\
-            : \"C1\",\n    \"allocationRule\": [\n        {\n            \"allocation_ref\"\
-            : \"A1\"\n        }\n    ],\n    \"limits\": {\n        \"pointsPerCustomer\"\
-            : -1,\n        \"numberOfTimesPerCustomer\": -1,\n        \"totalPointsInPromotion\"\
-            : -1\n    }\n}'"
+          code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/loyalty/v1/programs/699/promotions/add/simple' \
+            --header 'Accept: application/json' \
+            --header 'Content-Type: application/json' \
+            --header 'Authorization: Basic bmFtYW46Y2FiYvbraf2U5OGM4MWFlNDM5ZTQ1Yjk3ZTM5YTY0NTY0MTY=' \
+            --header 'Cookie: _cfuvid=4eFmg.rN4cmzr9LZsrD0ys2FUFL4EdH9c200UfliHiM-1732856907850-0.0.1.1-604800000' \
+            --data '{
+                "id": -1,
+                "name": "promotion_nov27th",
+                "programId": 699,
+                "startDate": "2024-11-27T12:00:00+01:00",
+                "endDate": "2024-12-27T12:00:00+01:00",
+                "allocatePointsOn": "BILL",
+                "identifier": "promotion_nov27th",
+                "eventName": "TRANSACTIONADD",
+                "pointsOfferType": "LOYALTY",
+                "rulesetInfo": [],
+                "promotionRestrictions": {
+                    "linkedTargetGroupVsTargetRuleIdMap": {},
+                    "loyaltyEarningType": "ISSUE_AND_EARN",
+                    "isStackable": true,
+                    "isExclusive": false,
+                    "isConsideredForRanking": true,
+                    "restrictions": {
+                        "redemptionRestrictions": [
+                            {
+                                "name": "MAX_ALLOWED_TIMES_PER_CUSTOMER",
+                                "value": 3,
+                                "type": "PERIOD_BASED",
+                                "periodType": "MOVING_WINDOW",
+                                "periodUnit": "WEEKLY"
+                            },
+                            {
+                                "name": "MAX_ALLOWED_TIMES_PER_PROMOTION",
+                                "value": 3,
+                                "type": "NON_PERIOD_BASED"
+                            }
+                        ],
+                        "issualRestrictions": [
+                            {
+                                "name": "MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER",
+                                "value": 3,
+                                "type": "NON_PERIOD_BASED"
+                            }
+                        ],
+                        "earnRestrictions": [
+                            {
+                                "name": "MAX_NUMBER_OF_EARNS_PER_CUSTOMER",
+                                "value": 3
+                            }
+                        ],
+                        "expiryRestrictions": [
+                            {
+                                "name": "ISSUAL_PROMOTION_EXPIRY_BASED_ON",
+                                "type": "PROMOTION",
+                                "value": 10
+                            }
+                        ]
+                    }
+                },
+                "allocationActions": [
+                    {
+                        "A1": {
+                            "allocation": {
+                                "type": "FIXED",
+                                "value": 1.25
+                            },
+                            "expiry": {
+                                "type": "DAYS",
+                                "value": 2
+                            },
+                            "rounding": "ROUND"
+                        }
+                    }
+                ],
+                "qualifyingConditions": [
+                    {
+                        "C1": {
+                            "kpi": "value",
+                            "params": null,
+                            "matchValue": "100",
+                            "entity": "BILL",
+                            "operator": "GREATER_THAN"
+                        }
+                    }
+                ],
+                "conditionExpression": "C1",
+                "allocationRule": [
+                    {
+                        "allocation_ref": "A1"
+                    }
+                ],
+                "limits": {
+                    "pointsPerCustomer": -1,
+                    "numberOfTimesPerCustomer": -1,
+                    "totalPointsInPromotion": -1
+                }
+            }'
         samples-languages:
         - curl
 components:

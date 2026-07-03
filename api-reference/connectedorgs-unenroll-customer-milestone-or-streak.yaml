@@ -3,14 +3,14 @@ info:
   title: Unenroll a Customer to from Milestone or Streak
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/api_gateway/intouch-api-v3/v3.1/targetGroups/{targetGroupId}/targets/{targetId}/unEnroll":
+  /api_gateway/intouch-api-v3/v3.1/targetGroups/{targetGroupId}/targets/{targetId}/unEnroll:
     post:
       summary: Unenroll a Customer to from Milestone or Streak
       description: ''
@@ -48,8 +48,10 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"data\": 345651201,\n    \"errors\": null,\n   \
-                    \ \"warnings\": null\n}"
+                  value:
+                    data: 345651201
+                    errors: null
+                    warnings: null
               schema:
                 type: object
                 properties:
@@ -65,12 +67,14 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"data\": null,\n    \"errors\": [\n        {\n \
-                    \           \"code\": 310017,\n            \"message\": \"Target\
-                    \ group not found or deactivated\"\n        },\n        {\n  \
-                    \          \"code\": 310018,\n            \"message\": \"Target\
-                    \ rule not found\"\n        }\n    ],\n    \"warnings\": null\n\
-                    }"
+                  value:
+                    data: null
+                    errors:
+                    - code: 310017
+                      message: Target group not found or deactivated
+                    - code: 310018
+                      message: Target rule not found
+                    warnings: null
               schema:
                 type: object
                 properties:
@@ -92,10 +96,16 @@ paths:
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location 'host/api_gateway/intouch-api-v3/v3.1/targetGroups/58378/targets/124370/unEnroll'\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'DATA-SCOPE:\
-            \ SELF' \\\n--header 'CONNECTED-ORGS: 1252' \\\n--data '[\n    {\n   \
-            \     \"customerId\":17294712\n    }\n]'"
+          code: |-
+            curl --location 'host/api_gateway/intouch-api-v3/v3.1/targetGroups/58378/targets/124370/unEnroll' \
+            --header 'Content-Type: application/json' \
+            --header 'DATA-SCOPE: SELF' \
+            --header 'CONNECTED-ORGS: 1252' \
+            --data '[
+                {
+                    "customerId":17294712
+                }
+            ]'
           name: cURL
         samples-languages:
         - curl

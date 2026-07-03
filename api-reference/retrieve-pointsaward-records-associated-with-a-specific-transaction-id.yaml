@@ -3,7 +3,7 @@ info:
   title: Retrieve PointsAward Records Associated with a Specific Transaction ID
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -12,8 +12,7 @@ security:
 paths:
   /x/neo/pointsAllocationId/transactionId:
     get:
-      summary: Retrieve PointsAward Records Associated with a Specific Transaction
-        ID
+      summary: Retrieve PointsAward Records Associated with a Specific Transaction ID
       description: ''
       operationId: retrieve-pointsaward-records-associated-with-a-specific-transaction-id
       responses:
@@ -23,11 +22,15 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "[\n    {\n        \"pointsCategoryId\": 131,\n        \"\
-                    pointsAwardedId\": 38060732,\n        \"customerId\": 381618579,\n\
-                    \        \"programId\": 33\n    },\n    {\n        \"pointsCategoryId\"\
-                    : 134,\n        \"pointsAwardedId\": 38060733,\n        \"customerId\"\
-                    : 381618579,\n        \"programId\": 33\n    }\n]"
+                  value:
+                  - pointsCategoryId: 131
+                    pointsAwardedId: 38060732
+                    customerId: 381618579
+                    programId: 33
+                  - pointsCategoryId: 134
+                    pointsAwardedId: 38060733
+                    customerId: 381618579
+                    programId: 33
               schema:
                 type: array
                 items:
@@ -55,7 +58,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
@@ -63,10 +66,12 @@ paths:
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location 'https://dev.api.capillarytech.com/x/neo/pointsAllocationId/transactionId?transaction_id=2151090345%3E%3E%3E'\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'x-cap-neo-dag-scope:\
-            \ global' \\\n--header 'Authorization: Basic ZGV2LmRzLnRpbGwwMjoyMDjk2MmFjNTkwNzViOTY0YjA3MTUyZDIzNGI3MA=='\
-            \ \\\n--header 'Cookie: _cfuvid=Azq8pU.vLFQFz1dokJOcKQlnOdEJB31.pqwBHrepJ14-1747219493263-0.0.1.1-604800000'"
+          code: |-
+            curl --location 'https://dev.api.capillarytech.com/x/neo/pointsAllocationId/transactionId?transaction_id=2151090345%3E%3E%3E' \
+            --header 'Content-Type: application/json' \
+            --header 'x-cap-neo-dag-scope: global' \
+            --header 'Authorization: Basic ZGV2LmRzLnRpbGwwMjoyMDjk2MmFjNTkwNzViOTY0YjA3MTUyZDIzNGI3MA==' \
+            --header 'Cookie: _cfuvid=Azq8pU.vLFQFz1dokJOcKQlnOdEJB31.pqwBHrepJ14-1747219493263-0.0.1.1-604800000'
         samples-languages:
         - curl
 components:

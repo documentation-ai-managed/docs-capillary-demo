@@ -3,7 +3,7 @@ info:
   title: Issue Reward in connected orgs
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -58,57 +58,83 @@ paths:
             application/json:
               examples:
                 With DATA-SCOPE as SELF:
-                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
-                    \   \"code\": 200,\n        \"message\": \"Reward issued successfully\"\
-                    \n    },\n    \"rewards\": [\n        {\n            \"status\"\
-                    : {\n                \"success\": true,\n                \"code\"\
-                    : 200,\n                \"message\": \"Reward issued successfully\"\
-                    \n            },\n            \"orgId\": 4004543,\n          \
-                    \  \"transactionId\": 57097,\n            \"rewardId\": 350,\n\
-                    \            \"requestedQuantity\": 1,\n            \"quantity\"\
-                    : 1,\n            \"pointsReferenceId\": \"7Scaq1\",\n       \
-                    \     \"pointsReferenceIds\": [\n                \"7Scaq1\"\n\
-                    \            ],\n            \"eventLogId\": null,\n         \
-                    \   \"requestId\": null,\n            \"intouch\": null,\n   \
-                    \         \"promotions\": [],\n            \"vendor\": [\n   \
-                    \             {\n                    \"valid_till\": \"2027-11-01\"\
-                    ,\n                    \"voucher\": \"OV4GJYQV3Y\",\n        \
-                    \            \"pointsRedeemed\": \"2\",\n                    \"\
-                    offer_name\": \"marvel-loadtest\",\n                    \"coupon_series_id\"\
-                    : \"234\"\n                }\n            ],\n            \"restrictions\"\
-                    : null,\n            \"paymentConfig\": {\n                \"\
-                    paymentMode\": \"CONV_RATIO\",\n                \"id\": 54,\n\
-                    \                \"conversionRatio\": 0.5000\n            },\n\
-                    \            \"fulfillmentDetails\": null,\n            \"customFields\"\
-                    : null,\n            \"redemptionDetails\": {\n              \
-                    \  \"redemptionType\": \"MILES\",\n                \"totalRedemptionValue\"\
-                    : 1\n            }\n        }\n    ]\n}"
+                  value:
+                    status:
+                      success: true
+                      code: 200
+                      message: Reward issued successfully
+                    rewards:
+                    - status:
+                        success: true
+                        code: 200
+                        message: Reward issued successfully
+                      orgId: 4004543
+                      transactionId: 57097
+                      rewardId: 350
+                      requestedQuantity: 1
+                      quantity: 1
+                      pointsReferenceId: 7Scaq1
+                      pointsReferenceIds:
+                      - 7Scaq1
+                      eventLogId: null
+                      requestId: null
+                      intouch: null
+                      promotions: []
+                      vendor:
+                      - valid_till: '2027-11-01'
+                        voucher: OV4GJYQV3Y
+                        pointsRedeemed: '2'
+                        offer_name: marvel-loadtest
+                        coupon_series_id: '234'
+                      restrictions: null
+                      paymentConfig:
+                        paymentMode: CONV_RATIO
+                        id: 54
+                        conversionRatio: 0.5
+                      fulfillmentDetails: null
+                      customFields: null
+                      redemptionDetails:
+                        redemptionType: MILES
+                        totalRedemptionValue: 1
                 With DATA-SCOPE as OTHER:
-                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
-                    \   \"code\": 200,\n        \"message\": \"Reward issued successfully\"\
-                    \n    },\n    \"rewards\": [\n        {\n            \"status\"\
-                    : {\n                \"success\": true,\n                \"code\"\
-                    : 200,\n                \"message\": \"Reward issued successfully\"\
-                    \n            },\n            \"orgId\": 4000086,\n          \
-                    \  \"transactionId\": 57097,\n            \"rewardId\": 350,\n\
-                    \            \"requestedQuantity\": 1,\n            \"quantity\"\
-                    : 1,\n            \"pointsReferenceId\": \"7Scaq1\",\n       \
-                    \     \"pointsReferenceIds\": [\n                \"7Scaq1\"\n\
-                    \            ],\n            \"eventLogId\": null,\n         \
-                    \   \"requestId\": null,\n            \"intouch\": null,\n   \
-                    \         \"promotions\": [],\n            \"vendor\": [\n   \
-                    \             {\n                    \"valid_till\": \"2027-11-01\"\
-                    ,\n                    \"voucher\": \"OV4GJYQV3Y\",\n        \
-                    \            \"pointsRedeemed\": \"2\",\n                    \"\
-                    offer_name\": \"marvel-loadtest\",\n                    \"coupon_series_id\"\
-                    : \"234\"\n                }\n            ],\n            \"restrictions\"\
-                    : null,\n            \"paymentConfig\": {\n                \"\
-                    paymentMode\": \"CONV_RATIO\",\n                \"id\": 54,\n\
-                    \                \"conversionRatio\": 0.5000\n            },\n\
-                    \            \"fulfillmentDetails\": null,\n            \"customFields\"\
-                    : null,\n            \"redemptionDetails\": {\n              \
-                    \  \"redemptionType\": \"MILES\",\n                \"totalRedemptionValue\"\
-                    : 1\n            }\n        }\n    ]\n}"
+                  value:
+                    status:
+                      success: true
+                      code: 200
+                      message: Reward issued successfully
+                    rewards:
+                    - status:
+                        success: true
+                        code: 200
+                        message: Reward issued successfully
+                      orgId: 4000086
+                      transactionId: 57097
+                      rewardId: 350
+                      requestedQuantity: 1
+                      quantity: 1
+                      pointsReferenceId: 7Scaq1
+                      pointsReferenceIds:
+                      - 7Scaq1
+                      eventLogId: null
+                      requestId: null
+                      intouch: null
+                      promotions: []
+                      vendor:
+                      - valid_till: '2027-11-01'
+                        voucher: OV4GJYQV3Y
+                        pointsRedeemed: '2'
+                        offer_name: marvel-loadtest
+                        coupon_series_id: '234'
+                      restrictions: null
+                      paymentConfig:
+                        paymentMode: CONV_RATIO
+                        id: 54
+                        conversionRatio: 0.5
+                      fulfillmentDetails: null
+                      customFields: null
+                      redemptionDetails:
+                        redemptionType: MILES
+                        totalRedemptionValue: 1
               schema:
                 oneOf:
                 - title: With DATA-SCOPE as SELF
@@ -349,39 +375,56 @@ paths:
             application/json:
               examples:
                 '8003':
-                  value: "{\n   \"status\": {\n       \"success\": false,\n      \
-                    \ \"code\": 8003,\n       \"message\": \"fail to issue reward\"\
-                    \n   },\n   \"rewards\": [\n       {\n           \"status\": {\n\
-                    \               \"success\": false,\n               \"code\":\
-                    \ 12005,\n               \"message\": \"Reward constraint evaluation\
-                    \ failed. Request failed. Max limit for the DAYS is reached. Allowed\
-                    \ limit is 15 For Level CUSTOMER\"\n           },\n          \
-                    \ \"rewardId\": 49827,\n           \"requestedQuantity\": 1,\n\
-                    \           \"pointsReferenceId\": null,\n           \"intouch\"\
-                    : null,\n           \"promotions\": null,\n           \"vendor\"\
-                    : null,\n           \"restrictions\": null\n       }\n   ]\n}\n\
-                    \n"
+                  value:
+                    status:
+                      success: false
+                      code: 8003
+                      message: fail to issue reward
+                    rewards:
+                    - status:
+                        success: false
+                        code: 12005
+                        message: Reward constraint evaluation failed. Request failed. Max limit for the
+                          DAYS is reached. Allowed limit is 15 For Level CUSTOMER
+                      rewardId: 49827
+                      requestedQuantity: 1
+                      pointsReferenceId: null
+                      intouch: null
+                      promotions: null
+                      vendor: null
+                      restrictions: null
                 Result:
-                  value: "{\n   \"status\": {\n       \"success\": false,\n      \
-                    \ \"code\": 8010,\n       \"message\": \"Reward issued partially\"\
-                    \n   },\n   \"rewards\": [\n       {\n           \"status\": {\n\
-                    \               \"success\": true,\n               \"code\": 200,\n\
-                    \               \"message\": \"Reward issued successfully\"\n\
-                    \           },\n           \"rewardId\": 13,\n           \"requestedQuantity\"\
-                    : 1,\n           \"pointsReferenceId\": \"ZGxGVD\",\n        \
-                    \   \"intouch\": [\n               {\n                   \"pointsRedeemed\"\
-                    : \"50\",\n                   \"couponCode\": \"42FU1ZP3\",\n\
-                    \                   \"codeExpiry\": \"2023-06-09 00:00:00\"\n\
-                    \               }\n           ],\n           \"promotions\": [],\n\
-                    \           \"vendor\": [],\n           \"restrictions\": null\n\
-                    \       },\n       {\n           \"status\": {\n             \
-                    \  \"success\": false,\n               \"code\": 8004,\n     \
-                    \          \"message\": \"fail to issue reward as  Coupon has\
-                    \ expired\"\n           },\n           \"rewardId\": 12,\n   \
-                    \        \"requestedQuantity\": 1,\n           \"pointsReferenceId\"\
-                    : \"ZGxGVD\",\n           \"intouch\": null,\n           \"promotions\"\
-                    : [],\n           \"vendor\": [],\n           \"restrictions\"\
-                    : null\n       }\n   ]\n}\n\n"
+                  value:
+                    status:
+                      success: false
+                      code: 8010
+                      message: Reward issued partially
+                    rewards:
+                    - status:
+                        success: true
+                        code: 200
+                        message: Reward issued successfully
+                      rewardId: 13
+                      requestedQuantity: 1
+                      pointsReferenceId: ZGxGVD
+                      intouch:
+                      - pointsRedeemed: '50'
+                        couponCode: 42FU1ZP3
+                        codeExpiry: '2023-06-09 00:00:00'
+                      promotions: []
+                      vendor: []
+                      restrictions: null
+                    - status:
+                        success: false
+                        code: 8004
+                        message: fail to issue reward as  Coupon has expired
+                      rewardId: 12
+                      requestedQuantity: 1
+                      pointsReferenceId: ZGxGVD
+                      intouch: null
+                      promotions: []
+                      vendor: []
+                      restrictions: null
               schema:
                 oneOf:
                 - type: object
@@ -443,7 +486,7 @@ paths:
                                   example: 42FU1ZP3
                                 codeExpiry:
                                   type: string
-                                  example: "2023-06-09 00:00:00"
+                                  example: '2023-06-09 00:00:00'
                           promotions:
                             type: array
                           vendor:
@@ -484,9 +527,8 @@ paths:
                                 default: 0
                               message:
                                 type: string
-                                example: Reward constraint evaluation failed. Request
-                                  failed. Max limit for the DAYS is reached. Allowed
-                                  limit is 15 For Level CUSTOMER
+                                example: Reward constraint evaluation failed. Request failed. Max limit
+                                  for the DAYS is reached. Allowed limit is 15 For Level CUSTOMER
                           rewardId:
                             type: integer
                             example: 49827
@@ -504,32 +546,63 @@ paths:
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1.1/user/rewards/issue/?skip_validation=true&username=loadtest.marvel'\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Accept:\
-            \ */*' \\\n--header 'Authorization: Basic bG9hZHRlc3QubWBLAHBLAH5NjRiMDcxNTJkMjM0Yjcw'\
-            \ \\\n--header 'Cookie: _cfuvid=Vl2GkTHlFJ52__EqmWxwr62UUys6VkoqjLDZ8Iah00s-1732168027696-0.0.1.1-604800000;\
-            \ _cfuvid=iCEn1_39ZRrYViEvmJGle4eW7lcuck3DPgT_B1jmysQ-1732599277239-0.0.1.1-604800000'\
-            \ \\\n--header 'DATA-SCOPE: SELF' \\\n--data '{\n    \"brand\": \"O2Brand\"\
-            ,\n    \"transactionNumber\": \"123456789\",\n    \"orgLevelDetails\"\
-            : [\n        {\n            \"orgId\": 4004543\n        }\n    ],\n  \
-            \  \"rewards\": [\n        {\n            \"rewardId\": 350,\n       \
-            \     \"quantity\": 1,\n            \"orgId\": 4004543,\n            \"\
-            paymentConfig\": {\n                \"redemptionValue\": 1\n         \
-            \   }\n        }\n    ],\n    \"externalId\": \"ext_id9860000198\"\n}'"
+          code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1.1/user/rewards/issue/?skip_validation=true&username=loadtest.marvel' \
+            --header 'Content-Type: application/json' \
+            --header 'Accept: */*' \
+            --header 'Authorization: Basic bG9hZHRlc3QubWBLAHBLAH5NjRiMDcxNTJkMjM0Yjcw' \
+            --header 'Cookie: _cfuvid=Vl2GkTHlFJ52__EqmWxwr62UUys6VkoqjLDZ8Iah00s-1732168027696-0.0.1.1-604800000; _cfuvid=iCEn1_39ZRrYViEvmJGle4eW7lcuck3DPgT_B1jmysQ-1732599277239-0.0.1.1-604800000' \
+            --header 'DATA-SCOPE: SELF' \
+            --data '{
+                "brand": "O2Brand",
+                "transactionNumber": "123456789",
+                "orgLevelDetails": [
+                    {
+                        "orgId": 4004543
+                    }
+                ],
+                "rewards": [
+                    {
+                        "rewardId": 350,
+                        "quantity": 1,
+                        "orgId": 4004543,
+                        "paymentConfig": {
+                            "redemptionValue": 1
+                        }
+                    }
+                ],
+                "externalId": "ext_id9860000198"
+            }'
           name: With DATA-SCOPE as SELF
         - language: curl
-          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1.1/user/rewards/issue/?skip_validation=true&username=loadtest.marvel'\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Accept:\
-            \ */*' \\\n--header 'Authorization: Basic bG9hZHBLAHBLAH3NWI5NjRiMDcxNTJkMjM0Yjcw'\
-            \ \\\n--header 'DATA-SCOPE: OTHER' \\\n--header 'DATA-SCOPE-ORGS: 4000085'\
-            \ \\\n--header 'Cookie: _cfuvid=u7lX7fA.uTQht8cWKxG4HXhwZo7y8PLo9hFe64KkyjA-1734592157810-0.0.1.1-604800000'\
-            \ \\\n--data '{\n    \"brand\": \"OptumUATChild2\",\n    \"transactionNumber\"\
-            : \"123456789\",\n    \"orgLevelDetails\": [\n        {\n            \"\
-            orgId\": 4000086\n        }\n    ],\n    \"rewards\": [\n        {\n \
-            \           \"rewardId\": 350,\n            \"quantity\": 1,\n       \
-            \     \"orgId\": 4000086,\n            \"paymentConfig\": {\n        \
-            \        \"redemptionValue\": 1\n            }\n        }\n    ],\n  \
-            \  \"externalId\": \"ext_id9860000198\"\n}'"
+          code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1.1/user/rewards/issue/?skip_validation=true&username=loadtest.marvel' \
+            --header 'Content-Type: application/json' \
+            --header 'Accept: */*' \
+            --header 'Authorization: Basic bG9hZHBLAHBLAH3NWI5NjRiMDcxNTJkMjM0Yjcw' \
+            --header 'DATA-SCOPE: OTHER' \
+            --header 'DATA-SCOPE-ORGS: 4000085' \
+            --header 'Cookie: _cfuvid=u7lX7fA.uTQht8cWKxG4HXhwZo7y8PLo9hFe64KkyjA-1734592157810-0.0.1.1-604800000' \
+            --data '{
+                "brand": "OptumUATChild2",
+                "transactionNumber": "123456789",
+                "orgLevelDetails": [
+                    {
+                        "orgId": 4000086
+                    }
+                ],
+                "rewards": [
+                    {
+                        "rewardId": 350,
+                        "quantity": 1,
+                        "orgId": 4000086,
+                        "paymentConfig": {
+                            "redemptionValue": 1
+                        }
+                    }
+                ],
+                "externalId": "ext_id9860000198"
+            }'
           name: With DATA-SCOPE as OTHER
         samples-languages:
         - curl

@@ -3,14 +3,14 @@ info:
   title: Get customer reward transactions
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/api_gateway/rewards/core/v1/management/customer/{customerId}/issuals":
+  /api_gateway/rewards/core/v1/management/customer/{customerId}/issuals:
     get:
       summary: Get customer reward transactions
       description: ''
@@ -63,8 +63,8 @@ paths:
                       pointsRedemptionRefIds: null
                       fulfillmentStatus: null
                       redemptionType: PHYSICAL_REWARD
-                      eventDateTime: "2025-08-28T14:00:00Z"
-                      issueDateTime: "2025-08-29T10:41:35Z"
+                      eventDateTime: '2025-08-28T14:00:00Z'
+                      issueDateTime: '2025-08-29T10:41:35Z'
                       vendorId: null
                     - rewardTransactionId: '492797'
                       rewardIssueRefId: '640474919'
@@ -93,8 +93,8 @@ paths:
                       pointsRedemptionRefIds: null
                       fulfillmentStatus: null
                       redemptionType: PHYSICAL_REWARD
-                      eventDateTime: "2025-08-27T14:00:00Z"
-                      issueDateTime: "2025-08-29T10:37:13Z"
+                      eventDateTime: '2025-08-27T14:00:00Z'
+                      issueDateTime: '2025-08-29T10:37:13Z'
                       vendorId: null
                     - rewardTransactionId: '492796'
                       rewardIssueRefId: '640474915'
@@ -123,8 +123,8 @@ paths:
                       pointsRedemptionRefIds: null
                       fulfillmentStatus: null
                       redemptionType: PHYSICAL_REWARD
-                      eventDateTime: "2025-08-27T14:00:00Z"
-                      issueDateTime: "2025-08-29T10:36:52Z"
+                      eventDateTime: '2025-08-27T14:00:00Z'
+                      issueDateTime: '2025-08-29T10:36:52Z'
                       vendorId: null
                     pagingDto:
                       last: true
@@ -253,7 +253,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
@@ -261,10 +261,13 @@ paths:
       x-readme:
         code-samples:
         - language: text
-          code: "curl -L 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/management/customer/566135941/issuals?page=0&size=3'\
-            \ \\\n-H 'Accept: application/json' \\\n-H 'Content-Type: application/json'\
-            \ \\\n-H 'accept: application/json' \\\n-H 'Authorization: Basic OGM5ZmM2YjZlY2I2MmEy'\
-            \ \\\n-H 'Cookie: _cfuvid=aVay2f7OdrDufWF0Fy1Vgubu4QFBsd_06fNhXFoElLw-1758882202574-0.0.1.1-604800000'"
+          code: |-
+            curl -L 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/management/customer/566135941/issuals?page=0&size=3' \
+            -H 'Accept: application/json' \
+            -H 'Content-Type: application/json' \
+            -H 'accept: application/json' \
+            -H 'Authorization: Basic OGM5ZmM2YjZlY2I2MmEy' \
+            -H 'Cookie: _cfuvid=aVay2f7OdrDufWF0Fy1Vgubu4QFBsd_06fNhXFoElLw-1758882202574-0.0.1.1-604800000'
         samples-languages:
         - text
 components:

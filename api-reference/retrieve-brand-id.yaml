@@ -3,7 +3,7 @@ info:
   title: Retrieve Brand ID
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -29,11 +29,16 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
-                    \   \"code\": 3001,\n        \"message\": \"Brand fetched successfully\"\
-                    \n    },\n    \"brandList\": [\n        {\n            \"id\"\
-                    : 1,\n            \"brand\": \"BUKL\",\n            \"enabled\"\
-                    : true,\n            \"orgId\": 100458\n        }\n    ]\n}"
+                  value:
+                    status:
+                      success: true
+                      code: 3001
+                      message: Brand fetched successfully
+                    brandList:
+                    - id: 1
+                      brand: BUKL
+                      enabled: true
+                      orgId: 100458
               schema:
                 type: object
                 properties:
@@ -77,7 +82,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
@@ -85,12 +90,17 @@ paths:
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/getAll'\
-            \ \\\n--header 'X-CAP-API-AUTH-ENTITY-ID: BUKL' \\\n--header 'Content-Type:\
-            \ application/json' \\\n--header 'Cookie: _cfuvid=Uup95TfipU6aomfbkE8Ys.uC4PcYuCgvKMCLGHDuczs-1720521666347-0.0.1.1-604800000;\
-            \ _cfuvid=hTqg09La7O.wR1rfoREWEhoTlgLn6GFj60inWTEC33M-1720528841982-0.0.1.1-604800000'\
-            \ \\\n--header 'Authorization: Basic aWFtc2hpdmFhfnkdsjnfsjNDA1MDk0nfjksvnaI3YjJlODM4ZjhlMzRkNWI1YTI5MWY='\
-            \ \\\n--data '{\n    \"orgIds\": [\n        100458\n    ]\n}'"
+          code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/getAll' \
+            --header 'X-CAP-API-AUTH-ENTITY-ID: BUKL' \
+            --header 'Content-Type: application/json' \
+            --header 'Cookie: _cfuvid=Uup95TfipU6aomfbkE8Ys.uC4PcYuCgvKMCLGHDuczs-1720521666347-0.0.1.1-604800000; _cfuvid=hTqg09La7O.wR1rfoREWEhoTlgLn6GFj60inWTEC33M-1720528841982-0.0.1.1-604800000' \
+            --header 'Authorization: Basic aWFtc2hpdmFhfnkdsjnfsjNDA1MDk0nfjksvnaI3YjJlODM4ZjhlMzRkNWI1YTI5MWY=' \
+            --data '{
+                "orgIds": [
+                    100458
+                ]
+            }'
         samples-languages:
         - curl
 components:

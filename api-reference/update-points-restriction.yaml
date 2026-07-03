@@ -3,7 +3,7 @@ info:
   title: Points - Update points restriction
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -23,11 +23,9 @@ paths:
               properties:
                 RAW_BODY:
                   type: string
-                  description: "[     {   \"rewardConstraintId\": 6759,         \"\
-                    kpi\" :\"POINTS\",         \"constraintLevel\" : \"CUSTOMER\"\
-                    ,         \"frequencyType\" : \"DAILY\",         \"intervalValue\"\
-                    \ : 3,         \"constraintLimitValue\" : 8,         \"isActive\"\
-                    \ : false     } ]"
+                  description: '[     {   "rewardConstraintId": 6759,         "kpi" :"POINTS",         "constraintLevel"
+                    : "CUSTOMER",         "frequencyType" : "DAILY",         "intervalValue" : 3,         "constraintLimitValue"
+                    : 8,         "isActive" : false     } ]'
             examples:
               Request Example:
                 value:
@@ -45,13 +43,18 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "[\n    {\n        \"rewardConstraintId\": 6759,\n      \
-                    \  \"orgId\": 50672,\n        \"kpi\": \"POINTS\",\n        \"\
-                    constraintLevel\": \"CUSTOMER\",\n        \"frequencyType\": \"\
-                    DAILY\",\n        \"constraintLimitValue\": 8,\n        \"isActive\"\
-                    : false,\n        \"intervalValue\": 3,\n        \"status\": {\n\
-                    \            \"success\": true,\n            \"code\": 0\n   \
-                    \     }\n    }\n]"
+                  value:
+                  - rewardConstraintId: 6759
+                    orgId: 50672
+                    kpi: POINTS
+                    constraintLevel: CUSTOMER
+                    frequencyType: DAILY
+                    constraintLimitValue: 8
+                    isActive: false
+                    intervalValue: 3
+                    status:
+                      success: true
+                      code: 0
               schema:
                 type: array
                 items:
@@ -103,7 +106,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}

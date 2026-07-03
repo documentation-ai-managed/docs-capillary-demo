@@ -3,14 +3,14 @@ info:
   title: Create Reward Currency Limits
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/api_gateway/loyalty/v1/programs/{programId}/cappings":
+  /api_gateway/loyalty/v1/programs/{programId}/cappings:
     post:
       summary: Create Reward Currency Limits
       description: ''
@@ -30,8 +30,9 @@ paths:
             application/json:
               examples:
                 Success:
-                  value: "{\n    \"code\": null,\n    \"message\": \"Capping created\
-                    \ successfully\"\n}"
+                  value:
+                    code: null
+                    message: Capping created successfully
               schema:
                 type: object
                 properties:
@@ -45,10 +46,10 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"code\": null,\n    \"message\": \"Error creating\
-                    \ target group could not create targetGroups from intouch-api-v3\
-                    \ [IntouchApiError{code=300004, message='Invalid input', status=false}]\"\
-                    \n}"
+                  value:
+                    code: null
+                    message: Error creating target group could not create targetGroups from intouch-api-v3
+                      [IntouchApiError{code=300004, message='Invalid input', status=false}]
               schema:
                 oneOf:
                 - type: object
@@ -56,95 +57,123 @@ paths:
                     code: {}
                     message:
                       type: string
-                      example: "Error creating target group could not create targetGroups\
-                        \ from intouch-api-v3 [IntouchApiError{code=310069, message='target\
-                        \ group name already exist', status=false}]"
+                      example: Error creating target group could not create targetGroups from intouch-api-v3
+                        [IntouchApiError{code=310069, message='target group name already exist', status=false}]
                 - type: object
                   properties:
                     code: {}
                     message:
                       type: string
-                      example: "Error creating target group could not create targetGroups\
-                        \ from intouch-api-v3 [IntouchApiError{code=300004, message='Invalid\
-                        \ input', status=false}]"
+                      example: Error creating target group could not create targetGroups from intouch-api-v3
+                        [IntouchApiError{code=300004, message='Invalid input', status=false}]
       deprecated: false
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location 'http://eu.api.capillarytech.com/api_gateway/loyalty/v1/programs/973/cappings'\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Accept:\
-            \ application/json' \\\n--header 'Authorization: Basic bmFtYW5fZG9jOmEzYjRjYjgybruhM5OGM5ZmM2YjZlY2I2MmEy'\
-            \ \\\n--header 'Cookie: _cfuvid=vdJ_XKXS85MtvREoH2aMZd_6nkTRFMv.qXqNtEgftLA-1743746630413-0.0.1.1-604800000'\
-            \ \\\n--data '{\n    \"scope\": \"INDIVIDUAL_CUSTOMER\",\n    \"name\"\
-            : \"Test Capping\",\n    \"entity\": \"POINTS\",\n    \"targetGroups\"\
-            : \"{\\\"active\\\": true, \\\"name\\\": \\\"CappingTG2\\\", \\\"periods\\\
-            \": [{\\\"refCode\\\": \\\"Cycle_1\\\", \\\"startDate\\\": \\\"2025-02-01\\\
-            \", \\\"endDate\\\": \\\"2025-04-28\\\"}], \\\"frequencyType\\\": \\\"\
-            CUSTOM\\\", \\\"trackingType\\\": \\\"CAPPING\\\", \\\"targetEvaluationType\\\
-            \": \\\"FIXED_CALENDAR_WINDOW\\\", \\\"preferredTillId\\\": -1, \\\"targets\\\
-            \": [{\\\"active\\\": true, \\\"name\\\": \\\"CappingTG2\\\", \\\"targetEntity\\\
-            \": \\\"POINTS\\\", \\\"defaultValues\\\": [{\\\"defaultValue\\\": \\\"\
-            100\\\"}], \\\"enrolmentMethod\\\": \\\"TRANSACTION\\\", \\\"targetType\\\
-            \": \\\"REGULAR_POINTS\\\", \\\"filters\\\": []}]}\",\n    \"eventName\"\
-            : \"TRANSACTION_ADD\",\n    \"isActive\": true,\n    \"cappingEntityType\"\
-            : \"TRANSACTION_ADD\",\n    \"propertyValues\": \"{\\\"limit\\\": \\\"\
-            10002\\\", \\\"additionalFilters\\\": null}\",\n    \"createdBy\": 564332013,\n\
-            \    \"enrollmentType\": \"ENROLL_VIA_AUDIENCE\",\n    \"cappingFilterMapping\"\
-            : [\n        {\n            \"eventSubTypeId\": 23,\n            \"filterEntityType\"\
-            : \"EVENT\",\n            \"filterEntityId\": 56\n        }\n    ]\n}'"
+          code: |-
+            curl --location 'http://eu.api.capillarytech.com/api_gateway/loyalty/v1/programs/973/cappings' \
+            --header 'Content-Type: application/json' \
+            --header 'Accept: application/json' \
+            --header 'Authorization: Basic bmFtYW5fZG9jOmEzYjRjYjgybruhM5OGM5ZmM2YjZlY2I2MmEy' \
+            --header 'Cookie: _cfuvid=vdJ_XKXS85MtvREoH2aMZd_6nkTRFMv.qXqNtEgftLA-1743746630413-0.0.1.1-604800000' \
+            --data '{
+                "scope": "INDIVIDUAL_CUSTOMER",
+                "name": "Test Capping",
+                "entity": "POINTS",
+                "targetGroups": "{\"active\": true, \"name\": \"CappingTG2\", \"periods\": [{\"refCode\": \"Cycle_1\", \"startDate\": \"2025-02-01\", \"endDate\": \"2025-04-28\"}], \"frequencyType\": \"CUSTOM\", \"trackingType\": \"CAPPING\", \"targetEvaluationType\": \"FIXED_CALENDAR_WINDOW\", \"preferredTillId\": -1, \"targets\": [{\"active\": true, \"name\": \"CappingTG2\", \"targetEntity\": \"POINTS\", \"defaultValues\": [{\"defaultValue\": \"100\"}], \"enrolmentMethod\": \"TRANSACTION\", \"targetType\": \"REGULAR_POINTS\", \"filters\": []}]}",
+                "eventName": "TRANSACTION_ADD",
+                "isActive": true,
+                "cappingEntityType": "TRANSACTION_ADD",
+                "propertyValues": "{\"limit\": \"10002\", \"additionalFilters\": null}",
+                "createdBy": 564332013,
+                "enrollmentType": "ENROLL_VIA_AUDIENCE",
+                "cappingFilterMapping": [
+                    {
+                        "eventSubTypeId": 23,
+                        "filterEntityType": "EVENT",
+                        "filterEntityId": 56
+                    }
+                ]
+            }'
           name: Create target group and points capping
         - language: curl
-          code: "curl --location 'http://eu.api.capillarytech.com/api_gateway/loyalty/v1/programs/973/cappings'\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Accept:\
-            \ application/json' \\\n--data '{\n    \"scope\": \"INDIVIDUAL_CUSTOMER\"\
-            ,\n    \"name\": \"Test Alternate Currency Capping\",\n    \"entity\"\
-            : \"ALTERNATE_CURRENCIES\",\n    \"targetGroups\": \"{\\\"active\\\":true,\\\
-            \"name\\\":\\\"CappingTG_AC\\\",\\\"periods\\\":[{\\\"refCode\\\":\\\"\
-            Cycle_1\\\",\\\"startDate\\\":\\\"2025-02-01\\\",\\\"endDate\\\":\\\"\
-            2025-04-28\\\"}],\\\"frequencyType\\\":\\\"CUSTOM\\\",\\\"trackingType\\\
-            \":\\\"CAPPING\\\",\\\"targetEvaluationType\\\":\\\"FIXED_CALENDAR_WINDOW\\\
-            \",\\\"preferredTillId\\\":-1,\\\"targets\\\":[{\\\"active\\\":true,\\\
-            \"name\\\":\\\"CappingTG_AC\\\",\\\"targetEntity\\\":\\\"ALTERNATE_CURRENCIES\\\
-            \",\\\"defaultValues\\\":[{\\\"defaultValue\\\":\\\"100\\\"}],\\\"enrolmentMethod\\\
-            \":\\\"TRANSACTION\\\",\\\"targetType\\\":\\\"REGULAR\\\",\\\"filters\\\
-            \":[],\\\"extendedFieldInfo\\\":{\\\"alternateCurrencyIdentifier\\\":\\\
-            \"0nzyDx\\\",\\\"programId\\\":46}}]}\",\n    \"eventName\": \"TRANSACTION_ADD\"\
-            ,\n    \"isActive\": true,\n    \"cappingEntityType\": \"TRANSACTION_ADD\"\
-            ,\n    \"propertyValues\": \"{\\\"limit\\\": \\\"10002\\\", \\\"additionalFilters\\\
-            \": null}\",\n    \"createdBy\": 564332013,\n    \"entityIdentifier\"\
-            : \"0nzyDx\",\n    \"enrollmentType\": \"ENROLL_VIA_AUDIENCE\",\n    \"\
-            cappingFilterMapping\": [\n        {\n            \"eventSubTypeId\":\
-            \ 23,\n            \"filterEntityType\": \"EVENT\",\n            \"filterEntityId\"\
-            : 56\n        }\n    ]\n}'"
+          code: |-
+            curl --location 'http://eu.api.capillarytech.com/api_gateway/loyalty/v1/programs/973/cappings' \
+            --header 'Content-Type: application/json' \
+            --header 'Accept: application/json' \
+            --data '{
+                "scope": "INDIVIDUAL_CUSTOMER",
+                "name": "Test Alternate Currency Capping",
+                "entity": "ALTERNATE_CURRENCIES",
+                "targetGroups": "{\"active\":true,\"name\":\"CappingTG_AC\",\"periods\":[{\"refCode\":\"Cycle_1\",\"startDate\":\"2025-02-01\",\"endDate\":\"2025-04-28\"}],\"frequencyType\":\"CUSTOM\",\"trackingType\":\"CAPPING\",\"targetEvaluationType\":\"FIXED_CALENDAR_WINDOW\",\"preferredTillId\":-1,\"targets\":[{\"active\":true,\"name\":\"CappingTG_AC\",\"targetEntity\":\"ALTERNATE_CURRENCIES\",\"defaultValues\":[{\"defaultValue\":\"100\"}],\"enrolmentMethod\":\"TRANSACTION\",\"targetType\":\"REGULAR\",\"filters\":[],\"extendedFieldInfo\":{\"alternateCurrencyIdentifier\":\"0nzyDx\",\"programId\":46}}]}",
+                "eventName": "TRANSACTION_ADD",
+                "isActive": true,
+                "cappingEntityType": "TRANSACTION_ADD",
+                "propertyValues": "{\"limit\": \"10002\", \"additionalFilters\": null}",
+                "createdBy": 564332013,
+                "entityIdentifier": "0nzyDx",
+                "enrollmentType": "ENROLL_VIA_AUDIENCE",
+                "cappingFilterMapping": [
+                    {
+                        "eventSubTypeId": 23,
+                        "filterEntityType": "EVENT",
+                        "filterEntityId": 56
+                    }
+                ]
+            }'
           name: Create target group and alternate currencies capping
         - language: curl
-          code: "curl --location 'http://eu.api.capillarytech.com/api_gateway/loyalty/v1/programs/973/cappings'\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Accept:\
-            \ application/json' \\\n--header 'Authorization: Basic bmFtYW5fZG9jOmEzYjbruhA3MWJmYjM5OGM5ZmM2YjZlY2I2MmEy'\
-            \ \\\n--header 'Cookie: _cfuvid=kdGBNmiZGntp8IWIyR_rcipYdriZctfDNd6R.x3PpAg-1744173925264-0.0.1.1-604800000'\
-            \ \\\n--data '{\n    \"scope\": \"INDIVIDUAL_EVENT\",\n    \"name\": \"\
-            Caaping_NoTarget\",\n    \"entity\": \"POINTS\",\n    \"eventName\": \"\
-            TRANSACTION_ADD\",\n    \"isActive\": true,\n    \"cappingEntityType\"\
-            : \"TRANSACTION_ADD\",\n    \"propertyValues\": \"{\\\"limit\\\": \\\"\
-            10002\\\", \\\"additionalFilters\\\": null}\",\n    \"createdBy\": 1824412,\n\
-            \    \"enrollmentType\": \"ENROLL_VIA_AUDIENCE\",\n    \"cappingFilterMapping\"\
-            : [\n        {\n            \"eventSubTypeId\": 23,\n            \"filterEntityType\"\
-            : \"EVENT\",\n            \"filterEntityId\": 56\n        }\n    ]\n}'"
+          code: |-
+            curl --location 'http://eu.api.capillarytech.com/api_gateway/loyalty/v1/programs/973/cappings' \
+            --header 'Content-Type: application/json' \
+            --header 'Accept: application/json' \
+            --header 'Authorization: Basic bmFtYW5fZG9jOmEzYjbruhA3MWJmYjM5OGM5ZmM2YjZlY2I2MmEy' \
+            --header 'Cookie: _cfuvid=kdGBNmiZGntp8IWIyR_rcipYdriZctfDNd6R.x3PpAg-1744173925264-0.0.1.1-604800000' \
+            --data '{
+                "scope": "INDIVIDUAL_EVENT",
+                "name": "Caaping_NoTarget",
+                "entity": "POINTS",
+                "eventName": "TRANSACTION_ADD",
+                "isActive": true,
+                "cappingEntityType": "TRANSACTION_ADD",
+                "propertyValues": "{\"limit\": \"10002\", \"additionalFilters\": null}",
+                "createdBy": 1824412,
+                "enrollmentType": "ENROLL_VIA_AUDIENCE",
+                "cappingFilterMapping": [
+                    {
+                        "eventSubTypeId": 23,
+                        "filterEntityType": "EVENT",
+                        "filterEntityId": 56
+                    }
+                ]
+            }'
           name: Create points capping
         - language: curl
-          code: "curl --location 'http://eu.api.capillarytech.com/api_gateway/loyalty/v1/programs/973/cappings'\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Accept:\
-            \ application/json' \\\n--header 'Authorization: Basic bmFtYW5fZG9jOmEzYjRjYjgyMzA3MWJmYjM5OGM5ZmM2YjZlY2I2MmEy'\
-            \ \\\n--header 'Cookie: _cfuvid=kdGBNmiZGntp8IWIyR_rcipYdriZctfDNd6R.x3PpAg-1744173925264-0.0.1.1-604800000'\
-            \ \\\n--data '{\n    \"scope\": \"INDIVIDUAL_EVENT\",\n    \"name\": \"\
-            Capping_NoTarget\",\n    \"entity\": \"ALTERNATE_CURRENCIES\",\n    \"\
-            eventName\": \"TRANSACTION_ADD\",\n    \"isActive\": true,\n    \"cappingEntityType\"\
-            : \"TRANSACTION_ADD\",\n    \"propertyValues\": \"{\\\"limit\\\": \\\"\
-            10002\\\", \\\"additionalFilters\\\": null}\",\n    \"createdBy\": 1824412,\n\
-            \    \"enrollmentType\": \"ENROLL_VIA_AUDIENCE\",\n     \"entityIdentifier\"\
-            : \"0nzyDx\",\n    \"cappingFilterMapping\": [\n        {\n          \
-            \  \"eventSubTypeId\": 23,\n            \"filterEntityType\": \"EVENT\"\
-            ,\n            \"filterEntityId\": 56\n        }\n    ]\n}'"
+          code: |-
+            curl --location 'http://eu.api.capillarytech.com/api_gateway/loyalty/v1/programs/973/cappings' \
+            --header 'Content-Type: application/json' \
+            --header 'Accept: application/json' \
+            --header 'Authorization: Basic bmFtYW5fZG9jOmEzYjRjYjgyMzA3MWJmYjM5OGM5ZmM2YjZlY2I2MmEy' \
+            --header 'Cookie: _cfuvid=kdGBNmiZGntp8IWIyR_rcipYdriZctfDNd6R.x3PpAg-1744173925264-0.0.1.1-604800000' \
+            --data '{
+                "scope": "INDIVIDUAL_EVENT",
+                "name": "Capping_NoTarget",
+                "entity": "ALTERNATE_CURRENCIES",
+                "eventName": "TRANSACTION_ADD",
+                "isActive": true,
+                "cappingEntityType": "TRANSACTION_ADD",
+                "propertyValues": "{\"limit\": \"10002\", \"additionalFilters\": null}",
+                "createdBy": 1824412,
+                "enrollmentType": "ENROLL_VIA_AUDIENCE",
+                 "entityIdentifier": "0nzyDx",
+                "cappingFilterMapping": [
+                    {
+                        "eventSubTypeId": 23,
+                        "filterEntityType": "EVENT",
+                        "filterEntityId": 56
+                    }
+                ]
+            }'
           name: Create alternate currencies capping
         samples-languages:
         - curl

@@ -3,7 +3,7 @@ info:
   title: Set Cart Promotion Settings
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -23,31 +23,28 @@ paths:
               properties:
                 conditionBasedRankingStrategy:
                   type: string
-                  description: Whether to evaluate cart first or line item first when
-                    both promotions are applicable.
+                  description: Whether to evaluate cart first or line item first when both promotions
+                    are applicable.
                   enum:
                   - CART_BASED_FIRST
                   - LINE_ITEM_BASED_FIRST
                 rewardStrategy:
                   type: string
-                  description: When both normal and reward promotions are applicable,
-                    pass PROMOTION_FIRST to prioritize normal promotions such as Loyalty,
-                    Loyalty earning and POS promotions. Pass REWARDS_FIRST to prioritize
-                    reward promotions.
+                  description: When both normal and reward promotions are applicable, pass PROMOTION_FIRST
+                    to prioritize normal promotions such as Loyalty, Loyalty earning and POS promotions.
+                    Pass REWARDS_FIRST to prioritize reward promotions.
                   default: NO_STRATEGY
                   enum:
                   - PROMOTION_FIRST
                   - REWARDS_FIRST
                 singlePromotionPerLineitem:
                   type: boolean
-                  description: Pass false to to allow multiple promotions on different
-                    quantities of a line items or SKUs; pass true to allow single
-                    promotion.
+                  description: Pass false to to allow multiple promotions on different quantities of a
+                    line items or SKUs; pass true to allow single promotion.
                 promotionRankingStrategy:
                   type: string
-                  description: Define ranking of promotions when multiple promotions
-                    are applicable - according to the early expiry date, maximum discount
-                    applicable, or priority.
+                  description: Define ranking of promotions when multiple promotions are applicable -
+                    according to the early expiry date, maximum discount applicable, or priority.
                   enum:
                   - EXPIRY_BASED
                   - MAX_DISCOUNT
@@ -76,7 +73,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}

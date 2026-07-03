@@ -22,12 +22,18 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"id\": 10,\n    \"name\": \"RCtestwithdefaultvalue\"\
-                    ,\n    \"description\": \"RC2_desc\",\n    \"isMandatory\": false,\n\
-                    \    \"isActive\": false,\n    \"scope\": \"REWARD\",\n    \"\
-                    defaultValue\": \"hello this is your reward\",\n    \"createdBy\"\
-                    : 75161973,\n    \"createdOn\": 1743270626236,\n    \"lastUpdatedBy\"\
-                    : 75161973,\n    \"lastUpdatedOn\": 1743270626236\n}"
+                  value:
+                    id: 10
+                    name: RCtestwithdefaultvalue
+                    description: RC2_desc
+                    isMandatory: false
+                    isActive: false
+                    scope: REWARD
+                    defaultValue: hello this is your reward
+                    createdBy: 75161973
+                    createdOn: 1743270626236
+                    lastUpdatedBy: 75161973
+                    lastUpdatedOn: 1743270626236
               schema:
                 type: object
                 properties:
@@ -77,7 +83,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: '{}'
+                  value: {}
               schema:
                 type: object
                 properties: {}
@@ -85,13 +91,19 @@ paths:
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/richContentMeta/10'\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Accept:\
-            \ */*' \\\n--header 'Authorization: Basic YXV0b3N0b3JlMS50aWxsMS0xNjgwMTY5MjIxOjIwMmNiOTYyYWM1OTA3NWI5NjRiMDcxNTJkMjM0Yjcw'\
-            \ \\\n--data '{\n    \"name\": \"RCtestwithdefaultvalue\",\n    \"description\"\
-            : \"RC2_desc\",\n    \"isMandatory\": false,\n    \"isActive\": false,\n\
-            \    \"scope\": \"REWARD\",\n    \"defaultValue\": \"hello this is your\
-            \ reward\"\n}'"
+          code: |-
+            curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/richContentMeta/10' \
+            --header 'Content-Type: application/json' \
+            --header 'Accept: */*' \
+            --header 'Authorization: Basic YXV0b3N0b3JlMS50aWxsMS0xNjgwMTY5MjIxOjIwMmNiOTYyYWM1OTA3NWI5NjRiMDcxNTJkMjM0Yjcw' \
+            --data '{
+                "name": "RCtestwithdefaultvalue",
+                "description": "RC2_desc",
+                "isMandatory": false,
+                "isActive": false,
+                "scope": "REWARD",
+                "defaultValue": "hello this is your reward"
+            }'
           name: UPDATE Rich Text Content
         samples-languages:
         - curl

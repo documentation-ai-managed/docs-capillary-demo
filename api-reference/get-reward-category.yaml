@@ -3,14 +3,14 @@ info:
   title: Get Reward Category
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/api_gateway/rewards/core/v1/metadata/categories/brand/{brandId}":
+  /api_gateway/rewards/core/v1/metadata/categories/brand/{brandId}:
     get:
       summary: Get Reward Category
       description: Get reward categories for a particluar brand.
@@ -36,40 +36,59 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
-                    \   \"code\": 200,\n        \"message\": \"Category fetched successfully\"\
-                    \n    },\n    \"categoryList\": [\n        {\n            \"id\"\
-                    : 128,\n            \"name\": \"tickets\",\n            \"enabled\"\
-                    : false\n        },\n        {\n            \"id\": 111,\n   \
-                    \         \"name\": \"training\",\n            \"enabled\": true\n\
-                    \        }\n    ]\n}"
+                  value:
+                    status:
+                      success: true
+                      code: 200
+                      message: Category fetched successfully
+                    categoryList:
+                    - id: 128
+                      name: tickets
+                      enabled: false
+                    - id: 111
+                      name: training
+                      enabled: true
                 Invalid brandId:
-                  value: "{\n    \"status\": {\n        \"success\": false,\n    \
-                    \    \"code\": 3004,\n        \"message\": \"Brand not found\"\
-                    \n    },\n    \"categoryList\": null\n}"
+                  value:
+                    status:
+                      success: false
+                      code: 3004
+                      message: Brand not found
+                    categoryList: null
                 With sortBy=lastUpdatedOn:
-                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
-                    \   \"code\": 200,\n        \"message\": \"Category fetched successfully\"\
-                    \n    },\n    \"categoryList\": [\n        {\n            \"id\"\
-                    : 170,\n            \"name\": \"toys\",\n            \"enabled\"\
-                    : true,\n            \"createdOn\": 1735816377000,\n         \
-                    \   \"lastUpdatedOn\": 1735816377000,\n            \"createdBy\"\
-                    : null,\n            \"lastUpdatedBy\": null,\n            \"\
-                    createdOnDateTime\": \"2025-01-02T11:12:57Z\",\n            \"\
-                    lastUpdatedOnDateTime\": \"2025-01-02T11:12:57Z\"\n        },\n\
-                    \        {\n            \"id\": 229,\n            \"name\": \"\
-                    joreward\",\n            \"enabled\": true,\n            \"createdOn\"\
-                    : 1741059743000,\n            \"lastUpdatedOn\": 1741059743000,\n\
-                    \            \"createdBy\": null,\n            \"lastUpdatedBy\"\
-                    : null,\n            \"createdOnDateTime\": \"2025-03-04T03:42:23Z\"\
-                    ,\n            \"lastUpdatedOnDateTime\": \"2025-03-04T03:42:23Z\"\
-                    \n        },\n        {\n            \"id\": 251,\n          \
-                    \  \"name\": \"docdemo\",\n            \"enabled\": true,\n  \
-                    \          \"createdOn\": 1742387687000,\n            \"lastUpdatedOn\"\
-                    : 1742387687000,\n            \"createdBy\": null,\n         \
-                    \   \"lastUpdatedBy\": null,\n            \"createdOnDateTime\"\
-                    : \"2025-03-19T12:34:47Z\",\n            \"lastUpdatedOnDateTime\"\
-                    : \"2025-03-19T12:34:47Z\"\n        }\n    ]\n}"
+                  value:
+                    status:
+                      success: true
+                      code: 200
+                      message: Category fetched successfully
+                    categoryList:
+                    - id: 170
+                      name: toys
+                      enabled: true
+                      createdOn: 1735816377000
+                      lastUpdatedOn: 1735816377000
+                      createdBy: null
+                      lastUpdatedBy: null
+                      createdOnDateTime: '2025-01-02T11:12:57Z'
+                      lastUpdatedOnDateTime: '2025-01-02T11:12:57Z'
+                    - id: 229
+                      name: joreward
+                      enabled: true
+                      createdOn: 1741059743000
+                      lastUpdatedOn: 1741059743000
+                      createdBy: null
+                      lastUpdatedBy: null
+                      createdOnDateTime: '2025-03-04T03:42:23Z'
+                      lastUpdatedOnDateTime: '2025-03-04T03:42:23Z'
+                    - id: 251
+                      name: docdemo
+                      enabled: true
+                      createdOn: 1742387687000
+                      lastUpdatedOn: 1742387687000
+                      createdBy: null
+                      lastUpdatedBy: null
+                      createdOnDateTime: '2025-03-19T12:34:47Z'
+                      lastUpdatedOnDateTime: '2025-03-19T12:34:47Z'
               schema:
                 oneOf:
                 - type: object
@@ -167,21 +186,25 @@ paths:
                           lastUpdatedBy: {}
                           createdOnDateTime:
                             type: string
-                            example: "2025-01-02T11:12:57Z"
+                            example: '2025-01-02T11:12:57Z'
                           lastUpdatedOnDateTime:
                             type: string
-                            example: "2025-01-02T11:12:57Z"
+                            example: '2025-01-02T11:12:57Z'
       deprecated: false
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/metadata/categories/brand/55'\
-            \ \\\n--header 'Accept: */*' \\\n--header 'Authorization: Basic Ymxpc3MZTJmNGRjNzU5MWI1NzY='"
+          code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/metadata/categories/brand/55' \
+            --header 'Accept: */*' \
+            --header 'Authorization: Basic Ymxpc3MZTJmNGRjNzU5MWI1NzY='
           name: Sample Request
         - language: curl
-          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/metadata/categories/brand/55?orderBy=ASC&sortBy=lastUpdatedOn'\
-            \ \\\n--header 'Accept: */*' \\\n--header 'Authorization: Basic Z2VvcmdlLmpvaG5zb246OTg4OTU2NWI4ODVhMmY4ZWE1MTk1MjA2NWEwYTEzNzg='\
-            \ \\\n--header 'Cookie: _cfuvid=fUmBd935rmGsApqf1rYLG1M2QWI_fYSTy7P0wHTVZIs-1747377050702-0.0.1.1-604800000'"
+          code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/metadata/categories/brand/55?orderBy=ASC&sortBy=lastUpdatedOn' \
+            --header 'Accept: */*' \
+            --header 'Authorization: Basic Z2VvcmdlLmpvaG5zb246OTg4OTU2NWI4ODVhMmY4ZWE1MTk1MjA2NWEwYTEzNzg=' \
+            --header 'Cookie: _cfuvid=fUmBd935rmGsApqf1rYLG1M2QWI_fYSTy7P0wHTVZIs-1747377050702-0.0.1.1-604800000'
           name: With sortBy=lastUpdatedOn
         samples-languages:
         - curl

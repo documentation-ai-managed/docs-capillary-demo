@@ -24,8 +24,8 @@ paths:
           type: string
       - name: sortBy
         in: query
-        description: Pass asc to sort the results in ascending order of sortBy value,
-          desc to order in descending order.
+        description: Pass asc to sort the results in ascending order of sortBy value, desc to order in
+          descending order.
         schema:
           type: string
           enum:
@@ -42,10 +42,9 @@ paths:
           - intouchPoints
       - name: language
         in: query
-        description: Specify the ISO language code to get reward details in that particular
-          language. For example, zh for Chinese, ar for Arabic, en for English (default
-          language). You can configure a reward in different languages and retrieve
-          in a specific language only if it is configured.
+        description: Specify the ISO language code to get reward details in that particular language.
+          For example, zh for Chinese, ar for Arabic, en for English (default language). You can configure
+          a reward in different languages and retrieve in a specific language only if it is configured.
         schema:
           type: string
       - name: size
@@ -56,15 +55,15 @@ paths:
           format: int64
       - name: page
         in: query
-        description: To retrieve details of a specific page. Pass 0 to not apply pagination.
-          For example, page=2&size=10 shows 10 results on page 2.
+        description: To retrieve details of a specific page. Pass 0 to not apply pagination. For example,
+          page=2&size=10 shows 10 results on page 2.
         schema:
           type: integer
           format: int32
       - name: intouch
         in: query
-        description: Pass false to show only vendor rewards, true (default value)
-          to show reward details with vouchers, including campaigns.
+        description: Pass false to show only vendor rewards, true (default value) to show reward details
+          with vouchers, including campaigns.
         schema:
           type: boolean
       - name: cap_authorization
@@ -98,143 +97,142 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n   \"status\":{\n      \"success\":true,\n      \"code\"\
-                    :200,\n      \"message\":\"User Reward fetched successfully\"\n\
-                    \   },\n   \"userVouchers\":[\n      {\n         \"rewardDetails\"\
-                    :{\n            \"rewardId\":21400,\n            \"name\":\"Ferrari\
-                    \ Merchandise\",\n            \"description\":\"Ferrari Merchandise\"\
-                    ,\n            \"thumbnailId\":\"49J2H12D32.image/jpeg\",\n  \
-                    \          \"thumbnailUrl\":\"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49J2H12D32.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20201028T142928Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Signature=d57fc7aae76c9632946f88f54cab83ff4c168642084774c0326a86c98f929a34\"\
-                    ,\n            \"imageId\":\"49J2H0VB31.image/jpeg\",\n      \
-                    \      \"termNConditionsId\":\"49J3M0Y134.html\",\n          \
-                    \  \"termNConditionsUrl\":\"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49J3M0Y134.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20201028T142928Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Signature=cbaf68a15587a4b7f07ba46f51bbd7688baf27c6d9312e2b2f0ec9ba43d211b4\"\
-                    ,\n            \"imageUrl\":\"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49J2H0VB31.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20201028T142928Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Signature=61bfabff1582fdd948ebbba6fbbd1e13eda386a6c382755fba93d78be7b0d3ce\"\
-                    ,\n            \"tier\":\"GIFT\",\n            \"label\":\"\"\
-                    ,\n            \"group\":\"\",\n            \"tillId\":null\n\
-                    \         },\n         \"vouchers\":[\n            {\n       \
-                    \        \"code\":null,\n               \"expiry\":null,\n   \
-                    \            \"vendor\":\"{\\\"status\\\":{\\\"success\\\":\\\"\
-                    true\\\",\\\"code\\\":200,\\\"message\\\":\\\"Success\\\"},\\\"\
-                    coupons\\\":{\\\"coupon\\\":{\\\"customer\\\":{\\\"mobile\\\"\
-                    :\\\"9988221100\\\",\\\"email\\\":null,\\\"external_id\\\":\\\"\
-                    90000000000195300\\\"},\\\"code\\\":\\\"TL150O7R\\\",\\\"discount_code\\\
-                    \":\\\"NO_VALUE\\\",\\\"series_code\\\":\\\"8483\\\",\\\"series_info\\\
-                    \":[],\\\"is_absolute\\\":\\\"true\\\",\\\"coupon_value\\\":\\\
-                    \"0\\\",\\\"transaction\\\":{\\\"amount\\\":\\\"\\\",\\\"number\\\
-                    \":\\\"\\\"},\\\"side_effects\\\":[],\\\"item_status\\\":{\\\"\
-                    success\\\":\\\"true\\\",\\\"code\\\":700,\\\"message\\\":\\\"\
-                    Coupon processing successful\\\"}}}}\",\n               \"rewardId\"\
-                    :21400,\n               \"issued\":null,\n               \"seriesId\"\
-                    :null,\n               \"seriesName\":null,\n               \"\
-                    redemptionCount\":0,\n               \"redemptions\":null\n  \
-                    \          },\n            {\n               \"code\":null,\n\
-                    \               \"expiry\":null,\n               \"vendor\":\"\
-                    {\\\"status\\\":{\\\"success\\\":\\\"true\\\",\\\"code\\\":200,\\\
-                    \"message\\\":\\\"Success\\\"},\\\"coupons\\\":{\\\"coupon\\\"\
-                    :{\\\"customer\\\":{\\\"mobile\\\":\\\"918848000000\\\",\\\"email\\\
-                    \":null,\\\"external_id\\\":\\\"90000000000195300\\\"},\\\"code\\\
-                    \":\\\"F0J8Z9AA\\\",\\\"discount_code\\\":\\\"NO_VALUE\\\",\\\"\
-                    series_code\\\":\\\"8483\\\",\\\"series_info\\\":[],\\\"is_absolute\\\
-                    \":\\\"true\\\",\\\"coupon_value\\\":\\\"0\\\",\\\"transaction\\\
-                    \":{\\\"amount\\\":\\\"\\\",\\\"number\\\":\\\"\\\"},\\\"side_effects\\\
-                    \":[],\\\"item_status\\\":{\\\"success\\\":\\\"true\\\",\\\"code\\\
-                    \":700,\\\"message\\\":\\\"Coupon processing successful\\\"}}}}\"\
-                    ,\n               \"rewardId\":21400,\n               \"issued\"\
-                    :null,\n               \"seriesId\":null,\n               \"seriesName\"\
-                    :null,\n               \"redemptionCount\":0,\n              \
-                    \ \"redemptions\":null\n            },\n            {\n      \
-                    \         \"code\":null,\n               \"expiry\":null,\n  \
-                    \             \"vendor\":\"{\\\"status\\\":{\\\"success\\\":\\\
-                    \"true\\\",\\\"code\\\":200,\\\"message\\\":\\\"Success\\\"},\\\
-                    \"coupons\\\":{\\\"coupon\\\":{\\\"customer\\\":{\\\"mobile\\\"\
-                    :\\\"918848000000\\\",\\\"email\\\":null,\\\"external_id\\\":\\\
-                    \"90000000000195300\\\"},\\\"code\\\":\\\"7OK2IMSB\\\",\\\"discount_code\\\
-                    \":\\\"NO_VALUE\\\",\\\"series_code\\\":\\\"8483\\\",\\\"series_info\\\
-                    \":[],\\\"is_absolute\\\":\\\"true\\\",\\\"coupon_value\\\":\\\
-                    \"0\\\",\\\"transaction\\\":{\\\"amount\\\":\\\"\\\",\\\"number\\\
-                    \":\\\"\\\"},\\\"side_effects\\\":[],\\\"item_status\\\":{\\\"\
-                    success\\\":\\\"true\\\",\\\"code\\\":700,\\\"message\\\":\\\"\
-                    Coupon processing successful\\\"}}}}\",\n               \"rewardId\"\
-                    :21400,\n               \"issued\":null,\n               \"seriesId\"\
-                    :null,\n               \"seriesName\":null,\n               \"\
-                    redemptionCount\":0,\n               \"redemptions\":null\n  \
-                    \          },\n            {\n               \"code\":null,\n\
-                    \               \"expiry\":null,\n               \"vendor\":\"\
-                    {\\\"status\\\":{\\\"success\\\":\\\"true\\\",\\\"code\\\":200,\\\
-                    \"message\\\":\\\"Success\\\"},\\\"coupons\\\":{\\\"coupon\\\"\
-                    :{\\\"customer\\\":{\\\"mobile\\\":\\\"918848000000\\\",\\\"email\\\
-                    \":null,\\\"external_id\\\":\\\"90000000000195300\\\"},\\\"code\\\
-                    \":\\\"CITHYUGK\\\",\\\"discount_code\\\":\\\"NO_VALUE\\\",\\\"\
-                    series_code\\\":\\\"8483\\\",\\\"series_info\\\":[],\\\"is_absolute\\\
-                    \":\\\"true\\\",\\\"coupon_value\\\":\\\"0\\\",\\\"transaction\\\
-                    \":{\\\"amount\\\":\\\"\\\",\\\"number\\\":\\\"\\\"},\\\"side_effects\\\
-                    \":[],\\\"item_status\\\":{\\\"success\\\":\\\"true\\\",\\\"code\\\
-                    \":700,\\\"message\\\":\\\"Coupon processing successful\\\"}}}}\"\
-                    ,\n               \"rewardId\":21400,\n               \"issued\"\
-                    :null,\n               \"seriesId\":null,\n               \"seriesName\"\
-                    :null,\n               \"redemptionCount\":0,\n              \
-                    \ \"redemptions\":null\n            },\n            {\n      \
-                    \         \"code\":null,\n               \"expiry\":null,\n  \
-                    \             \"vendor\":\"{\\\"status\\\":{\\\"success\\\":\\\
-                    \"true\\\",\\\"code\\\":200,\\\"message\\\":\\\"Success\\\"},\\\
-                    \"coupons\\\":{\\\"coupon\\\":{\\\"customer\\\":{\\\"mobile\\\"\
-                    :\\\"918848000000\\\",\\\"email\\\":null,\\\"external_id\\\":\\\
-                    \"90000000000195300\\\"},\\\"code\\\":\\\"VAFCQDCS\\\",\\\"discount_code\\\
-                    \":\\\"NO_VALUE\\\",\\\"series_code\\\":\\\"8483\\\",\\\"series_info\\\
-                    \":[],\\\"is_absolute\\\":\\\"true\\\",\\\"coupon_value\\\":\\\
-                    \"0\\\",\\\"transaction\\\":{\\\"amount\\\":\\\"\\\",\\\"number\\\
-                    \":\\\"\\\"},\\\"side_effects\\\":[],\\\"item_status\\\":{\\\"\
-                    success\\\":\\\"true\\\",\\\"code\\\":700,\\\"message\\\":\\\"\
-                    Coupon processing successful\\\"}}}}\",\n               \"rewardId\"\
-                    :21400,\n               \"issued\":null,\n               \"seriesId\"\
-                    :null,\n               \"seriesName\":null,\n               \"\
-                    redemptionCount\":0,\n               \"redemptions\":null\n  \
-                    \          }\n         ]\n      },\n      {\n         \"rewardDetails\"\
-                    :{\n            \"rewardId\":21400,\n            \"name\":\"50\
-                    \ NFR Discount Voucher\",\n            \"description\":\"50 NFR\
-                    \ Discount Voucher\",\n            \"thumbnailId\":\"49J2719V29.image/jpeg\"\
-                    ,\n            \"thumbnailUrl\":\"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49J2719V29.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20201028T142928Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Signature=dce8783763093a0b6d166c4facb42a9e9bb3db51b8a33366acdebc1831031a7f\"\
-                    ,\n            \"imageId\":\"49J2711828.image/jpeg\",\n      \
-                    \      \"termNConditionsId\":\"49J271AC30.html\",\n          \
-                    \  \"termNConditionsUrl\":\"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49J271AC30.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20201028T142928Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Signature=7d6f6ebc06627fc7e7de12489ec3f11148616ea2ee25308d43c011546f00ccac\"\
-                    ,\n            \"imageUrl\":\"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49J2711828.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20201028T142928Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Signature=4c66b3075db316c3fac99d053ed2c84dbbe9440cf098e12d620986cd6f41f9b8\"\
-                    ,\n            \"tier\":\"\",\n            \"label\":\"\",\n \
-                    \           \"group\":\"\",\n            \"tillId\":null\n   \
-                    \      },\n         \"vouchers\":[\n            {\n          \
-                    \     \"code\":\"KUQ3AAK7\",\n               \"expiry\":\"2020-12-12\
-                    \ 23:59:59\",\n               \"vendor\":null,\n             \
-                    \  \"rewardId\":21400,\n               \"issued\":\"2020-10-28T17:27:03.000+05:30\"\
-                    ,\n               \"seriesId\":\"2490\",\n               \"seriesName\"\
-                    :\"50 NFR Discount Voucher\",\n               \"redemptionCount\"\
-                    :0,\n               \"redemptions\":{\n                  \"redemption\"\
-                    :null\n               }\n            },\n            {\n     \
-                    \          \"code\":\"DBN600HI\",\n               \"expiry\":\"\
-                    2020-12-12 23:59:59\",\n               \"vendor\":null,\n    \
-                    \           \"rewardId\":21400,\n               \"issued\":\"\
-                    2020-10-28T17:27:03.000+05:30\",\n               \"seriesId\"\
-                    :\"2490\",\n               \"seriesName\":\"50 NFR Discount Voucher\"\
-                    ,\n               \"redemptionCount\":0,\n               \"redemptions\"\
-                    :{\n                  \"redemption\":null\n               }\n\
-                    \            }\n         ]\n      },\n      {\n         \"rewardDetails\"\
-                    :null,\n         \"vouchers\":[\n            {\n             \
-                    \  \"code\":\"L3CC29OJ\",\n               \"expiry\":\"2120-02-24\
-                    \ 23:59:59\",\n               \"vendor\":null,\n             \
-                    \  \"rewardId\":null,\n               \"issued\":\"2020-02-25T22:35:55.000+05:30\"\
-                    ,\n               \"seriesId\":\"833\",\n               \"seriesName\"\
-                    :\"Google Mini\",\n               \"redemptionCount\":0,\n   \
-                    \            \"redemptions\":{\n                  \"redemption\"\
-                    :null\n               }\n            },\n            {\n     \
-                    \          \"code\":\"1DGT50TE\",\n               \"expiry\":\"\
-                    2120-02-24 23:59:59\",\n               \"vendor\":null,\n    \
-                    \           \"rewardId\":null,\n               \"issued\":\"2020-02-25T22:36:43.000+05:30\"\
-                    ,\n               \"seriesId\":\"833\",\n               \"seriesName\"\
-                    :\"Google Mini\",\n               \"redemptionCount\":0,\n   \
-                    \            \"redemptions\":{\n                  \"redemption\"\
-                    :null\n               }\n            }\n         ]\n      }\n\
-                    \   ],\n   \"pagingDto\":{\n      \"last\":true,\n      \"totalElements\"\
-                    :3,\n      \"totalPages\":1,\n      \"numberOfElements\":3,\n\
-                    \      \"first\":true,\n      \"size\":1000,\n      \"number\"\
-                    :0\n   }\n}"
+                  value:
+                    status:
+                      success: true
+                      code: 200
+                      message: User Reward fetched successfully
+                    userVouchers:
+                    - rewardDetails:
+                        rewardId: 21400
+                        name: Ferrari Merchandise
+                        description: Ferrari Merchandise
+                        thumbnailId: 49J2H12D32.image/jpeg
+                        thumbnailUrl: https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49J2H12D32.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20201028T142928Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Signature=d57fc7aae76c9632946f88f54cab83ff4c168642084774c0326a86c98f929a34
+                        imageId: 49J2H0VB31.image/jpeg
+                        termNConditionsId: 49J3M0Y134.html
+                        termNConditionsUrl: https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49J3M0Y134.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20201028T142928Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Signature=cbaf68a15587a4b7f07ba46f51bbd7688baf27c6d9312e2b2f0ec9ba43d211b4
+                        imageUrl: https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49J2H0VB31.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20201028T142928Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Signature=61bfabff1582fdd948ebbba6fbbd1e13eda386a6c382755fba93d78be7b0d3ce
+                        tier: GIFT
+                        label: ''
+                        group: ''
+                        tillId: null
+                      vouchers:
+                      - code: null
+                        expiry: null
+                        vendor: '{"status":{"success":"true","code":200,"message":"Success"},"coupons":{"coupon":{"customer":{"mobile":"9988221100","email":null,"external_id":"90000000000195300"},"code":"TL150O7R","discount_code":"NO_VALUE","series_code":"8483","series_info":[],"is_absolute":"true","coupon_value":"0","transaction":{"amount":"","number":""},"side_effects":[],"item_status":{"success":"true","code":700,"message":"Coupon
+                          processing successful"}}}}'
+                        rewardId: 21400
+                        issued: null
+                        seriesId: null
+                        seriesName: null
+                        redemptionCount: 0
+                        redemptions: null
+                      - code: null
+                        expiry: null
+                        vendor: '{"status":{"success":"true","code":200,"message":"Success"},"coupons":{"coupon":{"customer":{"mobile":"918848000000","email":null,"external_id":"90000000000195300"},"code":"F0J8Z9AA","discount_code":"NO_VALUE","series_code":"8483","series_info":[],"is_absolute":"true","coupon_value":"0","transaction":{"amount":"","number":""},"side_effects":[],"item_status":{"success":"true","code":700,"message":"Coupon
+                          processing successful"}}}}'
+                        rewardId: 21400
+                        issued: null
+                        seriesId: null
+                        seriesName: null
+                        redemptionCount: 0
+                        redemptions: null
+                      - code: null
+                        expiry: null
+                        vendor: '{"status":{"success":"true","code":200,"message":"Success"},"coupons":{"coupon":{"customer":{"mobile":"918848000000","email":null,"external_id":"90000000000195300"},"code":"7OK2IMSB","discount_code":"NO_VALUE","series_code":"8483","series_info":[],"is_absolute":"true","coupon_value":"0","transaction":{"amount":"","number":""},"side_effects":[],"item_status":{"success":"true","code":700,"message":"Coupon
+                          processing successful"}}}}'
+                        rewardId: 21400
+                        issued: null
+                        seriesId: null
+                        seriesName: null
+                        redemptionCount: 0
+                        redemptions: null
+                      - code: null
+                        expiry: null
+                        vendor: '{"status":{"success":"true","code":200,"message":"Success"},"coupons":{"coupon":{"customer":{"mobile":"918848000000","email":null,"external_id":"90000000000195300"},"code":"CITHYUGK","discount_code":"NO_VALUE","series_code":"8483","series_info":[],"is_absolute":"true","coupon_value":"0","transaction":{"amount":"","number":""},"side_effects":[],"item_status":{"success":"true","code":700,"message":"Coupon
+                          processing successful"}}}}'
+                        rewardId: 21400
+                        issued: null
+                        seriesId: null
+                        seriesName: null
+                        redemptionCount: 0
+                        redemptions: null
+                      - code: null
+                        expiry: null
+                        vendor: '{"status":{"success":"true","code":200,"message":"Success"},"coupons":{"coupon":{"customer":{"mobile":"918848000000","email":null,"external_id":"90000000000195300"},"code":"VAFCQDCS","discount_code":"NO_VALUE","series_code":"8483","series_info":[],"is_absolute":"true","coupon_value":"0","transaction":{"amount":"","number":""},"side_effects":[],"item_status":{"success":"true","code":700,"message":"Coupon
+                          processing successful"}}}}'
+                        rewardId: 21400
+                        issued: null
+                        seriesId: null
+                        seriesName: null
+                        redemptionCount: 0
+                        redemptions: null
+                    - rewardDetails:
+                        rewardId: 21400
+                        name: 50 NFR Discount Voucher
+                        description: 50 NFR Discount Voucher
+                        thumbnailId: 49J2719V29.image/jpeg
+                        thumbnailUrl: https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49J2719V29.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20201028T142928Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Signature=dce8783763093a0b6d166c4facb42a9e9bb3db51b8a33366acdebc1831031a7f
+                        imageId: 49J2711828.image/jpeg
+                        termNConditionsId: 49J271AC30.html
+                        termNConditionsUrl: https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49J271AC30.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20201028T142928Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Signature=7d6f6ebc06627fc7e7de12489ec3f11148616ea2ee25308d43c011546f00ccac
+                        imageUrl: https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49J2711828.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20201028T142928Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Signature=4c66b3075db316c3fac99d053ed2c84dbbe9440cf098e12d620986cd6f41f9b8
+                        tier: ''
+                        label: ''
+                        group: ''
+                        tillId: null
+                      vouchers:
+                      - code: KUQ3AAK7
+                        expiry: '2020-12-12 23:59:59'
+                        vendor: null
+                        rewardId: 21400
+                        issued: '2020-10-28T17:27:03.000+05:30'
+                        seriesId: '2490'
+                        seriesName: 50 NFR Discount Voucher
+                        redemptionCount: 0
+                        redemptions:
+                          redemption: null
+                      - code: DBN600HI
+                        expiry: '2020-12-12 23:59:59'
+                        vendor: null
+                        rewardId: 21400
+                        issued: '2020-10-28T17:27:03.000+05:30'
+                        seriesId: '2490'
+                        seriesName: 50 NFR Discount Voucher
+                        redemptionCount: 0
+                        redemptions:
+                          redemption: null
+                    - rewardDetails: null
+                      vouchers:
+                      - code: L3CC29OJ
+                        expiry: '2120-02-24 23:59:59'
+                        vendor: null
+                        rewardId: null
+                        issued: '2020-02-25T22:35:55.000+05:30'
+                        seriesId: '833'
+                        seriesName: Google Mini
+                        redemptionCount: 0
+                        redemptions:
+                          redemption: null
+                      - code: 1DGT50TE
+                        expiry: '2120-02-24 23:59:59'
+                        vendor: null
+                        rewardId: null
+                        issued: '2020-02-25T22:36:43.000+05:30'
+                        seriesId: '833'
+                        seriesName: Google Mini
+                        redemptionCount: 0
+                        redemptions:
+                          redemption: null
+                    pagingDto:
+                      last: true
+                      totalElements: 3
+                      totalPages: 1
+                      numberOfElements: 3
+                      first: true
+                      size: 1000
+                      number: 0
               schema:
                 type: object
                 properties:
@@ -307,8 +305,31 @@ paths:
                               expiry: {}
                               vendor:
                                 type: string
-                                example: '{"status":{"success":"true","code":200,"message":"Success"},"coupons":{"coupon":{"customer":{"mobile":"918848000000","email":null,"external_id":"90000000000195300"},"code":"TL150O7R","discount_code":"NO_VALUE","series_code":"8483","series_info":[],"is_absolute":"true","coupon_value":"0","transaction":{"amount":"","number":""},"side_effects":[],"item_status":{"success":"true","code":700,"message":"Coupon
-                                  processing successful"}}}}'
+                                example:
+                                  status:
+                                    success: 'true'
+                                    code: 200
+                                    message: Success
+                                  coupons:
+                                    coupon:
+                                      customer:
+                                        mobile: '918848000000'
+                                        email: null
+                                        external_id: '90000000000195300'
+                                      code: TL150O7R
+                                      discount_code: NO_VALUE
+                                      series_code: '8483'
+                                      series_info: []
+                                      is_absolute: 'true'
+                                      coupon_value: '0'
+                                      transaction:
+                                        amount: ''
+                                        number: ''
+                                      side_effects: []
+                                      item_status:
+                                        success: 'true'
+                                        code: 700
+                                        message: Coupon processing successful
                               rewardId:
                                 type: integer
                                 example: 21400
@@ -358,7 +379,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: '{}'
+                  value: {}
               schema:
                 type: object
                 properties: {}

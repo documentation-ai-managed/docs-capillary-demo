@@ -3,14 +3,14 @@ info:
   title: Get Vendor Details
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/api_gateway/rewards/core/v1/vendor/{vendorId}/details":
+  /api_gateway/rewards/core/v1/vendor/{vendorId}/details:
     get:
       summary: Get Vendor Details
       description: ''
@@ -35,31 +35,49 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
-                    \   \"code\": 5001,\n        \"message\": \"Vendor fetched successfully\"\
-                    \n    },\n    \"vendor\": {\n        \"id\": 59,\n        \"name\"\
-                    : \"DocVendor7\",\n        \"code\": \"Doc007\",\n        \"brandId\"\
-                    : 61,\n        \"rank\": null,\n        \"description\": null,\n\
-                    \        \"enabled\": true,\n        \"vendorTypes\": null,\n\
-                    \        \"vendorDetails\": {},\n        \"images\": [\n     \
-                    \       {\n                \"name\": \"imageName001\",\n     \
-                    \           \"altText\": null,\n                \"id\": null,\n\
-                    \                \"url\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6RFSqYEgenJSDc0Wo_eoEKzxd0iXvTOO-LQ&s\"\
-                    ,\n                \"isExternal\": true\n            }\n     \
-                    \   ],\n        \"videos\": [\n            {\n               \
-                    \ \"name\": \"videoName001\",\n                \"altText\": null,\n\
-                    \                \"id\": null,\n                \"url\": \"https://videos.pexels.com/video-files/6265096/6265096-uhd_1440_2560_30fps.mp4\"\
-                    ,\n                \"isExternal\": true\n            }\n     \
-                    \   ],\n        \"type\": \"REWARDS\",\n        \"redemptionsConfigured\"\
-                    : 1,\n        \"createdOn\": 1739783601000,\n        \"lastUpdatedOn\"\
-                    : 1739783601000,\n        \"lastUpdatedOnDateTime\": \"2025-02-17T09:13:21Z\"\
-                    ,\n        \"createdBy\": null,\n        \"lastUpdatedBy\": null,\n\
-                    \        \"createdOnDateTime\": \"2025-02-17T09:13:21Z\",\n  \
-                    \      \"encryptionRequired\": false\n    }\n}"
-                "Failure: Invalid Vendor ID":
-                  value: "{\n    \"status\": {\n        \"success\": false,\n    \
-                    \    \"code\": 5004,\n        \"message\": \"Vendor not found\"\
-                    \n    },\n    \"vendor\": null\n}"
+                  value:
+                    status:
+                      success: true
+                      code: 5001
+                      message: Vendor fetched successfully
+                    vendor:
+                      id: 59
+                      name: DocVendor7
+                      code: Doc007
+                      brandId: 61
+                      rank: null
+                      description: null
+                      enabled: true
+                      vendorTypes: null
+                      vendorDetails: {}
+                      images:
+                      - name: imageName001
+                        altText: null
+                        id: null
+                        url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6RFSqYEgenJSDc0Wo_eoEKzxd0iXvTOO-LQ&s
+                        isExternal: true
+                      videos:
+                      - name: videoName001
+                        altText: null
+                        id: null
+                        url: https://videos.pexels.com/video-files/6265096/6265096-uhd_1440_2560_30fps.mp4
+                        isExternal: true
+                      type: REWARDS
+                      redemptionsConfigured: 1
+                      createdOn: 1739783601000
+                      lastUpdatedOn: 1739783601000
+                      lastUpdatedOnDateTime: '2025-02-17T09:13:21Z'
+                      createdBy: null
+                      lastUpdatedBy: null
+                      createdOnDateTime: '2025-02-17T09:13:21Z'
+                      encryptionRequired: false
+                'Failure: Invalid Vendor ID':
+                  value:
+                    status:
+                      success: false
+                      code: 5004
+                      message: Vendor not found
+                    vendor: null
               schema:
                 oneOf:
                 - type: object
@@ -117,7 +135,7 @@ paths:
                               id: {}
                               url:
                                 type: string
-                                example: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6RFSqYEgenJSDc0Wo_eoEKzxd0iXvTOO-LQ&s"
+                                example: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6RFSqYEgenJSDc0Wo_eoEKzxd0iXvTOO-LQ&s
                               isExternal:
                                 type: boolean
                                 example: true
@@ -134,7 +152,7 @@ paths:
                               id: {}
                               url:
                                 type: string
-                                example: "https://videos.pexels.com/video-files/6265096/6265096-uhd_1440_2560_30fps.mp4"
+                                example: https://videos.pexels.com/video-files/6265096/6265096-uhd_1440_2560_30fps.mp4
                               isExternal:
                                 type: boolean
                                 example: true
@@ -156,17 +174,17 @@ paths:
                           default: 0
                         lastUpdatedOnDateTime:
                           type: string
-                          example: "2025-02-17T09:13:21Z"
+                          example: '2025-02-17T09:13:21Z'
                         createdBy: {}
                         lastUpdatedBy: {}
                         createdOnDateTime:
                           type: string
-                          example: "2025-02-17T09:13:21Z"
+                          example: '2025-02-17T09:13:21Z'
                         encryptionRequired:
                           type: boolean
                           example: false
                           default: true
-                - title: "Failure: Invalid Vendor ID"
+                - title: 'Failure: Invalid Vendor ID'
                   type: object
                   properties:
                     status:
@@ -190,7 +208,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
@@ -198,11 +216,12 @@ paths:
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/vendor/59/details'\
-            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
-            \ application/json' \\\n--header 'Authorization: Basic bmFtYW5fZG9jOmzA3MWJmYjM5OGM5ZmM2YjZlY2I2MmEy'\
-            \ \\\n--header 'Cookie: _cfuvid=fmRA3Hit0aFMwbfKLvt4ueC_cBYGp6.izrIrTxsLCds-1727420270955-0.0.1.1-604800000;\
-            \ _cfuvid=FJsFTsQxFxFqUup40xQQ36aT7bnuhPmb6nYOClavKpU-1739797830423-0.0.1.1-604800000'"
+          code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/vendor/59/details' \
+            --header 'Accept: application/json' \
+            --header 'Content-Type: application/json' \
+            --header 'Authorization: Basic bmFtYW5fZG9jOmzA3MWJmYjM5OGM5ZmM2YjZlY2I2MmEy' \
+            --header 'Cookie: _cfuvid=fmRA3Hit0aFMwbfKLvt4ueC_cBYGp6.izrIrTxsLCds-1727420270955-0.0.1.1-604800000; _cfuvid=FJsFTsQxFxFqUup40xQQ36aT7bnuhPmb6nYOClavKpU-1739797830423-0.0.1.1-604800000'
         samples-languages:
         - curl
 components:

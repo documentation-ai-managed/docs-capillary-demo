@@ -3,18 +3,18 @@ info:
   title: Retrieve search criteria details
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/api_gateway/cortex/v1/criteria/{id}":
+  /api_gateway/cortex/v1/criteria/{id}:
     get:
       summary: Retrieve search criteria details
-      description: This API enables you to retrieve the search criteria details using
-        the search criteria ID obtained during creation of the search criteria.
+      description: This API enables you to retrieve the search criteria details using the search criteria
+        ID obtained during creation of the search criteria.
       operationId: get-meta
       parameters:
       - name: id
@@ -30,27 +30,36 @@ paths:
             application/json:
               examples:
                 Criteria details:
-                  value: "{\n    \"data\": {\n        \"id\": \"64b117d756bb3f20312aae7f\"\
-                    ,\n        \"orgId\": 2064,\n        \"name\": \"criteria_1231_1\"\
-                    ,\n        \"entityType\": \"TRANSACTION\",\n        \"fieldDefinitions\"\
-                    : [\n            {\n                \"fieldId\": \"destination\"\
-                    ,\n                \"fieldAlias\": \"destination\",\n        \
-                    \        \"dataSourceDetails\": {\n                    \"fieldReference\"\
-                    : \"extendedFields.destination\"\n                },\n       \
-                    \         \"dataType\": \"STRING\"\n            },\n         \
-                    \   {\n                \"fieldId\": \"origin\",\n            \
-                    \    \"fieldAlias\": \"origin\",\n                \"dataSourceDetails\"\
-                    : {\n                    \"fieldReference\": \"extendedFields.origin\"\
-                    \n                },\n                \"dataType\": \"STRING\"\
-                    \n            }\n        ],\n        \"searchDataPolicy\": {\n\
-                    \            \"dataRetentionPolicy\": {\n                \"unit\"\
-                    : \"DAYS\",\n                \"value\": 30\n            },\n \
-                    \           \"expireDataFrom\": \"CREATE\"\n        },\n     \
-                    \   \"active\": true,\n        \"bulkJobStatus\": \"OPEN\",\n\
-                    \        \"auditInfo\": {\n            \"createdOn\": \"2023-07-14T09:39:35.353+00:00\"\
-                    ,\n            \"createdBy\": 13425520,\n            \"lastUpdatedOn\"\
-                    : \"2023-07-14T09:39:35.353+00:00\",\n            \"lastUpdatedBy\"\
-                    : 13425520\n        }\n    },\n    \"errors\": []\n}"
+                  value:
+                    data:
+                      id: 64b117d756bb3f20312aae7f
+                      orgId: 2064
+                      name: criteria_1231_1
+                      entityType: TRANSACTION
+                      fieldDefinitions:
+                      - fieldId: destination
+                        fieldAlias: destination
+                        dataSourceDetails:
+                          fieldReference: extendedFields.destination
+                        dataType: STRING
+                      - fieldId: origin
+                        fieldAlias: origin
+                        dataSourceDetails:
+                          fieldReference: extendedFields.origin
+                        dataType: STRING
+                      searchDataPolicy:
+                        dataRetentionPolicy:
+                          unit: DAYS
+                          value: 30
+                        expireDataFrom: CREATE
+                      active: true
+                      bulkJobStatus: OPEN
+                      auditInfo:
+                        createdOn: '2023-07-14T09:39:35.353+00:00'
+                        createdBy: 13425520
+                        lastUpdatedOn: '2023-07-14T09:39:35.353+00:00'
+                        lastUpdatedBy: 13425520
+                    errors: []
               schema:
                 type: object
                 properties:
@@ -118,14 +127,14 @@ paths:
                         properties:
                           createdOn:
                             type: string
-                            example: "2023-07-14T09:39:35.353+00:00"
+                            example: '2023-07-14T09:39:35.353+00:00'
                           createdBy:
                             type: integer
                             example: 13425520
                             default: 0
                           lastUpdatedOn:
                             type: string
-                            example: "2023-07-14T09:39:35.353+00:00"
+                            example: '2023-07-14T09:39:35.353+00:00'
                           lastUpdatedBy:
                             type: integer
                             example: 13425520
@@ -138,7 +147,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
@@ -146,7 +155,7 @@ paths:
       x-readme:
         code-samples:
         - language: curl
-          code: "https://apac.api.capillarytech.com/api_gateway/cortex/v1/criteria/64b117d756bb3f20312aae7f"
+          code: https://apac.api.capillarytech.com/api_gateway/cortex/v1/criteria/64b117d756bb3f20312aae7f
           name: Retrieve search criteria details
         samples-languages:
         - curl

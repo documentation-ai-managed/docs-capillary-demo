@@ -3,7 +3,7 @@ info:
   title: Create Reward Expiry Reminder
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -22,17 +22,25 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
-                    \   \"code\": 12038,\n        \"message\": \"Reward expiry reminder\
-                    \ created\"\n    },\n    \"rewardExpiryReminder\": {\n       \
-                    \ \"id\": 35,\n        \"orgId\": 100737,\n        \"duration\"\
-                    : 32,\n        \"durationType\": \"DAYS\",\n        \"cronTaskId\"\
-                    : 605381,\n        \"timing\": \"18:00\",\n        \"isActive\"\
-                    : true,\n        \"createdOn\": 1742186349783,\n        \"createdOnDateTime\"\
-                    : \"2025-03-17T04:39:09Z\",\n        \"lastUpdatedOn\": 1742186349783,\n\
-                    \        \"lastUpdatedOnDateTime\": \"2025-03-17T04:39:09Z\",\n\
-                    \        \"createdBy\": 75155282,\n        \"lastUpdatedBy\":\
-                    \ 75155282\n    }\n}"
+                  value:
+                    status:
+                      success: true
+                      code: 12038
+                      message: Reward expiry reminder created
+                    rewardExpiryReminder:
+                      id: 35
+                      orgId: 100737
+                      duration: 32
+                      durationType: DAYS
+                      cronTaskId: 605381
+                      timing: '18:00'
+                      isActive: true
+                      createdOn: 1742186349783
+                      createdOnDateTime: '2025-03-17T04:39:09Z'
+                      lastUpdatedOn: 1742186349783
+                      lastUpdatedOnDateTime: '2025-03-17T04:39:09Z'
+                      createdBy: 75155282
+                      lastUpdatedBy: 75155282
               schema:
                 type: object
                 properties:
@@ -74,7 +82,7 @@ paths:
                         default: 0
                       timing:
                         type: string
-                        example: "18:00"
+                        example: '18:00'
                       isActive:
                         type: boolean
                         example: true
@@ -85,14 +93,14 @@ paths:
                         default: 0
                       createdOnDateTime:
                         type: string
-                        example: "2025-03-17T04:39:09Z"
+                        example: '2025-03-17T04:39:09Z'
                       lastUpdatedOn:
                         type: integer
                         example: 1742186349783
                         default: 0
                       lastUpdatedOnDateTime:
                         type: string
-                        example: "2025-03-17T04:39:09Z"
+                        example: '2025-03-17T04:39:09Z'
                       createdBy:
                         type: integer
                         example: 75155282
@@ -107,9 +115,11 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"status\": {\n        \"success\": false,\n    \
-                    \    \"code\": 400,\n        \"message\": \"Duration is mandatory\"\
-                    \n    }\n}"
+                  value:
+                    status:
+                      success: false
+                      code: 400
+                      message: Duration is mandatory
               schema:
                 type: object
                 properties:
@@ -131,12 +141,16 @@ paths:
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/expiryReminder'\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization:\
-            \ Basic aWFtc2hpblahblahjI3YjJlODM4ZjhlMzRkNWI1YTI5MWY=' \\\n--header\
-            \ 'user-agent: pyapps_auto_2024-05-25-12-47-39' \\\n--header 'Cookie:\
-            \ _cfuvid=EdYU22mJWP1xzoxt74hggY7PKdhUOcIzYPQlaq4bOyU-1727677397251-0.0.1.1-604800000'\
-            \ \\\n--data '{\n    \"duration\": 32,\n    \"timing\": \"18:00\"\n}'"
+          code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/expiryReminder' \
+            --header 'Content-Type: application/json' \
+            --header 'Authorization: Basic aWFtc2hpblahblahjI3YjJlODM4ZjhlMzRkNWI1YTI5MWY=' \
+            --header 'user-agent: pyapps_auto_2024-05-25-12-47-39' \
+            --header 'Cookie: _cfuvid=EdYU22mJWP1xzoxt74hggY7PKdhUOcIzYPQlaq4bOyU-1727677397251-0.0.1.1-604800000' \
+            --data '{
+                "duration": 32,
+                "timing": "18:00"
+            }'
         samples-languages:
         - curl
 components:

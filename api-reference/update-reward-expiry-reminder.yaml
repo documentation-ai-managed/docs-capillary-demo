@@ -3,14 +3,14 @@ info:
   title: Update Reward Expiry Reminder
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/api_gateway/rewards/core/v1/reward/expiryReminder/{rewardExpiryReminderid}":
+  /api_gateway/rewards/core/v1/reward/expiryReminder/{rewardExpiryReminderid}:
     put:
       summary: Update Reward Expiry Reminder
       description: ''
@@ -30,17 +30,25 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
-                    \   \"code\": 12040,\n        \"message\": \"Reward expiry reminder\
-                    \ updated\"\n    },\n    \"rewardExpiryReminder\": {\n       \
-                    \ \"id\": 34,\n        \"orgId\": 100737,\n        \"duration\"\
-                    : 15,\n        \"durationType\": \"DAYS\",\n        \"cronTaskId\"\
-                    : 605157,\n        \"timing\": \"12:00\",\n        \"isActive\"\
-                    : true,\n        \"createdOn\": 1741892481000,\n        \"createdOnDateTime\"\
-                    : \"2025-03-13T19:01:21Z\",\n        \"lastUpdatedOn\": 1741892497000,\n\
-                    \        \"lastUpdatedOnDateTime\": \"2025-03-13T19:01:37Z\",\n\
-                    \        \"createdBy\": 75155282,\n        \"lastUpdatedBy\":\
-                    \ 75155282\n    }\n}"
+                  value:
+                    status:
+                      success: true
+                      code: 12040
+                      message: Reward expiry reminder updated
+                    rewardExpiryReminder:
+                      id: 34
+                      orgId: 100737
+                      duration: 15
+                      durationType: DAYS
+                      cronTaskId: 605157
+                      timing: '12:00'
+                      isActive: true
+                      createdOn: 1741892481000
+                      createdOnDateTime: '2025-03-13T19:01:21Z'
+                      lastUpdatedOn: 1741892497000
+                      lastUpdatedOnDateTime: '2025-03-13T19:01:37Z'
+                      createdBy: 75155282
+                      lastUpdatedBy: 75155282
               schema:
                 type: object
                 properties:
@@ -82,7 +90,7 @@ paths:
                         default: 0
                       timing:
                         type: string
-                        example: "12:00"
+                        example: '12:00'
                       isActive:
                         type: boolean
                         example: true
@@ -93,14 +101,14 @@ paths:
                         default: 0
                       createdOnDateTime:
                         type: string
-                        example: "2025-03-13T19:01:21Z"
+                        example: '2025-03-13T19:01:21Z'
                       lastUpdatedOn:
                         type: integer
                         example: 1741892497000
                         default: 0
                       lastUpdatedOnDateTime:
                         type: string
-                        example: "2025-03-13T19:01:37Z"
+                        example: '2025-03-13T19:01:37Z'
                       createdBy:
                         type: integer
                         example: 75155282
@@ -115,13 +123,17 @@ paths:
             application/json:
               examples:
                 Duration is mandatory:
-                  value: "{\n    \"status\": {\n        \"success\": false,\n    \
-                    \    \"code\": 400,\n        \"message\": \"Duration is mandatory\"\
-                    \n    }\n}"
+                  value:
+                    status:
+                      success: false
+                      code: 400
+                      message: Duration is mandatory
                 Invalid Reward expiry reminder ID:
-                  value: "{\n    \"status\": {\n        \"success\": false,\n    \
-                    \    \"code\": 400,\n        \"message\": \"Reward expiry reminder\
-                    \ with id 34 does not exist\"\n    }\n}"
+                  value:
+                    status:
+                      success: false
+                      code: 400
+                      message: Reward expiry reminder with id 34 does not exist
               schema:
                 oneOf:
                 - title: Duration is mandatory
@@ -162,13 +174,17 @@ paths:
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/expiryReminder/1'\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization:\
-            \ Basic aWFtc2hpdBLAHBLAHI3YjJlODM4ZjhlMzRkNWI1YTI5MWY=' \\\n--header\
-            \ 'user-agent: pyapps_auto_2024-05-25-12-47-39' \\\n--header 'Cookie:\
-            \ _cfuvid=EdYU22mJWP1xzoxt74hggY7PKdhUOcIzYPQlaq4bOyU-1727677397251-0.0.1.1-604800000'\
-            \ \\\n--data '{\n    \"isActive\":true,\n    \"duration\": 15,\n    \"\
-            timing\": \"12:00\"\n}'"
+          code: |-
+            curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/expiryReminder/1' \
+            --header 'Content-Type: application/json' \
+            --header 'Authorization: Basic aWFtc2hpdBLAHBLAHI3YjJlODM4ZjhlMzRkNWI1YTI5MWY=' \
+            --header 'user-agent: pyapps_auto_2024-05-25-12-47-39' \
+            --header 'Cookie: _cfuvid=EdYU22mJWP1xzoxt74hggY7PKdhUOcIzYPQlaq4bOyU-1727677397251-0.0.1.1-604800000' \
+            --data '{
+                "isActive":true,
+                "duration": 15,
+                "timing": "12:00"
+            }'
         samples-languages:
         - curl
 components:

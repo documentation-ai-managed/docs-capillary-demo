@@ -3,7 +3,7 @@ info:
   title: Generate Authentication Token
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -37,12 +37,12 @@ paths:
                   - USERNAME.
                 mobile:
                   type: string
-                  description: Mobile number of the customer. Either mobile number
-                    or email ID is required to authenticate with username.
+                  description: Mobile number of the customer. Either mobile number or email ID is required
+                    to authenticate with username.
                 email:
                   type: string
-                  description: Email ID of the customer. Either mobile number or email
-                    ID is required to authenticate with username.
+                  description: Email ID of the customer. Either mobile number or email ID is required
+                    to authenticate with username.
                 password:
                   type: string
                   description: Password to login to the app.
@@ -51,12 +51,10 @@ paths:
                   description: Reenter the password.
                 brand:
                   type: string
-                  description: Name of the brand/org for which authentication needs
-                    to be verified.
+                  description: Name of the brand/org for which authentication needs to be verified.
                 deviceId:
                   type: string
-                  description: Unique ID of the device from which the customer has
-                    generated the token.
+                  description: Unique ID of the device from which the customer has generated the token.
                 identifierValue:
                   type: string
                   description: Identifier value
@@ -74,13 +72,19 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
-                    \   \"code\": 200,\n        \"message\": \"SUCCESS\"\n    },\n\
-                    \    \"auth\": {\n        \"token\": \"eyJpZHYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiXSwiZGV2IjoiMzJydHNkZXJlZCIsIm9yZyI6IlNUQU5EQVJEQVBQIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwib2djIjpbIjE1MTA2MHxzYS5kZW1vLnNvbHV0aW9uIl0sImV4cCI6MTU5NzY1NTgxMywiaWF0IjoxNTk3NjUyMjEzLCJyb2wiOiJWSUVXIn0.2LqAg3tDVu8VwasSXuwiL6p917NCxgpKEt76qqrARgQ\"\
-                    ,\n        \"key\": null\n    },\n    \"user\": {\n        \"\
-                    appRegistered\": false,\n        \"sessionId\": \"D-12c177af-dac7-4383-a0fb-6c09e148af8e\"\
-                    ,\n        \"role\": \"VIEW\",\n        \"userRegisteredForPassword\"\
-                    : false\n    }\n}"
+                  value:
+                    status:
+                      success: true
+                      code: 200
+                      message: SUCCESS
+                    auth:
+                      token: eyJpZHYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiXSwiZGV2IjoiMzJydHNkZXJlZCIsIm9yZyI6IlNUQU5EQVJEQVBQIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwib2djIjpbIjE1MTA2MHxzYS5kZW1vLnNvbHV0aW9uIl0sImV4cCI6MTU5NzY1NTgxMywiaWF0IjoxNTk3NjUyMjEzLCJyb2wiOiJWSUVXIn0.2LqAg3tDVu8VwasSXuwiL6p917NCxgpKEt76qqrARgQ
+                      key: null
+                    user:
+                      appRegistered: false
+                      sessionId: D-12c177af-dac7-4383-a0fb-6c09e148af8e
+                      role: VIEW
+                      userRegisteredForPassword: false
                 Sample response for existing user:
                   summary: Sample response for existing user
                   value:
@@ -127,8 +131,7 @@ paths:
                       role: VIEW
                       userRegisteredForPassword: true
                 First time user when password is enabled and using web app:
-                  summary: First time user when password is enabled and using web
-                    app
+                  summary: First time user when password is enabled and using web app
                   value:
                     status:
                       success: true
@@ -189,7 +192,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
@@ -197,50 +200,81 @@ paths:
       x-readme:
         code-samples:
         - language: shell
-          code: "curl --location 'https://eu.api.capillarytech.com/auth/v1/web/token/generate'\
-            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
-            \ application/json' \\\n--data '{\n   \"identifierType\":\"USERNAME\"\
-            ,\n   \"identifierValue\":\"9945560224\",\n   \"mobile\":\"9988221100\"\
-            ,\n   \"email\": \"\",\n    \"deviceId\": \"deviceid1\",\n    \"brand\"\
-            : \"STANDARDAPP\",\n    \"password\":\"password\",\n    \"confirmPassword\"\
-            :\"password\"\n}'"
+          code: |-
+            curl --location 'https://eu.api.capillarytech.com/auth/v1/web/token/generate' \
+            --header 'Accept: application/json' \
+            --header 'Content-Type: application/json' \
+            --data '{
+               "identifierType":"USERNAME",
+               "identifierValue":"9945560224",
+               "mobile":"9988221100",
+               "email": "",
+                "deviceId": "deviceid1",
+                "brand": "STANDARDAPP",
+                "password":"password",
+                "confirmPassword":"password"
+            }'
           name: Authenticate with username
-        - code: "curl --location 'https://eu.api.capillarytech.com/auth/v1/token/generate'\
-            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
-            \ application/json' \\\n--header 'accept: application/json' \\\n--header\
-            \ 'Cookie: _cfuvid=r0qUeHW4DtOxdgIN8.dJs77Xj15OkoCeaHRiplR4Qxs-1759834804501-0.0.1.1-604800000'\
-            \ \\\n--data '{\n    \"identifierType\": \"MOBILE\",\n    \"identifierValue\"\
-            : \"919999999993\",\n    \"brand\": \"DocDemo\",\n    \"deviceId\": \"\
-            123456785\"\n}'"
+        - code: |-
+            curl --location 'https://eu.api.capillarytech.com/auth/v1/token/generate' \
+            --header 'Accept: application/json' \
+            --header 'Content-Type: application/json' \
+            --header 'accept: application/json' \
+            --header 'Cookie: _cfuvid=r0qUeHW4DtOxdgIN8.dJs77Xj15OkoCeaHRiplR4Qxs-1759834804501-0.0.1.1-604800000' \
+            --data '{
+                "identifierType": "MOBILE",
+                "identifierValue": "919999999993",
+                "brand": "DocDemo",
+                "deviceId": "123456785"
+            }'
           language: shell
           name: For existing user - Mobile app
-        - code: "curl --location 'https://eu.api.capillarytech.com/auth/v1/token/generate'\
-            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
-            \ application/json' \\\n--header 'accept: application/json' \\\n--header\
-            \ 'Cookie: _cfuvid=r0qUeHW4DtOxdgIN8.dJs77Xj15OkoCeaHRiplR4Qxs-1759834804501-0.0.1.1-604800000'\
-            \ \\\n--data '{\n    \"identifierType\": \"MOBILE\",\n    \"identifierValue\"\
-            : \"919999999991\",\n    \"brand\": \"DocDemo\",\n    \"deviceId\": \"\
-            123456785\",\n    \"password\" : \"abc123\",\n    \"confirmPassword\"\
-            \ : \"abc123\"\n}'"
+        - code: |-
+            curl --location 'https://eu.api.capillarytech.com/auth/v1/token/generate' \
+            --header 'Accept: application/json' \
+            --header 'Content-Type: application/json' \
+            --header 'accept: application/json' \
+            --header 'Cookie: _cfuvid=r0qUeHW4DtOxdgIN8.dJs77Xj15OkoCeaHRiplR4Qxs-1759834804501-0.0.1.1-604800000' \
+            --data '{
+                "identifierType": "MOBILE",
+                "identifierValue": "919999999991",
+                "brand": "DocDemo",
+                "deviceId": "123456785",
+                "password" : "abc123",
+                "confirmPassword" : "abc123"
+            }'
           language: shell
           name: For first time user when password authentication is enabled
-        - code: "curl --location 'https://eu.api.capillarytech.com/auth/v1/web/token/generate'\
-            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
-            \ application/json' \\\n--header 'accept: application/json' \\\n--header\
-            \ 'Cookie: _cfuvid=dx9m0omOPswla2ni.yXNOV.9_4qHLCcfMI_vqjitSvU-1759835382650-0.0.1.1-604800000;\
-            \ _cfuvid=r0qUeHW4DtOxdgIN8.dJs77Xj15OkoCeaHRiplR4Qxs-1759834804501-0.0.1.1-604800000'\
-            \ \\\n--data-raw '\n{\n  \"identifierType\": \"EMAIL\",\n   \"identifierValue\"\
-            : \"captest@gmail.com\",\n    \"brand\": \"DocDemo\"\n}\n'"
+        - code: |-
+            curl --location 'https://eu.api.capillarytech.com/auth/v1/web/token/generate' \
+            --header 'Accept: application/json' \
+            --header 'Content-Type: application/json' \
+            --header 'accept: application/json' \
+            --header 'Cookie: _cfuvid=dx9m0omOPswla2ni.yXNOV.9_4qHLCcfMI_vqjitSvU-1759835382650-0.0.1.1-604800000; _cfuvid=r0qUeHW4DtOxdgIN8.dJs77Xj15OkoCeaHRiplR4Qxs-1759834804501-0.0.1.1-604800000' \
+            --data-raw '
+            {
+              "identifierType": "EMAIL",
+               "identifierValue": "captest@gmail.com",
+                "brand": "DocDemo"
+            }
+            '
           language: shell
           name: For existing user using web app
-        - code: "curl --location 'https://eu.api.capillarytech.com/auth/v1/web/token/generate'\
-            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
-            \ application/json' \\\n--header 'accept: application/json' \\\n--header\
-            \ 'Cookie: _cfuvid=dx9m0omOPswla2ni.yXNOV.9_4qHLCcfMI_vqjitSvU-1759835382650-0.0.1.1-604800000;\
-            \ _cfuvid=r0qUeHW4DtOxdgIN8.dJs77Xj15OkoCeaHRiplR4Qxs-1759834804501-0.0.1.1-604800000'\
-            \ \\\n--data-raw '\n{\n  \"identifierType\": \"EMAIL\",\n   \"identifierValue\"\
-            : \"cap_testtokengen@gmail.com\",\n    \"brand\": \"DocDemo\",\n    \"\
-            password\" : \"abc123\",\n    \"confirmPassword\" : \"abc123\"\n}\n'"
+        - code: |-
+            curl --location 'https://eu.api.capillarytech.com/auth/v1/web/token/generate' \
+            --header 'Accept: application/json' \
+            --header 'Content-Type: application/json' \
+            --header 'accept: application/json' \
+            --header 'Cookie: _cfuvid=dx9m0omOPswla2ni.yXNOV.9_4qHLCcfMI_vqjitSvU-1759835382650-0.0.1.1-604800000; _cfuvid=r0qUeHW4DtOxdgIN8.dJs77Xj15OkoCeaHRiplR4Qxs-1759834804501-0.0.1.1-604800000' \
+            --data-raw '
+            {
+              "identifierType": "EMAIL",
+               "identifierValue": "cap_testtokengen@gmail.com",
+                "brand": "DocDemo",
+                "password" : "abc123",
+                "confirmPassword" : "abc123"
+            }
+            '
           language: shell
           name: First time user when password is enabled and using web app
         samples-languages:

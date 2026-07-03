@@ -3,18 +3,18 @@ info:
   title: Earn Cart Promotion
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/api_gateway/v1/promotions/{promotionId}/earn":
+  /api_gateway/v1/promotions/{promotionId}/earn:
     post:
       summary: Earn Cart Promotion
-      description: "Description :With this API , we can get the details of all the\
-        \ cart promotions earned by a particular customer."
+      description: Description :With this API , we can get the details of all the cart promotions earned
+        by a particular customer.
       operationId: earn-promotion
       parameters:
       - name: promotionId
@@ -40,8 +40,8 @@ paths:
                   description: Unique id assigned to the promotion
                 earnedFromType:
                   type: string
-                  description: "Type of customer activity for which promotion is earned\
-                    \ . Enums: ACTIVITY,MILESTONE, REWARD"
+                  description: 'Type of customer activity for which promotion is earned . Enums: ACTIVITY,MILESTONE,
+                    REWARD'
                 earnedFromId:
                   type: string
                   description: earn event id
@@ -60,21 +60,17 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n  \"data\": {\n    \"id\": \"string\",\n    \"customerId\"\
-                    : 0, //Unique id assigned to the customer\n    \"promotionId\"\
-                    : \"string\", ////Unique id assigned when a promotion is created\n\
-                    \    \"earnedFromType\": \"\", // Type of customer activity for\
-                    \ which promotion is earned . Enums: ACTIVITY,MILESTONE, REWARD\n\
-                    \    \"earnedFromId\": \"string\", // earn event id\n    \"eventTime\"\
-                    : 0, // Time when earn event occurs\n    \"eventDetails\": {\n\
-                    \      \"id\": \"string\",\n      \"type\": \"string\",\n    \
-                    \  \"eventPayload\": {\n        \"additionalProp1\": {},\n   \
-                    \     \"additionalProp2\": {},\n        \"additionalProp3\": {}\n\
-                    \      }\n    },\n    \"validTill\": 0, // period for which the\
-                    \ earned promotion is valid \n    \"errorDetails\": {\n      \"\
-                    errorCode\": 0,\n      \"errorMessages\": \"string\"\n    }\n\
-                    \  },\n  \"errors\": [\n    {\n      \"code\": 0,\n      \"message\"\
-                    : \"string\"\n    }\n  ]\n}\n\n\n"
+                  value: "{\n  \"data\": {\n    \"id\": \"string\",\n    \"customerId\": 0, //Unique id\
+                    \ assigned to the customer\n    \"promotionId\": \"string\", ////Unique id assigned\
+                    \ when a promotion is created\n    \"earnedFromType\": \"\", // Type of customer activity\
+                    \ for which promotion is earned . Enums: ACTIVITY,MILESTONE, REWARD\n    \"earnedFromId\"\
+                    : \"string\", // earn event id\n    \"eventTime\": 0, // Time when earn event occurs\n\
+                    \    \"eventDetails\": {\n      \"id\": \"string\",\n      \"type\": \"string\",\n\
+                    \      \"eventPayload\": {\n        \"additionalProp1\": {},\n        \"additionalProp2\"\
+                    : {},\n        \"additionalProp3\": {}\n      }\n    },\n    \"validTill\": 0, //\
+                    \ period for which the earned promotion is valid \n    \"errorDetails\": {\n     \
+                    \ \"errorCode\": 0,\n      \"errorMessages\": \"string\"\n    }\n  },\n  \"errors\"\
+                    : [\n    {\n      \"code\": 0,\n      \"message\": \"string\"\n    }\n  ]\n}\n\n\n"
               schema:
                 type: object
                 properties:
@@ -154,22 +150,32 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
       deprecated: false
       x-readme:
         code-samples:
-        - code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/68f869d94a314550c4b46047/earn'\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization:\
-            \ Basic Z2VvcmdlLmRW86NjVhMDgzYjk1MWY5MGY1NTY5NDk1YmNkNzUxYmJiY2U=' \\\
-            \n--header 'Cookie: _cfuvid=BNm80w7q.f9c3OmoXlPgRUsybHmAv_l_3VQCTg-1772103718132-0.0.1.1-604800000'\
-            \ \\\n--data '{\n  \"customerId\": 566881933,\n  \"earnedFromType\": \"\
-            ACTIVITY\",\n  \"earnedFromId\": \"TXN_12345_ABC\",\n  \"eventTime\":\
-            \ 1761748253000,\n  \"eventDetails\": {\n    \"id\": \"TXN_12345_ABC\"\
-            ,\n    \"type\": \"TransactionAdd\",\n    \"eventPayload\": {\n      \"\
-            storeId\": 101,\n      \"amount\": 75.50\n    }\n  }\n}'"
+        - code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/68f869d94a314550c4b46047/earn' \
+            --header 'Content-Type: application/json' \
+            --header 'Authorization: Basic Z2VvcmdlLmRW86NjVhMDgzYjk1MWY5MGY1NTY5NDk1YmNkNzUxYmJiY2U=' \
+            --header 'Cookie: _cfuvid=BNm80w7q.f9c3OmoXlPgRUsybHmAv_l_3VQCTg-1772103718132-0.0.1.1-604800000' \
+            --data '{
+              "customerId": 566881933,
+              "earnedFromType": "ACTIVITY",
+              "earnedFromId": "TXN_12345_ABC",
+              "eventTime": 1761748253000,
+              "eventDetails": {
+                "id": "TXN_12345_ABC",
+                "type": "TransactionAdd",
+                "eventPayload": {
+                  "storeId": 101,
+                  "amount": 75.50
+                }
+              }
+            }'
           language: json
           name: ''
         samples-languages:

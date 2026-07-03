@@ -3,14 +3,14 @@ info:
   title: Get group by ID
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/api_gateway/v1/badges/group/{groupId}":
+  /api_gateway/v1/badges/group/{groupId}:
     get:
       summary: Get group by ID
       description: ''
@@ -38,13 +38,12 @@ paths:
           format: int32
       - name: page
         in: query
-        description: "The amount of the data that you want to retrieve. Default value:\
-          \ 10."
+        description: 'The amount of the data that you want to retrieve. Default value: 10.'
         schema:
           type: string
       - name: status
         in: query
-        description: "Indicates whether the group is active. Ex: True"
+        description: 'Indicates whether the group is active. Ex: True'
         schema:
           type: boolean
       responses:
@@ -62,10 +61,10 @@ paths:
                       rank: 214748364
                       createdBy: 75197372
                       createdOn: 1768984490.856
-                      createdOnISO: "2026-01-21T08:34:50Z"
+                      createdOnISO: '2026-01-21T08:34:50Z'
                       lastUpdatedBy: 75197372
                       lastUpdatedOn: 1768984490.856
-                      lastUpdatedOnISO: "2026-01-21T08:34:50Z"
+                      lastUpdatedOnISO: '2026-01-21T08:34:50Z'
                       isActive: true
                     errors: null
                     warnings: null
@@ -117,7 +116,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
@@ -125,9 +124,10 @@ paths:
       x-readme:
         code-samples:
         - language: shell
-          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/group/69708faa0772ad476ecf8511'\
-            \ \\\n--header 'Authorization: Basic bWFkaHVfcmltYTowZjAwNmZlNGM4ZjFhNmRjMmI2ZDI1N2NkNzI3MjU2YQ=='\
-            \ \\\n--header 'Cookie: _cfuvid=LbgLgMATQVG7rxgU6obNtuTjuntKzGkHg15XluHdUPI-1768984490920-0.0.1.1-604800000'"
+          code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/group/69708faa0772ad476ecf8511' \
+            --header 'Authorization: Basic bWFkaHVfcmltYTowZjAwNmZlNGM4ZjFhNmRjMmI2ZDI1N2NkNzI3MjU2YQ==' \
+            --header 'Cookie: _cfuvid=LbgLgMATQVG7rxgU6obNtuTjuntKzGkHg15XluHdUPI-1768984490920-0.0.1.1-604800000'
           name: Sample request
         samples-languages:
         - shell

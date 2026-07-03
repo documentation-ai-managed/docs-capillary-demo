@@ -3,14 +3,14 @@ info:
   title: Get Loyalty Promotion List for a Program
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/api_gateway/loyalty/v1/programs/{programId}/promotionsV2":
+  /api_gateway/loyalty/v1/programs/{programId}/promotionsV2:
     get:
       summary: Get Loyalty Promotion List for a Program
       description: Retrieves a paginated list of promotions for a given program.
@@ -18,8 +18,8 @@ paths:
       parameters:
       - name: limit
         in: query
-        description: Number of results that need to be displayed. The values from
-          zero to a maximum of 100 are supported.
+        description: Number of results that need to be displayed. The values from zero to a maximum of
+          100 are supported.
         required: true
         schema:
           type: string
@@ -60,7 +60,7 @@ paths:
                       name: test_promo_uniqueName110
                       description: creating promotion via API
                       promotionStatus: LIVE
-                      lastUpdateDate: "2025-06-23T09:25:04Z"
+                      lastUpdateDate: '2025-06-23T09:25:04Z'
                       lastUpdatedBy: -1
                       rulesetInfos:
                       - id: 126412694
@@ -71,8 +71,8 @@ paths:
                         rules:
                         - id: 126600796
                           exp: 'true'
-                          expJSON: "{ \"arity\": \"literal\", \"value\": \"true\"\
-                            , \"type\": \"boolean:primitive\" }"
+                          expJSON: '{ "arity": "literal", "value": "true", "type": "boolean:primitive"
+                            }'
                           jsonType: JNODE
                           isActive: true
                           priority: -1
@@ -138,12 +138,12 @@ paths:
                         eventType: null
                         cappingInfo: []
                         updatedViaNewUI: false
-                        label: "userCreatedLabel_2025-06-23T09:25:04.532Z"
+                        label: userCreatedLabel_2025-06-23T09:25:04.532Z
                         private: true
                       programName: DocDemoDefaultProgram
                       programId: 973
-                      startDate: "2025-06-23T00:00Z"
-                      endDate: "2026-08-25T23:59:59Z"
+                      startDate: 2025-06-23T00:00Z
+                      endDate: '2026-08-25T23:59:59Z'
                       identifier: test_promo_uniqueIdentifier110
                       isActive: true
                       eventName: TARGETCOMPLETED
@@ -238,7 +238,7 @@ paths:
                           example: LIVE
                         lastUpdateDate:
                           type: string
-                          example: "2024-09-17T10:23:37Z"
+                          example: '2024-09-17T10:23:37Z'
                         lastUpdatedBy:
                           type: integer
                           example: -1
@@ -280,9 +280,10 @@ paths:
                                       example: 'true'
                                     expJSON:
                                       type: string
-                                      example: "{ \"arity\": \"literal\", \"value\"\
-                                        : \"true\", \"type\": \"boolean:primitive\"\
-                                        \ }"
+                                      example:
+                                        arity: literal
+                                        value: 'true'
+                                        type: boolean:primitive
                                     jsonType:
                                       type: string
                                       example: JNODE
@@ -440,7 +441,7 @@ paths:
                                 default: true
                               label:
                                 type: string
-                                example: "userCreatedLabel_2024-09-17T10:23:37.610Z"
+                                example: userCreatedLabel_2024-09-17T10:23:37.610Z
                               private:
                                 type: boolean
                                 example: true
@@ -454,10 +455,10 @@ paths:
                           default: 0
                         startDate:
                           type: string
-                          example: "2024-08-09T00:00Z"
+                          example: 2024-08-09T00:00Z
                         endDate:
                           type: string
-                          example: "2024-09-30T23:59:59Z"
+                          example: '2024-09-30T23:59:59Z'
                         identifier:
                           type: string
                           example: identifier_123
@@ -621,17 +622,20 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"status\": {\n        \"code\": 400,\n        \"\
-                    message\": \"Bad Request\"\n    },\n    \"validationErrors\":\
-                    \ {\n        \"otherErrors\": {\n            \"data\": [\n   \
-                    \             {\n                    \"status\": false,\n    \
-                    \                \"responseCode\": 4085,\n                   \
-                    \ \"responseMessage\": \"SourceType passed is invalid, valid values\
-                    \ are (UI, IMPORT, GOODWILL, CAMPAIGN, POINTS_TRANSFER, IMPORT_API,\
-                    \ PROMOTION_API, POINTS_CONTRIBUTION_TO_GROUP,MANUAL_POINTS_ADJUSTMENT,\
-                    \ BADGES, USER_CREATED)\",\n                    \"valid\": false\n\
-                    \                }\n            ]\n        }\n    },\n    \"data\"\
-                    : null\n}"
+                  value:
+                    status:
+                      code: 400
+                      message: Bad Request
+                    validationErrors:
+                      otherErrors:
+                        data:
+                        - status: false
+                          responseCode: 4085
+                          responseMessage: SourceType passed is invalid, valid values are (UI, IMPORT,
+                            GOODWILL, CAMPAIGN, POINTS_TRANSFER, IMPORT_API, PROMOTION_API, POINTS_CONTRIBUTION_TO_GROUP,MANUAL_POINTS_ADJUSTMENT,
+                            BADGES, USER_CREATED)
+                          valid: false
+                    data: null
               schema:
                 type: object
                 properties:
@@ -666,9 +670,8 @@ paths:
                                   default: 0
                                 responseMessage:
                                   type: string
-                                  example: SourceType passed is invalid, valid values
-                                    are (UI, IMPORT, GOODWILL, CAMPAIGN, POINTS_TRANSFER,
-                                    IMPORT_API, PROMOTION_API, POINTS_CONTRIBUTION_TO_GROUP,MANUAL_POINTS_ADJUSTMENT,
+                                  example: SourceType passed is invalid, valid values are (UI, IMPORT,
+                                    GOODWILL, CAMPAIGN, POINTS_TRANSFER, IMPORT_API, PROMOTION_API, POINTS_CONTRIBUTION_TO_GROUP,MANUAL_POINTS_ADJUSTMENT,
                                     BADGES, USER_CREATED)
                                 valid:
                                   type: boolean
@@ -679,10 +682,12 @@ paths:
       x-readme:
         code-samples:
         - language: shell
-          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/loyalty/v1/programs/973/promotionsV2?limit=100&offset=0&sourceType=USER_CREATED'\
-            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
-            \ application/json' \\\n--header 'Authorization: Basic **********' \\\n\
-            --header 'Cookie: _cfuvid=ZkF.LSNXg9S52IfnjuqAXPBT0mhsN4NBGQOun0VO.bo-1758631730852-0.0.1.1-604800000'"
+          code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/loyalty/v1/programs/973/promotionsV2?limit=100&offset=0&sourceType=USER_CREATED' \
+            --header 'Accept: application/json' \
+            --header 'Content-Type: application/json' \
+            --header 'Authorization: Basic **********' \
+            --header 'Cookie: _cfuvid=ZkF.LSNXg9S52IfnjuqAXPBT0mhsN4NBGQOun0VO.bo-1758631730852-0.0.1.1-604800000'
         samples-languages:
         - shell
 components:

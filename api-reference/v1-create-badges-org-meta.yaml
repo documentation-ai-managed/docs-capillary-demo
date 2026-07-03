@@ -3,7 +3,7 @@ info:
   title: Create badges org meta
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -31,7 +31,7 @@ paths:
                   properties:
                     key:
                       type: string
-                      description: "The name of the tag, e.g., \"Category\"."
+                      description: The name of the tag, e.g., "Category".
                     dataType:
                       type: string
                       description: The data type of the tag.
@@ -40,8 +40,7 @@ paths:
                       description: Description of the tag.
                     mandatory:
                       type: string
-                      description: Boolean variable indicating if the tag is required
-                        or not.
+                      description: Boolean variable indicating if the tag is required or not.
       responses:
         '200':
           description: '200'
@@ -49,16 +48,26 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n  \"data\": {\n    \"id\": \"string\",\n    \"orgId\"\
-                    : 0,\n    \"tags\": [\n      {\n        \"key\": \"Category\"\
-                    ,\n        \"dataType\": \"string\",\n        \"description\"\
-                    : \"Type of badge(Exclusive,Regular)\",\n        \"mandatory\"\
-                    : false\n      }\n    ],\n    \"createdOn\": \"2023-11-08T15:43:40.382Z\"\
-                    ,\n    \"createdBy\": 0,\n    \"lastUpdatedOn\": \"2023-11-08T15:43:40.382Z\"\
-                    ,\n    \"lastUpdatedBy\": 0\n  },\n  \"errors\": [\n    {\n  \
-                    \    \"code\": 0,\n      \"message\": \"string\",\n      \"reference\"\
-                    : \"string\"\n    }\n  ],\n  \"warnings\": [\n    {\n      \"\
-                    code\": 0,\n      \"message\": \"string\"\n    }\n  ]\n}"
+                  value:
+                    data:
+                      id: string
+                      orgId: 0
+                      tags:
+                      - key: Category
+                        dataType: string
+                        description: Type of badge(Exclusive,Regular)
+                        mandatory: false
+                      createdOn: '2023-11-08T15:43:40.382Z'
+                      createdBy: 0
+                      lastUpdatedOn: '2023-11-08T15:43:40.382Z'
+                      lastUpdatedBy: 0
+                    errors:
+                    - code: 0
+                      message: string
+                      reference: string
+                    warnings:
+                    - code: 0
+                      message: string
               schema:
                 type: object
                 properties:
@@ -92,14 +101,14 @@ paths:
                               default: true
                       createdOn:
                         type: string
-                        example: "2023-11-08T15:43:40.382Z"
+                        example: '2023-11-08T15:43:40.382Z'
                       createdBy:
                         type: integer
                         example: 0
                         default: 0
                       lastUpdatedOn:
                         type: string
-                        example: "2023-11-08T15:43:40.382Z"
+                        example: '2023-11-08T15:43:40.382Z'
                       lastUpdatedBy:
                         type: integer
                         example: 0
@@ -137,10 +146,13 @@ paths:
             application/json:
               examples:
                 error code 999999:
-                  value: "{\n    \"data\": null,\n    \"errors\": [\n        {\n \
-                    \           \"code\": 999999,\n            \"message\": \"ORG_CONFIG_ALREADY_EXIST_PLEASE_USE_UPDATE_ORG_CONFIG_API\"\
-                    ,\n            \"reference\": null\n        }\n    ],\n    \"\
-                    warnings\": null\n}"
+                  value:
+                    data: null
+                    errors:
+                    - code: 999999
+                      message: ORG_CONFIG_ALREADY_EXIST_PLEASE_USE_UPDATE_ORG_CONFIG_API
+                      reference: null
+                    warnings: null
               schema:
                 type: object
                 properties:
@@ -163,13 +175,22 @@ paths:
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/orgMeta'\
-            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
-            \ application/json'\\\n--header 'Authorization: Basic {token}' \\\n--data\
-            \ '{\n    \"orgId\": orgid,\n    \"tags\": [\n        {\n            \"\
-            key\": \"Category\",\n            \"dataType\": \"string\",\n        \
-            \    \"description\": \"Type of badge(Exclusive,Regular)\",\n        \
-            \    \"mandatory\": false\n        }\n    ]\n}'"
+          code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/orgMeta' \
+            --header 'Accept: application/json' \
+            --header 'Content-Type: application/json'\
+            --header 'Authorization: Basic {token}' \
+            --data '{
+                "orgId": orgid,
+                "tags": [
+                    {
+                        "key": "Category",
+                        "dataType": "string",
+                        "description": "Type of badge(Exclusive,Regular)",
+                        "mandatory": false
+                    }
+                ]
+            }'
         samples-languages:
         - curl
 components:

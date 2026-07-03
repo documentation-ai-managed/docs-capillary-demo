@@ -3,14 +3,14 @@ info:
   title: Update badge custom field
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/api_gateway/v1/badges/customField/{customFieldId}":
+  /api_gateway/v1/badges/customField/{customFieldId}:
     put:
       summary: Update badge custom field
       description: ''
@@ -76,10 +76,10 @@ paths:
                       isActive: true
                       dataType: STRING
                       createdOn: 1771420714.676
-                      createdOnISO: "2026-02-18T13:18:34Z"
+                      createdOnISO: '2026-02-18T13:18:34Z'
                       createdBy: 75197372
                       lastUpdatedOn: 1771496603.0093
-                      lastUpdatedOnISO: "2026-02-19T10:23:23Z"
+                      lastUpdatedOnISO: '2026-02-19T10:23:23Z'
                       lastUpdatedBy: 75197372
                     errors: []
                     warnings: []
@@ -140,20 +140,26 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
       deprecated: false
       x-readme:
         code-samples:
-        - code: "curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/v1/badges/customField/6995bc2a306bcf780036c094'\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Accept:\
-            \ application/json' \\\n--header 'Authorization: Basic bWFkaHVjU2YQ=='\
-            \ \\\n--header 'Cookie: _cfuvid=.WgVCi5zQoIGi4K1C9BdZuw_u5XdPxOmzWrvi.sO9xA-1771420714759-0.0.1.1-604800000'\
-            \ \\\n--data '{\n    \"name\": \"CF32 date\",\n    \"isMandatory\": false,\n\
-            \    \"defaultValue\": \"cgvhjb\",\n    \"isActive\": true,\n    \"dataType\"\
-            : \"STRING\"\n}'"
+        - code: |-
+            curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/v1/badges/customField/6995bc2a306bcf780036c094' \
+            --header 'Content-Type: application/json' \
+            --header 'Accept: application/json' \
+            --header 'Authorization: Basic bWFkaHVjU2YQ==' \
+            --header 'Cookie: _cfuvid=.WgVCi5zQoIGi4K1C9BdZuw_u5XdPxOmzWrvi.sO9xA-1771420714759-0.0.1.1-604800000' \
+            --data '{
+                "name": "CF32 date",
+                "isMandatory": false,
+                "defaultValue": "cgvhjb",
+                "isActive": true,
+                "dataType": "STRING"
+            }'
           language: shell
           name: Example request
         samples-languages:

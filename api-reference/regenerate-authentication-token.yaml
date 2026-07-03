@@ -3,7 +3,7 @@ info:
   title: Regenerate Authentication Token
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -13,10 +13,9 @@ paths:
   /auth/v1/web/token/regenerate:
     post:
       summary: Regenerate Authentication Token
-      description: Generates authentication token using auth key or expired token
-        generated in `otp/validate` API. By default, a token is valid for 15 minutes.
-        You can use this API only for orgs in which password based authentication
-        is enabled.
+      description: Generates authentication token using auth key or expired token generated in `otp/validate`
+        API. By default, a token is valid for 15 minutes. You can use this API only for orgs in which
+        password based authentication is enabled.
       operationId: regenerate-authentication-token
       requestBody:
         content:
@@ -31,15 +30,13 @@ paths:
               properties:
                 identifierType:
                   type: string
-                  description: "Identifier used for token generation. Values: MOBILE,\
-                    \ EMAIL, USERNAME."
+                  description: 'Identifier used for token generation. Values: MOBILE, EMAIL, USERNAME.'
                 identifierValue:
                   type: string
                   description: Value of the specified identifierType.
                 brand:
                   type: string
-                  description: Name of the brand/org for which authentication needs
-                    to be verified.
+                  description: Name of the brand/org for which authentication needs to be verified.
                 expiredToken:
                   type: string
                   description: Unique key generated for the successful web OTP validation.
@@ -107,33 +104,45 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
       deprecated: false
       x-readme:
         code-samples:
-        - code: "curl --location 'https://eu.api.capillarytech.com/auth/v1/token/regenerate'\
-            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
-            \ application/json' \\\n--header 'accept: application/json' \\\n--header\
-            \ 'Cookie: _cfuvid=Ot3GURj_wgib7uz.8f4SW6vyut.8YIVFkWCyvT.QyuE-1760089512848-0.0.1.1-604800000;\
-            \ _cfuvid=L7huDLbSg7dPFRtKKZz1XEX7JJFTILmJiOX5zYMrnb4-1760358330261-0.0.1.1-604800000'\
-            \ \\\n--data '\n{\n  \"identifierType\": \"MOBILE\",\n  \"identifierValue\"\
-            : \"919999922332\",\n  \"brand\": \"DocDemo\",\n  \"deviceId\": \"deviceid1\"\
-            ,\n  \"key\":\"eyJpZHYiOlsiTU9CSUxFfDkxOTk5OTkyMjMzMiJdLCJkZXYiOiJkZXZpY2VpZDEiLCJvcmciOiJET0NERU1PIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOiI0NDEyNDU4IiwiaXNzIjoiQ0FQSUxMQVJZIFRFQ0hOT0xPR0lFUyIsIm1mYSI6ZmFsc2UsImlhdCI6MTc2MDM1MzAyNSwicm9sIjoiQVVUSCJ9.ArsBygaS9m5cgRihZYtLyorkuvSyIK0aMOVPnErHZKI\"\
-            \n}\n'"
+        - code: |-
+            curl --location 'https://eu.api.capillarytech.com/auth/v1/token/regenerate' \
+            --header 'Accept: application/json' \
+            --header 'Content-Type: application/json' \
+            --header 'accept: application/json' \
+            --header 'Cookie: _cfuvid=Ot3GURj_wgib7uz.8f4SW6vyut.8YIVFkWCyvT.QyuE-1760089512848-0.0.1.1-604800000; _cfuvid=L7huDLbSg7dPFRtKKZz1XEX7JJFTILmJiOX5zYMrnb4-1760358330261-0.0.1.1-604800000' \
+            --data '
+            {
+              "identifierType": "MOBILE",
+              "identifierValue": "919999922332",
+              "brand": "DocDemo",
+              "deviceId": "deviceid1",
+              "key":"eyJpZHYiOlsiTU9CSUxFfDkxOTk5OTkyMjMzMiJdLCJkZXYiOiJkZXZpY2VpZDEiLCJvcmciOiJET0NERU1PIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOiI0NDEyNDU4IiwiaXNzIjoiQ0FQSUxMQVJZIFRFQ0hOT0xPR0lFUyIsIm1mYSI6ZmFsc2UsImlhdCI6MTc2MDM1MzAyNSwicm9sIjoiQVVUSCJ9.ArsBygaS9m5cgRihZYtLyorkuvSyIK0aMOVPnErHZKI"
+            }
+            '
           language: shell
           name: Sample request for mobile application
-        - code: "curl --location 'https://eu.api.capillarytech.com/auth/v1/web/token/regenerate'\
-            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
-            \ application/json' \\\n--header 'accept: application/json' \\\n--header\
-            \ 'Cookie: _cfuvid=Ot3GURj_wgib7uz.8f4SW6vyut.8YIVFkWCyvT.QyuE-1760089512848-0.0.1.1-604800000;\
-            \ _cfuvid=xG1SSpjArOPbwu586VvrxV5Lb82NDs_YTMtn6I96TjE-1760358400850-0.0.1.1-604800000'\
-            \ \\\n--data '\n{\n  \"identifierType\": \"MOBILE\",\n  \"identifierValue\"\
-            : \"919999922332\",\n  \"brand\": \"DocDemo\",\n  \"deviceId\": \"deviceid1\"\
-            ,\n  \"expiredToken\":\"eyJpZHYiOlsiTU9CSUxFfDkxOTk5OTkyMjMzMiJdLCJkZXYiOm51bGwsIm9yZyI6IkRPQ0RFTU8iLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI0NDEyNDU4IiwiaXNzIjoiQ0FQSUxMQVJZIFRFQ0hOT0xPR0lFUyIsImlzYyI6ImZhbHNlIiwib2djIjpbIjEwMDczN3xuZWVyYWouZG9jIl0sImV4cCI6MTc2MDM2NDE0MiwiaWF0IjoxNzYwMzUzMzQyLCJyb2wiOiJVU0VSIn0.Y_bFGVIrxlFLJGABIg-VSVE9ubyoin9XGFboPq44xys\"\
-            \n}\n'"
+        - code: |-
+            curl --location 'https://eu.api.capillarytech.com/auth/v1/web/token/regenerate' \
+            --header 'Accept: application/json' \
+            --header 'Content-Type: application/json' \
+            --header 'accept: application/json' \
+            --header 'Cookie: _cfuvid=Ot3GURj_wgib7uz.8f4SW6vyut.8YIVFkWCyvT.QyuE-1760089512848-0.0.1.1-604800000; _cfuvid=xG1SSpjArOPbwu586VvrxV5Lb82NDs_YTMtn6I96TjE-1760358400850-0.0.1.1-604800000' \
+            --data '
+            {
+              "identifierType": "MOBILE",
+              "identifierValue": "919999922332",
+              "brand": "DocDemo",
+              "deviceId": "deviceid1",
+              "expiredToken":"eyJpZHYiOlsiTU9CSUxFfDkxOTk5OTkyMjMzMiJdLCJkZXYiOm51bGwsIm9yZyI6IkRPQ0RFTU8iLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI0NDEyNDU4IiwiaXNzIjoiQ0FQSUxMQVJZIFRFQ0hOT0xPR0lFUyIsImlzYyI6ImZhbHNlIiwib2djIjpbIjEwMDczN3xuZWVyYWouZG9jIl0sImV4cCI6MTc2MDM2NDE0MiwiaWF0IjoxNzYwMzUzMzQyLCJyb2wiOiJVU0VSIn0.Y_bFGVIrxlFLJGABIg-VSVE9ubyoin9XGFboPq44xys"
+            }
+            '
           language: shell
           name: Sample request for web application
         samples-languages:

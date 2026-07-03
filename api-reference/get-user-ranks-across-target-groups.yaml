@@ -23,10 +23,9 @@ paths:
           type: string
       - name: DATA-SCOPE
         in: header
-        description: 'Scopes define what data can be accessed using the API. You can
-          use scopes to control access to data from a parent or child organisation.
-          Defining a scope ensures that the response contains only data from the respective
-          organisation.  Supported headers: SELF, OTHER and ALL.'
+        description: 'Scopes define what data can be accessed using the API. You can use scopes to control
+          access to data from a parent or child organisation. Defining a scope ensures that the response
+          contains only data from the respective organisation.  Supported headers: SELF, OTHER and ALL.'
         schema:
           type: string
       - name: userID
@@ -54,8 +53,7 @@ paths:
                   format: int64
                 targetRuleId:
                   type: integer
-                  description: Unique identifier for target rule. Maximum of 25 rule
-                    IDs supported.
+                  description: Unique identifier for target rule. Maximum of 25 rule IDs supported.
                   format: int64
                 periodId:
                   type: integer
@@ -164,7 +162,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: '{}'
+                  value: {}
               schema:
                 type: object
                 properties: {}
@@ -172,12 +170,20 @@ paths:
       x-readme:
         code-samples:
         - language: curl
-          code: "curl -L -X GET 'https://eu.api.capillarytech.com/api_gateway/intouch-api-v3/v3.1/leaderboards/user/381329847'\
-            \ --d '[\n   {\n        \"orgId\" : 50711,\n        \"targetGroupId\"\
-            \ : 232,\n        \"targetRuleId\" : 365,\n        \"periodId\": 243\n\
-            \    },\n    {\n        \"orgId\" : 50711,\n        \"targetGroupId\"\
-            \ : 232,\n        \"targetRuleId\" : 366 ,\n        \"periodId\" : 243\n\
-            \    }"
+          code: |-
+            curl -L -X GET 'https://eu.api.capillarytech.com/api_gateway/intouch-api-v3/v3.1/leaderboards/user/381329847' --d '[
+               {
+                    "orgId" : 50711,
+                    "targetGroupId" : 232,
+                    "targetRuleId" : 365,
+                    "periodId": 243
+                },
+                {
+                    "orgId" : 50711,
+                    "targetGroupId" : 232,
+                    "targetRuleId" : 366 ,
+                    "periodId" : 243
+                }
         samples-languages:
         - curl
 components:

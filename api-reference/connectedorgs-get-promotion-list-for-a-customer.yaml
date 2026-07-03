@@ -3,7 +3,7 @@ info:
   title: Get Loyalty Promotion List of a Customer (Connected Org)
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -36,8 +36,8 @@ paths:
           type: string
       - name: limit
         in: query
-        description: Number of results that need to be displayed. The values from
-          zero to a maximum of 100 are supported.
+        description: Number of results that need to be displayed. The values from zero to a maximum of
+          100 are supported.
         schema:
           type: string
       - name: offset
@@ -63,29 +63,39 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"pageDetails\": {\n        \"pageNumber\": 0,\n\
-                    \        \"pageSize\": 10,\n        \"totalEntries\": 1,\n   \
-                    \     \"pageCount\": 1\n    },\n    \"customerId\": 347297848,\n\
-                    \    \"promotions\": [\n        {\n            \"promotionId\"\
-                    : 1122938,\n            \"promotionName\": \"Award50\",\n    \
-                    \        \"programId\": 1147,\n            \"startDate\": \"2024-08-30T00:00:00.000Z\"\
-                    ,\n            \"endDate\": \"2024-09-29T23:59:59.000Z\",\n  \
-                    \          \"identifier\": \"ed64e808-dc10-4784-a752-eb7d8d55c87e\"\
-                    ,\n            \"description\": \"Award 50\",\n            \"\
-                    active\": true,\n            \"eventName\": \"TransactionAdd\"\
-                    ,\n            \"limits\": {\n                \"maxPointsPerEvent\"\
-                    : \"0\",\n                \"pointsPerCustomer\": \"0\",\n    \
-                    \            \"numberOFTimesPerCustomer\": 0,\n              \
-                    \  \"totalPointsInPromotion\": \"0\"\n            },\n       \
-                    \     \"customerUsage\": {\n                \"currentPointsPerCustomer\"\
-                    : \"50.000\",\n                \"currentNumberOfTimesPerCustomer\"\
-                    : 1,\n                \"currentTotalPointsInPromotion\": \"0\"\
-                    \n            },\n            \"pointsOfferType\": \"GENERIC\"\
-                    ,\n            \"promotionRestriction\": {\n                \"\
-                    issualRestrictions\": [],\n                \"earnRestrictions\"\
-                    : [],\n                \"redemptionRestrictions\": []\n      \
-                    \      },\n            \"orgId\": 50405\n        }\n    ],\n \
-                    \   \"warnings\": []\n}"
+                  value:
+                    pageDetails:
+                      pageNumber: 0
+                      pageSize: 10
+                      totalEntries: 1
+                      pageCount: 1
+                    customerId: 347297848
+                    promotions:
+                    - promotionId: 1122938
+                      promotionName: Award50
+                      programId: 1147
+                      startDate: '2024-08-30T00:00:00.000Z'
+                      endDate: '2024-09-29T23:59:59.000Z'
+                      identifier: ed64e808-dc10-4784-a752-eb7d8d55c87e
+                      description: Award 50
+                      active: true
+                      eventName: TransactionAdd
+                      limits:
+                        maxPointsPerEvent: '0'
+                        pointsPerCustomer: '0'
+                        numberOFTimesPerCustomer: 0
+                        totalPointsInPromotion: '0'
+                      customerUsage:
+                        currentPointsPerCustomer: '50.000'
+                        currentNumberOfTimesPerCustomer: 1
+                        currentTotalPointsInPromotion: '0'
+                      pointsOfferType: GENERIC
+                      promotionRestriction:
+                        issualRestrictions: []
+                        earnRestrictions: []
+                        redemptionRestrictions: []
+                      orgId: 50405
+                    warnings: []
               schema:
                 type: object
                 properties:
@@ -130,10 +140,10 @@ paths:
                           default: 0
                         startDate:
                           type: string
-                          example: "2024-08-30T00:00:00.000Z"
+                          example: '2024-08-30T00:00:00.000Z'
                         endDate:
                           type: string
-                          example: "2024-09-29T23:59:59.000Z"
+                          example: '2024-09-29T23:59:59.000Z'
                         identifier:
                           type: string
                           example: ed64e808-dc10-4784-a752-eb7d8d55c87e
@@ -200,16 +210,17 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"errors\": [\n        {\n            \"status\"\
-                    : false,\n            \"message\": \"Invalid source\",\n     \
-                    \       \"code\": 8003\n        }\n}      "
+                  value: "{\n    \"errors\": [\n        {\n            \"status\": false,\n          \
+                    \  \"message\": \"Invalid source\",\n            \"code\": 8003\n        }\n}    \
+                    \  "
       deprecated: false
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location 'host/v2.1/customers/lookup/promotionData?identifierName=mobile&identifierValue=9988221100&source=INSTORE'\
-            \ \\\n--header 'DATA-SCOPE: OTHER' \\\n--header 'DATA-SCOPE-ORG: 50405'\
-            \ \\"
+          code: |-
+            curl --location 'host/v2.1/customers/lookup/promotionData?identifierName=mobile&identifierValue=9988221100&source=INSTORE' \
+            --header 'DATA-SCOPE: OTHER' \
+            --header 'DATA-SCOPE-ORG: 50405' \
           name: cURL
         samples-languages:
         - curl

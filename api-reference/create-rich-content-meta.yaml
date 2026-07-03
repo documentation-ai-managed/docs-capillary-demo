@@ -3,7 +3,7 @@ info:
   title: Create Rich Text Content Metadata for Rewards
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -22,12 +22,18 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"id\": 6,\n    \"name\": \"RCtest\",\n    \"description\"\
-                    : \"RC2_desc\",\n    \"isMandatory\": true,\n    \"isActive\"\
-                    : false,\n    \"scope\": \"REWARD\",\n    \"defaultValue\": \"\
-                    en\",\n    \"createdBy\": 75161973,\n    \"createdOn\": 1743258861441,\n\
-                    \    \"lastUpdatedBy\": 75161973,\n    \"lastUpdatedOn\": 1743258861441\n\
-                    }"
+                  value:
+                    id: 6
+                    name: RCtest
+                    description: RC2_desc
+                    isMandatory: true
+                    isActive: false
+                    scope: REWARD
+                    defaultValue: en
+                    createdBy: 75161973
+                    createdOn: 1743258861441
+                    lastUpdatedBy: 75161973
+                    lastUpdatedOn: 1743258861441
               schema:
                 type: object
                 properties:
@@ -77,7 +83,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
@@ -85,13 +91,20 @@ paths:
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/richContentMeta'\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Accept:\
-            \ */*' \\\n--header 'Authorization: Basic YXV0b3N0b3JlMS50aWxsMS0xNjgwMTY5MjIxOjIwMmNiOTYyYWM1OTA3NWI5NjRiMDcxNTJkMjM0Yjcw'\
-            \ \\\n--header 'X-CAP-API-AUTH-ORG-ID: 50339' \\\n--data '{\n    \"name\"\
-            : \"RCtest\",\n    \"description\": \"RC2_desc\",\n    \"isMandatory\"\
-            : true,\n    \"isActive\": true,\n    \"scope\": \"REWARD\",\n    \"defaultValue\"\
-            : \"en\"\n}'"
+          code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/richContentMeta' \
+            --header 'Content-Type: application/json' \
+            --header 'Accept: */*' \
+            --header 'Authorization: Basic YXV0b3N0b3JlMS50aWxsMS0xNjgwMTY5MjIxOjIwMmNiOTYyYWM1OTA3NWI5NjRiMDcxNTJkMjM0Yjcw' \
+            --header 'X-CAP-API-AUTH-ORG-ID: 50339' \
+            --data '{
+                "name": "RCtest",
+                "description": "RC2_desc",
+                "isMandatory": true,
+                "isActive": true,
+                "scope": "REWARD",
+                "defaultValue": "en"
+            }'
           name: create rich content
         samples-languages:
         - curl

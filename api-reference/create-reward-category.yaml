@@ -3,7 +3,7 @@ info:
   title: Create Reward Category
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -38,10 +38,15 @@ paths:
             application/json:
               examples:
                 Sample Response:
-                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
-                    \   \"code\": 2002,\n        \"message\": \"Category save successfully\"\
-                    \n    },\n    \"category\": {\n        \"id\": 129,\n        \"\
-                    name\": \"general\",\n        \"enabled\": true\n    }\n}"
+                  value:
+                    status:
+                      success: true
+                      code: 2002
+                      message: Category save successfully
+                    category:
+                      id: 129
+                      name: general
+                      enabled: true
               schema:
                 type: object
                 properties:
@@ -79,7 +84,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
@@ -87,11 +92,16 @@ paths:
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/metadata/category/create'\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Accept:\
-            \ */*' \\\n--header 'Authorization: Basic Z2VvcmdlLmpvaG5zb246OTg4OTU2NWI4ODVhMmY4ZWE1MTk1MjA2NWEwYTEzNzg='\
-            \ \\\n--header 'Cookie: _cfuvid=3BPRCKcXmguhyneZhg0pLHUUOWEZslsUp2nfMzbbgvA-1750919264238-0.0.1.1-604800000'\
-            \ \\\n--data '{\n  \"brandId\": 61,\n  \"name\": \"General\"\n}'"
+          code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/metadata/category/create' \
+            --header 'Content-Type: application/json' \
+            --header 'Accept: */*' \
+            --header 'Authorization: Basic Z2VvcmdlLmpvaG5zb246OTg4OTU2NWI4ODVhMmY4ZWE1MTk1MjA2NWEwYTEzNzg=' \
+            --header 'Cookie: _cfuvid=3BPRCKcXmguhyneZhg0pLHUUOWEZslsUp2nfMzbbgvA-1750919264238-0.0.1.1-604800000' \
+            --data '{
+              "brandId": 61,
+              "name": "General"
+            }'
           name: Sample Request
         samples-languages:
         - curl

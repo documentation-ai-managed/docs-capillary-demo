@@ -3,14 +3,14 @@ info:
   title: Get top ranked users
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/api_gateway/intouch-api-v3/v3.1/leaderboards/targetGroups/{targetGroupId}":
+  /api_gateway/intouch-api-v3/v3.1/leaderboards/targetGroups/{targetGroupId}:
     get:
       summary: Get top ranked users
       description: ''
@@ -18,39 +18,37 @@ paths:
       parameters:
       - name: targetId
         in: query
-        description: The ID of the target. A target is a set of conditions or rules
-          that need to be met to achieve a specific goal.
+        description: The ID of the target. A target is a set of conditions or rules that need to be met
+          to achieve a specific goal.
         required: true
         schema:
           type: integer
           format: int64
       - name: periodId
         in: query
-        description: The period ID of the target. A period is a set of parameters
-          that define the timeframe for a target.  If periodId is not provided, the
-          current period of the target group will be used.
+        description: The period ID of the target. A period is a set of parameters that define the timeframe
+          for a target.  If periodId is not provided, the current period of the target group will be used.
         schema:
           type: integer
           format: int64
       - name: pageSize
         in: query
-        description: The number of results required.  For example, to view the top
-          five ranks only, set the value to 5.
+        description: The number of results required.  For example, to view the top five ranks only, set
+          the value to 5.
         schema:
           type: integer
           format: int32
       - name: pageOffset
         in: query
-        description: The start page from which data retrieval starts. This value should
-          not be negative.  For example, a value of 5 indicates that data retrieval
-          will begin from the 5th page.
+        description: The start page from which data retrieval starts. This value should not be negative.  For
+          example, a value of 5 indicates that data retrieval will begin from the 5th page.
         schema:
           type: integer
           format: int32
       - name: pageLimit
         in: query
-        description: Number of pages from which results are displayed.    A maximum
-          of 100 pages can be viewed in one request.
+        description: Number of pages from which results are displayed.    A maximum of 100 pages can be
+          viewed in one request.
         schema:
           type: integer
           format: int32
@@ -61,10 +59,9 @@ paths:
           type: string
       - name: DATA-SCOPE
         in: header
-        description: "Scopes define what data can be accessed using the API. You can\
-          \ use scopes to control access to data from a parent or child organisation.\
-          \ Defining a scope ensures that the response contains only data from the\
-          \ respective organisation.  Supported headers: SELF, OTHER and ALL."
+        description: 'Scopes define what data can be accessed using the API. You can use scopes to control
+          access to data from a parent or child organisation. Defining a scope ensures that the response
+          contains only data from the respective organisation.  Supported headers: SELF, OTHER and ALL.'
         schema:
           type: string
       - in: path
@@ -79,51 +76,81 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "\"pagination\": {\n    \"limit\": 3,\n    \"offset\": 0,\n\
-                    \    \"total\": 4527\n},\n\"data\": {\n    \"lastSyncTime\": \"\
-                    2024-06-24T17:37:00.000IST\",\n    \"lastSyncTimeISO\": \"2024-06-24T12:07:00.000Z\"\
-                    ,\n    \"targetGroupId\": 232,\n    \"targetGroupName\": \"Target\"\
-                    ,\n    \"periodId\": 243,\n    \"periodRefCode\": \"target_period\"\
-                    ,\n    \"targetRuleId\": 366,\n    \"targetRuleName\": \"target1\"\
-                    ,\n    \"rankings\": [\n        {\n            \"rank\": 1,\n\
-                    \            \"userId\": 381329844,\n            \"achievedValue\"\
-                    : 21000,\n            \"lastActivityTime\": \"2022-11-25T21:44:40.000IST\"\
-                    ,\n            \"lastActivityTimeISO\": \"2022-11-25T16:14:40.000Z\"\
-                    ,\n            \"userEnrichmentDetails\": {\n                \"\
-                    birthday\": \"NOT-CAPTURED\",\n                \"gender\": \"\
-                    Male\",\n                \"mobile\": \"Sawyer\",\n           \
-                    \     \"last_name\": \"To\",\n                \"first_name\":\
-                    \ \"Sawyer\",\n                \"anniversary\": \"NOT-CAPTURED\"\
-                    ,\n                \"email\": \"tom.sawyer@capillarytech.com\"\
-                    \n            }\n        },\n        {\n            \"rank\":\
-                    \ 2,\n            \"userId\": 381332324,\n            \"achievedValue\"\
-                    : 21000,\n            \"lastActivityTime\": \"2022-11-29T00:14:48.000IST\"\
-                    ,\n            \"lastActivityTimeISO\": \"2022-11-28T18:44:48.000Z\"\
-                    ,\n            \"userEnrichmentDetails\": {\n                \"\
-                    birthday\": \"NOT-CAPTURED\",\n                \"gender\": \"\
-                    Male\",\n                \"mobile\": \"919988221101\",\n     \
-                    \           \"last_name\": \"Finn\",\n                \"first_name\"\
-                    : \"Huckleberry\",\n                \"anniversary\": \"NOT-CAPTURED\"\
-                    ,\n                \"email\": \"huckleberry.finn@caillarytech.com\"\
-                    \n            }\n        },\n        {\n            \"rank\":\
-                    \ 3,\n            \"userId\": 381333386,\n            \"achievedValue\"\
-                    : 21000,\n            \"lastActivityTime\": \"2022-11-29T13:48:28.000IST\"\
-                    ,\n            \"lastActivityTimeISO\": \"2022-11-29T08:18:28.000Z\"\
-                    ,\n            \"userEnrichmentDetails\": {\n                \"\
-                    birthday\": \"NOT-CAPTURED\",\n                \"gender\": \"\
-                    Male\",\n                \"mobile\": \"919988221102\",\n     \
-                    \           \"last_name\": \"Crusoe\",\n                \"first_name\"\
-                    : \"Robinson\",\n                \"anniversary\": \"NOT-CAPTURED\"\
-                    ,\n                \"email\": \"robinson.crusoe@capillaryte\"\n\
-                    \            }\n        }\n    ]\n},\n\"errors\": [],\n\"warnings\"\
-                    : []"
+                  value: |-
+                    "pagination": {
+                        "limit": 3,
+                        "offset": 0,
+                        "total": 4527
+                    },
+                    "data": {
+                        "lastSyncTime": "2024-06-24T17:37:00.000IST",
+                        "lastSyncTimeISO": "2024-06-24T12:07:00.000Z",
+                        "targetGroupId": 232,
+                        "targetGroupName": "Target",
+                        "periodId": 243,
+                        "periodRefCode": "target_period",
+                        "targetRuleId": 366,
+                        "targetRuleName": "target1",
+                        "rankings": [
+                            {
+                                "rank": 1,
+                                "userId": 381329844,
+                                "achievedValue": 21000,
+                                "lastActivityTime": "2022-11-25T21:44:40.000IST",
+                                "lastActivityTimeISO": "2022-11-25T16:14:40.000Z",
+                                "userEnrichmentDetails": {
+                                    "birthday": "NOT-CAPTURED",
+                                    "gender": "Male",
+                                    "mobile": "Sawyer",
+                                    "last_name": "To",
+                                    "first_name": "Sawyer",
+                                    "anniversary": "NOT-CAPTURED",
+                                    "email": "tom.sawyer@capillarytech.com"
+                                }
+                            },
+                            {
+                                "rank": 2,
+                                "userId": 381332324,
+                                "achievedValue": 21000,
+                                "lastActivityTime": "2022-11-29T00:14:48.000IST",
+                                "lastActivityTimeISO": "2022-11-28T18:44:48.000Z",
+                                "userEnrichmentDetails": {
+                                    "birthday": "NOT-CAPTURED",
+                                    "gender": "Male",
+                                    "mobile": "919988221101",
+                                    "last_name": "Finn",
+                                    "first_name": "Huckleberry",
+                                    "anniversary": "NOT-CAPTURED",
+                                    "email": "huckleberry.finn@caillarytech.com"
+                                }
+                            },
+                            {
+                                "rank": 3,
+                                "userId": 381333386,
+                                "achievedValue": 21000,
+                                "lastActivityTime": "2022-11-29T13:48:28.000IST",
+                                "lastActivityTimeISO": "2022-11-29T08:18:28.000Z",
+                                "userEnrichmentDetails": {
+                                    "birthday": "NOT-CAPTURED",
+                                    "gender": "Male",
+                                    "mobile": "919988221102",
+                                    "last_name": "Crusoe",
+                                    "first_name": "Robinson",
+                                    "anniversary": "NOT-CAPTURED",
+                                    "email": "robinson.crusoe@capillaryte"
+                                }
+                            }
+                        ]
+                    },
+                    "errors": [],
+                    "warnings": []
         '400':
           description: '400'
           content:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
@@ -131,8 +158,8 @@ paths:
       x-readme:
         code-samples:
         - language: curl
-          code: "curl -L 'https://eu.api.capillarytech.com/api_gateway/intouch-api-v3/v3.1/leaderboards/targetGroups/232?targetId=366&periodId=243&pageOffset=0&pageSize=3'\
-            \ -H 'Authorization:****' -H 'DATA-SCOPE: SELF'"
+          code: 'curl -L ''https://eu.api.capillarytech.com/api_gateway/intouch-api-v3/v3.1/leaderboards/targetGroups/232?targetId=366&periodId=243&pageOffset=0&pageSize=3''
+            -H ''Authorization:****'' -H ''DATA-SCOPE: SELF'''
         samples-languages:
         - curl
 components:

@@ -3,7 +3,7 @@ info:
   title: Points Restrictions - Create points restriction
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -23,11 +23,9 @@ paths:
               properties:
                 RAW_BODY:
                   type: string
-                  description: "[     {   \"kpi\" :\"POINTS\",         \"constraintLevel\"\
-                    \ : \"CUSTOMER_REDEMPTION_TYPE\",         \"frequencyType\" :\
-                    \ \"DAILY\",         \"intervalValue\" : 1,         \"constraintLimitValue\"\
-                    \ : 15,         \"isActive\" : true,         \"redemptionType\"\
-                    : \"POINTS\"     } ]"
+                  description: '[     {   "kpi" :"POINTS",         "constraintLevel" : "CUSTOMER_REDEMPTION_TYPE",         "frequencyType"
+                    : "DAILY",         "intervalValue" : 1,         "constraintLimitValue" : 15,         "isActive"
+                    : true,         "redemptionType": "POINTS"     } ]'
             examples:
               Request Example:
                 value:
@@ -61,8 +59,8 @@ paths:
                     lastUpdatedOn: 1765370540000
                     createdBy: 75197372
                     lastUpdatedBy: 75197372
-                    createdOnDateTime: "2025-12-10T12:42:20Z"
-                    lastUpdatedOnDateTime: "2025-12-10T12:42:20Z"
+                    createdOnDateTime: '2025-12-10T12:42:20Z'
+                    lastUpdatedOnDateTime: '2025-12-10T12:42:20Z'
                     redemptionType: INTOUCH_REWARD
                   summary: Sample response
               schema:
@@ -119,21 +117,30 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
       deprecated: false
       x-readme:
         code-samples:
-        - code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/constraints'\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'accept:\
-            \ application/json' \\\n--header 'Authorization: Basic bWFkaHMjU2YQ=='\
-            \ \\\n--header 'Cookie: _cfuvid=pmgXD8k6OMub7ECuaQ2wrzeksWm6sWXaIIAk1K5YFKk-1765284539237-0.0.1.1-604800000'\
-            \ \\\n--data '[\n  {\n    \"kpi\": \"POINTS\",\n    \"constraintLevel\"\
-            : \"CUSTOMER_REDEMPTION_TYPE\",\n    \"frequencyType\": \"DAILY\",\n \
-            \   \"intervalValue\": 1,\n    \"constraintLimitValue\": 15,\n    \"isActive\"\
-            : true,\n    \"redemptionType\": \"INTOUCH_REWARD\"\n  }\n]'"
+        - code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/constraints' \
+            --header 'Content-Type: application/json' \
+            --header 'accept: application/json' \
+            --header 'Authorization: Basic bWFkaHMjU2YQ==' \
+            --header 'Cookie: _cfuvid=pmgXD8k6OMub7ECuaQ2wrzeksWm6sWXaIIAk1K5YFKk-1765284539237-0.0.1.1-604800000' \
+            --data '[
+              {
+                "kpi": "POINTS",
+                "constraintLevel": "CUSTOMER_REDEMPTION_TYPE",
+                "frequencyType": "DAILY",
+                "intervalValue": 1,
+                "constraintLimitValue": 15,
+                "isActive": true,
+                "redemptionType": "INTOUCH_REWARD"
+              }
+            ]'
           language: shell
           name: Sample request
         samples-languages:

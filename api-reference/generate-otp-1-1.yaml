@@ -3,7 +3,7 @@ info:
   title: Generate OTP
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -13,10 +13,10 @@ paths:
   /auth/v1/otp/generate:
     post:
       summary: Generate OTP
-      description: "Issues OTP to the customer’s mobile number/email ID using the\
-        \ `sessionId` generated through the `token/generate` API.\n\nThere is a limit\
-        \ in the number of OTPs a customer can generate in a day. If you wish to increase\
-        \ or decrease the limit, contact the Platforms team."
+      description: |-
+        Issues OTP to the customer’s mobile number/email ID using the `sessionId` generated through the `token/generate` API.
+
+        There is a limit in the number of OTPs a customer can generate in a day. If you wish to increase or decrease the limit, contact the Platforms team.
       operationId: generate-otp-1-1
       requestBody:
         content:
@@ -31,28 +31,24 @@ paths:
               properties:
                 identifierType:
                   type: string
-                  description: "Identifier used for token generation. Values: MOBILE,\
-                    \ EMAIL, USERNAME."
+                  description: 'Identifier used for token generation. Values: MOBILE, EMAIL, USERNAME.'
                 mobile:
                   type: string
-                  description: Mobile number of the customer. Either mobile number
-                    or email ID is required to authenticate with username.
+                  description: Mobile number of the customer. Either mobile number or email ID is required
+                    to authenticate with username.
                 email:
                   type: string
-                  description: Email ID of the customer. Either mobile number or email
-                    ID is required to authenticate with username.
+                  description: Email ID of the customer. Either mobile number or email ID is required
+                    to authenticate with username.
                 brand:
                   type: string
-                  description: Name of the brand/org for which authentication needs
-                    to be verified.
+                  description: Name of the brand/org for which authentication needs to be verified.
                 deviceId:
                   type: string
-                  description: Unique ID of the device from which the customer has
-                    generated the token.
+                  description: Unique ID of the device from which the customer has generated the token.
                 sessionId:
                   type: string
-                  description: Session ID generated through the `v1/token/generate`
-                    API.
+                  description: Session ID generated through the `v1/token/generate` API.
             examples:
               Sample POST Body:
                 value:
@@ -68,8 +64,11 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
-                    \   \"code\": 200,\n        \"message\": \"SUCCESS\"\n    }\n}"
+                  value:
+                    status:
+                      success: true
+                      code: 200
+                      message: SUCCESS
               schema:
                 type: object
                 properties:
@@ -93,7 +92,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}

@@ -3,14 +3,14 @@ info:
   title: Upload Coupons (Batch)
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/coupon/api/v1/upload/file/{couponSeriedId}":
+  /coupon/api/v1/upload/file/{couponSeriedId}:
     post:
       summary: Upload Coupons (Batch)
       description: ''
@@ -43,21 +43,28 @@ paths:
             application/json:
               examples:
                 Sample Response:
-                  value: "{\n    \"success\": true,\n    \"status\": 200,\n    \"\
-                    result\": {\n        \"orgId\": 100458,\n        \"couponSeriesId\"\
-                    : 541854,\n        \"uploadJobStatuses\": [\n            {\n \
-                    \               \"jobId\": 222696,\n                \"uploadStatus\"\
-                    : \"STARTED\",\n                \"createdOn\": \"1717651325445\"\
-                    ,\n                \"updatedOn\": \"1717651325445\",\n       \
-                    \         \"errorFileUrl\": null,\n                \"successFileUrl\"\
-                    : null,\n                \"uploadedFileUrl\": \"couponbatchupload_1717651325326_541854.csv\"\
-                    ,\n                \"totalUploadedCount\": 0,\n              \
-                    \  \"actualRowCount\": 0,\n                \"errorCount\": 0,\n\
-                    \                \"uploadTableName\": null,\n                \"\
-                    uploadedFileName\": \"couponbatchupload.csv\",\n             \
-                    \   \"audienceGroupId\": 0,\n                \"audienceGroupVersionId\"\
-                    : 0\n            }\n        ],\n        \"fileName\": \"couponbatchupload_1717651325326_541854.csv\"\
-                    \n    }\n}"
+                  value:
+                    success: true
+                    status: 200
+                    result:
+                      orgId: 100458
+                      couponSeriesId: 541854
+                      uploadJobStatuses:
+                      - jobId: 222696
+                        uploadStatus: STARTED
+                        createdOn: '1717651325445'
+                        updatedOn: '1717651325445'
+                        errorFileUrl: null
+                        successFileUrl: null
+                        uploadedFileUrl: couponbatchupload_1717651325326_541854.csv
+                        totalUploadedCount: 0
+                        actualRowCount: 0
+                        errorCount: 0
+                        uploadTableName: null
+                        uploadedFileName: couponbatchupload.csv
+                        audienceGroupId: 0
+                        audienceGroupVersionId: 0
+                      fileName: couponbatchupload_1717651325326_541854.csv
               schema:
                 type: object
                 properties:
@@ -136,7 +143,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}

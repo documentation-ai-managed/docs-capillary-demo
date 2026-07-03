@@ -3,14 +3,14 @@ info:
   title: Claim badge
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/api_gateway/v1/badges/badgeMeta/{badgeId}/claim":
+  /api_gateway/v1/badges/badgeMeta/{badgeId}/claim:
     post:
       summary: Claim badge
       description: ''
@@ -35,8 +35,8 @@ paths:
                   type: string
                   description: The module for which the badge is being claimed.
                   enum:
-                  - LOYALTY/REFERRAL_CAMPAIGNS/JOURNEYS/AUDIENCE_CAMPAIGNS/   REWARDS_CATALOG/
-                    GOODWILL_MODULE/ MILESTONES
+                  - LOYALTY/REFERRAL_CAMPAIGNS/JOURNEYS/AUDIENCE_CAMPAIGNS/   REWARDS_CATALOG/ GOODWILL_MODULE/
+                    MILESTONES
                 referenceId:
                   type: string
                   description: A unique identifier associated with the owner.
@@ -109,13 +109,15 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"data\": null,\n    \"errors\": [\n        {\n \
-                    \           \"code\": 400,\n            \"message\": \"Invalid\
-                    \ enum value: 'LOYALTY' for the field: 'ownerType'. The value\
-                    \ must be one of: [Loyalty, Referral_Campaigns, Journeys, Audience_Campaigns,\
-                    \ Rewards_Catalog, Goodwill_Module, Milestones].\",\n        \
-                    \    \"reference\": null\n        }\n    ],\n    \"warnings\"\
-                    : null\n}"
+                  value:
+                    data: null
+                    errors:
+                    - code: 400
+                      message: 'Invalid enum value: ''LOYALTY'' for the field: ''ownerType''. The value
+                        must be one of: [Loyalty, Referral_Campaigns, Journeys, Audience_Campaigns, Rewards_Catalog,
+                        Goodwill_Module, Milestones].'
+                      reference: null
+                    warnings: null
               schema:
                 oneOf:
                 - type: object
@@ -151,21 +153,25 @@ paths:
                             default: 0
                           message:
                             type: string
-                            example: "Invalid enum value: 'LOYALTY' for the field:\
-                              \ 'ownerType'. The value must be one of: [Loyalty, Referral_Campaigns,\
-                              \ Journeys, Audience_Campaigns, Rewards_Catalog, Goodwill_Module,\
-                              \ Milestones]."
+                            example: 'Invalid enum value: ''LOYALTY'' for the field: ''ownerType''. The
+                              value must be one of: [Loyalty, Referral_Campaigns, Journeys, Audience_Campaigns,
+                              Rewards_Catalog, Goodwill_Module, Milestones].'
                           reference: {}
                     warnings: {}
       deprecated: false
       x-readme:
         code-samples:
-        - code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta/69381220cebb9648d8974518/claim'\
-            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
-            \ application/json' \\\n--header 'accept: application/json' \\\n--header\
-            \ 'Authorization: Basic bWFkaHVfcjMjU2YQ==' \\\n--header 'Cookie: _cfuvid=h41NNNJlaGGCp71UuFTcMjP3q.OYkoR9IigSN5f_pGY-1768819014360-0.0.1.1-604800000'\
-            \ \\\n--data '{\n    \"ownerType\": \"Loyalty\",\n    \"referenceId\"\
-            : \"123\"\n}'"
+        - code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta/69381220cebb9648d8974518/claim' \
+            --header 'Accept: application/json' \
+            --header 'Content-Type: application/json' \
+            --header 'accept: application/json' \
+            --header 'Authorization: Basic bWFkaHVfcjMjU2YQ==' \
+            --header 'Cookie: _cfuvid=h41NNNJlaGGCp71UuFTcMjP3q.OYkoR9IigSN5f_pGY-1768819014360-0.0.1.1-604800000' \
+            --data '{
+                "ownerType": "Loyalty",
+                "referenceId": "123"
+            }'
           language: shell
           name: Sample request
         samples-languages:

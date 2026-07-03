@@ -3,7 +3,7 @@ info:
   title: Get Reward Expiry Reminder
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -40,38 +40,60 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"rewardExpiryReminder\": [\n        {\n        \
-                    \    \"id\": 5,\n            \"orgId\": 100458,\n            \"\
-                    duration\": 15,\n            \"durationType\": \"DAYS\",\n   \
-                    \         \"cronTaskId\": 590567,\n            \"timing\": \"\
-                    12:00\",\n            \"isActive\": true,\n            \"createdOn\"\
-                    : 1727681940000,\n            \"lastUpdatedOn\": 1727681946000,\n\
-                    \            \"createdBy\": 75130850,\n            \"lastUpdatedBy\"\
-                    : 75130850\n        },\n        {\n            \"id\": 2,\n  \
-                    \          \"orgId\": 100458,\n            \"duration\": 15,\n\
-                    \            \"durationType\": \"DAYS\",\n            \"cronTaskId\"\
-                    : 590564,\n            \"timing\": \"12:00\",\n            \"\
-                    isActive\": true,\n            \"createdOn\": 1727680228000,\n\
-                    \            \"lastUpdatedOn\": 1727681674000,\n            \"\
-                    createdBy\": 75130850,\n            \"lastUpdatedBy\": 75130850\n\
-                    \        },\n        {\n            \"id\": 4,\n            \"\
-                    orgId\": 100458,\n            \"duration\": 32,\n            \"\
-                    durationType\": \"DAYS\",\n            \"cronTaskId\": 590566,\n\
-                    \            \"timing\": \"18:00\",\n            \"isActive\"\
-                    : true,\n            \"createdOn\": 1727681405000,\n         \
-                    \   \"lastUpdatedOn\": 1727681405000,\n            \"createdBy\"\
-                    : 75130850,\n            \"lastUpdatedBy\": 75130850\n       \
-                    \ },\n        {\n            \"id\": 3,\n            \"orgId\"\
-                    : 100458,\n            \"duration\": 32,\n            \"durationType\"\
-                    : \"DAYS\",\n            \"cronTaskId\": 590565,\n           \
-                    \ \"timing\": \"18:00\",\n            \"isActive\": true,\n  \
-                    \          \"createdOn\": 1727680457000,\n            \"lastUpdatedOn\"\
-                    : 1727680457000,\n            \"createdBy\": 75130850,\n     \
-                    \       \"lastUpdatedBy\": 75130850\n        }\n    ],\n    \"\
-                    pagingDto\": {\n        \"last\": true,\n        \"totalElements\"\
-                    : 4,\n        \"totalPages\": 1,\n        \"numberOfElements\"\
-                    : 4,\n        \"first\": true,\n        \"size\": 10,\n      \
-                    \  \"number\": 0\n    }\n}"
+                  value:
+                    rewardExpiryReminder:
+                    - id: 5
+                      orgId: 100458
+                      duration: 15
+                      durationType: DAYS
+                      cronTaskId: 590567
+                      timing: '12:00'
+                      isActive: true
+                      createdOn: 1727681940000
+                      lastUpdatedOn: 1727681946000
+                      createdBy: 75130850
+                      lastUpdatedBy: 75130850
+                    - id: 2
+                      orgId: 100458
+                      duration: 15
+                      durationType: DAYS
+                      cronTaskId: 590564
+                      timing: '12:00'
+                      isActive: true
+                      createdOn: 1727680228000
+                      lastUpdatedOn: 1727681674000
+                      createdBy: 75130850
+                      lastUpdatedBy: 75130850
+                    - id: 4
+                      orgId: 100458
+                      duration: 32
+                      durationType: DAYS
+                      cronTaskId: 590566
+                      timing: '18:00'
+                      isActive: true
+                      createdOn: 1727681405000
+                      lastUpdatedOn: 1727681405000
+                      createdBy: 75130850
+                      lastUpdatedBy: 75130850
+                    - id: 3
+                      orgId: 100458
+                      duration: 32
+                      durationType: DAYS
+                      cronTaskId: 590565
+                      timing: '18:00'
+                      isActive: true
+                      createdOn: 1727680457000
+                      lastUpdatedOn: 1727680457000
+                      createdBy: 75130850
+                      lastUpdatedBy: 75130850
+                    pagingDto:
+                      last: true
+                      totalElements: 4
+                      totalPages: 1
+                      numberOfElements: 4
+                      first: true
+                      size: 10
+                      number: 0
               schema:
                 type: object
                 properties:
@@ -101,7 +123,7 @@ paths:
                           default: 0
                         timing:
                           type: string
-                          example: "12:00"
+                          example: '12:00'
                         isActive:
                           type: boolean
                           example: true
@@ -159,13 +181,17 @@ paths:
             application/json:
               examples:
                 Size should be >=1:
-                  value: "{\n    \"status\": {\n        \"success\": false,\n    \
-                    \    \"code\": 400,\n        \"message\": \"size should be greater\
-                    \ or equal to 1.\"\n    }\n}"
+                  value:
+                    status:
+                      success: false
+                      code: 400
+                      message: size should be greater or equal to 1.
                 page should be >=0:
-                  value: "{\n    \"status\": {\n        \"success\": false,\n    \
-                    \    \"code\": 400,\n        \"message\": \"page should be greater\
-                    \ or equal to 0.\"\n    }\n}"
+                  value:
+                    status:
+                      success: false
+                      code: 400
+                      message: page should be greater or equal to 0.
               schema:
                 oneOf:
                 - title: Size should be >=1
@@ -206,10 +232,12 @@ paths:
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/expiryReminder?filter=ACTIVE&size=10&page=0'\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization:\
-            \ Basic aWFtc2hpdmFhbblahblahZjhlMzRkNWI1YTI5MWY=' \\\n--header 'user-agent:\
-            \ pyapps_auto_2024-05-25-12-47-39' \\\n--header 'Cookie: _cfuvid=EdYU22mJWP1xzoxt74hggY7PKdhUOcIzYPQlaq4bOyU-1727677397251-0.0.1.1-604800000'"
+          code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/expiryReminder?filter=ACTIVE&size=10&page=0' \
+            --header 'Content-Type: application/json' \
+            --header 'Authorization: Basic aWFtc2hpdmFhbblahblahZjhlMzRkNWI1YTI5MWY=' \
+            --header 'user-agent: pyapps_auto_2024-05-25-12-47-39' \
+            --header 'Cookie: _cfuvid=EdYU22mJWP1xzoxt74hggY7PKdhUOcIzYPQlaq4bOyU-1727677397251-0.0.1.1-604800000'
         samples-languages:
         - curl
 components:

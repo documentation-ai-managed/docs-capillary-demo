@@ -30,29 +30,25 @@ paths:
               properties:
                 RAW_BODY:
                   type: string
-                  description: '{     "name": "Furry Friend Badge",     "description":
-                    "Purchase 5 pet products in 3 months and get a pet grooming voucher",     "startOn":
-                    1699596721,     "expiresOn": 1828754110,     "earnedBadgeExpiry":
-                    {         "expiryType": "RELATIVE",         "relativeExpirytype":
+                  description: '{     "name": "Furry Friend Badge",     "description": "Purchase 5 pet
+                    products in 3 months and get a pet grooming voucher",     "startOn": 1699596721,     "expiresOn":
+                    1828754110,     "earnedBadgeExpiry": {         "expiryType": "RELATIVE",         "relativeExpirytype":
                     "MONTHS",         "value": 3     },     "ownership": {         "restrictedToOwners":
-                    [             "Loyalty"         ]     },     "customerConstraints":
-                    [         {             "constraintType": "CUSTOMER_BADGE_FIXED_VALUE",             "maxEarnLimit":
-                    1         }     ],     "badgeConstraints": [         {             "constraintType":
-                    "BADGE_FIXED_VALUE",             "maxEarnLimit": 1000         }     ],     "earnType":
-                    "EARN",     "benefits": [         {             "benefitType":
+                    [             "Loyalty"         ]     },     "customerConstraints": [         {             "constraintType":
+                    "CUSTOMER_BADGE_FIXED_VALUE",             "maxEarnLimit": 1         }     ],     "badgeConstraints":
+                    [         {             "constraintType": "BADGE_FIXED_VALUE",             "maxEarnLimit":
+                    1000         }     ],     "earnType": "EARN",     "benefits": [         {             "benefitType":
                     "COUPON",             "seriesId": 13686         },         {             "benefitType":
-                    "LOYALTY_POINTS",             "points": 100,             "programId":
-                    626,             "promotionId": 80332,             "allocationStrategyId":
-                    1489,             "expirationStrategyId": 3843         }     ],     "tags":
-                    [         {             "name": "Type",             "value": "Birthday"         }     ]
-                    }'
+                    "LOYALTY_POINTS",             "points": 100,             "programId": 626,             "promotionId":
+                    80332,             "allocationStrategyId": 1489,             "expirationStrategyId":
+                    3843         }     ],     "tags": [         {             "name": "Type",             "value":
+                    "Birthday"         }     ] }'
                   format: json
             examples:
               Earn type- Fixed window:
                 value:
                   name: BADGE12
-                  description: Purchase 5 pet products in 3 months and get a pet grooming
-                    voucher
+                  description: Purchase 5 pet products in 3 months and get a pet grooming voucher
                   startOn: 1716803487
                   expiresOn: 1726804000
                   badgeRank: 1
@@ -81,8 +77,7 @@ paths:
               Active=false:
                 value:
                   name: test6578791
-                  description: Purchase 5 pet products in 3 months and get a pet grooming
-                    voucher
+                  description: Purchase 5 pet products in 3 months and get a pet grooming voucher
                   startOn: 1799632870
                   expiresOn: 1828754110
                   earnedBadgeExpiry:
@@ -206,8 +201,7 @@ paths:
               Earn type- Rolling window:
                 value:
                   name: Badge_Earn
-                  description: Purchase 5 pet products in 3 months and get a pet grooming
-                    voucher
+                  description: Purchase 5 pet products in 3 months and get a pet grooming voucher
                   startOn: 1716803487
                   expiresOn: 1726804000
                   earnedBadgeExpiry:
@@ -232,8 +226,7 @@ paths:
               Issue earn type- Rolling window:
                 value:
                   name: Badge_Issue_earntype
-                  description: Make 5 transactions in a month, get a badge and 10%
-                    off coupon
+                  description: Make 5 transactions in a month, get a badge and 10% off coupon
                   startOn: 1716803487
                   expiresOn: 1726804000
                   earnType: ISSUE_EARN
@@ -430,8 +423,7 @@ paths:
                           example: BADGE123
                         description:
                           type: string
-                          example: Purchase 5 pet products in 3 months and get a pet
-                            grooming voucher
+                          example: Purchase 5 pet products in 3 months and get a pet grooming voucher
                         startOn:
                           type: integer
                           example: 1716803487
@@ -768,23 +760,30 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"data\": null,\n    \"errors\": [\n        {\n \
-                    \           \"code\": 728,\n            \"message\": \"Atleast\
-                    \ one owner is required\",\n            \"reference\": \"ownership.restrictedToOwners\"\
-                    \n        },\n        {\n            \"code\": 725,\n        \
-                    \    \"message\": \"Badge name cannot be duplicate\",\n      \
-                    \      \"reference\": null\n        },\n        {\n          \
-                    \  \"code\": 722,\n            \"message\": \"Start Date cannot\
-                    \ be past date\",\n            \"reference\": null\n        }\n\
-                    \    ],\n    \"warnings\": null\n}"
+                  value:
+                    data: null
+                    errors:
+                    - code: 728
+                      message: Atleast one owner is required
+                      reference: ownership.restrictedToOwners
+                    - code: 725
+                      message: Badge name cannot be duplicate
+                      reference: null
+                    - code: 722
+                      message: Start Date cannot be past date
+                      reference: null
+                    warnings: null
                 Bad request:
-                  value: "{\n    \"data\": null,\n    \"errors\": [\n        {\n \
-                    \           \"code\": 714,\n            \"message\": \"Owner type\
-                    \ is not allowed, Please check the configuration\",\n        \
-                    \    \"reference\": null\n        },\n        {\n            \"\
-                    code\": 728,\n            \"message\": \"Atleast one owner is\
-                    \ required\",\n            \"reference\": \"ownership.restrictedToOwners\"\
-                    \n        }\n    ],\n    \"warnings\": null\n}"
+                  value:
+                    data: null
+                    errors:
+                    - code: 714
+                      message: Owner type is not allowed, Please check the configuration
+                      reference: null
+                    - code: 728
+                      message: Atleast one owner is required
+                      reference: ownership.restrictedToOwners
+                    warnings: null
               schema:
                 oneOf:
                 - type: object
@@ -830,11 +829,13 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"data\": null,\n    \"errors\": [\n        {\n \
-                    \           \"code\": 999999,\n            \"message\": \"HV000028:\
-                    \ Unexpected exception during isValid call.\",\n            \"\
-                    reference\": null\n        }\n    ],\n    \"warnings\": null\n\
-                    }"
+                  value:
+                    data: null
+                    errors:
+                    - code: 999999
+                      message: 'HV000028: Unexpected exception during isValid call.'
+                      reference: null
+                    warnings: null
               schema:
                 type: object
                 properties:
@@ -850,64 +851,99 @@ paths:
                           default: 0
                         message:
                           type: string
-                          example: 'HV000028: Unexpected exception during isValid
-                            call.'
+                          example: 'HV000028: Unexpected exception during isValid call.'
                         reference: {}
                   warnings: {}
       deprecated: false
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta'\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization:\
-            \ Basic bWFka2YQ==' \\\n--header 'Cookie: _cfuvid=rvSJsUbK4DDG1qt9p.ywFArkr5WoVyHK8rR8vhrDpB4-1768813084882-0.0.1.1-604800000'\
-            \ \\\n--data '{\n    \"name\": \"Badge Issue earn type\",\n    \"description\"\
-            : \"Make 5 transactions\",\n    \"startOn\": 1716803487,\n    \"expiresOn\"\
-            : 1726804000,\n     \"earnType\": \"ISSUE_EARN\",\n         \"badgeRank\"\
-            : 3,\n    \"earnedBadgeExpiry\": {\n        \"relativeExpirytype\": \"\
-            WEEKS\",\n        \"value\": 2,\n        \"expiryType\": \"RELATIVE\"\n\
-            \    },\n    \"issuedBadgeExpiry\": {\n        \"type\": \"FIXED_DATE\"\
-            ,\n        \"expiresOn\": 1926235957,\n        \"expiryType\": \"ABSOLUTE\"\
-            \n    },\n    \"isActive\": true,\n    \"ownership\": {\n        \"restrictedToOwners\"\
-            : [\n            \"Loyalty\",\n            \"Audience_Campaigns\"\n  \
-            \      ]\n    },\n  \"images\": [\n    {\n      \"name\": \"Issued\",\n\
-            \      \"fileSvcHandle\": \"qwer-8634-8938\",\n        \"url\": \"https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d\"\
-            ,\n        \"tag\": \"EARNED\"\n    }\n  ],\n\"customerConstraints\":\
-            \ [\n    {\n      \"constraintType\": \"CUSTOMER_BADGE_FIXED_WINDOW\"\
-            ,\n      \"maxEarnLimit\": 2,\n      \"durationType\":\"DAYS\",\n    \
-            \  \"refreshRate\":3,\n      \"startDayOfTheWeek\":1\n    }\n],\n    \"\
-            badgeConstraints\": [\n        {\n            \"constraintType\": \"BADGE_FIXED_VALUE\"\
-            ,\n            \"maxEarnLimit\": 10000\n        },\n        {\n      \
-            \      \"constraintType\": \"BADGE_ROLLING_WINDOW\",\n            \"rollType\"\
-            : \"DAYS\",\n            \"rollValue\": 1,\n            \"maxEarnLimit\"\
-            : 300\n        },\n        {\n            \"constraintType\": \"BADGE_ROLLING_WINDOW\"\
-            ,\n            \"rollType\": \"WEEKS\",\n            \"rollValue\": 1,\n\
-            \            \"maxEarnLimit\": 3000\n        }\n    ]\n}'"
+          code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta' \
+            --header 'Content-Type: application/json' \
+            --header 'Authorization: Basic bWFka2YQ==' \
+            --header 'Cookie: _cfuvid=rvSJsUbK4DDG1qt9p.ywFArkr5WoVyHK8rR8vhrDpB4-1768813084882-0.0.1.1-604800000' \
+            --data '{
+                "name": "Badge Issue earn type",
+                "description": "Make 5 transactions",
+                "startOn": 1716803487,
+                "expiresOn": 1726804000,
+                 "earnType": "ISSUE_EARN",
+                     "badgeRank": 3,
+                "earnedBadgeExpiry": {
+                    "relativeExpirytype": "WEEKS",
+                    "value": 2,
+                    "expiryType": "RELATIVE"
+                },
+                "issuedBadgeExpiry": {
+                    "type": "FIXED_DATE",
+                    "expiresOn": 1926235957,
+                    "expiryType": "ABSOLUTE"
+                },
+                "isActive": true,
+                "ownership": {
+                    "restrictedToOwners": [
+                        "Loyalty",
+                        "Audience_Campaigns"
+                    ]
+                },
+              "images": [
+                {
+                  "name": "Issued",
+                  "fileSvcHandle": "qwer-8634-8938",
+                    "url": "https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d",
+                    "tag": "EARNED"
+                }
+              ],
+            "customerConstraints": [
+                {
+                  "constraintType": "CUSTOMER_BADGE_FIXED_WINDOW",
+                  "maxEarnLimit": 2,
+                  "durationType":"DAYS",
+                  "refreshRate":3,
+                  "startDayOfTheWeek":1
+                }
+            ],
+                "badgeConstraints": [
+                    {
+                        "constraintType": "BADGE_FIXED_VALUE",
+                        "maxEarnLimit": 10000
+                    },
+                    {
+                        "constraintType": "BADGE_ROLLING_WINDOW",
+                        "rollType": "DAYS",
+                        "rollValue": 1,
+                        "maxEarnLimit": 300
+                    },
+                    {
+                        "constraintType": "BADGE_ROLLING_WINDOW",
+                        "rollType": "WEEKS",
+                        "rollValue": 1,
+                        "maxEarnLimit": 3000
+                    }
+                ]
+            }'
           name: Sample request for earn type- ISSUE_EARN
         - language: curl
-          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta'\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization:\
-            \ Basic bWFkaH2YQ==' \\\n--header 'Cookie: _cfuvid=rvSJsUbK4DDG1qt9p.ywFArkr5WoVyHK8rR8vhrDpB4-1768813084882-0.0.1.1-604800000'\
-            \ \\\n--data '{\n    \"name\": \"badgetestjan16 01\",\n    \n    \"startOn\"\
-            : 1768714500,\n    \"expiresOn\": 1769751300,\n    \"earnedBadgeExpiry\"\
-            : {\n        \"expiryType\": \"ABSOLUTE\",\n        \"type\": \"FIXED_DATE\"\
-            ,\n        \"expiresOn\": 1769751300\n    },\n    \"ownership\": {\n \
-            \       \"restrictedToOwners\": [\n            \"Loyalty\",\n        \
-            \    \"Milestones\"\n        ],\n        \"claims\": [\n            {\n\
-            \                \"ownerType\": \"Loyalty\",\n                \"referenceId\"\
-            : \"626\"\n            }\n        ]\n    },\n    \"customerConstraints\"\
-            : [\n        {\n            \"constraintType\": \"CUSTOMER_BADGE_FIXED_VALUE\"\
-            ,\n            \"maxEarnLimit\": 100\n        },\n        {\n        \
-            \    \"constraintType\": \"CUSTOMER_BADGE_ROLLING_WINDOW\",\n        \
-            \    \"maxEarnForDays\": 1,\n            \"rollForDays\": 1,\n       \
-            \     \"maxEarnForWeeks\": 2,\n            \"rollForWeeks\": 1,\n    \
-            \        \"maxEarnForMonths\": 10,\n            \"rollForMonths\": 1\n\
-            \        }\n    ],\n    \"badgeConstraints\": [\n        {\n         \
-            \   \"constraintType\": \"BADGE_FIXED_VALUE\",\n            \"maxEarnLimit\"\
-            : 10000\n        },\n        {\n            \"constraintType\": \"CUSTOMER_BADGE_FIXED_WINDOW\"\
-            ,\n            \"maxEarnLimit\": 2,\n            \"durationType\": \"\
-            WEEKS\",\n            \"refreshRate\": 3,\n            \"startDayOfTheWeek\"\
-            : 1\n        }\n    \n],\n\"earnType\": \"EARN\"\n}'"
+          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta' \\\
+            \n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic bWFkaH2YQ=='\
+            \ \\\n--header 'Cookie: _cfuvid=rvSJsUbK4DDG1qt9p.ywFArkr5WoVyHK8rR8vhrDpB4-1768813084882-0.0.1.1-604800000'\
+            \ \\\n--data '{\n    \"name\": \"badgetestjan16 01\",\n    \n    \"startOn\": 1768714500,\n\
+            \    \"expiresOn\": 1769751300,\n    \"earnedBadgeExpiry\": {\n        \"expiryType\": \"\
+            ABSOLUTE\",\n        \"type\": \"FIXED_DATE\",\n        \"expiresOn\": 1769751300\n    },\n\
+            \    \"ownership\": {\n        \"restrictedToOwners\": [\n            \"Loyalty\",\n     \
+            \       \"Milestones\"\n        ],\n        \"claims\": [\n            {\n               \
+            \ \"ownerType\": \"Loyalty\",\n                \"referenceId\": \"626\"\n            }\n \
+            \       ]\n    },\n    \"customerConstraints\": [\n        {\n            \"constraintType\"\
+            : \"CUSTOMER_BADGE_FIXED_VALUE\",\n            \"maxEarnLimit\": 100\n        },\n       \
+            \ {\n            \"constraintType\": \"CUSTOMER_BADGE_ROLLING_WINDOW\",\n            \"maxEarnForDays\"\
+            : 1,\n            \"rollForDays\": 1,\n            \"maxEarnForWeeks\": 2,\n            \"\
+            rollForWeeks\": 1,\n            \"maxEarnForMonths\": 10,\n            \"rollForMonths\":\
+            \ 1\n        }\n    ],\n    \"badgeConstraints\": [\n        {\n            \"constraintType\"\
+            : \"BADGE_FIXED_VALUE\",\n            \"maxEarnLimit\": 10000\n        },\n        {\n   \
+            \         \"constraintType\": \"CUSTOMER_BADGE_FIXED_WINDOW\",\n            \"maxEarnLimit\"\
+            : 2,\n            \"durationType\": \"WEEKS\",\n            \"refreshRate\": 3,\n        \
+            \    \"startDayOfTheWeek\": 1\n        }\n    \n],\n\"earnType\": \"EARN\"\n}'"
           name: Sample request for expiry type- ABSOLUTE
         samples-languages:
         - curl

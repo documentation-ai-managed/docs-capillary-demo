@@ -3,7 +3,7 @@ info:
   title: Revoke issued badge
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -86,10 +86,13 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"data\": null,\n    \"errors\": [\n        {\n \
-                    \           \"code\": 814,\n            \"message\": \"Active\
-                    \ earn instance is not present.\",\n            \"reference\"\
-                    : null\n        }\n    ],\n    \"warnings\": null\n}"
+                  value:
+                    data: null
+                    errors:
+                    - code: 814
+                      message: Active earn instance is not present.
+                      reference: null
+                    warnings: null
               schema:
                 type: object
                 properties:
@@ -111,13 +114,17 @@ paths:
       deprecated: false
       x-readme:
         code-samples:
-        - code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/customer/revokeEarn'\
-            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
-            \ application/json' \\\n--header 'Authorization: Basic bWFkaHVfcjU2YQ=='\
-            \ \\\n--header 'Cookie: _cfuvid=fP0aLOEla8j8_wyp4v_8igbGmHaxQoYMP6R5y8I8XNo-1770892930272-0.0.1.1-604800000'\
-            \ \\\n--data '{\n    \"badgeMetaId\": \"698dae82d30c4f6b3da9dc06\",\n\
-            \    \"customerId\": 566135941,\n    \"earnedBadgeId\": \"698daf848644c157e72d83f3\"\
-            \n}'"
+        - code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/customer/revokeEarn' \
+            --header 'Accept: application/json' \
+            --header 'Content-Type: application/json' \
+            --header 'Authorization: Basic bWFkaHVfcjU2YQ==' \
+            --header 'Cookie: _cfuvid=fP0aLOEla8j8_wyp4v_8igbGmHaxQoYMP6R5y8I8XNo-1770892930272-0.0.1.1-604800000' \
+            --data '{
+                "badgeMetaId": "698dae82d30c4f6b3da9dc06",
+                "customerId": 566135941,
+                "earnedBadgeId": "698daf848644c157e72d83f3"
+            }'
           language: shell
           name: Sample request
         samples-languages:

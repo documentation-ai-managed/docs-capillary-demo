@@ -3,14 +3,14 @@ info:
   title: Groups - Get rewards group by ID
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/api_gateway/rewards/core/v1/group/{id}":
+  /api_gateway/rewards/core/v1/group/{id}:
     get:
       summary: Groups - Get rewards group by ID
       description: ''
@@ -38,10 +38,10 @@ paths:
                     isActive: true
                     createdBy: 75155292
                     createdOn: 1758007038000
-                    createdOnDateTime: "2025-09-16T07:17:18Z"
+                    createdOnDateTime: '2025-09-16T07:17:18Z'
                     lastUpdatedBy: 75155297
                     lastUpdatedOn: 1758011894000
-                    lastUpdatedOnDateTime: "2025-09-16T08:38:14Z"
+                    lastUpdatedOnDateTime: '2025-09-16T08:38:14Z'
                   summary: Sample response
               schema:
                 type: object
@@ -75,7 +75,7 @@ paths:
                     default: 0
                   createdOnDateTime:
                     type: string
-                    example: "2025-03-14T09:03:00Z"
+                    example: '2025-03-14T09:03:00Z'
                   lastUpdatedBy:
                     type: integer
                     example: 75155282
@@ -86,14 +86,14 @@ paths:
                     default: 0
                   lastUpdatedOnDateTime:
                     type: string
-                    example: "2025-03-14T09:03:00Z"
+                    example: '2025-03-14T09:03:00Z'
         '400':
           description: '400'
           content:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
@@ -101,9 +101,10 @@ paths:
       x-readme:
         code-samples:
         - language: shell
-          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/group/10417'\
-            \ \\\n--header 'Authorization: Basic bWFkaHVfjU2YQ==' \\\n--header 'Cookie:\
-            \ _cfuvid=BNKMdc2rm4I7MYA3KIlxZDn.nhxE7URS3m2d4Ipaduo-1764062400363-0.0.1.1-604800000'"
+          code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/group/10417' \
+            --header 'Authorization: Basic bWFkaHVfjU2YQ==' \
+            --header 'Cookie: _cfuvid=BNKMdc2rm4I7MYA3KIlxZDn.nhxE7URS3m2d4Ipaduo-1764062400363-0.0.1.1-604800000'
           name: Sample request
         samples-languages:
         - shell

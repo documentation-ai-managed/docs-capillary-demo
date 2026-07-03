@@ -3,7 +3,7 @@ info:
   title: Regenerate Authentication Token
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -13,10 +13,9 @@ paths:
   /auth/v1/token/regenerate:
     post:
       summary: Regenerate Authentication Token
-      description: Generates authentication token using auth key or expired token
-        generated in `otp/validate` API. By default, a token is valid for 15 minutes.
-        You can use this API only for orgs in which password based authentication
-        is enabled.
+      description: Generates authentication token using auth key or expired token generated in `otp/validate`
+        API. By default, a token is valid for 15 minutes. You can use this API only for orgs in which
+        password based authentication is enabled.
       operationId: regenerate-authentication-token-1
       requestBody:
         content:
@@ -32,23 +31,19 @@ paths:
               properties:
                 identifierType:
                   type: string
-                  description: "Identifier used for token generation. Values: MOBILE,\
-                    \ EMAIL, USERNAME."
+                  description: 'Identifier used for token generation. Values: MOBILE, EMAIL, USERNAME.'
                 identifierValue:
                   type: string
                   description: Value of the specified identifierType.
                 brand:
                   type: string
-                  description: Name of the brand/org for which authentication needs
-                    to be verified.
+                  description: Name of the brand/org for which authentication needs to be verified.
                 deviceId:
                   type: string
-                  description: Unique ID of the device from which the customer has
-                    generated the token.
+                  description: Unique ID of the device from which the customer has generated the token.
                 key:
                   type: string
-                  description: Unique key generated for the successful mobile app
-                    OTP validation.
+                  description: Unique key generated for the successful mobile app OTP validation.
             examples:
               Sample POST Body:
                 value:
@@ -64,10 +59,11 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"identifierType\":\"MOBILE\",\n    \"identifierValue\"\
-                    :\"0495678923\",\n    \"brand\": \"STANDARDAPP\", \"expiredToken\"\
-                    :\"nhdbYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiXSwiZGV2IjoiMzJydHNkZXJlZCIsIm9yZyI6IlNUQU5EQVJEQVBQIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwib2djIjpbIjE1MTA2MHxzYS5kZW1vLnNvbHV0aW9uIl0sImV4cCI6MTU5NzY1NTgxMywiaWF0IjoxNTk3NjUyMjEzLCJyb2wiOiJWSUVXIn0.2LqAg3tDVu8VwasSXuwiL6p917NCxgpKEt76qqrHGsF\"\
-                    \n}"
+                  value:
+                    identifierType: MOBILE
+                    identifierValue: 0495678923
+                    brand: STANDARDAPP
+                    expiredToken: nhdbYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiXSwiZGV2IjoiMzJydHNkZXJlZCIsIm9yZyI6IlNUQU5EQVJEQVBQIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwib2djIjpbIjE1MTA2MHxzYS5kZW1vLnNvbHV0aW9uIl0sImV4cCI6MTU5NzY1NTgxMywiaWF0IjoxNTk3NjUyMjEzLCJyb2wiOiJWSUVXIn0.2LqAg3tDVu8VwasSXuwiL6p917NCxgpKEt76qqrHGsF
               schema:
                 type: object
                 properties:
@@ -89,7 +85,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}

@@ -3,7 +3,7 @@ info:
   title: Get Item Recommendations
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -18,9 +18,8 @@ paths:
       parameters:
       - name: model
         in: path
-        description: similar-attribute to get products with similar product attributes
-          as per the SKU item. similar-btab to get products that are are frequently
-          bought along with the SKU item passed.
+        description: similar-attribute to get products with similar product attributes as per the SKU
+          item. similar-btab to get products that are are frequently bought along with the SKU item passed.
         schema:
           type: string
           enum:
@@ -30,41 +29,37 @@ paths:
         required: true
       - name: sku
         in: query
-        description: The unique stock keeping unit code by which you want to fetch
-          product recommendations.
+        description: The unique stock keeping unit code by which you want to fetch product recommendations.
         required: true
         schema:
           type: string
       - name: limit
         in: query
-        description: Limit the number of results to retrieve. You can retrieve a maximum
-          of 25 results.
+        description: Limit the number of results to retrieve. You can retrieve a maximum of 25 results.
         required: true
         schema:
           type: integer
           format: int32
       - name: offset
         in: query
-        description: Number of results to ignore from top (where the recommendations
-          array to start fetching). Set 0 to ignore the first result, 1 to ignore
-          the first two results and so on.
+        description: Number of results to ignore from top (where the recommendations array to start fetching).
+          Set 0 to ignore the first result, 1 to ignore the first two results and so on.
         required: true
         schema:
           type: integer
           format: int32
       - name: categories
         in: query
-        description: "Filter recommended products by one or more categories. Pass\
-          \ comma separated category codes. Maximum of 10 categories are supported.\
-          \ Example: categories=Shirts,Bottomwear"
+        description: 'Filter recommended products by one or more categories. Pass comma separated category
+          codes. Maximum of 10 categories are supported. Example: categories=Shirts,Bottomwear'
         schema:
           type: array
           items:
             type: string
       - name: stores
         in: query
-        description: "Filter products by stores. Pass comma separated store codes.\
-          \ Max limit is 10. Example: stores=store.1,store.2"
+        description: 'Filter products by stores. Pass comma separated store codes. Max limit is 10. Example:
+          stores=store.1,store.2'
         schema:
           type: array
           items:
@@ -88,7 +83,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
@@ -96,7 +91,7 @@ paths:
       x-readme:
         code-samples:
         - language: html
-          code: "https://incrm.cc.capillarytech.com/api_gateway/v1/recommendations/item/similar-attribute/?sku=654123&limit=5&offset=0&categories"
+          code: https://incrm.cc.capillarytech.com/api_gateway/v1/recommendations/item/similar-attribute/?sku=654123&limit=5&offset=0&categories
           name: Sample Request URL
         samples-languages:
         - html

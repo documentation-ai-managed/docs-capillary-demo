@@ -3,14 +3,14 @@ info:
   title: Get badges for customer
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/api_gateway/v1/badges/customer/{customerId}":
+  /api_gateway/v1/badges/customer/{customerId}:
     get:
       summary: Get badges for customer
       description: ''
@@ -27,9 +27,9 @@ paths:
           default: AVAILABLE
       - name: includeExpired
         in: query
-        description: This is the earn expiry. If true then all the earned badges which
-          are even expired will be part of the response. If false, then only the badges
-          where earn is active will be a part of the response
+        description: This is the earn expiry. If true then all the earned badges which are even expired
+          will be part of the response. If false, then only the badges where earn is active will be a
+          part of the response
         schema:
           type: boolean
       - name: customerId
@@ -39,13 +39,13 @@ paths:
         required: true
       - name: sortOn
         in: query
-        description: "Enables sorting of badges based on rank. Value: rank."
+        description: 'Enables sorting of badges based on rank. Value: rank.'
         schema:
           type: string
       - name: X-CAP-CUSTOMER-IDENTIFIER
         in: header
-        description: Pass this header to search the customer based on their email,
-          mobile number, card number or external ID.
+        description: Pass this header to search the customer based on their email, mobile number, card
+          number or external ID.
         schema:
           type: string
           enum:
@@ -60,16 +60,15 @@ paths:
           type: string
       - name: lastEarnedOnDate
         in: query
-        description: "Date and time when the badge was awarded to the customer. Time\
-          \ format: Epoch format (UNIX timestamp in milliseconds)."
+        description: 'Date and time when the badge was awarded to the customer. Time format: Epoch format
+          (UNIX timestamp in milliseconds).'
         schema:
           type: number
           format: float
       - name: lastEarnEventDate
         in: query
-        description: "Date and time when a triggering event (transactional or behavioural)\
-          \ occurred, initiating the badge earning. Time format: Epoch format (UNIX\
-          \ timestamp in milliseconds)."
+        description: 'Date and time when a triggering event (transactional or behavioural) occurred, initiating
+          the badge earning. Time format: Epoch format (UNIX timestamp in milliseconds).'
         schema:
           type: number
           format: float
@@ -80,195 +79,241 @@ paths:
             application/json:
               examples:
                 available badges:
-                  value: "{\n    \"data\": {\n        \"badges\": [\n            {\n\
-                    \                \"badgeMetaId\": \"67eb99516666db076c3c7519\"\
-                    ,\n                \"orgId\": 100737,\n                \"name\"\
-                    : \"Badge Issue georgetest\",\n                \"description\"\
-                    : \"Make 5 transactions\",\n                \"startOn\": 1735715131.000000000,\n\
-                    \                \"expiresOn\": 1926235957.000000000,\n      \
-                    \          \"images\": [\n                    {\n            \
-                    \            \"name\": \"Issued\",\n                        \"\
-                    fileSvcHandle\": \"qwer-8634-8938\",\n                       \
-                    \ \"url\": \"https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d\"\
-                    ,\n                        \"tag\": \"EARNED\"\n             \
-                    \       }\n                ],\n                \"tags\": [],\n\
-                    \                \"badgeGroupId\": null,\n                \"badgeGroupName\"\
-                    : null,\n                \"badgeRank\": 3,\n                \"\
-                    ownership\": {\n                    \"restrictedToOwners\": [\n\
-                    \                        \"Milestones\",\n                   \
-                    \     \"Audience_Campaigns\",\n                        \"Historical_Import\"\
-                    ,\n                        \"Journeys\",\n                   \
-                    \     \"Loyalty\",\n                        \"Rewards_Catalog\"\
-                    ,\n                        \"Loyalty_Promotion\",\n          \
-                    \              \"Goodwill_Module\",\n                        \"\
-                    Referral_Campaigns\"\n                    ],\n               \
-                    \     \"claims\": [\n                        {\n             \
-                    \               \"ownerType\": \"Loyalty\",\n                \
-                    \            \"referenceId\": \"1234\",\n                    \
-                    \        \"isActive\": true\n                        }\n     \
-                    \               ]\n                },\n                \"earnType\"\
-                    : \"ISSUE_EARN\",\n                \"benefits\": [\n         \
-                    \           {\n                        \"benefitType\": \"COUPON\"\
-                    ,\n                        \"seriesId\": 13745\n             \
-                    \       }\n                ],\n                \"customerConstraints\"\
-                    : [\n                    {\n                        \"constraintType\"\
-                    : \"CUSTOMER_BADGE_FIXED_WINDOW\",\n                        \"\
-                    referenceId\": \"e6791ec9-e92f-34af-bdc3-be2607fdf82c\",\n   \
-                    \                     \"durationType\": \"DAYS\",\n          \
-                    \              \"refreshRate\": 3,\n                        \"\
-                    maxEarnLimit\": 2,\n                        \"cycleStatus\": \"\
-                    ACTIVE\",\n                        \"startDate\": 1735715131.000000000,\n\
-                    \                        \"endDate\": 1926235957.000000000\n \
-                    \                   }\n                ],\n                \"\
-                    badgeConstraints\": [\n                    {\n               \
-                    \         \"constraintType\": \"BADGE_FIXED_VALUE\",\n       \
-                    \                 \"maxEarnLimit\": 10000\n                  \
-                    \  },\n                    {\n                        \"constraintType\"\
-                    : \"BADGE_ROLLING_WINDOW\",\n                        \"rollType\"\
-                    : \"WEEKS\",\n                        \"rollValue\": 1,\n    \
-                    \                    \"maxEarnLimit\": 3000\n                \
-                    \    },\n                    {\n                        \"constraintType\"\
-                    : \"BADGE_ROLLING_WINDOW\",\n                        \"rollType\"\
-                    : \"DAYS\",\n                        \"rollValue\": 1,\n     \
-                    \                   \"maxEarnLimit\": 300\n                  \
-                    \  }\n                ],\n                \"earnedCount\": null,\n\
-                    \                \"lastEarnedOnDate\": null,\n               \
-                    \ \"lastEarnEventDate\": null,\n                \"customFields\"\
-                    : {},\n                \"active\": true\n            },\n    \
-                    \        {\n                \"badgeMetaId\": \"67eb95754c0c691f66b39b50\"\
-                    ,\n                \"orgId\": 100737,\n                \"name\"\
-                    : \"Badge Issue Test\",\n                \"description\": \"Make\
-                    \ 5 transactions\",\n                \"startOn\": 1716803487.000000000,\n\
-                    \                \"expiresOn\": 1926235957.000000000,\n      \
-                    \          \"images\": [],\n                \"tags\": [],\n  \
-                    \              \"badgeGroupId\": null,\n                \"badgeGroupName\"\
-                    : null,\n                \"badgeRank\": 3,\n                \"\
-                    ownership\": {\n                    \"restrictedToOwners\": [\n\
-                    \                        \"Audience_Campaigns\"\n            \
-                    \        ],\n                    \"claims\": []\n            \
-                    \    },\n                \"earnType\": \"ISSUE_EARN\",\n     \
-                    \           \"benefits\": [],\n                \"customerConstraints\"\
-                    : [],\n                \"badgeConstraints\": [],\n           \
-                    \     \"earnedCount\": null,\n                \"lastEarnedOnDate\"\
-                    : null,\n                \"lastEarnEventDate\": null,\n      \
-                    \          \"customFields\": {},\n                \"active\":\
-                    \ true\n            },\n            {\n                \"badgeMetaId\"\
-                    : \"67eb912a4c0c691f66b39b37\",\n                \"orgId\": 100737,\n\
-                    \                \"name\": \"BadgeISSUAL33\",\n              \
-                    \  \"description\": \"Make 5 transactions\",\n               \
-                    \ \"startOn\": 1716803487.000000000,\n                \"expiresOn\"\
-                    : 1926235957.000000000,\n                \"images\": [],\n   \
-                    \             \"tags\": [],\n                \"badgeGroupId\"\
-                    : null,\n                \"badgeGroupName\": null,\n         \
-                    \       \"badgeRank\": 3,\n                \"ownership\": {\n\
-                    \                    \"restrictedToOwners\": [\n             \
-                    \           \"Audience_Campaigns\"\n                    ],\n \
-                    \                   \"claims\": []\n                },\n     \
-                    \           \"earnType\": \"ISSUE_EARN\",\n                \"\
-                    benefits\": [],\n                \"customerConstraints\": [],\n\
-                    \                \"badgeConstraints\": [],\n                \"\
-                    earnedCount\": null,\n                \"lastEarnedOnDate\": null,\n\
-                    \                \"lastEarnEventDate\": null,\n              \
-                    \  \"customFields\": {},\n                \"active\": true\n \
-                    \           },\n            {\n                \"badgeMetaId\"\
-                    : \"67eb889a6666db076c3c74ac\",\n                \"orgId\": 100737,\n\
-                    \                \"name\": \"BadgeISSUALGEORGE\",\n          \
-                    \      \"description\": \"Make 5 transactions\",\n           \
-                    \     \"startOn\": 1716803487.000000000,\n                \"expiresOn\"\
-                    : 1926235957.000000000,\n                \"images\": [],\n   \
-                    \             \"tags\": [],\n                \"badgeGroupId\"\
-                    : null,\n                \"badgeGroupName\": null,\n         \
-                    \       \"badgeRank\": 3,\n                \"ownership\": {\n\
-                    \                    \"restrictedToOwners\": [\n             \
-                    \           \"Audience_Campaigns\"\n                    ],\n \
-                    \                   \"claims\": []\n                },\n     \
-                    \           \"earnType\": \"ISSUE_EARN\",\n                \"\
-                    benefits\": [],\n                \"customerConstraints\": [],\n\
-                    \                \"badgeConstraints\": [],\n                \"\
-                    earnedCount\": null,\n                \"lastEarnedOnDate\": null,\n\
-                    \                \"lastEarnEventDate\": null,\n              \
-                    \  \"customFields\": {},\n                \"active\": true\n \
-                    \           },\n            {\n                \"badgeMetaId\"\
-                    : \"6790be86dfc7ed27674ac0d8\",\n                \"orgId\": 100737,\n\
-                    \                \"name\": \"BadgeDoc\",\n                \"description\"\
-                    : null,\n                \"startOn\": 1737657000.000000000,\n\
-                    \                \"expiresOn\": 1745519399.000000000,\n      \
-                    \          \"images\": [],\n                \"tags\": [],\n  \
-                    \              \"badgeGroupId\": null,\n                \"badgeGroupName\"\
-                    : null,\n                \"badgeRank\": null,\n              \
-                    \  \"ownership\": {\n                    \"restrictedToOwners\"\
-                    : [\n                        \"Audience_Campaigns\"\n        \
-                    \            ],\n                    \"claims\": []\n        \
-                    \        },\n                \"earnType\": \"EARN\",\n       \
-                    \         \"benefits\": [],\n                \"customerConstraints\"\
-                    : [],\n                \"badgeConstraints\": [],\n           \
-                    \     \"earnedCount\": null,\n                \"lastEarnedOnDate\"\
-                    : null,\n                \"lastEarnEventDate\": null,\n      \
-                    \          \"customFields\": {},\n                \"active\":\
-                    \ true\n            }\n        ],\n        \"pagination\": {\n\
-                    \            \"page\": 0,\n            \"size\": 5,\n        \
-                    \    \"total\": 5,\n            \"totalPages\": 1\n        }\n\
-                    \    },\n    \"errors\": [],\n    \"warnings\": []\n}"
+                  value:
+                    data:
+                      badges:
+                      - badgeMetaId: 67eb99516666db076c3c7519
+                        orgId: 100737
+                        name: Badge Issue georgetest
+                        description: Make 5 transactions
+                        startOn: 1735715131.0
+                        expiresOn: 1926235957.0
+                        images:
+                        - name: Issued
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d
+                          tag: EARNED
+                        tags: []
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: 3
+                        ownership:
+                          restrictedToOwners:
+                          - Milestones
+                          - Audience_Campaigns
+                          - Historical_Import
+                          - Journeys
+                          - Loyalty
+                          - Rewards_Catalog
+                          - Loyalty_Promotion
+                          - Goodwill_Module
+                          - Referral_Campaigns
+                          claims:
+                          - ownerType: Loyalty
+                            referenceId: '1234'
+                            isActive: true
+                        earnType: ISSUE_EARN
+                        benefits:
+                        - benefitType: COUPON
+                          seriesId: 13745
+                        customerConstraints:
+                        - constraintType: CUSTOMER_BADGE_FIXED_WINDOW
+                          referenceId: e6791ec9-e92f-34af-bdc3-be2607fdf82c
+                          durationType: DAYS
+                          refreshRate: 3
+                          maxEarnLimit: 2
+                          cycleStatus: ACTIVE
+                          startDate: 1735715131.0
+                          endDate: 1926235957.0
+                        badgeConstraints:
+                        - constraintType: BADGE_FIXED_VALUE
+                          maxEarnLimit: 10000
+                        - constraintType: BADGE_ROLLING_WINDOW
+                          rollType: WEEKS
+                          rollValue: 1
+                          maxEarnLimit: 3000
+                        - constraintType: BADGE_ROLLING_WINDOW
+                          rollType: DAYS
+                          rollValue: 1
+                          maxEarnLimit: 300
+                        earnedCount: null
+                        lastEarnedOnDate: null
+                        lastEarnEventDate: null
+                        customFields: {}
+                        active: true
+                      - badgeMetaId: 67eb95754c0c691f66b39b50
+                        orgId: 100737
+                        name: Badge Issue Test
+                        description: Make 5 transactions
+                        startOn: 1716803487.0
+                        expiresOn: 1926235957.0
+                        images: []
+                        tags: []
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: 3
+                        ownership:
+                          restrictedToOwners:
+                          - Audience_Campaigns
+                          claims: []
+                        earnType: ISSUE_EARN
+                        benefits: []
+                        customerConstraints: []
+                        badgeConstraints: []
+                        earnedCount: null
+                        lastEarnedOnDate: null
+                        lastEarnEventDate: null
+                        customFields: {}
+                        active: true
+                      - badgeMetaId: 67eb912a4c0c691f66b39b37
+                        orgId: 100737
+                        name: BadgeISSUAL33
+                        description: Make 5 transactions
+                        startOn: 1716803487.0
+                        expiresOn: 1926235957.0
+                        images: []
+                        tags: []
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: 3
+                        ownership:
+                          restrictedToOwners:
+                          - Audience_Campaigns
+                          claims: []
+                        earnType: ISSUE_EARN
+                        benefits: []
+                        customerConstraints: []
+                        badgeConstraints: []
+                        earnedCount: null
+                        lastEarnedOnDate: null
+                        lastEarnEventDate: null
+                        customFields: {}
+                        active: true
+                      - badgeMetaId: 67eb889a6666db076c3c74ac
+                        orgId: 100737
+                        name: BadgeISSUALGEORGE
+                        description: Make 5 transactions
+                        startOn: 1716803487.0
+                        expiresOn: 1926235957.0
+                        images: []
+                        tags: []
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: 3
+                        ownership:
+                          restrictedToOwners:
+                          - Audience_Campaigns
+                          claims: []
+                        earnType: ISSUE_EARN
+                        benefits: []
+                        customerConstraints: []
+                        badgeConstraints: []
+                        earnedCount: null
+                        lastEarnedOnDate: null
+                        lastEarnEventDate: null
+                        customFields: {}
+                        active: true
+                      - badgeMetaId: 6790be86dfc7ed27674ac0d8
+                        orgId: 100737
+                        name: BadgeDoc
+                        description: null
+                        startOn: 1737657000.0
+                        expiresOn: 1745519399.0
+                        images: []
+                        tags: []
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: null
+                        ownership:
+                          restrictedToOwners:
+                          - Audience_Campaigns
+                          claims: []
+                        earnType: EARN
+                        benefits: []
+                        customerConstraints: []
+                        badgeConstraints: []
+                        earnedCount: null
+                        lastEarnedOnDate: null
+                        lastEarnEventDate: null
+                        customFields: {}
+                        active: true
+                      pagination:
+                        page: 0
+                        size: 5
+                        total: 5
+                        totalPages: 1
+                    errors: []
+                    warnings: []
                 earned badges:
-                  value: "{\n    \"data\": {\n        \"badges\": [\n            {\n\
-                    \                \"badgeMetaId\": \"67eb9e2d6666db076c3c7556\"\
-                    ,\n                \"orgId\": 100737,\n                \"name\"\
-                    : \"Badge Issue georgetesst\",\n                \"description\"\
-                    : \"Make 5 transactions\",\n                \"startOn\": 1735715131.000000000,\n\
-                    \                \"expiresOn\": 1764572731.000000000,\n      \
-                    \          \"images\": [\n                    {\n            \
-                    \            \"name\": \"Issued\",\n                        \"\
-                    fileSvcHandle\": \"qwer-8634-8938\",\n                       \
-                    \ \"url\": \"https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d\"\
-                    ,\n                        \"tag\": \"EARNED\"\n             \
-                    \       }\n                ],\n                \"tags\": [],\n\
-                    \                \"badgeGroupId\": null,\n                \"badgeGroupName\"\
-                    : null,\n                \"badgeRank\": 3,\n                \"\
-                    ownership\": {\n                    \"restrictedToOwners\": [\n\
-                    \                        \"Milestones\",\n                   \
-                    \     \"Audience_Campaigns\",\n                        \"Historical_Import\"\
-                    ,\n                        \"Journeys\",\n                   \
-                    \     \"Loyalty\",\n                        \"Rewards_Catalog\"\
-                    ,\n                        \"Loyalty_Promotion\",\n          \
-                    \              \"Goodwill_Module\",\n                        \"\
-                    Referral_Campaigns\"\n                    ],\n               \
-                    \     \"claims\": [\n                        {\n             \
-                    \               \"ownerType\": \"Loyalty\",\n                \
-                    \            \"referenceId\": \"12341234\",\n                \
-                    \            \"isActive\": true\n                        }\n \
-                    \                   ]\n                },\n                \"\
-                    earnType\": \"ISSUE_EARN\",\n                \"benefits\": [\n\
-                    \                    {\n                        \"benefitType\"\
-                    : \"COUPON\",\n                        \"seriesId\": 13745\n \
-                    \                   }\n                ],\n                \"\
-                    customerConstraints\": [\n                    {\n            \
-                    \            \"constraintType\": \"CUSTOMER_BADGE_FIXED_WINDOW\"\
-                    ,\n                        \"referenceId\": \"e6791ec9-e92f-34af-bdc3-be2607fdf82c\"\
-                    ,\n                        \"durationType\": \"DAYS\",\n     \
-                    \                   \"refreshRate\": 3,\n                    \
-                    \    \"maxEarnLimit\": 2,\n                        \"cycleStatus\"\
-                    : \"ACTIVE\",\n                        \"startDate\": 1735715131.000000000,\n\
-                    \                        \"endDate\": 1926235957.000000000\n \
-                    \                   }\n                ],\n                \"\
-                    badgeConstraints\": [\n                    {\n               \
-                    \         \"constraintType\": \"BADGE_FIXED_VALUE\",\n       \
-                    \                 \"maxEarnLimit\": 10000\n                  \
-                    \  },\n                    {\n                        \"constraintType\"\
-                    : \"BADGE_ROLLING_WINDOW\",\n                        \"rollType\"\
-                    : \"WEEKS\",\n                        \"rollValue\": 1,\n    \
-                    \                    \"maxEarnLimit\": 3000\n                \
-                    \    },\n                    {\n                        \"constraintType\"\
-                    : \"BADGE_ROLLING_WINDOW\",\n                        \"rollType\"\
-                    : \"DAYS\",\n                        \"rollValue\": 1,\n     \
-                    \                   \"maxEarnLimit\": 300\n                  \
-                    \  }\n                ],\n                \"earnedCount\": 1,\n\
-                    \                \"lastEarnedOnDate\": 1743494923.451000000,\n\
-                    \                \"lastEarnEventDate\": 1743494913.679000000,\n\
-                    \                \"customFields\": {},\n                \"active\"\
-                    : true\n            }\n        ],\n        \"pagination\": {\n\
-                    \            \"page\": 0,\n            \"size\": 1,\n        \
-                    \    \"total\": 1,\n            \"totalPages\": 1\n        }\n\
-                    \    },\n    \"errors\": [],\n    \"warnings\": []\n}"
+                  value:
+                    data:
+                      badges:
+                      - badgeMetaId: 67eb9e2d6666db076c3c7556
+                        orgId: 100737
+                        name: Badge Issue georgetesst
+                        description: Make 5 transactions
+                        startOn: 1735715131.0
+                        expiresOn: 1764572731.0
+                        images:
+                        - name: Issued
+                          fileSvcHandle: qwer-8634-8938
+                          url: https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d
+                          tag: EARNED
+                        tags: []
+                        badgeGroupId: null
+                        badgeGroupName: null
+                        badgeRank: 3
+                        ownership:
+                          restrictedToOwners:
+                          - Milestones
+                          - Audience_Campaigns
+                          - Historical_Import
+                          - Journeys
+                          - Loyalty
+                          - Rewards_Catalog
+                          - Loyalty_Promotion
+                          - Goodwill_Module
+                          - Referral_Campaigns
+                          claims:
+                          - ownerType: Loyalty
+                            referenceId: '12341234'
+                            isActive: true
+                        earnType: ISSUE_EARN
+                        benefits:
+                        - benefitType: COUPON
+                          seriesId: 13745
+                        customerConstraints:
+                        - constraintType: CUSTOMER_BADGE_FIXED_WINDOW
+                          referenceId: e6791ec9-e92f-34af-bdc3-be2607fdf82c
+                          durationType: DAYS
+                          refreshRate: 3
+                          maxEarnLimit: 2
+                          cycleStatus: ACTIVE
+                          startDate: 1735715131.0
+                          endDate: 1926235957.0
+                        badgeConstraints:
+                        - constraintType: BADGE_FIXED_VALUE
+                          maxEarnLimit: 10000
+                        - constraintType: BADGE_ROLLING_WINDOW
+                          rollType: WEEKS
+                          rollValue: 1
+                          maxEarnLimit: 3000
+                        - constraintType: BADGE_ROLLING_WINDOW
+                          rollType: DAYS
+                          rollValue: 1
+                          maxEarnLimit: 300
+                        earnedCount: 1
+                        lastEarnedOnDate: 1743494923.451
+                        lastEarnEventDate: 1743494913.679
+                        customFields: {}
+                        active: true
+                      pagination:
+                        page: 0
+                        size: 1
+                        total: 1
+                        totalPages: 1
+                    errors: []
+                    warnings: []
                 Sample response with filter by group ID:
                   value:
                     data:
@@ -278,9 +323,9 @@ paths:
                         name: George
                         description: erg
                         startOn: 1770143400
-                        startOnISO: "2026-02-03T18:30:00Z"
+                        startOnISO: '2026-02-03T18:30:00Z'
                         expiresOn: 1774376999
-                        expiresOnISO: "2026-03-24T18:29:59Z"
+                        expiresOnISO: '2026-03-24T18:29:59Z'
                         images: []
                         tags: []
                         badgeGroupId: 690874cd2814b4096eba3662
@@ -365,7 +410,7 @@ paths:
                                       example: qwer-8634-8938
                                     url:
                                       type: string
-                                      example: "https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d"
+                                      example: https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d
                                     tag:
                                       type: string
                                       example: EARNED
@@ -538,7 +583,7 @@ paths:
                                       example: qwer-8634-8938
                                     url:
                                       type: string
-                                      example: "https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d"
+                                      example: https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d
                                     tag:
                                       type: string
                                       example: EARNED
@@ -698,8 +743,8 @@ paths:
                                 example: Birthday Badge
                               description:
                                 type: string
-                                example: Make a purchase during your birthday month
-                                  and get a 40% discount coupon
+                                example: Make a purchase during your birthday month and get a 40% discount
+                                  coupon
                               startOn:
                                 type: integer
                                 example: 1698557400
@@ -721,7 +766,7 @@ paths:
                                       example: 8be2b78e-b1d6-4127-926a-2cbed7eb2785
                                     url:
                                       type: string
-                                      example: "https://storage.crm.eu.content-cdn.io/fs.capillary.eu/incentives_assets/badges/images/100606/653dea07b3cda7078c7c68ee_UN_EARNED_vDx_DRdk.png"
+                                      example: https://storage.crm.eu.content-cdn.io/fs.capillary.eu/incentives_assets/badges/images/100606/653dea07b3cda7078c7c68ee_UN_EARNED_vDx_DRdk.png
                                     tag:
                                       type: string
                                       example: UN_EARNED
@@ -784,7 +829,7 @@ paths:
                                     example: 'true'
                                   Date:
                                     type: string
-                                    example: "2025-01-18 14:39:09"
+                                    example: '2025-01-18 14:39:09'
                                   Category1:
                                     type: string
                                     example: 'false'
@@ -822,21 +867,25 @@ paths:
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/customer/565039504'\
-            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
-            \ application/json' \\\n--header 'accept: application/json' \\\n--header\
-            \ 'Authorization: Basic Z2VvcmdlLmpvaG5zb246OTg4OTU2NWI4ODVhMmY4ZWE1MTk1MjA2NWEwYTEzNzg='\
-            \ \\\n--header 'Cookie: _cfuvid=pDcK3FYcGs86zaO.Nm3dErmATpyR5j3nnGAtlkTM0Sk-1745211210745-0.0.1.1-604800000'"
+          code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/customer/565039504' \
+            --header 'Accept: application/json' \
+            --header 'Content-Type: application/json' \
+            --header 'accept: application/json' \
+            --header 'Authorization: Basic Z2VvcmdlLmpvaG5zb246OTg4OTU2NWI4ODVhMmY4ZWE1MTk1MjA2NWEwYTEzNzg=' \
+            --header 'Cookie: _cfuvid=pDcK3FYcGs86zaO.Nm3dErmATpyR5j3nnGAtlkTM0Sk-1745211210745-0.0.1.1-604800000'
           name: Example request
         - language: curl
-          code: "https://eucrm.cc.capillarytech.com/api_gateway/v1/badges/customer/tom.sawyer@capillarytech.com"
+          code: https://eucrm.cc.capillarytech.com/api_gateway/v1/badges/customer/tom.sawyer@capillarytech.com
           name: Example request using the header
         - language: curl
-          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/customer/566881933?groupId=690874cd2814b4096eba3662'\
-            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
-            \ application/json' \\\n--header 'accept: application/json' \\\n--header\
-            \ 'Authorization: Basic bWFkaHVfoI3MjU2YQ==' \\\n--header 'Cookie: _cfuvid=pDcK3FYcGs86zaO.Nm3dErmATpyR5j3nnGAtlkTM0Sk-1745211210745-0.0.1.1-604800000;\
-            \ _cfuvid=I_dbNMPLOmRfzPQyzR9DnX8lpYlzQ6p6AY5ZrM1UpaM-1770891499083-0.0.1.1-604800000'"
+          code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/customer/566881933?groupId=690874cd2814b4096eba3662' \
+            --header 'Accept: application/json' \
+            --header 'Content-Type: application/json' \
+            --header 'accept: application/json' \
+            --header 'Authorization: Basic bWFkaHVfoI3MjU2YQ==' \
+            --header 'Cookie: _cfuvid=pDcK3FYcGs86zaO.Nm3dErmATpyR5j3nnGAtlkTM0Sk-1745211210745-0.0.1.1-604800000; _cfuvid=I_dbNMPLOmRfzPQyzR9DnX8lpYlzQ6p6AY5ZrM1UpaM-1770891499083-0.0.1.1-604800000'
           name: Sample Example request with group ID filter
         samples-languages:
         - curl

@@ -3,14 +3,14 @@ info:
   title: Unclaim badge
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/api_gateway/v1/badges/badgeMeta/{badgeId}/unclaim":
+  /api_gateway/v1/badges/badgeMeta/{badgeId}/unclaim:
     post:
       summary: Unclaim badge
       description: ''
@@ -90,19 +90,24 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
       deprecated: false
       x-readme:
         code-samples:
-        - code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta/69381220cebb9648d8974518/unclaim'\
-            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
-            \ application/json' \\\n--header 'accept: application/json' \\\n--header\
-            \ 'Authorization: Basic bWFkaHVMjU2YQ==' \\\n--header 'Cookie: _cfuvid=GwR6P.Wo28InVQzxrZVpalpv9uu696nsUn.b7W_MO8Y-1772617632944-0.0.1.1-604800000'\
-            \ \\\n--data '{\n    \"ownerType\": \"Loyalty\",\n    \"referenceId\"\
-            : \"123\"\n}'"
+        - code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta/69381220cebb9648d8974518/unclaim' \
+            --header 'Accept: application/json' \
+            --header 'Content-Type: application/json' \
+            --header 'accept: application/json' \
+            --header 'Authorization: Basic bWFkaHVMjU2YQ==' \
+            --header 'Cookie: _cfuvid=GwR6P.Wo28InVQzxrZVpalpv9uu696nsUn.b7W_MO8Y-1772617632944-0.0.1.1-604800000' \
+            --data '{
+                "ownerType": "Loyalty",
+                "referenceId": "123"
+            }'
           language: shell
           name: Example request
         samples-languages:

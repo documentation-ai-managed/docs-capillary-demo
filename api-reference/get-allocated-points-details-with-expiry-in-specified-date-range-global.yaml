@@ -3,7 +3,7 @@ info:
   title: Get Allocated Points Details with Expiry in Specified Date Range
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -25,46 +25,43 @@ paths:
           format: int32
       - name: point_category_id
         in: query
-        description: Unique identifier for a Point Category in the loyalty points
-          system.
+        description: Unique identifier for a Point Category in the loyalty points system.
         required: true
         schema:
           type: integer
           format: int32
       - name: expiry_date_start
         in: query
-        description: "Start date of the expiry range. Format: YYYY-MM-DD. Example:\
-          \ 2025-06-01"
+        description: 'Start date of the expiry range. Format: YYYY-MM-DD. Example: 2025-06-01'
         required: true
         schema:
           type: string
           format: date
       - name: expiry_date_end
         in: query
-        description: "End date of the expiry range. Format: YYYY-MM-DD. Example: 2025-06-22"
+        description: 'End date of the expiry range. Format: YYYY-MM-DD. Example: 2025-06-22'
         required: true
         schema:
           type: string
           format: date
       - name: entity_id
         in: query
-        description: Customer ID of the customer for whom the points allocation ID
-          is retrieved.
+        description: Customer ID of the customer for whom the points allocation ID is retrieved.
         required: true
         schema:
           type: integer
           format: int64
       - name: page
         in: query
-        description: "Retrieve details of a specific page. Page count starts from\
-          \ 1.  Example: page=2 retrieves data on page 2."
+        description: 'Retrieve details of a specific page. Page count starts from 1.  Example: page=2
+          retrieves data on page 2.'
         schema:
           type: integer
           format: int32
       - name: count
         in: query
-        description: Number of results to display per page. The default value is 10.
-          The maximum supported value is 100.
+        description: Number of results to display per page. The default value is 10. The maximum supported
+          value is 100.
         schema:
           type: integer
           format: int32
@@ -75,21 +72,34 @@ paths:
             application/json:
               examples:
                 Sample Response:
-                  value: "[\n    {\n        \"till_id\": 50140377,\n        \"point_category_id\"\
-                    : 17383,\n        \"program_id\": 2282,\n        \"event_log_id\"\
-                    : 33822621,\n        \"event_type_id\": 15,\n        \"points_source_type_id\"\
-                    : 1,\n        \"original_points\": 0,\n        \"awarded_date\"\
-                    : 1735309787000,\n        \"returned_exclusive_value\": 50,\n\
-                    \        \"points_source_id\": 2151585684,\n        \"id\": 38855229,\n\
-                    \        \"cps_id\": 80537188,\n        \"original_customer_id\"\
-                    : 383474113,\n        \"expiry_strategy_id\": 105462,\n      \
-                    \  \"returned_value\": 0,\n        \"redeemed_exclusive_value\"\
-                    : 0,\n        \"expiry_date\": 1766687399000,\n        \"auto_update_time\"\
-                    : 1735309788000,\n        \"redeemed_value\": 0,\n        \"expired_exclusive_value\"\
-                    : 0,\n        \"allocation_strategy_id\": 105594,\n        \"\
-                    points_value\": 0,\n        \"org_id\": 50914,\n        \"expired_value\"\
-                    : 0,\n        \"customer_id\": 383474113,\n        \"points_exclusive\"\
-                    : 100,\n        \"status\": \"AVAILABLE\"\n    }\n]"
+                  value:
+                  - till_id: 50140377
+                    point_category_id: 17383
+                    program_id: 2282
+                    event_log_id: 33822621
+                    event_type_id: 15
+                    points_source_type_id: 1
+                    original_points: 0
+                    awarded_date: 1735309787000
+                    returned_exclusive_value: 50
+                    points_source_id: 2151585684
+                    id: 38855229
+                    cps_id: 80537188
+                    original_customer_id: 383474113
+                    expiry_strategy_id: 105462
+                    returned_value: 0
+                    redeemed_exclusive_value: 0
+                    expiry_date: 1766687399000
+                    auto_update_time: 1735309788000
+                    redeemed_value: 0
+                    expired_exclusive_value: 0
+                    allocation_strategy_id: 105594
+                    points_value: 0
+                    org_id: 50914
+                    expired_value: 0
+                    customer_id: 383474113
+                    points_exclusive: 100
+                    status: AVAILABLE
               schema:
                 type: array
                 items:
@@ -208,7 +218,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
@@ -216,10 +226,12 @@ paths:
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location 'https://nightly.api.capillarytech.com/x/neo/pointsAllocation/dateRange?expiry_date_start=2025-06-01%2000%3A00%3A00&expiry_date_end=2027-06-01%2023%3A59%3A59&point_category_id=17383&program_id=2282&entity_id=383474113'\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'x-cap-neo-dag-scope:\
-            \ global' \\\n--header 'Authorization: Basic WI5NjRiMDcxNTJkMjM0Yjcw'\
-            \ \\\n--header 'Cookie: _cfuvid=GGHmRJB3vR2afrZYKGGEonxyUpRW_cRsEMKHeQJEB9U-1749653959367-0.0.1.1-604800000'"
+          code: |-
+            curl --location 'https://nightly.api.capillarytech.com/x/neo/pointsAllocation/dateRange?expiry_date_start=2025-06-01%2000%3A00%3A00&expiry_date_end=2027-06-01%2023%3A59%3A59&point_category_id=17383&program_id=2282&entity_id=383474113' \
+            --header 'Content-Type: application/json' \
+            --header 'x-cap-neo-dag-scope: global' \
+            --header 'Authorization: Basic WI5NjRiMDcxNTJkMjM0Yjcw' \
+            --header 'Cookie: _cfuvid=GGHmRJB3vR2afrZYKGGEonxyUpRW_cRsEMKHeQJEB9U-1749653959367-0.0.1.1-604800000'
           name: Sample Request
         samples-languages:
         - curl

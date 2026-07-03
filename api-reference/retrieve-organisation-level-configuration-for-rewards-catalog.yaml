@@ -3,14 +3,14 @@ info:
   title: Get Organisation Level Configuration
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/api_gateway/rewards/core/v1/brand/{id}/getConfig":
+  /api_gateway/rewards/core/v1/brand/{id}/getConfig:
     get:
       summary: Get Organisation Level Configuration
       description: ''
@@ -35,35 +35,39 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
-                    \   \"code\": 3012,\n        \"message\": \"Org configs fetched\
-                    \ successfully\"\n    },\n    \"configList\": [\n        {\n \
-                    \           \"configKeyName\": \"CONF_EXT_POINTS_VENDOR\",\n \
-                    \           \"configKeyValue\": \"false\",\n            \"brandId\"\
-                    : null,\n            \"label\": \"Enable third party vendor for\
-                    \ points redemption\"\n        },\n        {\n            \"configKeyName\"\
-                    : \"CONF_ENABLE_FEATURE_CATALOG_PROMOTION\",\n            \"configKeyValue\"\
-                    : \"FALSE\",\n            \"brandId\": null,\n            \"label\"\
-                    : \"Enable catalog promotion feature for a brand or organization.\"\
-                    \n        },\n        {\n            \"configKeyName\": \"CONF_CATALOG_PROMOTION_BUFFER_END_TIME_MINUTES\"\
-                    ,\n            \"configKeyValue\": \"5\",\n            \"brandId\"\
-                    : null,\n            \"label\": \"Add buffer time in minutes to\
-                    \ expiry date of a catalog promotion while issuing a reward.\"\
-                    \n        },\n        {\n            \"configKeyName\": \"CONF_START_OF_THE_WEEK_FOR_ORG_RESTRICTION\"\
-                    ,\n            \"configKeyValue\": \"MONDAY\",\n            \"\
-                    brandId\": null,\n            \"label\": \"Add the start of the\
-                    \ week for the org level restrictions, this will be applied to\
-                    \ all org level restrictions with Week configurations\"\n    \
-                    \    },\n        {\n            \"configKeyName\": \"CONF_SEND_REWARD_EXPIRY_NOTIFICATION_ENABLED\"\
-                    ,\n            \"configKeyValue\": \"true\",\n            \"brandId\"\
-                    : null,\n            \"label\": \"Key to enable or disable the\
-                    \ expiry notification for rewards. If enabled, the system will\
-                    \ send expiry notification for rewards after setting the NUMBER_OF_DAYS_BEFORE_EXPIRY.\"\
-                    \n        },\n        {\n            \"configKeyName\": \"CONF_SEND_EXPIRY_NOTIFICATION_FOR_REWARD_TIME\"\
-                    ,\n            \"configKeyValue\": \"16:00\",\n            \"\
-                    brandId\": null,\n            \"label\": \"Key to set the time\
-                    \ of the day to send the expiry notification for rewards.\"\n\
-                    \        }\n    ]\n}"
+                  value:
+                    status:
+                      success: true
+                      code: 3012
+                      message: Org configs fetched successfully
+                    configList:
+                    - configKeyName: CONF_EXT_POINTS_VENDOR
+                      configKeyValue: 'false'
+                      brandId: null
+                      label: Enable third party vendor for points redemption
+                    - configKeyName: CONF_ENABLE_FEATURE_CATALOG_PROMOTION
+                      configKeyValue: 'FALSE'
+                      brandId: null
+                      label: Enable catalog promotion feature for a brand or organization.
+                    - configKeyName: CONF_CATALOG_PROMOTION_BUFFER_END_TIME_MINUTES
+                      configKeyValue: '5'
+                      brandId: null
+                      label: Add buffer time in minutes to expiry date of a catalog promotion while issuing
+                        a reward.
+                    - configKeyName: CONF_START_OF_THE_WEEK_FOR_ORG_RESTRICTION
+                      configKeyValue: MONDAY
+                      brandId: null
+                      label: Add the start of the week for the org level restrictions, this will be applied
+                        to all org level restrictions with Week configurations
+                    - configKeyName: CONF_SEND_REWARD_EXPIRY_NOTIFICATION_ENABLED
+                      configKeyValue: 'true'
+                      brandId: null
+                      label: Key to enable or disable the expiry notification for rewards. If enabled,
+                        the system will send expiry notification for rewards after setting the NUMBER_OF_DAYS_BEFORE_EXPIRY.
+                    - configKeyName: CONF_SEND_EXPIRY_NOTIFICATION_FOR_REWARD_TIME
+                      configKeyValue: '16:00'
+                      brandId: null
+                      label: Key to set the time of the day to send the expiry notification for rewards.
               schema:
                 type: object
                 properties:
@@ -102,7 +106,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
@@ -110,8 +114,9 @@ paths:
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location 'http://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/1/getConfig'\
-            \ \\\n--header 'Authorization: Basic Y20uMToyMDJjYjk2MmFjNTkwNzViOTY0YjA3MTUyZDIzNGI3MA=='"
+          code: |-
+            curl --location 'http://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/1/getConfig' \
+            --header 'Authorization: Basic Y20uMToyMDJjYjk2MmFjNTkwNzViOTY0YjA3MTUyZDIzNGI3MA=='
         samples-languages:
         - curl
 components:

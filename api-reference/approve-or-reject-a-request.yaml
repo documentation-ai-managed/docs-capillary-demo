@@ -3,14 +3,14 @@ info:
   title: Approve or reject a request
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/api_gateway/v2/request-workflow/{requestType}":
+  /api_gateway/v2/request-workflow/{requestType}:
     put:
       summary: Approve or reject a request
       description: This API enables you to approve or reject a request
@@ -42,8 +42,8 @@ paths:
                   description: The request ID generated during creation of the request.
                 actionName:
                   type: string
-                  description: The name of the action being performed by the checker
-                    admin user. For example, adminTask.
+                  description: The name of the action being performed by the checker admin user. For example,
+                    adminTask.
                 payload:
                   type: object
                   properties:
@@ -72,11 +72,11 @@ paths:
                       userName: tom.sawyer@capillarytech.com
                       requestType: customer-status-change
                       state: approved
-                      startTime: "2023-10-04T16:29:19"
-                      endTime: "2023-10-04T16:42:25"
+                      startTime: '2023-10-04T16:29:19'
+                      endTime: '2023-10-04T16:42:25'
                       details:
                         IntouchAPITask-Payload:
-                          hostname: "<https://crm-nightly-new.cc.capillarytech.com>"
+                          hostname: <https://crm-nightly-new.cc.capillarytech.com>
                           path: /v2/customers/lookup/status
                           method: PUT
                           pathParams: {}
@@ -102,7 +102,7 @@ paths:
                           status: 200
                           headers:
                             Date:
-                            - "Wed, 04 Oct 2023 11:12:25 GMT"
+                            - Wed, 04 Oct 2023 11:12:25 GMT
                             Content-Type:
                             - application/json; charset=UTF-8
                             Content-Length:
@@ -110,11 +110,11 @@ paths:
                             Connection:
                             - keep-alive
                             X-Application-Context:
-                            - "application:1900"
+                            - application:1900
                             Host:
                             - intouch-api-64f99fb8b7-lkzjb
                             uri_path:
-                            - "/v2/customers/{id}/status"
+                            - /v2/customers/{id}/status
                             org_id:
                             - '51251'
                             status_code:
@@ -143,11 +143,11 @@ paths:
                       userName: tom.sawyer@capillarytech.com
                       requestType: points-redemption
                       state: failed
-                      startTime: "2023-10-04T16:49:14"
-                      endTime: "2023-10-04T16:49:58"
+                      startTime: '2023-10-04T16:49:14'
+                      endTime: '2023-10-04T16:49:58'
                       details:
                         IntouchAPITask-Payload:
-                          hostname: "<https://crm-nightly-new.cc.capillarytech.com>"
+                          hostname: <https://crm-nightly-new.cc.capillarytech.com>
                           path: /v1.1/points/redeem
                           method: POST
                           pathParams: {}
@@ -160,7 +160,7 @@ paths:
                                 points_redeemed: '100'
                                 customer:
                                   mobile: '9988221100'
-                                redemption_time: "2020-04-15 23:01:46"
+                                redemption_time: '2020-04-15 23:01:46'
                                 transaction_number: numbr892723330323421971280
                                 notes: Redemption by SMS
                                 external_reference_number: ACR-583523332039150121
@@ -178,7 +178,7 @@ paths:
                           status: 200
                           headers:
                             Date:
-                            - "Wed, 04 Oct 2023 11:19:58 GMT"
+                            - Wed, 04 Oct 2023 11:19:58 GMT
                             Content-Type:
                             - application/json;charset=UTF-8
                             Content-Length:
@@ -186,7 +186,7 @@ paths:
                             Connection:
                             - keep-alive
                             X-Application-Context:
-                            - "application:1900"
+                            - application:1900
                             Host:
                             - intouch-api-64f99fb8b7-lkzjb
                             uri_path:
@@ -231,175 +231,205 @@ paths:
                                     message: Reference number already exists
                         ValidateCheckerAccess_Output: true
                 Issue goodwill:
-                  value: "{\n    \"data\": {\n        \"requestId\": \"ffcf19fb-a3fd-11ee-9fa7-4650f67465b8\"\
-                    ,\n        \"userId\": 232134,\n        \"userName\": \"tonob50495@tipent.com\"\
-                    ,\n        \"requestType\": \"goodwill-points\",\n        \"state\"\
-                    : \"approved\",\n        \"startTime\": \"2023-12-26T20:19:40\"\
-                    ,\n        \"endTime\": \"2023-12-26T20:20:00\",\n        \"details\"\
-                    : {\n            \"IntouchAPITask-Payload\": {\n             \
-                    \   \"hostname\": \"http://internal-intouch-api.default:1900\"\
-                    ,\n                \"path\": \"/internal/goodwill/\",\n      \
-                    \          \"method\": \"POST\",\n                \"pathParams\"\
-                    : {},\n                \"queryParams\": {},\n                \"\
-                    body\": {\n                    \"referenceId\": \"ref_id_1299314173\"\
-                    ,\n                    \"reason\": \"reason\",\n             \
-                    \       \"baseType\": \"POINTS\",\n                    \"programId\"\
-                    : 2739,\n                    \"awardingTillId\": 50682616,\n \
-                    \                   \"earningEntityType\": \"CUSTOMER\",\n   \
-                    \                 \"earningEntityId\": 382332518,\n          \
-                    \          \"points\": 20,\n                    \"source\": \"\
-                    API\"\n                },\n                \"headers\": {\n  \
-                    \                  \"Authorization\": \"Basic aW5kLjE6MjAyY2I5NjJhYzU5MDc1Yjk2NGIwNzE1MmQyMzRiNzA=\"\
-                    ,\n                    \"content-type\": \"application/json\"\
-                    ,\n                    \"X-CAP-API-AUTH-ORG-ID\": \"51250\"\n\
-                    \                }\n            },\n            \"AdminTask-Payload\"\
-                    : {\n                \"actionDecision\": \"approved\",\n     \
-                    \           \"actionMessage\": \"approving the goodwill points\
-                    \ request\"\n            },\n            \"ValidateMakerAccess_Output\"\
-                    : true,\n            \"AdminTask_Output\": \"approved\",\n   \
-                    \         \"IntouchAPITask_Output\": {\n                \"status\"\
-                    : 201,\n                \"headers\": {\n                    \"\
-                    Date\": [\n                        \"Tue, 26 Dec 2023 14:49:59\
-                    \ GMT\"\n                    ],\n                    \"X-Application-Context\"\
-                    : [\n                        \"application:1900\"\n          \
-                    \          ],\n                    \"Content-Type\": [\n     \
-                    \                   \"application/json; charset=UTF-8\"\n    \
-                    \                ],\n                    \"Host\": [\n       \
-                    \                 \"internal-intouch-api-a-6667977874-jlzm4\"\n\
-                    \                    ],\n                    \"uri_path\": [\n\
-                    \                        \"/internal/goodwill\"\n            \
-                    \        ],\n                    \"org_id\": [\n             \
-                    \           \"51250\"\n                    ],\n              \
-                    \      \"status_code\": [\n                        \"\"\n    \
-                    \                ],\n                    \"success\": [\n    \
-                    \                    \"0\"\n                    ],\n         \
-                    \           \"fail\": [\n                        \"0\"\n     \
-                    \               ],\n                    \"X-CAP-REQUEST-ID\":\
-                    \ [\n                        \"13451b8b-a22c-4938-aeda-f62318854762\"\
-                    \n                    ],\n                    \"till\": [\n  \
-                    \                      \"ind.1\"\n                    ],\n   \
-                    \                 \"X-Cap-RequestID\": [\n                   \
-                    \     \"13451b8b-a22c-4938-aeda-f62318854762\"\n             \
-                    \       ],\n                    \"Content-Length\": [\n      \
-                    \                  \"30\"\n                    ],\n          \
-                    \          \"Connection\": [\n                        \"close\"\
-                    \n                    ],\n                    \"Server\": [\n\
-                    \                        \"Jetty(9.2.14.v20151106)\"\n       \
-                    \             ]\n                },\n                \"body\"\
-                    : {\n                    \"createdId\": 38,\n                \
-                    \    \"warnings\": []\n                }\n            },\n   \
-                    \         \"ValidatePayload_Output\": true,\n            \"ValidateCheckerAccess_Output\"\
-                    : true\n        }\n    }\n}"
+                  value:
+                    data:
+                      requestId: ffcf19fb-a3fd-11ee-9fa7-4650f67465b8
+                      userId: 232134
+                      userName: tonob50495@tipent.com
+                      requestType: goodwill-points
+                      state: approved
+                      startTime: '2023-12-26T20:19:40'
+                      endTime: '2023-12-26T20:20:00'
+                      details:
+                        IntouchAPITask-Payload:
+                          hostname: http://internal-intouch-api.default:1900
+                          path: /internal/goodwill/
+                          method: POST
+                          pathParams: {}
+                          queryParams: {}
+                          body:
+                            referenceId: ref_id_1299314173
+                            reason: reason
+                            baseType: POINTS
+                            programId: 2739
+                            awardingTillId: 50682616
+                            earningEntityType: CUSTOMER
+                            earningEntityId: 382332518
+                            points: 20
+                            source: API
+                          headers:
+                            Authorization: Basic aW5kLjE6MjAyY2I5NjJhYzU5MDc1Yjk2NGIwNzE1MmQyMzRiNzA=
+                            content-type: application/json
+                            X-CAP-API-AUTH-ORG-ID: '51250'
+                        AdminTask-Payload:
+                          actionDecision: approved
+                          actionMessage: approving the goodwill points request
+                        ValidateMakerAccess_Output: true
+                        AdminTask_Output: approved
+                        IntouchAPITask_Output:
+                          status: 201
+                          headers:
+                            Date:
+                            - Tue, 26 Dec 2023 14:49:59 GMT
+                            X-Application-Context:
+                            - application:1900
+                            Content-Type:
+                            - application/json; charset=UTF-8
+                            Host:
+                            - internal-intouch-api-a-6667977874-jlzm4
+                            uri_path:
+                            - /internal/goodwill
+                            org_id:
+                            - '51250'
+                            status_code:
+                            - ''
+                            success:
+                            - '0'
+                            fail:
+                            - '0'
+                            X-CAP-REQUEST-ID:
+                            - 13451b8b-a22c-4938-aeda-f62318854762
+                            till:
+                            - ind.1
+                            X-Cap-RequestID:
+                            - 13451b8b-a22c-4938-aeda-f62318854762
+                            Content-Length:
+                            - '30'
+                            Connection:
+                            - close
+                            Server:
+                            - Jetty(9.2.14.v20151106)
+                          body:
+                            createdId: 38
+                            warnings: []
+                        ValidatePayload_Output: true
+                        ValidateCheckerAccess_Output: true
                 Enrol badge:
-                  value: "{\n    \"data\": {\n        \"requestId\": \"23e06c3e-a5c3-11ee-9a63-9ab214749657\"\
-                    ,\n        \"userId\": 232134,\n        \"userName\": \"tonob50495@tipent.com\"\
-                    ,\n        \"requestType\": \"issue-badge\",\n        \"state\"\
-                    : \"approved\",\n        \"startTime\": \"2023-12-29T02:23:23\"\
-                    ,\n        \"endTime\": \"2023-12-29T02:23:39\",\n        \"details\"\
-                    : {\n            \"IntouchAPITask-Payload\": {\n             \
-                    \   \"hostname\": \"https://crm-nightly-new.cc.capillarytech.com\"\
-                    ,\n                \"path\": \"/api_gateway/v1/badges/badgeMeta/customer/issueBulk\"\
-                    ,\n                \"method\": \"POST\",\n                \"pathParams\"\
-                    : {},\n                \"body\": {\n                    \"triggeredBy\"\
-                    : {\n                        \"ownerType\": \"Goodwill_Module\"\
-                    ,\n                        \"referenceId\": \"134\"\n        \
-                    \            },\n                    \"customers\": [\n      \
-                    \                  113460811\n                    ],\n       \
-                    \             \"requestId\": \"e7requestd62c5ec5d115a2859228cefd9ee8cgh\"\
-                    ,\n                    \"badgeMetaId\": \"658de01c823d1b70aabcfaae\"\
-                    \n                },\n                \"headers\": {\n       \
-                    \             \"Authorization\": \"Basic YWIxMjQ6MjVkNTVhZDI4M2FhNDAwYWY0NjRjNzZkNzEzYzA3YWQ=\"\
-                    ,\n                    \"content-type\": \"application/json\"\n\
-                    \                }\n            },\n            \"AdminTask-Payload\"\
-                    : {\n                \"actionDecision\": \"approved\",\n     \
-                    \           \"actionMessage\": \"approving the issue badge request\"\
-                    \n            },\n            \"ValidateMakerAccess_Output\":\
-                    \ true,\n            \"AdminTask_Output\": \"approved\",\n   \
-                    \         \"ValidatePayload_Output\": true,\n            \"IntouchAPITask_Output\"\
-                    : {\n                \"status\": 200,\n                \"headers\"\
-                    : {\n                    \"Date\": [\n                       \
-                    \ \"Thu, 28 Dec 2023 20:53:38 GMT\"\n                    ],\n\
-                    \                    \"Content-Type\": [\n                   \
-                    \     \"application/json\"\n                    ],\n         \
-                    \           \"Transfer-Encoding\": [\n                       \
-                    \ \"chunked\"\n                    ],\n                    \"\
-                    Connection\": [\n                        \"keep-alive\"\n    \
-                    \                ],\n                    \"X-CAP-REQUEST-ID\"\
-                    : [\n                        \"bf8189d95bdcb0696baee686f953ae75\"\
-                    \n                    ],\n                    \"X-Frame-Options\"\
-                    : [\n                        \"SAMEORIGIN\",\n               \
-                    \         \"SAMEORIGIN\"\n                    ]\n            \
-                    \    },\n                \"body\": {\n                    \"data\"\
-                    : {\n                        \"badgeMetaId\": \"658de01c823d1b70aabcfaae\"\
-                    ,\n                        \"triggeredBy\": {\n              \
-                    \              \"ownerType\": \"Goodwill_Module\",\n         \
-                    \                   \"referenceId\": \"134\"\n               \
-                    \         },\n                        \"expiresOn\": 1.703883200896E9,\n\
-                    \                        \"issuedBadges\": [\n               \
-                    \             {\n                                \"customerId\"\
-                    : 113460811,\n                                \"issuedId\": \"\
-                    658de052823d1b70aabcfaaf\"\n                            }\n  \
-                    \                      ],\n                        \"requestId\"\
-                    : \"e7requestd62c5ec5d115a2859228cefd9ee8cgh\"\n             \
-                    \       },\n                    \"errors\": [],\n            \
-                    \        \"warnings\": []\n                }\n            },\n\
-                    \            \"ValidateCheckerAccess_Output\": true\n        }\n\
-                    \    }\n}"
+                  value:
+                    data:
+                      requestId: 23e06c3e-a5c3-11ee-9a63-9ab214749657
+                      userId: 232134
+                      userName: tonob50495@tipent.com
+                      requestType: issue-badge
+                      state: approved
+                      startTime: '2023-12-29T02:23:23'
+                      endTime: '2023-12-29T02:23:39'
+                      details:
+                        IntouchAPITask-Payload:
+                          hostname: https://crm-nightly-new.cc.capillarytech.com
+                          path: /api_gateway/v1/badges/badgeMeta/customer/issueBulk
+                          method: POST
+                          pathParams: {}
+                          body:
+                            triggeredBy:
+                              ownerType: Goodwill_Module
+                              referenceId: '134'
+                            customers:
+                            - 113460811
+                            requestId: e7requestd62c5ec5d115a2859228cefd9ee8cgh
+                            badgeMetaId: 658de01c823d1b70aabcfaae
+                          headers:
+                            Authorization: Basic YWIxMjQ6MjVkNTVhZDI4M2FhNDAwYWY0NjRjNzZkNzEzYzA3YWQ=
+                            content-type: application/json
+                        AdminTask-Payload:
+                          actionDecision: approved
+                          actionMessage: approving the issue badge request
+                        ValidateMakerAccess_Output: true
+                        AdminTask_Output: approved
+                        ValidatePayload_Output: true
+                        IntouchAPITask_Output:
+                          status: 200
+                          headers:
+                            Date:
+                            - Thu, 28 Dec 2023 20:53:38 GMT
+                            Content-Type:
+                            - application/json
+                            Transfer-Encoding:
+                            - chunked
+                            Connection:
+                            - keep-alive
+                            X-CAP-REQUEST-ID:
+                            - bf8189d95bdcb0696baee686f953ae75
+                            X-Frame-Options:
+                            - SAMEORIGIN
+                            - SAMEORIGIN
+                          body:
+                            data:
+                              badgeMetaId: 658de01c823d1b70aabcfaae
+                              triggeredBy:
+                                ownerType: Goodwill_Module
+                                referenceId: '134'
+                              expiresOn: 1703883200.896
+                              issuedBadges:
+                              - customerId: 113460811
+                                issuedId: 658de052823d1b70aabcfaaf
+                              requestId: e7requestd62c5ec5d115a2859228cefd9ee8cgh
+                            errors: []
+                            warnings: []
+                        ValidateCheckerAccess_Output: true
                 Retro transaction:
-                  value: "{\n    \"data\": {\n        \"requestId\": \"23e06c3e-a5c3-11ee-9a63-9ab214749657\"\
-                    ,\n        \"userId\": 232134,\n        \"userName\": \"tonob50495@tipent.com\"\
-                    ,\n        \"requestType\": \"issue-badge\",\n        \"state\"\
-                    : \"approved\",\n        \"startTime\": \"2023-12-29T02:23:23\"\
-                    ,\n        \"endTime\": \"2023-12-29T02:23:39\",\n        \"details\"\
-                    : {\n            \"IntouchAPITask-Payload\": {\n             \
-                    \   \"hostname\": \"https://crm-nightly-new.cc.capillarytech.com\"\
-                    ,\n                \"path\": \"/api_gateway/v1/badges/badgeMeta/customer/issueBulk\"\
-                    ,\n                \"method\": \"POST\",\n                \"pathParams\"\
-                    : {},\n                \"body\": {\n                    \"triggeredBy\"\
-                    : {\n                        \"ownerType\": \"Goodwill_Module\"\
-                    ,\n                        \"referenceId\": \"134\"\n        \
-                    \            },\n                    \"customers\": [\n      \
-                    \                  113460811\n                    ],\n       \
-                    \             \"requestId\": \"e7requestd62c5ec5d115a2859228cefd9ee8cgh\"\
-                    ,\n                    \"badgeMetaId\": \"658de01c823d1b70aabcfaae\"\
-                    \n                },\n                \"headers\": {\n       \
-                    \             \"Authorization\": \"Basic YWIxMjQ6MjVkNTVhZDI4M2FhNDAwYWY0NjRjNzZkNzEzYzA3YWQ=\"\
-                    ,\n                    \"content-type\": \"application/json\"\n\
-                    \                }\n            },\n            \"AdminTask-Payload\"\
-                    : {\n                \"actionDecision\": \"approved\",\n     \
-                    \           \"actionMessage\": \"approving the issue badge request\"\
-                    \n            },\n            \"ValidateMakerAccess_Output\":\
-                    \ true,\n            \"AdminTask_Output\": \"approved\",\n   \
-                    \         \"ValidatePayload_Output\": true,\n            \"IntouchAPITask_Output\"\
-                    : {\n                \"status\": 200,\n                \"headers\"\
-                    : {\n                    \"Date\": [\n                       \
-                    \ \"Thu, 28 Dec 2023 20:53:38 GMT\"\n                    ],\n\
-                    \                    \"Content-Type\": [\n                   \
-                    \     \"application/json\"\n                    ],\n         \
-                    \           \"Transfer-Encoding\": [\n                       \
-                    \ \"chunked\"\n                    ],\n                    \"\
-                    Connection\": [\n                        \"keep-alive\"\n    \
-                    \                ],\n                    \"X-CAP-REQUEST-ID\"\
-                    : [\n                        \"bf8189d95bdcb0696baee686f953ae75\"\
-                    \n                    ],\n                    \"X-Frame-Options\"\
-                    : [\n                        \"SAMEORIGIN\",\n               \
-                    \         \"SAMEORIGIN\"\n                    ]\n            \
-                    \    },\n                \"body\": {\n                    \"data\"\
-                    : {\n                        \"badgeMetaId\": \"658de01c823d1b70aabcfaae\"\
-                    ,\n                        \"triggeredBy\": {\n              \
-                    \              \"ownerType\": \"Goodwill_Module\",\n         \
-                    \                   \"referenceId\": \"134\"\n               \
-                    \         },\n                        \"expiresOn\": 1.703883200896E9,\n\
-                    \                        \"issuedBadges\": [\n               \
-                    \             {\n                                \"customerId\"\
-                    : 113460811,\n                                \"issuedId\": \"\
-                    658de052823d1b70aabcfaaf\"\n                            }\n  \
-                    \                      ],\n                        \"requestId\"\
-                    : \"e7requestd62c5ec5d115a2859228cefd9ee8cgh\"\n             \
-                    \       },\n                    \"errors\": [],\n            \
-                    \        \"warnings\": []\n                }\n            },\n\
-                    \            \"ValidateCheckerAccess_Output\": true\n        }\n\
-                    \    }\n}"
+                  value:
+                    data:
+                      requestId: 23e06c3e-a5c3-11ee-9a63-9ab214749657
+                      userId: 232134
+                      userName: tonob50495@tipent.com
+                      requestType: issue-badge
+                      state: approved
+                      startTime: '2023-12-29T02:23:23'
+                      endTime: '2023-12-29T02:23:39'
+                      details:
+                        IntouchAPITask-Payload:
+                          hostname: https://crm-nightly-new.cc.capillarytech.com
+                          path: /api_gateway/v1/badges/badgeMeta/customer/issueBulk
+                          method: POST
+                          pathParams: {}
+                          body:
+                            triggeredBy:
+                              ownerType: Goodwill_Module
+                              referenceId: '134'
+                            customers:
+                            - 113460811
+                            requestId: e7requestd62c5ec5d115a2859228cefd9ee8cgh
+                            badgeMetaId: 658de01c823d1b70aabcfaae
+                          headers:
+                            Authorization: Basic YWIxMjQ6MjVkNTVhZDI4M2FhNDAwYWY0NjRjNzZkNzEzYzA3YWQ=
+                            content-type: application/json
+                        AdminTask-Payload:
+                          actionDecision: approved
+                          actionMessage: approving the issue badge request
+                        ValidateMakerAccess_Output: true
+                        AdminTask_Output: approved
+                        ValidatePayload_Output: true
+                        IntouchAPITask_Output:
+                          status: 200
+                          headers:
+                            Date:
+                            - Thu, 28 Dec 2023 20:53:38 GMT
+                            Content-Type:
+                            - application/json
+                            Transfer-Encoding:
+                            - chunked
+                            Connection:
+                            - keep-alive
+                            X-CAP-REQUEST-ID:
+                            - bf8189d95bdcb0696baee686f953ae75
+                            X-Frame-Options:
+                            - SAMEORIGIN
+                            - SAMEORIGIN
+                          body:
+                            data:
+                              badgeMetaId: 658de01c823d1b70aabcfaae
+                              triggeredBy:
+                                ownerType: Goodwill_Module
+                                referenceId: '134'
+                              expiresOn: 1703883200.896
+                              issuedBadges:
+                              - customerId: 113460811
+                                issuedId: 658de052823d1b70aabcfaaf
+                              requestId: e7requestd62c5ec5d115a2859228cefd9ee8cgh
+                            errors: []
+                            warnings: []
+                        ValidateCheckerAccess_Output: true
               schema:
                 oneOf:
                 - title: Customer identifier change
@@ -426,10 +456,10 @@ paths:
                           example: approved
                         startTime:
                           type: string
-                          example: "2023-10-04T16:29:19"
+                          example: '2023-10-04T16:29:19'
                         endTime:
                           type: string
-                          example: "2023-10-04T16:42:25"
+                          example: '2023-10-04T16:42:25'
                         details:
                           type: object
                           properties:
@@ -438,7 +468,7 @@ paths:
                               properties:
                                 hostname:
                                   type: string
-                                  example: "<https://crm-nightly-new.cc.capillarytech.com>"
+                                  example: <https://crm-nightly-new.cc.capillarytech.com>
                                 path:
                                   type: string
                                   example: /v2/customers/lookup/status
@@ -518,7 +548,7 @@ paths:
                                       type: array
                                       items:
                                         type: string
-                                        example: "Wed, 04 Oct 2023 11:12:25 GMT"
+                                        example: Wed, 04 Oct 2023 11:12:25 GMT
                                     Content-Type:
                                       type: array
                                       items:
@@ -538,7 +568,7 @@ paths:
                                       type: array
                                       items:
                                         type: string
-                                        example: "application:1900"
+                                        example: application:1900
                                     Host:
                                       type: array
                                       items:
@@ -548,7 +578,7 @@ paths:
                                       type: array
                                       items:
                                         type: string
-                                        example: "/v2/customers/{id}/status"
+                                        example: /v2/customers/{id}/status
                                     org_id:
                                       type: array
                                       items:
@@ -622,10 +652,10 @@ paths:
                           example: failed
                         startTime:
                           type: string
-                          example: "2023-10-04T16:49:14"
+                          example: '2023-10-04T16:49:14'
                         endTime:
                           type: string
-                          example: "2023-10-04T16:49:58"
+                          example: '2023-10-04T16:49:58'
                         details:
                           type: object
                           properties:
@@ -634,7 +664,7 @@ paths:
                               properties:
                                 hostname:
                                   type: string
-                                  example: "<https://crm-nightly-new.cc.capillarytech.com>"
+                                  example: <https://crm-nightly-new.cc.capillarytech.com>
                                 path:
                                   type: string
                                   example: /v1.1/points/redeem
@@ -673,7 +703,7 @@ paths:
                                                   example: '9988221100'
                                             redemption_time:
                                               type: string
-                                              example: "2020-04-15 23:01:46"
+                                              example: '2020-04-15 23:01:46'
                                             transaction_number:
                                               type: string
                                               example: numbr892723330323421971280
@@ -729,7 +759,7 @@ paths:
                                       type: array
                                       items:
                                         type: string
-                                        example: "Wed, 04 Oct 2023 11:19:58 GMT"
+                                        example: Wed, 04 Oct 2023 11:19:58 GMT
                                     Content-Type:
                                       type: array
                                       items:
@@ -749,7 +779,7 @@ paths:
                                       type: array
                                       items:
                                         type: string
-                                        example: "application:1900"
+                                        example: application:1900
                                     Host:
                                       type: array
                                       items:
@@ -818,8 +848,7 @@ paths:
                                               default: 0
                                             message:
                                               type: string
-                                              example: All requests have failed due
-                                                to errors
+                                              example: All requests have failed due to errors
                                         responses:
                                           type: object
                                           properties:
@@ -865,8 +894,7 @@ paths:
                                                       default: 0
                                                     message:
                                                       type: string
-                                                      example: Reference number already
-                                                        exists
+                                                      example: Reference number already exists
                             ValidateCheckerAccess_Output:
                               type: boolean
                               example: true
@@ -895,10 +923,10 @@ paths:
                           example: approved
                         startTime:
                           type: string
-                          example: "2023-12-26T20:19:40"
+                          example: '2023-12-26T20:19:40'
                         endTime:
                           type: string
-                          example: "2023-12-26T20:20:00"
+                          example: '2023-12-26T20:20:00'
                         details:
                           type: object
                           properties:
@@ -907,7 +935,7 @@ paths:
                               properties:
                                 hostname:
                                   type: string
-                                  example: "http://internal-intouch-api.default:1900"
+                                  example: http://internal-intouch-api.default:1900
                                 path:
                                   type: string
                                   example: /internal/goodwill/
@@ -996,12 +1024,12 @@ paths:
                                       type: array
                                       items:
                                         type: string
-                                        example: "Tue, 26 Dec 2023 14:49:59 GMT"
+                                        example: Tue, 26 Dec 2023 14:49:59 GMT
                                     X-Application-Context:
                                       type: array
                                       items:
                                         type: string
-                                        example: "application:1900"
+                                        example: application:1900
                                     Content-Type:
                                       type: array
                                       items:
@@ -1108,10 +1136,10 @@ paths:
                           example: approved
                         startTime:
                           type: string
-                          example: "2023-12-29T02:23:23"
+                          example: '2023-12-29T02:23:23'
                         endTime:
                           type: string
-                          example: "2023-12-29T02:23:39"
+                          example: '2023-12-29T02:23:39'
                         details:
                           type: object
                           properties:
@@ -1120,7 +1148,7 @@ paths:
                               properties:
                                 hostname:
                                   type: string
-                                  example: "https://crm-nightly-new.cc.capillarytech.com"
+                                  example: https://crm-nightly-new.cc.capillarytech.com
                                 path:
                                   type: string
                                   example: /api_gateway/v1/badges/badgeMeta/customer/issueBulk
@@ -1197,7 +1225,7 @@ paths:
                                       type: array
                                       items:
                                         type: string
-                                        example: "Thu, 28 Dec 2023 20:53:38 GMT"
+                                        example: Thu, 28 Dec 2023 20:53:38 GMT
                                     Content-Type:
                                       type: array
                                       items:
@@ -1292,10 +1320,10 @@ paths:
                           example: approved
                         startTime:
                           type: string
-                          example: "2023-12-29T02:23:23"
+                          example: '2023-12-29T02:23:23'
                         endTime:
                           type: string
-                          example: "2023-12-29T02:23:39"
+                          example: '2023-12-29T02:23:39'
                         details:
                           type: object
                           properties:
@@ -1304,7 +1332,7 @@ paths:
                               properties:
                                 hostname:
                                   type: string
-                                  example: "https://crm-nightly-new.cc.capillarytech.com"
+                                  example: https://crm-nightly-new.cc.capillarytech.com
                                 path:
                                   type: string
                                   example: /api_gateway/v1/badges/badgeMeta/customer/issueBulk
@@ -1381,7 +1409,7 @@ paths:
                                       type: array
                                       items:
                                         type: string
-                                        example: "Thu, 28 Dec 2023 20:53:38 GMT"
+                                        example: Thu, 28 Dec 2023 20:53:38 GMT
                                     Content-Type:
                                       type: array
                                       items:
@@ -1455,52 +1483,62 @@ paths:
             text/plain:
               examples:
                 Earn badge:
-                  value: "{\n    \"data\": {\n        \"requestId\": \"ef1bc378-a4d4-11ee-b2a9-462516199fc5\"\
-                    ,\n        \"userId\": 232134,\n        \"userName\": \"tonob50495@tipent.com\"\
-                    ,\n        \"requestType\": \"earn-badge\",\n        \"state\"\
-                    : \"approved\",\n        \"startTime\": \"2023-12-27T21:58:14\"\
-                    ,\n        \"endTime\": \"2023-12-27T21:58:21\",\n        \"details\"\
-                    : {\n            \"IntouchAPITask-Payload\": {\n             \
-                    \   \"hostname\": \"https://crm-nightly-new.cc.capillarytech.com\"\
-                    ,\n                \"path\": \"/api_gateway/v1/badges/customer/earn\"\
-                    ,\n                \"method\": \"POST\",\n                \"pathParams\"\
-                    : {},\n                \"body\": {\n                    \"triggeredBy\"\
-                    : {\n                        \"ownerType\": \"Goodwill_Module\"\
-                    ,\n                        \"referenceId\": \"123\"\n        \
-                    \            },\n                    \"customerId\": 382477526,\n\
-                    \                    \"requestId\": \"0f932928-9878-441c-a78e-c1d32235534q\"\
-                    ,\n                    \"badgeMetaId\": \"658c50761c4c2b12732c3ec6\"\
-                    \n                },\n                \"headers\": {\n       \
-                    \             \"Authorization\": \"Basic YWIxMjQ6MjVkNTVhZDI4M2FhNDAwYWY0NjRjNzZkNzEzYzA3YWQ=\"\
-                    ,\n                    \"content-type\": \"application/json\"\n\
-                    \                }\n            },\n            \"AdminTask-Payload\"\
-                    : {\n                \"actionDecision\": \"approved\",\n     \
-                    \           \"actionMessage\": \"approving the earn badge request\"\
-                    \n            },\n            \"ValidateMakerAccess_Output\":\
-                    \ true,\n            \"AdminTask_Output\": \"approved\",\n   \
-                    \         \"ValidatePayload_Output\": true,\n            \"IntouchAPITask_Output\"\
-                    : {\n                \"status\": 200,\n                \"headers\"\
-                    : {\n                    \"Date\": [\n                       \
-                    \ \"Wed, 27 Dec 2023 16:28:21 GMT\"\n                    ],\n\
-                    \                    \"Content-Type\": [\n                   \
-                    \     \"application/json\"\n                    ],\n         \
-                    \           \"Transfer-Encoding\": [\n                       \
-                    \ \"chunked\"\n                    ],\n                    \"\
-                    Connection\": [\n                        \"keep-alive\"\n    \
-                    \                ],\n                    \"X-CAP-REQUEST-ID\"\
-                    : [\n                        \"0afcf403bd41fa4a8502ac6d4e6f476d\"\
-                    \n                    ],\n                    \"X-Frame-Options\"\
-                    : [\n                        \"SAMEORIGIN\",\n               \
-                    \         \"SAMEORIGIN\"\n                    ]\n            \
-                    \    },\n                \"body\": {\n                    \"data\"\
-                    : {\n                        \"badgeMetaId\": \"658c50761c4c2b12732c3ec6\"\
-                    ,\n                        \"customerId\": 382477526,\n      \
-                    \                  \"earnedBadgeId\": \"658c50a51c4c2b12732c3ec7\"\
-                    ,\n                        \"expiresOn\": 1.704904101782875E9\n\
-                    \                    },\n                    \"errors\": [],\n\
-                    \                    \"warnings\": []\n                }\n   \
-                    \         },\n            \"ValidateCheckerAccess_Output\": true\n\
-                    \        }\n    }\n}"
+                  value:
+                    data:
+                      requestId: ef1bc378-a4d4-11ee-b2a9-462516199fc5
+                      userId: 232134
+                      userName: tonob50495@tipent.com
+                      requestType: earn-badge
+                      state: approved
+                      startTime: '2023-12-27T21:58:14'
+                      endTime: '2023-12-27T21:58:21'
+                      details:
+                        IntouchAPITask-Payload:
+                          hostname: https://crm-nightly-new.cc.capillarytech.com
+                          path: /api_gateway/v1/badges/customer/earn
+                          method: POST
+                          pathParams: {}
+                          body:
+                            triggeredBy:
+                              ownerType: Goodwill_Module
+                              referenceId: '123'
+                            customerId: 382477526
+                            requestId: 0f932928-9878-441c-a78e-c1d32235534q
+                            badgeMetaId: 658c50761c4c2b12732c3ec6
+                          headers:
+                            Authorization: Basic YWIxMjQ6MjVkNTVhZDI4M2FhNDAwYWY0NjRjNzZkNzEzYzA3YWQ=
+                            content-type: application/json
+                        AdminTask-Payload:
+                          actionDecision: approved
+                          actionMessage: approving the earn badge request
+                        ValidateMakerAccess_Output: true
+                        AdminTask_Output: approved
+                        ValidatePayload_Output: true
+                        IntouchAPITask_Output:
+                          status: 200
+                          headers:
+                            Date:
+                            - Wed, 27 Dec 2023 16:28:21 GMT
+                            Content-Type:
+                            - application/json
+                            Transfer-Encoding:
+                            - chunked
+                            Connection:
+                            - keep-alive
+                            X-CAP-REQUEST-ID:
+                            - 0afcf403bd41fa4a8502ac6d4e6f476d
+                            X-Frame-Options:
+                            - SAMEORIGIN
+                            - SAMEORIGIN
+                          body:
+                            data:
+                              badgeMetaId: 658c50761c4c2b12732c3ec6
+                              customerId: 382477526
+                              earnedBadgeId: 658c50a51c4c2b12732c3ec7
+                              expiresOn: 1704904101.782875
+                            errors: []
+                            warnings: []
+                        ValidateCheckerAccess_Output: true
               schema:
                 type: object
                 properties:
@@ -1525,10 +1563,10 @@ paths:
                         example: approved
                       startTime:
                         type: string
-                        example: "2023-12-27T21:58:14"
+                        example: '2023-12-27T21:58:14'
                       endTime:
                         type: string
-                        example: "2023-12-27T21:58:21"
+                        example: '2023-12-27T21:58:21'
                       details:
                         type: object
                         properties:
@@ -1537,7 +1575,7 @@ paths:
                             properties:
                               hostname:
                                 type: string
-                                example: "https://crm-nightly-new.cc.capillarytech.com"
+                                example: https://crm-nightly-new.cc.capillarytech.com
                               path:
                                 type: string
                                 example: /api_gateway/v1/badges/customer/earn
@@ -1612,7 +1650,7 @@ paths:
                                     type: array
                                     items:
                                       type: string
-                                      example: "Wed, 27 Dec 2023 16:28:21 GMT"
+                                      example: Wed, 27 Dec 2023 16:28:21 GMT
                                   Content-Type:
                                     type: array
                                     items:
@@ -1672,7 +1710,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}

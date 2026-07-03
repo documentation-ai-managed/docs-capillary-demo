@@ -3,7 +3,7 @@ info:
   title: Get Points Ledger Information in Connected Orgs
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -18,10 +18,9 @@ paths:
       parameters:
       - name: identifierName
         in: query
-        description: "Identifier type to identify the customer or group. For user\
-          \ groups, the following identifiers are applicable: groupId, externalId,\
-          \ and primaryUserId. For customers, the applicable identifiers include mobile,\
-          \ email, externalId, cuid, and id."
+        description: 'Identifier type to identify the customer or group. For user groups, the following
+          identifiers are applicable: groupId, externalId, and primaryUserId. For customers, the applicable
+          identifiers include mobile, email, externalId, cuid, and id.'
         required: true
         schema:
           type: string
@@ -39,14 +38,13 @@ paths:
           type: string
       - name: accountId
         in: query
-        description: For a source with multiple accounts, pass the specific accountId
-          in which the customer identifier is available.
+        description: For a source with multiple accounts, pass the specific accountId in which the customer
+          identifier is available.
         schema:
           type: string
       - name: tillId
         in: query
-        description: Get the customer’s ledger information of a specific TILL. Pass
-          the unique till ID.
+        description: Get the customer’s ledger information of a specific TILL. Pass the unique till ID.
         schema:
           type: integer
           format: int32
@@ -66,48 +64,46 @@ paths:
           default: 0
       - name: programId
         in: query
-        description: Retrieve the ledger details of a specific program. By default,
-          details of all programs will be retrieved.
+        description: Retrieve the ledger details of a specific program. By default, details of all programs
+          will be retrieved.
         schema:
           type: integer
           format: int32
       - name: startDate
         in: query
-        description: "Get ledger information from on or after a specific date. Pass\
-          \ the start date in YYYY-MM-DDThh:mm:ss format. Default value is 90 days"
+        description: Get ledger information from on or after a specific date. Pass the start date in YYYY-MM-DDThh:mm:ss
+          format. Default value is 90 days
         schema:
           type: string
       - name: endDate
         in: query
-        description: "Get ledger information until a specific date. Pass the end date\
-          \ in YYYY-MM-DDThh:mm:ss format. Default value is 90 days"
+        description: Get ledger information until a specific date. Pass the end date in YYYY-MM-DDThh:mm:ss
+          format. Default value is 90 days
         schema:
           type: string
       - name: includeTillConceptEvents
         in: query
-        description: Pass true to fetch deduction entries that were triggered at the
-          tills mapped to the Concept of the Program ID even if the deductions are
-          from a different program. Default value is false. When true, pass the programId
-          also, else it will be qualified as invalid input combination.
+        description: Pass true to fetch deduction entries that were triggered at the tills mapped to the
+          Concept of the Program ID even if the deductions are from a different program. Default value
+          is false. When true, pass the programId also, else it will be qualified as invalid input combination.
         schema:
           type: boolean
       - name: ledgerEntryType
         in: query
-        description: The type of ledger entries to fetch. By default, it fetches all
-          the ledger entry types.
+        description: The type of ledger entries to fetch. By default, it fetches all the ledger entry
+          types.
         schema:
           type: string
       - name: pointCategoryType
         in: query
-        description: The point category type for which you want to fetch ledger details.
-          By default, it fetches all the points category details.
+        description: The point category type for which you want to fetch ledger details. By default, it
+          fetches all the points category details.
         schema:
           type: string
       - name: type
         in: query
-        description: Setting this field returns entries for type of user, whether
-          individual customer or a group. Only two values are allowed here - CUTSOMER,
-          USERGROUP2
+        description: Setting this field returns entries for type of user, whether individual customer
+          or a group. Only two values are allowed here - CUTSOMER, USERGROUP2
         schema:
           type: string
       - name: isPrimaryUser
@@ -117,27 +113,25 @@ paths:
           type: boolean
       - name: excludeEvents
         in: query
-        description: Exclude certain events if you dont want to retrieve entries from
-          that event.
+        description: Exclude certain events if you dont want to retrieve entries from that event.
         schema:
           type: string
       - name: eventFilter
         in: query
-        description: Retrieves the value of that particular event, which is passed
-          in this filed. Eg. TransactionAdd, CustomerRegistration etc.
+        description: Retrieves the value of that particular event, which is passed in this filed. Eg.
+          TransactionAdd, CustomerRegistration etc.
         schema:
           type: string
       - name: roles
         in: query
-        description: These are the roles defined by the brands for members in a user
-          group. For example, PRIMARY, SECONDARY, and so on.
+        description: These are the roles defined by the brands for members in a user group. For example,
+          PRIMARY, SECONDARY, and so on.
         schema:
           type: string
       - name: includeLastOneYearData
         in: query
-        description: If set to true, the API response will include data from the last
-          year instead of the last 90 days when only startDate or endDate is passed
-          in the API query parameter.
+        description: If set to true, the API response will include data from the last year instead of
+          the last 90 days when only startDate or endDate is passed in the API query parameter.
         schema:
           type: boolean
       - name: order
@@ -147,22 +141,21 @@ paths:
           type: string
       - name: isFilterBasedOnDate
         in: query
-        description: Indicates whether the date filter should be applied when fetching
-          data from the database.
+        description: Indicates whether the date filter should be applied when fetching data from the database.
         schema:
           type: boolean
       - name: includeAlternateCurrencies
         in: query
-        description: Pass includeAlternateCurrencies=true to retrieve all alternate
-          currencies available with the customer.
+        description: Pass includeAlternateCurrencies=true to retrieve all alternate currencies available
+          with the customer.
         schema:
           type: boolean
       - name: alternateCurrencyNames
         in: query
-        description: Filter alternate currencies for the customer based on the name.
-          You can also pass a list of comma-separated alternate currency names. Set
-          the parameter includeAlternateCurrencies to false when you use this. If
-          the value is true, includeAlternateCurrencies lists all the available currencies.
+        description: Filter alternate currencies for the customer based on the name. You can also pass
+          a list of comma-separated alternate currency names. Set the parameter includeAlternateCurrencies
+          to false when you use this. If the value is true, includeAlternateCurrencies lists all the available
+          currencies.
         schema:
           type: string
       - name: DATA-SCOPE-ORG
@@ -183,90 +176,141 @@ paths:
             application/json:
               examples:
                 CUSTOMER:
-                  value: "{\n    \"customerDetails\": {\n        \"firstName\": \"\
-                    Sushant\",\n        \"lastName\": \"Raj\",\n        \"userId\"\
-                    : 347297848,\n        \"entityType\": \"CUSTOMER\"\n    },\n \
-                    \   \"ledgerDetails\": {\n        \"pageNumber\": 0,\n       \
-                    \ \"pageSize\": 10,\n        \"totalEntries\": 2,\n        \"\
-                    pageCount\": 1,\n        \"ledgerClosingBalance\": []\n    },\n\
-                    \    \"ledgerEntries\": [\n        {\n            \"eventLogId\"\
-                    : 13499091,\n            \"eventName\": \"TransactionAdd\",\n\
-                    \            \"customerId\": 347297848,\n            \"ledgerCreatedDate\"\
-                    : \"Fri Aug 30 11:17:57 GMT 2024\",\n            \"customerDetails\"\
-                    : {\n                \"userId\": 0\n            },\n         \
-                    \   \"entryDetails\": [\n                {\n                 \
-                    \   \"ledgerEntryType\": \"CREDIT\",\n                    \"points\"\
-                    : \"100.000\",\n                    \"pointsCategory\": \"Main\"\
-                    ,\n                    \"programName\": \"ChildOrg1DefaultProgram\"\
-                    ,\n                    \"programId\": 1148\n                }\n\
-                    \            ],\n            \"netPointsOnEvent\": \"100.000\"\
-                    ,\n            \"transactionDetails\": {\n                \"transactionId\"\
-                    : 36363905,\n                \"transactionNumber\": \"1725016677\"\
-                    ,\n                \"date\": \"2024-08-30 11:17:57.0\",\n    \
-                    \            \"amount\": 5000.0,\n                \"grossBillAmount\"\
-                    : 5000.0,\n                \"source\": \"instore\"\n         \
-                    \   },\n            \"store\": \"Store1\",\n            \"storeCode\"\
-                    : \"store1\",\n            \"tillCode\": \"childorgtill1\",\n\
-                    \            \"eventDetails\": {},\n            \"sourceProgramId\"\
-                    : 1148,\n            \"sourceProgramName\": \"ChildOrg1DefaultProgram\"\
-                    ,\n            \"orgId\": 50406\n        },\n        {\n     \
-                    \       \"eventLogId\": 13499017,\n            \"eventName\":\
-                    \ \"CustomerRegistration\",\n            \"customerId\": 347297848,\n\
-                    \            \"ledgerCreatedDate\": \"Fri Aug 30 11:09:02 GMT\
-                    \ 2024\",\n            \"customerDetails\": null,\n          \
-                    \  \"entryDetails\": [\n                {\n                  \
-                    \  \"ledgerEntryType\": \"OPENING_BALANCE\",\n               \
-                    \     \"points\": \"0.000\",\n                    \"pointsCategory\"\
-                    : \"DelayedAccrualPointCategory\",\n                    \"programName\"\
-                    : \"ChildOrg1DefaultProgram\",\n                    \"programId\"\
-                    : 1148\n                },\n                {\n              \
-                    \      \"ledgerEntryType\": \"OPENING_BALANCE\",\n           \
-                    \         \"points\": \"0.000\",\n                    \"pointsCategory\"\
-                    : \"ExternalTriggerBasedPointCategory\",\n                   \
-                    \ \"programName\": \"ChildOrg1DefaultProgram\",\n            \
-                    \        \"programId\": 1148\n                },\n           \
-                    \     {\n                    \"ledgerEntryType\": \"OPENING_BALANCE\"\
-                    ,\n                    \"points\": \"0.000\",\n              \
-                    \      \"pointsCategory\": \"Main\",\n                    \"programName\"\
-                    : \"ChildOrg1DefaultProgram\",\n                    \"programId\"\
-                    : 1148\n                }\n            ],\n            \"netPointsOnEvent\"\
-                    : \"0.000\",\n            \"transactionDetails\": {},\n      \
-                    \      \"store\": \"Store1\",\n            \"storeCode\": \"store1\"\
-                    ,\n            \"tillCode\": \"childorgtill1\",\n            \"\
-                    eventDetails\": {},\n            \"sourceProgramId\": 1148,\n\
-                    \            \"sourceProgramName\": \"ChildOrg1DefaultProgram\"\
-                    ,\n            \"orgId\": 50406\n        }\n    ],\n    \"warnings\"\
-                    : []\n}"
+                  value:
+                    customerDetails:
+                      firstName: Sushant
+                      lastName: Raj
+                      userId: 347297848
+                      entityType: CUSTOMER
+                    ledgerDetails:
+                      pageNumber: 0
+                      pageSize: 10
+                      totalEntries: 2
+                      pageCount: 1
+                      ledgerClosingBalance: []
+                    ledgerEntries:
+                    - eventLogId: 13499091
+                      eventName: TransactionAdd
+                      customerId: 347297848
+                      ledgerCreatedDate: Fri Aug 30 11:17:57 GMT 2024
+                      customerDetails:
+                        userId: 0
+                      entryDetails:
+                      - ledgerEntryType: CREDIT
+                        points: '100.000'
+                        pointsCategory: Main
+                        programName: ChildOrg1DefaultProgram
+                        programId: 1148
+                      netPointsOnEvent: '100.000'
+                      transactionDetails:
+                        transactionId: 36363905
+                        transactionNumber: '1725016677'
+                        date: '2024-08-30 11:17:57.0'
+                        amount: 5000.0
+                        grossBillAmount: 5000.0
+                        source: instore
+                      store: Store1
+                      storeCode: store1
+                      tillCode: childorgtill1
+                      eventDetails: {}
+                      sourceProgramId: 1148
+                      sourceProgramName: ChildOrg1DefaultProgram
+                      orgId: 50406
+                    - eventLogId: 13499017
+                      eventName: CustomerRegistration
+                      customerId: 347297848
+                      ledgerCreatedDate: Fri Aug 30 11:09:02 GMT 2024
+                      customerDetails: null
+                      entryDetails:
+                      - ledgerEntryType: OPENING_BALANCE
+                        points: '0.000'
+                        pointsCategory: DelayedAccrualPointCategory
+                        programName: ChildOrg1DefaultProgram
+                        programId: 1148
+                      - ledgerEntryType: OPENING_BALANCE
+                        points: '0.000'
+                        pointsCategory: ExternalTriggerBasedPointCategory
+                        programName: ChildOrg1DefaultProgram
+                        programId: 1148
+                      - ledgerEntryType: OPENING_BALANCE
+                        points: '0.000'
+                        pointsCategory: Main
+                        programName: ChildOrg1DefaultProgram
+                        programId: 1148
+                      netPointsOnEvent: '0.000'
+                      transactionDetails: {}
+                      store: Store1
+                      storeCode: store1
+                      tillCode: childorgtill1
+                      eventDetails: {}
+                      sourceProgramId: 1148
+                      sourceProgramName: ChildOrg1DefaultProgram
+                      orgId: 50406
+                    warnings: []
                 GROUP:
-                  value: "{\n  \"ledgerDetails\": {\n    \"pageNumber\": 0,\n    \"\
-                    pageSize\": 10,\n    \"totalEntries\": 2,\n    \"pageCount\":\
-                    \ 1\n  },\n  \"ledgerEntries\": [\n    {\n      \"eventLogId\"\
-                    : 508308379,\n      \"eventName\": \"AllocateGoodwillPoints\"\
-                    ,\n      \"customerId\": -2860,\n      \"ledgerCreatedDate\":\
-                    \ \"2023-06-21 13:34:16.0\",\n      \"customerDetails\": null,\n\
-                    \      \"entryDetails\": [\n        {\n          \"ledgerEntryType\"\
-                    : \"CREDIT\",\n          \"points\": \"350.000\",\n          \"\
-                    pointsCategory\": \"Main\",\n          \"programName\": \"Default\
-                    \ Program\",\n          \"programId\": 469\n        }\n      ],\n\
-                    \      \"netPointsOnEvent\": \"350.000\",\n      \"transactionDetails\"\
-                    : {},\n      \"store\": \"test\",\n      \"storeCode\": \"teststore\"\
-                    ,\n      \"tillCode\": \"neestoretillssnee23\",\n      \"eventDetails\"\
-                    : {\n        \"reason\": \"POINTS_ISSUE\"\n      }\n    },\n \
-                    \   {\n      \"eventLogId\": 508308319,\n      \"eventName\":\
-                    \ \"AllocateGoodwillPoints\",\n      \"customerId\": -2860,\n\
-                    \      \"ledgerCreatedDate\": \"2023-06-21 13:32:44.0\",\n   \
-                    \   \"customerDetails\": null,\n      \"entryDetails\": [\n  \
-                    \      {\n          \"ledgerEntryType\": \"CREDIT\",\n       \
-                    \   \"points\": \"100.000\",\n          \"pointsCategory\": \"\
-                    Main\",\n          \"programName\": \"Default Program\",\n   \
-                    \       \"programId\": 469\n        }\n      ],\n      \"netPointsOnEvent\"\
-                    : \"100.000\",\n      \"transactionDetails\": {},\n      \"store\"\
-                    : \"test\",\n      \"storeCode\": \"teststore\",\n      \"tillCode\"\
-                    : \"neestoretillssnee23\",\n      \"eventDetails\": {\n      \
-                    \  \"reason\": \"POINTS_ISSUE\"\n        \"sourceProgramId\":\
-                    \ 1148,\n            \"sourceProgramName\": \"ChildOrg1DefaultProgram\"\
-                    ,\n            \"orgId\": 50406\n      }\n    }\n  ],\n  \"warnings\"\
-                    : []\n}"
+                  value: |-
+                    {
+                      "ledgerDetails": {
+                        "pageNumber": 0,
+                        "pageSize": 10,
+                        "totalEntries": 2,
+                        "pageCount": 1
+                      },
+                      "ledgerEntries": [
+                        {
+                          "eventLogId": 508308379,
+                          "eventName": "AllocateGoodwillPoints",
+                          "customerId": -2860,
+                          "ledgerCreatedDate": "2023-06-21 13:34:16.0",
+                          "customerDetails": null,
+                          "entryDetails": [
+                            {
+                              "ledgerEntryType": "CREDIT",
+                              "points": "350.000",
+                              "pointsCategory": "Main",
+                              "programName": "Default Program",
+                              "programId": 469
+                            }
+                          ],
+                          "netPointsOnEvent": "350.000",
+                          "transactionDetails": {},
+                          "store": "test",
+                          "storeCode": "teststore",
+                          "tillCode": "neestoretillssnee23",
+                          "eventDetails": {
+                            "reason": "POINTS_ISSUE"
+                          }
+                        },
+                        {
+                          "eventLogId": 508308319,
+                          "eventName": "AllocateGoodwillPoints",
+                          "customerId": -2860,
+                          "ledgerCreatedDate": "2023-06-21 13:32:44.0",
+                          "customerDetails": null,
+                          "entryDetails": [
+                            {
+                              "ledgerEntryType": "CREDIT",
+                              "points": "100.000",
+                              "pointsCategory": "Main",
+                              "programName": "Default Program",
+                              "programId": 469
+                            }
+                          ],
+                          "netPointsOnEvent": "100.000",
+                          "transactionDetails": {},
+                          "store": "test",
+                          "storeCode": "teststore",
+                          "tillCode": "neestoretillssnee23",
+                          "eventDetails": {
+                            "reason": "POINTS_ISSUE"
+                            "sourceProgramId": 1148,
+                                "sourceProgramName": "ChildOrg1DefaultProgram",
+                                "orgId": 50406
+                          }
+                        }
+                      ],
+                      "warnings": []
+                    }
               schema:
                 type: object
                 properties:
@@ -325,7 +369,7 @@ paths:
                           default: 0
                         ledgerCreatedDate:
                           type: string
-                          example: "Fri Aug 30 11:17:57 GMT 2024"
+                          example: Fri Aug 30 11:17:57 GMT 2024
                         customerDetails:
                           type: object
                           properties:
@@ -369,7 +413,7 @@ paths:
                               example: '1725016677'
                             date:
                               type: string
-                              example: "2024-08-30 11:17:57.0"
+                              example: '2024-08-30 11:17:57.0'
                             amount:
                               type: integer
                               example: 5000
@@ -412,9 +456,11 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"errors\": [\n        {\n            \"status\"\
-                    : false,\n            \"code\": 8003,\n            \"message\"\
-                    : \"Invalid source\"\n        }\n    ]\n}"
+                  value:
+                    errors:
+                    - status: false
+                      code: 8003
+                      message: Invalid source
               schema:
                 type: object
                 properties:
@@ -438,9 +484,10 @@ paths:
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location 'https://host/v2.1/pointsLedger/getCustomerLedgerInfo?identifierName=mobile&identifierValue=9988221100&source=INSTORE'\
-            \ \\\n--header 'DATA-SCOPE: OTHER' \\\n--header 'DATA-SCOPE-ORG: 50405'\
-            \ \\"
+          code: |-
+            curl --location 'https://host/v2.1/pointsLedger/getCustomerLedgerInfo?identifierName=mobile&identifierValue=9988221100&source=INSTORE' \
+            --header 'DATA-SCOPE: OTHER' \
+            --header 'DATA-SCOPE-ORG: 50405' \
         samples-languages:
         - curl
 components:

@@ -52,9 +52,9 @@ paths:
                           Authorization: Basic bHVjaWF1dG9fdGlsbF8xMDoyMDJjYjk2MmFjNTkwNzViOTY0YjA3MTUyZDIzNGI3MA==
                           accept: application/json
                           Content-Type: application/json
-                        apiBody: '{"customFields_property": {"customField_1_property":
-                          "${customfield_CF1}"}, "transactionId_property": "${rewardTransactionId}",
-                          "fulfillmentStatus_property": "${fulfillmentStatus}"}'
+                        apiBody: '{"customFields_property": {"customField_1_property": "${customfield_CF1}"},
+                          "transactionId_property": "${rewardTransactionId}", "fulfillmentStatus_property":
+                          "${fulfillmentStatus}"}'
                         execOrder: 1
                         contextKeys:
                           voucher: response.requests.request.get(0).id
@@ -68,7 +68,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: '{}'
+                  value: {}
               schema:
                 type: object
                 properties: {}
@@ -76,18 +76,13 @@ paths:
       x-readme:
         code-samples:
         - language: shell
-          code: 'curl --location ''https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/vendor/430/redemption/36987/brand/61''
-            \
-
-            --header ''Accept: application/json'' \
-
-            --header ''Content-Type: application/json'' \
-
-            --header ''accept: application/json'' \
-
-            --header ''Authorization: Basic bWFka3MjU2YQ=='' \
-
-            --header ''Cookie: _cfuvid=vN5wfiWeYZXwnooleui8wohWfs.JTIrPyd1SjnuHz_4-1764227099805-0.0.1.1-604800000'''
+          code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/vendor/430/redemption/36987/brand/61' \
+            --header 'Accept: application/json' \
+            --header 'Content-Type: application/json' \
+            --header 'accept: application/json' \
+            --header 'Authorization: Basic bWFka3MjU2YQ==' \
+            --header 'Cookie: _cfuvid=vN5wfiWeYZXwnooleui8wohWfs.JTIrPyd1SjnuHz_4-1764227099805-0.0.1.1-604800000'
           name: Sample request
         samples-languages:
         - shell

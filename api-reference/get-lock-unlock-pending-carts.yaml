@@ -13,9 +13,8 @@ paths:
   /v1/promotions/customer/{customerId}/evaluations/pending_carts:
     get:
       summary: Get Lock unlock -Pending carts (Cart Promotion)
-      description: This API evaluates and returns the details of the carts which are
-        pending  for a particular customer(cart promotions have been applied but transaction
-        not completed yet)
+      description: This API evaluates and returns the details of the carts which are pending  for a particular
+        customer(cart promotions have been applied but transaction not completed yet)
       operationId: get-lock-unlock-pending-carts
       parameters:
       - name: customerId
@@ -31,21 +30,17 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n\"data\": {\n\"tempRedemptionDetails\": [\n{\n \"cartEvaluationId\"\
-                    : \"string\",//Unique id assigned to any cart evaluated\n\"startTime\"\
-                    : 0,\t// evaluation call\n\"validTillTime\": 0, // How long is\
-                    \ the pending card valid     \n\"appliedPromotions\": [\n{\n\"\
-                    promotionId\": \"string\", //Unique id assigned to a promotion\
-                    \ \n\"earnedPromotionId\": \"string\",//Unique id assigned to\
-                    \ the earn event of the promotion\n\"promoCode\": \"string\",//Code\
-                    \ assigned to a promotion , which can be used to redeem that promotion\n\
-                    \"promotionName\": \"string\",//Name assigned to the promotion\
-                    \ at the time of  promotion creation\n \"redemptionCount\": 0,//Number\
-                    \ of redemptions already done for promotion\n\"discount\": \"\
-                    string\"//Discount being offered for the promotion\n\n       \
-                    \   }\n        ]\n      }\n    ]\n  },\n  \"errors\": [\n    {\n\
-                    \      \"code\": 0,\n      \"message\": \"string\"\n    }\n  ]\n\
-                    }\n\n"
+                  value: "{\n\"data\": {\n\"tempRedemptionDetails\": [\n{\n \"cartEvaluationId\": \"string\"\
+                    ,//Unique id assigned to any cart evaluated\n\"startTime\": 0,\t// evaluation call\n\
+                    \"validTillTime\": 0, // How long is the pending card valid     \n\"appliedPromotions\"\
+                    : [\n{\n\"promotionId\": \"string\", //Unique id assigned to a promotion \n\"earnedPromotionId\"\
+                    : \"string\",//Unique id assigned to the earn event of the promotion\n\"promoCode\"\
+                    : \"string\",//Code assigned to a promotion , which can be used to redeem that promotion\n\
+                    \"promotionName\": \"string\",//Name assigned to the promotion at the time of  promotion\
+                    \ creation\n \"redemptionCount\": 0,//Number of redemptions already done for promotion\n\
+                    \"discount\": \"string\"//Discount being offered for the promotion\n\n          }\n\
+                    \        ]\n      }\n    ]\n  },\n  \"errors\": [\n    {\n      \"code\": 0,\n   \
+                    \   \"message\": \"string\"\n    }\n  ]\n}\n\n"
               schema:
                 type: object
                 properties:
@@ -110,20 +105,17 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: '{}'
+                  value: {}
               schema:
                 type: object
                 properties: {}
       deprecated: false
       x-readme:
         code-samples:
-        - code: 'curl --location ''https://eu.api.capillarytech.com/api_gateway/v1/promotions/customer/566881933/evaluations/pending_carts''
-            \
-
-            --header ''Authorization: Basic Z2VvcmdlLmRvY2RlbW86NjVhWY5MGY1NTY5NDk1YmNkNzUxYmJiY2U=''
-            \
-
-            --header ''Cookie: _cfuvid=OgMlxpnYcUTaLvDRPsarD3khviE1Jl3t9uS8-1764069327097-0.0.1.1-604800000'''
+        - code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/customer/566881933/evaluations/pending_carts' \
+            --header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86NjVhWY5MGY1NTY5NDk1YmNkNzUxYmJiY2U=' \
+            --header 'Cookie: _cfuvid=OgMlxpnYcUTaLvDRPsarD3khviE1Jl3t9uS8-1764069327097-0.0.1.1-604800000'
           language: shell
           name: ''
         samples-languages:

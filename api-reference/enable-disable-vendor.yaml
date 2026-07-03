@@ -3,14 +3,14 @@ info:
   title: Enable or Disable a Vendor
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/api_gateway/rewards/core/v1/vendor/{vendorId}/status/{action}/brand/{brandId}":
+  /api_gateway/rewards/core/v1/vendor/{vendorId}/status/{action}/brand/{brandId}:
     put:
       summary: Enable or Disable a Vendor
       description: ''
@@ -46,21 +46,32 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
-                    \   \"code\": 5006,\n        \"message\": \"Vendor status updated\
-                    \ successfully\"\n    },\n    \"vendorRo\": {\n        \"id\"\
-                    : 133,\n        \"name\": \"VENDORHIRE\",\n        \"brandId\"\
-                    : 61,\n        \"enabled\": false,\n        \"isEncryptionRequired\"\
-                    : false,\n        \"vendorTypes\": null,\n        \"vendorDetails\"\
-                    : null,\n        \"type\": \"REWARDS\",\n        \"createdBy\"\
-                    : 75161973,\n        \"lastUpdatedBy\": 75161973,\n        \"\
-                    createdOn\": 1747307907000,\n        \"lastUpdatedOn\": 1748350778000,\n\
-                    \        \"createdOnDateTime\": \"2025-05-15T11:18:27Z\",\n  \
-                    \      \"lastUpdatedOnDateTime\": \"2025-05-27T12:59:38Z\",\n\
-                    \        \"rank\": 1,\n        \"code\": \"Doc0036\",\n      \
-                    \  \"description\": \"The top priority vendor\",\n        \"images\"\
-                    : null,\n        \"videos\": null,\n        \"encryptionRequired\"\
-                    : false\n    }\n}"
+                  value:
+                    status:
+                      success: true
+                      code: 5006
+                      message: Vendor status updated successfully
+                    vendorRo:
+                      id: 133
+                      name: VENDORHIRE
+                      brandId: 61
+                      enabled: false
+                      isEncryptionRequired: false
+                      vendorTypes: null
+                      vendorDetails: null
+                      type: REWARDS
+                      createdBy: 75161973
+                      lastUpdatedBy: 75161973
+                      createdOn: 1747307907000
+                      lastUpdatedOn: 1748350778000
+                      createdOnDateTime: '2025-05-15T11:18:27Z'
+                      lastUpdatedOnDateTime: '2025-05-27T12:59:38Z'
+                      rank: 1
+                      code: Doc0036
+                      description: The top priority vendor
+                      images: null
+                      videos: null
+                      encryptionRequired: false
               schema:
                 type: object
                 properties:
@@ -123,10 +134,10 @@ paths:
                         default: 0
                       createdOnDateTime:
                         type: string
-                        example: "2025-05-15T11:18:27Z"
+                        example: '2025-05-15T11:18:27Z'
                       lastUpdatedOnDateTime:
                         type: string
-                        example: "2025-05-27T12:59:38Z"
+                        example: '2025-05-27T12:59:38Z'
                       rank:
                         type: integer
                         example: 1
@@ -146,9 +157,11 @@ paths:
             text/plain:
               examples:
                 Result:
-                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
-                    \   \"code\": 5006,\n        \"message\": \"Vendor status updated\
-                    \ successfully\"\n    }\n}"
+                  value:
+                    status:
+                      success: true
+                      code: 5006
+                      message: Vendor status updated successfully
               schema:
                 type: object
                 properties:
@@ -172,7 +185,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
@@ -180,9 +193,11 @@ paths:
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/vendor/5/status/disable/brand/3'\
-            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
-            \ application/json' \\\n--header 'Authorization: Basic YXV0b3N0b3JlMS50aWxsMS0xNjgwMTY5MjIxOjIwMmNiOTYyYWM1OTA3NWI5NjRiMDcxNTJkMjM0Yjcw'"
+          code: |-
+            curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/vendor/5/status/disable/brand/3' \
+            --header 'Accept: application/json' \
+            --header 'Content-Type: application/json' \
+            --header 'Authorization: Basic YXV0b3N0b3JlMS50aWxsMS0xNjgwMTY5MjIxOjIwMmNiOTYyYWM1OTA3NWI5NjRiMDcxNTJkMjM0Yjcw'
         samples-languages:
         - curl
 components:

@@ -3,18 +3,17 @@ info:
   title: Get Cart Promotions for a particular till
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/api_gateway/v1/promotions/till/{tillId}":
+  /api_gateway/v1/promotions/till/{tillId}:
     get:
       summary: Get Cart Promotions for a particular till
-      description: This API can be used to fetch the Cart promotions for a particular
-        till
+      description: This API can be used to fetch the Cart promotions for a particular till
       operationId: get-promotions-for-a-particular-till
       parameters:
       - in: path
@@ -39,268 +38,549 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n   \
-                    \   \"name\": \"string\",\n      \"orgId\": 0 ,          //Unique\
-                    \ id assigned to the organization/brand\n      \"priority\": 0,\n\
-                    \      \"active\": true,  //Whether the promotion is active or\
-                    \ not(marked by the user)\n\n      \"messageLabel\": \"string\"\
-                    ,\n      \"type\": \"POS\",\n      \"timeCriteria\": {\n     \
-                    \   \"startTime\": {\n          \"hour\": 0,\n          \"minute\"\
-                    : 0,\n          \"second\": 0,\n          \"nano\": 0\n      \
-                    \  },\n        \"durationInHours\": 0,\n        \"repeatFrequency\"\
-                    : \"DOES_NOT_REPEAT\",\n        \"weeklyValues\": [\n        \
-                    \  \"MONDAY\"\n        ],\n        \"monthlyDayValues\": [\n \
-                    \         0\n        ]\n      },\n      \"storeCriteria\": {\n\
-                    \        \"type\": \"STORE\",\n        \"values\": [\n       \
-                    \   0\n        ],\n        \"operator\": \"IN\"\n      },\n  \
-                    \    \"supplementaryCriteria\": {\n        \"loyaltyProgramId\"\
-                    : 0,\n        \"programType\": \"TIER\",\n        \"partnerProgramId\"\
-                    : 0\n      },\n      \"condition\": {\n        \"type\": \"CART\"\
-                    ,\n        \"cartCondition\": {\n          \"kpi\": \"SUBTOTAL\"\
-                    ,\n          \"operator\": \"EQUALS\",\n          \"value\": 0\n\
-                    \        },\n        \"productCondition\": {\n          \"criteriaList\"\
-                    : [\n            {\n              \"entity\": \"SKU\",\n     \
-                    \         \"operator\": \"IN\",\n              \"values\": [\n\
-                    \                \"string\"\n              ],\n              \"\
-                    attributeName\": \"string\"\n            }\n          ],\n   \
-                    \       \"kpi\": \"AMOUNT\",\n          \"value\": 0,\n      \
-                    \    \"operator\": \"EQUALS\"\n        },\n        \"comboProductCondition\"\
-                    : {\n          \"productConditions\": [\n            {\n     \
-                    \         \"criteriaList\": [\n                {\n           \
-                    \       \"entity\": \"SKU\",\n                  \"operator\":\
-                    \ \"IN\",\n                  \"values\": [\n                 \
-                    \   \"string\"\n                  ],\n                  \"attributeName\"\
-                    : \"string\"\n                }\n              ],\n          \
-                    \    \"kpi\": \"AMOUNT\",\n              \"value\": 0,\n     \
-                    \         \"operator\": \"EQUALS\"\n            },\n         \
-                    \   {\n              \"criteriaList\": [\n                {\n\
-                    \                  \"entity\": \"SKU\",\n                  \"\
-                    operator\": \"IN\",\n                  \"values\": [\n       \
-                    \             \"string\"\n                  ],\n             \
-                    \     \"attributeName\": \"string\"\n                }\n     \
-                    \         ],\n              \"kpi\": \"AMOUNT\",\n           \
-                    \   \"value\": 0,\n              \"operator\": \"EQUALS\"\n  \
-                    \          }\n          ]\n        },\n        \"tenderCondition\"\
-                    : {\n          \"type\": \"PAYMENT_VOUCHER\",\n          \"identifier\"\
-                    : \"string\",\n          \"tenderModes\": [\n            {\n \
-                    \             \"type\": \"PAYMENT_VOUCHER\",\n              \"\
-                    identifiers\": [\n                \"string\"\n              ]\n\
-                    \            }\n          ],\n          \"condition\": \"string\"\
-                    \n        }\n      },\n      \"action\": {\n        \"type\":\
-                    \ \"FIXED_PRICE\",\n        \"cartBasedAction\": {\n         \
-                    \ \"type\": \"PERCENTAGE\",\n          \"value\": 0\n        },\n\
-                    \        \"productBasedAction\": {\n          \"productBasedCondition\"\
-                    : {\n            \"type\": \"CART\",\n            \"cartCondition\"\
-                    : {\n              \"kpi\": \"SUBTOTAL\",\n              \"operator\"\
-                    : \"EQUALS\",\n              \"value\": 0\n            },\n  \
-                    \          \"productCondition\": {\n              \"criteriaList\"\
-                    : [\n                {\n                  \"entity\": \"SKU\"\
-                    ,\n                  \"operator\": \"IN\",\n                 \
-                    \ \"values\": [\n                    \"string\"\n            \
-                    \      ],\n                  \"attributeName\": \"string\"\n \
-                    \               }\n              ],\n              \"kpi\": \"\
-                    AMOUNT\",\n              \"value\": 0,\n              \"operator\"\
-                    : \"EQUALS\"\n            },\n            \"comboProductCondition\"\
-                    : {\n              \"productConditions\": [\n                {\n\
-                    \                  \"criteriaList\": [\n                    {\n\
-                    \                      \"entity\": \"SKU\",\n                \
-                    \      \"operator\": \"IN\",\n                      \"values\"\
-                    : [\n                        \"string\"\n                    \
-                    \  ],\n                      \"attributeName\": \"string\"\n \
-                    \                   }\n                  ],\n                \
-                    \  \"kpi\": \"AMOUNT\",\n                  \"value\": 0,\n   \
-                    \               \"operator\": \"EQUALS\"\n                },\n\
-                    \                {\n                  \"criteriaList\": [\n  \
-                    \                  {\n                      \"entity\": \"SKU\"\
-                    ,\n                      \"operator\": \"IN\",\n             \
-                    \         \"values\": [\n                        \"string\"\n\
-                    \                      ],\n                      \"attributeName\"\
-                    : \"string\"\n                    }\n                  ],\n  \
-                    \                \"kpi\": \"AMOUNT\",\n                  \"value\"\
-                    : 0,\n                  \"operator\": \"EQUALS\"\n           \
-                    \     }\n              ]\n            },\n            \"tenderCondition\"\
-                    : {\n              \"type\": \"PAYMENT_VOUCHER\",\n          \
-                    \    \"identifier\": \"string\",\n              \"tenderModes\"\
-                    : [\n                {\n                  \"type\": \"PAYMENT_VOUCHER\"\
-                    ,\n                  \"identifiers\": [\n                    \"\
-                    string\"\n                  ]\n                }\n           \
-                    \   ],\n              \"condition\": \"string\"\n            }\n\
-                    \          },\n          \"type\": \"PERCENTAGE\",\n         \
-                    \ \"value\": 0,\n          \"includeItemsFromConditionSet\": true\n\
-                    \        },\n        \"fixedPriceAction\": {\n          \"productBasedCondition\"\
-                    : {\n            \"type\": \"CART\",\n            \"cartCondition\"\
-                    : {\n              \"kpi\": \"SUBTOTAL\",\n              \"operator\"\
-                    : \"EQUALS\",\n              \"value\": 0\n            },\n  \
-                    \          \"productCondition\": {\n              \"criteriaList\"\
-                    : [\n                {\n                  \"entity\": \"SKU\"\
-                    ,\n                  \"operator\": \"IN\",\n                 \
-                    \ \"values\": [\n                    \"string\"\n            \
-                    \      ],\n                  \"attributeName\": \"string\"\n \
-                    \               }\n              ],\n              \"kpi\": \"\
-                    AMOUNT\",\n              \"value\": 0,\n              \"operator\"\
-                    : \"EQUALS\"\n            },\n            \"comboProductCondition\"\
-                    : {\n              \"productConditions\": [\n                {\n\
-                    \                  \"criteriaList\": [\n                    {\n\
-                    \                      \"entity\": \"SKU\",\n                \
-                    \      \"operator\": \"IN\",\n                      \"values\"\
-                    : [\n                        \"string\"\n                    \
-                    \  ],\n                      \"attributeName\": \"string\"\n \
-                    \                   }\n                  ],\n                \
-                    \  \"kpi\": \"AMOUNT\",\n                  \"value\": 0,\n   \
-                    \               \"operator\": \"EQUALS\"\n                },\n\
-                    \                {\n                  \"criteriaList\": [\n  \
-                    \                  {\n                      \"entity\": \"SKU\"\
-                    ,\n                      \"operator\": \"IN\",\n             \
-                    \         \"values\": [\n                        \"string\"\n\
-                    \                      ],\n                      \"attributeName\"\
-                    : \"string\"\n                    }\n                  ],\n  \
-                    \                \"kpi\": \"AMOUNT\",\n                  \"value\"\
-                    : 0,\n                  \"operator\": \"EQUALS\"\n           \
-                    \     }\n              ]\n            },\n            \"tenderCondition\"\
-                    : {\n              \"type\": \"PAYMENT_VOUCHER\",\n          \
-                    \    \"identifier\": \"string\",\n              \"tenderModes\"\
-                    : [\n                {\n                  \"type\": \"PAYMENT_VOUCHER\"\
-                    ,\n                  \"identifiers\": [\n                    \"\
-                    string\"\n                  ]\n                }\n           \
-                    \   ],\n              \"condition\": \"string\"\n            }\n\
-                    \          },\n          \"value\": 0,\n          \"includeItemsFromConditionSet\"\
-                    : true\n        },\n        \"freeProductAction\": {\n       \
-                    \   \"productBasedCondition\": {\n            \"type\": \"CART\"\
-                    ,\n            \"cartCondition\": {\n              \"kpi\": \"\
-                    SUBTOTAL\",\n              \"operator\": \"EQUALS\",\n       \
-                    \       \"value\": 0\n            },\n            \"productCondition\"\
-                    : {\n              \"criteriaList\": [\n                {\n  \
-                    \                \"entity\": \"SKU\",\n                  \"operator\"\
-                    : \"IN\",\n                  \"values\": [\n                 \
-                    \   \"string\"\n                  ],\n                  \"attributeName\"\
-                    : \"string\"\n                }\n              ],\n          \
-                    \    \"kpi\": \"AMOUNT\",\n              \"value\": 0,\n     \
-                    \         \"operator\": \"EQUALS\"\n            },\n         \
-                    \   \"comboProductCondition\": {\n              \"productConditions\"\
-                    : [\n                {\n                  \"criteriaList\": [\n\
-                    \                    {\n                      \"entity\": \"SKU\"\
-                    ,\n                      \"operator\": \"IN\",\n             \
-                    \         \"values\": [\n                        \"string\"\n\
-                    \                      ],\n                      \"attributeName\"\
-                    : \"string\"\n                    }\n                  ],\n  \
-                    \                \"kpi\": \"AMOUNT\",\n                  \"value\"\
-                    : 0,\n                  \"operator\": \"EQUALS\"\n           \
-                    \     },\n                {\n                  \"criteriaList\"\
-                    : [\n                    {\n                      \"entity\":\
-                    \ \"SKU\",\n                      \"operator\": \"IN\",\n    \
-                    \                  \"values\": [\n                        \"string\"\
-                    \n                      ],\n                      \"attributeName\"\
-                    : \"string\"\n                    }\n                  ],\n  \
-                    \                \"kpi\": \"AMOUNT\",\n                  \"value\"\
-                    : 0,\n                  \"operator\": \"EQUALS\"\n           \
-                    \     }\n              ]\n            },\n            \"tenderCondition\"\
-                    : {\n              \"type\": \"PAYMENT_VOUCHER\",\n          \
-                    \    \"identifier\": \"string\",\n              \"tenderModes\"\
-                    : [\n                {\n                  \"type\": \"PAYMENT_VOUCHER\"\
-                    ,\n                  \"identifiers\": [\n                    \"\
-                    string\"\n                  ]\n                }\n           \
-                    \   ],\n              \"condition\": \"string\"\n            }\n\
-                    \          },\n          \"includeItemsFromConditionSet\": true\n\
-                    \        },\n        \"tenderBasedAction\": {\n          \"type\"\
-                    : \"PERCENTAGE\",\n          \"value\": 0\n        },\n      \
-                    \  \"perUnitAction\": {\n          \"rewardAction\": \"string\"\
-                    ,\n          \"perUnitKPI\": \"AMOUNT\",\n          \"perUnitDivider\"\
-                    : 0,\n          \"includeItemsFromConditionSet\": true\n     \
-                    \   }\n      },\n      \"createdBy\": 0,\n      \"createdOn\"\
-                    : \"2023-01-19T09:28:58.595Z\",\n      \"lastUpdatedBy\": 0,\n\
-                    \      \"lastUpdatedOn\": \"2023-01-19T09:28:58.595Z\",\n    \
-                    \  \"startDate\": 0,\n      \"endDate\": 0,\n      \"campaignId\"\
-                    : 0,\n      \"loyaltyEarningExpiryDays\": 0,\n      \"maxEarningPerCustomer\"\
-                    : 0,\n      \"earningCriteria\": {\n        \"criteriaName\":\
-                    \ \"string\",\n        \"earnedFromType\": \"BULK_ISSUE\",\n \
-                    \       \"milestoneId\": 0,\n        \"groupId\": 0,\n       \
-                    \ \"eventType\": \"TransactionAdd\",\n        \"storeCriteria\"\
-                    : {\n          \"type\": \"STORE\",\n          \"values\": [\n\
-                    \            0\n          ],\n          \"operator\": \"IN\"\n\
-                    \        },\n        \"timeCriteria\": {\n          \"startTime\"\
-                    : {\n            \"hour\": 0,\n            \"minute\": 0,\n  \
-                    \          \"second\": 0,\n            \"nano\": 0\n         \
-                    \ },\n          \"durationInHours\": 0,\n          \"repeatFrequency\"\
-                    : \"DOES_NOT_REPEAT\",\n          \"weeklyValues\": [\n      \
-                    \      \"MONDAY\"\n          ],\n          \"monthlyDayValues\"\
-                    : [\n            0\n          ]\n        },\n        \"earningValidTillDays\"\
-                    : 1,\n        \"criteriaDsl\": \"string\",\n        \"criteriaDslJson\"\
-                    : \"string\",\n        \"active\": true\n      },\n      \"promotionRestrictions\"\
-                    : {\n        \"additionalProp1\": [\n          {\n           \
-                    \ \"kpi\": \"TRANSACTION\",\n            \"frequency\": \"DAYS\"\
-                    ,\n            \"minTimeBetweenRepeat\": 0,\n            \"limit\"\
-                    : 0\n          }\n        ],\n        \"additionalProp2\": [\n\
-                    \          {\n            \"kpi\": \"TRANSACTION\",\n        \
-                    \    \"frequency\": \"DAYS\",\n            \"minTimeBetweenRepeat\"\
-                    : 0,\n            \"limit\": 0\n          }\n        ],\n    \
-                    \    \"additionalProp3\": [\n          {\n            \"kpi\"\
-                    : \"TRANSACTION\",\n            \"frequency\": \"DAYS\",\n   \
-                    \         \"minTimeBetweenRepeat\": 0,\n            \"limit\"\
-                    : 0\n          }\n        ]\n      },\n      \"earnLimitedToSpecificAudience\"\
-                    : true,\n      \"customFieldValues\": {\n        \"additionalProp1\"\
-                    : \"string\",\n        \"additionalProp2\": \"string\",\n    \
-                    \    \"additionalProp3\": \"string\"\n      },\n      \"onEarnCommunicationChannels\"\
-                    : {\n        \"additionalProp1\": {\n          \"subject\": \"\
-                    string\",\n          \"message\": \"string\",\n          \"senderLabel\"\
-                    : \"string\",\n          \"senderReplyToEmail\": \"string\",\n\
-                    \          \"unsubscribeLabel\": \"string\",\n          \"senderEmail\"\
-                    : \"string\",\n          \"senderGSM\": \"string\",\n        \
-                    \  \"senderCDMA\": \"string\",\n          \"domainPropertyId\"\
-                    : \"string\",\n          \"accountId\": \"string\",\n        \
-                    \  \"channelType\": \"ANDROID\",\n          \"pushNotificationCta\"\
-                    : {\n            \"type\": \"DEEP_LINK\",\n            \"actionLink\"\
-                    : \"string\",\n            \"image\": \"string\",\n          \
-                    \  \"pushNotificationCtaActionList\": [\n              {\n   \
-                    \             \"type\": \"DEEP_LINK\",\n                \"actionLink\"\
-                    : \"string\",\n                \"actionText\": \"string\",\n \
-                    \               \"templateCtaId\": \"string\"\n              }\n\
-                    \            ]\n          }\n        },\n        \"additionalProp2\"\
-                    : {\n          \"subject\": \"string\",\n          \"message\"\
-                    : \"string\",\n          \"senderLabel\": \"string\",\n      \
-                    \    \"senderReplyToEmail\": \"string\",\n          \"unsubscribeLabel\"\
-                    : \"string\",\n          \"senderEmail\": \"string\",\n      \
-                    \    \"senderGSM\": \"string\",\n          \"senderCDMA\": \"\
-                    string\",\n          \"domainPropertyId\": \"string\",\n     \
-                    \     \"accountId\": \"string\",\n          \"channelType\": \"\
-                    ANDROID\",\n          \"pushNotificationCta\": {\n           \
-                    \ \"type\": \"DEEP_LINK\",\n            \"actionLink\": \"string\"\
-                    ,\n            \"image\": \"string\",\n            \"pushNotificationCtaActionList\"\
-                    : [\n              {\n                \"type\": \"DEEP_LINK\"\
-                    ,\n                \"actionLink\": \"string\",\n             \
-                    \   \"actionText\": \"string\",\n                \"templateCtaId\"\
-                    : \"string\"\n              }\n            ]\n          }\n  \
-                    \      },\n        \"additionalProp3\": {\n          \"subject\"\
-                    : \"string\",\n          \"message\": \"string\",\n          \"\
-                    senderLabel\": \"string\",\n          \"senderReplyToEmail\":\
-                    \ \"string\",\n          \"unsubscribeLabel\": \"string\",\n \
-                    \         \"senderEmail\": \"string\",\n          \"senderGSM\"\
-                    : \"string\",\n          \"senderCDMA\": \"string\",\n       \
-                    \   \"domainPropertyId\": \"string\",\n          \"accountId\"\
-                    : \"string\",\n          \"channelType\": \"ANDROID\",\n     \
-                    \     \"pushNotificationCta\": {\n            \"type\": \"DEEP_LINK\"\
-                    ,\n            \"actionLink\": \"string\",\n            \"image\"\
-                    : \"string\",\n            \"pushNotificationCtaActionList\":\
-                    \ [\n              {\n                \"type\": \"DEEP_LINK\"\
-                    ,\n                \"actionLink\": \"string\",\n             \
-                    \   \"actionText\": \"string\",\n                \"templateCtaId\"\
-                    : \"string\"\n              }\n            ]\n          }\n  \
-                    \      }\n      },\n      \"languagesConfigured\": [\n       \
-                    \ \"string\"\n      ],\n      \"customerActivationRequired\":\
-                    \ true,\n      \"isLoyaltyOnly\": true,\n      \"mode\": \"DISCOUNT\"\
-                    ,\n      \"maxIssuancePerCustomer\": 50,\n      \"isStackable\"\
-                    : true,\n      \"expiryDateChangeJobList\": [\n        {\n   \
-                    \       \"jobType\": \"ISSUED\",\n          \"status\": \"OPEN\"\
-                    ,\n          \"createdOn\": \"2023-01-19T09:28:58.595Z\",\n  \
-                    \        \"lastUpdatedOn\": \"2023-01-19T09:28:58.595Z\",\n  \
-                    \        \"lastUpdatedBy\": 0,\n          \"createdBy\": 0,\n\
-                    \          \"impactedCount\": 0,\n          \"message\": \"string\"\
-                    \n        }\n      ],\n      \"redeemableFromCriteria\": {\n \
-                    \       \"redeemableFrom\": {\n          \"period\": 0,\n    \
-                    \      \"type\": \"HOURS\"\n        },\n        \"redemptionValidBeforeExpiry\"\
-                    : {\n          \"period\": 0,\n          \"type\": \"HOURS\"\n\
-                    \        }\n      }\n    }\n  ],\n  \"errors\": [\n    {\n   \
-                    \   \"code\": 0,\n      \"message\": \"string\"\n    }\n  ]\n\
-                    }\n"
+                  value: |
+                    {
+                      "data": [
+                        {
+                          "id": "string",
+                          "name": "string",
+                          "orgId": 0 ,          //Unique id assigned to the organization/brand
+                          "priority": 0,
+                          "active": true,  //Whether the promotion is active or not(marked by the user)
+
+                          "messageLabel": "string",
+                          "type": "POS",
+                          "timeCriteria": {
+                            "startTime": {
+                              "hour": 0,
+                              "minute": 0,
+                              "second": 0,
+                              "nano": 0
+                            },
+                            "durationInHours": 0,
+                            "repeatFrequency": "DOES_NOT_REPEAT",
+                            "weeklyValues": [
+                              "MONDAY"
+                            ],
+                            "monthlyDayValues": [
+                              0
+                            ]
+                          },
+                          "storeCriteria": {
+                            "type": "STORE",
+                            "values": [
+                              0
+                            ],
+                            "operator": "IN"
+                          },
+                          "supplementaryCriteria": {
+                            "loyaltyProgramId": 0,
+                            "programType": "TIER",
+                            "partnerProgramId": 0
+                          },
+                          "condition": {
+                            "type": "CART",
+                            "cartCondition": {
+                              "kpi": "SUBTOTAL",
+                              "operator": "EQUALS",
+                              "value": 0
+                            },
+                            "productCondition": {
+                              "criteriaList": [
+                                {
+                                  "entity": "SKU",
+                                  "operator": "IN",
+                                  "values": [
+                                    "string"
+                                  ],
+                                  "attributeName": "string"
+                                }
+                              ],
+                              "kpi": "AMOUNT",
+                              "value": 0,
+                              "operator": "EQUALS"
+                            },
+                            "comboProductCondition": {
+                              "productConditions": [
+                                {
+                                  "criteriaList": [
+                                    {
+                                      "entity": "SKU",
+                                      "operator": "IN",
+                                      "values": [
+                                        "string"
+                                      ],
+                                      "attributeName": "string"
+                                    }
+                                  ],
+                                  "kpi": "AMOUNT",
+                                  "value": 0,
+                                  "operator": "EQUALS"
+                                },
+                                {
+                                  "criteriaList": [
+                                    {
+                                      "entity": "SKU",
+                                      "operator": "IN",
+                                      "values": [
+                                        "string"
+                                      ],
+                                      "attributeName": "string"
+                                    }
+                                  ],
+                                  "kpi": "AMOUNT",
+                                  "value": 0,
+                                  "operator": "EQUALS"
+                                }
+                              ]
+                            },
+                            "tenderCondition": {
+                              "type": "PAYMENT_VOUCHER",
+                              "identifier": "string",
+                              "tenderModes": [
+                                {
+                                  "type": "PAYMENT_VOUCHER",
+                                  "identifiers": [
+                                    "string"
+                                  ]
+                                }
+                              ],
+                              "condition": "string"
+                            }
+                          },
+                          "action": {
+                            "type": "FIXED_PRICE",
+                            "cartBasedAction": {
+                              "type": "PERCENTAGE",
+                              "value": 0
+                            },
+                            "productBasedAction": {
+                              "productBasedCondition": {
+                                "type": "CART",
+                                "cartCondition": {
+                                  "kpi": "SUBTOTAL",
+                                  "operator": "EQUALS",
+                                  "value": 0
+                                },
+                                "productCondition": {
+                                  "criteriaList": [
+                                    {
+                                      "entity": "SKU",
+                                      "operator": "IN",
+                                      "values": [
+                                        "string"
+                                      ],
+                                      "attributeName": "string"
+                                    }
+                                  ],
+                                  "kpi": "AMOUNT",
+                                  "value": 0,
+                                  "operator": "EQUALS"
+                                },
+                                "comboProductCondition": {
+                                  "productConditions": [
+                                    {
+                                      "criteriaList": [
+                                        {
+                                          "entity": "SKU",
+                                          "operator": "IN",
+                                          "values": [
+                                            "string"
+                                          ],
+                                          "attributeName": "string"
+                                        }
+                                      ],
+                                      "kpi": "AMOUNT",
+                                      "value": 0,
+                                      "operator": "EQUALS"
+                                    },
+                                    {
+                                      "criteriaList": [
+                                        {
+                                          "entity": "SKU",
+                                          "operator": "IN",
+                                          "values": [
+                                            "string"
+                                          ],
+                                          "attributeName": "string"
+                                        }
+                                      ],
+                                      "kpi": "AMOUNT",
+                                      "value": 0,
+                                      "operator": "EQUALS"
+                                    }
+                                  ]
+                                },
+                                "tenderCondition": {
+                                  "type": "PAYMENT_VOUCHER",
+                                  "identifier": "string",
+                                  "tenderModes": [
+                                    {
+                                      "type": "PAYMENT_VOUCHER",
+                                      "identifiers": [
+                                        "string"
+                                      ]
+                                    }
+                                  ],
+                                  "condition": "string"
+                                }
+                              },
+                              "type": "PERCENTAGE",
+                              "value": 0,
+                              "includeItemsFromConditionSet": true
+                            },
+                            "fixedPriceAction": {
+                              "productBasedCondition": {
+                                "type": "CART",
+                                "cartCondition": {
+                                  "kpi": "SUBTOTAL",
+                                  "operator": "EQUALS",
+                                  "value": 0
+                                },
+                                "productCondition": {
+                                  "criteriaList": [
+                                    {
+                                      "entity": "SKU",
+                                      "operator": "IN",
+                                      "values": [
+                                        "string"
+                                      ],
+                                      "attributeName": "string"
+                                    }
+                                  ],
+                                  "kpi": "AMOUNT",
+                                  "value": 0,
+                                  "operator": "EQUALS"
+                                },
+                                "comboProductCondition": {
+                                  "productConditions": [
+                                    {
+                                      "criteriaList": [
+                                        {
+                                          "entity": "SKU",
+                                          "operator": "IN",
+                                          "values": [
+                                            "string"
+                                          ],
+                                          "attributeName": "string"
+                                        }
+                                      ],
+                                      "kpi": "AMOUNT",
+                                      "value": 0,
+                                      "operator": "EQUALS"
+                                    },
+                                    {
+                                      "criteriaList": [
+                                        {
+                                          "entity": "SKU",
+                                          "operator": "IN",
+                                          "values": [
+                                            "string"
+                                          ],
+                                          "attributeName": "string"
+                                        }
+                                      ],
+                                      "kpi": "AMOUNT",
+                                      "value": 0,
+                                      "operator": "EQUALS"
+                                    }
+                                  ]
+                                },
+                                "tenderCondition": {
+                                  "type": "PAYMENT_VOUCHER",
+                                  "identifier": "string",
+                                  "tenderModes": [
+                                    {
+                                      "type": "PAYMENT_VOUCHER",
+                                      "identifiers": [
+                                        "string"
+                                      ]
+                                    }
+                                  ],
+                                  "condition": "string"
+                                }
+                              },
+                              "value": 0,
+                              "includeItemsFromConditionSet": true
+                            },
+                            "freeProductAction": {
+                              "productBasedCondition": {
+                                "type": "CART",
+                                "cartCondition": {
+                                  "kpi": "SUBTOTAL",
+                                  "operator": "EQUALS",
+                                  "value": 0
+                                },
+                                "productCondition": {
+                                  "criteriaList": [
+                                    {
+                                      "entity": "SKU",
+                                      "operator": "IN",
+                                      "values": [
+                                        "string"
+                                      ],
+                                      "attributeName": "string"
+                                    }
+                                  ],
+                                  "kpi": "AMOUNT",
+                                  "value": 0,
+                                  "operator": "EQUALS"
+                                },
+                                "comboProductCondition": {
+                                  "productConditions": [
+                                    {
+                                      "criteriaList": [
+                                        {
+                                          "entity": "SKU",
+                                          "operator": "IN",
+                                          "values": [
+                                            "string"
+                                          ],
+                                          "attributeName": "string"
+                                        }
+                                      ],
+                                      "kpi": "AMOUNT",
+                                      "value": 0,
+                                      "operator": "EQUALS"
+                                    },
+                                    {
+                                      "criteriaList": [
+                                        {
+                                          "entity": "SKU",
+                                          "operator": "IN",
+                                          "values": [
+                                            "string"
+                                          ],
+                                          "attributeName": "string"
+                                        }
+                                      ],
+                                      "kpi": "AMOUNT",
+                                      "value": 0,
+                                      "operator": "EQUALS"
+                                    }
+                                  ]
+                                },
+                                "tenderCondition": {
+                                  "type": "PAYMENT_VOUCHER",
+                                  "identifier": "string",
+                                  "tenderModes": [
+                                    {
+                                      "type": "PAYMENT_VOUCHER",
+                                      "identifiers": [
+                                        "string"
+                                      ]
+                                    }
+                                  ],
+                                  "condition": "string"
+                                }
+                              },
+                              "includeItemsFromConditionSet": true
+                            },
+                            "tenderBasedAction": {
+                              "type": "PERCENTAGE",
+                              "value": 0
+                            },
+                            "perUnitAction": {
+                              "rewardAction": "string",
+                              "perUnitKPI": "AMOUNT",
+                              "perUnitDivider": 0,
+                              "includeItemsFromConditionSet": true
+                            }
+                          },
+                          "createdBy": 0,
+                          "createdOn": "2023-01-19T09:28:58.595Z",
+                          "lastUpdatedBy": 0,
+                          "lastUpdatedOn": "2023-01-19T09:28:58.595Z",
+                          "startDate": 0,
+                          "endDate": 0,
+                          "campaignId": 0,
+                          "loyaltyEarningExpiryDays": 0,
+                          "maxEarningPerCustomer": 0,
+                          "earningCriteria": {
+                            "criteriaName": "string",
+                            "earnedFromType": "BULK_ISSUE",
+                            "milestoneId": 0,
+                            "groupId": 0,
+                            "eventType": "TransactionAdd",
+                            "storeCriteria": {
+                              "type": "STORE",
+                              "values": [
+                                0
+                              ],
+                              "operator": "IN"
+                            },
+                            "timeCriteria": {
+                              "startTime": {
+                                "hour": 0,
+                                "minute": 0,
+                                "second": 0,
+                                "nano": 0
+                              },
+                              "durationInHours": 0,
+                              "repeatFrequency": "DOES_NOT_REPEAT",
+                              "weeklyValues": [
+                                "MONDAY"
+                              ],
+                              "monthlyDayValues": [
+                                0
+                              ]
+                            },
+                            "earningValidTillDays": 1,
+                            "criteriaDsl": "string",
+                            "criteriaDslJson": "string",
+                            "active": true
+                          },
+                          "promotionRestrictions": {
+                            "additionalProp1": [
+                              {
+                                "kpi": "TRANSACTION",
+                                "frequency": "DAYS",
+                                "minTimeBetweenRepeat": 0,
+                                "limit": 0
+                              }
+                            ],
+                            "additionalProp2": [
+                              {
+                                "kpi": "TRANSACTION",
+                                "frequency": "DAYS",
+                                "minTimeBetweenRepeat": 0,
+                                "limit": 0
+                              }
+                            ],
+                            "additionalProp3": [
+                              {
+                                "kpi": "TRANSACTION",
+                                "frequency": "DAYS",
+                                "minTimeBetweenRepeat": 0,
+                                "limit": 0
+                              }
+                            ]
+                          },
+                          "earnLimitedToSpecificAudience": true,
+                          "customFieldValues": {
+                            "additionalProp1": "string",
+                            "additionalProp2": "string",
+                            "additionalProp3": "string"
+                          },
+                          "onEarnCommunicationChannels": {
+                            "additionalProp1": {
+                              "subject": "string",
+                              "message": "string",
+                              "senderLabel": "string",
+                              "senderReplyToEmail": "string",
+                              "unsubscribeLabel": "string",
+                              "senderEmail": "string",
+                              "senderGSM": "string",
+                              "senderCDMA": "string",
+                              "domainPropertyId": "string",
+                              "accountId": "string",
+                              "channelType": "ANDROID",
+                              "pushNotificationCta": {
+                                "type": "DEEP_LINK",
+                                "actionLink": "string",
+                                "image": "string",
+                                "pushNotificationCtaActionList": [
+                                  {
+                                    "type": "DEEP_LINK",
+                                    "actionLink": "string",
+                                    "actionText": "string",
+                                    "templateCtaId": "string"
+                                  }
+                                ]
+                              }
+                            },
+                            "additionalProp2": {
+                              "subject": "string",
+                              "message": "string",
+                              "senderLabel": "string",
+                              "senderReplyToEmail": "string",
+                              "unsubscribeLabel": "string",
+                              "senderEmail": "string",
+                              "senderGSM": "string",
+                              "senderCDMA": "string",
+                              "domainPropertyId": "string",
+                              "accountId": "string",
+                              "channelType": "ANDROID",
+                              "pushNotificationCta": {
+                                "type": "DEEP_LINK",
+                                "actionLink": "string",
+                                "image": "string",
+                                "pushNotificationCtaActionList": [
+                                  {
+                                    "type": "DEEP_LINK",
+                                    "actionLink": "string",
+                                    "actionText": "string",
+                                    "templateCtaId": "string"
+                                  }
+                                ]
+                              }
+                            },
+                            "additionalProp3": {
+                              "subject": "string",
+                              "message": "string",
+                              "senderLabel": "string",
+                              "senderReplyToEmail": "string",
+                              "unsubscribeLabel": "string",
+                              "senderEmail": "string",
+                              "senderGSM": "string",
+                              "senderCDMA": "string",
+                              "domainPropertyId": "string",
+                              "accountId": "string",
+                              "channelType": "ANDROID",
+                              "pushNotificationCta": {
+                                "type": "DEEP_LINK",
+                                "actionLink": "string",
+                                "image": "string",
+                                "pushNotificationCtaActionList": [
+                                  {
+                                    "type": "DEEP_LINK",
+                                    "actionLink": "string",
+                                    "actionText": "string",
+                                    "templateCtaId": "string"
+                                  }
+                                ]
+                              }
+                            }
+                          },
+                          "languagesConfigured": [
+                            "string"
+                          ],
+                          "customerActivationRequired": true,
+                          "isLoyaltyOnly": true,
+                          "mode": "DISCOUNT",
+                          "maxIssuancePerCustomer": 50,
+                          "isStackable": true,
+                          "expiryDateChangeJobList": [
+                            {
+                              "jobType": "ISSUED",
+                              "status": "OPEN",
+                              "createdOn": "2023-01-19T09:28:58.595Z",
+                              "lastUpdatedOn": "2023-01-19T09:28:58.595Z",
+                              "lastUpdatedBy": 0,
+                              "createdBy": 0,
+                              "impactedCount": 0,
+                              "message": "string"
+                            }
+                          ],
+                          "redeemableFromCriteria": {
+                            "redeemableFrom": {
+                              "period": 0,
+                              "type": "HOURS"
+                            },
+                            "redemptionValidBeforeExpiry": {
+                              "period": 0,
+                              "type": "HOURS"
+                            }
+                          }
+                        }
+                      ],
+                      "errors": [
+                        {
+                          "code": 0,
+                          "message": "string"
+                        }
+                      ]
+                    }
               schema:
                 type: object
                 properties:
@@ -935,14 +1215,14 @@ paths:
                           default: 0
                         createdOn:
                           type: string
-                          example: "2023-01-19T09:28:58.595Z"
+                          example: '2023-01-19T09:28:58.595Z'
                         lastUpdatedBy:
                           type: integer
                           example: 0
                           default: 0
                         lastUpdatedOn:
                           type: string
-                          example: "2023-01-19T09:28:58.595Z"
+                          example: '2023-01-19T09:28:58.595Z'
                         startDate:
                           type: integer
                           example: 0
@@ -1363,10 +1643,10 @@ paths:
                                 example: OPEN
                               createdOn:
                                 type: string
-                                example: "2023-01-19T09:28:58.595Z"
+                                example: '2023-01-19T09:28:58.595Z'
                               lastUpdatedOn:
                                 type: string
-                                example: "2023-01-19T09:28:58.595Z"
+                                example: '2023-01-19T09:28:58.595Z'
                               lastUpdatedBy:
                                 type: integer
                                 example: 0
@@ -1423,7 +1703,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}

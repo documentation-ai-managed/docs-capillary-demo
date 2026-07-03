@@ -3,7 +3,7 @@ info:
   title: Enrol customers for badges
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -36,9 +36,9 @@ paths:
                   properties: {}
                 issueEventDate:
                   type: string
-                  description: "The date on which customer was enrolled in the badge.\
-                    \ Issue event date has to be between the badge start date and\
-                    \ end date. Timestamp in the ISO 8601 standard format format YYYY-MM-DDTHH:MM:SS.SSSZ."
+                  description: The date on which customer was enrolled in the badge. Issue event date
+                    has to be between the badge start date and end date. Timestamp in the ISO 8601 standard
+                    format format YYYY-MM-DDTHH:MM:SS.SSSZ.
                   format: date-time
       responses:
         '200':
@@ -54,7 +54,7 @@ paths:
                         ownerType: Rewards_Catalog
                         referenceId: '123'
                       expiresOn: 1926235957
-                      expiresOnISO: "2031-01-15T09:32:37Z"
+                      expiresOnISO: '2031-01-15T09:32:37Z'
                       issuedBadges:
                       - customerId: 566135941
                         issuedId: 69807865eba595729385eb1c
@@ -71,7 +71,7 @@ paths:
                         ownerType: Rewards_Catalog
                         referenceId: '123'
                       expiresOn: 1926235957
-                      expiresOnISO: "2031-01-15T09:32:37Z"
+                      expiresOnISO: '2031-01-15T09:32:37Z'
                       issuedBadges:
                       - customerId: 566135941
                         issuedId: 69807969eba595729385eb28
@@ -175,10 +175,13 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"data\": null,\n    \"errors\": [\n        {\n \
-                    \           \"code\": 809,\n            \"message\": \"Request\
-                    \ with same requestId is not allowed\",\n            \"reference\"\
-                    : null\n        }\n    ],\n    \"warnings\": null\n}"
+                  value:
+                    data: null
+                    errors:
+                    - code: 809
+                      message: Request with same requestId is not allowed
+                      reference: null
+                    warnings: null
               schema:
                 type: object
                 properties:
@@ -202,27 +205,23 @@ paths:
         code-samples:
         - language: curl
           code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta/customer/issueBulk'\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization:\
-            \ Basic Z2VvcmdlLmRvY2RlbW86NjVhMDgzYjk1MWY5MGY1NTY5NDk1YmNkNzUxYmJiY2U='\
+            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86NjVhMDgzYjk1MWY5MGY1NTY5NDk1YmNkNzUxYmJiY2U='\
             \ \\\n--header 'Cookie: _cfuvid=60YlXkyLfDaY1gOO1YdxKbhVquLZtaBlNd58D9_8rpU-1765282802951-0.0.1.1-604800000'\
-            \ \\\n--data '{\n   \"badgeMetaId\": \"693804d8cebb9648d8974489\",\n \
-            \  \"triggeredBy\": {\n       \"ownerType\": \"Loyalty\",\n       \"referenceId\"\
-            : \"string\"\n   },\n   \"issueEventDate\": \"2025-11-03T21:51:00.192Z\"\
-            ,\n   \"issueEventDateISO\": \"2025-04-23T08:14:15Z\", \n   \"customers\"\
-            : [\n       566881933],\n   \"requestId\": \"434e0d861777711w2yyybj265\"\
-            \n}'"
+            \ \\\n--data '{\n   \"badgeMetaId\": \"693804d8cebb9648d8974489\",\n   \"triggeredBy\": {\n\
+            \       \"ownerType\": \"Loyalty\",\n       \"referenceId\": \"string\"\n   },\n   \"issueEventDate\"\
+            : \"2025-11-03T21:51:00.192Z\",\n   \"issueEventDateISO\": \"2025-04-23T08:14:15Z\", \n  \
+            \ \"customers\": [\n       566881933],\n   \"requestId\": \"434e0d861777711w2yyybj265\"\n\
+            }'"
           name: Sample request for single customer
         - language: curl
           code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta/customer/issueBulk'\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization:\
-            \ Basic Z2VvcmdlLmRvY2RlbW86NjVhMDgzYjk1MWY5MGY1NTY5NDk1YmNkNzUxYmJiY2U='\
+            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86NjVhMDgzYjk1MWY5MGY1NTY5NDk1YmNkNzUxYmJiY2U='\
             \ \\\n--header 'Cookie: _cfuvid=60YlXkyLfDaY1gOO1YdxKbhVquLZtaBlNd58D9_8rpU-1765282802951-0.0.1.1-604800000'\
-            \ \\\n--data '{\n   \"badgeMetaId\": \"693804d8cebb9648d8974489\",\n \
-            \  \"triggeredBy\": {\n       \"ownerType\": \"Loyalty\",\n       \"referenceId\"\
-            : \"string\"\n   },\n   \"issueEventDate\": \"2025-11-03T21:51:00.192Z\"\
-            ,\n   \"issueEventDateISO\": \"2025-04-23T08:14:15Z\", \n   \"customers\"\
-            : [\n       566881933,\n       566881934\n   ],\n   \"requestId\": \"\
-            434e0d861777711w2yyybj265\"\n}'"
+            \ \\\n--data '{\n   \"badgeMetaId\": \"693804d8cebb9648d8974489\",\n   \"triggeredBy\": {\n\
+            \       \"ownerType\": \"Loyalty\",\n       \"referenceId\": \"string\"\n   },\n   \"issueEventDate\"\
+            : \"2025-11-03T21:51:00.192Z\",\n   \"issueEventDateISO\": \"2025-04-23T08:14:15Z\", \n  \
+            \ \"customers\": [\n       566881933,\n       566881934\n   ],\n   \"requestId\": \"434e0d861777711w2yyybj265\"\
+            \n}'"
           name: Sample request for multiple customers
         samples-languages:
         - curl

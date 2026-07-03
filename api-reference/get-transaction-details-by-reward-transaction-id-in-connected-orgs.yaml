@@ -3,18 +3,18 @@ info:
   title: Get Transaction Details by Reward Transaction ID in Connected orgs
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/api_gateway/rewards/core/v1.1/reward-transactions/{rewardTransactionId}":
+  /api_gateway/rewards/core/v1.1/reward-transactions/{rewardTransactionId}:
     get:
       summary: Get Transaction Details by Reward Transaction ID in Connected orgs
-      description: This API is used to retrieve details of a specific reward transaction
-        using reward transaction ID, in connected orgs.
+      description: This API is used to retrieve details of a specific reward transaction using reward
+        transaction ID, in connected orgs.
       operationId: get-transaction-details-by-reward-transaction-id-in-connected-orgs
       parameters:
       - name: DATA-SCOPE-ORG
@@ -24,16 +24,16 @@ paths:
           type: string
       - name: DATA-SCOPE
         in: header
-        description: "Scopes define what data can be accessed using the API. You can\
-          \ use scopes to control access to data from a parent or child organization.\
-          \ Defining a scope ensures that the response contains only data from the\
-          \ respective organization.  Supported headers: `SELF`, `OTHER` and `ALL`."
+        description: 'Scopes define what data can be accessed using the API. You can use scopes to control
+          access to data from a parent or child organization. Defining a scope ensures that the response
+          contains only data from the respective organization.  Supported headers: `SELF`, `OTHER` and
+          `ALL`.'
         schema:
           type: string
       - name: rewardTransactionId
         in: path
-        description: Unique identifier of the reward transaction. The reward transaction
-          is generated during the issual of the reward.
+        description: Unique identifier of the reward transaction. The reward transaction is generated
+          during the issual of the reward.
         schema:
           type: string
         required: true
@@ -44,198 +44,286 @@ paths:
             application/json:
               examples:
                 Sample response with DATA-SCOPE as OTHER:
-                  value: "{\n    \"status\": [\n        {\n            \"success\"\
-                    : true,\n            \"code\": 200,\n            \"message\":\
-                    \ \"Reward issue transactions details fetched successfully\"\n\
-                    \        }\n    ],\n    \"data\": {\n        \"rewardTransactionId\"\
-                    : \"32695\",\n        \"orgId\" : 50672,\n        \"customerId\"\
-                    \ : 123456,\n        \"rewardIssueRefId\": \"transactionNumber\"\
-                    ,\n        \"rewardTransactionDate\": 1653906525000,\n       \
-                    \ \"status\": {\n            \"success\": true,\n            \"\
-                    code\": 200,\n            \"message\": \"Reward issued successfully\"\
-                    \n        },\n        \"quantity\": 1,\n        \"requestedQuantity\"\
-                    : 0,\n        \"groupRedemption\": false,\n        \"rewardDetails\"\
-                    : {\n            \"rewardId\": 663,\n            \"languageCode\"\
-                    : \"en\",\n            \"name\": \" INTOUCH Enabled\",\n     \
-                    \       \"description\": \"Description\",\n            \"groups\"\
-                    : [],\n            \"imageId\": \"EXDR12987U\",\n            \"\
-                    imageUrl\": \"https://s3.amazonaws.com/crm-nightly-new-solutions/SAHANA_TEST/EXDR12987U?X-Amz-Security-Token=FwoGZXIvYXdzECEaDFH7mzvBmQUc2KqQryLWARZFNas29Qa%2BGT3bozjU69vumkm4K%2FACklgdn2iD2wQJKg3XS5P8SUKcwOriTGT6KXt2f8sq4VQGey7NBKPIfiwEC8YCkOdyt5iHPMt3Cdm1Op4ReXFKvJ2lPyOWEYS1lXYVYHhOHmKwFn%2BlTEIUgQBLna22wNZj4Pug8%2Fs8vBLw3Yf6vYvcrmoQpq0qpM9rPie3i4vMrDZgc03vB5mvlMNqXSwHtpW6X%2BNVX3%2FepQqCaPNj2gsy3%2BTZYK6FBnLyai7%2Fi5ndBqpp9B4Rpkc7%2Fj0T3D5xChAor%2BWMuQYyLRoAD76np90BetlC8Hx42juhaOJ9R1aiZ778N6i7cJhXw35VM6Cezs5uuf4UMQ%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241031T073303Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=ASIAXCQYYRKNOA4DTKYN%2F20241031%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=5cf28d18d4b666d53f67455e5f54b1af794659c9be90d3e2492701c71a4a8d98\"\
-                    ,\n            \"intouchPoints\": 0,\n            \"intouchSeriesId\"\
-                    : \"741888\",\n            \"redemptionType\": \"INTOUCH_REWARD\"\
-                    ,\n            \"images\": [],\n            \"videos\": []\n \
-                    \       },\n        \"pointsRedemption\": {\n            \"redeemedPoints\"\
-                    : 0,\n            \"pointsRedemptionRefIds\": [\n            \
-                    \    null\n            ],\n            \"status\": {\n       \
-                    \         \"success\": true,\n                \"code\": 200,\n\
-                    \                \"message\": \"Points redeemed successfully.\"\
-                    \n            }\n        },\n        \"vouchers\": [],\n     \
-                    \   \"vendorRewards\": {\n            \"rewards\": []\n      \
-                    \  },\n        \"ownerId\": \"\"\n    }\n}"
-                "With 'altText' for images and videos":
-                  value: "{\n    \"status\": [\n        {\n            \"success\"\
-                    : true,\n            \"code\": 200,\n            \"message\":\
-                    \ \"Reward issue transactions details fetched successfully\"\n\
-                    \        }\n    ],\n    \"data\": {\n        \"rewardTransactionId\"\
-                    : \"32695\",\n        \"orgId\" : 50672,\n        \"customerId\"\
-                    \ : 123456,\n        \"rewardIssueRefId\": \"transactionNumber\"\
-                    ,\n        \"rewardTransactionDate\": 1653906525000,\n       \
-                    \ \"status\": {\n            \"success\": true,\n            \"\
-                    code\": 200,\n            \"message\": \"Reward issued successfully\"\
-                    \n        },\n        \"quantity\": 1,\n        \"requestedQuantity\"\
-                    : 0,\n        \"groupRedemption\": false,\n        \"rewardDetails\"\
-                    : {\n            \"rewardId\": 663,\n            \"languageCode\"\
-                    : \"en\",\n            \"name\": \" INTOUCH Enabled\",\n     \
-                    \       \"description\": \"Description\",\n            \"groups\"\
-                    : [],\n            \"imageId\": \"EXDR12987U\",\n            \"\
-                    imageUrl\": \"https://s3.amazonaws.com/crm-nightly-new-solutions/SAHANA_TEST/EXDR12987U?X-Amz-Security-Token=FwoGZXIvYXdzECEaDFH7mzvBmQUc2KqQryLWARZFNas29Qa%2BGT3bozjU69vumkm4K%2FACklgdn2iD2wQJKg3XS5P8SUKcwOriTGT6KXt2f8sq4VQGey7NBKPIfiwEC8YCkOdyt5iHPMt3Cdm1Op4ReXFKvJ2lPyOWEYS1lXYVYHhOHmKwFn%2BlTEIUgQBLna22wNZj4Pug8%2Fs8vBLw3Yf6vYvcrmoQpq0qpM9rPie3i4vMrDZgc03vB5mvlMNqXSwHtpW6X%2BNVX3%2FepQqCaPNj2gsy3%2BTZYK6FBnLyai7%2Fi5ndBqpp9B4Rpkc7%2Fj0T3D5xChAor%2BWMuQYyLRoAD76np90BetlC8Hx42juhaOJ9R1aiZ778N6i7cJhXw35VM6Cezs5uuf4UMQ%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241031T073303Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=ASIAXCQYYRKNOA4DTKYN%2F20241031%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=5cf28d18d4b666d53f67455e5f54b1af794659c9be90d3e2492701c71a4a8d98\"\
-                    ,\n            \"intouchPoints\": 0,\n            \"intouchSeriesId\"\
-                    : \"741888\",\n            \"redemptionType\": \"INTOUCH_REWARD\"\
-                    ,\n            \"images\": [\n            \t\t{\n            \
-                    \    \"name\": \"imageName\",\n                \"altText\": \"\
-                    product picture\",\n                \"id\": null,\n          \
-                    \      \"url\": \"mypic.com\",\n                \"isExternal\"\
-                    : true\n            }\n            ],\n            \"videos\"\
-                    : [\n            \t\t {\n                \"name\": \"videoName\"\
-                    ,\n                \"altText\": \"product picture\",\n       \
-                    \         \"id\": null,\n                \"url\": \"mypic.com\"\
-                    ,\n                \"isExternal\": true\n            }\n     \
-                    \       ]\n        },\n        \"pointsRedemption\": {\n     \
-                    \       \"redeemedPoints\": 0,\n            \"pointsRedemptionRefIds\"\
-                    : [\n                null\n            ],\n            \"status\"\
-                    : {\n                \"success\": true,\n                \"code\"\
-                    : 200,\n                \"message\": \"Points redeemed successfully.\"\
-                    \n            }\n        },\n        \"vouchers\": [],\n     \
-                    \   \"vendorRewards\": {\n            \"rewards\": []\n      \
-                    \  },\n        \"ownerId\": \"\"\n    }\n}"
+                  value:
+                    status:
+                    - success: true
+                      code: 200
+                      message: Reward issue transactions details fetched successfully
+                    data:
+                      rewardTransactionId: '32695'
+                      orgId: 50672
+                      customerId: 123456
+                      rewardIssueRefId: transactionNumber
+                      rewardTransactionDate: 1653906525000
+                      status:
+                        success: true
+                        code: 200
+                        message: Reward issued successfully
+                      quantity: 1
+                      requestedQuantity: 0
+                      groupRedemption: false
+                      rewardDetails:
+                        rewardId: 663
+                        languageCode: en
+                        name: ' INTOUCH Enabled'
+                        description: Description
+                        groups: []
+                        imageId: EXDR12987U
+                        imageUrl: https://s3.amazonaws.com/crm-nightly-new-solutions/SAHANA_TEST/EXDR12987U?X-Amz-Security-Token=FwoGZXIvYXdzECEaDFH7mzvBmQUc2KqQryLWARZFNas29Qa%2BGT3bozjU69vumkm4K%2FACklgdn2iD2wQJKg3XS5P8SUKcwOriTGT6KXt2f8sq4VQGey7NBKPIfiwEC8YCkOdyt5iHPMt3Cdm1Op4ReXFKvJ2lPyOWEYS1lXYVYHhOHmKwFn%2BlTEIUgQBLna22wNZj4Pug8%2Fs8vBLw3Yf6vYvcrmoQpq0qpM9rPie3i4vMrDZgc03vB5mvlMNqXSwHtpW6X%2BNVX3%2FepQqCaPNj2gsy3%2BTZYK6FBnLyai7%2Fi5ndBqpp9B4Rpkc7%2Fj0T3D5xChAor%2BWMuQYyLRoAD76np90BetlC8Hx42juhaOJ9R1aiZ778N6i7cJhXw35VM6Cezs5uuf4UMQ%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241031T073303Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=ASIAXCQYYRKNOA4DTKYN%2F20241031%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=5cf28d18d4b666d53f67455e5f54b1af794659c9be90d3e2492701c71a4a8d98
+                        intouchPoints: 0
+                        intouchSeriesId: '741888'
+                        redemptionType: INTOUCH_REWARD
+                        images: []
+                        videos: []
+                      pointsRedemption:
+                        redeemedPoints: 0
+                        pointsRedemptionRefIds:
+                        - null
+                        status:
+                          success: true
+                          code: 200
+                          message: Points redeemed successfully.
+                      vouchers: []
+                      vendorRewards:
+                        rewards: []
+                      ownerId: ''
+                With 'altText' for images and videos:
+                  value:
+                    status:
+                    - success: true
+                      code: 200
+                      message: Reward issue transactions details fetched successfully
+                    data:
+                      rewardTransactionId: '32695'
+                      orgId: 50672
+                      customerId: 123456
+                      rewardIssueRefId: transactionNumber
+                      rewardTransactionDate: 1653906525000
+                      status:
+                        success: true
+                        code: 200
+                        message: Reward issued successfully
+                      quantity: 1
+                      requestedQuantity: 0
+                      groupRedemption: false
+                      rewardDetails:
+                        rewardId: 663
+                        languageCode: en
+                        name: ' INTOUCH Enabled'
+                        description: Description
+                        groups: []
+                        imageId: EXDR12987U
+                        imageUrl: https://s3.amazonaws.com/crm-nightly-new-solutions/SAHANA_TEST/EXDR12987U?X-Amz-Security-Token=FwoGZXIvYXdzECEaDFH7mzvBmQUc2KqQryLWARZFNas29Qa%2BGT3bozjU69vumkm4K%2FACklgdn2iD2wQJKg3XS5P8SUKcwOriTGT6KXt2f8sq4VQGey7NBKPIfiwEC8YCkOdyt5iHPMt3Cdm1Op4ReXFKvJ2lPyOWEYS1lXYVYHhOHmKwFn%2BlTEIUgQBLna22wNZj4Pug8%2Fs8vBLw3Yf6vYvcrmoQpq0qpM9rPie3i4vMrDZgc03vB5mvlMNqXSwHtpW6X%2BNVX3%2FepQqCaPNj2gsy3%2BTZYK6FBnLyai7%2Fi5ndBqpp9B4Rpkc7%2Fj0T3D5xChAor%2BWMuQYyLRoAD76np90BetlC8Hx42juhaOJ9R1aiZ778N6i7cJhXw35VM6Cezs5uuf4UMQ%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241031T073303Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=ASIAXCQYYRKNOA4DTKYN%2F20241031%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=5cf28d18d4b666d53f67455e5f54b1af794659c9be90d3e2492701c71a4a8d98
+                        intouchPoints: 0
+                        intouchSeriesId: '741888'
+                        redemptionType: INTOUCH_REWARD
+                        images:
+                        - name: imageName
+                          altText: product picture
+                          id: null
+                          url: mypic.com
+                          isExternal: true
+                        videos:
+                        - name: videoName
+                          altText: product picture
+                          id: null
+                          url: mypic.com
+                          isExternal: true
+                      pointsRedemption:
+                        redeemedPoints: 0
+                        pointsRedemptionRefIds:
+                        - null
+                        status:
+                          success: true
+                          code: 200
+                          message: Points redeemed successfully.
+                      vouchers: []
+                      vendorRewards:
+                        rewards: []
+                      ownerId: ''
                 couponCodeCase=AS_IT_IS:
-                  value: "{\n    \"status\": [\n        {\n            \"success\"\
-                    : true,\n            \"code\": 200,\n            \"message\":\
-                    \ \"Reward issue transactions details fetched successfully\"\n\
-                    \        }\n    ],\n    \"data\": {\n        \"rewardTransactionId\"\
-                    : \"927488\",\n        \"customerId\": 345635195,\n        \"\
-                    orgId\": 50339,\n        \"rewardIssueRefId\": \"1718950196\"\
-                    ,\n        \"rewardTransactionDate\": 1747372097000,\n       \
-                    \ \"status\": {\n            \"success\": true,\n            \"\
-                    code\": 200,\n            \"message\": \"Reward issued successfully\"\
-                    \n        },\n        \"quantity\": 1,\n        \"requestedQuantity\"\
-                    : 1,\n        \"groupRedemption\": false,\n        \"rewardDetails\"\
-                    : {\n            \"rewardId\": 139831,\n            \"languageCode\"\
-                    : \"en\",\n            \"name\": \"english rewardName\",\n   \
-                    \         \"description\": \"hello\",\n            \"groups\"\
-                    : [],\n            \"imageId\": \"EXDR12987U\",\n            \"\
-                    imageUrl\": \"https://s3.amazonaws.com/crm-staging-new-solutions/AutomationBrandMarvel/EXDR12987U?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEJH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJHMEUCIE%2BeRWPDz0XYx7IjQEri%2F%2FpzAhgGJvwXWBc7mSOrRaokAiEAu1INaG1iTdyTeXZpI%2BZ%2BsNEI7VdoVdG1J53VmL4XhGAqvwIIWhAFGgw0ODY0NTY5ODYyNjYiDDcco1G%2BCL1zwPK2YCqcAvsLh13E3dAKtZs5Ru9O3VO8xXheuSsjubDb6csrxpnOT2cQsVnN3ma8Q1Pw7oG83pY717SdEVaRP951tkv9XwGgiB3sNCL1cs1AwLf2BDRvLvrb24PKzcJG3iQszRjFMHpujBuAiJt53AzY9Qy%2F6WlOXCRuuMVlUMeGdQNforRTTAkujk3kUtpsNzc%2B6gzDl04Gv2mlaznSAXweADW0cS6ajn79loWUlnaITZIwjJQUVxm4xgxFtki0%2BEhS%2FS1LnxHH3riQ%2Fixza0%2BvoHoQME8EbVXDEADWuS3ZeSVw50rQtult00p%2BIwjZt7IyM4RC0Xmh5lwKeZOcaKyhu762jyGRBgH8veMlXKTNNdfxvzqfV1ddB0x1hgbAIIYDMIz61cEGOp0BSEegrOVeFJSjbBOTD%2Fy2W1l0cN6PCvrap9NRmv3ws8pdbS89nSgPYdzF8hv6t%2F4fALargH1mUSahDGLUhSgmMH%2FcCIoXSb2iL4kJRycgr9j98hRQiJvdxh%2BHHIMimrvmDqpPzxOyZ0Ee7WDrSW9h1qsP5YD12cWAuU4hFvuM%2By077e1crCfa7EeNQHg2rKY04IvkxahZmvpcxVg9Dw%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250527T085416Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIAXCQYYRKNHNOLXL4J%2F20250527%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=c2a7ac120eddfac2cebd3ddd16dc2c8453af7598a923ee8b7591db92b931e107\"\
-                    ,\n            \"intouchPoints\": 0,\n            \"intouchSeriesId\"\
-                    : \"96303\",\n            \"redemptionType\": \"INTOUCH_REWARD\"\
-                    ,\n            \"images\": [],\n            \"videos\": []\n \
-                    \       },\n        \"pointsRedemption\": {\n            \"redeemedPoints\"\
-                    : 0,\n            \"vendorName\": \"test004\",\n            \"\
-                    pointsRedemptionRefIds\": [\n                null\n          \
-                    \  ],\n            \"status\": {\n                \"success\"\
-                    : true,\n                \"code\": 200,\n                \"message\"\
-                    : \"Points redeemed successfully.\"\n            },\n        \
-                    \    \"vendorId\": 37\n        },\n        \"redemptionDetails\"\
-                    : {\n            \"redemptionType\": \"INTOUCH_REWARD\",\n   \
-                    \         \"totalRedemptionValue\": null\n        },\n       \
-                    \ \"vouchers\": [\n            {\n                \"code\": \"\
-                    UPPERlower003\",\n                \"codeExpiry\": \"2025-06-15\
-                    \ 00:00:00\",\n                \"codeExpiryDateTime\": \"2025-06-15T00:00:00Z\"\
-                    ,\n                \"redemptionDetails\": {\n                \
-                    \    \"redemptionType\": \"INTOUCH_REWARD\",\n               \
-                    \     \"redemptionValue\": null\n                }\n         \
-                    \   }\n        ],\n        \"vendorRewards\": {\n            \"\
-                    rewards\": []\n        },\n        \"customFields\": {\n     \
-                    \       \"CF2_eebced882025-05-27 13:57:18.344501\": \"defaultValue_2\"\
-                    ,\n            \"CF1_50a6f4cf2025-05-27 13:57:18.344487\": \"\
-                    defaultValue_1\"\n        },\n        \"richContentRO\": {},\n\
-                    \        \"ownerId\": \"\",\n        \"eventDateTime\": \"2025-05-16T05:08:17Z\"\
-                    ,\n        \"issueDateTime\": \"2025-05-16T05:08:17Z\"\n    }\n\
-                    }"
+                  value:
+                    status:
+                    - success: true
+                      code: 200
+                      message: Reward issue transactions details fetched successfully
+                    data:
+                      rewardTransactionId: '927488'
+                      customerId: 345635195
+                      orgId: 50339
+                      rewardIssueRefId: '1718950196'
+                      rewardTransactionDate: 1747372097000
+                      status:
+                        success: true
+                        code: 200
+                        message: Reward issued successfully
+                      quantity: 1
+                      requestedQuantity: 1
+                      groupRedemption: false
+                      rewardDetails:
+                        rewardId: 139831
+                        languageCode: en
+                        name: english rewardName
+                        description: hello
+                        groups: []
+                        imageId: EXDR12987U
+                        imageUrl: https://s3.amazonaws.com/crm-staging-new-solutions/AutomationBrandMarvel/EXDR12987U?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEJH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJHMEUCIE%2BeRWPDz0XYx7IjQEri%2F%2FpzAhgGJvwXWBc7mSOrRaokAiEAu1INaG1iTdyTeXZpI%2BZ%2BsNEI7VdoVdG1J53VmL4XhGAqvwIIWhAFGgw0ODY0NTY5ODYyNjYiDDcco1G%2BCL1zwPK2YCqcAvsLh13E3dAKtZs5Ru9O3VO8xXheuSsjubDb6csrxpnOT2cQsVnN3ma8Q1Pw7oG83pY717SdEVaRP951tkv9XwGgiB3sNCL1cs1AwLf2BDRvLvrb24PKzcJG3iQszRjFMHpujBuAiJt53AzY9Qy%2F6WlOXCRuuMVlUMeGdQNforRTTAkujk3kUtpsNzc%2B6gzDl04Gv2mlaznSAXweADW0cS6ajn79loWUlnaITZIwjJQUVxm4xgxFtki0%2BEhS%2FS1LnxHH3riQ%2Fixza0%2BvoHoQME8EbVXDEADWuS3ZeSVw50rQtult00p%2BIwjZt7IyM4RC0Xmh5lwKeZOcaKyhu762jyGRBgH8veMlXKTNNdfxvzqfV1ddB0x1hgbAIIYDMIz61cEGOp0BSEegrOVeFJSjbBOTD%2Fy2W1l0cN6PCvrap9NRmv3ws8pdbS89nSgPYdzF8hv6t%2F4fALargH1mUSahDGLUhSgmMH%2FcCIoXSb2iL4kJRycgr9j98hRQiJvdxh%2BHHIMimrvmDqpPzxOyZ0Ee7WDrSW9h1qsP5YD12cWAuU4hFvuM%2By077e1crCfa7EeNQHg2rKY04IvkxahZmvpcxVg9Dw%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250527T085416Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIAXCQYYRKNHNOLXL4J%2F20250527%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=c2a7ac120eddfac2cebd3ddd16dc2c8453af7598a923ee8b7591db92b931e107
+                        intouchPoints: 0
+                        intouchSeriesId: '96303'
+                        redemptionType: INTOUCH_REWARD
+                        images: []
+                        videos: []
+                      pointsRedemption:
+                        redeemedPoints: 0
+                        vendorName: test004
+                        pointsRedemptionRefIds:
+                        - null
+                        status:
+                          success: true
+                          code: 200
+                          message: Points redeemed successfully.
+                        vendorId: 37
+                      redemptionDetails:
+                        redemptionType: INTOUCH_REWARD
+                        totalRedemptionValue: null
+                      vouchers:
+                      - code: UPPERlower003
+                        codeExpiry: '2025-06-15 00:00:00'
+                        codeExpiryDateTime: '2025-06-15T00:00:00Z'
+                        redemptionDetails:
+                          redemptionType: INTOUCH_REWARD
+                          redemptionValue: null
+                      vendorRewards:
+                        rewards: []
+                      customFields:
+                        CF2_eebced882025-05-27 13:57:18.344501: defaultValue_2
+                        CF1_50a6f4cf2025-05-27 13:57:18.344487: defaultValue_1
+                      richContentRO: {}
+                      ownerId: ''
+                      eventDateTime: '2025-05-16T05:08:17Z'
+                      issueDateTime: '2025-05-16T05:08:17Z'
                 couponCodeCase = LOWER:
-                  value: "{\n    \"status\": [\n        {\n            \"success\"\
-                    : true,\n            \"code\": 200,\n            \"message\":\
-                    \ \"Reward issue transactions details fetched successfully\"\n\
-                    \        }\n    ],\n    \"data\": {\n        \"rewardTransactionId\"\
-                    : \"927488\",\n        \"customerId\": 345635195,\n        \"\
-                    orgId\": 50339,\n        \"rewardIssueRefId\": \"1718950196\"\
-                    ,\n        \"rewardTransactionDate\": 1747372097000,\n       \
-                    \ \"status\": {\n            \"success\": true,\n            \"\
-                    code\": 200,\n            \"message\": \"Reward issued successfully\"\
-                    \n        },\n        \"quantity\": 1,\n        \"requestedQuantity\"\
-                    : 1,\n        \"groupRedemption\": false,\n        \"rewardDetails\"\
-                    : {\n            \"rewardId\": 139831,\n            \"languageCode\"\
-                    : \"en\",\n            \"name\": \"english rewardName\",\n   \
-                    \         \"description\": \"hello\",\n            \"groups\"\
-                    : [],\n            \"imageId\": \"EXDR12987U\",\n            \"\
-                    imageUrl\": \"https://s3.amazonaws.com/crm-staging-new-solutions/AutomationBrandMarvel/EXDR12987U?X-Amz-Security-Token=IQoJb3JpZ2luX2VjED0aCXVzLWVhc3QtMSJGMEQCIBMtYIqqA45zbd98IEr9E71Kj1DEeRAJSqC93wjb8lGSAiB0LgFMxrBnv1r7RUh58yd18v%2BC83lrZ9g6zXR%2FNazSBCq%2FAggWEAUaDDQ4NjQ1Njk4NjI2NiIMRd70c%2FZFDj8w2SBHKpwC7Ou7tqNdHWY%2BuE%2FQZ5814yI%2BDOLJG6Ir%2BnmS6nwsy5g7ecoR2oNxZxRiqnrscSnpEleb%2FMint6ESMrYQshIjTQkNZGEorWYotRL6K5e3Hy8UlPAkaQ1Eki4pKgo%2FO0VPJtWz6Hpal1IG1Nutoqisd7MlTb%2B8DZ76BBEytZAoQ8BEDFcwn%2FgQgVxBonVEwWzjs%2FZpWAKq2YmT3KqZBoa6h0FrKKLkARhRch9y8xi6mjxXPefdGcGGfgqpdcukenb6tkPdE87S%2Bx0Xtf5T32QGfsKh%2B9sJmJGGTjqiek4D7JOr3e1vQ%2Fca1%2B1m23VL%2BcbxjMjb6F9wvYUTIdvMsJNi6ZGAXkWGhIQ3%2BhYmB%2FvxNTDBV6HehcSFpQ5Sw6Qwrtn7wQY6ngHalzhExI4S1K76x836fe9Vtq6PaxC2jHBAH2gPbqrErKmOGVZu%2FnQ80aKif8kT7zXNOaLWDezuL2gdDehMhwT%2BY%2FEovQRDroZtunb36yHT1cMNmMNFbSstSwuYuRnmyovdVtuQurRJVnKOHl%2FaTvx1SVV%2FNLNWveE0gbFACdO3uOBPpNmOTzWC2XBrnxvtlb3LKJ3jioAWZ5%2FI%2FadJhw%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250603T123806Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=ASIAXCQYYRKNOTBO6SUU%2F20250603%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=a9aab95c85ef5cec0eba7d4c978c5754f0372e10f470d16dc29f7bb74a86952f\"\
-                    ,\n            \"intouchPoints\": 0,\n            \"intouchSeriesId\"\
-                    : \"96303\",\n            \"redemptionType\": \"INTOUCH_REWARD\"\
-                    ,\n            \"images\": [],\n            \"videos\": []\n \
-                    \       },\n        \"pointsRedemption\": {\n            \"redeemedPoints\"\
-                    : 0,\n            \"vendorName\": \"test004\",\n            \"\
-                    pointsRedemptionRefIds\": [\n                null\n          \
-                    \  ],\n            \"status\": {\n                \"success\"\
-                    : true,\n                \"code\": 200,\n                \"message\"\
-                    : \"Points redeemed successfully.\"\n            },\n        \
-                    \    \"vendorId\": 37\n        },\n        \"redemptionDetails\"\
-                    : {\n            \"redemptionType\": \"INTOUCH_REWARD\",\n   \
-                    \         \"totalRedemptionValue\": null\n        },\n       \
-                    \ \"vouchers\": [\n            {\n                \"code\": \"\
-                    upperlower003\",\n                \"codeExpiry\": \"2025-06-15\
-                    \ 00:00:00\",\n                \"codeExpiryDateTime\": \"2025-06-15T00:00:00Z\"\
-                    ,\n                \"redemptionDetails\": {\n                \
-                    \    \"redemptionType\": \"INTOUCH_REWARD\",\n               \
-                    \     \"redemptionValue\": null\n                }\n         \
-                    \   }\n        ],\n        \"vendorRewards\": {\n            \"\
-                    rewards\": []\n        },\n        \"customFields\": {\n     \
-                    \       \"CF2_0122a5852025-06-03 13:59:47.736781\": \"defaultValue_2\"\
-                    ,\n            \"CF1_c26dfde12025-06-03 13:59:47.736770\": \"\
-                    defaultValue_1\"\n        },\n        \"richContentRO\": {},\n\
-                    \        \"ownerId\": \"\",\n        \"eventDateTime\": \"2025-05-16T05:08:17Z\"\
-                    ,\n        \"issueDateTime\": \"2025-05-16T05:08:17Z\"\n    }\n\
-                    }"
+                  value:
+                    status:
+                    - success: true
+                      code: 200
+                      message: Reward issue transactions details fetched successfully
+                    data:
+                      rewardTransactionId: '927488'
+                      customerId: 345635195
+                      orgId: 50339
+                      rewardIssueRefId: '1718950196'
+                      rewardTransactionDate: 1747372097000
+                      status:
+                        success: true
+                        code: 200
+                        message: Reward issued successfully
+                      quantity: 1
+                      requestedQuantity: 1
+                      groupRedemption: false
+                      rewardDetails:
+                        rewardId: 139831
+                        languageCode: en
+                        name: english rewardName
+                        description: hello
+                        groups: []
+                        imageId: EXDR12987U
+                        imageUrl: https://s3.amazonaws.com/crm-staging-new-solutions/AutomationBrandMarvel/EXDR12987U?X-Amz-Security-Token=IQoJb3JpZ2luX2VjED0aCXVzLWVhc3QtMSJGMEQCIBMtYIqqA45zbd98IEr9E71Kj1DEeRAJSqC93wjb8lGSAiB0LgFMxrBnv1r7RUh58yd18v%2BC83lrZ9g6zXR%2FNazSBCq%2FAggWEAUaDDQ4NjQ1Njk4NjI2NiIMRd70c%2FZFDj8w2SBHKpwC7Ou7tqNdHWY%2BuE%2FQZ5814yI%2BDOLJG6Ir%2BnmS6nwsy5g7ecoR2oNxZxRiqnrscSnpEleb%2FMint6ESMrYQshIjTQkNZGEorWYotRL6K5e3Hy8UlPAkaQ1Eki4pKgo%2FO0VPJtWz6Hpal1IG1Nutoqisd7MlTb%2B8DZ76BBEytZAoQ8BEDFcwn%2FgQgVxBonVEwWzjs%2FZpWAKq2YmT3KqZBoa6h0FrKKLkARhRch9y8xi6mjxXPefdGcGGfgqpdcukenb6tkPdE87S%2Bx0Xtf5T32QGfsKh%2B9sJmJGGTjqiek4D7JOr3e1vQ%2Fca1%2B1m23VL%2BcbxjMjb6F9wvYUTIdvMsJNi6ZGAXkWGhIQ3%2BhYmB%2FvxNTDBV6HehcSFpQ5Sw6Qwrtn7wQY6ngHalzhExI4S1K76x836fe9Vtq6PaxC2jHBAH2gPbqrErKmOGVZu%2FnQ80aKif8kT7zXNOaLWDezuL2gdDehMhwT%2BY%2FEovQRDroZtunb36yHT1cMNmMNFbSstSwuYuRnmyovdVtuQurRJVnKOHl%2FaTvx1SVV%2FNLNWveE0gbFACdO3uOBPpNmOTzWC2XBrnxvtlb3LKJ3jioAWZ5%2FI%2FadJhw%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250603T123806Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=ASIAXCQYYRKNOTBO6SUU%2F20250603%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=a9aab95c85ef5cec0eba7d4c978c5754f0372e10f470d16dc29f7bb74a86952f
+                        intouchPoints: 0
+                        intouchSeriesId: '96303'
+                        redemptionType: INTOUCH_REWARD
+                        images: []
+                        videos: []
+                      pointsRedemption:
+                        redeemedPoints: 0
+                        vendorName: test004
+                        pointsRedemptionRefIds:
+                        - null
+                        status:
+                          success: true
+                          code: 200
+                          message: Points redeemed successfully.
+                        vendorId: 37
+                      redemptionDetails:
+                        redemptionType: INTOUCH_REWARD
+                        totalRedemptionValue: null
+                      vouchers:
+                      - code: upperlower003
+                        codeExpiry: '2025-06-15 00:00:00'
+                        codeExpiryDateTime: '2025-06-15T00:00:00Z'
+                        redemptionDetails:
+                          redemptionType: INTOUCH_REWARD
+                          redemptionValue: null
+                      vendorRewards:
+                        rewards: []
+                      customFields:
+                        CF2_0122a5852025-06-03 13:59:47.736781: defaultValue_2
+                        CF1_c26dfde12025-06-03 13:59:47.736770: defaultValue_1
+                      richContentRO: {}
+                      ownerId: ''
+                      eventDateTime: '2025-05-16T05:08:17Z'
+                      issueDateTime: '2025-05-16T05:08:17Z'
                 couponCodeCase = UPPER:
-                  value: "{\n    \"status\": [\n        {\n            \"success\"\
-                    : true,\n            \"code\": 200,\n            \"message\":\
-                    \ \"Reward issue transactions details fetched successfully\"\n\
-                    \        }\n    ],\n    \"data\": {\n        \"rewardTransactionId\"\
-                    : \"927488\",\n        \"customerId\": 345635195,\n        \"\
-                    orgId\": 50339,\n        \"rewardIssueRefId\": \"1718950196\"\
-                    ,\n        \"rewardTransactionDate\": 1747372097000,\n       \
-                    \ \"status\": {\n            \"success\": true,\n            \"\
-                    code\": 200,\n            \"message\": \"Reward issued successfully\"\
-                    \n        },\n        \"quantity\": 1,\n        \"requestedQuantity\"\
-                    : 1,\n        \"groupRedemption\": false,\n        \"rewardDetails\"\
-                    : {\n            \"rewardId\": 139831,\n            \"languageCode\"\
-                    : \"en\",\n            \"name\": \"english rewardName\",\n   \
-                    \         \"description\": \"hello\",\n            \"groups\"\
-                    : [],\n            \"imageId\": \"EXDR12987U\",\n            \"\
-                    imageUrl\": \"https://s3.amazonaws.com/crm-staging-new-solutions/AutomationBrandMarvel/EXDR12987U?X-Amz-Security-Token=IQoJb3JpZ2luX2VjED0aCXVzLWVhc3QtMSJHMEUCIDdiny0ZSOUcF7EibKTJv9zlt2jxzV6zRlC3HElGSPaUAiEAyVKkXW1Cn%2Bn1syBFpIZLBhd42sDxMmgjW6AtZNNHpBYqvwIIFhAFGgw0ODY0NTY5ODYyNjYiDPIQTS0SUoykHmQsbiqcAuzQPcwZ%2F94VKuZMpXFHPPoy5X15DHJOzOnJUUJ2ltixLHhf4fbHVdM033Gtr0Lm8obFVRRajrYnqzPcMEQIEQh%2BTWOQgE6vS5sCg3%2FtFDwFXWTtrL30pIcO%2Fps6DgBipaYWuJPP6sSEi3%2F9%2Bvvx99tjjnvTBkGjGsoJtnKs5PhqTVcgCjqm6742oqvEpsabdpmneuMtag87H5nkfrGuIJx6e9d97%2FJAw8PxQD%2BgC2IrhgoSwqSfMirrNKDtqHLgpMt7kQnMMfq2g9zo%2FFz%2FgRJJ8Q5ut7BQj7R2OpPFpQd15Kcwt45kEzztWqBJUKj2Yzgcrn6dSM1k5bRK9gfWCXJceXaTIWJPHYAz4ES6lkgpJZ1A8QMYsoyOWwu8MN3Z%2B8EGOp0BOJX4Zx2EF8rO3hiYXMxHlZws6g618MnVlUM9ds1yUrx1F4Ci2SngZSSsanX%2FO8GSTYEWCSDjAuX77RVIJC6giPZVJPz7UcfxpK6lB44QjLVynUdAwCJwB8pZgxGnwFFHgVUudF%2B5EC1SbmRnjP7pmB9Si50FpL8XsZnDoyAAzUv2qLQmYDQf9YLxhpZ1J0xy5onbcyB0OgZU4%2BFrcQ%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250603T123853Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=ASIAXCQYYRKNDPQM2XMS%2F20250603%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=05c0598c0a4c5fcaf021d0cef464e0451ff4564400daa69e18c41dda0f9b5b3c\"\
-                    ,\n            \"intouchPoints\": 0,\n            \"intouchSeriesId\"\
-                    : \"96303\",\n            \"redemptionType\": \"INTOUCH_REWARD\"\
-                    ,\n            \"images\": [],\n            \"videos\": []\n \
-                    \       },\n        \"pointsRedemption\": {\n            \"redeemedPoints\"\
-                    : 0,\n            \"vendorName\": \"test004\",\n            \"\
-                    pointsRedemptionRefIds\": [\n                null\n          \
-                    \  ],\n            \"status\": {\n                \"success\"\
-                    : true,\n                \"code\": 200,\n                \"message\"\
-                    : \"Points redeemed successfully.\"\n            },\n        \
-                    \    \"vendorId\": 37\n        },\n        \"redemptionDetails\"\
-                    : {\n            \"redemptionType\": \"INTOUCH_REWARD\",\n   \
-                    \         \"totalRedemptionValue\": null\n        },\n       \
-                    \ \"vouchers\": [\n            {\n                \"code\": \"\
-                    UPPERLOWER003\",\n                \"codeExpiry\": \"2025-06-15\
-                    \ 00:00:00\",\n                \"codeExpiryDateTime\": \"2025-06-15T00:00:00Z\"\
-                    ,\n                \"redemptionDetails\": {\n                \
-                    \    \"redemptionType\": \"INTOUCH_REWARD\",\n               \
-                    \     \"redemptionValue\": null\n                }\n         \
-                    \   }\n        ],\n        \"vendorRewards\": {\n            \"\
-                    rewards\": []\n        },\n        \"customFields\": {\n     \
-                    \       \"CF2_0122a5852025-06-03 13:59:47.736781\": \"defaultValue_2\"\
-                    ,\n            \"CF1_c26dfde12025-06-03 13:59:47.736770\": \"\
-                    defaultValue_1\"\n        },\n        \"richContentRO\": {},\n\
-                    \        \"ownerId\": \"\",\n        \"eventDateTime\": \"2025-05-16T05:08:17Z\"\
-                    ,\n        \"issueDateTime\": \"2025-05-16T05:08:17Z\"\n    }\n\
-                    }"
+                  value:
+                    status:
+                    - success: true
+                      code: 200
+                      message: Reward issue transactions details fetched successfully
+                    data:
+                      rewardTransactionId: '927488'
+                      customerId: 345635195
+                      orgId: 50339
+                      rewardIssueRefId: '1718950196'
+                      rewardTransactionDate: 1747372097000
+                      status:
+                        success: true
+                        code: 200
+                        message: Reward issued successfully
+                      quantity: 1
+                      requestedQuantity: 1
+                      groupRedemption: false
+                      rewardDetails:
+                        rewardId: 139831
+                        languageCode: en
+                        name: english rewardName
+                        description: hello
+                        groups: []
+                        imageId: EXDR12987U
+                        imageUrl: https://s3.amazonaws.com/crm-staging-new-solutions/AutomationBrandMarvel/EXDR12987U?X-Amz-Security-Token=IQoJb3JpZ2luX2VjED0aCXVzLWVhc3QtMSJHMEUCIDdiny0ZSOUcF7EibKTJv9zlt2jxzV6zRlC3HElGSPaUAiEAyVKkXW1Cn%2Bn1syBFpIZLBhd42sDxMmgjW6AtZNNHpBYqvwIIFhAFGgw0ODY0NTY5ODYyNjYiDPIQTS0SUoykHmQsbiqcAuzQPcwZ%2F94VKuZMpXFHPPoy5X15DHJOzOnJUUJ2ltixLHhf4fbHVdM033Gtr0Lm8obFVRRajrYnqzPcMEQIEQh%2BTWOQgE6vS5sCg3%2FtFDwFXWTtrL30pIcO%2Fps6DgBipaYWuJPP6sSEi3%2F9%2Bvvx99tjjnvTBkGjGsoJtnKs5PhqTVcgCjqm6742oqvEpsabdpmneuMtag87H5nkfrGuIJx6e9d97%2FJAw8PxQD%2BgC2IrhgoSwqSfMirrNKDtqHLgpMt7kQnMMfq2g9zo%2FFz%2FgRJJ8Q5ut7BQj7R2OpPFpQd15Kcwt45kEzztWqBJUKj2Yzgcrn6dSM1k5bRK9gfWCXJceXaTIWJPHYAz4ES6lkgpJZ1A8QMYsoyOWwu8MN3Z%2B8EGOp0BOJX4Zx2EF8rO3hiYXMxHlZws6g618MnVlUM9ds1yUrx1F4Ci2SngZSSsanX%2FO8GSTYEWCSDjAuX77RVIJC6giPZVJPz7UcfxpK6lB44QjLVynUdAwCJwB8pZgxGnwFFHgVUudF%2B5EC1SbmRnjP7pmB9Si50FpL8XsZnDoyAAzUv2qLQmYDQf9YLxhpZ1J0xy5onbcyB0OgZU4%2BFrcQ%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250603T123853Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=ASIAXCQYYRKNDPQM2XMS%2F20250603%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=05c0598c0a4c5fcaf021d0cef464e0451ff4564400daa69e18c41dda0f9b5b3c
+                        intouchPoints: 0
+                        intouchSeriesId: '96303'
+                        redemptionType: INTOUCH_REWARD
+                        images: []
+                        videos: []
+                      pointsRedemption:
+                        redeemedPoints: 0
+                        vendorName: test004
+                        pointsRedemptionRefIds:
+                        - null
+                        status:
+                          success: true
+                          code: 200
+                          message: Points redeemed successfully.
+                        vendorId: 37
+                      redemptionDetails:
+                        redemptionType: INTOUCH_REWARD
+                        totalRedemptionValue: null
+                      vouchers:
+                      - code: UPPERLOWER003
+                        codeExpiry: '2025-06-15 00:00:00'
+                        codeExpiryDateTime: '2025-06-15T00:00:00Z'
+                        redemptionDetails:
+                          redemptionType: INTOUCH_REWARD
+                          redemptionValue: null
+                      vendorRewards:
+                        rewards: []
+                      customFields:
+                        CF2_0122a5852025-06-03 13:59:47.736781: defaultValue_2
+                        CF1_c26dfde12025-06-03 13:59:47.736770: defaultValue_1
+                      richContentRO: {}
+                      ownerId: ''
+                      eventDateTime: '2025-05-16T05:08:17Z'
+                      issueDateTime: '2025-05-16T05:08:17Z'
               schema:
                 oneOf:
                 - title: Sample response with DATA-SCOPE as OTHER
@@ -327,7 +415,7 @@ paths:
                               example: EXDR12987U
                             imageUrl:
                               type: string
-                              example: "https://s3.amazonaws.com/crm-nightly-new-solutions/SAHANA_TEST/EXDR12987U?X-Amz-Security-Token=FwoGZXIvYXdzECEaDFH7mzvBmQUc2KqQryLWARZFNas29Qa%2BGT3bozjU69vumkm4K%2FACklgdn2iD2wQJKg3XS5P8SUKcwOriTGT6KXt2f8sq4VQGey7NBKPIfiwEC8YCkOdyt5iHPMt3Cdm1Op4ReXFKvJ2lPyOWEYS1lXYVYHhOHmKwFn%2BlTEIUgQBLna22wNZj4Pug8%2Fs8vBLw3Yf6vYvcrmoQpq0qpM9rPie3i4vMrDZgc03vB5mvlMNqXSwHtpW6X%2BNVX3%2FepQqCaPNj2gsy3%2BTZYK6FBnLyai7%2Fi5ndBqpp9B4Rpkc7%2Fj0T3D5xChAor%2BWMuQYyLRoAD76np90BetlC8Hx42juhaOJ9R1aiZ778N6i7cJhXw35VM6Cezs5uuf4UMQ%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241031T073303Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=ASIAXCQYYRKNOA4DTKYN%2F20241031%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=5cf28d18d4b666d53f67455e5f54b1af794659c9be90d3e2492701c71a4a8d98"
+                              example: https://s3.amazonaws.com/crm-nightly-new-solutions/SAHANA_TEST/EXDR12987U?X-Amz-Security-Token=FwoGZXIvYXdzECEaDFH7mzvBmQUc2KqQryLWARZFNas29Qa%2BGT3bozjU69vumkm4K%2FACklgdn2iD2wQJKg3XS5P8SUKcwOriTGT6KXt2f8sq4VQGey7NBKPIfiwEC8YCkOdyt5iHPMt3Cdm1Op4ReXFKvJ2lPyOWEYS1lXYVYHhOHmKwFn%2BlTEIUgQBLna22wNZj4Pug8%2Fs8vBLw3Yf6vYvcrmoQpq0qpM9rPie3i4vMrDZgc03vB5mvlMNqXSwHtpW6X%2BNVX3%2FepQqCaPNj2gsy3%2BTZYK6FBnLyai7%2Fi5ndBqpp9B4Rpkc7%2Fj0T3D5xChAor%2BWMuQYyLRoAD76np90BetlC8Hx42juhaOJ9R1aiZ778N6i7cJhXw35VM6Cezs5uuf4UMQ%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241031T073303Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=ASIAXCQYYRKNOA4DTKYN%2F20241031%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=5cf28d18d4b666d53f67455e5f54b1af794659c9be90d3e2492701c71a4a8d98
                             intouchPoints:
                               type: integer
                               example: 0
@@ -376,7 +464,7 @@ paths:
                         ownerId:
                           type: string
                           example: ''
-                - title: "With 'altText' for images and videos"
+                - title: With 'altText' for images and videos
                   type: object
                   properties:
                     status:
@@ -465,7 +553,7 @@ paths:
                               example: EXDR12987U
                             imageUrl:
                               type: string
-                              example: "https://s3.amazonaws.com/crm-nightly-new-solutions/SAHANA_TEST/EXDR12987U?X-Amz-Security-Token=FwoGZXIvYXdzECEaDFH7mzvBmQUc2KqQryLWARZFNas29Qa%2BGT3bozjU69vumkm4K%2FACklgdn2iD2wQJKg3XS5P8SUKcwOriTGT6KXt2f8sq4VQGey7NBKPIfiwEC8YCkOdyt5iHPMt3Cdm1Op4ReXFKvJ2lPyOWEYS1lXYVYHhOHmKwFn%2BlTEIUgQBLna22wNZj4Pug8%2Fs8vBLw3Yf6vYvcrmoQpq0qpM9rPie3i4vMrDZgc03vB5mvlMNqXSwHtpW6X%2BNVX3%2FepQqCaPNj2gsy3%2BTZYK6FBnLyai7%2Fi5ndBqpp9B4Rpkc7%2Fj0T3D5xChAor%2BWMuQYyLRoAD76np90BetlC8Hx42juhaOJ9R1aiZ778N6i7cJhXw35VM6Cezs5uuf4UMQ%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241031T073303Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=ASIAXCQYYRKNOA4DTKYN%2F20241031%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=5cf28d18d4b666d53f67455e5f54b1af794659c9be90d3e2492701c71a4a8d98"
+                              example: https://s3.amazonaws.com/crm-nightly-new-solutions/SAHANA_TEST/EXDR12987U?X-Amz-Security-Token=FwoGZXIvYXdzECEaDFH7mzvBmQUc2KqQryLWARZFNas29Qa%2BGT3bozjU69vumkm4K%2FACklgdn2iD2wQJKg3XS5P8SUKcwOriTGT6KXt2f8sq4VQGey7NBKPIfiwEC8YCkOdyt5iHPMt3Cdm1Op4ReXFKvJ2lPyOWEYS1lXYVYHhOHmKwFn%2BlTEIUgQBLna22wNZj4Pug8%2Fs8vBLw3Yf6vYvcrmoQpq0qpM9rPie3i4vMrDZgc03vB5mvlMNqXSwHtpW6X%2BNVX3%2FepQqCaPNj2gsy3%2BTZYK6FBnLyai7%2Fi5ndBqpp9B4Rpkc7%2Fj0T3D5xChAor%2BWMuQYyLRoAD76np90BetlC8Hx42juhaOJ9R1aiZ778N6i7cJhXw35VM6Cezs5uuf4UMQ%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241031T073303Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=ASIAXCQYYRKNOA4DTKYN%2F20241031%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=5cf28d18d4b666d53f67455e5f54b1af794659c9be90d3e2492701c71a4a8d98
                             intouchPoints:
                               type: integer
                               example: 0
@@ -637,7 +725,7 @@ paths:
                               example: EXDR12987U
                             imageUrl:
                               type: string
-                              example: "https://s3.amazonaws.com/crm-staging-new-solutions/AutomationBrandMarvel/EXDR12987U?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEJH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJHMEUCIE%2BeRWPDz0XYx7IjQEri%2F%2FpzAhgGJvwXWBc7mSOrRaokAiEAu1INaG1iTdyTeXZpI%2BZ%2BsNEI7VdoVdG1J53VmL4XhGAqvwIIWhAFGgw0ODY0NTY5ODYyNjYiDDcco1G%2BCL1zwPK2YCqcAvsLh13E3dAKtZs5Ru9O3VO8xXheuSsjubDb6csrxpnOT2cQsVnN3ma8Q1Pw7oG83pY717SdEVaRP951tkv9XwGgiB3sNCL1cs1AwLf2BDRvLvrb24PKzcJG3iQszRjFMHpujBuAiJt53AzY9Qy%2F6WlOXCRuuMVlUMeGdQNforRTTAkujk3kUtpsNzc%2B6gzDl04Gv2mlaznSAXweADW0cS6ajn79loWUlnaITZIwjJQUVxm4xgxFtki0%2BEhS%2FS1LnxHH3riQ%2Fixza0%2BvoHoQME8EbVXDEADWuS3ZeSVw50rQtult00p%2BIwjZt7IyM4RC0Xmh5lwKeZOcaKyhu762jyGRBgH8veMlXKTNNdfxvzqfV1ddB0x1hgbAIIYDMIz61cEGOp0BSEegrOVeFJSjbBOTD%2Fy2W1l0cN6PCvrap9NRmv3ws8pdbS89nSgPYdzF8hv6t%2F4fALargH1mUSahDGLUhSgmMH%2FcCIoXSb2iL4kJRycgr9j98hRQiJvdxh%2BHHIMimrvmDqpPzxOyZ0Ee7WDrSW9h1qsP5YD12cWAuU4hFvuM%2By077e1crCfa7EeNQHg2rKY04IvkxahZmvpcxVg9Dw%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250527T085416Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIAXCQYYRKNHNOLXL4J%2F20250527%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=c2a7ac120eddfac2cebd3ddd16dc2c8453af7598a923ee8b7591db92b931e107"
+                              example: https://s3.amazonaws.com/crm-staging-new-solutions/AutomationBrandMarvel/EXDR12987U?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEJH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJHMEUCIE%2BeRWPDz0XYx7IjQEri%2F%2FpzAhgGJvwXWBc7mSOrRaokAiEAu1INaG1iTdyTeXZpI%2BZ%2BsNEI7VdoVdG1J53VmL4XhGAqvwIIWhAFGgw0ODY0NTY5ODYyNjYiDDcco1G%2BCL1zwPK2YCqcAvsLh13E3dAKtZs5Ru9O3VO8xXheuSsjubDb6csrxpnOT2cQsVnN3ma8Q1Pw7oG83pY717SdEVaRP951tkv9XwGgiB3sNCL1cs1AwLf2BDRvLvrb24PKzcJG3iQszRjFMHpujBuAiJt53AzY9Qy%2F6WlOXCRuuMVlUMeGdQNforRTTAkujk3kUtpsNzc%2B6gzDl04Gv2mlaznSAXweADW0cS6ajn79loWUlnaITZIwjJQUVxm4xgxFtki0%2BEhS%2FS1LnxHH3riQ%2Fixza0%2BvoHoQME8EbVXDEADWuS3ZeSVw50rQtult00p%2BIwjZt7IyM4RC0Xmh5lwKeZOcaKyhu762jyGRBgH8veMlXKTNNdfxvzqfV1ddB0x1hgbAIIYDMIz61cEGOp0BSEegrOVeFJSjbBOTD%2Fy2W1l0cN6PCvrap9NRmv3ws8pdbS89nSgPYdzF8hv6t%2F4fALargH1mUSahDGLUhSgmMH%2FcCIoXSb2iL4kJRycgr9j98hRQiJvdxh%2BHHIMimrvmDqpPzxOyZ0Ee7WDrSW9h1qsP5YD12cWAuU4hFvuM%2By077e1crCfa7EeNQHg2rKY04IvkxahZmvpcxVg9Dw%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250527T085416Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIAXCQYYRKNHNOLXL4J%2F20250527%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=c2a7ac120eddfac2cebd3ddd16dc2c8453af7598a923ee8b7591db92b931e107
                             intouchPoints:
                               type: integer
                               example: 0
@@ -700,10 +788,10 @@ paths:
                                 example: UPPERlower003
                               codeExpiry:
                                 type: string
-                                example: "2025-06-15 00:00:00"
+                                example: '2025-06-15 00:00:00'
                               codeExpiryDateTime:
                                 type: string
-                                example: "2025-06-15T00:00:00Z"
+                                example: '2025-06-15T00:00:00Z'
                               redemptionDetails:
                                 type: object
                                 properties:
@@ -719,10 +807,10 @@ paths:
                         customFields:
                           type: object
                           properties:
-                            "CF2_eebced882025-05-27 13:57:18.344501":
+                            CF2_eebced882025-05-27 13:57:18.344501:
                               type: string
                               example: defaultValue_2
-                            "CF1_50a6f4cf2025-05-27 13:57:18.344487":
+                            CF1_50a6f4cf2025-05-27 13:57:18.344487:
                               type: string
                               example: defaultValue_1
                         richContentRO:
@@ -733,10 +821,10 @@ paths:
                           example: ''
                         eventDateTime:
                           type: string
-                          example: "2025-05-16T05:08:17Z"
+                          example: '2025-05-16T05:08:17Z'
                         issueDateTime:
                           type: string
-                          example: "2025-05-16T05:08:17Z"
+                          example: '2025-05-16T05:08:17Z'
                 - title: couponCodeCase = LOWER
                   type: object
                   properties:
@@ -826,7 +914,7 @@ paths:
                               example: EXDR12987U
                             imageUrl:
                               type: string
-                              example: "https://s3.amazonaws.com/crm-staging-new-solutions/AutomationBrandMarvel/EXDR12987U?X-Amz-Security-Token=IQoJb3JpZ2luX2VjED0aCXVzLWVhc3QtMSJGMEQCIBMtYIqqA45zbd98IEr9E71Kj1DEeRAJSqC93wjb8lGSAiB0LgFMxrBnv1r7RUh58yd18v%2BC83lrZ9g6zXR%2FNazSBCq%2FAggWEAUaDDQ4NjQ1Njk4NjI2NiIMRd70c%2FZFDj8w2SBHKpwC7Ou7tqNdHWY%2BuE%2FQZ5814yI%2BDOLJG6Ir%2BnmS6nwsy5g7ecoR2oNxZxRiqnrscSnpEleb%2FMint6ESMrYQshIjTQkNZGEorWYotRL6K5e3Hy8UlPAkaQ1Eki4pKgo%2FO0VPJtWz6Hpal1IG1Nutoqisd7MlTb%2B8DZ76BBEytZAoQ8BEDFcwn%2FgQgVxBonVEwWzjs%2FZpWAKq2YmT3KqZBoa6h0FrKKLkARhRch9y8xi6mjxXPefdGcGGfgqpdcukenb6tkPdE87S%2Bx0Xtf5T32QGfsKh%2B9sJmJGGTjqiek4D7JOr3e1vQ%2Fca1%2B1m23VL%2BcbxjMjb6F9wvYUTIdvMsJNi6ZGAXkWGhIQ3%2BhYmB%2FvxNTDBV6HehcSFpQ5Sw6Qwrtn7wQY6ngHalzhExI4S1K76x836fe9Vtq6PaxC2jHBAH2gPbqrErKmOGVZu%2FnQ80aKif8kT7zXNOaLWDezuL2gdDehMhwT%2BY%2FEovQRDroZtunb36yHT1cMNmMNFbSstSwuYuRnmyovdVtuQurRJVnKOHl%2FaTvx1SVV%2FNLNWveE0gbFACdO3uOBPpNmOTzWC2XBrnxvtlb3LKJ3jioAWZ5%2FI%2FadJhw%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250603T123806Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=ASIAXCQYYRKNOTBO6SUU%2F20250603%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=a9aab95c85ef5cec0eba7d4c978c5754f0372e10f470d16dc29f7bb74a86952f"
+                              example: https://s3.amazonaws.com/crm-staging-new-solutions/AutomationBrandMarvel/EXDR12987U?X-Amz-Security-Token=IQoJb3JpZ2luX2VjED0aCXVzLWVhc3QtMSJGMEQCIBMtYIqqA45zbd98IEr9E71Kj1DEeRAJSqC93wjb8lGSAiB0LgFMxrBnv1r7RUh58yd18v%2BC83lrZ9g6zXR%2FNazSBCq%2FAggWEAUaDDQ4NjQ1Njk4NjI2NiIMRd70c%2FZFDj8w2SBHKpwC7Ou7tqNdHWY%2BuE%2FQZ5814yI%2BDOLJG6Ir%2BnmS6nwsy5g7ecoR2oNxZxRiqnrscSnpEleb%2FMint6ESMrYQshIjTQkNZGEorWYotRL6K5e3Hy8UlPAkaQ1Eki4pKgo%2FO0VPJtWz6Hpal1IG1Nutoqisd7MlTb%2B8DZ76BBEytZAoQ8BEDFcwn%2FgQgVxBonVEwWzjs%2FZpWAKq2YmT3KqZBoa6h0FrKKLkARhRch9y8xi6mjxXPefdGcGGfgqpdcukenb6tkPdE87S%2Bx0Xtf5T32QGfsKh%2B9sJmJGGTjqiek4D7JOr3e1vQ%2Fca1%2B1m23VL%2BcbxjMjb6F9wvYUTIdvMsJNi6ZGAXkWGhIQ3%2BhYmB%2FvxNTDBV6HehcSFpQ5Sw6Qwrtn7wQY6ngHalzhExI4S1K76x836fe9Vtq6PaxC2jHBAH2gPbqrErKmOGVZu%2FnQ80aKif8kT7zXNOaLWDezuL2gdDehMhwT%2BY%2FEovQRDroZtunb36yHT1cMNmMNFbSstSwuYuRnmyovdVtuQurRJVnKOHl%2FaTvx1SVV%2FNLNWveE0gbFACdO3uOBPpNmOTzWC2XBrnxvtlb3LKJ3jioAWZ5%2FI%2FadJhw%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250603T123806Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=ASIAXCQYYRKNOTBO6SUU%2F20250603%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=a9aab95c85ef5cec0eba7d4c978c5754f0372e10f470d16dc29f7bb74a86952f
                             intouchPoints:
                               type: integer
                               example: 0
@@ -889,10 +977,10 @@ paths:
                                 example: upperlower003
                               codeExpiry:
                                 type: string
-                                example: "2025-06-15 00:00:00"
+                                example: '2025-06-15 00:00:00'
                               codeExpiryDateTime:
                                 type: string
-                                example: "2025-06-15T00:00:00Z"
+                                example: '2025-06-15T00:00:00Z'
                               redemptionDetails:
                                 type: object
                                 properties:
@@ -908,10 +996,10 @@ paths:
                         customFields:
                           type: object
                           properties:
-                            "CF2_0122a5852025-06-03 13:59:47.736781":
+                            CF2_0122a5852025-06-03 13:59:47.736781:
                               type: string
                               example: defaultValue_2
-                            "CF1_c26dfde12025-06-03 13:59:47.736770":
+                            CF1_c26dfde12025-06-03 13:59:47.736770:
                               type: string
                               example: defaultValue_1
                         richContentRO:
@@ -922,10 +1010,10 @@ paths:
                           example: ''
                         eventDateTime:
                           type: string
-                          example: "2025-05-16T05:08:17Z"
+                          example: '2025-05-16T05:08:17Z'
                         issueDateTime:
                           type: string
-                          example: "2025-05-16T05:08:17Z"
+                          example: '2025-05-16T05:08:17Z'
                 - title: couponCodeCase = UPPER
                   type: object
                   properties:
@@ -1015,7 +1103,7 @@ paths:
                               example: EXDR12987U
                             imageUrl:
                               type: string
-                              example: "https://s3.amazonaws.com/crm-staging-new-solutions/AutomationBrandMarvel/EXDR12987U?X-Amz-Security-Token=IQoJb3JpZ2luX2VjED0aCXVzLWVhc3QtMSJHMEUCIDdiny0ZSOUcF7EibKTJv9zlt2jxzV6zRlC3HElGSPaUAiEAyVKkXW1Cn%2Bn1syBFpIZLBhd42sDxMmgjW6AtZNNHpBYqvwIIFhAFGgw0ODY0NTY5ODYyNjYiDPIQTS0SUoykHmQsbiqcAuzQPcwZ%2F94VKuZMpXFHPPoy5X15DHJOzOnJUUJ2ltixLHhf4fbHVdM033Gtr0Lm8obFVRRajrYnqzPcMEQIEQh%2BTWOQgE6vS5sCg3%2FtFDwFXWTtrL30pIcO%2Fps6DgBipaYWuJPP6sSEi3%2F9%2Bvvx99tjjnvTBkGjGsoJtnKs5PhqTVcgCjqm6742oqvEpsabdpmneuMtag87H5nkfrGuIJx6e9d97%2FJAw8PxQD%2BgC2IrhgoSwqSfMirrNKDtqHLgpMt7kQnMMfq2g9zo%2FFz%2FgRJJ8Q5ut7BQj7R2OpPFpQd15Kcwt45kEzztWqBJUKj2Yzgcrn6dSM1k5bRK9gfWCXJceXaTIWJPHYAz4ES6lkgpJZ1A8QMYsoyOWwu8MN3Z%2B8EGOp0BOJX4Zx2EF8rO3hiYXMxHlZws6g618MnVlUM9ds1yUrx1F4Ci2SngZSSsanX%2FO8GSTYEWCSDjAuX77RVIJC6giPZVJPz7UcfxpK6lB44QjLVynUdAwCJwB8pZgxGnwFFHgVUudF%2B5EC1SbmRnjP7pmB9Si50FpL8XsZnDoyAAzUv2qLQmYDQf9YLxhpZ1J0xy5onbcyB0OgZU4%2BFrcQ%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250603T123853Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=ASIAXCQYYRKNDPQM2XMS%2F20250603%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=05c0598c0a4c5fcaf021d0cef464e0451ff4564400daa69e18c41dda0f9b5b3c"
+                              example: https://s3.amazonaws.com/crm-staging-new-solutions/AutomationBrandMarvel/EXDR12987U?X-Amz-Security-Token=IQoJb3JpZ2luX2VjED0aCXVzLWVhc3QtMSJHMEUCIDdiny0ZSOUcF7EibKTJv9zlt2jxzV6zRlC3HElGSPaUAiEAyVKkXW1Cn%2Bn1syBFpIZLBhd42sDxMmgjW6AtZNNHpBYqvwIIFhAFGgw0ODY0NTY5ODYyNjYiDPIQTS0SUoykHmQsbiqcAuzQPcwZ%2F94VKuZMpXFHPPoy5X15DHJOzOnJUUJ2ltixLHhf4fbHVdM033Gtr0Lm8obFVRRajrYnqzPcMEQIEQh%2BTWOQgE6vS5sCg3%2FtFDwFXWTtrL30pIcO%2Fps6DgBipaYWuJPP6sSEi3%2F9%2Bvvx99tjjnvTBkGjGsoJtnKs5PhqTVcgCjqm6742oqvEpsabdpmneuMtag87H5nkfrGuIJx6e9d97%2FJAw8PxQD%2BgC2IrhgoSwqSfMirrNKDtqHLgpMt7kQnMMfq2g9zo%2FFz%2FgRJJ8Q5ut7BQj7R2OpPFpQd15Kcwt45kEzztWqBJUKj2Yzgcrn6dSM1k5bRK9gfWCXJceXaTIWJPHYAz4ES6lkgpJZ1A8QMYsoyOWwu8MN3Z%2B8EGOp0BOJX4Zx2EF8rO3hiYXMxHlZws6g618MnVlUM9ds1yUrx1F4Ci2SngZSSsanX%2FO8GSTYEWCSDjAuX77RVIJC6giPZVJPz7UcfxpK6lB44QjLVynUdAwCJwB8pZgxGnwFFHgVUudF%2B5EC1SbmRnjP7pmB9Si50FpL8XsZnDoyAAzUv2qLQmYDQf9YLxhpZ1J0xy5onbcyB0OgZU4%2BFrcQ%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250603T123853Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=ASIAXCQYYRKNDPQM2XMS%2F20250603%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=05c0598c0a4c5fcaf021d0cef464e0451ff4564400daa69e18c41dda0f9b5b3c
                             intouchPoints:
                               type: integer
                               example: 0
@@ -1078,10 +1166,10 @@ paths:
                                 example: UPPERLOWER003
                               codeExpiry:
                                 type: string
-                                example: "2025-06-15 00:00:00"
+                                example: '2025-06-15 00:00:00'
                               codeExpiryDateTime:
                                 type: string
-                                example: "2025-06-15T00:00:00Z"
+                                example: '2025-06-15T00:00:00Z'
                               redemptionDetails:
                                 type: object
                                 properties:
@@ -1097,10 +1185,10 @@ paths:
                         customFields:
                           type: object
                           properties:
-                            "CF2_0122a5852025-06-03 13:59:47.736781":
+                            CF2_0122a5852025-06-03 13:59:47.736781:
                               type: string
                               example: defaultValue_2
-                            "CF1_c26dfde12025-06-03 13:59:47.736770":
+                            CF1_c26dfde12025-06-03 13:59:47.736770:
                               type: string
                               example: defaultValue_1
                         richContentRO:
@@ -1111,20 +1199,22 @@ paths:
                           example: ''
                         eventDateTime:
                           type: string
-                          example: "2025-05-16T05:08:17Z"
+                          example: '2025-05-16T05:08:17Z'
                         issueDateTime:
                           type: string
-                          example: "2025-05-16T05:08:17Z"
+                          example: '2025-05-16T05:08:17Z'
         '400':
           description: '400'
           content:
             application/json:
               examples:
                 Invalid rewardTransactionId:
-                  value: "{\n    \"status\": [\n        {\n            \"success\"\
-                    : false,\n            \"code\": 10007,\n            \"message\"\
-                    : \"Transaction not found\"\n        }\n    ],\n    \"data\":\
-                    \ null\n}"
+                  value:
+                    status:
+                    - success: false
+                      code: 10007
+                      message: Transaction not found
+                    data: null
               schema:
                 type: object
                 properties:
@@ -1149,27 +1239,35 @@ paths:
       x-readme:
         code-samples:
         - language: curl
-          code: "/curl --location 'http://crm-nightly-new.cc.capillarytech.com/api_gateway/rewards/core/v1.1/reward-transactions/<rewardTransactionId>'\
-            \ \\\ne--header 'DATA-SCOPE: OTHER' \\\nx--header 'DATA-SCOPE-ORG: 50672'\
-            \ \\\n--header 'Authorization: Basic a2FyXzE6MzE1MmQyMzRiNzA='"
+          code: |-
+            /curl --location 'http://crm-nightly-new.cc.capillarytech.com/api_gateway/rewards/core/v1.1/reward-transactions/<rewardTransactionId>' \
+            e--header 'DATA-SCOPE: OTHER' \
+            x--header 'DATA-SCOPE-ORG: 50672' \
+            --header 'Authorization: Basic a2FyXzE6MzE1MmQyMzRiNzA='
           name: Sample request with DATA-SCOPE as OTHER
         - language: curl
-          code: "curl --location 'https://crm-staging-new.cc.capillarytech.com/api_gateway/rewards/core/v1.1/reward-transactions/927488?couponCodeCase=AS_IT_IS'\
-            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
-            \ application/json' \\\n--header 'DATA-SCOPE: ALL' \\\n--header 'Authorization:\
-            \ Basic dGlsbGF1dG9fMTIzOjI3NDFlNjJiZTZiZTYyNGY2N2IwMGQxZDZhNWQ2MWJm'"
+          code: |-
+            curl --location 'https://crm-staging-new.cc.capillarytech.com/api_gateway/rewards/core/v1.1/reward-transactions/927488?couponCodeCase=AS_IT_IS' \
+            --header 'Accept: application/json' \
+            --header 'Content-Type: application/json' \
+            --header 'DATA-SCOPE: ALL' \
+            --header 'Authorization: Basic dGlsbGF1dG9fMTIzOjI3NDFlNjJiZTZiZTYyNGY2N2IwMGQxZDZhNWQ2MWJm'
           name: couponCodeCase=AS_IT_IS
         - language: curl
-          code: "curl --location 'https://crm-staging-new.cc.capillarytech.com/api_gateway/rewards/core/v1.1/reward-transactions/927488?couponCodeCase=UPPER'\
-            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
-            \ application/json' \\\n--header 'DATA-SCOPE: ALL' \\\n--header 'Authorization:\
-            \ Basic dGlsbGF1dG9fMTIzOjI3NDFlNjJiZTZiZTYyNGY2N2IwMGQxZDZhNWQ2MWJm'"
+          code: |-
+            curl --location 'https://crm-staging-new.cc.capillarytech.com/api_gateway/rewards/core/v1.1/reward-transactions/927488?couponCodeCase=UPPER' \
+            --header 'Accept: application/json' \
+            --header 'Content-Type: application/json' \
+            --header 'DATA-SCOPE: ALL' \
+            --header 'Authorization: Basic dGlsbGF1dG9fMTIzOjI3NDFlNjJiZTZiZTYyNGY2N2IwMGQxZDZhNWQ2MWJm'
           name: couponCodeCase = UPPER
         - language: curl
-          code: "curl --location 'https://crm-staging-new.cc.capillarytech.com/api_gateway/rewards/core/v1.1/reward-transactions/927488?couponCodeCase=LOWER'\
-            \ \\\n--header 'Accept: application/json' \\\n--header 'Content-Type:\
-            \ application/json' \\\n--header 'DATA-SCOPE: ALL' \\\n--header 'Authorization:\
-            \ Basic dGlsbGF1dG9fMTIzOjI3NDFlNjJiZTZiZTYyNGY2N2IwMGQxZDZhNWQ2MWJm'"
+          code: |-
+            curl --location 'https://crm-staging-new.cc.capillarytech.com/api_gateway/rewards/core/v1.1/reward-transactions/927488?couponCodeCase=LOWER' \
+            --header 'Accept: application/json' \
+            --header 'Content-Type: application/json' \
+            --header 'DATA-SCOPE: ALL' \
+            --header 'Authorization: Basic dGlsbGF1dG9fMTIzOjI3NDFlNjJiZTZiZTYyNGY2N2IwMGQxZDZhNWQ2MWJm'
           name: couponCodeCase = LOWER
         samples-languages:
         - curl

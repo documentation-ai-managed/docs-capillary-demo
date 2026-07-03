@@ -3,7 +3,7 @@ info:
   title: Import earned (issued) badges of customer
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -23,12 +23,10 @@ paths:
               properties:
                 RAW_BODY:
                   type: string
-                  default: "[    {        \"badgeMetaId\": \"654e08f2041fd452b3ef5b2e\"\
-                    ,        \"customerId\": 382442802,        \"earnEventDate\":\
-                    \ 1674292011,        \"earnExpiresOn\": 1705828011    },    {\
-                    \        \"badgeMetaId\": \"654e08f2041fd452b3ef5b2e\",      \
-                    \  \"customerId\": 382442802,        \"earnEventDate\": 1674292011,\
-                    \        \"earnExpiresOn\": 1705828011    } ]"
+                  default: '[    {        "badgeMetaId": "654e08f2041fd452b3ef5b2e",        "customerId":
+                    382442802,        "earnEventDate": 1674292011,        "earnExpiresOn": 1705828011    },    {        "badgeMetaId":
+                    "654e08f2041fd452b3ef5b2e",        "customerId": 382442802,        "earnEventDate":
+                    1674292011,        "earnExpiresOn": 1705828011    } ]'
                   format: json
       responses:
         '200':
@@ -43,7 +41,7 @@ paths:
                       customerId: 555567088
                       earnedBadgeId: 697b5f6f0772ad476ecff272
                       expiresOn: 1705828011
-                      expiresOnISO: "2024-01-21T09:06:51Z"
+                      expiresOnISO: '2024-01-21T09:06:51Z'
                       requestId: d9e144be-2450-4300-892f-798f9bb68ce2_1
                       issuedId: null
                     errors: null
@@ -53,7 +51,7 @@ paths:
                       customerId: 12098734
                       earnedBadgeId: 697b5f6f0772ad476ecff275
                       expiresOn: 1667328000
-                      expiresOnISO: "2022-11-01T18:40:00Z"
+                      expiresOnISO: '2022-11-01T18:40:00Z'
                       requestId: d9e144be-2450-4300-892f-798f9bb68ce2_2
                       issuedId: null
                     errors: null
@@ -92,7 +90,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}

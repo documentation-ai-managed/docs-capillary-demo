@@ -3,7 +3,7 @@ info:
   title: Create fulfillment status
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -22,13 +22,16 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "[\n    {\n        \"orgId\": 100737,\n        \"name\":\
-                    \ \"it is here now\",\n        \"isEnabled\": true,\n        \"\
-                    createdBy\": 75155282,\n        \"createdOn\": 1741934782959,\n\
-                    \        \"createdOnDateTime\": \"2025-03-14T06:46:22Z\",\n  \
-                    \      \"lastUpdatedBy\": 75155282,\n        \"lastUpdatedOn\"\
-                    : 1741934782959,\n        \"lastUpdatedOnDateTime\": \"2025-03-14T06:46:22Z\"\
-                    \n    }\n]"
+                  value:
+                  - orgId: 100737
+                    name: it is here now
+                    isEnabled: true
+                    createdBy: 75155282
+                    createdOn: 1741934782959
+                    createdOnDateTime: '2025-03-14T06:46:22Z'
+                    lastUpdatedBy: 75155282
+                    lastUpdatedOn: 1741934782959
+                    lastUpdatedOnDateTime: '2025-03-14T06:46:22Z'
               schema:
                 type: array
                 items:
@@ -55,7 +58,7 @@ paths:
                       default: 0
                     createdOnDateTime:
                       type: string
-                      example: "2025-03-14T06:46:22Z"
+                      example: '2025-03-14T06:46:22Z'
                     lastUpdatedBy:
                       type: integer
                       example: 75155282
@@ -66,14 +69,14 @@ paths:
                       default: 0
                     lastUpdatedOnDateTime:
                       type: string
-                      example: "2025-03-14T06:46:22Z"
+                      example: '2025-03-14T06:46:22Z'
         '400':
           description: '400'
           content:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
@@ -81,12 +84,15 @@ paths:
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/fulfillmentStatus'\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization:\
-            \ Basic aWFtc2NEFWJKLNVJKVNDVNJESVblahjhlMzRkNWI1YTI5MWY=' \\\n--header\
-            \ 'Cookie: _cfuvid=mSXET9eFvRZtboAJQEWYnZs6GfbUrd_1nF089ZlUrKw-1721647523966-0.0.1.1-604800000'\
-            \ \\\n--data '[\n  { \"name\": \"ON ITS WAY\"},\n  {\"name\": \"DELIVERING\
-            \ SOON\"}\n]'"
+          code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/fulfillmentStatus' \
+            --header 'Content-Type: application/json' \
+            --header 'Authorization: Basic aWFtc2NEFWJKLNVJKVNDVNJESVblahjhlMzRkNWI1YTI5MWY=' \
+            --header 'Cookie: _cfuvid=mSXET9eFvRZtboAJQEWYnZs6GfbUrd_1nF089ZlUrKw-1721647523966-0.0.1.1-604800000' \
+            --data '[
+              { "name": "ON ITS WAY"},
+              {"name": "DELIVERING SOON"}
+            ]'
         samples-languages:
         - curl
 components:

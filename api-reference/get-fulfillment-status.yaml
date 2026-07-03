@@ -3,7 +3,7 @@ info:
   title: Get fulfillment status
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -22,69 +22,109 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "[\n    {\n        \"id\": 164,\n        \"orgId\": 100737,\n\
-                    \        \"name\": \"DELIVERED\",\n        \"isEnabled\": true,\n\
-                    \        \"createdBy\": 75154383,\n        \"createdOn\": 1736405355000,\n\
-                    \        \"createdOnDateTime\": \"2025-01-09T06:49:15Z\",\n  \
-                    \      \"lastUpdatedBy\": 75154383,\n        \"lastUpdatedOn\"\
-                    : 1736405355000,\n        \"lastUpdatedOnDateTime\": \"2025-01-09T06:49:15Z\"\
-                    \n    },\n    {\n        \"id\": 163,\n        \"orgId\": 100737,\n\
-                    \        \"name\": \"DELIVERING SOON\",\n        \"isEnabled\"\
-                    : true,\n        \"createdBy\": 75154383,\n        \"createdOn\"\
-                    : 1736405355000,\n        \"createdOnDateTime\": \"2025-01-09T06:49:15Z\"\
-                    ,\n        \"lastUpdatedBy\": 75154383,\n        \"lastUpdatedOn\"\
-                    : 1736405355000,\n        \"lastUpdatedOnDateTime\": \"2025-01-09T06:49:15Z\"\
-                    \n    },\n    {\n        \"id\": 252,\n        \"orgId\": 100737,\n\
-                    \        \"name\": \"it is here\",\n        \"isEnabled\": true,\n\
-                    \        \"createdBy\": 75155282,\n        \"createdOn\": 1741934183000,\n\
-                    \        \"createdOnDateTime\": \"2025-03-14T06:36:23Z\",\n  \
-                    \      \"lastUpdatedBy\": 75155282,\n        \"lastUpdatedOn\"\
-                    : 1741934183000,\n        \"lastUpdatedOnDateTime\": \"2025-03-14T06:36:23Z\"\
-                    \n    },\n    {\n        \"id\": 253,\n        \"orgId\": 100737,\n\
-                    \        \"name\": \"it is here now\",\n        \"isEnabled\"\
-                    : true,\n        \"createdBy\": 75155282,\n        \"createdOn\"\
-                    : 1741934783000,\n        \"createdOnDateTime\": \"2025-03-14T06:46:23Z\"\
-                    ,\n        \"lastUpdatedBy\": 75155282,\n        \"lastUpdatedOn\"\
-                    : 1741934783000,\n        \"lastUpdatedOnDateTime\": \"2025-03-14T06:46:23Z\"\
-                    \n    },\n    {\n        \"id\": 162,\n        \"orgId\": 100737,\n\
-                    \        \"name\": \"ON ITS WAY\",\n        \"isEnabled\": true,\n\
-                    \        \"createdBy\": 75154383,\n        \"createdOn\": 1736405355000,\n\
-                    \        \"createdOnDateTime\": \"2025-01-09T06:49:15Z\",\n  \
-                    \      \"lastUpdatedBy\": 75154383,\n        \"lastUpdatedOn\"\
-                    : 1736405355000,\n        \"lastUpdatedOnDateTime\": \"2025-01-09T06:49:15Z\"\
-                    \n    }\n]"
+                  value:
+                  - id: 164
+                    orgId: 100737
+                    name: DELIVERED
+                    isEnabled: true
+                    createdBy: 75154383
+                    createdOn: 1736405355000
+                    createdOnDateTime: '2025-01-09T06:49:15Z'
+                    lastUpdatedBy: 75154383
+                    lastUpdatedOn: 1736405355000
+                    lastUpdatedOnDateTime: '2025-01-09T06:49:15Z'
+                  - id: 163
+                    orgId: 100737
+                    name: DELIVERING SOON
+                    isEnabled: true
+                    createdBy: 75154383
+                    createdOn: 1736405355000
+                    createdOnDateTime: '2025-01-09T06:49:15Z'
+                    lastUpdatedBy: 75154383
+                    lastUpdatedOn: 1736405355000
+                    lastUpdatedOnDateTime: '2025-01-09T06:49:15Z'
+                  - id: 252
+                    orgId: 100737
+                    name: it is here
+                    isEnabled: true
+                    createdBy: 75155282
+                    createdOn: 1741934183000
+                    createdOnDateTime: '2025-03-14T06:36:23Z'
+                    lastUpdatedBy: 75155282
+                    lastUpdatedOn: 1741934183000
+                    lastUpdatedOnDateTime: '2025-03-14T06:36:23Z'
+                  - id: 253
+                    orgId: 100737
+                    name: it is here now
+                    isEnabled: true
+                    createdBy: 75155282
+                    createdOn: 1741934783000
+                    createdOnDateTime: '2025-03-14T06:46:23Z'
+                    lastUpdatedBy: 75155282
+                    lastUpdatedOn: 1741934783000
+                    lastUpdatedOnDateTime: '2025-03-14T06:46:23Z'
+                  - id: 162
+                    orgId: 100737
+                    name: ON ITS WAY
+                    isEnabled: true
+                    createdBy: 75154383
+                    createdOn: 1736405355000
+                    createdOnDateTime: '2025-01-09T06:49:15Z'
+                    lastUpdatedBy: 75154383
+                    lastUpdatedOn: 1736405355000
+                    lastUpdatedOnDateTime: '2025-01-09T06:49:15Z'
                 With sortBy=lastUpdatedOn:
-                  value: "[\n    {\n        \"id\": 253,\n        \"orgId\": 100737,\n\
-                    \        \"name\": \"DELIVERED2\",\n        \"isEnabled\": true,\n\
-                    \        \"createdBy\": 75155282,\n        \"createdOn\": 1741934783000,\n\
-                    \        \"createdOnDateTime\": \"2025-03-14T06:46:23Z\",\n  \
-                    \      \"lastUpdatedBy\": 75155282,\n        \"lastUpdatedOn\"\
-                    : 1741934783000,\n        \"lastUpdatedOnDateTime\": \"2025-03-14T06:46:23Z\"\
-                    \n    },\n    {\n        \"id\": 252,\n        \"orgId\": 100737,\n\
-                    \        \"name\": \"DELIVERED1\",\n        \"isEnabled\": true,\n\
-                    \        \"createdBy\": 75155282,\n        \"createdOn\": 1741934183000,\n\
-                    \        \"createdOnDateTime\": \"2025-03-14T06:36:23Z\",\n  \
-                    \      \"lastUpdatedBy\": 75155282,\n        \"lastUpdatedOn\"\
-                    : 1741934183000,\n        \"lastUpdatedOnDateTime\": \"2025-03-14T06:36:23Z\"\
-                    \n    },\n    {\n        \"id\": 164,\n        \"orgId\": 100737,\n\
-                    \        \"name\": \"DELIVERED\",\n        \"isEnabled\": true,\n\
-                    \        \"createdBy\": 75154383,\n        \"createdOn\": 1736405355000,\n\
-                    \        \"createdOnDateTime\": \"2025-01-09T06:49:15Z\",\n  \
-                    \      \"lastUpdatedBy\": 75154383,\n        \"lastUpdatedOn\"\
-                    : 1736405355000,\n        \"lastUpdatedOnDateTime\": \"2025-01-09T06:49:15Z\"\
-                    \n    },\n    {\n        \"id\": 163,\n        \"orgId\": 100737,\n\
-                    \        \"name\": \"DELIVERING SOON\",\n        \"isEnabled\"\
-                    : true,\n        \"createdBy\": 75154383,\n        \"createdOn\"\
-                    : 1736405355000,\n        \"createdOnDateTime\": \"2025-01-09T06:49:15Z\"\
-                    ,\n        \"lastUpdatedBy\": 75154383,\n        \"lastUpdatedOn\"\
-                    : 1736405355000,\n        \"lastUpdatedOnDateTime\": \"2025-01-09T06:49:15Z\"\
-                    \n    },\n    {\n        \"id\": 162,\n        \"orgId\": 100737,\n\
-                    \        \"name\": \"ON ITS WAY\",\n        \"isEnabled\": true,\n\
-                    \        \"createdBy\": 75154383,\n        \"createdOn\": 1736405355000,\n\
-                    \        \"createdOnDateTime\": \"2025-01-09T06:49:15Z\",\n  \
-                    \      \"lastUpdatedBy\": 75154383,\n        \"lastUpdatedOn\"\
-                    : 1736405355000,\n        \"lastUpdatedOnDateTime\": \"2025-01-09T06:49:15Z\"\
-                    \n    }\n]"
+                  value:
+                  - id: 253
+                    orgId: 100737
+                    name: DELIVERED2
+                    isEnabled: true
+                    createdBy: 75155282
+                    createdOn: 1741934783000
+                    createdOnDateTime: '2025-03-14T06:46:23Z'
+                    lastUpdatedBy: 75155282
+                    lastUpdatedOn: 1741934783000
+                    lastUpdatedOnDateTime: '2025-03-14T06:46:23Z'
+                  - id: 252
+                    orgId: 100737
+                    name: DELIVERED1
+                    isEnabled: true
+                    createdBy: 75155282
+                    createdOn: 1741934183000
+                    createdOnDateTime: '2025-03-14T06:36:23Z'
+                    lastUpdatedBy: 75155282
+                    lastUpdatedOn: 1741934183000
+                    lastUpdatedOnDateTime: '2025-03-14T06:36:23Z'
+                  - id: 164
+                    orgId: 100737
+                    name: DELIVERED
+                    isEnabled: true
+                    createdBy: 75154383
+                    createdOn: 1736405355000
+                    createdOnDateTime: '2025-01-09T06:49:15Z'
+                    lastUpdatedBy: 75154383
+                    lastUpdatedOn: 1736405355000
+                    lastUpdatedOnDateTime: '2025-01-09T06:49:15Z'
+                  - id: 163
+                    orgId: 100737
+                    name: DELIVERING SOON
+                    isEnabled: true
+                    createdBy: 75154383
+                    createdOn: 1736405355000
+                    createdOnDateTime: '2025-01-09T06:49:15Z'
+                    lastUpdatedBy: 75154383
+                    lastUpdatedOn: 1736405355000
+                    lastUpdatedOnDateTime: '2025-01-09T06:49:15Z'
+                  - id: 162
+                    orgId: 100737
+                    name: ON ITS WAY
+                    isEnabled: true
+                    createdBy: 75154383
+                    createdOn: 1736405355000
+                    createdOnDateTime: '2025-01-09T06:49:15Z'
+                    lastUpdatedBy: 75154383
+                    lastUpdatedOn: 1736405355000
+                    lastUpdatedOnDateTime: '2025-01-09T06:49:15Z'
               schema:
                 oneOf:
                 - type: array
@@ -116,7 +156,7 @@ paths:
                         default: 0
                       createdOnDateTime:
                         type: string
-                        example: "2025-01-09T06:49:15Z"
+                        example: '2025-01-09T06:49:15Z'
                       lastUpdatedBy:
                         type: integer
                         example: 75154383
@@ -127,7 +167,7 @@ paths:
                         default: 0
                       lastUpdatedOnDateTime:
                         type: string
-                        example: "2025-01-09T06:49:15Z"
+                        example: '2025-01-09T06:49:15Z'
                 - title: With sortBy=lastUpdatedOn
                   type: array
                   items:
@@ -158,7 +198,7 @@ paths:
                         default: 0
                       createdOnDateTime:
                         type: string
-                        example: "2025-03-14T06:46:23Z"
+                        example: '2025-03-14T06:46:23Z'
                       lastUpdatedBy:
                         type: integer
                         example: 75155282
@@ -169,14 +209,14 @@ paths:
                         default: 0
                       lastUpdatedOnDateTime:
                         type: string
-                        example: "2025-03-14T06:46:23Z"
+                        example: '2025-03-14T06:46:23Z'
         '400':
           description: '400'
           content:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
@@ -184,14 +224,15 @@ paths:
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/fulfillmentStatus'\
-            \ \\\n--header 'Authorization: Basic aWFtc2hpdmFhbnjknVNKJFVblahDBLAHhlMzRkNWI1YTI5MWY='\
-            \ \\\n--header 'Cookie: _cfuvid=YLWKW2g3iSh26hCX0XcFCuh8oQRtUpC5dGAfoYq7hh0-1721653557209-0.0.1.1-604800000'"
+          code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/fulfillmentStatus' \
+            --header 'Authorization: Basic aWFtc2hpdmFhbnjknVNKJFVblahDBLAHhlMzRkNWI1YTI5MWY=' \
+            --header 'Cookie: _cfuvid=YLWKW2g3iSh26hCX0XcFCuh8oQRtUpC5dGAfoYq7hh0-1721653557209-0.0.1.1-604800000'
         - language: curl
-          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/fulfillmentStatus?orderBy=DESC&sortBy=lastUpdatedOn'\
-            \ \\\n--header 'Authorization: Basic Z2VvcmdlLmpvaG5zb246OTg4OTU2NWI4ODVhMmY4ZWE1MTk1MjA2NWEwYTEzNzg='\
-            \ \\\n--header 'Cookie: _cfuvid=YLWKW2g3iSh26hCX0XcFCuh8oQRtUpC5dGAfoYq7hh0-1721653557209-0.0.1.1-604800000;\
-            \ _cfuvid=0HswOUeY1hLB1ChixiPHPvEBpkBYBw.OmrLWQyfiBZ0-1747382714367-0.0.1.1-604800000'"
+          code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/fulfillmentStatus?orderBy=DESC&sortBy=lastUpdatedOn' \
+            --header 'Authorization: Basic Z2VvcmdlLmpvaG5zb246OTg4OTU2NWI4ODVhMmY4ZWE1MTk1MjA2NWEwYTEzNzg=' \
+            --header 'Cookie: _cfuvid=YLWKW2g3iSh26hCX0XcFCuh8oQRtUpC5dGAfoYq7hh0-1721653557209-0.0.1.1-604800000; _cfuvid=0HswOUeY1hLB1ChixiPHPvEBpkBYBw.OmrLWQyfiBZ0-1747382714367-0.0.1.1-604800000'
           name: With sortBy=lastUpdatedOn
         samples-languages:
         - curl

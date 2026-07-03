@@ -3,14 +3,14 @@ info:
   title: Get available reward details for user by id
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/api_gateway/rewards/core/v1/user/reward/{rewardId}/brand/{brandName}":
+  /api_gateway/rewards/core/v1/user/reward/{rewardId}/brand/{brandName}:
     get:
       summary: Get available reward details for user by id
       description: ''
@@ -45,94 +45,135 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
-                    \   \"code\": 200,\n        \"message\": \"User Reward fetched\
-                    \ successfully\"\n    },\n    \"reward\": {\n        \"id\": 355104,\n\
-                    \        \"name\": \"jogoldnamechange check\",\n        \"description\"\
-                    : \"testreward1\",\n        \"imageId\": null,\n        \"imageUrl\"\
-                    : null,\n        \"thumbnailId\": null,\n        \"thumbnailUrl\"\
-                    : null,\n        \"termAndConditionsId\": null,\n        \"termAndConditionsUrl\"\
-                    : null,\n        \"tier\": null,\n        \"label\": null,\n \
-                    \       \"priority\": null,\n        \"intouchPoints\": 500,\n\
-                    \        \"group\": null,\n        \"startTime\": \"2025-09-26\
-                    \ 20:00:00\",\n        \"startDateTime\": \"2025-09-26T20:00:00Z\"\
-                    ,\n        \"endTime\": \"2026-10-31 11:59:30\",\n        \"endDateTime\"\
-                    : \"2026-10-31T11:59:30Z\",\n        \"expired\": false,\n   \
-                    \     \"started\": false,\n        \"programId\": null,\n    \
-                    \    \"categoryList\": [\n            {\n                \"id\"\
-                    : 229,\n                \"name\": \"joreward\",\n            \
-                    \    \"enabled\": true,\n                \"createdOn\": null,\n\
-                    \                \"lastUpdatedOn\": null,\n                \"\
-                    createdBy\": null,\n                \"lastUpdatedBy\": null,\n\
-                    \                \"createdOnDateTime\": null,\n              \
-                    \  \"lastUpdatedOnDateTime\": null\n            }\n        ],\n\
-                    \        \"customFields\": {},\n        \"redemptionType\": \"\
-                    INTOUCH_REWARD\",\n        \"vendorId\": null,\n        \"richContentRO\"\
-                    : {\n            \"RC345\": {\n                \"content\": \"\
-                    en\",\n                \"isEnabled\": true\n            },\n \
-                    \           \"Testing-richtestcontent\": {\n                \"\
-                    content\": \"hello this is rich content test\",\n            \
-                    \    \"isEnabled\": true\n            },\n            \"RCtestgeorgetrue\"\
-                    : {\n                \"content\": \"en\",\n                \"\
-                    isEnabled\": true\n            },\n            \"RCtestgeorge2\"\
-                    : {\n                \"content\": \"en\",\n                \"\
-                    isEnabled\": true\n            },\n            \"richcontentfrench\"\
-                    : {\n                \"content\": \"this is the default value\"\
-                    ,\n                \"isEnabled\": true\n            },\n     \
-                    \       \"RCtestCREATE\": {\n                \"content\": \"en\"\
-                    ,\n                \"isEnabled\": true\n            },\n     \
-                    \       \"RCtestgeorge4\": {\n                \"content\": \"\
-                    en\",\n                \"isEnabled\": true\n            },\n \
-                    \           \"richcontentenglish\": {\n                \"content\"\
-                    : \"this is the default value\",\n                \"isEnabled\"\
-                    : true\n            },\n            \"Golden2reward\": {\n   \
-                    \             \"content\": \"20% Discount Applied\",\n       \
-                    \         \"isEnabled\": true\n            }\n        },\n   \
-                    \     \"loyaltyProgramCriteria\": [],\n        \"rewardRestrictions\"\
-                    : {\n            \"isValid\": true\n        },\n        \"groups\"\
-                    : [],\n        \"rewardRank\": null,\n        \"images\": null,\n\
-                    \        \"videos\": null,\n        \"orgLevelRestrictions\":\
-                    \ {\n            \"isValid\": true,\n            \"customerRedemptionTypeLevel\"\
-                    : [\n                {\n                    \"rewardConstraintId\"\
-                    : 29700,\n                    \"orgId\": 100737,\n           \
-                    \         \"kpi\": \"POINTS\",\n                    \"constraintLevel\"\
-                    : \"CUSTOMER_REDEMPTION_TYPE\",\n                    \"frequencyType\"\
-                    : \"DAILY\",\n                    \"constraintLimitValue\": 15,\n\
-                    \                    \"isActive\": true,\n                   \
-                    \ \"intervalValue\": 1,\n                    \"isValid\": true,\n\
-                    \                    \"consumed\": 0,\n                    \"\
-                    createdOn\": null,\n                    \"lastUpdatedOn\": null,\n\
-                    \                    \"createdBy\": null,\n                  \
-                    \  \"lastUpdatedBy\": null,\n                    \"createdOnDateTime\"\
-                    : null,\n                    \"lastUpdatedOnDateTime\": null,\n\
-                    \                    \"redemptionType\": \"POINTS\"\n        \
-                    \        },\n                {\n                    \"rewardConstraintId\"\
-                    : 34326,\n                    \"orgId\": 100737,\n           \
-                    \         \"kpi\": \"POINTS\",\n                    \"constraintLevel\"\
-                    : \"CUSTOMER_REDEMPTION_TYPE\",\n                    \"frequencyType\"\
-                    : \"DAILY\",\n                    \"constraintLimitValue\": 15,\n\
-                    \                    \"isActive\": true,\n                   \
-                    \ \"intervalValue\": 1,\n                    \"isValid\": true,\n\
-                    \                    \"consumed\": 0,\n                    \"\
-                    createdOn\": null,\n                    \"lastUpdatedOn\": null,\n\
-                    \                    \"createdBy\": null,\n                  \
-                    \  \"lastUpdatedBy\": null,\n                    \"createdOnDateTime\"\
-                    : null,\n                    \"lastUpdatedOnDateTime\": null,\n\
-                    \                    \"redemptionType\": \"VOUCHER\"\n       \
-                    \         },\n                {\n                    \"rewardConstraintId\"\
-                    : 34327,\n                    \"orgId\": 100737,\n           \
-                    \         \"kpi\": \"POINTS\",\n                    \"constraintLevel\"\
-                    : \"CUSTOMER_REDEMPTION_TYPE\",\n                    \"frequencyType\"\
-                    : \"DAILY\",\n                    \"constraintLimitValue\": 15,\n\
-                    \                    \"isActive\": true,\n                   \
-                    \ \"intervalValue\": 1,\n                    \"isValid\": true,\n\
-                    \                    \"consumed\": 0,\n                    \"\
-                    createdOn\": null,\n                    \"lastUpdatedOn\": null,\n\
-                    \                    \"createdBy\": null,\n                  \
-                    \  \"lastUpdatedBy\": null,\n                    \"createdOnDateTime\"\
-                    : null,\n                    \"lastUpdatedOnDateTime\": null,\n\
-                    \                    \"redemptionType\": \"CASH\"\n          \
-                    \      }\n            ]\n        }\n    }\n}"
+                  value:
+                    status:
+                      success: true
+                      code: 200
+                      message: User Reward fetched successfully
+                    reward:
+                      id: 355104
+                      name: jogoldnamechange check
+                      description: testreward1
+                      imageId: null
+                      imageUrl: null
+                      thumbnailId: null
+                      thumbnailUrl: null
+                      termAndConditionsId: null
+                      termAndConditionsUrl: null
+                      tier: null
+                      label: null
+                      priority: null
+                      intouchPoints: 500
+                      group: null
+                      startTime: '2025-09-26 20:00:00'
+                      startDateTime: '2025-09-26T20:00:00Z'
+                      endTime: '2026-10-31 11:59:30'
+                      endDateTime: '2026-10-31T11:59:30Z'
+                      expired: false
+                      started: false
+                      programId: null
+                      categoryList:
+                      - id: 229
+                        name: joreward
+                        enabled: true
+                        createdOn: null
+                        lastUpdatedOn: null
+                        createdBy: null
+                        lastUpdatedBy: null
+                        createdOnDateTime: null
+                        lastUpdatedOnDateTime: null
+                      customFields: {}
+                      redemptionType: INTOUCH_REWARD
+                      vendorId: null
+                      richContentRO:
+                        RC345:
+                          content: en
+                          isEnabled: true
+                        Testing-richtestcontent:
+                          content: hello this is rich content test
+                          isEnabled: true
+                        RCtestgeorgetrue:
+                          content: en
+                          isEnabled: true
+                        RCtestgeorge2:
+                          content: en
+                          isEnabled: true
+                        richcontentfrench:
+                          content: this is the default value
+                          isEnabled: true
+                        RCtestCREATE:
+                          content: en
+                          isEnabled: true
+                        RCtestgeorge4:
+                          content: en
+                          isEnabled: true
+                        richcontentenglish:
+                          content: this is the default value
+                          isEnabled: true
+                        Golden2reward:
+                          content: 20% Discount Applied
+                          isEnabled: true
+                      loyaltyProgramCriteria: []
+                      rewardRestrictions:
+                        isValid: true
+                      groups: []
+                      rewardRank: null
+                      images: null
+                      videos: null
+                      orgLevelRestrictions:
+                        isValid: true
+                        customerRedemptionTypeLevel:
+                        - rewardConstraintId: 29700
+                          orgId: 100737
+                          kpi: POINTS
+                          constraintLevel: CUSTOMER_REDEMPTION_TYPE
+                          frequencyType: DAILY
+                          constraintLimitValue: 15
+                          isActive: true
+                          intervalValue: 1
+                          isValid: true
+                          consumed: 0
+                          createdOn: null
+                          lastUpdatedOn: null
+                          createdBy: null
+                          lastUpdatedBy: null
+                          createdOnDateTime: null
+                          lastUpdatedOnDateTime: null
+                          redemptionType: POINTS
+                        - rewardConstraintId: 34326
+                          orgId: 100737
+                          kpi: POINTS
+                          constraintLevel: CUSTOMER_REDEMPTION_TYPE
+                          frequencyType: DAILY
+                          constraintLimitValue: 15
+                          isActive: true
+                          intervalValue: 1
+                          isValid: true
+                          consumed: 0
+                          createdOn: null
+                          lastUpdatedOn: null
+                          createdBy: null
+                          lastUpdatedBy: null
+                          createdOnDateTime: null
+                          lastUpdatedOnDateTime: null
+                          redemptionType: VOUCHER
+                        - rewardConstraintId: 34327
+                          orgId: 100737
+                          kpi: POINTS
+                          constraintLevel: CUSTOMER_REDEMPTION_TYPE
+                          frequencyType: DAILY
+                          constraintLimitValue: 15
+                          isActive: true
+                          intervalValue: 1
+                          isValid: true
+                          consumed: 0
+                          createdOn: null
+                          lastUpdatedOn: null
+                          createdBy: null
+                          lastUpdatedBy: null
+                          createdOnDateTime: null
+                          lastUpdatedOnDateTime: null
+                          redemptionType: CASH
               schema:
                 type: object
                 properties:
@@ -179,16 +220,16 @@ paths:
                       group: {}
                       startTime:
                         type: string
-                        example: "2025-09-26 20:00:00"
+                        example: '2025-09-26 20:00:00'
                       startDateTime:
                         type: string
-                        example: "2025-09-26T20:00:00Z"
+                        example: '2025-09-26T20:00:00Z'
                       endTime:
                         type: string
-                        example: "2026-10-31 11:59:30"
+                        example: '2026-10-31 11:59:30'
                       endDateTime:
                         type: string
-                        example: "2026-10-31T11:59:30Z"
+                        example: '2026-10-31T11:59:30Z'
                       expired:
                         type: boolean
                         example: false
@@ -398,9 +439,12 @@ paths:
             application/json:
               examples:
                 '6004':
-                  value: "{\n   \"status\": {\n       \"success\": false,\n      \
-                    \ \"code\": 6004,\n       \"message\": \"Reward not found or disabled.\"\
-                    \n   },\n   \"reward\": null\n}\n\n"
+                  value:
+                    status:
+                      success: false
+                      code: 6004
+                      message: Reward not found or disabled.
+                    reward: null
               schema:
                 type: object
                 properties:
@@ -423,10 +467,10 @@ paths:
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/user/reward/355104/brand/DOCDEMO?userId=565039504'\
-            \ \\\n--header 'Authorization: Basic Z2VvcmdlLmpvaG5zb246OTg4OTU2NWI4ODVhMmY4ZWE1MTk1MjA2NWEwYTEzNzg='\
-            \ \\\n--header 'Cookie: _cfuvid=5A9H65nLTjshWYFwlD4Eez8KP6Aqj84z4mKabXwAVuo-1732602816001-0.0.1.1-604800000;\
-            \ _cfuvid=MglQfT4Gdb3DhzjEkJBQ_6vSB3xcEJLuBpENxVTO3GQ-1745904637618-0.0.1.1-604800000'"
+          code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/user/reward/355104/brand/DOCDEMO?userId=565039504' \
+            --header 'Authorization: Basic Z2VvcmdlLmpvaG5zb246OTg4OTU2NWI4ODVhMmY4ZWE1MTk1MjA2NWEwYTEzNzg=' \
+            --header 'Cookie: _cfuvid=5A9H65nLTjshWYFwlD4Eez8KP6Aqj84z4mKabXwAVuo-1732602816001-0.0.1.1-604800000; _cfuvid=MglQfT4Gdb3DhzjEkJBQ_6vSB3xcEJLuBpENxVTO3GQ-1745904637618-0.0.1.1-604800000'
         samples-languages:
         - curl
 components:

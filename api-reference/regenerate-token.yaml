@@ -3,7 +3,7 @@ info:
   title: Regenerate token
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -54,13 +54,19 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
-                    \   \"code\": 200,\n        \"message\": \"SUCCESS\"\n    },\n\
-                    \    \"auth\": {\n        \"token\": \"eyJpZHYiOlsiTU9CSUxFfDE4NzY3NDMxNzU0Il0sImRldiI6IjEyMzQiLCJvcmciOiJCVUtMIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOiIxNzgwNzc2IiwiaXNzIjoiQ0FQSUxMQVJZIFRFQ0hOT0xPR0lFUyIsImlzYyI6ImZhbHNlIiwib2djIjpbIjEwMDQ1OHxidWtsLmluZC5zb2x1dGlvbiJdLCJleHAiOjE3MTcwNjE0NjUsImlhdCI6MTcxNzA2MDU2NSwicm9sIjoiVVNFUiJ9.rmKqmOQyYYtEPs422G0xZ-EUFpak5i0jdrx9W4YVxJQ\"\
-                    ,\n        \"key\": null\n    },\n    \"user\": {\n        \"\
-                    appRegistered\": false,\n        \"sessionId\": null,\n      \
-                    \  \"role\": \"USER\",\n        \"userRegisteredForPassword\"\
-                    : true\n    }\n}"
+                  value:
+                    status:
+                      success: true
+                      code: 200
+                      message: SUCCESS
+                    auth:
+                      token: eyJpZHYiOlsiTU9CSUxFfDE4NzY3NDMxNzU0Il0sImRldiI6IjEyMzQiLCJvcmciOiJCVUtMIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOiIxNzgwNzc2IiwiaXNzIjoiQ0FQSUxMQVJZIFRFQ0hOT0xPR0lFUyIsImlzYyI6ImZhbHNlIiwib2djIjpbIjEwMDQ1OHxidWtsLmluZC5zb2x1dGlvbiJdLCJleHAiOjE3MTcwNjE0NjUsImlhdCI6MTcxNzA2MDU2NSwicm9sIjoiVVNFUiJ9.rmKqmOQyYYtEPs422G0xZ-EUFpak5i0jdrx9W4YVxJQ
+                      key: null
+                    user:
+                      appRegistered: false
+                      sessionId: null
+                      role: USER
+                      userRegisteredForPassword: true
               schema:
                 type: object
                 properties:
@@ -106,7 +112,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}

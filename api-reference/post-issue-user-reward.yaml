@@ -3,14 +3,14 @@ info:
   title: Issue single reward
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/api_gateway/rewards/core/v1/user/reward/{rewardId}/issue":
+  /api_gateway/rewards/core/v1/user/reward/{rewardId}/issue:
     post:
       summary: Issue single reward
       description: ''
@@ -66,14 +66,23 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
-                    \   \"code\": 200,\n        \"message\": \"Reward issued successfully\"\
-                    \n    },\n    \"intouch\": null,\n    \"transactionId\": 397137,\n\
-                    \    \"promotion\": null,\n    \"vendor\": {\n        \"pointsRedeemed\"\
-                    : \"500\"\n    },\n    \"paymentConfig\": null,\n    \"redemptionDetails\"\
-                    : null,\n    \"fulfillmentDetails\": null,\n    \"customFields\"\
-                    : null,\n    \"eventLogId\": null,\n    \"requestId\": null,\n\
-                    \    \"eventDateTime\": \"2025-03-27T13:38:11Z\"\n}"
+                  value:
+                    status:
+                      success: true
+                      code: 200
+                      message: Reward issued successfully
+                    intouch: null
+                    transactionId: 397137
+                    promotion: null
+                    vendor:
+                      pointsRedeemed: '500'
+                    paymentConfig: null
+                    redemptionDetails: null
+                    fulfillmentDetails: null
+                    customFields: null
+                    eventLogId: null
+                    requestId: null
+                    eventDateTime: '2025-03-27T13:38:11Z'
               schema:
                 type: object
                 properties:
@@ -111,71 +120,103 @@ paths:
                   requestId: {}
                   eventDateTime:
                     type: string
-                    example: "2025-03-27T13:38:11Z"
+                    example: '2025-03-27T13:38:11Z'
         '400':
           description: '400'
           content:
             application/json:
               examples:
                 '3004':
-                  value: "\n{\n   \"status\": {\n       \"success\": false,\n    \
-                    \   \"code\": 3004,\n       \"message\": \"Brand not found\"\n\
-                    \   }\n}\n\n"
+                  value:
+                    status:
+                      success: false
+                      code: 3004
+                      message: Brand not found
                 '8003':
-                  value: "\n{\n   \"status\": {\n       \"success\": false,\n    \
-                    \   \"code\": 8003,\n       \"message\": \"fail to issue reward\
-                    \ as Reward is disabled or not started yet or expired\"\n   },\n\
-                    \   \"rewards\": null\n}\n\n"
+                  value:
+                    status:
+                      success: false
+                      code: 8003
+                      message: fail to issue reward as Reward is disabled or not started yet or expired
+                    rewards: null
                 '8004':
-                  value: "\n{\n   \"status\": {\n       \"success\": false,\n    \
-                    \   \"code\": 8004,\n       \"message\": \"fail to issue reward\
-                    \ as  points are not redeemable\"\n   },\n   \"intouch\": null,\n\
-                    \   \"promotion\": null,\n   \"vendor\": null\n}\n\n"
+                  value:
+                    status:
+                      success: false
+                      code: 8004
+                      message: fail to issue reward as  points are not redeemable
+                    intouch: null
+                    promotion: null
+                    vendor: null
                 '8010':
-                  value: "{\n    \"status\": {\n        \"success\": false,\n    \
-                    \    \"code\": 8010,\n        \"message\": \"Reward issued partially\"\
-                    \n    },\n    \"rewards\": [\n        {\n            \"status\"\
-                    : {\n                \"success\": true,\n                \"code\"\
-                    : 200,\n                \"message\": \"Reward issued successfully\"\
-                    \n            },\n            \"rewardId\": 13649,\n         \
-                    \   \"requestedQuantity\": 1,\n            \"pointsReferenceId\"\
-                    : \"jDgoKj\",\n            \"intouch\": null,\n            \"\
-                    promotions\": [],\n            \"vendor\": [\n               \
-                    \ {\n                    \"voucher\": \"1510791\",\n         \
-                    \           \"pointsRedeemed\": \"114\"\n                }\n \
-                    \           ],\n            \"restrictions\": null,\n        \
-                    \    \"paymentConfig\": {\n                \"paymentMode\": \"\
-                    CONV_RATIO\",\n                \"id\": 307,\n                \"\
-                    conversionRatio\": 0.3500\n            },\n            \"fulfillmentDetails\"\
-                    : null,\n            \"customFields\": null\n        },\n    \
-                    \    {\n            \"status\": {\n                \"success\"\
-                    : false,\n                \"code\": 12035,\n                \"\
-                    message\": \"Payment Mode needs to be passed when multiple payment\
-                    \ Payment Config Exists\"\n            },\n            \"rewardId\"\
-                    : 14746,\n            \"requestedQuantity\": 1,\n            \"\
-                    pointsReferenceId\": null,\n            \"intouch\": null,\n \
-                    \           \"promotions\": null,\n            \"vendor\": null,\n\
-                    \            \"restrictions\": null,\n            \"paymentConfig\"\
-                    : null,\n            \"fulfillmentDetails\": null,\n         \
-                    \   \"customFields\": null\n        }\n    ]\n}"
+                  value:
+                    status:
+                      success: false
+                      code: 8010
+                      message: Reward issued partially
+                    rewards:
+                    - status:
+                        success: true
+                        code: 200
+                        message: Reward issued successfully
+                      rewardId: 13649
+                      requestedQuantity: 1
+                      pointsReferenceId: jDgoKj
+                      intouch: null
+                      promotions: []
+                      vendor:
+                      - voucher: '1510791'
+                        pointsRedeemed: '114'
+                      restrictions: null
+                      paymentConfig:
+                        paymentMode: CONV_RATIO
+                        id: 307
+                        conversionRatio: 0.35
+                      fulfillmentDetails: null
+                      customFields: null
+                    - status:
+                        success: false
+                        code: 12035
+                        message: Payment Mode needs to be passed when multiple payment Payment Config
+                          Exists
+                      rewardId: 14746
+                      requestedQuantity: 1
+                      pointsReferenceId: null
+                      intouch: null
+                      promotions: null
+                      vendor: null
+                      restrictions: null
+                      paymentConfig: null
+                      fulfillmentDetails: null
+                      customFields: null
                 '12005':
-                  value: "\n{\n   \"status\": {\n       \"success\": false,\n    \
-                    \   \"code\": 12005,\n       \"message\": \"Reward constraint\
-                    \ evaluation failed. Request failed. Max limit for the DAYS is\
-                    \ reached. Allowed limit is 15 For Level CUSTOMER\"\n   },\n \
-                    \  \"intouch\": null,\n   \"promotion\": null,\n   \"vendor\"\
-                    : null\n}\n\n"
+                  value:
+                    status:
+                      success: false
+                      code: 12005
+                      message: Reward constraint evaluation failed. Request failed. Max limit for the
+                        DAYS is reached. Allowed limit is 15 For Level CUSTOMER
+                    intouch: null
+                    promotion: null
+                    vendor: null
                 '12016':
-                  value: "{\n    \"status\": {\n        \"success\": false,\n    \
-                    \    \"code\": 12016,\n        \"message\": \"Invalid payment\
-                    \ mode passed.\"\n    },\n    \"intouch\": null,\n    \"promotion\"\
-                    : null,\n    \"vendor\": null,\n    \"paymentConfig\": null,\n\
-                    \    \"fulfillmentDetails\": null,\n    \"customFields\": null\n\
-                    }"
+                  value:
+                    status:
+                      success: false
+                      code: 12016
+                      message: Invalid payment mode passed.
+                    intouch: null
+                    promotion: null
+                    vendor: null
+                    paymentConfig: null
+                    fulfillmentDetails: null
+                    customFields: null
                 Result:
-                  value: "{\n    \"status\": {\n        \"success\": false,\n    \
-                    \    \"code\": 400,\n        \"message\": \"Invalid payment mode\
-                    \ passed.,Payment configuration id is mandatory\"\n    }\n}"
+                  value:
+                    status:
+                      success: false
+                      code: 400
+                      message: Invalid payment mode passed.,Payment configuration id is mandatory
               schema:
                 oneOf:
                 - title: '8003'
@@ -194,8 +235,7 @@ paths:
                           default: 0
                         message:
                           type: string
-                          example: fail to issue reward as Reward is disabled or not
-                            started yet or expired
+                          example: fail to issue reward as Reward is disabled or not started yet or expired
                     rewards: {}
                 - title: '3004'
                   type: object
@@ -250,9 +290,8 @@ paths:
                           default: 0
                         message:
                           type: string
-                          example: Reward constraint evaluation failed. Request failed.
-                            Max limit for the DAYS is reached. Allowed limit is 15
-                            For Level CUSTOMER
+                          example: Reward constraint evaluation failed. Request failed. Max limit for
+                            the DAYS is reached. Allowed limit is 15 For Level CUSTOMER
                     intouch: {}
                     promotion: {}
                     vendor: {}
@@ -271,8 +310,7 @@ paths:
                           default: 0
                         message:
                           type: string
-                          example: Invalid payment mode passed.,Payment configuration
-                            id is mandatory
+                          example: Invalid payment mode passed.,Payment configuration id is mandatory
                 - title: '12016'
                   type: object
                   properties:
@@ -378,13 +416,23 @@ paths:
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/user/reward/367568/issue?username=george.johnson'\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization:\
-            \ Basic Z2VvcmdwYTEzNzg=' \\\n--header 'Cookie: _cfuvid=5GVMEy2iFMxxlrzpgyqeZo7sWQJSeywKTjtSlNbcpE0-1746707886590-0.0.1.1-604800000'\
-            \ \\\n--data '{\n    \"mobile\": \"9988221100\",\n    \"brand\": \"DOCDEMO\"\
-            ,\n    \"programId\": \"973\",\n    \"eventDateTime\" : \"2025-03-27T13:38:11Z\"\
-            ,\n    \"rewards\": [\n        {\n            \"rewardId\": \"366796\"\
-            ,\n            \"quantity\": 1\n        }\n    ]\n}'"
+          code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/user/reward/367568/issue?username=george.johnson' \
+            --header 'Content-Type: application/json' \
+            --header 'Authorization: Basic Z2VvcmdwYTEzNzg=' \
+            --header 'Cookie: _cfuvid=5GVMEy2iFMxxlrzpgyqeZo7sWQJSeywKTjtSlNbcpE0-1746707886590-0.0.1.1-604800000' \
+            --data '{
+                "mobile": "9988221100",
+                "brand": "DOCDEMO",
+                "programId": "973",
+                "eventDateTime" : "2025-03-27T13:38:11Z",
+                "rewards": [
+                    {
+                        "rewardId": "366796",
+                        "quantity": 1
+                    }
+                ]
+            }'
           name: Request Body
         samples-languages:
         - curl

@@ -3,14 +3,14 @@ info:
   title: Issue Cart Promotion
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/api_gateway/v1/promotions/{promotionId}/issueBulk":
+  /api_gateway/v1/promotions/{promotionId}/issueBulk:
     post:
       summary: Issue Cart Promotion
       description: Issue Cart Promotion for the customer.
@@ -24,8 +24,8 @@ paths:
         required: true
       - name: contextId
         in: query
-        description: Unique identifier of the entity that issued the promotion. This
-          is also known as tillId.
+        description: Unique identifier of the entity that issued the promotion. This is also known as
+          tillId.
         schema:
           type: string
       responses:
@@ -35,12 +35,15 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"data\": {\n        \"564332013\": {\n         \
-                    \   \"id\": \"68230a3af1ebc84977d9ea2c\",\n            \"customerId\"\
-                    : 564332013,\n            \"promotionId\": \"67f3832ab206f929966adf81\"\
-                    ,\n            \"earnedFromId\": \"2 items in cart\",\n      \
-                    \      \"eventTime\": 1747126842954,\n            \"validTill\"\
-                    : 1748716199999\n        }\n    }\n}"
+                  value:
+                    data:
+                      '564332013':
+                        id: 68230a3af1ebc84977d9ea2c
+                        customerId: 564332013
+                        promotionId: 67f3832ab206f929966adf81
+                        earnedFromId: 2 items in cart
+                        eventTime: 1747126842954
+                        validTill: 1748716199999
               schema:
                 type: object
                 properties:
@@ -77,12 +80,15 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"data\": {\n        \"555567088\": {\n         \
-                    \   \"id\": \"67dd4237ef21a64211227e06\",\n            \"customerId\"\
-                    : 555567088,\n            \"promotionId\": \"67dd4210ef21a64211227e04\"\
-                    ,\n            \"earnedFromId\": \"973\", \n            \"eventTime\"\
-                    : 1742553655678,\n            \"validTill\": 1746046799999\n \
-                    \       }\n    }\n}"
+                  value:
+                    data:
+                      '555567088':
+                        id: 67dd4237ef21a64211227e06
+                        customerId: 555567088
+                        promotionId: 67dd4210ef21a64211227e04
+                        earnedFromId: '973'
+                        eventTime: 1742553655678
+                        validTill: 1746046799999
               schema:
                 type: object
                 properties:
@@ -117,12 +123,14 @@ paths:
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/67f3832ab206f929966adf81/issueBulk?contextId=2%20items%20in%20cart'\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization:\
-            \ Basic bmFtYW5fZG9jOmEzYjRjYjgyMzA3MWJmYjM5OGM5ZmM2YjZlY2I2MmEy' \\\n\
-            --header 'Cookie: _cfuvid=IBM60ka7X5Aybk9GUAmy_p8JKVHig14rVuwA5XcyAUA-1747041228297-0.0.1.1-604800000;\
-            \ _cfuvid=fVY1aFlJcxMfPAsl7lBGJQG55iNNKmYw08.WciBy9eY-1747126931365-0.0.1.1-604800000'\
-            \ \\\n--data '[\n  564332013\n]'"
+          code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/67f3832ab206f929966adf81/issueBulk?contextId=2%20items%20in%20cart' \
+            --header 'Content-Type: application/json' \
+            --header 'Authorization: Basic bmFtYW5fZG9jOmEzYjRjYjgyMzA3MWJmYjM5OGM5ZmM2YjZlY2I2MmEy' \
+            --header 'Cookie: _cfuvid=IBM60ka7X5Aybk9GUAmy_p8JKVHig14rVuwA5XcyAUA-1747041228297-0.0.1.1-604800000; _cfuvid=fVY1aFlJcxMfPAsl7lBGJQG55iNNKmYw08.WciBy9eY-1747126931365-0.0.1.1-604800000' \
+            --data '[
+              564332013
+            ]'
         samples-languages:
         - curl
 components:

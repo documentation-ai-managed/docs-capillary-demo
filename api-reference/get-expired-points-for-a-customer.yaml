@@ -3,7 +3,7 @@ info:
   title: Get Customer’s Earned and Expired Points by Year
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -39,15 +39,15 @@ paths:
           format: int64
       - name: page
         in: query
-        description: "Retrieve details of a specific page. Page count starts from\
-          \ 1. Example: page=2 retrieves data on page 2."
+        description: 'Retrieve details of a specific page. Page count starts from 1. Example: page=2 retrieves
+          data on page 2.'
         schema:
           type: integer
           format: int32
       - name: count
         in: query
-        description: Number of results to display per page. The default value is 10.
-          The maximum supported value is 100.
+        description: Number of results to display per page. The default value is 10. The maximum supported
+          value is 100.
         schema:
           type: integer
           format: int32
@@ -58,9 +58,11 @@ paths:
             application/json:
               examples:
                 Sample Response:
-                  value: "[\n    {\n        \"customerId\": 387910941,\n        \"\
-                    year\": 2025,\n        \"earned\": 160,\n        \"expired\":\
-                    \ 0\n    }\n]"
+                  value:
+                  - customerId: 387910941
+                    year: 2025
+                    earned: 160
+                    expired: 0
               schema:
                 type: array
                 items:
@@ -88,7 +90,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}

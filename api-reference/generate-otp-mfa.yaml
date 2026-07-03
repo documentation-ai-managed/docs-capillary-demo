@@ -3,7 +3,7 @@ info:
   title: Generate MFA OTP
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -46,8 +46,7 @@ paths:
                   description: Name of the brand or organisation that needs verification.
                 sessionId:
                   type: string
-                  description: Unique session ID created from `/mfa/token/generate`
-                    API.
+                  description: Unique session ID created from `/mfa/token/generate` API.
       responses:
         '200':
           description: '200'
@@ -55,8 +54,11 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"status\": {\n        \"success\": true,\n     \
-                    \   \"code\": 200,\n        \"message\": \"SUCCESS\"\n    }\n}"
+                  value:
+                    status:
+                      success: true
+                      code: 200
+                      message: SUCCESS
               schema:
                 type: object
                 properties:
@@ -80,7 +82,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}

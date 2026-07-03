@@ -3,7 +3,7 @@ info:
   title: Get Target Completion Details
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -18,8 +18,7 @@ paths:
       parameters:
       - name: ledgerEntryTypes
         in: query
-        description: "Type of entry recorded in a customer's points ledger. Values:\
-          \ CREDIT, DEBIT"
+        description: 'Type of entry recorded in a customer''s points ledger. Values: CREDIT, DEBIT'
         required: true
         schema:
           type: string
@@ -32,37 +31,36 @@ paths:
           format: int64
       - name: endDate
         in: query
-        description: "Last date to which you want to retrieve the ledger information.\
-          \ **Format**: YYYY-MM-DD.   **Example**: 2025-06-22"
+        description: 'Last date to which you want to retrieve the ledger information. **Format**: YYYY-MM-DD.   **Example**:
+          2025-06-22'
         required: true
         schema:
           type: string
           format: date
       - name: startDate
         in: query
-        description: "Start date to which you want to retrieve the ledger information.\
-          \ **Format**: YYYY-MM-DD.   **Example**: 2025-06-01"
+        description: 'Start date to which you want to retrieve the ledger information. **Format**: YYYY-MM-DD.   **Example**:
+          2025-06-01'
         required: true
         schema:
           type: string
           format: date
       - name: alternateCurrencyNames
         in: query
-        description: Name of the alternate currency for which ledger information is
-          retrieved.
+        description: Name of the alternate currency for which ledger information is retrieved.
         schema:
           type: string
       - name: page
         in: query
-        description: "Retrieve details of a specific page. Page count starts from\
-          \ 1.  Example: page=2 retrieves data on page 2."
+        description: 'Retrieve details of a specific page. Page count starts from 1.  Example: page=2
+          retrieves data on page 2.'
         schema:
           type: integer
           format: int32
       - name: count
         in: query
-        description: Number of results to display per page. The default value is 10.
-          The maximum supported value is 100.
+        description: Number of results to display per page. The default value is 10. The maximum supported
+          value is 100.
         schema:
           type: integer
           format: int32
@@ -80,7 +78,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}

@@ -3,7 +3,7 @@ info:
   title: Add Promotion Redemption
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -22,7 +22,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
@@ -32,11 +32,13 @@ paths:
             application/json:
               examples:
                 Promotion ID not found for the org:
-                  value: "{\n    \"timestamp\": 1737615222993,\n    \"errorCode\"\
-                    : 400,\n    \"message\": \"Validation Failed\",\n    \"errorDetails\"\
-                    : [\n        \"Promotion with ids : [674fbb982335bd1d58a8c2a4,\
-                    \ 674fbb982335bd1d58a8c2a4] not found for org : 4000004 .\"\n\
-                    \    ]\n}"
+                  value:
+                    timestamp: 1737615222993
+                    errorCode: 400
+                    message: Validation Failed
+                    errorDetails:
+                    - 'Promotion with ids : [674fbb982335bd1d58a8c2a4, 674fbb982335bd1d58a8c2a4] not found
+                      for org : 4000004 .'
               schema:
                 type: object
                 properties:
@@ -55,29 +57,26 @@ paths:
                     type: array
                     items:
                       type: string
-                      example: "Promotion with ids : [674fbb982335bd1d58a8c2a4, 674fbb982335bd1d58a8c2a4]\
-                        \ not found for org : 4000004 ."
+                      example: 'Promotion with ids : [674fbb982335bd1d58a8c2a4, 674fbb982335bd1d58a8c2a4]
+                        not found for org : 4000004 .'
       deprecated: false
       x-readme:
         code-samples:
         - language: curl
           code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/redemptions'\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'X-CAP-API-AUTH-ORG-ID:\
-            \ 4000004' \\\n--header 'Authorization: Basic YXV0b3NblahblahjIwMmNiOTYyYWM1OTA3NWI5NjRiMDcxNTJkMjM0Yjcw'\
+            \ \\\n--header 'Content-Type: application/json' \\\n--header 'X-CAP-API-AUTH-ORG-ID: 4000004'\
+            \ \\\n--header 'Authorization: Basic YXV0b3NblahblahjIwMmNiOTYyYWM1OTA3NWI5NjRiMDcxNTJkMjM0Yjcw'\
             \ \\\n--header 'Cookie: _cfuvid=wyOhPjyopEethoQrBBNm9fzccPfMP6H1FD60qRHEwJU-1737534439107-0.0.1.1-604800000'\
-            \ \\\n--data '{\n  \"customerIdentifierValue\" : \"917214306639\",  \n\
-            \  \"customerIdentifierType\" : \"mobile\",\n  \"customerId\" : \"-1\"\
-            ,\n  \"transactionIdentifier\" : \"2151411843\",\n  \"transactionNumber\"\
-            \ : \"215141171123\",\n   \"transactionDate\":1733307699000,  \n   \"\
-            amount\":200,\n   \"lineItems\" : [\n    {\n        \"sku\":\"Sku#Fuel\"\
-            ,  \n        \"promotionId\":\"674fbb982335bd1d58a8c2a4\",   \n      \
-            \  \"earnedPromotionId\":\"674d9b222335bd1d58a8c09c\",  \n        \"redemptionCount\"\
-            :1,\n        \"discount\":100,\n        \"discountAppliedOnQuantity\"\
-            :1,\n        \"promotionAppliedOnQuantity\":1\n     }\n   ],\n   \"redemptions\"\
-            \ : [\n      {\n        \"sku\":\"Sku#Fuel\",  \n        \"promotionId\"\
-            :\"674fbb982335bd1d58a8c2a4\",   \n        \"redemptionCount\":1,\n  \
-            \      \"discount\":100,\n        \"discountAppliedOnQuantity\":1,\n \
-            \       \"promotionAppliedOnQuantity\":1\n     }\n   ]\n}'"
+            \ \\\n--data '{\n  \"customerIdentifierValue\" : \"917214306639\",  \n  \"customerIdentifierType\"\
+            \ : \"mobile\",\n  \"customerId\" : \"-1\",\n  \"transactionIdentifier\" : \"2151411843\"\
+            ,\n  \"transactionNumber\" : \"215141171123\",\n   \"transactionDate\":1733307699000,  \n\
+            \   \"amount\":200,\n   \"lineItems\" : [\n    {\n        \"sku\":\"Sku#Fuel\",  \n      \
+            \  \"promotionId\":\"674fbb982335bd1d58a8c2a4\",   \n        \"earnedPromotionId\":\"674d9b222335bd1d58a8c09c\"\
+            ,  \n        \"redemptionCount\":1,\n        \"discount\":100,\n        \"discountAppliedOnQuantity\"\
+            :1,\n        \"promotionAppliedOnQuantity\":1\n     }\n   ],\n   \"redemptions\" : [\n   \
+            \   {\n        \"sku\":\"Sku#Fuel\",  \n        \"promotionId\":\"674fbb982335bd1d58a8c2a4\"\
+            ,   \n        \"redemptionCount\":1,\n        \"discount\":100,\n        \"discountAppliedOnQuantity\"\
+            :1,\n        \"promotionAppliedOnQuantity\":1\n     }\n   ]\n}'"
         samples-languages:
         - curl
 components:

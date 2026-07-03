@@ -3,14 +3,14 @@ info:
   title: Get badge by ID
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/api_gateway/v1/badges/badgeMeta/{badgeId}":
+  /api_gateway/v1/badges/badgeMeta/{badgeId}:
     get:
       summary: Get badge by ID
       description: ''
@@ -37,146 +37,217 @@ paths:
             application/json:
               examples:
                 Fixed window, includeStatistics=true:
-                  value: "{\n    \"data\": {\n        \"id\": \"662749408fe258516a88fe89\"\
-                    ,\n        \"badgeNumericId\": null,\n        \"orgId\": 100458,\n\
-                    \        \"name\": \"BADGE123\",\n        \"description\": \"\
-                    Purchase 5 pet products in 3 months and get a pet grooming voucher\"\
-                    ,\n        \"startOn\": 1716803487,\n        \"expiresOn\": 1726804000,\n\
-                    \        \"earnedBadgeExpiry\": {\n            \"expiryType\"\
-                    : \"ABSOLUTE\",\n            \"type\": \"WITH_BADGE_META\",\n\
-                    \            \"expiresOn\": null,\n            \"expireWithBadgeMeta\"\
-                    : true\n        },\n        \"issuedBadgeExpiry\": null,\n   \
-                    \     \"images\": [],\n        \"ownership\": {\n            \"\
-                    restrictedToOwners\": [\n                \"Milestones\",\n   \
-                    \             \"Loyalty\"\n            ],\n            \"claims\"\
-                    : []\n        },\n        \"customerConstraints\": [\n       \
-                    \     {\n                \"constraintType\": \"CUSTOMER_BADGE_FIXED_WINDOW\"\
-                    ,\n                \"referenceId\": \"e6791ec9-e92f-34af-bdc3-be2607fdf82c\"\
-                    ,\n                \"durationType\": \"DAYS\",\n             \
-                    \   \"refreshRate\": 3,\n                \"maxEarnLimit\": 1,\n\
-                    \                \"cycleStatus\": \"ACTIVE\",\n              \
-                    \  \"startDate\": 1716803487,\n                \"endDate\": 1726804000,\n\
-                    \                \"currentCycle\": {\n                    \"startDate\"\
-                    : 1719898518.011293,\n                    \"endDate\": 1720071318.011293\n\
-                    \                }\n            }\n        ],\n        \"badgeConstraints\"\
-                    : [\n            {\n                \"constraintType\": \"BADGE_FIXED_WINDOW\"\
-                    ,\n                \"referenceId\": \"a1350b49-eb8e-3500-9e43-01f5493c91c1\"\
-                    ,\n                \"durationType\": \"DAYS\",\n             \
-                    \   \"refreshRate\": 3,\n                \"maxEarnLimit\": 2,\n\
-                    \                \"startDate\": 1716803487,\n                \"\
-                    endDate\": 1726804000,\n                \"cycleStatus\": \"ACTIVE\"\
-                    ,\n                \"currentCycle\": {\n                    \"\
-                    startDate\": 1719898518.011462,\n                    \"endDate\"\
-                    : 1720071318.011462\n                }\n            }\n      \
-                    \  ],\n        \"badgeGroupId\": null,\n        \"badgeRank\"\
-                    : 1,\n        \"earnType\": \"EARN\",\n        \"issuedCount\"\
-                    : 0,\n        \"earnedCount\": 0,\n        \"status\": \"LIVE\"\
-                    ,\n        \"createdOn\": 1713850688.811,\n        \"createdBy\"\
-                    : 75086856,\n        \"lastUpdatedOn\": 1713850688.811,\n    \
-                    \    \"lastUpdatedBy\": 75086856,\n        \"customFields\": {},\n\
-                    \        \"active\": false\n    },\n    \"errors\": null,\n  \
-                    \  \"warnings\": null\n}"
+                  value:
+                    data:
+                      id: 662749408fe258516a88fe89
+                      badgeNumericId: null
+                      orgId: 100458
+                      name: BADGE123
+                      description: Purchase 5 pet products in 3 months and get a pet grooming voucher
+                      startOn: 1716803487
+                      expiresOn: 1726804000
+                      earnedBadgeExpiry:
+                        expiryType: ABSOLUTE
+                        type: WITH_BADGE_META
+                        expiresOn: null
+                        expireWithBadgeMeta: true
+                      issuedBadgeExpiry: null
+                      images: []
+                      ownership:
+                        restrictedToOwners:
+                        - Milestones
+                        - Loyalty
+                        claims: []
+                      customerConstraints:
+                      - constraintType: CUSTOMER_BADGE_FIXED_WINDOW
+                        referenceId: e6791ec9-e92f-34af-bdc3-be2607fdf82c
+                        durationType: DAYS
+                        refreshRate: 3
+                        maxEarnLimit: 1
+                        cycleStatus: ACTIVE
+                        startDate: 1716803487
+                        endDate: 1726804000
+                        currentCycle:
+                          startDate: 1719898518.011293
+                          endDate: 1720071318.011293
+                      badgeConstraints:
+                      - constraintType: BADGE_FIXED_WINDOW
+                        referenceId: a1350b49-eb8e-3500-9e43-01f5493c91c1
+                        durationType: DAYS
+                        refreshRate: 3
+                        maxEarnLimit: 2
+                        startDate: 1716803487
+                        endDate: 1726804000
+                        cycleStatus: ACTIVE
+                        currentCycle:
+                          startDate: 1719898518.011462
+                          endDate: 1720071318.011462
+                      badgeGroupId: null
+                      badgeRank: 1
+                      earnType: EARN
+                      issuedCount: 0
+                      earnedCount: 0
+                      status: LIVE
+                      createdOn: 1713850688.811
+                      createdBy: 75086856
+                      lastUpdatedOn: 1713850688.811
+                      lastUpdatedBy: 75086856
+                      customFields: {}
+                      active: false
+                    errors: null
+                    warnings: null
                 Moving window, includeStatistics=true:
-                  value: "{\n    \"data\": {\n        \"id\": \"662724bb8fe258516a88fde2\"\
-                    ,\n        \"badgeNumericId\": null,\n        \"orgId\": 100458,\n\
-                    \        \"name\": \"OGBadge2\",\n        \"description\": \"\
-                    Moving window\",\n        \"startOn\": 1707523237.192,\n     \
-                    \   \"expiresOn\": 1715299237.192,\n        \"earnedBadgeExpiry\"\
-                    : {\n            \"expiryType\": \"RELATIVE\",\n            \"\
-                    relativeExpirytype\": \"DAYS\",\n            \"value\": 2\n  \
-                    \      },\n        \"issuedBadgeExpiry\": {\n            \"expiryType\"\
-                    : \"RELATIVE\",\n            \"relativeExpirytype\": \"DAYS\"\
-                    ,\n            \"value\": 2\n        },\n        \"images\": [\n\
-                    \            {\n                \"name\": \"string\",\n      \
-                    \          \"fileSvcHandle\": \"string\",\n                \"\
-                    url\": \"string\",\n                \"tag\": \"UN_EARNED\"\n \
-                    \           }\n        ],\n        \"ownership\": {\n        \
-                    \    \"restrictedToOwners\": [\n                \"Loyalty\"\n\
-                    \            ],\n            \"claims\": []\n        },\n    \
-                    \    \"customerConstraints\": [\n            {\n             \
-                    \   \"constraintType\": \"CUSTOMER_BADGE_FIXED_VALUE\",\n    \
-                    \            \"maxEarnLimit\": 100\n            }\n        ],\n\
-                    \        \"badgeConstraints\": [\n            {\n            \
-                    \    \"constraintType\": \"BADGE_FIXED_VALUE\",\n            \
-                    \    \"maxEarnLimit\": 1000\n            }\n        ],\n     \
-                    \   \"badgeGroupId\": null,\n        \"badgeRank\": null,\n  \
-                    \      \"earnType\": \"EARN\",\n        \"issuedCount\": 0,\n\
-                    \        \"earnedCount\": 0,\n        \"status\": \"EXPIRED\"\
-                    ,\n        \"createdOn\": 1713841339.861,\n        \"createdBy\"\
-                    : 75086856,\n        \"lastUpdatedOn\": 1713841339.861,\n    \
-                    \    \"lastUpdatedBy\": 75086856,\n        \"customFields\": {},\n\
-                    \        \"active\": true\n    },\n    \"errors\": null,\n   \
-                    \ \"warnings\": null\n}"
+                  value:
+                    data:
+                      id: 662724bb8fe258516a88fde2
+                      badgeNumericId: null
+                      orgId: 100458
+                      name: OGBadge2
+                      description: Moving window
+                      startOn: 1707523237.192
+                      expiresOn: 1715299237.192
+                      earnedBadgeExpiry:
+                        expiryType: RELATIVE
+                        relativeExpirytype: DAYS
+                        value: 2
+                      issuedBadgeExpiry:
+                        expiryType: RELATIVE
+                        relativeExpirytype: DAYS
+                        value: 2
+                      images:
+                      - name: string
+                        fileSvcHandle: string
+                        url: string
+                        tag: UN_EARNED
+                      ownership:
+                        restrictedToOwners:
+                        - Loyalty
+                        claims: []
+                      customerConstraints:
+                      - constraintType: CUSTOMER_BADGE_FIXED_VALUE
+                        maxEarnLimit: 100
+                      badgeConstraints:
+                      - constraintType: BADGE_FIXED_VALUE
+                        maxEarnLimit: 1000
+                      badgeGroupId: null
+                      badgeRank: null
+                      earnType: EARN
+                      issuedCount: 0
+                      earnedCount: 0
+                      status: EXPIRED
+                      createdOn: 1713841339.861
+                      createdBy: 75086856
+                      lastUpdatedOn: 1713841339.861
+                      lastUpdatedBy: 75086856
+                      customFields: {}
+                      active: true
+                    errors: null
+                    warnings: null
                 Fixed window, includeStatistics= False:
-                  value: "{\n    \"data\": {\n        \"id\": \"662749408fe258516a88fe89\"\
-                    ,\n        \"badgeNumericId\": null,\n        \"orgId\": 100458,\n\
-                    \        \"name\": \"BADGE123\",\n        \"description\": \"\
-                    Purchase 5 pet products in 3 months and get a pet grooming voucher\"\
-                    ,\n        \"startOn\": 1716803487,\n        \"expiresOn\": 1726804000,\n\
-                    \        \"earnedBadgeExpiry\": {\n            \"expiryType\"\
-                    : \"ABSOLUTE\",\n            \"type\": \"WITH_BADGE_META\",\n\
-                    \            \"expiresOn\": null,\n            \"expireWithBadgeMeta\"\
-                    : true\n        },\n        \"issuedBadgeExpiry\": null,\n   \
-                    \     \"images\": [],\n        \"ownership\": {\n            \"\
-                    restrictedToOwners\": [\n                \"Milestones\",\n   \
-                    \             \"Loyalty\"\n            ],\n            \"claims\"\
-                    : []\n        },\n        \"customerConstraints\": [\n       \
-                    \     {\n                \"constraintType\": \"CUSTOMER_BADGE_FIXED_WINDOW\"\
-                    ,\n                \"referenceId\": \"e6791ec9-e92f-34af-bdc3-be2607fdf82c\"\
-                    ,\n                \"durationType\": \"DAYS\",\n             \
-                    \   \"refreshRate\": 3,\n                \"maxEarnLimit\": 1,\n\
-                    \                \"cycleStatus\": \"ACTIVE\",\n              \
-                    \  \"startDate\": 1716803487,\n                \"endDate\": 1726804000,\n\
-                    \                \"currentCycle\": {\n                    \"startDate\"\
-                    : 1719898518.011293,\n                    \"endDate\": 1720071318.011293\n\
-                    \                }\n            }\n        ],\n        \"badgeConstraints\"\
-                    : [\n            {\n                \"constraintType\": \"BADGE_FIXED_WINDOW\"\
-                    ,\n                \"referenceId\": \"a1350b49-eb8e-3500-9e43-01f5493c91c1\"\
-                    ,\n                \"durationType\": \"DAYS\",\n             \
-                    \   \"refreshRate\": 3,\n                \"maxEarnLimit\": 2,\n\
-                    \                \"startDate\": 1716803487,\n                \"\
-                    endDate\": 1726804000,\n                \"cycleStatus\": \"ACTIVE\"\
-                    ,\n                \"currentCycle\": {\n                    \"\
-                    startDate\": 1719898518.011462,\n                    \"endDate\"\
-                    : 1720071318.011462\n                }\n            }\n      \
-                    \  ],\n        \"badgeGroupId\": null,\n        \"badgeRank\"\
-                    : 1,\n        \"earnType\": \"EARN\",\n        \"issuedCount\"\
-                    : 0,\n        \"earnedCount\": 0,\n        \"status\": \"LIVE\"\
-                    ,\n        \"createdOn\": 1713850688.811,\n        \"createdBy\"\
-                    : 75086856,\n        \"lastUpdatedOn\": 1713850688.811,\n    \
-                    \    \"lastUpdatedBy\": 75086856,\n        \"customFields\": {},\n\
-                    \        \"active\": false\n    },\n    \"errors\": null,\n  \
-                    \  \"warnings\": null\n}"
+                  value:
+                    data:
+                      id: 662749408fe258516a88fe89
+                      badgeNumericId: null
+                      orgId: 100458
+                      name: BADGE123
+                      description: Purchase 5 pet products in 3 months and get a pet grooming voucher
+                      startOn: 1716803487
+                      expiresOn: 1726804000
+                      earnedBadgeExpiry:
+                        expiryType: ABSOLUTE
+                        type: WITH_BADGE_META
+                        expiresOn: null
+                        expireWithBadgeMeta: true
+                      issuedBadgeExpiry: null
+                      images: []
+                      ownership:
+                        restrictedToOwners:
+                        - Milestones
+                        - Loyalty
+                        claims: []
+                      customerConstraints:
+                      - constraintType: CUSTOMER_BADGE_FIXED_WINDOW
+                        referenceId: e6791ec9-e92f-34af-bdc3-be2607fdf82c
+                        durationType: DAYS
+                        refreshRate: 3
+                        maxEarnLimit: 1
+                        cycleStatus: ACTIVE
+                        startDate: 1716803487
+                        endDate: 1726804000
+                        currentCycle:
+                          startDate: 1719898518.011293
+                          endDate: 1720071318.011293
+                      badgeConstraints:
+                      - constraintType: BADGE_FIXED_WINDOW
+                        referenceId: a1350b49-eb8e-3500-9e43-01f5493c91c1
+                        durationType: DAYS
+                        refreshRate: 3
+                        maxEarnLimit: 2
+                        startDate: 1716803487
+                        endDate: 1726804000
+                        cycleStatus: ACTIVE
+                        currentCycle:
+                          startDate: 1719898518.011462
+                          endDate: 1720071318.011462
+                      badgeGroupId: null
+                      badgeRank: 1
+                      earnType: EARN
+                      issuedCount: 0
+                      earnedCount: 0
+                      status: LIVE
+                      createdOn: 1713850688.811
+                      createdBy: 75086856
+                      lastUpdatedOn: 1713850688.811
+                      lastUpdatedBy: 75086856
+                      customFields: {}
+                      active: false
+                    errors: null
+                    warnings: null
                 Moving window, includeStatistics= False:
-                  value: "{\n    \"data\": {\n        \"id\": \"662724bb8fe258516a88fde2\"\
-                    ,\n        \"badgeNumericId\": null,\n        \"orgId\": 100458,\n\
-                    \        \"name\": \"OGBadge2\",\n        \"description\": \"\
-                    Moving window\",\n        \"startOn\": 1707523237.192000000,\n\
-                    \        \"expiresOn\": 1715299237.192000000,\n        \"earnedBadgeExpiry\"\
-                    : {\n            \"expiryType\": \"RELATIVE\",\n            \"\
-                    relativeExpirytype\": \"DAYS\",\n            \"value\": 2\n  \
-                    \      },\n        \"issuedBadgeExpiry\": {\n            \"expiryType\"\
-                    : \"RELATIVE\",\n            \"relativeExpirytype\": \"DAYS\"\
-                    ,\n            \"value\": 2\n        },\n        \"images\": [\n\
-                    \            {\n                \"name\": \"string\",\n      \
-                    \          \"fileSvcHandle\": \"string\",\n                \"\
-                    url\": \"string\",\n                \"tag\": \"UN_EARNED\"\n \
-                    \           }\n        ],\n        \"ownership\": {\n        \
-                    \    \"restrictedToOwners\": [\n                \"Loyalty\"\n\
-                    \            ],\n            \"claims\": []\n        },\n    \
-                    \    \"customerConstraints\": [\n            {\n             \
-                    \   \"constraintType\": \"CUSTOMER_BADGE_FIXED_VALUE\",\n    \
-                    \            \"maxEarnLimit\": 100\n            }\n        ],\n\
-                    \        \"badgeConstraints\": [\n            {\n            \
-                    \    \"constraintType\": \"BADGE_FIXED_VALUE\",\n            \
-                    \    \"maxEarnLimit\": 1000\n            }\n        ],\n     \
-                    \   \"badgeGroupId\": null,\n        \"badgeRank\": null,\n  \
-                    \      \"earnType\": \"EARN\",\n        \"status\": \"EXPIRED\"\
-                    ,\n        \"createdOn\": 1713841339.861000000,\n        \"createdBy\"\
-                    : 75086856,\n        \"lastUpdatedOn\": 1713841339.861000000,\n\
-                    \        \"lastUpdatedBy\": 75086856,\n        \"customFields\"\
-                    : {},\n        \"active\": true\n    },\n    \"errors\": null,\n\
-                    \    \"warnings\": null\n}"
+                  value:
+                    data:
+                      id: 662724bb8fe258516a88fde2
+                      badgeNumericId: null
+                      orgId: 100458
+                      name: OGBadge2
+                      description: Moving window
+                      startOn: 1707523237.192
+                      expiresOn: 1715299237.192
+                      earnedBadgeExpiry:
+                        expiryType: RELATIVE
+                        relativeExpirytype: DAYS
+                        value: 2
+                      issuedBadgeExpiry:
+                        expiryType: RELATIVE
+                        relativeExpirytype: DAYS
+                        value: 2
+                      images:
+                      - name: string
+                        fileSvcHandle: string
+                        url: string
+                        tag: UN_EARNED
+                      ownership:
+                        restrictedToOwners:
+                        - Loyalty
+                        claims: []
+                      customerConstraints:
+                      - constraintType: CUSTOMER_BADGE_FIXED_VALUE
+                        maxEarnLimit: 100
+                      badgeConstraints:
+                      - constraintType: BADGE_FIXED_VALUE
+                        maxEarnLimit: 1000
+                      badgeGroupId: null
+                      badgeRank: null
+                      earnType: EARN
+                      status: EXPIRED
+                      createdOn: 1713841339.861
+                      createdBy: 75086856
+                      lastUpdatedOn: 1713841339.861
+                      lastUpdatedBy: 75086856
+                      customFields: {}
+                      active: true
+                    errors: null
+                    warnings: null
                 Sample response:
                   summary: Sample response
                   value:
@@ -187,9 +258,9 @@ paths:
                       name: Test badge 02/12 01
                       description: null
                       startOn: 1764654607
-                      startOnISO: "2025-12-02T05:50:07Z"
+                      startOnISO: '2025-12-02T05:50:07Z'
                       expiresOn: 1777701007
-                      expiresOnISO: "2026-05-02T05:50:07Z"
+                      expiresOnISO: '2026-05-02T05:50:07Z'
                       earnedBadgeExpiry:
                         expiryType: RELATIVE
                         relativeExpirytype: WEEKS
@@ -221,10 +292,10 @@ paths:
                       earnType: EARN
                       status: LIVE
                       createdOn: 1764654707.835
-                      createdOnISO: "2025-12-02T05:51:47Z"
+                      createdOnISO: '2025-12-02T05:51:47Z'
                       createdBy: 75176138
                       lastUpdatedOn: 1768827399.422
-                      lastUpdatedOnISO: "2026-01-19T12:56:39Z"
+                      lastUpdatedOnISO: '2026-01-19T12:56:39Z'
                       lastUpdatedBy: 75197372
                       customFields:
                         CF 04: '1234'
@@ -260,8 +331,7 @@ paths:
                           example: BADGE123
                         description:
                           type: string
-                          example: Purchase 5 pet products in 3 months and get a pet
-                            grooming voucher
+                          example: Purchase 5 pet products in 3 months and get a pet grooming voucher
                         startOn:
                           type: integer
                           example: 1716803487
@@ -594,8 +664,7 @@ paths:
                           example: BADGE123
                         description:
                           type: string
-                          example: Purchase 5 pet products in 3 months and get a pet
-                            grooming voucher
+                          example: Purchase 5 pet products in 3 months and get a pet grooming voucher
                         startOn:
                           type: integer
                           example: 1716803487
@@ -907,10 +976,13 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"data\": null,\n    \"errors\": [\n        {\n \
-                    \           \"code\": 404,\n            \"message\": \"Passed\
-                    \ badge is not found\",\n            \"reference\": null\n   \
-                    \     }\n    ],\n    \"warnings\": null\n}"
+                  value:
+                    data: null
+                    errors:
+                    - code: 404
+                      message: Passed badge is not found
+                      reference: null
+                    warnings: null
               schema:
                 type: object
                 properties:
@@ -933,9 +1005,10 @@ paths:
       x-readme:
         code-samples:
         - language: shell
-          code: "curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta/692e7e739b3ca00e4bbf7c06'\
-            \ \\\n--header 'Authorization: Basic bWFkaHVMjU2YQ==' \\\n--header 'Cookie:\
-            \ _cfuvid=nKq1OmGgF8JDdQmuHn27NBzA2WUbPnTTBX5655HaG2Q-1769073063328-0.0.1.1-604800000'"
+          code: |-
+            curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta/692e7e739b3ca00e4bbf7c06' \
+            --header 'Authorization: Basic bWFkaHVMjU2YQ==' \
+            --header 'Cookie: _cfuvid=nKq1OmGgF8JDdQmuHn27NBzA2WUbPnTTBX5655HaG2Q-1769073063328-0.0.1.1-604800000'
           name: Sample request
         samples-languages:
         - shell

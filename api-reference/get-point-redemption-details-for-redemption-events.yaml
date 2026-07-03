@@ -3,7 +3,7 @@ info:
   title: Get Point Redemption Details for Redemption Events
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -25,22 +25,21 @@ paths:
           format: int64
       - name: event_log_ids
         in: query
-        description: Unique identifier generated for the event at the time of its
-          creation.
+        description: Unique identifier generated for the event at the time of its creation.
         required: true
         schema:
           type: string
       - name: count
         in: query
-        description: Number of results to display per page. The default value is 10.
-          The maximum supported value is 100.
+        description: Number of results to display per page. The default value is 10. The maximum supported
+          value is 100.
         schema:
           type: integer
           format: int32
       - name: page
         in: query
-        description: "Retrieve details of a specific page. Page count starts from\
-          \ 1.  Example: page=2 retrieves data on page 2."
+        description: 'Retrieve details of a specific page. Page count starts from 1.  Example: page=2
+          retrieves data on page 2.'
         schema:
           type: integer
           format: int32
@@ -58,7 +57,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}

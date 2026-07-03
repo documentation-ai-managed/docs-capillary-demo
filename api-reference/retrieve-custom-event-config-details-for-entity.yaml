@@ -3,14 +3,14 @@ info:
   title: Retrieve Custom Event Config Details for an Entity
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
 security:
 - sec0: []
 paths:
-  "/api_gateway/cortex/v1/neo-config/entity/{entityType}":
+  /api_gateway/cortex/v1/neo-config/entity/{entityType}:
     get:
       summary: Retrieve Custom Event Config Details for an Entity
       description: ''
@@ -41,9 +41,9 @@ paths:
                       transformEndpoint: /transform/transaction/custom
                       active: true
                       auditInfo:
-                        createdOn: "2025-04-23T06:59:56.411+00:00"
+                        createdOn: '2025-04-23T06:59:56.411+00:00'
                         createdBy: 75155282
-                        lastUpdatedOn: "2025-04-23T07:06:33.947+00:00"
+                        lastUpdatedOn: '2025-04-23T07:06:33.947+00:00'
                         lastUpdatedBy: 75155282
                     errors: []
         '400':
@@ -52,7 +52,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{}"
+                  value: {}
               schema:
                 type: object
                 properties: {}
@@ -60,13 +60,17 @@ paths:
       x-readme:
         code-samples:
         - language: curl
-          code: "curl --location --request GET 'eu.api.capillarytech.com/api_gateway/cortex/v1/neo-config/entity/TRANSACTION'\
-            \ \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization:\
-            \ Basic bmlcmFqLmRvYzpiNGFmODA0MDA5Y2IwMzZhNGNjZGMzMzQzMWVmOWFjOQ==' \\\
-            \n--header 'Cookie: _cfuvid=dfGNwl01cEi2PH5VITS.zzfnmaVvZHqjsz8uMcy6KNA-1745384630231-0.0.1.1-604800000'\
-            \ \\\n--data '{\n  \"orgId\": 100737,\n  \"entityType\": \"TRANSACTION\"\
-            ,\n  \"transformEndpoint\": \"/transform/transaction/custom\",\n  \"active\"\
-            : true\n}'"
+          code: |-
+            curl --location --request GET 'eu.api.capillarytech.com/api_gateway/cortex/v1/neo-config/entity/TRANSACTION' \
+            --header 'Content-Type: application/json' \
+            --header 'Authorization: Basic bmlcmFqLmRvYzpiNGFmODA0MDA5Y2IwMzZhNGNjZGMzMzQzMWVmOWFjOQ==' \
+            --header 'Cookie: _cfuvid=dfGNwl01cEi2PH5VITS.zzfnmaVvZHqjsz8uMcy6KNA-1745384630231-0.0.1.1-604800000' \
+            --data '{
+              "orgId": 100737,
+              "entityType": "TRANSACTION",
+              "transformEndpoint": "/transform/transaction/custom",
+              "active": true
+            }'
         samples-languages:
         - curl
 components:
