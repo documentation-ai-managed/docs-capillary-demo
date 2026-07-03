@@ -60,17 +60,28 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n  \"data\": {\n    \"id\": \"string\",\n    \"customerId\": 0, //Unique id\
-                    \ assigned to the customer\n    \"promotionId\": \"string\", ////Unique id assigned\
-                    \ when a promotion is created\n    \"earnedFromType\": \"\", // Type of customer activity\
-                    \ for which promotion is earned . Enums: ACTIVITY,MILESTONE, REWARD\n    \"earnedFromId\"\
-                    : \"string\", // earn event id\n    \"eventTime\": 0, // Time when earn event occurs\n\
-                    \    \"eventDetails\": {\n      \"id\": \"string\",\n      \"type\": \"string\",\n\
-                    \      \"eventPayload\": {\n        \"additionalProp1\": {},\n        \"additionalProp2\"\
-                    : {},\n        \"additionalProp3\": {}\n      }\n    },\n    \"validTill\": 0, //\
-                    \ period for which the earned promotion is valid \n    \"errorDetails\": {\n     \
-                    \ \"errorCode\": 0,\n      \"errorMessages\": \"string\"\n    }\n  },\n  \"errors\"\
-                    : [\n    {\n      \"code\": 0,\n      \"message\": \"string\"\n    }\n  ]\n}\n\n\n"
+                  value:
+                    data:
+                      id: string
+                      customerId: 0
+                      promotionId: string
+                      earnedFromType: ''
+                      earnedFromId: string
+                      eventTime: 0
+                      eventDetails:
+                        id: string
+                        type: string
+                        eventPayload:
+                          additionalProp1: {}
+                          additionalProp2: {}
+                          additionalProp3: {}
+                      validTill: 0
+                      errorDetails:
+                        errorCode: 0
+                        errorMessages: string
+                    errors:
+                    - code: 0
+                      message: string
               schema:
                 type: object
                 properties:

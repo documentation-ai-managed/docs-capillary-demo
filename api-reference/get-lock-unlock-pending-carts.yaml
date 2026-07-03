@@ -30,17 +30,22 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n\"data\": {\n\"tempRedemptionDetails\": [\n{\n \"cartEvaluationId\": \"string\"\
-                    ,//Unique id assigned to any cart evaluated\n\"startTime\": 0,\t// evaluation call\n\
-                    \"validTillTime\": 0, // How long is the pending card valid     \n\"appliedPromotions\"\
-                    : [\n{\n\"promotionId\": \"string\", //Unique id assigned to a promotion \n\"earnedPromotionId\"\
-                    : \"string\",//Unique id assigned to the earn event of the promotion\n\"promoCode\"\
-                    : \"string\",//Code assigned to a promotion , which can be used to redeem that promotion\n\
-                    \"promotionName\": \"string\",//Name assigned to the promotion at the time of  promotion\
-                    \ creation\n \"redemptionCount\": 0,//Number of redemptions already done for promotion\n\
-                    \"discount\": \"string\"//Discount being offered for the promotion\n\n          }\n\
-                    \        ]\n      }\n    ]\n  },\n  \"errors\": [\n    {\n      \"code\": 0,\n   \
-                    \   \"message\": \"string\"\n    }\n  ]\n}\n\n"
+                  value:
+                    data:
+                      tempRedemptionDetails:
+                      - cartEvaluationId: string
+                        startTime: 0
+                        validTillTime: 0
+                        appliedPromotions:
+                        - promotionId: string
+                          earnedPromotionId: string
+                          promoCode: string
+                          promotionName: string
+                          redemptionCount: 0
+                          discount: string
+                    errors:
+                    - code: 0
+                      message: string
               schema:
                 type: object
                 properties:

@@ -44,34 +44,47 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"orgId\": 0,    \
-                    \                    \t\t //Unique id assigned to the organization/brand\n      \"\
-                    promotionId\": \"string\", \t\t  \t //Unique id assigned to any promotion created\n\
-                    \      \"promotionName\": \"string\",\t  \t       //Name assigned to any promotion\
-                    \ created\n      \"code\": \"string\", //Code assigned to the promotion which can\
-                    \ be used for redemption\n      \"customerId\": 0\t\t\t\t\t         //Unique id assigned\
-                    \ to a customer\n      \"active\": true,  \t\t //Whether the promotion is active or\
-                    \ not(marked by the user)\n      \"createdOn\": 0, \t\t\t\t\t\t       //Date of promotion\
-                    \ creation\n      \"validTill\": 0,\n      \"mode\": \"DISCOUNT\", //mode of the promotion\n\
-                    \      \"apiError\": {\n        \"code\": 0,\n        \"message\": \"string\"\n  \
-                    \    },\n\"redeemableFrom\": 0,         //Date after which the promotion is applicable\
-                    \ for redemption      \"restrictions\": {   \t\t                               \t\
-                    \        //applicable redemption restrictions\n        \"additionalProp1\": [\n  \
-                    \        {\n            \"kpi\": \"REDEMPTION\",\n \"maxLimit\": 0,              \
-                    \                      //Maximum number of  redemptions allowed\n \t\"remainingRedemption\"\
-                    : 0, //Number of  redemptions remaining on the promotion\n          \"tempRedemption\"\
-                    : 0,         //Number of Temporary redemptions on the promotion\n              \"\
-                    periodStart\": 0,                         //Period from which the restriction is applicable\n\
-                    \           \"periodEnd\": 0                                   //Period till which\
-                    \ the restriction is applicable\n          }\n        ],\n        \"additionalProp2\"\
-                    : [\n          {\n            \"kpi\": \"REDEMPTION\",\n            \"maxLimit\":\
-                    \ 0,\n            \"remainingRedemption\": 0,\n            \"tempRedemption\": 0,\n\
-                    \            \"periodStart\": 0,\n            \"periodEnd\": 0\n          }\n    \
-                    \    ],\n        \"additionalProp3\": [\n          {\n            \"kpi\": \"REDEMPTION\"\
-                    ,\n            \"maxLimit\": 0,\n            \"remainingRedemption\": 0,\n       \
-                    \     \"tempRedemption\": 0,\n            \"periodStart\": 0,\n            \"periodEnd\"\
-                    : 0\n          }\n        ]\n      }\n    }\n  ],\n  \"errors\": [\n    {\n      \"\
-                    code\": 0,\n      \"message\": \"string\"\n    }\n  ]\n}\n"
+                  value:
+                    data:
+                    - id: string
+                      orgId: 0
+                      promotionId: string
+                      promotionName: string
+                      code: string
+                      customerId: 0
+                      active: true
+                      createdOn: 0
+                      validTill: 0
+                      mode: DISCOUNT
+                      apiError:
+                        code: 0
+                        message: string
+                      redeemableFrom: 0
+                      restrictions:
+                        additionalProp1:
+                        - kpi: REDEMPTION
+                          maxLimit: 0
+                          remainingRedemption: 0
+                          tempRedemption: 0
+                          periodStart: 0
+                          periodEnd: 0
+                        additionalProp2:
+                        - kpi: REDEMPTION
+                          maxLimit: 0
+                          remainingRedemption: 0
+                          tempRedemption: 0
+                          periodStart: 0
+                          periodEnd: 0
+                        additionalProp3:
+                        - kpi: REDEMPTION
+                          maxLimit: 0
+                          remainingRedemption: 0
+                          tempRedemption: 0
+                          periodStart: 0
+                          periodEnd: 0
+                    errors:
+                    - code: 0
+                      message: string
         '400':
           description: '400'
           content:

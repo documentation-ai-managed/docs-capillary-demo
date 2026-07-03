@@ -3,7 +3,7 @@ info:
   title: Get badges org meta
   version: '1.0'
 servers:
-- url: "https://{host}"
+- url: https://{host}
   variables:
     host:
       default: host
@@ -22,18 +22,25 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n    \"data\": {\n        \"id\": \"string\",\n      \
-                    \  \"orgId\": orgId,\n        \"tags\": [\n            {\n   \
-                    \             \"key\": \"Type\",\n                \"dataType\"\
-                    : \"string\",\n                \"description\": \"Type of badge(Exclusive,Regular)\"\
-                    ,\n                \"mandatory\": false\n            },\n    \
-                    \        {\n                \"key\": \"Priority\",\n         \
-                    \       \"dataType\": \"integer\",\n                \"description\"\
-                    : \"Priority of the badge\",\n                \"mandatory\": false\n\
-                    \            }\n        ],\n        \"createdOn\": 1697636680.484000000,\n\
-                    \        \"createdBy\": 75097962,\n        \"lastUpdatedOn\":\
-                    \ 1699459111.747000000,\n        \"lastUpdatedBy\": 75097962\n\
-                    \    },\n    \"errors\": null,\n    \"warnings\": null\n}"
+                  value:
+                    data:
+                      id: string
+                      orgId: orgId
+                      tags:
+                      - key: Type
+                        dataType: string
+                        description: Type of badge(Exclusive,Regular)
+                        mandatory: false
+                      - key: Priority
+                        dataType: integer
+                        description: Priority of the badge
+                        mandatory: false
+                      createdOn: 1697636680.484
+                      createdBy: 75097962
+                      lastUpdatedOn: 1699459111.747
+                      lastUpdatedBy: 75097962
+                    errors: null
+                    warnings: null
       deprecated: false
 components:
   securitySchemes:
