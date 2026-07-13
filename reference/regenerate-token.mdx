@@ -7,17 +7,21 @@ Using this API, you can regenerate the token without going through the primary f
 
 ## Example cURL request
 
-```bash
-curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/token/regenerate' \
---header 'Content-Type: application/json' \
---header 'Cookie: _cfuvid=qHEKZJZpeVmP7CCaiQVbuf_cn3J2udxCwCDepAgLl1o-1717059715288-0.0.1.1-604800000' \
---data '{
-    "deviceId":"1234",
-    "brand":"Bukl","key":"eyJpZHYiOlsiTU9CSUxFfDE4NzY3NDMxNzU0Il0sImRldiI6IjEyMzQiLCJvcmciOiJCVUtMIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOiIxNzgwNzc2IiwiaXNzIjoiQ0FQSUxMQVJZIFRFQ0hOT0xPR0lFUyIsIm1mYSI6dHJ1ZSwiaWF0IjoxNzE2OTYyNTU3LCJyb2wiOiJBVVRIIn0.89CmFeLl_zfUBuv2Ea4eQIc3Wy8fJzlcRQad8UcqK-4",
-    "identifierType":"MOBILE",
-    "identifierValue":"18767431754"
-    }'
-```
+<CodeGroup show-lines="true" tabs={["cURL"]}>
+
+  ```bash "cURL"
+  curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/token/regenerate' \
+  --header 'Content-Type: application/json' \
+  --header 'Cookie: _cfuvid=qHEKZJZpeVmP7CCaiQVbuf_cn3J2udxCwCDepAgLl1o-1717059715288-0.0.1.1-604800000' \
+  --data '{
+      "deviceId":"1234",
+      "brand":"Bukl","key":"eyJpZHYiOlsiTU9CSUxFfDE4NzY3NDMxNzU0Il0sImRldiI6IjEyMzQiLCJvcmciOiJCVUtMIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOiIxNzgwNzc2IiwiaXNzIjoiQ0FQSUxMQVJZIFRFQ0hOT0xPR0lFUyIsIm1mYSI6dHJ1ZSwiaWF0IjoxNzE2OTYyNTU3LCJyb2wiOiJBVVRIIn0.89CmFeLl_zfUBuv2Ea4eQIc3Wy8fJzlcRQad8UcqK-4",
+      "identifierType":"MOBILE",
+      "identifierValue":"18767431754"
+      }'
+  ```
+
+</CodeGroup>
 
 ## Prerequisites
 
@@ -59,22 +63,26 @@ curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/token/regenerate' 
 | • role                      | string   | Indicates the user's role. Example: VIEW, USER.                                              |
 | • userRegisteredForPassword | boolean  | Indicates if the user is registered for a password.                                          |
 
-```json
-{
-    "status": {
-        "success": true,
-        "code": 200,
-        "message": "SUCCESS"
-    },
-    "auth": {
-        "token": "eyJpZHYiOlsiTU9CSUxFfDE4NzY3NDMxNzU0Il0sImRldiI6IjEyMzQiLCJvcmciOiJCVUtMIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOiIxNzgwNzc2IiwiaXNzIjoiQ0FQSUxMQVJZIFRFQ0hOT0xPR0lFUyIsImlzYyI6ImZhbHNlIiwib2djIjpbIjEwMDQ1OHxidWtsLmluZC5zb2x1dGlvbiJdLCJleHAiOjE3MTcwNjE0NjUsImlhdCI6MTcxNzA2MDU2NSwicm9sIjoiVVNFUiJ9.rmKqmOQyYYtEPs422G0xZ-EUFpak5i0jdrx9W4YVxJQ",
-        "key": null
-    },
-    "user": {
-        "appRegistered": false,
-        "sessionId": null,
-        "role": "USER",
-        "userRegisteredForPassword": true
-    }
-}
-```
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  {
+      "status": {
+          "success": true,
+          "code": 200,
+          "message": "SUCCESS"
+      },
+      "auth": {
+          "token": "eyJpZHYiOlsiTU9CSUxFfDE4NzY3NDMxNzU0Il0sImRldiI6IjEyMzQiLCJvcmciOiJCVUtMIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOiIxNzgwNzc2IiwiaXNzIjoiQ0FQSUxMQVJZIFRFQ0hOT0xPR0lFUyIsImlzYyI6ImZhbHNlIiwib2djIjpbIjEwMDQ1OHxidWtsLmluZC5zb2x1dGlvbiJdLCJleHAiOjE3MTcwNjE0NjUsImlhdCI6MTcxNzA2MDU2NSwicm9sIjoiVVNFUiJ9.rmKqmOQyYYtEPs422G0xZ-EUFpak5i0jdrx9W4YVxJQ",
+          "key": null
+      },
+      "user": {
+          "appRegistered": false,
+          "sessionId": null,
+          "role": "USER",
+          "userRegisteredForPassword": true
+      }
+  }
+  ```
+
+</CodeGroup>

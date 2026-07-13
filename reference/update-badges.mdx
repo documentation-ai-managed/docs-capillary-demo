@@ -20,57 +20,61 @@ Badge name should be unique and is case sensitive.
 
 ## Example request
 
-```bash Sample request
-curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta' \
---header 'Content-Type: application/json' \
---header 'Authorization: Basic bWFkaMjU2YQ==' \
---header 'Cookie: _cfuvid=rvSJsUbK4DDG1qt9p.ywFArkr5WoVyHK8rR8vhrDpB4-1768813084882-0.0.1.1-604800000' \
---data '{
-    "id": "68da6e72480b423e5c687597",
-    "orgId": 100737,
-    "name": "Test badge 29/04",
-    "badgeGroupId": null,
-    "badgeGroupName": null,
-    "badgeRank": 3,
-    "description": "Make 5 transactions",
-    "startOn": 1759145534.000000000,
-    "startOnISO": "2025-09-29T11:32:14Z",
-    "expiresOn": 1761823934.000000000,
-    "expiresOnISO": "2025-10-30T11:32:14Z",
-    "status": "LIVE",
-    "images": [],
-    "tags": [],
-    "issuedBadgeExpiry": {
-        "type": "FIXED_DATE",
-        "expiresOn": 1926235957,
-        "expiryType": "ABSOLUTE"
-    },
-    "earnType": "ISSUE_EARN",
-    "earnedBadgeExpiry": {
-        "expiryType": "RELATIVE",
-        "relativeExpirytype": "WEEKS",
-        "value": 2
-    },
-    "ownership": {
-        "restrictedToOwners": [
-            "Audience_Campaigns",
-            "Loyalty"
-        ],
-        "claims": []
-    },
-    "benefits": [],
-    "issuedCount": 0,
-    "earnedCount": 0,
-    "createdOn": 1759145586.301000000,
-    "createdOnISO": "2025-09-29T11:33:06Z",
-    "createdBy": 75176138,
-    "lastUpdatedOn": 1759145586.301000000,
-    "lastUpdatedOnISO": "2025-09-29T11:33:06Z",
-    "lastUpdatedBy": 75176138,
-    "customFields": {},
-    "active": true
-}'
-```
+<CodeGroup show-lines="true" tabs={["Sample request"]}>
+
+  ```bash "Sample request"
+  curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Basic bWFkaMjU2YQ==' \
+  --header 'Cookie: _cfuvid=rvSJsUbK4DDG1qt9p.ywFArkr5WoVyHK8rR8vhrDpB4-1768813084882-0.0.1.1-604800000' \
+  --data '{
+      "id": "68da6e72480b423e5c687597",
+      "orgId": 100737,
+      "name": "Test badge 29/04",
+      "badgeGroupId": null,
+      "badgeGroupName": null,
+      "badgeRank": 3,
+      "description": "Make 5 transactions",
+      "startOn": 1759145534.000000000,
+      "startOnISO": "2025-09-29T11:32:14Z",
+      "expiresOn": 1761823934.000000000,
+      "expiresOnISO": "2025-10-30T11:32:14Z",
+      "status": "LIVE",
+      "images": [],
+      "tags": [],
+      "issuedBadgeExpiry": {
+          "type": "FIXED_DATE",
+          "expiresOn": 1926235957,
+          "expiryType": "ABSOLUTE"
+      },
+      "earnType": "ISSUE_EARN",
+      "earnedBadgeExpiry": {
+          "expiryType": "RELATIVE",
+          "relativeExpirytype": "WEEKS",
+          "value": 2
+      },
+      "ownership": {
+          "restrictedToOwners": [
+              "Audience_Campaigns",
+              "Loyalty"
+          ],
+          "claims": []
+      },
+      "benefits": [],
+      "issuedCount": 0,
+      "earnedCount": 0,
+      "createdOn": 1759145586.301000000,
+      "createdOnISO": "2025-09-29T11:33:06Z",
+      "createdBy": 75176138,
+      "lastUpdatedOn": 1759145586.301000000,
+      "lastUpdatedOnISO": "2025-09-29T11:33:06Z",
+      "lastUpdatedBy": 75176138,
+      "customFields": {},
+      "active": true
+  }'
+  ```
+
+</CodeGroup>
 
 ## Prerequisites
 
@@ -898,5 +902,3 @@ curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/v1/b
 | 727        | Owner info is mandatory.                                                                     |
 | 1020       | Badge Earn type cannot be updated                                                            |
 | 738        | There is an existing claim of owner. Removal of owner not allowed.                           |
-
-<br />

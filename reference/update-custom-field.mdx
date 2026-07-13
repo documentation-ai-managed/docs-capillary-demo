@@ -47,8 +47,6 @@ For detailed information about our APIs and for hands-on testing, refer document
 | dataType\*     | String    | Type of data for the custom field. Supported values:<br />`BOOLEAN`, `ENUM`, `DATE`, `STRING`, `INTEGER`.<br />255 is the character limit for the datatype `STRING`.<br /><br />Use `ENUM` as the `dataType` to define a set of pre-defined values, ensuring error-free management of reward metadata. For example, as a reward manager, you can create a custom field called "Reward Category" and define possible values such as "Discount," "Free Gift," and "Cashback." When creating or updating a reward, you can select one of these predefined values for the "Reward Category" custom field. |
 | enumValues     | Object    | Object containing the enum values. This parameter is required if `dataType` is `ENUM`.<br />**Note**:<br /><br />- Define enum values using double quotes in a comma-separated list.<br />- You can provide a maximum of 30 enum values per custom field.<br />- When creating a reward, you can provide only one enum value per custom field in the `customFields` object.<br />- Each enum value must not exceed 80 characters.<br />- Allowed special characters: `[]()-_ `.<br />- Values must be unique within the custom field.<br />- `defaultValue` must be provided if `dataType` is `ENUM`. |
 
-<br />
-
 <CodeGroup show-lines="true" tabs={["Scope : REWARD", "Scope : CATALOGUE_PROMOTION", "Scope: ISSUE_REWARD", "dataType: ENUM"]}>
 
   ```json Scope : REWARD
@@ -109,8 +107,6 @@ For detailed information about our APIs and for hands-on testing, refer document
 
 </CodeGroup>
 
-<br />
-
 ## Response parameters
 
 | Parameter Name        | Data Type | Description                                                                                                                                                                                                                                  |
@@ -131,8 +127,6 @@ For detailed information about our APIs and for hands-on testing, refer document
 | lastUpdatedOn         | Date      | Last update date and time of the field in Epoch time format.                                                                                                                                                                                 |
 | enumValues            | Object    | Object containing the enum values.                                                                                                                                                                                                           |
 | lastUpdatedOnDateTime | String    | Last updated date and time of the field in ISO 8601 format (YYYY-MM-DDTHH:MM:SSZ).                                                                                                                                                           |
-
-<br />
 
 <CodeGroup show-lines="true" tabs={["Scope : REWARD", "Scope : CATALOGUE_PROMOTION", "Scope: ISSUE_REWARD", "dataType: ENUM"]}>
 

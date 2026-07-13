@@ -23,8 +23,6 @@ The UpdateIdentifier API call updates the IdentifierValue corresponding to the o
 
 ## Resource information
 
-<br />
-
 | HTTP method | POST                               |
 | :---------- | :--------------------------------- |
 | URI         | auth/v1/user/updateIdentifierValue |
@@ -40,18 +38,20 @@ The UpdateIdentifier API call updates the IdentifierValue corresponding to the o
 | token              | String | Token generated using auth/v1/web/token/generate                                                                      |
 | deviceId           | String | Unique ID of the device from which the customer has generated the token.                                              |
 
-```json
-{
-    "newIdentifierValue": "tomswayer@mail.com",
-    "identifierType": "EMAIL",
-    "identifierValue": "tomswayer23@mail.com",
-    "brand": "SOLAPIPOCNEW",
-    "token": "eyJpZHYiOlsiRU1BSUx8c2hhc3dhdHJhbmFqbi5vZGlzaGFAZ21haWwuY29tIl0sImRldiI6IjEyMzQiLCJvcmciOiJTT0xBUElQT0NORVciLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9MR0lFUyIsIm9yZyI6IlNPTEFQSVBPQ05FVyIsImFsZyI6IkhTMjU2In0.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HTUVTIiwib2djIjpbIjE0MTh8aW1wb3J0LmRiLjEiXSwiZXhwIjoxNzEyOTM4MTU0LCJpYXQiOjE3MTI5MzQ1NTQsInJvbCI6IlZJRVcifQ.o93F9MBVki9H1AXypbvHKYULLno_jeikrgOL5rlKM58",
-    "deviceId": 1234
-}
-```
+<CodeGroup show-lines="true" tabs={["JSON"]}>
 
-<br />
+  ```json "JSON"
+  {
+      "newIdentifierValue": "tomswayer@mail.com",
+      "identifierType": "EMAIL",
+      "identifierValue": "tomswayer23@mail.com",
+      "brand": "SOLAPIPOCNEW",
+      "token": "eyJpZHYiOlsiRU1BSUx8c2hhc3dhdHJhbmFqbi5vZGlzaGFAZ21haWwuY29tIl0sImRldiI6IjEyMzQiLCJvcmciOiJTT0xBUElQT0NORVciLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9MR0lFUyIsIm9yZyI6IlNPTEFQSVBPQ05FVyIsImFsZyI6IkhTMjU2In0.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HTUVTIiwib2djIjpbIjE0MTh8aW1wb3J0LmRiLjEiXSwiZXhwIjoxNzEyOTM4MTU0LCJpYXQiOjE3MTI5MzQ1NTQsInJvbCI6IlZJRVcifQ.o93F9MBVki9H1AXypbvHKYULLno_jeikrgOL5rlKM58",
+      "deviceId": 1234
+  }
+  ```
+
+</CodeGroup>
 
 ## Response parameters
 
@@ -61,8 +61,6 @@ The UpdateIdentifier API call updates the IdentifierValue corresponding to the o
 | success   | Boolean | Indicates whether the operation was successful (true or false)                |
 | code      | Integer | The status code associated with the response (e.g., 200)                      |
 | message   | String  | A message providing additional information about the status (e.g., "SUCCESS") |
-
-<br />
 
 <CodeGroup show-lines="true" tabs={["json", "Invalid user"]}>
 

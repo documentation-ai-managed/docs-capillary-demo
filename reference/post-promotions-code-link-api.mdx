@@ -11,17 +11,21 @@ This API links a cart promotion code to a specific customer.
 
 ## Example request
 
-```json
-curl --location 'https://{Host}/api_gateway/v1/promotions/code/link' \
---header 'Content-Type: application/json' \
---header 'Authorization: Basic Z2VvcmdlLmJ1a2w6NzYzNDGQ3YzI4ZjU4ZjY3MmNhZjY1ZmY=' \
---header 'Cookie: _cfuvidt2b9D_Wbvu39g2t0iT.W9RDJ0-1751522911573-0.0.1.1-604800000; _cfuvid=DWAI.W93CwD8HSqqIDN38lKP84bJoUrRqwVps-1761979737913-0.0.1.1-604800000' \
---data '{
-  "customerId": 566881933,
-  "code": "DQCV73",
-  "mode": "DISCOUNT"
-}'
-```
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  curl --location 'https://{Host}/api_gateway/v1/promotions/code/link' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Basic Z2VvcmdlLmJ1a2w6NzYzNDGQ3YzI4ZjU4ZjY3MmNhZjY1ZmY=' \
+  --header 'Cookie: _cfuvidt2b9D_Wbvu39g2t0iT.W9RDJ0-1751522911573-0.0.1.1-604800000; _cfuvid=DWAI.W93CwD8HSqqIDN38lKP84bJoUrRqwVps-1761979737913-0.0.1.1-604800000' \
+  --data '{
+    "customerId": 566881933,
+    "code": "DQCV73",
+    "mode": "DISCOUNT"
+  }'
+  ```
+
+</CodeGroup>
 
 ## Prerequisites
 
@@ -44,26 +48,30 @@ curl --location 'https://{Host}/api_gateway/v1/promotions/code/link' \
 
 ## Example response
 
-```json
-{
-    "data": {
-        "id": "6912d23dd39e256f754a8411",
-        "orgId": 100737,
-        "promotionId": "6912d21e6629ee07040e1613",
-        "promotionName": "code_linked promotion",
-        "code": "888590",
-        "customerId": 566881933,
-        "active": true,
-        "createdOn": 1762841149535,
-        "createdOnISO": "2025-11-11T06:05:49Z",
-        "validTill": 1767205799999,
-        "validTillISO": "2025-12-31T18:29:59Z",
-        "mode": "DISCOUNT",
-        "redeemableFrom": 1762841149535,
-        "redeemableFromISO": "2025-11-11T06:05:49Z"
-    }
-}
-```
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  {
+      "data": {
+          "id": "6912d23dd39e256f754a8411",
+          "orgId": 100737,
+          "promotionId": "6912d21e6629ee07040e1613",
+          "promotionName": "code_linked promotion",
+          "code": "888590",
+          "customerId": 566881933,
+          "active": true,
+          "createdOn": 1762841149535,
+          "createdOnISO": "2025-11-11T06:05:49Z",
+          "validTill": 1767205799999,
+          "validTillISO": "2025-12-31T18:29:59Z",
+          "mode": "DISCOUNT",
+          "redeemableFrom": 1762841149535,
+          "redeemableFromISO": "2025-11-11T06:05:49Z"
+      }
+  }
+  ```
+
+</CodeGroup>
 
 ## Response parameters
 
@@ -98,5 +106,3 @@ curl --location 'https://{Host}/api_gateway/v1/promotions/code/link' \
 | 1006 | Invalid customer identifier. Provide a valid customer identifier.                                                             |
 | 1007 | Error while fetching customer identifier. Retry after checking the customer identifier details and service status.            |
 | 500  | Internal server error. Retry the request after a short delay, and contact support if the error persists.                      |
-
-<br />

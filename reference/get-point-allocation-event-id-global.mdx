@@ -33,12 +33,16 @@ This API is a private API that has been exposed through [Neo ](https://docs.capi
 
 ## Example request
 
-```json using transaction ID
-curl --location 'https://eu.api.capillarytech.com/x/neo/pointsAllocation/event?entity_id=890697432&customer_id=566135941&event_type_id=15' \
---header 'x-cap-neo-dag-scope: global' \
---header 'Authorization: Basic ZGl2eWFfZG9jOmVjMzFiZWY3ZTNhNTdlYTI0YTYyZTZm' \
---header 'Cookie: _cfuvid=nkdqRjD57tAqwEjeR8HFwvTH0opPqch.Nf9wK366n4k-1758113514799-0.0.1.1-604800000'
-```
+<CodeGroup show-lines="true" tabs={["using transaction ID"]}>
+
+  ```json "using transaction ID"
+  curl --location 'https://eu.api.capillarytech.com/x/neo/pointsAllocation/event?entity_id=890697432&customer_id=566135941&event_type_id=15' \
+  --header 'x-cap-neo-dag-scope: global' \
+  --header 'Authorization: Basic ZGl2eWFfZG9jOmVjMzFiZWY3ZTNhNTdlYTI0YTYyZTZm' \
+  --header 'Cookie: _cfuvid=nkdqRjD57tAqwEjeR8HFwvTH0opPqch.Nf9wK366n4k-1758113514799-0.0.1.1-604800000'
+  ```
+
+</CodeGroup>
 
 ## Request query parameters
 
@@ -49,8 +53,6 @@ curl --location 'https://eu.api.capillarytech.com/x/neo/pointsAllocation/event?e
 | event_type_id | Integer | Yes | Unique identifier for the type of event. This depends on the kind of event. Refer to the[table below](/reference/get-point-allocation-event-id-global#/example-request)for the event type ID associated with your event. |
 | page | Integer | No | Retrieve details of a specific page. Page count starts from 1. **Example**: `page=2` retrieves data on page 2. |
 | count | Integer | No | Number of results to display per page. The default value is 10. The maximum supported value is 100. |
-
-<br />
 
 ### Event type ID
 
@@ -148,13 +150,17 @@ curl --location 'https://eu.api.capillarytech.com/x/neo/pointsAllocation/event?e
 
 ## Sample request
 
-```bash Sample request
-curl --location 'https://nightly.api.capillarytech.com/x/neo/pointsAllocation/event?entity_id=hfjWDK0dek&customer_id=374819205&event_type_id=15' \
---header 'Content-Type: application/json' \
---header 'x-cap-neo-dag-scope: global' \
---header 'Authorization: Basic MDcxNTJkMjM0Yjcw' \
---header 'Cookie: _cfuvid=aipDF8qJJabNkC6ofNg0_4.3nMtpbVSQI9mVehJNjMw-1749448275226-0.0.1.1-604800000; _cfuvid=5YjVQ2SkBWELRCgtes5wkbXKRpcYNHnhogmQk5roBL4-1750314849268-0.0.1.1-604800000'
-```
+<CodeGroup show-lines="true" tabs={["Sample request"]}>
+
+  ```bash "Sample request"
+  curl --location 'https://nightly.api.capillarytech.com/x/neo/pointsAllocation/event?entity_id=hfjWDK0dek&customer_id=374819205&event_type_id=15' \
+  --header 'Content-Type: application/json' \
+  --header 'x-cap-neo-dag-scope: global' \
+  --header 'Authorization: Basic MDcxNTJkMjM0Yjcw' \
+  --header 'Cookie: _cfuvid=aipDF8qJJabNkC6ofNg0_4.3nMtpbVSQI9mVehJNjMw-1749448275226-0.0.1.1-604800000; _cfuvid=5YjVQ2SkBWELRCgtes5wkbXKRpcYNHnhogmQk5roBL4-1750314849268-0.0.1.1-604800000'
+  ```
+
+</CodeGroup>
 
 ## Response parameters
 
@@ -190,39 +196,43 @@ curl --location 'https://nightly.api.capillarytech.com/x/neo/pointsAllocation/ev
 
 ## Sample response
 
-```json Sample Response
-[
-    {
-        "till_id": 50140377,
-        "point_category_id": 17383,
-        "program_id": 2282,
-        "event_log_id": 10072893,
-        "event_type_id": 15,
-        "points_source_type_id": 1,
-        "original_points": 0,
-        "awarded_date": 1648489472000,
-        "returned_exclusive_value": 0,
-        "points_source_id": 2148434124,
-        "id": 31787856,
-        "cps_id": 51368957,
-        "original_customer_id": 374819205,
-        "expiry_strategy_id": 105602,
-        "returned_value": 0,
-        "redeemed_exclusive_value": 0,
-        "expiry_date": 1648578599000,
-        "auto_update_time": 1648596913000,
-        "redeemed_value": 0,
-        "expired_exclusive_value": 50,
-        "allocation_strategy_id": 105773,
-        "points_value": 0,
-        "org_id": 50914,
-        "expired_value": 0,
-        "customer_id": 374819205,
-        "points_exclusive": 50,
-        "status": "EXPIRED"
-    }
-]
-```
+<CodeGroup show-lines="true" tabs={["Sample Response"]}>
+
+  ```json "Sample Response"
+  [
+      {
+          "till_id": 50140377,
+          "point_category_id": 17383,
+          "program_id": 2282,
+          "event_log_id": 10072893,
+          "event_type_id": 15,
+          "points_source_type_id": 1,
+          "original_points": 0,
+          "awarded_date": 1648489472000,
+          "returned_exclusive_value": 0,
+          "points_source_id": 2148434124,
+          "id": 31787856,
+          "cps_id": 51368957,
+          "original_customer_id": 374819205,
+          "expiry_strategy_id": 105602,
+          "returned_value": 0,
+          "redeemed_exclusive_value": 0,
+          "expiry_date": 1648578599000,
+          "auto_update_time": 1648596913000,
+          "redeemed_value": 0,
+          "expired_exclusive_value": 50,
+          "allocation_strategy_id": 105773,
+          "points_value": 0,
+          "org_id": 50914,
+          "expired_value": 0,
+          "customer_id": 374819205,
+          "points_exclusive": 50,
+          "status": "EXPIRED"
+      }
+  ]
+  ```
+
+</CodeGroup>
 
 ## Error codes
 

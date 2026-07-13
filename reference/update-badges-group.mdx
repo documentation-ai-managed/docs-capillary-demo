@@ -18,20 +18,24 @@ Badge group name should be unique and is case sensitive.
 
 ## Example request
 
-```bash Sample request
-curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/v1/badges/group/69708faa0772ad476ecf8511' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
---header 'accept: application/json' \
---header 'Authorization: Basic bWFkaHVfcmltYTowZjAwNmZlNGM4ZjFhNmRjMmI2ZDI1N2NkNzI3MjU2YQ==' \
---header 'Cookie: _cfuvid=Wkaspor1BmNbRX4j31OHCHRfrJcYmaBKaFE_pmj9vaU-1771232084786-0.0.1.1-604800000' \
---data '
-{
-  "name": "GROUP_RANK_59",
-  "rank": 1
-}
-'
-```
+<CodeGroup show-lines="true" tabs={["Sample request"]}>
+
+  ```bash "Sample request"
+  curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/v1/badges/group/69708faa0772ad476ecf8511' \
+  --header 'Accept: application/json' \
+  --header 'Content-Type: application/json' \
+  --header 'accept: application/json' \
+  --header 'Authorization: Basic bWFkaHVfcmltYTowZjAwNmZlNGM4ZjFhNmRjMmI2ZDI1N2NkNzI3MjU2YQ==' \
+  --header 'Cookie: _cfuvid=Wkaspor1BmNbRX4j31OHCHRfrJcYmaBKaFE_pmj9vaU-1771232084786-0.0.1.1-604800000' \
+  --data '
+  {
+    "name": "GROUP_RANK_59",
+    "rank": 1
+  }
+  '
+  ```
+
+</CodeGroup>
 
 ## Prerequisites
 
@@ -57,36 +61,42 @@ curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/v1/b
 | Name* | String | Name of the badge group. Ex: GROUP_RANK_2 |
 | Rank* | Integer | The rank of the group is used to create an order among different groups. The brand assigns the rank, and groups with higher rank are prioritized over other groups. Ex: To encourage customers as they progress through course modules, you can organize badges into three groups corresponding to three-course modules. After completing each module, customers earn a badge. Upon achieving a set of badges, they are associated with a group such as Expert, Intermediate, or Beginner. |
 
-<br />
+<CodeGroup show-lines="true" tabs={["JSON"]}>
 
-```json
-{
-    "name": "GROUP_RANK_59",
-    "rank": 1
-}
-```
+  ```json "JSON"
+  {
+      "name": "GROUP_RANK_59",
+      "rank": 1
+  }
+  ```
+
+</CodeGroup>
 
 ## Example response
 
-```json Sample response
-{
-    "data": {
-        "id": "69708faa0772ad476ecf8511",
-        "orgId": 100737,
-        "name": "GROUP_RANK_59",
-        "rank": 1,
-        "createdBy": 75197372,
-        "createdOn": 1768984490.856000000,
-        "createdOnISO": "2026-01-21T08:34:50Z",
-        "lastUpdatedBy": 75197372,
-        "lastUpdatedOn": 1771247122.421232000,
-        "lastUpdatedOnISO": "2026-02-16T13:05:22Z",
-        "isActive": true
-    },
-    "errors": [],
-    "warnings": []
-}
-```
+<CodeGroup show-lines="true" tabs={["Sample response"]}>
+
+  ```json "Sample response"
+  {
+      "data": {
+          "id": "69708faa0772ad476ecf8511",
+          "orgId": 100737,
+          "name": "GROUP_RANK_59",
+          "rank": 1,
+          "createdBy": 75197372,
+          "createdOn": 1768984490.856000000,
+          "createdOnISO": "2026-01-21T08:34:50Z",
+          "lastUpdatedBy": 75197372,
+          "lastUpdatedOn": 1771247122.421232000,
+          "lastUpdatedOnISO": "2026-02-16T13:05:22Z",
+          "isActive": true
+      },
+      "errors": [],
+      "warnings": []
+  }
+  ```
+
+</CodeGroup>
 
 ## Response parameters
 
@@ -104,25 +114,29 @@ curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/v1/b
 | lastUpdatedOn |  | Timestamp indicating when the group was last updated, in ISO 8601 format, returned in the server time zone. EU server example 2025-12-16T14:30:45Z → 16 December 2025, 14:30:45 (UTC) India server example 2025-12-16T14:30:45+05:30 → 16 December 2025, 14:30:45 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
 | isActive | Boolean | Indicates whether the group is currently active or not. |
 
-```json
-{
-    "data": {
-        "id": "6968c1330772ad476ecf33b0",
-        "orgId": 100737,
-        "name": "GROUP_RANK_58",
-        "rank": 1,
-        "createdBy": 75197941,
-        "createdOn": 1768472883.053000000,
-        "createdOnISO": "2026-01-15T10:28:03Z",
-        "lastUpdatedBy": 75197941,
-        "lastUpdatedOn": 1768473600.277013000,
-        "lastUpdatedOnISO": "2026-01-15T10:40:00Z",
-        "isActive": true
-    },
-    "errors": [],
-    "warnings": []
-}
-```
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  {
+      "data": {
+          "id": "6968c1330772ad476ecf33b0",
+          "orgId": 100737,
+          "name": "GROUP_RANK_58",
+          "rank": 1,
+          "createdBy": 75197941,
+          "createdOn": 1768472883.053000000,
+          "createdOnISO": "2026-01-15T10:28:03Z",
+          "lastUpdatedBy": 75197941,
+          "lastUpdatedOn": 1768473600.277013000,
+          "lastUpdatedOnISO": "2026-01-15T10:40:00Z",
+          "isActive": true
+      },
+      "errors": [],
+      "warnings": []
+  }
+  ```
+
+</CodeGroup>
 
 ## API-specific error codes
 

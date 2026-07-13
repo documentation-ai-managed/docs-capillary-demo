@@ -12,18 +12,22 @@ For detailed information about our APIs and for hands-on testing, refer document
 
 ## Example request
 
-```bash Sample request
-curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/customer/revokeEarn' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
---header 'Authorization: Basic bWFkaHVfcjU2YQ==' \
---header 'Cookie: _cfuvid=fP0aLOEla8j8_wyp4v_8igbGmHaxQoYMP6R5y8I8XNo-1770892930272-0.0.1.1-604800000' \
---data '{
-    "badgeMetaId": "698dae82d30c4f6b3da9dc06",
-    "customerId": 566135941,
-    "earnedBadgeId": "698daf848644c157e72d83f3"
-}'
-```
+<CodeGroup show-lines="true" tabs={["Sample request"]}>
+
+  ```bash "Sample request"
+  curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/customer/revokeEarn' \
+  --header 'Accept: application/json' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Basic bWFkaHVfcjU2YQ==' \
+  --header 'Cookie: _cfuvid=fP0aLOEla8j8_wyp4v_8igbGmHaxQoYMP6R5y8I8XNo-1770892930272-0.0.1.1-604800000' \
+  --data '{
+      "badgeMetaId": "698dae82d30c4f6b3da9dc06",
+      "customerId": 566135941,
+      "earnedBadgeId": "698daf848644c157e72d83f3"
+  }'
+  ```
+
+</CodeGroup>
 
 ## Prerequisites
 
@@ -80,18 +84,22 @@ Example: `X-CAP-CUSTOMER-IDENTIFIER: email`
 
 ## Example response
 
-```json Sample response
-{
-    "data": {
-        "badgeMetaId": "698dae82d30c4f6b3da9dc06",
-        "customerId": 566135941,
-        "earnedBadgeId": "698daf848644c157e72d83f3",
-        "isActive": false
-    },
-    "errors": [],
-    "warnings": []
-}
-```
+<CodeGroup show-lines="true" tabs={["Sample response"]}>
+
+  ```json "Sample response"
+  {
+      "data": {
+          "badgeMetaId": "698dae82d30c4f6b3da9dc06",
+          "customerId": 566135941,
+          "earnedBadgeId": "698daf848644c157e72d83f3",
+          "isActive": false
+      },
+      "errors": [],
+      "warnings": []
+  }
+  ```
+
+</CodeGroup>
 
 ## Response parameters
 
@@ -109,5 +117,3 @@ Example: `X-CAP-CUSTOMER-IDENTIFIER: email`
 | 814        | Active earn instance is not present. |
 | 813        | EarnId is mandatory.                 |
 | 715        | Badge meta id is mandatory.          |
-
-<br />

@@ -57,7 +57,7 @@ This API is used to update a particular reward.
 
 </Callout>
 
-<Image src="https://files.readme.io/7aad76be70909a1af79f0d7a6a5c25cd4481d38419cedef537fe7f3860f08027-Screenshot_2024-09-13_174313.png" width="1920" height="1080" alt="" />
+<Image src="https://files.readme.io/7aad76be70909a1af79f0d7a6a5c25cd4481d38419cedef537fe7f3860f08027-Screenshot_2024-09-13_174313.png" width="1920" height="1080" alt="Screenshot of the Update Reward payment configuration settings" />
 
 ## Prerequisites
 
@@ -75,115 +75,117 @@ This API is used to update a particular reward.
 
 ## Example request
 
-```bash Sample update request
-curl -L -X PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/458081/brand/61' \
--H 'Content-Type: application/json' \
--H 'Authorization: Basic bmFtYW5fZG9jOmEzYjRjYjgyMzA3MWJmYjM5OGM5ZmM2YjZlY2I2MmEy' \
--H 'Cookie: _cfuvid=PZ2Qs9Lv6_ngy2fSsa2ZHebqE7qq7WrhJNpax_n8cXA-1759145375283-0.0.1.1-604800000' \
--d '{
-    /******** Mandatory parameters ********/
-    // "startTime": "2025-08-31T06:00:00Z",
-    "endTime": "2025-09-30T11:59:30Z",
-    "type": "VOUCHER",
-    "brandId": "61",
-    "redemptionType": "INTOUCH_REWARD",
-    /******** Non mandatory parameters ********/
-    "priority": 1,
-    "enabled": true,
-    "intouchSeriesId": "849480",
-    // "intouchPoints": 500,
-    // "geography": [
-    //     {
-    //         "countryId": 1
-    //     }
-    // ],
-    "categories": [
-        486
-    ],
-    "languageSpecificInfo": [
-        {
-            "languageCode": "en",
-            "name": "UAT Reward 10",
-            "description": "Test Reward for UAT Team",
-            "enabled": true,
-            "richContentRO": {
-                "UAT_RCT_1": {
-                    "content": "Rich Content Text for UAT",
-                    "isEnabled": true
-                }
-            }
-        }
-    ],
-    "paymentConfigs": [
-       {
-            "paymentMode": "POINTS",
-            // "conversionRatio":0.33,
-            "points": 100
-        }
-    ],
-    // "rewardRank":"1",
-    // "intouchSeriesId": "301233",
-    // "vendorRedemption": null,
-    // "communications": [
-    //     "1"
-    // ],
-    // "restrictions": {
-    //     "customerLevel": [
-    //         {
-    //             "kpi": "QUANTITY",
-    //             "limit": 10,
-    //             "repeatFrequencyType": "DAYS",
-    //             "interval": "30"
-    //         },
-    //         {
-    //             "kpi": "QUANTITY",
-    //             "limit": 50,
-    //             "repeatFrequencyType": "MONTHS",
-    //             "interval": "12"
-    //         }
-    //     ],
-    //     "rewardLevel": [
-    //         {
-    //             "kpi": "QUANTITY",
-    //             "limit": 10000,
-    //             "repeatFrequencyType": "NO_LIMIT"
-    //         }
-    //     ]
-    // },
-    // "supplementaryCriteriaRO": [
-    //     {
-    //         "loyaltyProgramId": 469,
-    //         "tierIds": null,
-    //         "partnerProgramIds": [
-    //             48
-    //         ]
-    //     },
-    //     {
-    //         "loyaltyProgramId": 690,
-    //         "tierIds": null,
-    //         "partnerProgramIds": null
-    //     }
-    // ],
-    // "customFields": {
-    //     "CF1": "Custom field 1"
-    // },
-    // "languageSpecificInfo": [
-    //     {
-    //         "languageCode": "en",
-    //         "name": "testreward1",
-    //         "description": "testreward1",
-    //         "imageId": "bef4d522-2cf8-4fea-8087-376c449d5c85",
-    //         "termNConditions": "t&c",
-    //         "thumbnailId": "c886f064-2b3f-4c19-9e86-7f7e5ab5ae04",
-    //         "termNConditionsId": "820a3d7f-2601-405b-9f56-4a3ba8e9df73",
-    //         "enabled": true
-    //     }
-    // ],
-    "isactive" : true
-}'
-```
+<CodeGroup show-lines="true" tabs={["Sample update request"]}>
 
-<br />
+  ```bash "Sample update request"
+  curl -L -X PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/458081/brand/61' \
+  -H 'Content-Type: application/json' \
+  -H 'Authorization: Basic bmFtYW5fZG9jOmEzYjRjYjgyMzA3MWJmYjM5OGM5ZmM2YjZlY2I2MmEy' \
+  -H 'Cookie: _cfuvid=PZ2Qs9Lv6_ngy2fSsa2ZHebqE7qq7WrhJNpax_n8cXA-1759145375283-0.0.1.1-604800000' \
+  -d '{
+      /******** Mandatory parameters ********/
+      // "startTime": "2025-08-31T06:00:00Z",
+      "endTime": "2025-09-30T11:59:30Z",
+      "type": "VOUCHER",
+      "brandId": "61",
+      "redemptionType": "INTOUCH_REWARD",
+      /******** Non mandatory parameters ********/
+      "priority": 1,
+      "enabled": true,
+      "intouchSeriesId": "849480",
+      // "intouchPoints": 500,
+      // "geography": [
+      //     {
+      //         "countryId": 1
+      //     }
+      // ],
+      "categories": [
+          486
+      ],
+      "languageSpecificInfo": [
+          {
+              "languageCode": "en",
+              "name": "UAT Reward 10",
+              "description": "Test Reward for UAT Team",
+              "enabled": true,
+              "richContentRO": {
+                  "UAT_RCT_1": {
+                      "content": "Rich Content Text for UAT",
+                      "isEnabled": true
+                  }
+              }
+          }
+      ],
+      "paymentConfigs": [
+         {
+              "paymentMode": "POINTS",
+              // "conversionRatio":0.33,
+              "points": 100
+          }
+      ],
+      // "rewardRank":"1",
+      // "intouchSeriesId": "301233",
+      // "vendorRedemption": null,
+      // "communications": [
+      //     "1"
+      // ],
+      // "restrictions": {
+      //     "customerLevel": [
+      //         {
+      //             "kpi": "QUANTITY",
+      //             "limit": 10,
+      //             "repeatFrequencyType": "DAYS",
+      //             "interval": "30"
+      //         },
+      //         {
+      //             "kpi": "QUANTITY",
+      //             "limit": 50,
+      //             "repeatFrequencyType": "MONTHS",
+      //             "interval": "12"
+      //         }
+      //     ],
+      //     "rewardLevel": [
+      //         {
+      //             "kpi": "QUANTITY",
+      //             "limit": 10000,
+      //             "repeatFrequencyType": "NO_LIMIT"
+      //         }
+      //     ]
+      // },
+      // "supplementaryCriteriaRO": [
+      //     {
+      //         "loyaltyProgramId": 469,
+      //         "tierIds": null,
+      //         "partnerProgramIds": [
+      //             48
+      //         ]
+      //     },
+      //     {
+      //         "loyaltyProgramId": 690,
+      //         "tierIds": null,
+      //         "partnerProgramIds": null
+      //     }
+      // ],
+      // "customFields": {
+      //     "CF1": "Custom field 1"
+      // },
+      // "languageSpecificInfo": [
+      //     {
+      //         "languageCode": "en",
+      //         "name": "testreward1",
+      //         "description": "testreward1",
+      //         "imageId": "bef4d522-2cf8-4fea-8087-376c449d5c85",
+      //         "termNConditions": "t&c",
+      //         "thumbnailId": "c886f064-2b3f-4c19-9e86-7f7e5ab5ae04",
+      //         "termNConditionsId": "820a3d7f-2601-405b-9f56-4a3ba8e9df73",
+      //         "enabled": true
+      //     }
+      // ],
+      "isactive" : true
+  }'
+  ```
+
+</CodeGroup>
 
 ## Request path parameters
 

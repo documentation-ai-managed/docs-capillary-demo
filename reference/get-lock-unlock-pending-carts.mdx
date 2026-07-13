@@ -8,11 +8,15 @@ Cart locking functionality during cart evaluation, which temporarily reserves th
 
 ## Example request
 
-```bash
-curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/customer/566881933/evaluations/pending_carts' \
---header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86NjVhWY5MGY1NTY5NDk1YmNkNzUxYmJiY2U=' \
---header 'Cookie: _cfuvid=OgMlxpnYcUTaLvDRPsarD3khviE1Jl3t9uS8-1764069327097-0.0.1.1-604800000'
-```
+<CodeGroup show-lines="true" tabs={["cURL"]}>
+
+  ```bash "cURL"
+  curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/customer/566881933/evaluations/pending_carts' \
+  --header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86NjVhWY5MGY1NTY5NDk1YmNkNzUxYmJiY2U=' \
+  --header 'Cookie: _cfuvid=OgMlxpnYcUTaLvDRPsarD3khviE1Jl3t9uS8-1764069327097-0.0.1.1-604800000'
+  ```
+
+</CodeGroup>
 
 ## Prerequisites
 
@@ -34,40 +38,44 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/cust
 
 ## Example response
 
-```json
-{
-    "data": {
-        "tempRedemptionDetails": [
-            {
-                "cartEvaluationId": "69258fc119bec5537d95b07d",
-                "startTime": 1764069313846,
-                "validTillTime": 1764069613949,
-                "appliedPromotions": [
-                    {
-                        "promotionId": "6914307779e37261fe5d506e",
-                        "promoCode": "BB6N0G",
-                        "promotionName": "code linked 3",
-                        "redemptionCount": 1,
-                        "discount": "12.0"
-                    },
-                    {
-                        "promotionId": "690af07dcd583924435946f6",
-                        "promotionName": "Cart Promotion (OPEN TO ALL)",
-                        "redemptionCount": 1,
-                        "discount": "10.0"
-                    },
-                    {
-                        "promotionId": "6914303f79e37261fe5d506d",
-                        "promotionName": "code link 2",
-                        "redemptionCount": 1,
-                        "discount": "12.0"
-                    }
-                ]
-            }
-        ]
-    }
-}
-```
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  {
+      "data": {
+          "tempRedemptionDetails": [
+              {
+                  "cartEvaluationId": "69258fc119bec5537d95b07d",
+                  "startTime": 1764069313846,
+                  "validTillTime": 1764069613949,
+                  "appliedPromotions": [
+                      {
+                          "promotionId": "6914307779e37261fe5d506e",
+                          "promoCode": "BB6N0G",
+                          "promotionName": "code linked 3",
+                          "redemptionCount": 1,
+                          "discount": "12.0"
+                      },
+                      {
+                          "promotionId": "690af07dcd583924435946f6",
+                          "promotionName": "Cart Promotion (OPEN TO ALL)",
+                          "redemptionCount": 1,
+                          "discount": "10.0"
+                      },
+                      {
+                          "promotionId": "6914303f79e37261fe5d506d",
+                          "promotionName": "code link 2",
+                          "redemptionCount": 1,
+                          "discount": "12.0"
+                      }
+                  ]
+              }
+          ]
+      }
+  }
+  ```
+
+</CodeGroup>
 
 ## Response parameters
 
@@ -95,5 +103,3 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/cust
 | 116  | Maximum pending open carts exceeded. Reduce the number of open carts for this customer.                                             |
 | 120  | Pending cart not found for the cart evaluation. Check if there is an active pending cart to evaluate.                               |
 | 500  | Internal server error. Retry the request after a short delay, and contact support if the error persists.                            |
-
-<br />

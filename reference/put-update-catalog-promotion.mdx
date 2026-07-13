@@ -33,34 +33,38 @@ For detailed information about our APIs and for hands-on testing, refer document
 
 ## Example request
 
-```bash Sample request
-curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/promotion/14862/brand/61' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
---header 'accept: application/json' \
---header 'Authorization: Basic bWFkaHV2YQ==' \
---header 'Cookie: _cfuvid=qrR26fiL9O7hSaVDD64eltEicRcuyxTkMuk2MPS2moc-1764581884487-0.0.1.1-604800000' \
---data '
-{
-  "startTime": "2025-12-04T10:08:00.000Z",
-  "endTime": "2025-12-14T06:10:00.000Z",
-  "discountType": "PERCENTAGE",
-  "discountValue": 20,
-  "brandId": "61",
-  "languageSpecificInfo": [
-    {
-      "languageCode": "en",
-      "name": 72738382,
-      "description": 7273838,
-      "enabled": true
-    }  
-  ],
-  "rewardIds": [
-    496584
-  ]
-}
-'
-```
+<CodeGroup show-lines="true" tabs={["Sample request"]}>
+
+  ```bash "Sample request"
+  curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/promotion/14862/brand/61' \
+  --header 'Accept: application/json' \
+  --header 'Content-Type: application/json' \
+  --header 'accept: application/json' \
+  --header 'Authorization: Basic bWFkaHV2YQ==' \
+  --header 'Cookie: _cfuvid=qrR26fiL9O7hSaVDD64eltEicRcuyxTkMuk2MPS2moc-1764581884487-0.0.1.1-604800000' \
+  --data '
+  {
+    "startTime": "2025-12-04T10:08:00.000Z",
+    "endTime": "2025-12-14T06:10:00.000Z",
+    "discountType": "PERCENTAGE",
+    "discountValue": 20,
+    "brandId": "61",
+    "languageSpecificInfo": [
+      {
+        "languageCode": "en",
+        "name": 72738382,
+        "description": 7273838,
+        "enabled": true
+      }  
+    ],
+    "rewardIds": [
+      496584
+    ]
+  }
+  '
+  ```
+
+</CodeGroup>
 
 ## Prerequisites
 
@@ -100,19 +104,23 @@ curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/rewa
 
 ## Example response
 
-```json Sample response
-{
-    "status": {
-        "success": true,
-        "code": 11021,
-        "message": "Catalog promotion updated successfully."
-    },
-    "catalogPromotion": {
-        "id": 14862
-    },
-    "failedRewards": []
-}
-```
+<CodeGroup show-lines="true" tabs={["Sample response"]}>
+
+  ```json "Sample response"
+  {
+      "status": {
+          "success": true,
+          "code": 11021,
+          "message": "Catalog promotion updated successfully."
+      },
+      "catalogPromotion": {
+          "id": 14862
+      },
+      "failedRewards": []
+  }
+  ```
+
+</CodeGroup>
 
 ## Response parameters
 
@@ -126,19 +134,23 @@ curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/rewa
 | id               | Integer                    | Unique identifier of the catalog promotion      |
 | failedRewards    | Array (Empty in this case) | Array containing any failed rewards information |
 
-```json
-{
-   "status": {
-       "success": true,
-       "code": 11021,
-       "message": "Catalog promotion updated successfully."
-   },
-   "catalogPromotion": {
-       "id": 8
-   },
-   "failedRewards": []
-}
-```
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  {
+     "status": {
+         "success": true,
+         "code": 11021,
+         "message": "Catalog promotion updated successfully."
+     },
+     "catalogPromotion": {
+         "id": 8
+     },
+     "failedRewards": []
+  }
+  ```
+
+</CodeGroup>
 
 ## Error codes
 

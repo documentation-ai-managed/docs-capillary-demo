@@ -53,9 +53,13 @@ This API is used to retrieve list of rewards owned by brands based on filters.
 | **`language`**       | Enum      | Filters the response based on the reward language. Use this parameter to retrieve rewards in a specific language. For example, to display rewards in English, set the parameter to `en`.                                                                                                                                                                                                                      |
 | **`groupName`**      | String    | Filters rewards that are categorized under a specific group, for example: `'Seasonal Specials'`.                                                                                                                                                                                                                                                                                                              |
 
-```http API Endpoint
-https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/list/brand/1?page=0&size=20&startDate=1727254620000&endDate=1752244980000&rewardType=CHARITY&rewardStatus=LIVE
-```
+<CodeGroup show-lines="true" tabs={["API Endpoint"]}>
+
+  ```http "API Endpoint"
+  https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/list/brand/1?page=0&size=20&startDate=1727254620000&endDate=1752244980000&rewardType=CHARITY&rewardStatus=LIVE
+  ```
+
+</CodeGroup>
 
 ## Response parameters
 
@@ -102,8 +106,6 @@ https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/list/brand/1
 | rewardRank            | The rank or priority of the reward within its category or program                                                                                |
 | lastUpdatedOnDateTime | Date and time of the most recent reward modification.The ISO 8601 timestamp format is used: YYYY-MM-DDTHH:MM:SSZ. (e.g., `2023-10-05T14:30:00Z`) |
 | createdBy             | The user who created the reward.                                                                                                                 |
-
-<br />
 
 <CodeGroup show-lines="true" tabs={["200- Response", "200- With Owner type", "Failure: Invalid Brand ID", "Failure: Both startDate and endDate is mandatory"]}>
 

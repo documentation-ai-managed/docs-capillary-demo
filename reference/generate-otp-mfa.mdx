@@ -21,17 +21,21 @@ If the rate limit is reached, further OTP generation requests for that mobile nu
 
 ## Example request
 
-```bash
-curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/otp/generate' \
---header 'Content-Type: application/json' \
---data '{
-   "identifierType":"MOBILE",
-   "identifierValue":"18767431754",
-    "deviceId": "1234",
-    "brand": "Bukl",
-    "sessionId": "P-b04c1001-ef08-4125-9886-f9d8b4c5d9b8"
-}'
-```
+<CodeGroup show-lines="true" tabs={["cURL"]}>
+
+  ```bash "cURL"
+  curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/otp/generate' \
+  --header 'Content-Type: application/json' \
+  --data '{
+     "identifierType":"MOBILE",
+     "identifierValue":"18767431754",
+      "deviceId": "1234",
+      "brand": "Bukl",
+      "sessionId": "P-b04c1001-ef08-4125-9886-f9d8b4c5d9b8"
+  }'
+  ```
+
+</CodeGroup>
 
 ## Resource information
 
@@ -61,15 +65,16 @@ curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/otp/generate' \
 | • code    | integer   | HTTP status code indicating the result. Example: 200 indicates success. |
 | • message | string    | Message describing the status of the request.                           |
 
-<br />
+<CodeGroup show-lines="true" tabs={["JSON"]}>
 
-```json
-{
-    "status": {
-        "success": true,
-        "code": 200,
-        "message": "SUCCESS"
-    }
-}
-```
+  ```json "JSON"
+  {
+      "status": {
+          "success": true,
+          "code": 200,
+          "message": "SUCCESS"
+      }
+  }
+  ```
 
+</CodeGroup>

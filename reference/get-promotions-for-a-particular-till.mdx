@@ -11,15 +11,19 @@ This API retrieves all active cart promotions configured for a specific till (po
 
 ## Example request
 
-```json
-curl --location 'https://{Host}/api_gateway/v1/promotions/till/75197941' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
---header 'accept: application/json' \
---header 'Authorization: Basic Z2VvcmdlLmJ1a2w6NzYNDI3jU4ZjY3MmNhZjY1ZmY=' \
---header 'Cookie: _cfuvid=c5W1uyvWe62UjNJA37k.azPugIZEwU-1761968470186-0.0.1.1-604800000' \
---data ''
-```
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  curl --location 'https://{Host}/api_gateway/v1/promotions/till/75197941' \
+  --header 'Accept: application/json' \
+  --header 'Content-Type: application/json' \
+  --header 'accept: application/json' \
+  --header 'Authorization: Basic Z2VvcmdlLmJ1a2w6NzYNDI3jU4ZjY3MmNhZjY1ZmY=' \
+  --header 'Cookie: _cfuvid=c5W1uyvWe62UjNJA37k.azPugIZEwU-1761968470186-0.0.1.1-604800000' \
+  --data ''
+  ```
+
+</CodeGroup>
 
 ## Prerequisites
 
@@ -40,2113 +44,2117 @@ curl --location 'https://{Host}/api_gateway/v1/promotions/till/75197941' \
 
 ## Example response
 
-```json
-{
-    "data": [
-        {
-            "id": "6849585d701a9d5f22118370",
-            "name": "Device Upgrade Offer - Experience Beyond",
-            "orgId": 100458,
-            "priority": 0,
-            "active": true,
-            "messageLabel": "Device Upgrade Offer - Experience Beyond",
-            "type": "POS",
-            "supplementaryCriteria": {
-                "loyaltyProgramId": 812,
-                "programType": "TIER",
-                "partnerProgramId": 25028
-            },
-            "condition": {
-                "type": "PRODUCT",
-                "productCondition": {
-                    "criteriaList": [
-                        {
-                            "entity": "CATEGORY",
-                            "operator": "IN",
-                            "values": [
-                                "Mobiles"
-                            ]
-                        }
-                    ],
-                    "kpi": "QUANTITY",
-                    "value": "1.000000",
-                    "operator": "EQUALS"
-                }
-            },
-            "action": {
-                "type": "PER_UNIT",
-                "perUnitAction": {
-                    "rewardAction": {
-                        "type": "PRODUCT_BASED",
-                        "productBasedAction": {
-                            "productBasedCondition": {
-                                "type": "PRODUCT",
-                                "productCondition": {
-                                    "criteriaList": [
-                                        {
-                                            "entity": "CATEGORY",
-                                            "operator": "IN",
-                                            "values": [
-                                                "Mobiles"
-                                            ]
-                                        }
-                                    ],
-                                    "kpi": "NONE",
-                                    "value": "0.000000",
-                                    "operator": "NONE"
-                                }
-                            },
-                            "type": "PERCENTAGE",
-                            "value": "100.000000",
-                            "includeItemsFromConditionSet": false
-                        }
-                    },
-                    "perUnitKPI": "QUANTITY",
-                    "perUnitDivider": "1.000000",
-                    "includeItemsFromConditionSet": false
-                }
-            },
-            "createdBy": 75028395,
-            "createdOn": 1749637213239,
-            "createdOnISO": "2025-06-11T10:20:13Z",
-            "lastUpdatedBy": 75028395,
-            "lastUpdatedOn": 1749637213239,
-            "lastUpdatedOnISO": "2025-06-11T10:20:13Z",
-            "startDate": 1751313600000,
-            "startDateISO": "2025-06-30T20:00:00Z",
-            "endDate": 1838145599999,
-            "endDateISO": "2028-03-31T19:59:59Z",
-            "campaignId": 275232,
-            "promotionRestrictions": {
-                "Customer": [
-                    {
-                        "kpi": "REDEMPTION",
-                        "frequency": "DAYS",
-                        "minTimeBetweenRepeat": 365,
-                        "limit": "1.000000"
-                    }
-                ],
-                "Cart": [
-                    {
-                        "kpi": "REDEMPTION",
-                        "limit": "1.000000"
-                    }
-                ]
-            },
-            "earnLimitedToSpecificAudience": false,
-            "customFieldValues": {},
-            "customerActivationRequired": false,
-            "isLoyaltyOnly": true,
-            "mode": "DISCOUNT",
-            "maxIssuancePerCustomer": 1,
-            "isStackable": false
-        },
-        {
-            "id": "6880c4c8d9234a5350ca4b06",
-            "name": "Buy 1 get 1",
-            "orgId": 100458,
-            "priority": 0,
-            "active": true,
-            "messageLabel": "Buy 1 get 1",
-            "type": "POS",
-            "condition": {
-                "type": "PRODUCT",
-                "productCondition": {
-                    "criteriaList": [
-                        {
-                            "entity": "SKU",
-                            "operator": "IN",
-                            "values": [
-                                "32753189"
-                            ]
-                        }
-                    ],
-                    "kpi": "QUANTITY",
-                    "value": "2.000000",
-                    "operator": "GREATER_THAN_OR_EQUAL"
-                }
-            },
-            "action": {
-                "type": "PER_UNIT",
-                "perUnitAction": {
-                    "rewardAction": {
-                        "type": "FREE_PRODUCT",
-                        "freeProductAction": {
-                            "productBasedCondition": {
-                                "type": "PRODUCT",
-                                "productCondition": {
-                                    "criteriaList": [
-                                        {
-                                            "entity": "SKU",
-                                            "operator": "IN",
-                                            "values": [
-                                                "32753189"
-                                            ]
-                                        }
-                                    ],
-                                    "kpi": "NONE",
-                                    "value": "0.000000",
-                                    "operator": "NONE"
-                                }
-                            },
-                            "includeItemsFromConditionSet": false
-                        }
-                    },
-                    "perUnitKPI": "QUANTITY",
-                    "perUnitDivider": "1.000000",
-                    "includeItemsFromConditionSet": false
-                }
-            },
-            "createdBy": 75067382,
-            "createdOn": 1753269448554,
-            "createdOnISO": "2025-07-23T11:17:28Z",
-            "lastUpdatedBy": 75067382,
-            "lastUpdatedOn": 1753269850045,
-            "lastUpdatedOnISO": "2025-07-23T11:24:10Z",
-            "startDate": 1753243200000,
-            "startDateISO": "2025-07-23T04:00:00Z",
-            "endDate": 1761969599999,
-            "endDateISO": "2025-11-01T03:59:59Z",
-            "campaignId": 280989,
-            "promotionRestrictions": {},
-            "earnLimitedToSpecificAudience": false,
-            "customFieldValues": {},
-            "customerActivationRequired": false,
-            "mode": "DISCOUNT",
-            "maxIssuancePerCustomer": 1,
-            "isStackable": false
-        },
-        {
-            "id": "6880c7062420517ca07cb4ec",
-            "name": "Category based offers",
-            "orgId": 100458,
-            "priority": 0,
-            "active": true,
-            "messageLabel": "Category based offers",
-            "type": "POS",
-            "condition": {
-                "type": "PRODUCT",
-                "productCondition": {
-                    "criteriaList": [
-                        {
-                            "entity": "SKU",
-                            "operator": "IN",
-                            "values": [
-                                "33257531",
-                                "32059180"
-                            ]
-                        }
-                    ],
-                    "kpi": "AMOUNT",
-                    "value": "5000.000000",
-                    "operator": "GREATER_THAN_OR_EQUAL"
-                }
-            },
-            "action": {
-                "type": "CART_BASED",
-                "cartBasedAction": {
-                    "type": "PERCENTAGE",
-                    "value": "50.000000"
-                }
-            },
-            "createdBy": 75067382,
-            "createdOn": 1753270022250,
-            "createdOnISO": "2025-07-23T11:27:02Z",
-            "lastUpdatedBy": 75067382,
-            "lastUpdatedOn": 1753270022250,
-            "lastUpdatedOnISO": "2025-07-23T11:27:02Z",
-            "startDate": 1753243200000,
-            "startDateISO": "2025-07-23T04:00:00Z",
-            "endDate": 1764565199999,
-            "endDateISO": "2025-12-01T04:59:59Z",
-            "campaignId": 280989,
-            "promotionRestrictions": {},
-            "earnLimitedToSpecificAudience": false,
-            "customFieldValues": {},
-            "customerActivationRequired": false,
-            "mode": "DISCOUNT",
-            "maxIssuancePerCustomer": 1,
-            "isStackable": false
-        },
-        {
-            "id": "68959d200484736895ddd59b",
-            "name": "Buy any Biba product, get 15% off",
-            "orgId": 100458,
-            "priority": 0,
-            "active": true,
-            "messageLabel": "Buy any Biba product, get 15% off",
-            "type": "POS",
-            "condition": {
-                "type": "PRODUCT",
-                "productCondition": {
-                    "criteriaList": [
-                        {
-                            "entity": "SKU",
-                            "operator": "IN",
-                            "values": [
-                                "A24BI10476EEN"
-                            ]
-                        }
-                    ],
-                    "kpi": "QUANTITY",
-                    "value": "1.000000",
-                    "operator": "GREATER_THAN_OR_EQUAL"
-                }
-            },
-            "action": {
-                "type": "CART_BASED",
-                "cartBasedAction": {
-                    "type": "PERCENTAGE",
-                    "value": "15.000000"
-                }
-            },
-            "createdBy": 75067382,
-            "createdOn": 1754635552282,
-            "createdOnISO": "2025-08-08T06:45:52Z",
-            "lastUpdatedBy": 75067382,
-            "lastUpdatedOn": 1754635552282,
-            "lastUpdatedOnISO": "2025-08-08T06:45:52Z",
-            "startDate": 1754625600000,
-            "startDateISO": "2025-08-08T04:00:00Z",
-            "endDate": 1761969599999,
-            "endDateISO": "2025-11-01T03:59:59Z",
-            "campaignId": 280989,
-            "promotionRestrictions": {},
-            "earnLimitedToSpecificAudience": false,
-            "customFieldValues": {},
-            "customerActivationRequired": false,
-            "mode": "DISCOUNT",
-            "maxIssuancePerCustomer": 1,
-            "isStackable": false
-        },
-        {
-            "id": "68b9b9417880ba5aa7cf7a65",
-            "name": "Monthly Subscription Benefits",
-            "orgId": 100458,
-            "priority": 0,
-            "active": true,
-            "messageLabel": "Monthly Subscription Benefits",
-            "type": "POS",
-            "supplementaryCriteria": {
-                "loyaltyProgramId": 712,
-                "programType": "SUBSCRIPTION",
-                "partnerProgramId": 125
-            },
-            "condition": {
-                "type": "CART",
-                "cartCondition": {
-                    "kpi": "ITEMCOUNT",
-                    "operator": "GREATER_THAN_OR_EQUAL",
-                    "value": "1.000000"
-                }
-            },
-            "action": {
-                "type": "PER_UNIT",
-                "perUnitAction": {
-                    "rewardAction": {
-                        "type": "PRODUCT_BASED",
-                        "productBasedAction": {
-                            "productBasedCondition": {
-                                "type": "PRODUCT",
-                                "productCondition": {
-                                    "criteriaList": [
-                                        {
-                                            "entity": "CATEGORY",
-                                            "operator": "IN",
-                                            "values": [
-                                                "Perks"
-                                            ]
-                                        }
-                                    ],
-                                    "kpi": "NONE",
-                                    "value": "0.000000",
-                                    "operator": "NONE"
-                                }
-                            },
-                            "type": "PERCENTAGE",
-                            "value": "100.000000",
-                            "includeItemsFromConditionSet": false
-                        }
-                    },
-                    "perUnitKPI": "QUANTITY",
-                    "perUnitDivider": "1.000000",
-                    "includeItemsFromConditionSet": false
-                }
-            },
-            "createdBy": 75028395,
-            "createdOn": 1757002049736,
-            "createdOnISO": "2025-09-04T16:07:29Z",
-            "lastUpdatedBy": 75028395,
-            "lastUpdatedOn": 1757002049736,
-            "lastUpdatedOnISO": "2025-09-04T16:07:29Z",
-            "startDate": 1756958400000,
-            "startDateISO": "2025-09-04T04:00:00Z",
-            "endDate": 1767243599999,
-            "endDateISO": "2026-01-01T04:59:59Z",
-            "campaignId": 286904,
-            "promotionRestrictions": {},
-            "earnLimitedToSpecificAudience": false,
-            "customFieldValues": {},
-            "customerActivationRequired": false,
-            "isLoyaltyOnly": true,
-            "mode": "DISCOUNT",
-            "maxIssuancePerCustomer": 1,
-            "isStackable": false
-        },
-        {
-            "id": "68c19ea7aa0d7a770cbafa6e",
-            "name": "Buy 2 16 Oz Sprites for $3",
-            "orgId": 100458,
-            "priority": 0,
-            "active": true,
-            "messageLabel": "Buy 2 16 Oz Sprites for $3",
-            "type": "POS",
-            "condition": {
-                "type": "CART",
-                "cartCondition": {
-                    "kpi": "ITEMCOUNT",
-                    "operator": "EQUALS",
-                    "value": "2.000000"
-                }
-            },
-            "action": {
-                "type": "CART_BASED",
-                "cartBasedAction": {
-                    "type": "ABSOLUTE",
-                    "value": "3.000000"
-                }
-            },
-            "createdBy": 75125097,
-            "createdOn": 1757519527664,
-            "createdOnISO": "2025-09-10T15:52:07Z",
-            "lastUpdatedBy": 75125097,
-            "lastUpdatedOn": 1757519527664,
-            "lastUpdatedOnISO": "2025-09-10T15:52:07Z",
-            "startDate": 1757476800000,
-            "startDateISO": "2025-09-10T04:00:00Z",
-            "endDate": 1761969599999,
-            "endDateISO": "2025-11-01T03:59:59Z",
-            "campaignId": 287599,
-            "promotionRestrictions": {},
-            "earnLimitedToSpecificAudience": false,
-            "customFieldValues": {},
-            "customerActivationRequired": false,
-            "mode": "DISCOUNT",
-            "maxIssuancePerCustomer": 1,
-            "isStackable": false
-        },
-        {
-            "id": "68c4715c7880ba5aa7cfca4b",
-            "name": "5 edibles for $40",
-            "orgId": 100458,
-            "priority": 0,
-            "active": true,
-            "messageLabel": "5 edibles for $40",
-            "type": "POS",
-            "condition": {
-                "type": "CART",
-                "cartCondition": {
-                    "kpi": "ITEMCOUNT",
-                    "operator": "EQUALS",
-                    "value": "5.000000"
-                }
-            },
-            "action": {
-                "type": "FIXED_PRICE",
-                "fixedPriceAction": {
-                    "productBasedCondition": {
-                        "type": "PRODUCT",
-                        "productCondition": {
-                            "criteriaList": [
-                                {
-                                    "entity": "ATTRIBUTE",
-                                    "operator": "IN",
-                                    "values": [
-                                        "Product"
-                                    ],
-                                    "attributeName": "Product"
-                                }
-                            ],
-                            "kpi": "QUANTITY",
-                            "value": "5.000000",
-                            "operator": "EQUALS"
-                        }
-                    },
-                    "value": "40.000000",
-                    "includeItemsFromConditionSet": false
-                }
-            },
-            "createdBy": 75125106,
-            "createdOn": 1757704540818,
-            "createdOnISO": "2025-09-12T19:15:40Z",
-            "lastUpdatedBy": 75125106,
-            "lastUpdatedOn": 1757704540818,
-            "lastUpdatedOnISO": "2025-09-12T19:15:40Z",
-            "startDate": 1757649600000,
-            "startDateISO": "2025-09-12T04:00:00Z",
-            "endDate": 1761969599999,
-            "endDateISO": "2025-11-01T03:59:59Z",
-            "campaignId": 288014,
-            "promotionRestrictions": {},
-            "earnLimitedToSpecificAudience": false,
-            "customFieldValues": {},
-            "customerActivationRequired": false,
-            "mode": "DISCOUNT",
-            "maxIssuancePerCustomer": 1,
-            "isStackable": false
-        },
-        {
-            "id": "68c4724eaa0d7a770cbb0d86",
-            "name": "2 Vapes for $30 Curaleaf During Happy Hour",
-            "orgId": 100458,
-            "priority": 0,
-            "active": true,
-            "messageLabel": "2 Vapes for $30 Curaleaf During Happy Hour: 12pm-Closd",
-            "type": "POS",
-            "timeCriteria": {
-                "startTime": [
-                    12,
-                    0
-                ],
-                "durationInHours": 10,
-                "repeatFrequency": "DAYS",
-                "monthlyDayValues": [
-                    1,
-                    2,
-                    3,
-                    4,
-                    5,
-                    6,
-                    7,
-                    8,
-                    9,
-                    10,
-                    11,
-                    12,
-                    13,
-                    14,
-                    15,
-                    16,
-                    17,
-                    18,
-                    19,
-                    20,
-                    21,
-                    22,
-                    23,
-                    24,
-                    25,
-                    26,
-                    27,
-                    28,
-                    29,
-                    30,
-                    31
-                ]
-            },
-            "condition": {
-                "type": "CART",
-                "cartCondition": {
-                    "kpi": "ITEMCOUNT",
-                    "operator": "EQUALS",
-                    "value": "2.000000"
-                }
-            },
-            "action": {
-                "type": "FIXED_PRICE",
-                "fixedPriceAction": {
-                    "productBasedCondition": {
-                        "type": "COMBO_PRODUCT",
-                        "comboProductCondition": {
-                            "productConditions": [
-                                {
-                                    "criteriaList": [
-                                        {
-                                            "entity": "SKU",
-                                            "operator": "IN",
-                                            "values": [
-                                                "SKU123"
-                                            ]
-                                        }
-                                    ],
-                                    "kpi": "QUANTITY",
-                                    "value": "2.000000",
-                                    "operator": "EQUALS"
-                                },
-                                {
-                                    "criteriaList": [
-                                        {
-                                            "entity": "SKU",
-                                            "operator": "IN",
-                                            "values": [
-                                                "SKU123"
-                                            ]
-                                        }
-                                    ],
-                                    "kpi": "QUANTITY",
-                                    "value": "2.000000",
-                                    "operator": "EQUALS"
-                                }
-                            ]
-                        }
-                    },
-                    "value": "30.000000",
-                    "includeItemsFromConditionSet": false
-                }
-            },
-            "createdBy": 75125106,
-            "createdOn": 1757704782018,
-            "createdOnISO": "2025-09-12T19:19:42Z",
-            "lastUpdatedBy": 75125106,
-            "lastUpdatedOn": 1757705450299,
-            "lastUpdatedOnISO": "2025-09-12T19:30:50Z",
-            "startDate": 1757649600000,
-            "startDateISO": "2025-09-12T04:00:00Z",
-            "endDate": 1761969599999,
-            "endDateISO": "2025-11-01T03:59:59Z",
-            "campaignId": 288014,
-            "promotionRestrictions": {},
-            "earnLimitedToSpecificAudience": false,
-            "customFieldValues": {},
-            "customerActivationRequired": false,
-            "isLoyaltyOnly": true,
-            "mode": "DISCOUNT",
-            "maxIssuancePerCustomer": 1,
-            "isStackable": false
-        },
-        {
-            "id": "68c472c6aa0d7a770cbb0d87",
-            "name": "40% off all topicals",
-            "orgId": 100458,
-            "priority": 0,
-            "active": true,
-            "messageLabel": "40% off all topicals",
-            "type": "POS",
-            "condition": {
-                "type": "CART",
-                "cartCondition": {
-                    "kpi": "ITEMCOUNT",
-                    "operator": "GREATER_THAN_OR_EQUAL",
-                    "value": "1.000000"
-                }
-            },
-            "action": {
-                "type": "PRODUCT_BASED",
-                "productBasedAction": {
-                    "productBasedCondition": {
-                        "type": "COMBO_PRODUCT",
-                        "comboProductCondition": {
-                            "productConditions": [
-                                {
-                                    "criteriaList": [
-                                        {
-                                            "entity": "SKU",
-                                            "operator": "IN",
-                                            "values": [
-                                                "SKU123"
-                                            ]
-                                        }
-                                    ],
-                                    "kpi": "NONE",
-                                    "value": "0.000000",
-                                    "operator": "NONE"
-                                },
-                                {
-                                    "criteriaList": [
-                                        {
-                                            "entity": "SKU",
-                                            "operator": "IN",
-                                            "values": [
-                                                "SKU123"
-                                            ]
-                                        }
-                                    ],
-                                    "kpi": "NONE",
-                                    "value": "0.000000",
-                                    "operator": "NONE"
-                                }
-                            ]
-                        }
-                    },
-                    "type": "PERCENTAGE",
-                    "value": "40.000000",
-                    "includeItemsFromConditionSet": false
-                }
-            },
-            "createdBy": 75125106,
-            "createdOn": 1757704902244,
-            "createdOnISO": "2025-09-12T19:21:42Z",
-            "lastUpdatedBy": 75125106,
-            "lastUpdatedOn": 1757705371449,
-            "lastUpdatedOnISO": "2025-09-12T19:29:31Z",
-            "startDate": 1758081600000,
-            "startDateISO": "2025-09-17T04:00:00Z",
-            "endDate": 1761969599999,
-            "endDateISO": "2025-11-01T03:59:59Z",
-            "campaignId": 288014,
-            "promotionRestrictions": {},
-            "earnLimitedToSpecificAudience": false,
-            "customFieldValues": {},
-            "customerActivationRequired": false,
-            "mode": "DISCOUNT",
-            "maxIssuancePerCustomer": 1,
-            "isStackable": false
-        },
-        {
-            "id": "68c4741d7880ba5aa7cfca4c",
-            "name": "Elite Plus Perk: Monthly Free Edibles or Pre-roll ",
-            "orgId": 100458,
-            "priority": 0,
-            "active": true,
-            "messageLabel": "Elite Plus Perk: Monthly Free Edibles or Pre-roll ",
-            "type": "POS",
-            "supplementaryCriteria": {
-                "loyaltyProgramId": 805,
-                "programType": "SUBSCRIPTION",
-                "partnerProgramId": 130
-            },
-            "condition": {
-                "type": "CART",
-                "cartCondition": {
-                    "kpi": "ITEMCOUNT",
-                    "operator": "GREATER_THAN_OR_EQUAL",
-                    "value": "1.000000"
-                }
-            },
-            "action": {
-                "type": "FREE_PRODUCT",
-                "freeProductAction": {
-                    "productBasedCondition": {
-                        "type": "PRODUCT",
-                        "productCondition": {
-                            "criteriaList": [
-                                {
-                                    "entity": "SKU",
-                                    "operator": "NOT_IN",
-                                    "values": [
-                                        "SKU130"
-                                    ]
-                                }
-                            ],
-                            "kpi": "QUANTITY",
-                            "value": "1.000000",
-                            "operator": "EQUALS"
-                        }
-                    },
-                    "includeItemsFromConditionSet": false
-                }
-            },
-            "createdBy": 75125106,
-            "createdOn": 1757705245903,
-            "createdOnISO": "2025-09-12T19:27:25Z",
-            "lastUpdatedBy": 75125106,
-            "lastUpdatedOn": 1757705245903,
-            "lastUpdatedOnISO": "2025-09-12T19:27:25Z",
-            "startDate": 1758168000000,
-            "startDateISO": "2025-09-18T04:00:00Z",
-            "endDate": 1767243599999,
-            "endDateISO": "2026-01-01T04:59:59Z",
-            "campaignId": 288014,
-            "promotionRestrictions": {
-                "Customer": [
-                    {
-                        "kpi": "REDEMPTION",
-                        "frequency": "DAYS",
-                        "minTimeBetweenRepeat": 30,
-                        "limit": "1.000000"
-                    }
-                ],
-                "Cart": [
-                    {
-                        "kpi": "REDEMPTION",
-                        "limit": "1.000000"
-                    }
-                ]
-            },
-            "earnLimitedToSpecificAudience": false,
-            "customFieldValues": {},
-            "customerActivationRequired": false,
-            "isLoyaltyOnly": true,
-            "mode": "DISCOUNT",
-            "maxIssuancePerCustomer": 1,
-            "isStackable": false
-        },
-        {
-            "id": "68c475837880ba5aa7cfca77",
-            "name": "Plus Elite Perk: 20% Off Purchases ",
-            "orgId": 100458,
-            "priority": 0,
-            "active": true,
-            "messageLabel": "Plus Elite Perk: 20% Off Purchases ",
-            "type": "POS",
-            "supplementaryCriteria": {
-                "loyaltyProgramId": 805,
-                "programType": "SUBSCRIPTION",
-                "partnerProgramId": 130
-            },
-            "condition": {
-                "type": "CART",
-                "cartCondition": {
-                    "kpi": "SUBTOTAL",
-                    "operator": "GREATER_THAN_OR_EQUAL",
-                    "value": "1.000000"
-                }
-            },
-            "action": {
-                "type": "CART_BASED",
-                "cartBasedAction": {
-                    "type": "PERCENTAGE",
-                    "value": "20.000000"
-                }
-            },
-            "createdBy": 75125106,
-            "createdOn": 1757705603831,
-            "createdOnISO": "2025-09-12T19:33:23Z",
-            "lastUpdatedBy": 75125106,
-            "lastUpdatedOn": 1757705603831,
-            "lastUpdatedOnISO": "2025-09-12T19:33:23Z",
-            "startDate": 1757649600000,
-            "startDateISO": "2025-09-12T04:00:00Z",
-            "endDate": 1761969599999,
-            "endDateISO": "2025-11-01T03:59:59Z",
-            "campaignId": 288014,
-            "promotionRestrictions": {},
-            "earnLimitedToSpecificAudience": false,
-            "customFieldValues": {},
-            "customerActivationRequired": false,
-            "isLoyaltyOnly": true,
-            "mode": "DISCOUNT",
-            "maxIssuancePerCustomer": 1,
-            "isStackable": false
-        },
-        {
-            "id": "68d24a6b9928054198a68a89",
-            "name": "20% off on Cart Value",
-            "orgId": 100458,
-            "priority": 0,
-            "active": true,
-            "messageLabel": "20% off on Cart Value",
-            "type": "POS",
-            "condition": {
-                "type": "CART",
-                "cartCondition": {
-                    "kpi": "SUBTOTAL",
-                    "operator": "GREATER_THAN_OR_EQUAL",
-                    "value": "1000.000000"
-                }
-            },
-            "action": {
-                "type": "CART_BASED",
-                "cartBasedAction": {
-                    "type": "PERCENTAGE",
-                    "value": "20.000000"
-                }
-            },
-            "createdBy": 75067382,
-            "createdOn": 1758612075826,
-            "createdOnISO": "2025-09-23T07:21:15Z",
-            "lastUpdatedBy": 75067382,
-            "lastUpdatedOn": 1758612075826,
-            "lastUpdatedOnISO": "2025-09-23T07:21:15Z",
-            "startDate": 1758600000000,
-            "startDateISO": "2025-09-23T04:00:00Z",
-            "endDate": 1764565199999,
-            "endDateISO": "2025-12-01T04:59:59Z",
-            "campaignId": 289310,
-            "promotionRestrictions": {},
-            "earnLimitedToSpecificAudience": false,
-            "customFieldValues": {},
-            "customerActivationRequired": false,
-            "mode": "DISCOUNT",
-            "maxIssuancePerCustomer": 1,
-            "isStackable": false
-        },
-        {
-            "id": "68d24b259928054198a68a8a",
-            "name": "Attica - Category based offers",
-            "orgId": 100458,
-            "priority": 0,
-            "active": true,
-            "messageLabel": "Category based offers",
-            "type": "POS",
-            "condition": {
-                "type": "PRODUCT",
-                "productCondition": {
-                    "criteriaList": [
-                        {
-                            "entity": "ATTRIBUTE",
-                            "operator": "IN",
-                            "values": [
-                                "Fashion"
-                            ],
-                            "attributeName": "Category"
-                        }
-                    ],
-                    "kpi": "AMOUNT",
-                    "value": "5000.000000",
-                    "operator": "GREATER_THAN_OR_EQUAL"
-                }
-            },
-            "action": {
-                "type": "CART_BASED",
-                "cartBasedAction": {
-                    "type": "PERCENTAGE",
-                    "value": "50.000000"
-                }
-            },
-            "createdBy": 75067382,
-            "createdOn": 1758612261470,
-            "createdOnISO": "2025-09-23T07:24:21Z",
-            "lastUpdatedBy": 75067382,
-            "lastUpdatedOn": 1758612261470,
-            "lastUpdatedOnISO": "2025-09-23T07:24:21Z",
-            "startDate": 1758600000000,
-            "startDateISO": "2025-09-23T04:00:00Z",
-            "endDate": 1767243599999,
-            "endDateISO": "2026-01-01T04:59:59Z",
-            "campaignId": 289310,
-            "promotionRestrictions": {},
-            "earnLimitedToSpecificAudience": false,
-            "customFieldValues": {},
-            "customerActivationRequired": false,
-            "mode": "DISCOUNT",
-            "maxIssuancePerCustomer": 1,
-            "isStackable": false
-        },
-        {
-            "id": "68d24bfe3c187b563250cda6",
-            "name": "Buy 1 get 1 offer Fossil Analog Watch",
-            "orgId": 100458,
-            "priority": 0,
-            "active": true,
-            "messageLabel": "Buy 1 get 1 offer Fossil Analog Watch",
-            "type": "POS",
-            "condition": {
-                "type": "PRODUCT",
-                "productCondition": {
-                    "criteriaList": [
-                        {
-                            "entity": "ATTRIBUTE",
-                            "operator": "IN",
-                            "values": [
-                                "Analog watch"
-                            ],
-                            "attributeName": "Sub_category"
-                        }
-                    ],
-                    "kpi": "QUANTITY",
-                    "value": "1.000000",
-                    "operator": "EQUALS"
-                }
-            },
-            "action": {
-                "type": "PER_UNIT",
-                "perUnitAction": {
-                    "rewardAction": {
-                        "type": "FREE_PRODUCT",
-                        "freeProductAction": {
-                            "productBasedCondition": {
-                                "type": "PRODUCT",
-                                "productCondition": {
-                                    "criteriaList": [
-                                        {
-                                            "entity": "ATTRIBUTE",
-                                            "operator": "IN",
-                                            "values": [
-                                                "Analog watch"
-                                            ],
-                                            "attributeName": "Sub_category"
-                                        }
-                                    ],
-                                    "kpi": "NONE",
-                                    "value": "0.000000",
-                                    "operator": "NONE"
-                                }
-                            },
-                            "includeItemsFromConditionSet": false
-                        }
-                    },
-                    "perUnitKPI": "QUANTITY",
-                    "perUnitDivider": "1.000000",
-                    "includeItemsFromConditionSet": false
-                }
-            },
-            "createdBy": 75067382,
-            "createdOn": 1758612478136,
-            "createdOnISO": "2025-09-23T07:27:58Z",
-            "lastUpdatedBy": 75067382,
-            "lastUpdatedOn": 1758612493859,
-            "lastUpdatedOnISO": "2025-09-23T07:28:13Z",
-            "startDate": 1758600000000,
-            "startDateISO": "2025-09-23T04:00:00Z",
-            "endDate": 1764565199999,
-            "endDateISO": "2025-12-01T04:59:59Z",
-            "campaignId": 289310,
-            "promotionRestrictions": {},
-            "earnLimitedToSpecificAudience": false,
-            "customFieldValues": {},
-            "customerActivationRequired": false,
-            "mode": "DISCOUNT",
-            "maxIssuancePerCustomer": 1,
-            "isStackable": false
-        },
-        {
-            "id": "68e64111f398ae3dc88067c7",
-            "name": "B1G1",
-            "orgId": 100458,
-            "priority": 0,
-            "active": true,
-            "messageLabel": "B1G1",
-            "type": "POS",
-            "condition": {
-                "type": "PRODUCT",
-                "productCondition": {
-                    "criteriaList": [
-                        {
-                            "entity": "SKU",
-                            "operator": "IN",
-                            "values": [
-                                "NOSJJ901036301"
-                            ]
-                        }
-                    ],
-                    "kpi": "QUANTITY",
-                    "value": "2.000000",
-                    "operator": "EQUALS"
-                }
-            },
-            "action": {
-                "type": "PER_UNIT",
-                "perUnitAction": {
-                    "rewardAction": {
-                        "type": "PRODUCT_BASED",
-                        "productBasedAction": {
-                            "productBasedCondition": {
-                                "type": "PRODUCT",
-                                "productCondition": {
-                                    "criteriaList": [
-                                        {
-                                            "entity": "SKU",
-                                            "operator": "IN",
-                                            "values": [
-                                                "NOSJJ901036301"
-                                            ]
-                                        }
-                                    ],
-                                    "kpi": "NONE",
-                                    "value": "0.000000",
-                                    "operator": "NONE"
-                                }
-                            },
-                            "type": "PERCENTAGE",
-                            "value": "100.000000",
-                            "includeItemsFromConditionSet": false
-                        }
-                    },
-                    "perUnitKPI": "QUANTITY",
-                    "perUnitDivider": "1.000000",
-                    "includeItemsFromConditionSet": false
-                }
-            },
-            "createdBy": 75067382,
-            "createdOn": 1759920401126,
-            "createdOnISO": "2025-10-08T10:46:41Z",
-            "lastUpdatedBy": 75067382,
-            "lastUpdatedOn": 1759920472222,
-            "lastUpdatedOnISO": "2025-10-08T10:47:52Z",
-            "startDate": 1759896000000,
-            "startDateISO": "2025-10-08T04:00:00Z",
-            "endDate": 1764565199999,
-            "endDateISO": "2025-12-01T04:59:59Z",
-            "campaignId": 280989,
-            "promotionRestrictions": {},
-            "earnLimitedToSpecificAudience": false,
-            "customFieldValues": {},
-            "customerActivationRequired": false,
-            "mode": "DISCOUNT",
-            "maxIssuancePerCustomer": 1,
-            "isStackable": false
-        },
-        {
-            "id": "68ecd86c884afa4f9e37396c",
-            "name": "Laptop + Accessory Bundle Deal",
-            "orgId": 100458,
-            "priority": 5,
-            "active": true,
-            "messageLabel": "Buy a Laptop, Get 50% Off a Mouse & Keyboard!",
-            "type": "POS",
-            "condition": {
-                "type": "PRODUCT",
-                "productCondition": {
-                    "criteriaList": [
-                        {
-                            "entity": "CATEGORY",
-                            "operator": "IN",
-                            "values": [
-                                "Laptops"
-                            ]
-                        }
-                    ],
-                    "kpi": "QUANTITY",
-                    "value": "1.000000",
-                    "operator": "GREATER_THAN_OR_EQUAL"
-                }
-            },
-            "action": {
-                "type": "PRODUCT_BASED",
-                "productBasedAction": {
-                    "productBasedCondition": {
-                        "type": "COMBO_PRODUCT",
-                        "comboProductCondition": {
-                            "productConditions": [
-                                {
-                                    "criteriaList": [
-                                        {
-                                            "entity": "CATEGORY",
-                                            "operator": "IN",
-                                            "values": [
-                                                "Mice"
-                                            ]
-                                        }
-                                    ],
-                                    "kpi": "QUANTITY",
-                                    "value": "1.000000",
-                                    "operator": "EQUALS"
-                                },
-                                {
-                                    "criteriaList": [
-                                        {
-                                            "entity": "CATEGORY",
-                                            "operator": "IN",
-                                            "values": [
-                                                "Keyboards"
-                                            ]
-                                        }
-                                    ],
-                                    "kpi": "QUANTITY",
-                                    "value": "1.000000",
-                                    "operator": "EQUALS"
-                                }
-                            ]
-                        }
-                    },
-                    "type": "PERCENTAGE",
-                    "value": "50.000000",
-                    "includeItemsFromConditionSet": false
-                }
-            },
-            "createdBy": 75189943,
-            "createdOn": 1760352364376,
-            "createdOnISO": "2025-10-13T10:46:04Z",
-            "lastUpdatedBy": 75189943,
-            "lastUpdatedOn": 1760352364376,
-            "lastUpdatedOnISO": "2025-10-13T10:46:04Z",
-            "startDate": 1760332800000,
-            "startDateISO": "2025-10-13T05:20:00Z",
-            "endDate": 1792031999000,
-            "endDateISO": "2026-10-15T02:39:59Z",
-            "campaignId": 286039,
-            "earnLimitedToSpecificAudience": false,
-            "mode": "DISCOUNT",
-            "maxIssuancePerCustomer": 1,
-            "isStackable": false
-        },
-        {
-            "id": "68ecd97345de88106234b5e7",
-            "name": "25 Percent Off First Two Snacks",
-            "orgId": 100458,
-            "priority": 1,
-            "active": true,
-            "messageLabel": "25% Off the first two snacks you buy!",
-            "type": "POS",
-            "condition": {
-                "type": "PRODUCT",
-                "productCondition": {
-                    "criteriaList": [
-                        {
-                            "entity": "CATEGORY",
-                            "operator": "IN",
-                            "values": [
-                                "Snacks"
-                            ]
-                        }
-                    ],
-                    "kpi": "QUANTITY",
-                    "value": "1.000000",
-                    "operator": "GREATER_THAN_OR_EQUAL"
-                }
-            },
-            "action": {
-                "type": "PRODUCT_BASED",
-                "productBasedAction": {
-                    "productBasedCondition": {
-                        "type": "PRODUCT",
-                        "productCondition": {
-                            "criteriaList": [
-                                {
-                                    "entity": "CATEGORY",
-                                    "operator": "IN",
-                                    "values": [
-                                        "Snacks"
-                                    ]
-                                }
-                            ],
-                            "kpi": "QUANTITY",
-                            "value": "2.000000",
-                            "operator": "EQUALS"
-                        }
-                    },
-                    "type": "PERCENTAGE",
-                    "value": "25.000000",
-                    "includeItemsFromConditionSet": false
-                }
-            },
-            "createdBy": 75189943,
-            "createdOn": 1760352627102,
-            "createdOnISO": "2025-10-13T10:50:27Z",
-            "lastUpdatedBy": 75189943,
-            "lastUpdatedOn": 1760352627102,
-            "lastUpdatedOnISO": "2025-10-13T10:50:27Z",
-            "startDate": 1759363200000,
-            "startDateISO": "2025-10-02T00:00:00Z",
-            "endDate": 1790985600000,
-            "endDateISO": "2026-10-03T00:00:00Z",
-            "campaignId": 286039,
-            "promotionRestrictions": {},
-            "earnLimitedToSpecificAudience": false,
-            "customFieldValues": {},
-            "customerActivationRequired": false,
-            "mode": "DISCOUNT",
-            "maxIssuancePerCustomer": 10,
-            "isStackable": false
-        },
-        {
-            "id": "68ecda3445de88106234b630",
-            "name": "Buy a Drink, Get 25% Off Two Snacks",
-            "orgId": 100458,
-            "priority": 1,
-            "active": true,
-            "messageLabel": "Buy a Drink, Get 25% Off Up to Two Snacks!",
-            "type": "POS",
-            "condition": {
-                "type": "PRODUCT",
-                "productCondition": {
-                    "criteriaList": [
-                        {
-                            "entity": "CATEGORY",
-                            "operator": "IN",
-                            "values": [
-                                "Drinks"
-                            ]
-                        }
-                    ],
-                    "kpi": "QUANTITY",
-                    "value": "1.000000",
-                    "operator": "GREATER_THAN_OR_EQUAL"
-                }
-            },
-            "action": {
-                "type": "PER_UNIT",
-                "perUnitAction": {
-                    "rewardAction": {
-                        "type": "PRODUCT_BASED",
-                        "productBasedAction": {
-                            "productBasedCondition": {
-                                "type": "PRODUCT",
-                                "productCondition": {
-                                    "criteriaList": [
-                                        {
-                                            "entity": "CATEGORY",
-                                            "operator": "IN",
-                                            "values": [
-                                                "Snacks"
-                                            ]
-                                        }
-                                    ],
-                                    "kpi": "QUANTITY",
-                                    "value": "2.000000",
-                                    "operator": "EQUALS"
-                                }
-                            },
-                            "type": "PERCENTAGE",
-                            "value": "25.000000",
-                            "includeItemsFromConditionSet": false
-                        }
-                    },
-                    "perUnitKPI": "QUANTITY",
-                    "perUnitDivider": "1.000000",
-                    "includeItemsFromConditionSet": false
-                }
-            },
-            "createdBy": 75189943,
-            "createdOn": 1760352820247,
-            "createdOnISO": "2025-10-13T10:53:40Z",
-            "lastUpdatedBy": 75189943,
-            "lastUpdatedOn": 1760352820247,
-            "lastUpdatedOnISO": "2025-10-13T10:53:40Z",
-            "startDate": 1759363200000,
-            "startDateISO": "2025-10-02T00:00:00Z",
-            "endDate": 1790985600000,
-            "endDateISO": "2026-10-03T00:00:00Z",
-            "campaignId": 286039,
-            "promotionRestrictions": {},
-            "earnLimitedToSpecificAudience": false,
-            "customFieldValues": {},
-            "customerActivationRequired": false,
-            "mode": "DISCOUNT",
-            "maxIssuancePerCustomer": 10,
-            "isStackable": false
-        },
-        {
-            "id": "68ecdbac884afa4f9e3739ee",
-            "name": "Buy 2 Shirts, Get a Tie Free",
-            "orgId": 100458,
-            "priority": 1,
-            "active": true,
-            "messageLabel": "Free tie when you buy any two shirts!",
-            "type": "POS",
-            "condition": {
-                "type": "PRODUCT",
-                "productCondition": {
-                    "criteriaList": [
-                        {
-                            "entity": "CATEGORY",
-                            "operator": "IN",
-                            "values": [
-                                "Shirts"
-                            ]
-                        }
-                    ],
-                    "kpi": "QUANTITY",
-                    "value": "2.000000",
-                    "operator": "GREATER_THAN_OR_EQUAL"
-                }
-            },
-            "action": {
-                "type": "PER_UNIT",
-                "perUnitAction": {
-                    "rewardAction": {
-                        "type": "FREE_PRODUCT",
-                        "freeProductAction": {
-                            "productBasedCondition": {
-                                "type": "PRODUCT",
-                                "productCondition": {
-                                    "criteriaList": [
-                                        {
-                                            "entity": "CATEGORY",
-                                            "operator": "IN",
-                                            "values": [
-                                                "Ties"
-                                            ]
-                                        }
-                                    ],
-                                    "kpi": "QUANTITY",
-                                    "value": "1.000000",
-                                    "operator": "EQUALS"
-                                }
-                            },
-                            "includeItemsFromConditionSet": false
-                        }
-                    },
-                    "perUnitKPI": "QUANTITY",
-                    "perUnitDivider": "2.000000",
-                    "includeItemsFromConditionSet": false
-                }
-            },
-            "createdBy": 75189943,
-            "createdOn": 1760353196522,
-            "createdOnISO": "2025-10-13T10:59:56Z",
-            "lastUpdatedBy": 75189943,
-            "lastUpdatedOn": 1760353196522,
-            "lastUpdatedOnISO": "2025-10-13T10:59:56Z",
-            "startDate": 1759363200000,
-            "startDateISO": "2025-10-02T00:00:00Z",
-            "endDate": 1790985600000,
-            "endDateISO": "2026-10-03T00:00:00Z",
-            "campaignId": 286039,
-            "promotionRestrictions": {},
-            "earnLimitedToSpecificAudience": false,
-            "customFieldValues": {},
-            "customerActivationRequired": false,
-            "mode": "DISCOUNT",
-            "maxIssuancePerCustomer": 10,
-            "isStackable": false
-        },
-        {
-            "id": "68ecdce445de88106234b687",
-            "name": "Free Pro Gaming Mouse with Premium Laptop",
-            "orgId": 100458,
-            "priority": 1,
-            "active": true,
-            "messageLabel": "Free Pro Gaming Mouse with laptops over $1000!",
-            "type": "POS",
-            "condition": {
-                "type": "PRODUCT",
-                "productCondition": {
-                    "criteriaList": [
-                        {
-                            "entity": "CATEGORY",
-                            "operator": "IN",
-                            "values": [
-                                "Laptops"
-                            ]
-                        }
-                    ],
-                    "kpi": "AMOUNT",
-                    "value": "1000.000000",
-                    "operator": "GREATER_THAN_OR_EQUAL"
-                }
-            },
-            "action": {
-                "type": "FREE_PRODUCT",
-                "freeProductAction": {
-                    "productBasedCondition": {
-                        "type": "PRODUCT",
-                        "productCondition": {
-                            "criteriaList": [
-                                {
-                                    "entity": "SKU",
-                                    "operator": "IN",
-                                    "values": [
-                                        "GM-PRO-001"
-                                    ]
-                                }
-                            ],
-                            "kpi": "QUANTITY",
-                            "value": "1.000000",
-                            "operator": "EQUALS"
-                        }
-                    },
-                    "includeItemsFromConditionSet": false
-                }
-            },
-            "createdBy": 75189943,
-            "createdOn": 1760353508004,
-            "createdOnISO": "2025-10-13T11:05:08Z",
-            "lastUpdatedBy": 75189943,
-            "lastUpdatedOn": 1760353508004,
-            "lastUpdatedOnISO": "2025-10-13T11:05:08Z",
-            "startDate": 1759363200000,
-            "startDateISO": "2025-10-02T00:00:00Z",
-            "endDate": 1790985600000,
-            "endDateISO": "2026-10-03T00:00:00Z",
-            "campaignId": 286039,
-            "promotionRestrictions": {},
-            "earnLimitedToSpecificAudience": false,
-            "customFieldValues": {},
-            "customerActivationRequired": false,
-            "mode": "DISCOUNT",
-            "maxIssuancePerCustomer": 10,
-            "isStackable": false
-        },
-        {
-            "id": "68eceaa345de88106234b6d4",
-            "name": "Work From Home Bundle - 50% Off",
-            "orgId": 100458,
-            "priority": 0,
-            "active": true,
-            "messageLabel": "Get 50% off when you buy a Laptop, Mouse, and Keyboard together!",
-            "type": "POS",
-            "condition": {
-                "type": "COMBO_PRODUCT",
-                "comboProductCondition": {
-                    "productConditions": [
-                        {
-                            "criteriaList": [
-                                {
-                                    "entity": "CATEGORY",
-                                    "operator": "IN",
-                                    "values": [
-                                        "Laptops"
-                                    ]
-                                }
-                            ],
-                            "kpi": "QUANTITY",
-                            "value": "1.000000",
-                            "operator": "GREATER_THAN_OR_EQUAL"
-                        },
-                        {
-                            "criteriaList": [
-                                {
-                                    "entity": "CATEGORY",
-                                    "operator": "IN",
-                                    "values": [
-                                        "Mice"
-                                    ]
-                                }
-                            ],
-                            "kpi": "QUANTITY",
-                            "value": "1.000000",
-                            "operator": "GREATER_THAN_OR_EQUAL"
-                        },
-                        {
-                            "criteriaList": [
-                                {
-                                    "entity": "CATEGORY",
-                                    "operator": "IN",
-                                    "values": [
-                                        "Keyboards"
-                                    ]
-                                }
-                            ],
-                            "kpi": "QUANTITY",
-                            "value": "1.000000",
-                            "operator": "GREATER_THAN_OR_EQUAL"
-                        }
-                    ]
-                }
-            },
-            "action": {
-                "type": "PRODUCT_BASED",
-                "productBasedAction": {
-                    "type": "PERCENTAGE",
-                    "value": "50.000000",
-                    "includeItemsFromConditionSet": true
-                }
-            },
-            "createdBy": 75189943,
-            "createdOn": 1760357027434,
-            "createdOnISO": "2025-10-13T12:03:47Z",
-            "lastUpdatedBy": 75189943,
-            "lastUpdatedOn": 1760357027434,
-            "lastUpdatedOnISO": "2025-10-13T12:03:47Z",
-            "startDate": 1759363200000,
-            "startDateISO": "2025-10-02T00:00:00Z",
-            "endDate": 1790985600000,
-            "endDateISO": "2026-10-03T00:00:00Z",
-            "campaignId": 286039,
-            "promotionRestrictions": {},
-            "earnLimitedToSpecificAudience": false,
-            "customFieldValues": {},
-            "customerActivationRequired": false,
-            "mode": "DISCOUNT",
-            "maxIssuancePerCustomer": 10,
-            "isStackable": false
-        },
-        {
-            "id": "68ecf21c45de88106234b715",
-            "name": "Ultimate Workstation Bundle - $1200",
-            "orgId": 100458,
-            "priority": 1,
-            "active": true,
-            "messageLabel": "Get a Premium Laptop, Pro Mouse, and Mechanical Keyboard for just $1200!",
-            "type": "POS",
-            "condition": {
-                "type": "COMBO_PRODUCT",
-                "comboProductCondition": {
-                    "productConditions": [
-                        {
-                            "criteriaList": [
-                                {
-                                    "entity": "CATEGORY",
-                                    "operator": "IN",
-                                    "values": [
-                                        "Laptops"
-                                    ]
-                                }
-                            ],
-                            "kpi": "AMOUNT",
-                            "value": "1000.000000",
-                            "operator": "GREATER_THAN_OR_EQUAL"
-                        },
-                        {
-                            "criteriaList": [
-                                {
-                                    "entity": "SKU",
-                                    "operator": "IN",
-                                    "values": [
-                                        "GM-PRO-001"
-                                    ]
-                                }
-                            ],
-                            "kpi": "QUANTITY",
-                            "value": "1.000000",
-                            "operator": "GREATER_THAN_OR_EQUAL"
-                        },
-                        {
-                            "criteriaList": [
-                                {
-                                    "entity": "CATEGORY",
-                                    "operator": "IN",
-                                    "values": [
-                                        "Mechanical Keyboards"
-                                    ]
-                                }
-                            ],
-                            "kpi": "QUANTITY",
-                            "value": "1.000000",
-                            "operator": "GREATER_THAN_OR_EQUAL"
-                        }
-                    ]
-                }
-            },
-            "action": {
-                "type": "FIXED_PRICE",
-                "fixedPriceAction": {
-                    "productBasedCondition": {
-                        "type": "COMBO_PRODUCT",
-                        "comboProductCondition": {
-                            "productConditions": [
-                                {
-                                    "criteriaList": [
-                                        {
-                                            "entity": "CATEGORY",
-                                            "operator": "IN",
-                                            "values": [
-                                                "Laptops"
-                                            ]
-                                        }
-                                    ],
-                                    "kpi": "QUANTITY",
-                                    "value": "1.000000",
-                                    "operator": "EQUALS"
-                                },
-                                {
-                                    "criteriaList": [
-                                        {
-                                            "entity": "SKU",
-                                            "operator": "IN",
-                                            "values": [
-                                                "GM-PRO-001"
-                                            ]
-                                        }
-                                    ],
-                                    "kpi": "QUANTITY",
-                                    "value": "1.000000",
-                                    "operator": "EQUALS"
-                                },
-                                {
-                                    "criteriaList": [
-                                        {
-                                            "entity": "CATEGORY",
-                                            "operator": "IN",
-                                            "values": [
-                                                "Mechanical Keyboards"
-                                            ]
-                                        }
-                                    ],
-                                    "kpi": "QUANTITY",
-                                    "value": "1.000000",
-                                    "operator": "EQUALS"
-                                }
-                            ]
-                        }
-                    },
-                    "value": "1200.000000",
-                    "includeItemsFromConditionSet": true
-                }
-            },
-            "createdBy": 75189943,
-            "createdOn": 1760358940392,
-            "createdOnISO": "2025-10-13T12:35:40Z",
-            "lastUpdatedBy": 75189943,
-            "lastUpdatedOn": 1760358940392,
-            "lastUpdatedOnISO": "2025-10-13T12:35:40Z",
-            "startDate": 1759363200000,
-            "startDateISO": "2025-10-02T00:00:00Z",
-            "endDate": 1790985600000,
-            "endDateISO": "2026-10-03T00:00:00Z",
-            "campaignId": 286039,
-            "promotionRestrictions": {},
-            "earnLimitedToSpecificAudience": false,
-            "customFieldValues": {},
-            "customerActivationRequired": false,
-            "mode": "DISCOUNT",
-            "maxIssuancePerCustomer": 10,
-            "isStackable": false
-        },
-        {
-            "id": "68ed361b45de88106234b8b3",
-            "name": "25% Off Maggi with $10 Fuel Purchase",
-            "orgId": 100458,
-            "priority": 10,
-            "active": true,
-            "messageLabel": "Get 25% off Maggi when you buy $10 of fuel!",
-            "type": "POS",
-            "condition": {
-                "type": "PRODUCT",
-                "productCondition": {
-                    "criteriaList": [
-                        {
-                            "entity": "CATEGORY",
-                            "operator": "IN",
-                            "values": [
-                                "Fuel"
-                            ]
-                        }
-                    ],
-                    "kpi": "AMOUNT",
-                    "value": "10.000000",
-                    "operator": "GREATER_THAN_OR_EQUAL"
-                }
-            },
-            "action": {
-                "type": "PRODUCT_BASED",
-                "productBasedAction": {
-                    "productBasedCondition": {
-                        "type": "PRODUCT",
-                        "productCondition": {
-                            "criteriaList": [
-                                {
-                                    "entity": "SKU",
-                                    "operator": "IN",
-                                    "values": [
-                                        "MAGGI-001"
-                                    ]
-                                }
-                            ],
-                            "kpi": "NONE",
-                            "value": "0.000000",
-                            "operator": "NONE"
-                        }
-                    },
-                    "type": "PERCENTAGE",
-                    "value": "25.000000",
-                    "includeItemsFromConditionSet": false
-                }
-            },
-            "createdBy": 75189943,
-            "createdOn": 1760376347590,
-            "createdOnISO": "2025-10-13T17:25:47Z",
-            "lastUpdatedBy": 75189943,
-            "lastUpdatedOn": 1760376347590,
-            "lastUpdatedOnISO": "2025-10-13T17:25:47Z",
-            "startDate": 1760418600000,
-            "startDateISO": "2025-10-14T05:10:00Z",
-            "endDate": 1792031399000,
-            "endDateISO": "2026-10-15T02:29:59Z",
-            "campaignId": 286039,
-            "earnLimitedToSpecificAudience": false,
-            "mode": "DISCOUNT",
-            "maxIssuancePerCustomer": 1,
-            "isStackable": false
-        },
-        {
-            "id": "68f205c14a314550c4b43231",
-            "name": "qwdqe",
-            "orgId": 100458,
-            "priority": 0,
-            "active": true,
-            "messageLabel": "wefddw",
-            "type": "POS",
-            "condition": {
-                "type": "TENDER",
-                "tenderCondition": {
-                    "tenderModes": [
-                        {
-                            "type": "PAYMENT_VOUCHER",
-                            "identifiers": [
-                                "68f2059431d91c625a8d5a2b"
-                            ]
-                        }
-                    ]
-                }
-            },
-            "action": {
-                "type": "TENDER",
-                "tenderBasedAction": {
-                    "type": "ABSOLUTE",
-                    "value": "200.000000"
-                }
-            },
-            "createdBy": 75184878,
-            "createdOn": 1760691649450,
-            "createdOnISO": "2025-10-17T09:00:49Z",
-            "lastUpdatedBy": 75184878,
-            "lastUpdatedOn": 1760691649450,
-            "lastUpdatedOnISO": "2025-10-17T09:00:49Z",
-            "startDate": 1760673600000,
-            "startDateISO": "2025-10-17T04:00:00Z",
-            "endDate": 1763096399999,
-            "endDateISO": "2025-11-14T04:59:59Z",
-            "campaignId": 292697,
-            "promotionRestrictions": {},
-            "earnLimitedToSpecificAudience": false,
-            "customFieldValues": {},
-            "customerActivationRequired": false,
-            "mode": "DISCOUNT",
-            "maxIssuancePerCustomer": 1,
-            "isStackable": false
-        },
-        {
-            "id": "68f207e731d91c625a8d5a4c",
-            "name": "tr",
-            "orgId": 100458,
-            "priority": 0,
-            "active": true,
-            "messageLabel": "ytf",
-            "type": "POS",
-            "condition": {
-                "type": "TENDER",
-                "tenderCondition": {
-                    "tenderModes": [
-                        {
-                            "type": "PAYMENT_VOUCHER",
-                            "identifiers": [
-                                "68f2059431d91c625a8d5a2b"
-                            ]
-                        }
-                    ]
-                }
-            },
-            "action": {
-                "type": "TENDER",
-                "tenderBasedAction": {
-                    "type": "ABSOLUTE",
-                    "value": "500.000000"
-                }
-            },
-            "createdBy": 75184878,
-            "createdOn": 1760692198696,
-            "createdOnISO": "2025-10-17T09:09:58Z",
-            "lastUpdatedBy": 75184878,
-            "lastUpdatedOn": 1760693561244,
-            "lastUpdatedOnISO": "2025-10-17T09:32:41Z",
-            "startDate": 1760673600000,
-            "startDateISO": "2025-10-17T04:00:00Z",
-            "endDate": 1762923599999,
-            "endDateISO": "2025-11-12T04:59:59Z",
-            "campaignId": 292697,
-            "promotionRestrictions": {},
-            "earnLimitedToSpecificAudience": false,
-            "customFieldValues": {},
-            "customerActivationRequired": false,
-            "mode": "DISCOUNT",
-            "maxIssuancePerCustomer": 1,
-            "isStackable": false
-        },
-        {
-            "id": "68f513e34a314550c4b449e9",
-            "name": "efge",
-            "orgId": 100458,
-            "priority": 0,
-            "active": true,
-            "messageLabel": "egre",
-            "type": "POS",
-            "condition": {
-                "type": "TENDER",
-                "tenderCondition": {
-                    "tenderModes": [
-                        {
-                            "type": "CARD",
-                            "identifiers": [
-                                "Credit Card",
-                                "Charge Card",
-                                "Debit Card"
-                            ]
-                        }
-                    ],
-                    "condition": {
-                        "type": "CART",
-                        "cartCondition": {
-                            "kpi": "SUBTOTAL",
-                            "operator": "EQUALS",
-                            "value": "100.000000"
-                        }
-                    }
-                }
-            },
-            "action": {
-                "type": "TENDER",
-                "tenderBasedAction": {
-                    "type": "ABSOLUTE",
-                    "value": "100.000000"
-                }
-            },
-            "createdBy": 75184878,
-            "createdOn": 1760891875234,
-            "createdOnISO": "2025-10-19T16:37:55Z",
-            "lastUpdatedBy": 75184878,
-            "lastUpdatedOn": 1760893511579,
-            "lastUpdatedOnISO": "2025-10-19T17:05:11Z",
-            "startDate": 1761105600000,
-            "startDateISO": "2025-10-22T04:00:00Z",
-            "endDate": 1764219599999,
-            "endDateISO": "2025-11-27T04:59:59Z",
-            "campaignId": 292697,
-            "promotionRestrictions": {},
-            "earnLimitedToSpecificAudience": false,
-            "customFieldValues": {},
-            "customerActivationRequired": false,
-            "mode": "DISCOUNT",
-            "maxIssuancePerCustomer": 1,
-            "isStackable": false
-        },
-        {
-            "id": "68f51c0b31d91c625a8d7035",
-            "name": "wyugrf",
-            "orgId": 100458,
-            "priority": 0,
-            "active": true,
-            "messageLabel": "dfs",
-            "type": "POS",
-            "condition": {
-                "type": "TENDER",
-                "tenderCondition": {
-                    "tenderModes": [
-                        {
-                            "type": "PAYMENT_VOUCHER",
-                            "identifiers": [
-                                "68f2059431d91c625a8d5a2b"
-                            ]
-                        }
-                    ]
-                }
-            },
-            "action": {
-                "type": "TENDER",
-                "tenderBasedAction": {
-                    "type": "ABSOLUTE",
-                    "value": "200.000000"
-                }
-            },
-            "createdBy": 75184878,
-            "createdOn": 1760893963742,
-            "createdOnISO": "2025-10-19T17:12:43Z",
-            "lastUpdatedBy": 75184878,
-            "lastUpdatedOn": 1760893963742,
-            "lastUpdatedOnISO": "2025-10-19T17:12:43Z",
-            "startDate": 1761019200000,
-            "startDateISO": "2025-10-21T04:00:00Z",
-            "endDate": 1763528399999,
-            "endDateISO": "2025-11-19T04:59:59Z",
-            "campaignId": 292697,
-            "promotionRestrictions": {},
-            "earnLimitedToSpecificAudience": false,
-            "customFieldValues": {},
-            "customerActivationRequired": false,
-            "mode": "DISCOUNT",
-            "maxIssuancePerCustomer": 1,
-            "isStackable": false
-        },
-        {
-            "id": "68f51c6631d91c625a8d7036",
-            "name": "efwf",
-            "orgId": 100458,
-            "priority": 0,
-            "active": true,
-            "messageLabel": "sfvds",
-            "type": "POS",
-            "condition": {
-                "type": "TENDER",
-                "tenderCondition": {
-                    "tenderModes": [
-                        {
-                            "type": "CARD",
-                            "identifiers": [
-                                "Points"
-                            ]
-                        }
-                    ],
-                    "condition": {
-                        "type": "CART",
-                        "cartCondition": {
-                            "kpi": "SUBTOTAL",
-                            "operator": "GREATER_THAN",
-                            "value": "20.000000"
-                        }
-                    }
-                }
-            },
-            "action": {
-                "type": "TENDER",
-                "tenderBasedAction": {
-                    "type": "ABSOLUTE",
-                    "value": "100.000000"
-                }
-            },
-            "createdBy": 75184878,
-            "createdOn": 1760894054600,
-            "createdOnISO": "2025-10-19T17:14:14Z",
-            "lastUpdatedBy": 75184878,
-            "lastUpdatedOn": 1760894054600,
-            "lastUpdatedOnISO": "2025-10-19T17:14:14Z",
-            "startDate": 1761192000000,
-            "startDateISO": "2025-10-23T04:00:00Z",
-            "endDate": 1762837199999,
-            "endDateISO": "2025-11-11T04:59:59Z",
-            "campaignId": 292697,
-            "promotionRestrictions": {},
-            "earnLimitedToSpecificAudience": false,
-            "customFieldValues": {},
-            "customerActivationRequired": false,
-            "mode": "DISCOUNT",
-            "maxIssuancePerCustomer": 1,
-            "isStackable": false
-        },
-        {
-            "id": "68f51dfc31d91c625a8d7037",
-            "name": "rfsegff",
-            "orgId": 100458,
-            "priority": 0,
-            "active": true,
-            "messageLabel": "afvadf",
-            "type": "POS",
-            "condition": {
-                "type": "TENDER",
-                "tenderCondition": {
-                    "tenderModes": [
-                        {
-                            "type": "PAYMENT_VOUCHER",
-                            "identifiers": [
-                                "68f2059431d91c625a8d5a2b"
-                            ]
-                        }
-                    ]
-                }
-            },
-            "action": {
-                "type": "TENDER",
-                "tenderBasedAction": {
-                    "type": "ABSOLUTE",
-                    "value": "200.000000"
-                }
-            },
-            "createdBy": 75184878,
-            "createdOn": 1760894460579,
-            "createdOnISO": "2025-10-19T17:21:00Z",
-            "lastUpdatedBy": 75184878,
-            "lastUpdatedOn": 1760894460579,
-            "lastUpdatedOnISO": "2025-10-19T17:21:00Z",
-            "startDate": 1760846400000,
-            "startDateISO": "2025-10-19T04:00:00Z",
-            "endDate": 1764305999999,
-            "endDateISO": "2025-11-28T04:59:59Z",
-            "campaignId": 292697,
-            "promotionRestrictions": {},
-            "earnLimitedToSpecificAudience": false,
-            "customFieldValues": {},
-            "customerActivationRequired": false,
-            "mode": "DISCOUNT",
-            "maxIssuancePerCustomer": 1,
-            "isStackable": false
-        },
-        {
-            "id": "68f59b594a314550c4b44d48",
-            "name": "25 Percent Off Snacks",
-            "orgId": 100458,
-            "priority": 1,
-            "active": true,
-            "messageLabel": "25% Off All Snacks!",
-            "type": "POS",
-            "condition": {
-                "type": "CART",
-                "cartCondition": {
-                    "kpi": "ITEMCOUNT",
-                    "operator": "GREATER_THAN_OR_EQUAL",
-                    "value": "1.000000"
-                }
-            },
-            "action": {
-                "type": "PRODUCT_BASED",
-                "productBasedAction": {
-                    "productBasedCondition": {
-                        "type": "PRODUCT",
-                        "productCondition": {
-                            "criteriaList": [
-                                {
-                                    "entity": "CATEGORY",
-                                    "operator": "IN",
-                                    "values": [
-                                        "Snacks"
-                                    ]
-                                }
-                            ],
-                            "kpi": "NONE",
-                            "value": "0.000000",
-                            "operator": "NONE"
-                        }
-                    },
-                    "type": "PERCENTAGE",
-                    "value": "25.000000",
-                    "includeItemsFromConditionSet": false
-                }
-            },
-            "createdBy": 75189943,
-            "createdOn": 1760926553591,
-            "createdOnISO": "2025-10-20T02:15:53Z",
-            "lastUpdatedBy": 75189943,
-            "lastUpdatedOn": 1760926553591,
-            "lastUpdatedOnISO": "2025-10-20T02:15:53Z",
-            "startDate": 1759363200000,
-            "startDateISO": "2025-10-02T00:00:00Z",
-            "endDate": 1790985600000,
-            "endDateISO": "2026-10-03T00:00:00Z",
-            "campaignId": 293076,
-            "promotionRestrictions": {},
-            "earnLimitedToSpecificAudience": false,
-            "customFieldValues": {},
-            "customerActivationRequired": false,
-            "mode": "DISCOUNT",
-            "maxIssuancePerCustomer": 10,
-            "isStackable": false
-        },
-        {
-            "id": "68f7d3db31d91c625a8d82ca",
-            "name": "Weekday Happy Hour Test 4",
-            "orgId": 100458,
-            "priority": 0,
-            "active": true,
-            "type": "POS",
-            "timeCriteria": {
-                "startTime": [
-                    16,
-                    0
-                ],
-                "durationInHours": 2,
-                "repeatFrequency": "WEEKS",
-                "weeklyValues": [
-                    "MONDAY",
-                    "TUESDAY",
-                    "WEDNESDAY",
-                    "THURSDAY",
-                    "FRIDAY"
-                ]
-            },
-            "condition": {
-                "type": "PRODUCT",
-                "productCondition": {
-                    "criteriaList": [
-                        {
-                            "entity": "CATEGORY",
-                            "operator": "IN",
-                            "values": [
-                                "Beverages"
-                            ]
-                        }
-                    ],
-                    "kpi": "QUANTITY",
-                    "value": "1.000000",
-                    "operator": "GREATER_THAN_OR_EQUAL"
-                }
-            },
-            "action": {
-                "type": "PRODUCT_BASED",
-                "productBasedAction": {
-                    "type": "PERCENTAGE",
-                    "value": "20.000000",
-                    "includeItemsFromConditionSet": true
-                }
-            },
-            "createdBy": 75189943,
-            "createdOn": 1761072091362,
-            "createdOnISO": "2025-10-21T18:41:31Z",
-            "lastUpdatedBy": 75189943,
-            "lastUpdatedOn": 1761072091362,
-            "lastUpdatedOnISO": "2025-10-21T18:41:31Z",
-            "startDate": 1761019200000,
-            "startDateISO": "2025-10-21T04:00:00Z",
-            "endDate": 1764565199999,
-            "endDateISO": "2025-12-01T04:59:59Z",
-            "campaignId": 286039,
-            "earnLimitedToSpecificAudience": false,
-            "mode": "DISCOUNT",
-            "maxIssuancePerCustomer": 1,
-            "isStackable": false
-        }
-    ]
-}
-```
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  {
+      "data": [
+          {
+              "id": "6849585d701a9d5f22118370",
+              "name": "Device Upgrade Offer - Experience Beyond",
+              "orgId": 100458,
+              "priority": 0,
+              "active": true,
+              "messageLabel": "Device Upgrade Offer - Experience Beyond",
+              "type": "POS",
+              "supplementaryCriteria": {
+                  "loyaltyProgramId": 812,
+                  "programType": "TIER",
+                  "partnerProgramId": 25028
+              },
+              "condition": {
+                  "type": "PRODUCT",
+                  "productCondition": {
+                      "criteriaList": [
+                          {
+                              "entity": "CATEGORY",
+                              "operator": "IN",
+                              "values": [
+                                  "Mobiles"
+                              ]
+                          }
+                      ],
+                      "kpi": "QUANTITY",
+                      "value": "1.000000",
+                      "operator": "EQUALS"
+                  }
+              },
+              "action": {
+                  "type": "PER_UNIT",
+                  "perUnitAction": {
+                      "rewardAction": {
+                          "type": "PRODUCT_BASED",
+                          "productBasedAction": {
+                              "productBasedCondition": {
+                                  "type": "PRODUCT",
+                                  "productCondition": {
+                                      "criteriaList": [
+                                          {
+                                              "entity": "CATEGORY",
+                                              "operator": "IN",
+                                              "values": [
+                                                  "Mobiles"
+                                              ]
+                                          }
+                                      ],
+                                      "kpi": "NONE",
+                                      "value": "0.000000",
+                                      "operator": "NONE"
+                                  }
+                              },
+                              "type": "PERCENTAGE",
+                              "value": "100.000000",
+                              "includeItemsFromConditionSet": false
+                          }
+                      },
+                      "perUnitKPI": "QUANTITY",
+                      "perUnitDivider": "1.000000",
+                      "includeItemsFromConditionSet": false
+                  }
+              },
+              "createdBy": 75028395,
+              "createdOn": 1749637213239,
+              "createdOnISO": "2025-06-11T10:20:13Z",
+              "lastUpdatedBy": 75028395,
+              "lastUpdatedOn": 1749637213239,
+              "lastUpdatedOnISO": "2025-06-11T10:20:13Z",
+              "startDate": 1751313600000,
+              "startDateISO": "2025-06-30T20:00:00Z",
+              "endDate": 1838145599999,
+              "endDateISO": "2028-03-31T19:59:59Z",
+              "campaignId": 275232,
+              "promotionRestrictions": {
+                  "Customer": [
+                      {
+                          "kpi": "REDEMPTION",
+                          "frequency": "DAYS",
+                          "minTimeBetweenRepeat": 365,
+                          "limit": "1.000000"
+                      }
+                  ],
+                  "Cart": [
+                      {
+                          "kpi": "REDEMPTION",
+                          "limit": "1.000000"
+                      }
+                  ]
+              },
+              "earnLimitedToSpecificAudience": false,
+              "customFieldValues": {},
+              "customerActivationRequired": false,
+              "isLoyaltyOnly": true,
+              "mode": "DISCOUNT",
+              "maxIssuancePerCustomer": 1,
+              "isStackable": false
+          },
+          {
+              "id": "6880c4c8d9234a5350ca4b06",
+              "name": "Buy 1 get 1",
+              "orgId": 100458,
+              "priority": 0,
+              "active": true,
+              "messageLabel": "Buy 1 get 1",
+              "type": "POS",
+              "condition": {
+                  "type": "PRODUCT",
+                  "productCondition": {
+                      "criteriaList": [
+                          {
+                              "entity": "SKU",
+                              "operator": "IN",
+                              "values": [
+                                  "32753189"
+                              ]
+                          }
+                      ],
+                      "kpi": "QUANTITY",
+                      "value": "2.000000",
+                      "operator": "GREATER_THAN_OR_EQUAL"
+                  }
+              },
+              "action": {
+                  "type": "PER_UNIT",
+                  "perUnitAction": {
+                      "rewardAction": {
+                          "type": "FREE_PRODUCT",
+                          "freeProductAction": {
+                              "productBasedCondition": {
+                                  "type": "PRODUCT",
+                                  "productCondition": {
+                                      "criteriaList": [
+                                          {
+                                              "entity": "SKU",
+                                              "operator": "IN",
+                                              "values": [
+                                                  "32753189"
+                                              ]
+                                          }
+                                      ],
+                                      "kpi": "NONE",
+                                      "value": "0.000000",
+                                      "operator": "NONE"
+                                  }
+                              },
+                              "includeItemsFromConditionSet": false
+                          }
+                      },
+                      "perUnitKPI": "QUANTITY",
+                      "perUnitDivider": "1.000000",
+                      "includeItemsFromConditionSet": false
+                  }
+              },
+              "createdBy": 75067382,
+              "createdOn": 1753269448554,
+              "createdOnISO": "2025-07-23T11:17:28Z",
+              "lastUpdatedBy": 75067382,
+              "lastUpdatedOn": 1753269850045,
+              "lastUpdatedOnISO": "2025-07-23T11:24:10Z",
+              "startDate": 1753243200000,
+              "startDateISO": "2025-07-23T04:00:00Z",
+              "endDate": 1761969599999,
+              "endDateISO": "2025-11-01T03:59:59Z",
+              "campaignId": 280989,
+              "promotionRestrictions": {},
+              "earnLimitedToSpecificAudience": false,
+              "customFieldValues": {},
+              "customerActivationRequired": false,
+              "mode": "DISCOUNT",
+              "maxIssuancePerCustomer": 1,
+              "isStackable": false
+          },
+          {
+              "id": "6880c7062420517ca07cb4ec",
+              "name": "Category based offers",
+              "orgId": 100458,
+              "priority": 0,
+              "active": true,
+              "messageLabel": "Category based offers",
+              "type": "POS",
+              "condition": {
+                  "type": "PRODUCT",
+                  "productCondition": {
+                      "criteriaList": [
+                          {
+                              "entity": "SKU",
+                              "operator": "IN",
+                              "values": [
+                                  "33257531",
+                                  "32059180"
+                              ]
+                          }
+                      ],
+                      "kpi": "AMOUNT",
+                      "value": "5000.000000",
+                      "operator": "GREATER_THAN_OR_EQUAL"
+                  }
+              },
+              "action": {
+                  "type": "CART_BASED",
+                  "cartBasedAction": {
+                      "type": "PERCENTAGE",
+                      "value": "50.000000"
+                  }
+              },
+              "createdBy": 75067382,
+              "createdOn": 1753270022250,
+              "createdOnISO": "2025-07-23T11:27:02Z",
+              "lastUpdatedBy": 75067382,
+              "lastUpdatedOn": 1753270022250,
+              "lastUpdatedOnISO": "2025-07-23T11:27:02Z",
+              "startDate": 1753243200000,
+              "startDateISO": "2025-07-23T04:00:00Z",
+              "endDate": 1764565199999,
+              "endDateISO": "2025-12-01T04:59:59Z",
+              "campaignId": 280989,
+              "promotionRestrictions": {},
+              "earnLimitedToSpecificAudience": false,
+              "customFieldValues": {},
+              "customerActivationRequired": false,
+              "mode": "DISCOUNT",
+              "maxIssuancePerCustomer": 1,
+              "isStackable": false
+          },
+          {
+              "id": "68959d200484736895ddd59b",
+              "name": "Buy any Biba product, get 15% off",
+              "orgId": 100458,
+              "priority": 0,
+              "active": true,
+              "messageLabel": "Buy any Biba product, get 15% off",
+              "type": "POS",
+              "condition": {
+                  "type": "PRODUCT",
+                  "productCondition": {
+                      "criteriaList": [
+                          {
+                              "entity": "SKU",
+                              "operator": "IN",
+                              "values": [
+                                  "A24BI10476EEN"
+                              ]
+                          }
+                      ],
+                      "kpi": "QUANTITY",
+                      "value": "1.000000",
+                      "operator": "GREATER_THAN_OR_EQUAL"
+                  }
+              },
+              "action": {
+                  "type": "CART_BASED",
+                  "cartBasedAction": {
+                      "type": "PERCENTAGE",
+                      "value": "15.000000"
+                  }
+              },
+              "createdBy": 75067382,
+              "createdOn": 1754635552282,
+              "createdOnISO": "2025-08-08T06:45:52Z",
+              "lastUpdatedBy": 75067382,
+              "lastUpdatedOn": 1754635552282,
+              "lastUpdatedOnISO": "2025-08-08T06:45:52Z",
+              "startDate": 1754625600000,
+              "startDateISO": "2025-08-08T04:00:00Z",
+              "endDate": 1761969599999,
+              "endDateISO": "2025-11-01T03:59:59Z",
+              "campaignId": 280989,
+              "promotionRestrictions": {},
+              "earnLimitedToSpecificAudience": false,
+              "customFieldValues": {},
+              "customerActivationRequired": false,
+              "mode": "DISCOUNT",
+              "maxIssuancePerCustomer": 1,
+              "isStackable": false
+          },
+          {
+              "id": "68b9b9417880ba5aa7cf7a65",
+              "name": "Monthly Subscription Benefits",
+              "orgId": 100458,
+              "priority": 0,
+              "active": true,
+              "messageLabel": "Monthly Subscription Benefits",
+              "type": "POS",
+              "supplementaryCriteria": {
+                  "loyaltyProgramId": 712,
+                  "programType": "SUBSCRIPTION",
+                  "partnerProgramId": 125
+              },
+              "condition": {
+                  "type": "CART",
+                  "cartCondition": {
+                      "kpi": "ITEMCOUNT",
+                      "operator": "GREATER_THAN_OR_EQUAL",
+                      "value": "1.000000"
+                  }
+              },
+              "action": {
+                  "type": "PER_UNIT",
+                  "perUnitAction": {
+                      "rewardAction": {
+                          "type": "PRODUCT_BASED",
+                          "productBasedAction": {
+                              "productBasedCondition": {
+                                  "type": "PRODUCT",
+                                  "productCondition": {
+                                      "criteriaList": [
+                                          {
+                                              "entity": "CATEGORY",
+                                              "operator": "IN",
+                                              "values": [
+                                                  "Perks"
+                                              ]
+                                          }
+                                      ],
+                                      "kpi": "NONE",
+                                      "value": "0.000000",
+                                      "operator": "NONE"
+                                  }
+                              },
+                              "type": "PERCENTAGE",
+                              "value": "100.000000",
+                              "includeItemsFromConditionSet": false
+                          }
+                      },
+                      "perUnitKPI": "QUANTITY",
+                      "perUnitDivider": "1.000000",
+                      "includeItemsFromConditionSet": false
+                  }
+              },
+              "createdBy": 75028395,
+              "createdOn": 1757002049736,
+              "createdOnISO": "2025-09-04T16:07:29Z",
+              "lastUpdatedBy": 75028395,
+              "lastUpdatedOn": 1757002049736,
+              "lastUpdatedOnISO": "2025-09-04T16:07:29Z",
+              "startDate": 1756958400000,
+              "startDateISO": "2025-09-04T04:00:00Z",
+              "endDate": 1767243599999,
+              "endDateISO": "2026-01-01T04:59:59Z",
+              "campaignId": 286904,
+              "promotionRestrictions": {},
+              "earnLimitedToSpecificAudience": false,
+              "customFieldValues": {},
+              "customerActivationRequired": false,
+              "isLoyaltyOnly": true,
+              "mode": "DISCOUNT",
+              "maxIssuancePerCustomer": 1,
+              "isStackable": false
+          },
+          {
+              "id": "68c19ea7aa0d7a770cbafa6e",
+              "name": "Buy 2 16 Oz Sprites for $3",
+              "orgId": 100458,
+              "priority": 0,
+              "active": true,
+              "messageLabel": "Buy 2 16 Oz Sprites for $3",
+              "type": "POS",
+              "condition": {
+                  "type": "CART",
+                  "cartCondition": {
+                      "kpi": "ITEMCOUNT",
+                      "operator": "EQUALS",
+                      "value": "2.000000"
+                  }
+              },
+              "action": {
+                  "type": "CART_BASED",
+                  "cartBasedAction": {
+                      "type": "ABSOLUTE",
+                      "value": "3.000000"
+                  }
+              },
+              "createdBy": 75125097,
+              "createdOn": 1757519527664,
+              "createdOnISO": "2025-09-10T15:52:07Z",
+              "lastUpdatedBy": 75125097,
+              "lastUpdatedOn": 1757519527664,
+              "lastUpdatedOnISO": "2025-09-10T15:52:07Z",
+              "startDate": 1757476800000,
+              "startDateISO": "2025-09-10T04:00:00Z",
+              "endDate": 1761969599999,
+              "endDateISO": "2025-11-01T03:59:59Z",
+              "campaignId": 287599,
+              "promotionRestrictions": {},
+              "earnLimitedToSpecificAudience": false,
+              "customFieldValues": {},
+              "customerActivationRequired": false,
+              "mode": "DISCOUNT",
+              "maxIssuancePerCustomer": 1,
+              "isStackable": false
+          },
+          {
+              "id": "68c4715c7880ba5aa7cfca4b",
+              "name": "5 edibles for $40",
+              "orgId": 100458,
+              "priority": 0,
+              "active": true,
+              "messageLabel": "5 edibles for $40",
+              "type": "POS",
+              "condition": {
+                  "type": "CART",
+                  "cartCondition": {
+                      "kpi": "ITEMCOUNT",
+                      "operator": "EQUALS",
+                      "value": "5.000000"
+                  }
+              },
+              "action": {
+                  "type": "FIXED_PRICE",
+                  "fixedPriceAction": {
+                      "productBasedCondition": {
+                          "type": "PRODUCT",
+                          "productCondition": {
+                              "criteriaList": [
+                                  {
+                                      "entity": "ATTRIBUTE",
+                                      "operator": "IN",
+                                      "values": [
+                                          "Product"
+                                      ],
+                                      "attributeName": "Product"
+                                  }
+                              ],
+                              "kpi": "QUANTITY",
+                              "value": "5.000000",
+                              "operator": "EQUALS"
+                          }
+                      },
+                      "value": "40.000000",
+                      "includeItemsFromConditionSet": false
+                  }
+              },
+              "createdBy": 75125106,
+              "createdOn": 1757704540818,
+              "createdOnISO": "2025-09-12T19:15:40Z",
+              "lastUpdatedBy": 75125106,
+              "lastUpdatedOn": 1757704540818,
+              "lastUpdatedOnISO": "2025-09-12T19:15:40Z",
+              "startDate": 1757649600000,
+              "startDateISO": "2025-09-12T04:00:00Z",
+              "endDate": 1761969599999,
+              "endDateISO": "2025-11-01T03:59:59Z",
+              "campaignId": 288014,
+              "promotionRestrictions": {},
+              "earnLimitedToSpecificAudience": false,
+              "customFieldValues": {},
+              "customerActivationRequired": false,
+              "mode": "DISCOUNT",
+              "maxIssuancePerCustomer": 1,
+              "isStackable": false
+          },
+          {
+              "id": "68c4724eaa0d7a770cbb0d86",
+              "name": "2 Vapes for $30 Curaleaf During Happy Hour",
+              "orgId": 100458,
+              "priority": 0,
+              "active": true,
+              "messageLabel": "2 Vapes for $30 Curaleaf During Happy Hour: 12pm-Closd",
+              "type": "POS",
+              "timeCriteria": {
+                  "startTime": [
+                      12,
+                      0
+                  ],
+                  "durationInHours": 10,
+                  "repeatFrequency": "DAYS",
+                  "monthlyDayValues": [
+                      1,
+                      2,
+                      3,
+                      4,
+                      5,
+                      6,
+                      7,
+                      8,
+                      9,
+                      10,
+                      11,
+                      12,
+                      13,
+                      14,
+                      15,
+                      16,
+                      17,
+                      18,
+                      19,
+                      20,
+                      21,
+                      22,
+                      23,
+                      24,
+                      25,
+                      26,
+                      27,
+                      28,
+                      29,
+                      30,
+                      31
+                  ]
+              },
+              "condition": {
+                  "type": "CART",
+                  "cartCondition": {
+                      "kpi": "ITEMCOUNT",
+                      "operator": "EQUALS",
+                      "value": "2.000000"
+                  }
+              },
+              "action": {
+                  "type": "FIXED_PRICE",
+                  "fixedPriceAction": {
+                      "productBasedCondition": {
+                          "type": "COMBO_PRODUCT",
+                          "comboProductCondition": {
+                              "productConditions": [
+                                  {
+                                      "criteriaList": [
+                                          {
+                                              "entity": "SKU",
+                                              "operator": "IN",
+                                              "values": [
+                                                  "SKU123"
+                                              ]
+                                          }
+                                      ],
+                                      "kpi": "QUANTITY",
+                                      "value": "2.000000",
+                                      "operator": "EQUALS"
+                                  },
+                                  {
+                                      "criteriaList": [
+                                          {
+                                              "entity": "SKU",
+                                              "operator": "IN",
+                                              "values": [
+                                                  "SKU123"
+                                              ]
+                                          }
+                                      ],
+                                      "kpi": "QUANTITY",
+                                      "value": "2.000000",
+                                      "operator": "EQUALS"
+                                  }
+                              ]
+                          }
+                      },
+                      "value": "30.000000",
+                      "includeItemsFromConditionSet": false
+                  }
+              },
+              "createdBy": 75125106,
+              "createdOn": 1757704782018,
+              "createdOnISO": "2025-09-12T19:19:42Z",
+              "lastUpdatedBy": 75125106,
+              "lastUpdatedOn": 1757705450299,
+              "lastUpdatedOnISO": "2025-09-12T19:30:50Z",
+              "startDate": 1757649600000,
+              "startDateISO": "2025-09-12T04:00:00Z",
+              "endDate": 1761969599999,
+              "endDateISO": "2025-11-01T03:59:59Z",
+              "campaignId": 288014,
+              "promotionRestrictions": {},
+              "earnLimitedToSpecificAudience": false,
+              "customFieldValues": {},
+              "customerActivationRequired": false,
+              "isLoyaltyOnly": true,
+              "mode": "DISCOUNT",
+              "maxIssuancePerCustomer": 1,
+              "isStackable": false
+          },
+          {
+              "id": "68c472c6aa0d7a770cbb0d87",
+              "name": "40% off all topicals",
+              "orgId": 100458,
+              "priority": 0,
+              "active": true,
+              "messageLabel": "40% off all topicals",
+              "type": "POS",
+              "condition": {
+                  "type": "CART",
+                  "cartCondition": {
+                      "kpi": "ITEMCOUNT",
+                      "operator": "GREATER_THAN_OR_EQUAL",
+                      "value": "1.000000"
+                  }
+              },
+              "action": {
+                  "type": "PRODUCT_BASED",
+                  "productBasedAction": {
+                      "productBasedCondition": {
+                          "type": "COMBO_PRODUCT",
+                          "comboProductCondition": {
+                              "productConditions": [
+                                  {
+                                      "criteriaList": [
+                                          {
+                                              "entity": "SKU",
+                                              "operator": "IN",
+                                              "values": [
+                                                  "SKU123"
+                                              ]
+                                          }
+                                      ],
+                                      "kpi": "NONE",
+                                      "value": "0.000000",
+                                      "operator": "NONE"
+                                  },
+                                  {
+                                      "criteriaList": [
+                                          {
+                                              "entity": "SKU",
+                                              "operator": "IN",
+                                              "values": [
+                                                  "SKU123"
+                                              ]
+                                          }
+                                      ],
+                                      "kpi": "NONE",
+                                      "value": "0.000000",
+                                      "operator": "NONE"
+                                  }
+                              ]
+                          }
+                      },
+                      "type": "PERCENTAGE",
+                      "value": "40.000000",
+                      "includeItemsFromConditionSet": false
+                  }
+              },
+              "createdBy": 75125106,
+              "createdOn": 1757704902244,
+              "createdOnISO": "2025-09-12T19:21:42Z",
+              "lastUpdatedBy": 75125106,
+              "lastUpdatedOn": 1757705371449,
+              "lastUpdatedOnISO": "2025-09-12T19:29:31Z",
+              "startDate": 1758081600000,
+              "startDateISO": "2025-09-17T04:00:00Z",
+              "endDate": 1761969599999,
+              "endDateISO": "2025-11-01T03:59:59Z",
+              "campaignId": 288014,
+              "promotionRestrictions": {},
+              "earnLimitedToSpecificAudience": false,
+              "customFieldValues": {},
+              "customerActivationRequired": false,
+              "mode": "DISCOUNT",
+              "maxIssuancePerCustomer": 1,
+              "isStackable": false
+          },
+          {
+              "id": "68c4741d7880ba5aa7cfca4c",
+              "name": "Elite Plus Perk: Monthly Free Edibles or Pre-roll ",
+              "orgId": 100458,
+              "priority": 0,
+              "active": true,
+              "messageLabel": "Elite Plus Perk: Monthly Free Edibles or Pre-roll ",
+              "type": "POS",
+              "supplementaryCriteria": {
+                  "loyaltyProgramId": 805,
+                  "programType": "SUBSCRIPTION",
+                  "partnerProgramId": 130
+              },
+              "condition": {
+                  "type": "CART",
+                  "cartCondition": {
+                      "kpi": "ITEMCOUNT",
+                      "operator": "GREATER_THAN_OR_EQUAL",
+                      "value": "1.000000"
+                  }
+              },
+              "action": {
+                  "type": "FREE_PRODUCT",
+                  "freeProductAction": {
+                      "productBasedCondition": {
+                          "type": "PRODUCT",
+                          "productCondition": {
+                              "criteriaList": [
+                                  {
+                                      "entity": "SKU",
+                                      "operator": "NOT_IN",
+                                      "values": [
+                                          "SKU130"
+                                      ]
+                                  }
+                              ],
+                              "kpi": "QUANTITY",
+                              "value": "1.000000",
+                              "operator": "EQUALS"
+                          }
+                      },
+                      "includeItemsFromConditionSet": false
+                  }
+              },
+              "createdBy": 75125106,
+              "createdOn": 1757705245903,
+              "createdOnISO": "2025-09-12T19:27:25Z",
+              "lastUpdatedBy": 75125106,
+              "lastUpdatedOn": 1757705245903,
+              "lastUpdatedOnISO": "2025-09-12T19:27:25Z",
+              "startDate": 1758168000000,
+              "startDateISO": "2025-09-18T04:00:00Z",
+              "endDate": 1767243599999,
+              "endDateISO": "2026-01-01T04:59:59Z",
+              "campaignId": 288014,
+              "promotionRestrictions": {
+                  "Customer": [
+                      {
+                          "kpi": "REDEMPTION",
+                          "frequency": "DAYS",
+                          "minTimeBetweenRepeat": 30,
+                          "limit": "1.000000"
+                      }
+                  ],
+                  "Cart": [
+                      {
+                          "kpi": "REDEMPTION",
+                          "limit": "1.000000"
+                      }
+                  ]
+              },
+              "earnLimitedToSpecificAudience": false,
+              "customFieldValues": {},
+              "customerActivationRequired": false,
+              "isLoyaltyOnly": true,
+              "mode": "DISCOUNT",
+              "maxIssuancePerCustomer": 1,
+              "isStackable": false
+          },
+          {
+              "id": "68c475837880ba5aa7cfca77",
+              "name": "Plus Elite Perk: 20% Off Purchases ",
+              "orgId": 100458,
+              "priority": 0,
+              "active": true,
+              "messageLabel": "Plus Elite Perk: 20% Off Purchases ",
+              "type": "POS",
+              "supplementaryCriteria": {
+                  "loyaltyProgramId": 805,
+                  "programType": "SUBSCRIPTION",
+                  "partnerProgramId": 130
+              },
+              "condition": {
+                  "type": "CART",
+                  "cartCondition": {
+                      "kpi": "SUBTOTAL",
+                      "operator": "GREATER_THAN_OR_EQUAL",
+                      "value": "1.000000"
+                  }
+              },
+              "action": {
+                  "type": "CART_BASED",
+                  "cartBasedAction": {
+                      "type": "PERCENTAGE",
+                      "value": "20.000000"
+                  }
+              },
+              "createdBy": 75125106,
+              "createdOn": 1757705603831,
+              "createdOnISO": "2025-09-12T19:33:23Z",
+              "lastUpdatedBy": 75125106,
+              "lastUpdatedOn": 1757705603831,
+              "lastUpdatedOnISO": "2025-09-12T19:33:23Z",
+              "startDate": 1757649600000,
+              "startDateISO": "2025-09-12T04:00:00Z",
+              "endDate": 1761969599999,
+              "endDateISO": "2025-11-01T03:59:59Z",
+              "campaignId": 288014,
+              "promotionRestrictions": {},
+              "earnLimitedToSpecificAudience": false,
+              "customFieldValues": {},
+              "customerActivationRequired": false,
+              "isLoyaltyOnly": true,
+              "mode": "DISCOUNT",
+              "maxIssuancePerCustomer": 1,
+              "isStackable": false
+          },
+          {
+              "id": "68d24a6b9928054198a68a89",
+              "name": "20% off on Cart Value",
+              "orgId": 100458,
+              "priority": 0,
+              "active": true,
+              "messageLabel": "20% off on Cart Value",
+              "type": "POS",
+              "condition": {
+                  "type": "CART",
+                  "cartCondition": {
+                      "kpi": "SUBTOTAL",
+                      "operator": "GREATER_THAN_OR_EQUAL",
+                      "value": "1000.000000"
+                  }
+              },
+              "action": {
+                  "type": "CART_BASED",
+                  "cartBasedAction": {
+                      "type": "PERCENTAGE",
+                      "value": "20.000000"
+                  }
+              },
+              "createdBy": 75067382,
+              "createdOn": 1758612075826,
+              "createdOnISO": "2025-09-23T07:21:15Z",
+              "lastUpdatedBy": 75067382,
+              "lastUpdatedOn": 1758612075826,
+              "lastUpdatedOnISO": "2025-09-23T07:21:15Z",
+              "startDate": 1758600000000,
+              "startDateISO": "2025-09-23T04:00:00Z",
+              "endDate": 1764565199999,
+              "endDateISO": "2025-12-01T04:59:59Z",
+              "campaignId": 289310,
+              "promotionRestrictions": {},
+              "earnLimitedToSpecificAudience": false,
+              "customFieldValues": {},
+              "customerActivationRequired": false,
+              "mode": "DISCOUNT",
+              "maxIssuancePerCustomer": 1,
+              "isStackable": false
+          },
+          {
+              "id": "68d24b259928054198a68a8a",
+              "name": "Attica - Category based offers",
+              "orgId": 100458,
+              "priority": 0,
+              "active": true,
+              "messageLabel": "Category based offers",
+              "type": "POS",
+              "condition": {
+                  "type": "PRODUCT",
+                  "productCondition": {
+                      "criteriaList": [
+                          {
+                              "entity": "ATTRIBUTE",
+                              "operator": "IN",
+                              "values": [
+                                  "Fashion"
+                              ],
+                              "attributeName": "Category"
+                          }
+                      ],
+                      "kpi": "AMOUNT",
+                      "value": "5000.000000",
+                      "operator": "GREATER_THAN_OR_EQUAL"
+                  }
+              },
+              "action": {
+                  "type": "CART_BASED",
+                  "cartBasedAction": {
+                      "type": "PERCENTAGE",
+                      "value": "50.000000"
+                  }
+              },
+              "createdBy": 75067382,
+              "createdOn": 1758612261470,
+              "createdOnISO": "2025-09-23T07:24:21Z",
+              "lastUpdatedBy": 75067382,
+              "lastUpdatedOn": 1758612261470,
+              "lastUpdatedOnISO": "2025-09-23T07:24:21Z",
+              "startDate": 1758600000000,
+              "startDateISO": "2025-09-23T04:00:00Z",
+              "endDate": 1767243599999,
+              "endDateISO": "2026-01-01T04:59:59Z",
+              "campaignId": 289310,
+              "promotionRestrictions": {},
+              "earnLimitedToSpecificAudience": false,
+              "customFieldValues": {},
+              "customerActivationRequired": false,
+              "mode": "DISCOUNT",
+              "maxIssuancePerCustomer": 1,
+              "isStackable": false
+          },
+          {
+              "id": "68d24bfe3c187b563250cda6",
+              "name": "Buy 1 get 1 offer Fossil Analog Watch",
+              "orgId": 100458,
+              "priority": 0,
+              "active": true,
+              "messageLabel": "Buy 1 get 1 offer Fossil Analog Watch",
+              "type": "POS",
+              "condition": {
+                  "type": "PRODUCT",
+                  "productCondition": {
+                      "criteriaList": [
+                          {
+                              "entity": "ATTRIBUTE",
+                              "operator": "IN",
+                              "values": [
+                                  "Analog watch"
+                              ],
+                              "attributeName": "Sub_category"
+                          }
+                      ],
+                      "kpi": "QUANTITY",
+                      "value": "1.000000",
+                      "operator": "EQUALS"
+                  }
+              },
+              "action": {
+                  "type": "PER_UNIT",
+                  "perUnitAction": {
+                      "rewardAction": {
+                          "type": "FREE_PRODUCT",
+                          "freeProductAction": {
+                              "productBasedCondition": {
+                                  "type": "PRODUCT",
+                                  "productCondition": {
+                                      "criteriaList": [
+                                          {
+                                              "entity": "ATTRIBUTE",
+                                              "operator": "IN",
+                                              "values": [
+                                                  "Analog watch"
+                                              ],
+                                              "attributeName": "Sub_category"
+                                          }
+                                      ],
+                                      "kpi": "NONE",
+                                      "value": "0.000000",
+                                      "operator": "NONE"
+                                  }
+                              },
+                              "includeItemsFromConditionSet": false
+                          }
+                      },
+                      "perUnitKPI": "QUANTITY",
+                      "perUnitDivider": "1.000000",
+                      "includeItemsFromConditionSet": false
+                  }
+              },
+              "createdBy": 75067382,
+              "createdOn": 1758612478136,
+              "createdOnISO": "2025-09-23T07:27:58Z",
+              "lastUpdatedBy": 75067382,
+              "lastUpdatedOn": 1758612493859,
+              "lastUpdatedOnISO": "2025-09-23T07:28:13Z",
+              "startDate": 1758600000000,
+              "startDateISO": "2025-09-23T04:00:00Z",
+              "endDate": 1764565199999,
+              "endDateISO": "2025-12-01T04:59:59Z",
+              "campaignId": 289310,
+              "promotionRestrictions": {},
+              "earnLimitedToSpecificAudience": false,
+              "customFieldValues": {},
+              "customerActivationRequired": false,
+              "mode": "DISCOUNT",
+              "maxIssuancePerCustomer": 1,
+              "isStackable": false
+          },
+          {
+              "id": "68e64111f398ae3dc88067c7",
+              "name": "B1G1",
+              "orgId": 100458,
+              "priority": 0,
+              "active": true,
+              "messageLabel": "B1G1",
+              "type": "POS",
+              "condition": {
+                  "type": "PRODUCT",
+                  "productCondition": {
+                      "criteriaList": [
+                          {
+                              "entity": "SKU",
+                              "operator": "IN",
+                              "values": [
+                                  "NOSJJ901036301"
+                              ]
+                          }
+                      ],
+                      "kpi": "QUANTITY",
+                      "value": "2.000000",
+                      "operator": "EQUALS"
+                  }
+              },
+              "action": {
+                  "type": "PER_UNIT",
+                  "perUnitAction": {
+                      "rewardAction": {
+                          "type": "PRODUCT_BASED",
+                          "productBasedAction": {
+                              "productBasedCondition": {
+                                  "type": "PRODUCT",
+                                  "productCondition": {
+                                      "criteriaList": [
+                                          {
+                                              "entity": "SKU",
+                                              "operator": "IN",
+                                              "values": [
+                                                  "NOSJJ901036301"
+                                              ]
+                                          }
+                                      ],
+                                      "kpi": "NONE",
+                                      "value": "0.000000",
+                                      "operator": "NONE"
+                                  }
+                              },
+                              "type": "PERCENTAGE",
+                              "value": "100.000000",
+                              "includeItemsFromConditionSet": false
+                          }
+                      },
+                      "perUnitKPI": "QUANTITY",
+                      "perUnitDivider": "1.000000",
+                      "includeItemsFromConditionSet": false
+                  }
+              },
+              "createdBy": 75067382,
+              "createdOn": 1759920401126,
+              "createdOnISO": "2025-10-08T10:46:41Z",
+              "lastUpdatedBy": 75067382,
+              "lastUpdatedOn": 1759920472222,
+              "lastUpdatedOnISO": "2025-10-08T10:47:52Z",
+              "startDate": 1759896000000,
+              "startDateISO": "2025-10-08T04:00:00Z",
+              "endDate": 1764565199999,
+              "endDateISO": "2025-12-01T04:59:59Z",
+              "campaignId": 280989,
+              "promotionRestrictions": {},
+              "earnLimitedToSpecificAudience": false,
+              "customFieldValues": {},
+              "customerActivationRequired": false,
+              "mode": "DISCOUNT",
+              "maxIssuancePerCustomer": 1,
+              "isStackable": false
+          },
+          {
+              "id": "68ecd86c884afa4f9e37396c",
+              "name": "Laptop + Accessory Bundle Deal",
+              "orgId": 100458,
+              "priority": 5,
+              "active": true,
+              "messageLabel": "Buy a Laptop, Get 50% Off a Mouse & Keyboard!",
+              "type": "POS",
+              "condition": {
+                  "type": "PRODUCT",
+                  "productCondition": {
+                      "criteriaList": [
+                          {
+                              "entity": "CATEGORY",
+                              "operator": "IN",
+                              "values": [
+                                  "Laptops"
+                              ]
+                          }
+                      ],
+                      "kpi": "QUANTITY",
+                      "value": "1.000000",
+                      "operator": "GREATER_THAN_OR_EQUAL"
+                  }
+              },
+              "action": {
+                  "type": "PRODUCT_BASED",
+                  "productBasedAction": {
+                      "productBasedCondition": {
+                          "type": "COMBO_PRODUCT",
+                          "comboProductCondition": {
+                              "productConditions": [
+                                  {
+                                      "criteriaList": [
+                                          {
+                                              "entity": "CATEGORY",
+                                              "operator": "IN",
+                                              "values": [
+                                                  "Mice"
+                                              ]
+                                          }
+                                      ],
+                                      "kpi": "QUANTITY",
+                                      "value": "1.000000",
+                                      "operator": "EQUALS"
+                                  },
+                                  {
+                                      "criteriaList": [
+                                          {
+                                              "entity": "CATEGORY",
+                                              "operator": "IN",
+                                              "values": [
+                                                  "Keyboards"
+                                              ]
+                                          }
+                                      ],
+                                      "kpi": "QUANTITY",
+                                      "value": "1.000000",
+                                      "operator": "EQUALS"
+                                  }
+                              ]
+                          }
+                      },
+                      "type": "PERCENTAGE",
+                      "value": "50.000000",
+                      "includeItemsFromConditionSet": false
+                  }
+              },
+              "createdBy": 75189943,
+              "createdOn": 1760352364376,
+              "createdOnISO": "2025-10-13T10:46:04Z",
+              "lastUpdatedBy": 75189943,
+              "lastUpdatedOn": 1760352364376,
+              "lastUpdatedOnISO": "2025-10-13T10:46:04Z",
+              "startDate": 1760332800000,
+              "startDateISO": "2025-10-13T05:20:00Z",
+              "endDate": 1792031999000,
+              "endDateISO": "2026-10-15T02:39:59Z",
+              "campaignId": 286039,
+              "earnLimitedToSpecificAudience": false,
+              "mode": "DISCOUNT",
+              "maxIssuancePerCustomer": 1,
+              "isStackable": false
+          },
+          {
+              "id": "68ecd97345de88106234b5e7",
+              "name": "25 Percent Off First Two Snacks",
+              "orgId": 100458,
+              "priority": 1,
+              "active": true,
+              "messageLabel": "25% Off the first two snacks you buy!",
+              "type": "POS",
+              "condition": {
+                  "type": "PRODUCT",
+                  "productCondition": {
+                      "criteriaList": [
+                          {
+                              "entity": "CATEGORY",
+                              "operator": "IN",
+                              "values": [
+                                  "Snacks"
+                              ]
+                          }
+                      ],
+                      "kpi": "QUANTITY",
+                      "value": "1.000000",
+                      "operator": "GREATER_THAN_OR_EQUAL"
+                  }
+              },
+              "action": {
+                  "type": "PRODUCT_BASED",
+                  "productBasedAction": {
+                      "productBasedCondition": {
+                          "type": "PRODUCT",
+                          "productCondition": {
+                              "criteriaList": [
+                                  {
+                                      "entity": "CATEGORY",
+                                      "operator": "IN",
+                                      "values": [
+                                          "Snacks"
+                                      ]
+                                  }
+                              ],
+                              "kpi": "QUANTITY",
+                              "value": "2.000000",
+                              "operator": "EQUALS"
+                          }
+                      },
+                      "type": "PERCENTAGE",
+                      "value": "25.000000",
+                      "includeItemsFromConditionSet": false
+                  }
+              },
+              "createdBy": 75189943,
+              "createdOn": 1760352627102,
+              "createdOnISO": "2025-10-13T10:50:27Z",
+              "lastUpdatedBy": 75189943,
+              "lastUpdatedOn": 1760352627102,
+              "lastUpdatedOnISO": "2025-10-13T10:50:27Z",
+              "startDate": 1759363200000,
+              "startDateISO": "2025-10-02T00:00:00Z",
+              "endDate": 1790985600000,
+              "endDateISO": "2026-10-03T00:00:00Z",
+              "campaignId": 286039,
+              "promotionRestrictions": {},
+              "earnLimitedToSpecificAudience": false,
+              "customFieldValues": {},
+              "customerActivationRequired": false,
+              "mode": "DISCOUNT",
+              "maxIssuancePerCustomer": 10,
+              "isStackable": false
+          },
+          {
+              "id": "68ecda3445de88106234b630",
+              "name": "Buy a Drink, Get 25% Off Two Snacks",
+              "orgId": 100458,
+              "priority": 1,
+              "active": true,
+              "messageLabel": "Buy a Drink, Get 25% Off Up to Two Snacks!",
+              "type": "POS",
+              "condition": {
+                  "type": "PRODUCT",
+                  "productCondition": {
+                      "criteriaList": [
+                          {
+                              "entity": "CATEGORY",
+                              "operator": "IN",
+                              "values": [
+                                  "Drinks"
+                              ]
+                          }
+                      ],
+                      "kpi": "QUANTITY",
+                      "value": "1.000000",
+                      "operator": "GREATER_THAN_OR_EQUAL"
+                  }
+              },
+              "action": {
+                  "type": "PER_UNIT",
+                  "perUnitAction": {
+                      "rewardAction": {
+                          "type": "PRODUCT_BASED",
+                          "productBasedAction": {
+                              "productBasedCondition": {
+                                  "type": "PRODUCT",
+                                  "productCondition": {
+                                      "criteriaList": [
+                                          {
+                                              "entity": "CATEGORY",
+                                              "operator": "IN",
+                                              "values": [
+                                                  "Snacks"
+                                              ]
+                                          }
+                                      ],
+                                      "kpi": "QUANTITY",
+                                      "value": "2.000000",
+                                      "operator": "EQUALS"
+                                  }
+                              },
+                              "type": "PERCENTAGE",
+                              "value": "25.000000",
+                              "includeItemsFromConditionSet": false
+                          }
+                      },
+                      "perUnitKPI": "QUANTITY",
+                      "perUnitDivider": "1.000000",
+                      "includeItemsFromConditionSet": false
+                  }
+              },
+              "createdBy": 75189943,
+              "createdOn": 1760352820247,
+              "createdOnISO": "2025-10-13T10:53:40Z",
+              "lastUpdatedBy": 75189943,
+              "lastUpdatedOn": 1760352820247,
+              "lastUpdatedOnISO": "2025-10-13T10:53:40Z",
+              "startDate": 1759363200000,
+              "startDateISO": "2025-10-02T00:00:00Z",
+              "endDate": 1790985600000,
+              "endDateISO": "2026-10-03T00:00:00Z",
+              "campaignId": 286039,
+              "promotionRestrictions": {},
+              "earnLimitedToSpecificAudience": false,
+              "customFieldValues": {},
+              "customerActivationRequired": false,
+              "mode": "DISCOUNT",
+              "maxIssuancePerCustomer": 10,
+              "isStackable": false
+          },
+          {
+              "id": "68ecdbac884afa4f9e3739ee",
+              "name": "Buy 2 Shirts, Get a Tie Free",
+              "orgId": 100458,
+              "priority": 1,
+              "active": true,
+              "messageLabel": "Free tie when you buy any two shirts!",
+              "type": "POS",
+              "condition": {
+                  "type": "PRODUCT",
+                  "productCondition": {
+                      "criteriaList": [
+                          {
+                              "entity": "CATEGORY",
+                              "operator": "IN",
+                              "values": [
+                                  "Shirts"
+                              ]
+                          }
+                      ],
+                      "kpi": "QUANTITY",
+                      "value": "2.000000",
+                      "operator": "GREATER_THAN_OR_EQUAL"
+                  }
+              },
+              "action": {
+                  "type": "PER_UNIT",
+                  "perUnitAction": {
+                      "rewardAction": {
+                          "type": "FREE_PRODUCT",
+                          "freeProductAction": {
+                              "productBasedCondition": {
+                                  "type": "PRODUCT",
+                                  "productCondition": {
+                                      "criteriaList": [
+                                          {
+                                              "entity": "CATEGORY",
+                                              "operator": "IN",
+                                              "values": [
+                                                  "Ties"
+                                              ]
+                                          }
+                                      ],
+                                      "kpi": "QUANTITY",
+                                      "value": "1.000000",
+                                      "operator": "EQUALS"
+                                  }
+                              },
+                              "includeItemsFromConditionSet": false
+                          }
+                      },
+                      "perUnitKPI": "QUANTITY",
+                      "perUnitDivider": "2.000000",
+                      "includeItemsFromConditionSet": false
+                  }
+              },
+              "createdBy": 75189943,
+              "createdOn": 1760353196522,
+              "createdOnISO": "2025-10-13T10:59:56Z",
+              "lastUpdatedBy": 75189943,
+              "lastUpdatedOn": 1760353196522,
+              "lastUpdatedOnISO": "2025-10-13T10:59:56Z",
+              "startDate": 1759363200000,
+              "startDateISO": "2025-10-02T00:00:00Z",
+              "endDate": 1790985600000,
+              "endDateISO": "2026-10-03T00:00:00Z",
+              "campaignId": 286039,
+              "promotionRestrictions": {},
+              "earnLimitedToSpecificAudience": false,
+              "customFieldValues": {},
+              "customerActivationRequired": false,
+              "mode": "DISCOUNT",
+              "maxIssuancePerCustomer": 10,
+              "isStackable": false
+          },
+          {
+              "id": "68ecdce445de88106234b687",
+              "name": "Free Pro Gaming Mouse with Premium Laptop",
+              "orgId": 100458,
+              "priority": 1,
+              "active": true,
+              "messageLabel": "Free Pro Gaming Mouse with laptops over $1000!",
+              "type": "POS",
+              "condition": {
+                  "type": "PRODUCT",
+                  "productCondition": {
+                      "criteriaList": [
+                          {
+                              "entity": "CATEGORY",
+                              "operator": "IN",
+                              "values": [
+                                  "Laptops"
+                              ]
+                          }
+                      ],
+                      "kpi": "AMOUNT",
+                      "value": "1000.000000",
+                      "operator": "GREATER_THAN_OR_EQUAL"
+                  }
+              },
+              "action": {
+                  "type": "FREE_PRODUCT",
+                  "freeProductAction": {
+                      "productBasedCondition": {
+                          "type": "PRODUCT",
+                          "productCondition": {
+                              "criteriaList": [
+                                  {
+                                      "entity": "SKU",
+                                      "operator": "IN",
+                                      "values": [
+                                          "GM-PRO-001"
+                                      ]
+                                  }
+                              ],
+                              "kpi": "QUANTITY",
+                              "value": "1.000000",
+                              "operator": "EQUALS"
+                          }
+                      },
+                      "includeItemsFromConditionSet": false
+                  }
+              },
+              "createdBy": 75189943,
+              "createdOn": 1760353508004,
+              "createdOnISO": "2025-10-13T11:05:08Z",
+              "lastUpdatedBy": 75189943,
+              "lastUpdatedOn": 1760353508004,
+              "lastUpdatedOnISO": "2025-10-13T11:05:08Z",
+              "startDate": 1759363200000,
+              "startDateISO": "2025-10-02T00:00:00Z",
+              "endDate": 1790985600000,
+              "endDateISO": "2026-10-03T00:00:00Z",
+              "campaignId": 286039,
+              "promotionRestrictions": {},
+              "earnLimitedToSpecificAudience": false,
+              "customFieldValues": {},
+              "customerActivationRequired": false,
+              "mode": "DISCOUNT",
+              "maxIssuancePerCustomer": 10,
+              "isStackable": false
+          },
+          {
+              "id": "68eceaa345de88106234b6d4",
+              "name": "Work From Home Bundle - 50% Off",
+              "orgId": 100458,
+              "priority": 0,
+              "active": true,
+              "messageLabel": "Get 50% off when you buy a Laptop, Mouse, and Keyboard together!",
+              "type": "POS",
+              "condition": {
+                  "type": "COMBO_PRODUCT",
+                  "comboProductCondition": {
+                      "productConditions": [
+                          {
+                              "criteriaList": [
+                                  {
+                                      "entity": "CATEGORY",
+                                      "operator": "IN",
+                                      "values": [
+                                          "Laptops"
+                                      ]
+                                  }
+                              ],
+                              "kpi": "QUANTITY",
+                              "value": "1.000000",
+                              "operator": "GREATER_THAN_OR_EQUAL"
+                          },
+                          {
+                              "criteriaList": [
+                                  {
+                                      "entity": "CATEGORY",
+                                      "operator": "IN",
+                                      "values": [
+                                          "Mice"
+                                      ]
+                                  }
+                              ],
+                              "kpi": "QUANTITY",
+                              "value": "1.000000",
+                              "operator": "GREATER_THAN_OR_EQUAL"
+                          },
+                          {
+                              "criteriaList": [
+                                  {
+                                      "entity": "CATEGORY",
+                                      "operator": "IN",
+                                      "values": [
+                                          "Keyboards"
+                                      ]
+                                  }
+                              ],
+                              "kpi": "QUANTITY",
+                              "value": "1.000000",
+                              "operator": "GREATER_THAN_OR_EQUAL"
+                          }
+                      ]
+                  }
+              },
+              "action": {
+                  "type": "PRODUCT_BASED",
+                  "productBasedAction": {
+                      "type": "PERCENTAGE",
+                      "value": "50.000000",
+                      "includeItemsFromConditionSet": true
+                  }
+              },
+              "createdBy": 75189943,
+              "createdOn": 1760357027434,
+              "createdOnISO": "2025-10-13T12:03:47Z",
+              "lastUpdatedBy": 75189943,
+              "lastUpdatedOn": 1760357027434,
+              "lastUpdatedOnISO": "2025-10-13T12:03:47Z",
+              "startDate": 1759363200000,
+              "startDateISO": "2025-10-02T00:00:00Z",
+              "endDate": 1790985600000,
+              "endDateISO": "2026-10-03T00:00:00Z",
+              "campaignId": 286039,
+              "promotionRestrictions": {},
+              "earnLimitedToSpecificAudience": false,
+              "customFieldValues": {},
+              "customerActivationRequired": false,
+              "mode": "DISCOUNT",
+              "maxIssuancePerCustomer": 10,
+              "isStackable": false
+          },
+          {
+              "id": "68ecf21c45de88106234b715",
+              "name": "Ultimate Workstation Bundle - $1200",
+              "orgId": 100458,
+              "priority": 1,
+              "active": true,
+              "messageLabel": "Get a Premium Laptop, Pro Mouse, and Mechanical Keyboard for just $1200!",
+              "type": "POS",
+              "condition": {
+                  "type": "COMBO_PRODUCT",
+                  "comboProductCondition": {
+                      "productConditions": [
+                          {
+                              "criteriaList": [
+                                  {
+                                      "entity": "CATEGORY",
+                                      "operator": "IN",
+                                      "values": [
+                                          "Laptops"
+                                      ]
+                                  }
+                              ],
+                              "kpi": "AMOUNT",
+                              "value": "1000.000000",
+                              "operator": "GREATER_THAN_OR_EQUAL"
+                          },
+                          {
+                              "criteriaList": [
+                                  {
+                                      "entity": "SKU",
+                                      "operator": "IN",
+                                      "values": [
+                                          "GM-PRO-001"
+                                      ]
+                                  }
+                              ],
+                              "kpi": "QUANTITY",
+                              "value": "1.000000",
+                              "operator": "GREATER_THAN_OR_EQUAL"
+                          },
+                          {
+                              "criteriaList": [
+                                  {
+                                      "entity": "CATEGORY",
+                                      "operator": "IN",
+                                      "values": [
+                                          "Mechanical Keyboards"
+                                      ]
+                                  }
+                              ],
+                              "kpi": "QUANTITY",
+                              "value": "1.000000",
+                              "operator": "GREATER_THAN_OR_EQUAL"
+                          }
+                      ]
+                  }
+              },
+              "action": {
+                  "type": "FIXED_PRICE",
+                  "fixedPriceAction": {
+                      "productBasedCondition": {
+                          "type": "COMBO_PRODUCT",
+                          "comboProductCondition": {
+                              "productConditions": [
+                                  {
+                                      "criteriaList": [
+                                          {
+                                              "entity": "CATEGORY",
+                                              "operator": "IN",
+                                              "values": [
+                                                  "Laptops"
+                                              ]
+                                          }
+                                      ],
+                                      "kpi": "QUANTITY",
+                                      "value": "1.000000",
+                                      "operator": "EQUALS"
+                                  },
+                                  {
+                                      "criteriaList": [
+                                          {
+                                              "entity": "SKU",
+                                              "operator": "IN",
+                                              "values": [
+                                                  "GM-PRO-001"
+                                              ]
+                                          }
+                                      ],
+                                      "kpi": "QUANTITY",
+                                      "value": "1.000000",
+                                      "operator": "EQUALS"
+                                  },
+                                  {
+                                      "criteriaList": [
+                                          {
+                                              "entity": "CATEGORY",
+                                              "operator": "IN",
+                                              "values": [
+                                                  "Mechanical Keyboards"
+                                              ]
+                                          }
+                                      ],
+                                      "kpi": "QUANTITY",
+                                      "value": "1.000000",
+                                      "operator": "EQUALS"
+                                  }
+                              ]
+                          }
+                      },
+                      "value": "1200.000000",
+                      "includeItemsFromConditionSet": true
+                  }
+              },
+              "createdBy": 75189943,
+              "createdOn": 1760358940392,
+              "createdOnISO": "2025-10-13T12:35:40Z",
+              "lastUpdatedBy": 75189943,
+              "lastUpdatedOn": 1760358940392,
+              "lastUpdatedOnISO": "2025-10-13T12:35:40Z",
+              "startDate": 1759363200000,
+              "startDateISO": "2025-10-02T00:00:00Z",
+              "endDate": 1790985600000,
+              "endDateISO": "2026-10-03T00:00:00Z",
+              "campaignId": 286039,
+              "promotionRestrictions": {},
+              "earnLimitedToSpecificAudience": false,
+              "customFieldValues": {},
+              "customerActivationRequired": false,
+              "mode": "DISCOUNT",
+              "maxIssuancePerCustomer": 10,
+              "isStackable": false
+          },
+          {
+              "id": "68ed361b45de88106234b8b3",
+              "name": "25% Off Maggi with $10 Fuel Purchase",
+              "orgId": 100458,
+              "priority": 10,
+              "active": true,
+              "messageLabel": "Get 25% off Maggi when you buy $10 of fuel!",
+              "type": "POS",
+              "condition": {
+                  "type": "PRODUCT",
+                  "productCondition": {
+                      "criteriaList": [
+                          {
+                              "entity": "CATEGORY",
+                              "operator": "IN",
+                              "values": [
+                                  "Fuel"
+                              ]
+                          }
+                      ],
+                      "kpi": "AMOUNT",
+                      "value": "10.000000",
+                      "operator": "GREATER_THAN_OR_EQUAL"
+                  }
+              },
+              "action": {
+                  "type": "PRODUCT_BASED",
+                  "productBasedAction": {
+                      "productBasedCondition": {
+                          "type": "PRODUCT",
+                          "productCondition": {
+                              "criteriaList": [
+                                  {
+                                      "entity": "SKU",
+                                      "operator": "IN",
+                                      "values": [
+                                          "MAGGI-001"
+                                      ]
+                                  }
+                              ],
+                              "kpi": "NONE",
+                              "value": "0.000000",
+                              "operator": "NONE"
+                          }
+                      },
+                      "type": "PERCENTAGE",
+                      "value": "25.000000",
+                      "includeItemsFromConditionSet": false
+                  }
+              },
+              "createdBy": 75189943,
+              "createdOn": 1760376347590,
+              "createdOnISO": "2025-10-13T17:25:47Z",
+              "lastUpdatedBy": 75189943,
+              "lastUpdatedOn": 1760376347590,
+              "lastUpdatedOnISO": "2025-10-13T17:25:47Z",
+              "startDate": 1760418600000,
+              "startDateISO": "2025-10-14T05:10:00Z",
+              "endDate": 1792031399000,
+              "endDateISO": "2026-10-15T02:29:59Z",
+              "campaignId": 286039,
+              "earnLimitedToSpecificAudience": false,
+              "mode": "DISCOUNT",
+              "maxIssuancePerCustomer": 1,
+              "isStackable": false
+          },
+          {
+              "id": "68f205c14a314550c4b43231",
+              "name": "qwdqe",
+              "orgId": 100458,
+              "priority": 0,
+              "active": true,
+              "messageLabel": "wefddw",
+              "type": "POS",
+              "condition": {
+                  "type": "TENDER",
+                  "tenderCondition": {
+                      "tenderModes": [
+                          {
+                              "type": "PAYMENT_VOUCHER",
+                              "identifiers": [
+                                  "68f2059431d91c625a8d5a2b"
+                              ]
+                          }
+                      ]
+                  }
+              },
+              "action": {
+                  "type": "TENDER",
+                  "tenderBasedAction": {
+                      "type": "ABSOLUTE",
+                      "value": "200.000000"
+                  }
+              },
+              "createdBy": 75184878,
+              "createdOn": 1760691649450,
+              "createdOnISO": "2025-10-17T09:00:49Z",
+              "lastUpdatedBy": 75184878,
+              "lastUpdatedOn": 1760691649450,
+              "lastUpdatedOnISO": "2025-10-17T09:00:49Z",
+              "startDate": 1760673600000,
+              "startDateISO": "2025-10-17T04:00:00Z",
+              "endDate": 1763096399999,
+              "endDateISO": "2025-11-14T04:59:59Z",
+              "campaignId": 292697,
+              "promotionRestrictions": {},
+              "earnLimitedToSpecificAudience": false,
+              "customFieldValues": {},
+              "customerActivationRequired": false,
+              "mode": "DISCOUNT",
+              "maxIssuancePerCustomer": 1,
+              "isStackable": false
+          },
+          {
+              "id": "68f207e731d91c625a8d5a4c",
+              "name": "tr",
+              "orgId": 100458,
+              "priority": 0,
+              "active": true,
+              "messageLabel": "ytf",
+              "type": "POS",
+              "condition": {
+                  "type": "TENDER",
+                  "tenderCondition": {
+                      "tenderModes": [
+                          {
+                              "type": "PAYMENT_VOUCHER",
+                              "identifiers": [
+                                  "68f2059431d91c625a8d5a2b"
+                              ]
+                          }
+                      ]
+                  }
+              },
+              "action": {
+                  "type": "TENDER",
+                  "tenderBasedAction": {
+                      "type": "ABSOLUTE",
+                      "value": "500.000000"
+                  }
+              },
+              "createdBy": 75184878,
+              "createdOn": 1760692198696,
+              "createdOnISO": "2025-10-17T09:09:58Z",
+              "lastUpdatedBy": 75184878,
+              "lastUpdatedOn": 1760693561244,
+              "lastUpdatedOnISO": "2025-10-17T09:32:41Z",
+              "startDate": 1760673600000,
+              "startDateISO": "2025-10-17T04:00:00Z",
+              "endDate": 1762923599999,
+              "endDateISO": "2025-11-12T04:59:59Z",
+              "campaignId": 292697,
+              "promotionRestrictions": {},
+              "earnLimitedToSpecificAudience": false,
+              "customFieldValues": {},
+              "customerActivationRequired": false,
+              "mode": "DISCOUNT",
+              "maxIssuancePerCustomer": 1,
+              "isStackable": false
+          },
+          {
+              "id": "68f513e34a314550c4b449e9",
+              "name": "efge",
+              "orgId": 100458,
+              "priority": 0,
+              "active": true,
+              "messageLabel": "egre",
+              "type": "POS",
+              "condition": {
+                  "type": "TENDER",
+                  "tenderCondition": {
+                      "tenderModes": [
+                          {
+                              "type": "CARD",
+                              "identifiers": [
+                                  "Credit Card",
+                                  "Charge Card",
+                                  "Debit Card"
+                              ]
+                          }
+                      ],
+                      "condition": {
+                          "type": "CART",
+                          "cartCondition": {
+                              "kpi": "SUBTOTAL",
+                              "operator": "EQUALS",
+                              "value": "100.000000"
+                          }
+                      }
+                  }
+              },
+              "action": {
+                  "type": "TENDER",
+                  "tenderBasedAction": {
+                      "type": "ABSOLUTE",
+                      "value": "100.000000"
+                  }
+              },
+              "createdBy": 75184878,
+              "createdOn": 1760891875234,
+              "createdOnISO": "2025-10-19T16:37:55Z",
+              "lastUpdatedBy": 75184878,
+              "lastUpdatedOn": 1760893511579,
+              "lastUpdatedOnISO": "2025-10-19T17:05:11Z",
+              "startDate": 1761105600000,
+              "startDateISO": "2025-10-22T04:00:00Z",
+              "endDate": 1764219599999,
+              "endDateISO": "2025-11-27T04:59:59Z",
+              "campaignId": 292697,
+              "promotionRestrictions": {},
+              "earnLimitedToSpecificAudience": false,
+              "customFieldValues": {},
+              "customerActivationRequired": false,
+              "mode": "DISCOUNT",
+              "maxIssuancePerCustomer": 1,
+              "isStackable": false
+          },
+          {
+              "id": "68f51c0b31d91c625a8d7035",
+              "name": "wyugrf",
+              "orgId": 100458,
+              "priority": 0,
+              "active": true,
+              "messageLabel": "dfs",
+              "type": "POS",
+              "condition": {
+                  "type": "TENDER",
+                  "tenderCondition": {
+                      "tenderModes": [
+                          {
+                              "type": "PAYMENT_VOUCHER",
+                              "identifiers": [
+                                  "68f2059431d91c625a8d5a2b"
+                              ]
+                          }
+                      ]
+                  }
+              },
+              "action": {
+                  "type": "TENDER",
+                  "tenderBasedAction": {
+                      "type": "ABSOLUTE",
+                      "value": "200.000000"
+                  }
+              },
+              "createdBy": 75184878,
+              "createdOn": 1760893963742,
+              "createdOnISO": "2025-10-19T17:12:43Z",
+              "lastUpdatedBy": 75184878,
+              "lastUpdatedOn": 1760893963742,
+              "lastUpdatedOnISO": "2025-10-19T17:12:43Z",
+              "startDate": 1761019200000,
+              "startDateISO": "2025-10-21T04:00:00Z",
+              "endDate": 1763528399999,
+              "endDateISO": "2025-11-19T04:59:59Z",
+              "campaignId": 292697,
+              "promotionRestrictions": {},
+              "earnLimitedToSpecificAudience": false,
+              "customFieldValues": {},
+              "customerActivationRequired": false,
+              "mode": "DISCOUNT",
+              "maxIssuancePerCustomer": 1,
+              "isStackable": false
+          },
+          {
+              "id": "68f51c6631d91c625a8d7036",
+              "name": "efwf",
+              "orgId": 100458,
+              "priority": 0,
+              "active": true,
+              "messageLabel": "sfvds",
+              "type": "POS",
+              "condition": {
+                  "type": "TENDER",
+                  "tenderCondition": {
+                      "tenderModes": [
+                          {
+                              "type": "CARD",
+                              "identifiers": [
+                                  "Points"
+                              ]
+                          }
+                      ],
+                      "condition": {
+                          "type": "CART",
+                          "cartCondition": {
+                              "kpi": "SUBTOTAL",
+                              "operator": "GREATER_THAN",
+                              "value": "20.000000"
+                          }
+                      }
+                  }
+              },
+              "action": {
+                  "type": "TENDER",
+                  "tenderBasedAction": {
+                      "type": "ABSOLUTE",
+                      "value": "100.000000"
+                  }
+              },
+              "createdBy": 75184878,
+              "createdOn": 1760894054600,
+              "createdOnISO": "2025-10-19T17:14:14Z",
+              "lastUpdatedBy": 75184878,
+              "lastUpdatedOn": 1760894054600,
+              "lastUpdatedOnISO": "2025-10-19T17:14:14Z",
+              "startDate": 1761192000000,
+              "startDateISO": "2025-10-23T04:00:00Z",
+              "endDate": 1762837199999,
+              "endDateISO": "2025-11-11T04:59:59Z",
+              "campaignId": 292697,
+              "promotionRestrictions": {},
+              "earnLimitedToSpecificAudience": false,
+              "customFieldValues": {},
+              "customerActivationRequired": false,
+              "mode": "DISCOUNT",
+              "maxIssuancePerCustomer": 1,
+              "isStackable": false
+          },
+          {
+              "id": "68f51dfc31d91c625a8d7037",
+              "name": "rfsegff",
+              "orgId": 100458,
+              "priority": 0,
+              "active": true,
+              "messageLabel": "afvadf",
+              "type": "POS",
+              "condition": {
+                  "type": "TENDER",
+                  "tenderCondition": {
+                      "tenderModes": [
+                          {
+                              "type": "PAYMENT_VOUCHER",
+                              "identifiers": [
+                                  "68f2059431d91c625a8d5a2b"
+                              ]
+                          }
+                      ]
+                  }
+              },
+              "action": {
+                  "type": "TENDER",
+                  "tenderBasedAction": {
+                      "type": "ABSOLUTE",
+                      "value": "200.000000"
+                  }
+              },
+              "createdBy": 75184878,
+              "createdOn": 1760894460579,
+              "createdOnISO": "2025-10-19T17:21:00Z",
+              "lastUpdatedBy": 75184878,
+              "lastUpdatedOn": 1760894460579,
+              "lastUpdatedOnISO": "2025-10-19T17:21:00Z",
+              "startDate": 1760846400000,
+              "startDateISO": "2025-10-19T04:00:00Z",
+              "endDate": 1764305999999,
+              "endDateISO": "2025-11-28T04:59:59Z",
+              "campaignId": 292697,
+              "promotionRestrictions": {},
+              "earnLimitedToSpecificAudience": false,
+              "customFieldValues": {},
+              "customerActivationRequired": false,
+              "mode": "DISCOUNT",
+              "maxIssuancePerCustomer": 1,
+              "isStackable": false
+          },
+          {
+              "id": "68f59b594a314550c4b44d48",
+              "name": "25 Percent Off Snacks",
+              "orgId": 100458,
+              "priority": 1,
+              "active": true,
+              "messageLabel": "25% Off All Snacks!",
+              "type": "POS",
+              "condition": {
+                  "type": "CART",
+                  "cartCondition": {
+                      "kpi": "ITEMCOUNT",
+                      "operator": "GREATER_THAN_OR_EQUAL",
+                      "value": "1.000000"
+                  }
+              },
+              "action": {
+                  "type": "PRODUCT_BASED",
+                  "productBasedAction": {
+                      "productBasedCondition": {
+                          "type": "PRODUCT",
+                          "productCondition": {
+                              "criteriaList": [
+                                  {
+                                      "entity": "CATEGORY",
+                                      "operator": "IN",
+                                      "values": [
+                                          "Snacks"
+                                      ]
+                                  }
+                              ],
+                              "kpi": "NONE",
+                              "value": "0.000000",
+                              "operator": "NONE"
+                          }
+                      },
+                      "type": "PERCENTAGE",
+                      "value": "25.000000",
+                      "includeItemsFromConditionSet": false
+                  }
+              },
+              "createdBy": 75189943,
+              "createdOn": 1760926553591,
+              "createdOnISO": "2025-10-20T02:15:53Z",
+              "lastUpdatedBy": 75189943,
+              "lastUpdatedOn": 1760926553591,
+              "lastUpdatedOnISO": "2025-10-20T02:15:53Z",
+              "startDate": 1759363200000,
+              "startDateISO": "2025-10-02T00:00:00Z",
+              "endDate": 1790985600000,
+              "endDateISO": "2026-10-03T00:00:00Z",
+              "campaignId": 293076,
+              "promotionRestrictions": {},
+              "earnLimitedToSpecificAudience": false,
+              "customFieldValues": {},
+              "customerActivationRequired": false,
+              "mode": "DISCOUNT",
+              "maxIssuancePerCustomer": 10,
+              "isStackable": false
+          },
+          {
+              "id": "68f7d3db31d91c625a8d82ca",
+              "name": "Weekday Happy Hour Test 4",
+              "orgId": 100458,
+              "priority": 0,
+              "active": true,
+              "type": "POS",
+              "timeCriteria": {
+                  "startTime": [
+                      16,
+                      0
+                  ],
+                  "durationInHours": 2,
+                  "repeatFrequency": "WEEKS",
+                  "weeklyValues": [
+                      "MONDAY",
+                      "TUESDAY",
+                      "WEDNESDAY",
+                      "THURSDAY",
+                      "FRIDAY"
+                  ]
+              },
+              "condition": {
+                  "type": "PRODUCT",
+                  "productCondition": {
+                      "criteriaList": [
+                          {
+                              "entity": "CATEGORY",
+                              "operator": "IN",
+                              "values": [
+                                  "Beverages"
+                              ]
+                          }
+                      ],
+                      "kpi": "QUANTITY",
+                      "value": "1.000000",
+                      "operator": "GREATER_THAN_OR_EQUAL"
+                  }
+              },
+              "action": {
+                  "type": "PRODUCT_BASED",
+                  "productBasedAction": {
+                      "type": "PERCENTAGE",
+                      "value": "20.000000",
+                      "includeItemsFromConditionSet": true
+                  }
+              },
+              "createdBy": 75189943,
+              "createdOn": 1761072091362,
+              "createdOnISO": "2025-10-21T18:41:31Z",
+              "lastUpdatedBy": 75189943,
+              "lastUpdatedOn": 1761072091362,
+              "lastUpdatedOnISO": "2025-10-21T18:41:31Z",
+              "startDate": 1761019200000,
+              "startDateISO": "2025-10-21T04:00:00Z",
+              "endDate": 1764565199999,
+              "endDateISO": "2025-12-01T04:59:59Z",
+              "campaignId": 286039,
+              "earnLimitedToSpecificAudience": false,
+              "mode": "DISCOUNT",
+              "maxIssuancePerCustomer": 1,
+              "isStackable": false
+          }
+      ]
+  }
+  ```
+
+</CodeGroup>
 
 ## Response parameters
 
@@ -2223,5 +2231,3 @@ curl --location 'https://{Host}/api_gateway/v1/promotions/till/75197941' \
 | 500  | Internal server error. Retry the request after a short delay, and contact support if the error persists.                |
 | 704  | Invalid reward type passed. Provide a valid reward type as per API specification.                                       |
 | 711  | Error while saving promotion or could not get product details. Check input data and ensure product service is running.  |
-
-<br />

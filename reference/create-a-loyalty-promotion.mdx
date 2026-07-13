@@ -343,93 +343,97 @@ Use this API to create and configure loyalty promotions. This allows you to mana
 
 ## Example response
 
-```json
-{
-    "data": {
-        "metadata": {
-            "name": "Efd Activity Based Prom11",
-            "description": "Enrollment for all members, requires activity-based opt-in.",
-            "programId": "HiddenGemDefaultProgram_ID",
-            "orgId": 51174,
-            "startDate": "2025-11-27T05:30:00+05:30",
-            "endDate": "2025-12-28T05:29:59+05:30",
-            "timezoneName": "Asia/Kolkata",
-            "promotionType": "LOYALTY",
-            "status": "DRAFT",
-            "promoIdentifier": null,
-            "promotionId": 0,
-            "createdOn": "2025-10-21T20:43:08+05:30",
-            "lastModifiedOn": "2025-10-21T20:43:08+05:30",
-            "createdBy": 0,
-            "lastModifiedBy": 0,
-            "version": null,
-            "draftDetails": null,
-            "promotionMetadata": null,
-            "commonStrategies": null
-        },
-        "customerEnrolment": {
-            "enrolmentMethod": "TRANSACTION"
-        },
-        "activities":[
-            {
-                "type": "SINGLE",
-                "id": "activity_reward_trigger",
-                "name": "Main Reward Activity",
-                "commonCycleActionMapping":[
-                    {
-                        "cycle": "cycle_promo_period",
-                        "actions":[
-                            {
-                                "id": "action_award_points",
-                                "actionName": "AWARD_CURRENCY",
-                                "actionClass": "com.capillary.loyalty.engine.actor.promotion.actions.AwardCurrency",
-                                "mandatoryPropertiesValues": {
-                                    "POINTS_TO_AWARD": "100",
-                                    "CURRENCY_IDENTIFIER": "POINTS"
-                                }
-                            }
-                        ],
-                        "startDate": "2025-11-27",
-                        "endDate": "2025-12-27"
-                    }
-                ],
-                "event": "TransactionAdd",
-                "allCycles":[]
-            }
-        ],
-        "comments": null,
-        "parentId": null,
-        "version": 1,
-        "limits": [],
-        "liabilityOwnerSplitInfo":[],
-        "id": "68f7a304fd5b970d1efaf626",
-        "workflowMetadata": {
-            "enrolment": {
-                "basedOn": null,
-                "activities": null,
-                "audienceMapping": null,
-                "restrictions": null
-            },
-            "optin": {
-                "basedOn": "ACTIVITY",
-                "audienceMapping": null,
-                "activities":[
-                    {
-                        "type": "SINGLE",
-                        "id": "activity_optin_trigger",
-                        "name": "Opt-in Trigger Activity",
-                        "event": "TransactionAdd",
-                        "allCycles": []
-                    }
-                ],
-                "restrictions": null
-            }
-        }
-    },
-    "errors": null,
-    "warnings": null
-}
-```
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  {
+      "data": {
+          "metadata": {
+              "name": "Efd Activity Based Prom11",
+              "description": "Enrollment for all members, requires activity-based opt-in.",
+              "programId": "HiddenGemDefaultProgram_ID",
+              "orgId": 51174,
+              "startDate": "2025-11-27T05:30:00+05:30",
+              "endDate": "2025-12-28T05:29:59+05:30",
+              "timezoneName": "Asia/Kolkata",
+              "promotionType": "LOYALTY",
+              "status": "DRAFT",
+              "promoIdentifier": null,
+              "promotionId": 0,
+              "createdOn": "2025-10-21T20:43:08+05:30",
+              "lastModifiedOn": "2025-10-21T20:43:08+05:30",
+              "createdBy": 0,
+              "lastModifiedBy": 0,
+              "version": null,
+              "draftDetails": null,
+              "promotionMetadata": null,
+              "commonStrategies": null
+          },
+          "customerEnrolment": {
+              "enrolmentMethod": "TRANSACTION"
+          },
+          "activities":[
+              {
+                  "type": "SINGLE",
+                  "id": "activity_reward_trigger",
+                  "name": "Main Reward Activity",
+                  "commonCycleActionMapping":[
+                      {
+                          "cycle": "cycle_promo_period",
+                          "actions":[
+                              {
+                                  "id": "action_award_points",
+                                  "actionName": "AWARD_CURRENCY",
+                                  "actionClass": "com.capillary.loyalty.engine.actor.promotion.actions.AwardCurrency",
+                                  "mandatoryPropertiesValues": {
+                                      "POINTS_TO_AWARD": "100",
+                                      "CURRENCY_IDENTIFIER": "POINTS"
+                                  }
+                              }
+                          ],
+                          "startDate": "2025-11-27",
+                          "endDate": "2025-12-27"
+                      }
+                  ],
+                  "event": "TransactionAdd",
+                  "allCycles":[]
+              }
+          ],
+          "comments": null,
+          "parentId": null,
+          "version": 1,
+          "limits": [],
+          "liabilityOwnerSplitInfo":[],
+          "id": "68f7a304fd5b970d1efaf626",
+          "workflowMetadata": {
+              "enrolment": {
+                  "basedOn": null,
+                  "activities": null,
+                  "audienceMapping": null,
+                  "restrictions": null
+              },
+              "optin": {
+                  "basedOn": "ACTIVITY",
+                  "audienceMapping": null,
+                  "activities":[
+                      {
+                          "type": "SINGLE",
+                          "id": "activity_optin_trigger",
+                          "name": "Opt-in Trigger Activity",
+                          "event": "TransactionAdd",
+                          "allCycles": []
+                      }
+                  ],
+                  "restrictions": null
+              }
+          }
+      },
+      "errors": null,
+      "warnings": null
+  }
+  ```
+
+</CodeGroup>
 
 ## Response parameters
 
@@ -789,1462 +793,1526 @@ The `delegateActionClass` field inside `mandatoryPropertiesValues` specifies the
 
 ###### **Requirement:** StyleSavvy Boutique has configured a promotion named "StyleSavvy VIP Early Access-lock," active from November 10th to November 15th, 2025. This promotion is tagged internally as "Access: VIP" and "Event: EarlyBird". The condition is: if any customer makes a transaction during this period, the system will automatically apply this promotion. The promotion itself cannot be stacked or combined with other offers. The primary action triggered is the awarding of points. Still, these points will not count towards the customer's tier ranking, and they will follow the standard earning rules (meaning they cannot be redeemed immediately).
 
-```json
-curl --location 'https://eu.api.capillarytech.com/v3/promotions' \
---header 'content-type: application/json' \
---header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86MmQ1OTNhMjI2MTk1AxMzU5NGIwNDllZTk=' \
---header 'Cookie: _cfuvid=v6fczCvRgra_Nl09ZghriPj6qgpGIWfxeg-1763147102119-0.0.1.1-604800000' \
---data '{
-  "metadata": {
-    "name": "StyleSavvy VIP Early Access-lock",
-    "description": "VIP early access promotion for StyleSavvy customers. Awards points on any transaction between Nov 10–15, 2025. Points do not count towards tier ranking.",
-    "orgId": 100737,
-    "programId": 973,
-    "startDate": "2025-11-10T00:00:00+05:30",
-    "endDate": "2025-11-15T23:59:59+05:30",
-    "promotionType": "LOYALTY_EARNING",
-    "status": "DRAFT",
-    "timezoneName": "Asia/Kolkata",
-    "promoIdentifier": "stylesavvy-vip-early-access",
-    "promotionMetadata":[
-      {"key": "Access", "value": "VIP"},
-      {"key": "Event", "value": "EarlyBird"}
-    ]
-  },
-  "customerEnrolment": {
-    "enrolmentMethod": "TRANSACTION",
-    "audienceGroups": []
-  },
-  "activities":[
-    {
-      "id": "activity_1761xxxxxxb1",
-      "type": "SINGLE",
-      "name": "Award Points",
-      "event": "TransactionAdd",
-      "expJSON": "{\n  \"arity\": \"literal\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"true\"\n}",
-      "commonCycleActionMapping":[
-        {
-          "cycle": "Cycle_1",
-          "startDate": "2025-11-10T00:00:00+05:30",
-          "endDate": "2025-11-15T23:59:59+05:30",
-          "actions":[
-            {
-              "id": "temp_action_pts_split",
-              "actionName": "AWARD_POINTS_ACTION",
-              "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.AwardPointsActionImpl",
-              "description": "Award Points with 100% Liability",
-              "mandatoryPropertiesValues": {
-                "AwardStrategy": "109010",
-                "ExpiryStrategy": "109436",
-                "PointType": "Main"
-              },
-              "mandatoryComplexPropertiesValues": {},
-              "embeddedStrategies": []
-            }
-          ]
-        }
-      ],
-      "milestones":[]
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  curl --location 'https://eu.api.capillarytech.com/v3/promotions' \
+  --header 'content-type: application/json' \
+  --header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86MmQ1OTNhMjI2MTk1AxMzU5NGIwNDllZTk=' \
+  --header 'Cookie: _cfuvid=v6fczCvRgra_Nl09ZghriPj6qgpGIWfxeg-1763147102119-0.0.1.1-604800000' \
+  --data '{
+    "metadata": {
+      "name": "StyleSavvy VIP Early Access-lock",
+      "description": "VIP early access promotion for StyleSavvy customers. Awards points on any transaction between Nov 10–15, 2025. Points do not count towards tier ranking.",
+      "orgId": 100737,
+      "programId": 973,
+      "startDate": "2025-11-10T00:00:00+05:30",
+      "endDate": "2025-11-15T23:59:59+05:30",
+      "promotionType": "LOYALTY_EARNING",
+      "status": "DRAFT",
+      "timezoneName": "Asia/Kolkata",
+      "promoIdentifier": "stylesavvy-vip-early-access",
+      "promotionMetadata":[
+        {"key": "Access", "value": "VIP"},
+        {"key": "Event", "value": "EarlyBird"}
+      ]
+    },
+    "customerEnrolment": {
+      "enrolmentMethod": "TRANSACTION",
+      "audienceGroups": []
+    },
+    "activities":[
+      {
+        "id": "activity_1761xxxxxxb1",
+        "type": "SINGLE",
+        "name": "Award Points",
+        "event": "TransactionAdd",
+        "expJSON": "{\n  \"arity\": \"literal\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"true\"\n}",
+        "commonCycleActionMapping":[
+          {
+            "cycle": "Cycle_1",
+            "startDate": "2025-11-10T00:00:00+05:30",
+            "endDate": "2025-11-15T23:59:59+05:30",
+            "actions":[
+              {
+                "id": "temp_action_pts_split",
+                "actionName": "AWARD_POINTS_ACTION",
+                "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.AwardPointsActionImpl",
+                "description": "Award Points with 100% Liability",
+                "mandatoryPropertiesValues": {
+                  "AwardStrategy": "109010",
+                  "ExpiryStrategy": "109436",
+                  "PointType": "Main"
+                },
+                "mandatoryComplexPropertiesValues": {},
+                "embeddedStrategies": []
+              }
+            ]
+          }
+        ],
+        "milestones":[]
+      }
+    ],
+    "limits": [],
+    "liabilityOwnerSplitInfo":[],
+    "workflowMetadata": {
+      "optin": {},
+      "enrolment": {}
     }
-  ],
-  "limits": [],
-  "liabilityOwnerSplitInfo":[],
-  "workflowMetadata": {
-    "optin": {},
-    "enrolment": {}
-  }
-}'
-```
+  }'
+  ```
+
+</CodeGroup>
 
 ### Applying the metadata object to configure a promotion (Generic Promo + ISSUE\_AND\_EARN) : \[metadata Object]
 
 ###### **Requirement:** Generic Promo + ISSUE\_AND\_EARN: Adventure Quest Outfitters has set up a promotion called the "Gear Up Challenge," running from December 1st to December 31st. This promotion is configured as a "Generic" type, meaning its reward might be something other than standard loyalty points, like a digital badge. The key condition is how rewards are given: when a customer qualifies, the reward is first issued (like receiving a pending notification or item), but it isn't fully earned or usable until potentially later, perhaps after meeting another condition or after a delay. This promotion follows standard interaction rules, meaning it won't automatically combine with other offers or block them unless specifically configured elsewhere. The main action triggered is the awarding of a badge.
 
-```json
-curl --location 'https://eu.api.capillarytech.com/v3/promotions' \
---header 'content-type: application/json' \
---header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86MmQ1OTZjAxMzU5NGIwNDllZTk=' \
---header 'Cookie: _cfuvid=T9hxqIAAnGjc8UEdEpq7PXhCTJbHD_w-1763195859760-0.0.1.1-604800000' \
---data '{
-  "metadata": {
-    "name": "Gear Up Challenge",
-    "description": "Generic promo for Gear Up Challenge. Issue and Earn.",
-    "orgId": 100737,
-    "programId": 973,
-    "startDate": "2025-12-01T00:00:00+05:30",
-    "endDate": "2025-12-31T23:59:59+05:30",
-    "promotionType": "GENERIC",
-    "status": "DRAFT",
-    "timezoneName": "Asia/Kolkata",
-    "promoIdentifier": "gear-up-challenge",
-    "promotionMetadata":[]
-  },
-  "customerEnrolment": {
-    "enrolmentMethod": "TRANSACTION",
-    "audienceGroups": []
-  },
-  "activities":[
-    {
-      "id": "activity_1761xxxxxx02",
-      "type": "SINGLE",
-      "name": "Challenge Activity",
-      "event": "CustomEvent",
-      "expJSON": "{\n  \"arity\": \"literal\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"true\"\n}",
-      "commonCycleActionMapping":[
-        {
-          "cycle": "Cycle_1",
-          "startDate": "2025-12-01T00:00:00+05:30",
-          "endDate": "2025-12-31T23:59:59+05:30",
-          "actions":[
-            {
-              "id": "temp_action_badge",
-              "actionName": "AWARD_BADGE",
-              "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.AwardBadgeActionImpl",
-              "description": "Award Gear Up Badge",
-              "mandatoryPropertiesValues": {
-                "badgeId": "GEAR_UP_DEC25"
-              },
-              "mandatoryComplexPropertiesValues": {},
-              "embeddedStrategies": []
-            }
-          ]
-        }
-      ],
-      "milestones": []
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  curl --location 'https://eu.api.capillarytech.com/v3/promotions' \
+  --header 'content-type: application/json' \
+  --header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86MmQ1OTZjAxMzU5NGIwNDllZTk=' \
+  --header 'Cookie: _cfuvid=T9hxqIAAnGjc8UEdEpq7PXhCTJbHD_w-1763195859760-0.0.1.1-604800000' \
+  --data '{
+    "metadata": {
+      "name": "Gear Up Challenge",
+      "description": "Generic promo for Gear Up Challenge. Issue and Earn.",
+      "orgId": 100737,
+      "programId": 973,
+      "startDate": "2025-12-01T00:00:00+05:30",
+      "endDate": "2025-12-31T23:59:59+05:30",
+      "promotionType": "GENERIC",
+      "status": "DRAFT",
+      "timezoneName": "Asia/Kolkata",
+      "promoIdentifier": "gear-up-challenge",
+      "promotionMetadata":[]
+    },
+    "customerEnrolment": {
+      "enrolmentMethod": "TRANSACTION",
+      "audienceGroups": []
+    },
+    "activities":[
+      {
+        "id": "activity_1761xxxxxx02",
+        "type": "SINGLE",
+        "name": "Challenge Activity",
+        "event": "CustomEvent",
+        "expJSON": "{\n  \"arity\": \"literal\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"true\"\n}",
+        "commonCycleActionMapping":[
+          {
+            "cycle": "Cycle_1",
+            "startDate": "2025-12-01T00:00:00+05:30",
+            "endDate": "2025-12-31T23:59:59+05:30",
+            "actions":[
+              {
+                "id": "temp_action_badge",
+                "actionName": "AWARD_BADGE",
+                "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.AwardBadgeActionImpl",
+                "description": "Award Gear Up Badge",
+                "mandatoryPropertiesValues": {
+                  "badgeId": "GEAR_UP_DEC25"
+                },
+                "mandatoryComplexPropertiesValues": {},
+                "embeddedStrategies": []
+              }
+            ]
+          }
+        ],
+        "milestones": []
+      }
+    ],
+    "limits":[],
+    "liabilityOwnerSplitInfo":[],
+    "workflowMetadata": {
+      "optin": {},
+      "enrolment": {}
     }
-  ],
-  "limits":[],
-  "liabilityOwnerSplitInfo":[],
-  "workflowMetadata": {
-    "optin": {},
-    "enrolment": {}
-  }
-}'
-```
+  }'
+  ```
+
+</CodeGroup>
 
 ### Applying the customerEnrolment object to configure a promotion (Wellness Week) :\[customerEnrolment Object]
 
 ###### **Requirement:** Healthy Habits Cafe is running a "Wellness Week Opt-In" promotion from November 17th to 23rd, but only for a specific group of pre-selected customers. To participate, these customers must first "opt-in" by making any purchase during that week. After they have opted-in, the reward is earning 100 points on their future purchases. The promotion has several limits, such as capping the total number of customers who can opt-in at 500 and limiting the points earned from a single activity to 200.
 
-```json
-curl --location 'https://eu.api.capillarytech.com/v3/promotions' \
---header 'content-type: application/json' \
---header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW862MTk1OGE2NWI5ZjAxMzU5NGIwNDllZTk=' \
---header 'Cookie: _cfuvid=LpG9HQ0MrgtUJNTMOdr1nbz8FvnCc-1763223314046-0.0.1.1-604800000' \
---data '{
-  "metadata": {
-    "name": "Wellness Week Opt-In",
-    "description": "Audience enroll, activity opt-in w/ ALL restrictions.",
-    "orgId": 100737,
-    "programId": 973,
-    "startDate": "2025-11-17T00:00:00+05:30",
-    "endDate": "2025-11-23T23:59:59+05:30",
-    "promotionType": "LOYALTY_EARNING",
-    "status": "DRAFT",
-    "timezoneName": "Asia/Kolkata",
-    "promoIdentifier": "wellness-week-opt-in",
-    "promotionMetadata":[]
-  },
-  "customerEnrolment": {
-    "enrolmentMethod": "AUDIENCE_FILTER",
-    "audienceGroups":[
-      {
-        "audienceGroupId": 612174375,
-        "audienceGroupName": "Pre-selected Wellness Group",
-        "description": "Pre-selected customer list"
-      }
-    ]
-  },
-  "workflowMetadata": {
-    "optin": {
-      "basedOn": "ACTIVITY",
-      "optInStartDate": "2025-11-10T00:00:00+05:30",
-      "optInEndDate": "2025-11-23T23:59:59+05:30",
-      "activities":[
-        {
-          "id": "activity_1761xxxxxx03",
-          "type": "SINGLE",
-          "name": "Opt-in via Purchase",
-          "event": "TransactionAdd",
-          "expJSON": "{\n  \"arity\": \"literal\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"true\"\n}",
-          "commonCycleActionMapping":[
-            {
-              "cycle": "Cycle_1",
-              "startDate": "2025-11-17T00:00:00+05:30",
-              "endDate": "2025-11-23T23:59:59+05:30",
-              "actions":[
-                {
-                  "id": "temp_action_optin_aaa",
-                  "actionName": "EARN_PROMOTION_ACTION",
-                  "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.EarnPromotionActionImpl",
-                  "description": "Perform Opt-In",
-                  "mandatoryPropertiesValues": {
-                    "promotionIdentifier": "wellness-week-opt-in",
-                    "activityName": "Opt-in via Purchase",
-                    "delegateActionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.EarnPromotionActionImpl"
-                  },
-                  "mandatoryComplexPropertiesValues": {},
-                  "embeddedStrategies": []
-                }
-              ]
-            }
-          ],
-          "milestones":[]
-        }
-      ],
-      "audienceMapping":[],
-      "restrictions": {
-        "optinExpiryBasedOn": {
-          "type": "PROMOTION",
-          "value": ""
-        },
-        "enrolmentExpiryBasedOn": {
-          "type": "CUSTOM",
-          "value": 30
-        },
-        "optinLimitPerCustomer": {
-          "value": "1",
-          "type": "PERIOD_BASED",
-          "periodType": "MOVING_WINDOW",
-          "periodUnit": "DAILY"
-        },
-        "maxRedemptionsPerEarnPerCustomer": {
-          "value": "5",
-          "type": "NON_PERIOD_BASED"
-        },
-        "enrolmentLimitPerPromotion": {
-          "value": "500"
-        },
-        "enrolmentLimitPerCustomer": {
-          "value": "1"
-        },
-        "maxPointsPerEarnPerCustomer": {
-          "value": 200,
-          "type": "NON_PERIOD_BASED"
-        }
-      }
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  curl --location 'https://eu.api.capillarytech.com/v3/promotions' \
+  --header 'content-type: application/json' \
+  --header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW862MTk1OGE2NWI5ZjAxMzU5NGIwNDllZTk=' \
+  --header 'Cookie: _cfuvid=LpG9HQ0MrgtUJNTMOdr1nbz8FvnCc-1763223314046-0.0.1.1-604800000' \
+  --data '{
+    "metadata": {
+      "name": "Wellness Week Opt-In",
+      "description": "Audience enroll, activity opt-in w/ ALL restrictions.",
+      "orgId": 100737,
+      "programId": 973,
+      "startDate": "2025-11-17T00:00:00+05:30",
+      "endDate": "2025-11-23T23:59:59+05:30",
+      "promotionType": "LOYALTY_EARNING",
+      "status": "DRAFT",
+      "timezoneName": "Asia/Kolkata",
+      "promoIdentifier": "wellness-week-opt-in",
+      "promotionMetadata":[]
     },
-    "enrolment": {}
-  },
-  "activities":[
-    {
-      "id": "activity_1761xxxxxx04",
-      "type": "SINGLE",
-      "name": "Wellness Reward",
-      "event": "TransactionAdd",
-      "expJSON": "{\n  \"arity\": \"literal\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"true\"\n}",
-      "commonCycleActionMapping":[
+    "customerEnrolment": {
+      "enrolmentMethod": "AUDIENCE_FILTER",
+      "audienceGroups":[
         {
-          "cycle": "Cycle_1",
-          "startDate": "2025-11-17T00:00:00+05:30",
-          "endDate": "2025-11-23T23:59:59+05:30",
-          "actions":[
-            {
-              "id": "temp_action_wellness",
-              "actionName": "AWARD_POINTS_ACTION",
-              "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.AwardPointsActionImpl",
-              "description": "Award 100 Wellness Points",
-              "mandatoryPropertiesValues": {
-                "AwardStrategy": "109010",
-                "ExpiryStrategy": "109436",
-                "PointType": "Main"
-              },
-              "mandatoryComplexPropertiesValues": {},
-              "embeddedStrategies": []
-            }
-          ]
+          "audienceGroupId": 612174375,
+          "audienceGroupName": "Pre-selected Wellness Group",
+          "description": "Pre-selected customer list"
         }
-      ],
-      "milestones": []
-    }
-  ],
-  "limits": [],
-  "liabilityOwnerSplitInfo":[]
-}'
-```
+      ]
+    },
+    "workflowMetadata": {
+      "optin": {
+        "basedOn": "ACTIVITY",
+        "optInStartDate": "2025-11-10T00:00:00+05:30",
+        "optInEndDate": "2025-11-23T23:59:59+05:30",
+        "activities":[
+          {
+            "id": "activity_1761xxxxxx03",
+            "type": "SINGLE",
+            "name": "Opt-in via Purchase",
+            "event": "TransactionAdd",
+            "expJSON": "{\n  \"arity\": \"literal\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"true\"\n}",
+            "commonCycleActionMapping":[
+              {
+                "cycle": "Cycle_1",
+                "startDate": "2025-11-17T00:00:00+05:30",
+                "endDate": "2025-11-23T23:59:59+05:30",
+                "actions":[
+                  {
+                    "id": "temp_action_optin_aaa",
+                    "actionName": "EARN_PROMOTION_ACTION",
+                    "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.EarnPromotionActionImpl",
+                    "description": "Perform Opt-In",
+                    "mandatoryPropertiesValues": {
+                      "promotionIdentifier": "wellness-week-opt-in",
+                      "activityName": "Opt-in via Purchase",
+                      "delegateActionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.EarnPromotionActionImpl"
+                    },
+                    "mandatoryComplexPropertiesValues": {},
+                    "embeddedStrategies": []
+                  }
+                ]
+              }
+            ],
+            "milestones":[]
+          }
+        ],
+        "audienceMapping":[],
+        "restrictions": {
+          "optinExpiryBasedOn": {
+            "type": "PROMOTION",
+            "value": ""
+          },
+          "enrolmentExpiryBasedOn": {
+            "type": "CUSTOM",
+            "value": 30
+          },
+          "optinLimitPerCustomer": {
+            "value": "1",
+            "type": "PERIOD_BASED",
+            "periodType": "MOVING_WINDOW",
+            "periodUnit": "DAILY"
+          },
+          "maxRedemptionsPerEarnPerCustomer": {
+            "value": "5",
+            "type": "NON_PERIOD_BASED"
+          },
+          "enrolmentLimitPerPromotion": {
+            "value": "500"
+          },
+          "enrolmentLimitPerCustomer": {
+            "value": "1"
+          },
+          "maxPointsPerEarnPerCustomer": {
+            "value": 200,
+            "type": "NON_PERIOD_BASED"
+          }
+        }
+      },
+      "enrolment": {}
+    },
+    "activities":[
+      {
+        "id": "activity_1761xxxxxx04",
+        "type": "SINGLE",
+        "name": "Wellness Reward",
+        "event": "TransactionAdd",
+        "expJSON": "{\n  \"arity\": \"literal\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"true\"\n}",
+        "commonCycleActionMapping":[
+          {
+            "cycle": "Cycle_1",
+            "startDate": "2025-11-17T00:00:00+05:30",
+            "endDate": "2025-11-23T23:59:59+05:30",
+            "actions":[
+              {
+                "id": "temp_action_wellness",
+                "actionName": "AWARD_POINTS_ACTION",
+                "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.AwardPointsActionImpl",
+                "description": "Award 100 Wellness Points",
+                "mandatoryPropertiesValues": {
+                  "AwardStrategy": "109010",
+                  "ExpiryStrategy": "109436",
+                  "PointType": "Main"
+                },
+                "mandatoryComplexPropertiesValues": {},
+                "embeddedStrategies": []
+              }
+            ]
+          }
+        ],
+        "milestones": []
+      }
+    ],
+    "limits": [],
+    "liabilityOwnerSplitInfo":[]
+  }'
+  ```
+
+</CodeGroup>
 
 ### Applying the customerEnrolment object to configure a promotion (Beta Tester) : \[customerEnrolment Object]
 
 ###### **Requirement:** Gadget Galaxy is running a "Beta Tester Program" for the first quarter of the year. A specific list of customers is manually enrolled into this program. Additionally, any customer who joins the "PreOrder List" (a specific audience group) is automatically enrolled as well. Once enrolled, these members can earn a reward: when they perform the "FeedbackSubmitted" action, they will receive 100 points. This promotion has several restrictions, such as limiting automatic enrollment to 1,000 customers total and capping the points earned from a single activity at 500.
 
-```json
-curl --location 'https://eu.api.capillarytech.com/v3/promotions' \
---header 'content-type: application/json' \
---header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86MmQ1Tk1OGE2NWI5ZjAxMzU5NGIwNDllZTk=' \
---header 'Cookie: _cfuvid=LpG9HQ0MrgtUJNTMOdr1nbz8FvnCc-1763223314046-0.0.1.1-604800000' \
---data '{
-  "metadata": {
-    "name": "Beta Tester Program",
-    "description": "Import enroll, audience dynamic enroll. Point cap in main limits.",
-    "orgId": 100737,
-    "programId": 973,
-    "startDate": "2026-01-01T00:00:00+05:30",
-    "endDate": "2026-03-31T23:59:59+05:30",
-    "promotionType": "LOYALTY_EARNING",
-    "status": "DRAFT",
-    "timezoneName": "Asia/Kolkata",
-    "promoIdentifier": "beta-tester-program",
-    "promotionMetadata":[]
-  },
-  "customerEnrolment": {
-    "enrolmentMethod": "IMPORT",
-    "audienceGroups":[]
-  },
-  "workflowMetadata": {
-    "optin": {},
-    "enrolment": {
-      "basedOn": "AUDIENCE",
-      "activities":[],
-      "audienceMapping":[
-        {
-          "groupId": 612174375,
-          "groupName": "PreOrder List"
-        }
-      ],
-      "restrictions": {
-        "enrolmentLimitPerPromotion": {
-          "value": "1000"
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  curl --location 'https://eu.api.capillarytech.com/v3/promotions' \
+  --header 'content-type: application/json' \
+  --header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86MmQ1Tk1OGE2NWI5ZjAxMzU5NGIwNDllZTk=' \
+  --header 'Cookie: _cfuvid=LpG9HQ0MrgtUJNTMOdr1nbz8FvnCc-1763223314046-0.0.1.1-604800000' \
+  --data '{
+    "metadata": {
+      "name": "Beta Tester Program",
+      "description": "Import enroll, audience dynamic enroll. Point cap in main limits.",
+      "orgId": 100737,
+      "programId": 973,
+      "startDate": "2026-01-01T00:00:00+05:30",
+      "endDate": "2026-03-31T23:59:59+05:30",
+      "promotionType": "LOYALTY_EARNING",
+      "status": "DRAFT",
+      "timezoneName": "Asia/Kolkata",
+      "promoIdentifier": "beta-tester-program",
+      "promotionMetadata":[]
+    },
+    "customerEnrolment": {
+      "enrolmentMethod": "IMPORT",
+      "audienceGroups":[]
+    },
+    "workflowMetadata": {
+      "optin": {},
+      "enrolment": {
+        "basedOn": "AUDIENCE",
+        "activities":[],
+        "audienceMapping":[
+          {
+            "groupId": 612174375,
+            "groupName": "PreOrder List"
+          }
+        ],
+        "restrictions": {
+          "enrolmentLimitPerPromotion": {
+            "value": "1000"
+          }
         }
       }
-    }
-  },
-  "activities":[
-    {
-      "id": "activity_1761xxxxxx05",
-      "type": "SINGLE",
-      "name": "Beta Reward (100 Points)",
-      "event": "FeedbackSubmitted",
-      "expJSON": "{\n  \"arity\": \"literal\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"true\"\n}",
-      "commonCycleActionMapping":[
-        {
-          "cycle": "Cycle_1",
-          "startDate": "2026-01-01T00:00:00+05:30",
-          "endDate": "2026-03-31T23:59:59+05:30",
-          "actions":[
-            {
-              "id": "temp_action_beta_pts",
-              "actionName": "AWARD_POINTS_ACTION",
-              "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.AwardPointsActionImpl",
-              "description": "Award 100 Beta Tester Points",
-              "mandatoryPropertiesValues": {
-                "AwardStrategy": "109010",
-                "ExpiryStrategy": "109006",
-                "PointType": "Main"
-              },
-              "mandatoryComplexPropertiesValues": {},
-              "embeddedStrategies": []
-            }
-          ]
-        }
-      ],
-      "milestones":[]
-    }
-  ],
-  "limits":[
-    {
-      "granularity": "USER",
-      "actionType": "AWARD_CURRENCY",
-      "actionSubTypeId": "Points",
-      "limitType": "SUM",
-      "limitValue": 500,
-      "period": {
-        "periodType": "NON_PERIOD_BASED"
+    },
+    "activities":[
+      {
+        "id": "activity_1761xxxxxx05",
+        "type": "SINGLE",
+        "name": "Beta Reward (100 Points)",
+        "event": "FeedbackSubmitted",
+        "expJSON": "{\n  \"arity\": \"literal\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"true\"\n}",
+        "commonCycleActionMapping":[
+          {
+            "cycle": "Cycle_1",
+            "startDate": "2026-01-01T00:00:00+05:30",
+            "endDate": "2026-03-31T23:59:59+05:30",
+            "actions":[
+              {
+                "id": "temp_action_beta_pts",
+                "actionName": "AWARD_POINTS_ACTION",
+                "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.AwardPointsActionImpl",
+                "description": "Award 100 Beta Tester Points",
+                "mandatoryPropertiesValues": {
+                  "AwardStrategy": "109010",
+                  "ExpiryStrategy": "109006",
+                  "PointType": "Main"
+                },
+                "mandatoryComplexPropertiesValues": {},
+                "embeddedStrategies": []
+              }
+            ]
+          }
+        ],
+        "milestones":[]
       }
-    }
-  ],
-  "liabilityOwnerSplitInfo":[]
-}'
-```
+    ],
+    "limits":[
+      {
+        "granularity": "USER",
+        "actionType": "AWARD_CURRENCY",
+        "actionSubTypeId": "Points",
+        "limitType": "SUM",
+        "limitValue": 500,
+        "period": {
+          "periodType": "NON_PERIOD_BASED"
+        }
+      }
+    ],
+    "liabilityOwnerSplitInfo":[]
+  }'
+  ```
+
+</CodeGroup>
 
 ### Creating a promotion with an opt-in window : \[workflowMetadata Object]
 
 ###### **Requirement:** WellnessFirst is running a "Spring Health Challenge" during March 2026. To control participation, the opt-in window opens on February 15th — customers must opt in via an external API call before the promotion ends on March 31st. After opting in, they earn points on qualifying purchases throughout March. This requires the `CONF_ENROLLMENT_OPTIN_DURATION_ENABLED` feature flag to be enabled for the org.
 
-```json
-curl --location 'https://eu.api.capillarytech.com/v3/promotions' \
---header 'Content-Type: application/json' \
---header 'Authorization: Basic <your_credentials>' \
---data '{
-  "metadata": {
-    "name": "Spring Health Challenge",
-    "description": "Spring Health Challenge",
-    "programId": 2849,
-    "startDate": "2026-03-01T00:00:00+05:30",
-    "endDate": "2026-03-31T23:59:59+05:30",
-    "promotionType": "LOYALTY_EARNING",
-    "status": "PENDING_APPROVAL",
-    "promoIdentifier": "SPRING_HEALTH_CHALLENGE_MAR26",
-    "timezoneName": "Asia/Kolkata",
-    "promotionMetadata":[]
-  },
-  "customerEnrolment": {
-    "enrolmentMethod": "IMPORT",
-    "audienceGroups":[],
-    "customerEligibilityType": "ALL"
-  },
-  "liabilityOwnerSplitInfo": [],
-  "activities":[
-    {
-      "id": "2e94e0e0-fd12-4912-997f-9483ed69e0e0",
-      "name": "Activity 1",
-      "type": "SINGLE",
-      "event": "TransactionAdd",
-      "milestones": [],
-      "commonCycleActionMapping":[
-        {
-          "cycle": "Cycle_1",
-          "startDate": "2026-03-01T00:00:00+05:30",
-          "endDate": "2026-03-31T23:59:59+05:30",
-          "actions": []
-        }
-      ],
-      "expJSON": "{\n  \"arity\": \"literal\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"true\"\n}"
-    }
-  ],
-  "workflowMetadata": {
-    "optin": {
-      "basedOn": "EXTERNAL_TRIGGER",
-      "optInStartDate": "2026-02-15T00:00:00+05:30",
-      "optInEndDate": "2026-03-31T23:59:59+05:30",
-      "restrictions": {
-        "optinExpiryBasedOn": {
-          "type": "PROMOTION",
-          "value": ""
-        },
-        "optinLimitPerCustomer": {
-          "value": "1"
-        }
-      }
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  curl --location 'https://eu.api.capillarytech.com/v3/promotions' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Basic <your_credentials>' \
+  --data '{
+    "metadata": {
+      "name": "Spring Health Challenge",
+      "description": "Spring Health Challenge",
+      "programId": 2849,
+      "startDate": "2026-03-01T00:00:00+05:30",
+      "endDate": "2026-03-31T23:59:59+05:30",
+      "promotionType": "LOYALTY_EARNING",
+      "status": "PENDING_APPROVAL",
+      "promoIdentifier": "SPRING_HEALTH_CHALLENGE_MAR26",
+      "timezoneName": "Asia/Kolkata",
+      "promotionMetadata":[]
     },
-    "enrolment": {
-      "basedOn": "EXTERNAL_TRIGGER",
-      "restrictions": {
-        "enrolmentExpiryBasedOn": {
-          "type": "PROMOTION",
-          "value": 0
-        },
-        "enrolmentLimitPerCustomer": {
-          "value": "1"
-        },
-        "maxRedemptionsPerEarnPerCustomer": {
-          "value": "1",
-          "type": "NON_PERIOD_BASED"
+    "customerEnrolment": {
+      "enrolmentMethod": "IMPORT",
+      "audienceGroups":[],
+      "customerEligibilityType": "ALL"
+    },
+    "liabilityOwnerSplitInfo": [],
+    "activities":[
+      {
+        "id": "2e94e0e0-fd12-4912-997f-9483ed69e0e0",
+        "name": "Activity 1",
+        "type": "SINGLE",
+        "event": "TransactionAdd",
+        "milestones": [],
+        "commonCycleActionMapping":[
+          {
+            "cycle": "Cycle_1",
+            "startDate": "2026-03-01T00:00:00+05:30",
+            "endDate": "2026-03-31T23:59:59+05:30",
+            "actions": []
+          }
+        ],
+        "expJSON": "{\n  \"arity\": \"literal\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"true\"\n}"
+      }
+    ],
+    "workflowMetadata": {
+      "optin": {
+        "basedOn": "EXTERNAL_TRIGGER",
+        "optInStartDate": "2026-02-15T00:00:00+05:30",
+        "optInEndDate": "2026-03-31T23:59:59+05:30",
+        "restrictions": {
+          "optinExpiryBasedOn": {
+            "type": "PROMOTION",
+            "value": ""
+          },
+          "optinLimitPerCustomer": {
+            "value": "1"
+          }
+        }
+      },
+      "enrolment": {
+        "basedOn": "EXTERNAL_TRIGGER",
+        "restrictions": {
+          "enrolmentExpiryBasedOn": {
+            "type": "PROMOTION",
+            "value": 0
+          },
+          "enrolmentLimitPerCustomer": {
+            "value": "1"
+          },
+          "maxRedemptionsPerEarnPerCustomer": {
+            "value": "1",
+            "type": "NON_PERIOD_BASED"
+          }
         }
       }
     }
-  }
-}'
-```
+  }'
+  ```
+
+</CodeGroup>
 
 ### Applying the activities object to configure a promotion (Workout Warrior) : \[activities Object]
 
 ###### **Requirement:** FitNation Gym is running a "Workout Warrior" challenge for all of November, but it only counts visits at their Location 101 gym. The system will count every check-in event at that specific location, tracking progress week by week. A leaderboard will be active so members can compete and see who is checking in the most. The main goal for customers is to complete 15 separate check-ins at Location 101 before the end of the month. As soon as a member hits their 15th visit, they win the challenge and are automatically upgraded to Tier 2 in the gym's loyalty program.
 
-```json
-curl --location 'https://eu.api.capillarytech.com/v3/promotions' \
---header 'content-type: application/json' \
---header 'Authorization: Basic <your_credentials>' \
---data '{
-  "metadata": {
-    "name": "Workout Warrior",
-    "description": "Milestone: 15 Gym Check-ins in Nov at Loc 101. Reward: Tier Upgrade.",
-    "orgId": 100737,
-    "programId": 973,
-    "startDate": "2025-11-01T00:00:00+05:30",
-    "endDate": "2025-11-30T23:59:59+05:30",
-    "promotionType": "GENERIC",
-    "status": "DRAFT",
-    "timezoneName": "Asia/Kolkata",
-    "promoIdentifier": "workout-warrior",
-    "promotionMetadata":[]
-  },
-  "customerEnrolment": {
-    "enrolmentMethod": "TRANSACTION",
-    "audienceGroups": []
-  },
-  "activities":[
-    {
-      "id": "activity_1761000000006",
-      "type": "SINGLE",
-      "name": "Track Gym CheckIns",
-      "event": "GymCheckIn",
-      "expJSON": "{\n  \"arity\": \"binary_operation\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"==\",\n  \"operands\":[\n    {\n      \"arity\": \"object_dereference\",\n      \"type\": \"number:object:primitive\",\n      \"operands\":[\n        {\n          \"arity\": \"name\",\n          \"type\": \"event:object:primitive\",\n          \"value\": \"currentEvent\"\n        },\n        {\n          \"arity\": \"name\",\n          \"type\": \"number:object:primitive\",\n          \"value\": \"locationId\"\n        }\n      ]\n    },\n    {\n      \"arity\": \"literal\",\n      \"type\": \"number:primitive\",\n      \"value\": \"101\"\n    }\n  ]\n}",
-      "commonCycleActionMapping":[],
-      "activityCycles":[
-        {
-          "id": "ac_w1",
-          "name": "Nov Week 1",
-          "startDate": "2025-11-01T00:00:00+05:30",
-          "endDate": "2025-11-09T23:59:59+05:30",
-          "refCode": "W1",
-          "isActive": true
-        },
-        {
-          "id": "ac_w2",
-          "name": "Nov Week 2",
-          "startDate": "2025-11-10T00:00:00+05:30",
-          "endDate": "2025-11-16T23:59:59+05:30",
-          "refCode": "W2",
-          "isActive": true
-        },
-        {
-          "id": "ac_w3",
-          "name": "Nov Week 3",
-          "startDate": "2025-11-17T00:00:00+05:30",
-          "endDate": "2025-11-23T23:59:59+05:30",
-          "refCode": "W3",
-          "isActive": true
-        },
-        {
-          "id": "ac_w4",
-          "name": "Nov Week 4",
-          "startDate": "2025-11-24T00:00:00+05:30",
-          "endDate": "2025-11-30T23:59:59+05:30",
-          "refCode": "W4",
-          "isActive": true
-        }
-      ],
-      "milestones":[
-        {
-          "name": "Achieve 15 Check-Ins",
-          "trackingType": "DEFAULT",
-          "frequencyType": "WEEKLY",
-          "targetEvaluationType": "CYCLIC_WINDOW",
-          "recurringCycles": 4,
-          "leaderboardEnabled": true,
-          "targetType": "COUNT",
-          "targetEntity": "EVENT",
-          "aggregateFunction": "COUNT",
-          "preferredTillId": null,
-          "cycleActionMapping":[
-            {
-              "cycle": "Cycle_1",
-              "startDate": "2025-11-01T00:00:00+05:30",
-              "endDate": "2025-11-30T23:59:59+05:30",
-              "defaultValue": "15",
-              "actions":[
-                {
-                  "id": "temp_action_tierup",
-                  "actionName": "UPGRADE_SLAB_ACTION_SLAB",
-                  "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.UpgradeSlabActionImpl",
-                  "description": "Upgrade to Tier 2",
-                  "mandatoryComplexPropertiesValues": {},
-                  "mandatoryPropertiesValues": {
-                    "EvaluatedEntity": "USER",
-                    "ToSlabSerialNumber": "2",
-                    "TierBasedExpiry": "0"
-                  },
-                  "embeddedStrategies": []
-                }
-              ]
-            }
-          ]
-        }
-      ]
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  curl --location 'https://eu.api.capillarytech.com/v3/promotions' \
+  --header 'content-type: application/json' \
+  --header 'Authorization: Basic <your_credentials>' \
+  --data '{
+    "metadata": {
+      "name": "Workout Warrior",
+      "description": "Milestone: 15 Gym Check-ins in Nov at Loc 101. Reward: Tier Upgrade.",
+      "orgId": 100737,
+      "programId": 973,
+      "startDate": "2025-11-01T00:00:00+05:30",
+      "endDate": "2025-11-30T23:59:59+05:30",
+      "promotionType": "GENERIC",
+      "status": "DRAFT",
+      "timezoneName": "Asia/Kolkata",
+      "promoIdentifier": "workout-warrior",
+      "promotionMetadata":[]
+    },
+    "customerEnrolment": {
+      "enrolmentMethod": "TRANSACTION",
+      "audienceGroups": []
+    },
+    "activities":[
+      {
+        "id": "activity_1761000000006",
+        "type": "SINGLE",
+        "name": "Track Gym CheckIns",
+        "event": "GymCheckIn",
+        "expJSON": "{\n  \"arity\": \"binary_operation\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"==\",\n  \"operands\":[\n    {\n      \"arity\": \"object_dereference\",\n      \"type\": \"number:object:primitive\",\n      \"operands\":[\n        {\n          \"arity\": \"name\",\n          \"type\": \"event:object:primitive\",\n          \"value\": \"currentEvent\"\n        },\n        {\n          \"arity\": \"name\",\n          \"type\": \"number:object:primitive\",\n          \"value\": \"locationId\"\n        }\n      ]\n    },\n    {\n      \"arity\": \"literal\",\n      \"type\": \"number:primitive\",\n      \"value\": \"101\"\n    }\n  ]\n}",
+        "commonCycleActionMapping":[],
+        "activityCycles":[
+          {
+            "id": "ac_w1",
+            "name": "Nov Week 1",
+            "startDate": "2025-11-01T00:00:00+05:30",
+            "endDate": "2025-11-09T23:59:59+05:30",
+            "refCode": "W1",
+            "isActive": true
+          },
+          {
+            "id": "ac_w2",
+            "name": "Nov Week 2",
+            "startDate": "2025-11-10T00:00:00+05:30",
+            "endDate": "2025-11-16T23:59:59+05:30",
+            "refCode": "W2",
+            "isActive": true
+          },
+          {
+            "id": "ac_w3",
+            "name": "Nov Week 3",
+            "startDate": "2025-11-17T00:00:00+05:30",
+            "endDate": "2025-11-23T23:59:59+05:30",
+            "refCode": "W3",
+            "isActive": true
+          },
+          {
+            "id": "ac_w4",
+            "name": "Nov Week 4",
+            "startDate": "2025-11-24T00:00:00+05:30",
+            "endDate": "2025-11-30T23:59:59+05:30",
+            "refCode": "W4",
+            "isActive": true
+          }
+        ],
+        "milestones":[
+          {
+            "name": "Achieve 15 Check-Ins",
+            "trackingType": "DEFAULT",
+            "frequencyType": "WEEKLY",
+            "targetEvaluationType": "CYCLIC_WINDOW",
+            "recurringCycles": 4,
+            "leaderboardEnabled": true,
+            "targetType": "COUNT",
+            "targetEntity": "EVENT",
+            "aggregateFunction": "COUNT",
+            "preferredTillId": null,
+            "cycleActionMapping":[
+              {
+                "cycle": "Cycle_1",
+                "startDate": "2025-11-01T00:00:00+05:30",
+                "endDate": "2025-11-30T23:59:59+05:30",
+                "defaultValue": "15",
+                "actions":[
+                  {
+                    "id": "temp_action_tierup",
+                    "actionName": "UPGRADE_SLAB_ACTION_SLAB",
+                    "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.UpgradeSlabActionImpl",
+                    "description": "Upgrade to Tier 2",
+                    "mandatoryComplexPropertiesValues": {},
+                    "mandatoryPropertiesValues": {
+                      "EvaluatedEntity": "USER",
+                      "ToSlabSerialNumber": "2",
+                      "TierBasedExpiry": "0"
+                    },
+                    "embeddedStrategies": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "limits": [],
+    "liabilityOwnerSplitInfo":[],
+    "workflowMetadata": {
+      "optin": {},
+      "enrolment": {}
     }
-  ],
-  "limits": [],
-  "liabilityOwnerSplitInfo":[],
-  "workflowMetadata": {
-    "optin": {},
-    "enrolment": {}
-  }
-}'
-```
+  }'
+  ```
+
+</CodeGroup>
 
 ### Applying the activities object to configure a promotion (Dinner Special) :\[activities Object]
 
 ###### **Requirement:** Gourmet Galaxy Foods has a "Dinner Special" promotion that awards points, but it's only active during specific dinner hours. To get the points, a customer must meet one of two conditions: they can either just buy a 'Premium Steak', OR they must buy an 'Organic Salad', an 'Artisan Bread', and have their total transaction be over $30, all in the same purchase. The system uses special internal rules (rulesets) to validate this bundle and to apply the reward only during the specified dinner-hour cycle.
 
-```json
-curl --location 'https://eu.api.capillarytech.com/v3/promotions' \
---header 'content-type: application/json' \
---header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86MmQ1OTNhMZjAxMzU5NGIwNDllZTk=' \
---header 'Cookie: _cfuvid=LpG9HQ0MrgpPTMOdr1nbz8FvnCc-1763223314046-0.0.1.1-604800000' \
---data '{
-  "metadata": {
-    "name": "Dinner Special",
-    "description": "Points for Steak OR (Salad AND Bread AND >$30), dinner hours only.",
-    "orgId": 100737,
-    "programId": 973,
-    "startDate": "2025-11-01T00:00:00+05:30",
-    "endDate": "2025-11-30T23:59:59+05:30",
-    "promotionType": "LOYALTY_EARNING",
-    "status": "DRAFT",
-    "timezoneName": "Asia/Kolkata",
-    "promoIdentifier": "dinner-special",
-    "promotionMetadata":[]
-  },
-  "customerEnrolment": {
-    "enrolmentMethod": "TRANSACTION",
-    "audienceGroups":[]
-  },
-  "activities":[
-    {
-      "id": "group_176100000007",
-      "type": "GROUP",
-      "name": "Dinner Special Check (ANY)",
-      "combinationType": "ANY",
-      "cycles":[
-        {
-          "id": "c_dinner",
-          "name": "Dinner Hours",
-          "startDate": "2025-11-01T18:00:00+05:30",
-          "endDate": "2025-11-30T22:00:00+05:30"
-        }
-      ],
-      "expJSON": "{\n  \"arity\": \"literal\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"true\"\n}",
-      "children":[
-        {
-          "id": "sub_activity_176100000008",
-          "parentId": "group_176100000007",
-          "name": "Bought Premium Steak",
-          "type": "SINGLE",
-          "event": "TransactionAdd",
-          "expJSON": "{\n  \"arity\": \"unary_operation\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"exists\",\n  \"operands\":[\n    {\n      \"arity\": \"object_dereference\",\n      \"type\": \"collection:object:primitive\",\n      \"operands\":[\n        {\n          \"arity\": \"name\",\n          \"type\": \"transaction:object:primitive\",\n          \"value\": \"currentTransaction\"\n        },\n        {\n          \"arity\": \"name\",\n          \"type\": \"collection:object:primitive\",\n          \"value\": \"lineItems\"\n        }\n      ]\n    },\n    {\n      \"arity\": \"binary_operation\",\n      \"type\": \"boolean:primitive\",\n      \"value\": \"==\",\n      \"operands\":[\n        {\n          \"arity\": \"object_dereference\",\n          \"type\": \"string:object:primitive\",\n          \"operands\":[\n            {\n              \"arity\": \"name\",\n              \"type\": \"item:object:primitive\",\n              \"value\": \"item\"\n            },\n            {\n              \"arity\": \"name\",\n              \"type\": \"string:object:primitive\",\n              \"value\": \"sku\"\n            }\n          ]\n        },\n        {\n          \"arity\": \"literal\",\n          \"type\": \"string:primitive\",\n          \"value\": \"GG-STK-01\"\n        }\n      ]\n    }\n  ]\n}",
-          "milestones":[
-            {
-              "name": "Default Milestone Steak",
-              "trackingType": "DEFAULT",
-              "leaderboardEnabled": false
-            }
-          ],
-          "commonCycleActionMapping":[]
-        },
-        {
-          "id": "sub_group_176100000009",
-          "parentId": "group_176100000007",
-          "name": "Side Bundle Check (ALL)",
-          "type": "GROUP",
-          "combinationType": "ALL",
-          "rulesetId": "SIDE_BUNDLE",
-          "event": "TransactionAdd",
-          "expJSON": "{\n  \"arity\": \"literal\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"true\"\n}",
-          "children":[
-            {
-              "id": "sub_sub_activity_10",
-              "parentId": "sub_group_176100000009",
-              "name": "Bought Organic Salad",
-              "type": "SINGLE",
-              "event": "TransactionAdd",
-              "expJSON": "{\n  \"arity\": \"unary_operation\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"exists\",\n  \"operands\":[\n    {\n      \"arity\": \"object_dereference\",\n      \"type\": \"collection:object:primitive\",\n      \"operands\":[\n        {\n          \"arity\": \"name\",\n          \"type\": \"transaction:object:primitive\",\n          \"value\": \"currentTransaction\"\n        },\n        {\n          \"arity\": \"name\",\n          \"type\": \"collection:object:primitive\",\n          \"value\": \"lineItems\"\n        }\n      ]\n    },\n    {\n      \"arity\": \"binary_operation\",\n      \"type\": \"boolean:primitive\",\n      \"value\": \"==\",\n      \"operands\":[\n        {\n          \"arity\": \"object_dereference\",\n          \"type\": \"string:object:primitive\",\n          \"operands\":[\n            {\n              \"arity\": \"name\",\n              \"type\": \"item:object:primitive\",\n              \"value\": \"item\"\n            },\n            {\n              \"arity\": \"name\",\n              \"type\": \"string:object:primitive\",\n              \"value\": \"sku\"\n            }\n          ]\n        },\n        {\n          \"arity\": \"literal\",\n          \"type\": \"string:primitive\",\n          \"value\": \"GG-SAL-01\"\n        }\n      ]\n    }\n  ]\n}",
-              "milestones":[
-                {
-                  "name": "Default Milestone Salad",
-                  "trackingType": "DEFAULT",
-                  "leaderboardEnabled": false
-                }
-              ],
-              "commonCycleActionMapping":[]
-            },
-            {
-              "id": "sub_sub_activity_11",
-              "parentId": "sub_group_176100000009",
-              "name": "Bought Artisan Bread",
-              "type": "SINGLE",
-              "event": "TransactionAdd",
-              "expJSON": "{\n  \"arity\": \"unary_operation\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"exists\",\n  \"operands\":[\n    {\n      \"arity\": \"object_dereference\",\n      \"type\": \"collection:object:primitive\",\n      \"operands\":[\n        {\n          \"arity\": \"name\",\n          \"type\": \"transaction:object:primitive\",\n          \"value\": \"currentTransaction\"\n        },\n        {\n          \"arity\": \"name\",\n          \"type\": \"collection:object:primitive\",\n          \"value\": \"lineItems\"\n        }\n      ]\n    },\n    {\n      \"arity\": \"binary_operation\",\n      \"type\": \"boolean:primitive\",\n      \"value\": \"==\",\n      \"operands\":[\n        {\n          \"arity\": \"object_dereference\",\n          \"type\": \"string:object:primitive\",\n          \"operands\":[\n            {\n              \"arity\": \"name\",\n              \"type\": \"item:object:primitive\",\n              \"value\": \"item\"\n            },\n            {\n              \"arity\": \"name\",\n              \"type\": \"string:object:primitive\",\n              \"value\": \"sku\"\n            }\n          ]\n        },\n        {\n          \"arity\": \"literal\",\n          \"type\": \"string:primitive\",\n          \"value\": \"GG-BRD-01\"\n        }\n      ]\n    }\n  ]\n}",
-              "milestones":[
-                {
-                  "name": "Default Milestone Bread",
-                  "trackingType": "DEFAULT",
-                  "leaderboardEnabled": false
-                }
-              ],
-              "commonCycleActionMapping":[]
-            },
-            {
-              "id": "sub_sub_activity_12",
-              "parentId": "sub_group_176100000009",
-              "name": "Transaction > $30",
-              "type": "SINGLE",
-              "event": "TransactionAdd",
-              "expJSON": "{\n  \"arity\": \"binary_operation\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \">\",\n  \"operands\":[\n    {\n      \"arity\": \"object_dereference\",\n      \"type\": \"real:object:primitive\",\n      \"operands\":[\n        {\n          \"arity\": \"name\",\n          \"type\": \"transaction:object:primitive\",\n          \"value\": \"currentTransaction\"\n        },\n        {\n          \"arity\": \"name\",\n          \"type\": \"real:object:primitive\",\n          \"value\": \"amount\"\n        }\n      ]\n    },\n    {\n      \"arity\": \"literal\",\n      \"type\": \"number:primitive\",\n      \"value\": \"30\"\n    }\n  ]\n}",
-              "milestones":[
-                {
-                  "name": "Default Milestone Amount",
-                  "trackingType": "DEFAULT",
-                  "leaderboardEnabled": false
-                }
-              ],
-              "commonCycleActionMapping":[]
-            }
-          ],
-          "commonCycleActionMapping":[]
-        }
-      ],
-      "commonCycleActionMapping":[
-        {
-          "cycle": "c_dinner",
-          "startDate": "2025-11-01T18:00:00+05:30",
-          "endDate": "2025-11-30T22:00:00+05:30",
-          "rulesetId": "DINNER_REWARD_RULES",
-          "actions":[
-            {
-              "id": "temp_action_dinnerpts",
-              "actionName": "AWARD_POINTS_ACTION",
-              "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.AwardPointsActionImpl",
-              "description": "Award 150 Dinner Special Points",
-              "mandatoryPropertiesValues": {
-                "AwardStrategy": "111728",
-                "ExpiryStrategy": "121544",
-                "PointType": "Main"
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  curl --location 'https://eu.api.capillarytech.com/v3/promotions' \
+  --header 'content-type: application/json' \
+  --header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86MmQ1OTNhMZjAxMzU5NGIwNDllZTk=' \
+  --header 'Cookie: _cfuvid=LpG9HQ0MrgpPTMOdr1nbz8FvnCc-1763223314046-0.0.1.1-604800000' \
+  --data '{
+    "metadata": {
+      "name": "Dinner Special",
+      "description": "Points for Steak OR (Salad AND Bread AND >$30), dinner hours only.",
+      "orgId": 100737,
+      "programId": 973,
+      "startDate": "2025-11-01T00:00:00+05:30",
+      "endDate": "2025-11-30T23:59:59+05:30",
+      "promotionType": "LOYALTY_EARNING",
+      "status": "DRAFT",
+      "timezoneName": "Asia/Kolkata",
+      "promoIdentifier": "dinner-special",
+      "promotionMetadata":[]
+    },
+    "customerEnrolment": {
+      "enrolmentMethod": "TRANSACTION",
+      "audienceGroups":[]
+    },
+    "activities":[
+      {
+        "id": "group_176100000007",
+        "type": "GROUP",
+        "name": "Dinner Special Check (ANY)",
+        "combinationType": "ANY",
+        "cycles":[
+          {
+            "id": "c_dinner",
+            "name": "Dinner Hours",
+            "startDate": "2025-11-01T18:00:00+05:30",
+            "endDate": "2025-11-30T22:00:00+05:30"
+          }
+        ],
+        "expJSON": "{\n  \"arity\": \"literal\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"true\"\n}",
+        "children":[
+          {
+            "id": "sub_activity_176100000008",
+            "parentId": "group_176100000007",
+            "name": "Bought Premium Steak",
+            "type": "SINGLE",
+            "event": "TransactionAdd",
+            "expJSON": "{\n  \"arity\": \"unary_operation\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"exists\",\n  \"operands\":[\n    {\n      \"arity\": \"object_dereference\",\n      \"type\": \"collection:object:primitive\",\n      \"operands\":[\n        {\n          \"arity\": \"name\",\n          \"type\": \"transaction:object:primitive\",\n          \"value\": \"currentTransaction\"\n        },\n        {\n          \"arity\": \"name\",\n          \"type\": \"collection:object:primitive\",\n          \"value\": \"lineItems\"\n        }\n      ]\n    },\n    {\n      \"arity\": \"binary_operation\",\n      \"type\": \"boolean:primitive\",\n      \"value\": \"==\",\n      \"operands\":[\n        {\n          \"arity\": \"object_dereference\",\n          \"type\": \"string:object:primitive\",\n          \"operands\":[\n            {\n              \"arity\": \"name\",\n              \"type\": \"item:object:primitive\",\n              \"value\": \"item\"\n            },\n            {\n              \"arity\": \"name\",\n              \"type\": \"string:object:primitive\",\n              \"value\": \"sku\"\n            }\n          ]\n        },\n        {\n          \"arity\": \"literal\",\n          \"type\": \"string:primitive\",\n          \"value\": \"GG-STK-01\"\n        }\n      ]\n    }\n  ]\n}",
+            "milestones":[
+              {
+                "name": "Default Milestone Steak",
+                "trackingType": "DEFAULT",
+                "leaderboardEnabled": false
+              }
+            ],
+            "commonCycleActionMapping":[]
+          },
+          {
+            "id": "sub_group_176100000009",
+            "parentId": "group_176100000007",
+            "name": "Side Bundle Check (ALL)",
+            "type": "GROUP",
+            "combinationType": "ALL",
+            "rulesetId": "SIDE_BUNDLE",
+            "event": "TransactionAdd",
+            "expJSON": "{\n  \"arity\": \"literal\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"true\"\n}",
+            "children":[
+              {
+                "id": "sub_sub_activity_10",
+                "parentId": "sub_group_176100000009",
+                "name": "Bought Organic Salad",
+                "type": "SINGLE",
+                "event": "TransactionAdd",
+                "expJSON": "{\n  \"arity\": \"unary_operation\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"exists\",\n  \"operands\":[\n    {\n      \"arity\": \"object_dereference\",\n      \"type\": \"collection:object:primitive\",\n      \"operands\":[\n        {\n          \"arity\": \"name\",\n          \"type\": \"transaction:object:primitive\",\n          \"value\": \"currentTransaction\"\n        },\n        {\n          \"arity\": \"name\",\n          \"type\": \"collection:object:primitive\",\n          \"value\": \"lineItems\"\n        }\n      ]\n    },\n    {\n      \"arity\": \"binary_operation\",\n      \"type\": \"boolean:primitive\",\n      \"value\": \"==\",\n      \"operands\":[\n        {\n          \"arity\": \"object_dereference\",\n          \"type\": \"string:object:primitive\",\n          \"operands\":[\n            {\n              \"arity\": \"name\",\n              \"type\": \"item:object:primitive\",\n              \"value\": \"item\"\n            },\n            {\n              \"arity\": \"name\",\n              \"type\": \"string:object:primitive\",\n              \"value\": \"sku\"\n            }\n          ]\n        },\n        {\n          \"arity\": \"literal\",\n          \"type\": \"string:primitive\",\n          \"value\": \"GG-SAL-01\"\n        }\n      ]\n    }\n  ]\n}",
+                "milestones":[
+                  {
+                    "name": "Default Milestone Salad",
+                    "trackingType": "DEFAULT",
+                    "leaderboardEnabled": false
+                  }
+                ],
+                "commonCycleActionMapping":[]
               },
-              "mandatoryComplexPropertiesValues": {},
-              "embeddedStrategies": []
-            }
-          ]
-        }
-      ]
+              {
+                "id": "sub_sub_activity_11",
+                "parentId": "sub_group_176100000009",
+                "name": "Bought Artisan Bread",
+                "type": "SINGLE",
+                "event": "TransactionAdd",
+                "expJSON": "{\n  \"arity\": \"unary_operation\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"exists\",\n  \"operands\":[\n    {\n      \"arity\": \"object_dereference\",\n      \"type\": \"collection:object:primitive\",\n      \"operands\":[\n        {\n          \"arity\": \"name\",\n          \"type\": \"transaction:object:primitive\",\n          \"value\": \"currentTransaction\"\n        },\n        {\n          \"arity\": \"name\",\n          \"type\": \"collection:object:primitive\",\n          \"value\": \"lineItems\"\n        }\n      ]\n    },\n    {\n      \"arity\": \"binary_operation\",\n      \"type\": \"boolean:primitive\",\n      \"value\": \"==\",\n      \"operands\":[\n        {\n          \"arity\": \"object_dereference\",\n          \"type\": \"string:object:primitive\",\n          \"operands\":[\n            {\n              \"arity\": \"name\",\n              \"type\": \"item:object:primitive\",\n              \"value\": \"item\"\n            },\n            {\n              \"arity\": \"name\",\n              \"type\": \"string:object:primitive\",\n              \"value\": \"sku\"\n            }\n          ]\n        },\n        {\n          \"arity\": \"literal\",\n          \"type\": \"string:primitive\",\n          \"value\": \"GG-BRD-01\"\n        }\n      ]\n    }\n  ]\n}",
+                "milestones":[
+                  {
+                    "name": "Default Milestone Bread",
+                    "trackingType": "DEFAULT",
+                    "leaderboardEnabled": false
+                  }
+                ],
+                "commonCycleActionMapping":[]
+              },
+              {
+                "id": "sub_sub_activity_12",
+                "parentId": "sub_group_176100000009",
+                "name": "Transaction > $30",
+                "type": "SINGLE",
+                "event": "TransactionAdd",
+                "expJSON": "{\n  \"arity\": \"binary_operation\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \">\",\n  \"operands\":[\n    {\n      \"arity\": \"object_dereference\",\n      \"type\": \"real:object:primitive\",\n      \"operands\":[\n        {\n          \"arity\": \"name\",\n          \"type\": \"transaction:object:primitive\",\n          \"value\": \"currentTransaction\"\n        },\n        {\n          \"arity\": \"name\",\n          \"type\": \"real:object:primitive\",\n          \"value\": \"amount\"\n        }\n      ]\n    },\n    {\n      \"arity\": \"literal\",\n      \"type\": \"number:primitive\",\n      \"value\": \"30\"\n    }\n  ]\n}",
+                "milestones":[
+                  {
+                    "name": "Default Milestone Amount",
+                    "trackingType": "DEFAULT",
+                    "leaderboardEnabled": false
+                  }
+                ],
+                "commonCycleActionMapping":[]
+              }
+            ],
+            "commonCycleActionMapping":[]
+          }
+        ],
+        "commonCycleActionMapping":[
+          {
+            "cycle": "c_dinner",
+            "startDate": "2025-11-01T18:00:00+05:30",
+            "endDate": "2025-11-30T22:00:00+05:30",
+            "rulesetId": "DINNER_REWARD_RULES",
+            "actions":[
+              {
+                "id": "temp_action_dinnerpts",
+                "actionName": "AWARD_POINTS_ACTION",
+                "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.AwardPointsActionImpl",
+                "description": "Award 150 Dinner Special Points",
+                "mandatoryPropertiesValues": {
+                  "AwardStrategy": "111728",
+                  "ExpiryStrategy": "121544",
+                  "PointType": "Main"
+                },
+                "mandatoryComplexPropertiesValues": {},
+                "embeddedStrategies": []
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "limits":[],
+    "liabilityOwnerSplitInfo":[],
+    "workflowMetadata": {
+      "optin": {},
+      "enrolment": {}
     }
-  ],
-  "limits":[],
-  "liabilityOwnerSplitInfo":[],
-  "workflowMetadata": {
-    "optin": {},
-    "enrolment": {}
-  }
-}'
-```
+  }'
+  ```
+
+</CodeGroup>
 
 ### Applying the limits object to configure a promotion (Fresh Juice Bar) :\[limits Object]
 
 ###### **Requirement:** Fresh Juice Bar has configured a promotion for their B5G1\_JUICE coupon. To manage its distribution, they have set a rule limiting how many coupons a single customer can earn: each customer is limited to receiving a maximum of 2 coupons. This limit resets every calendar week, which the brand has defined as starting on a Sunday.
 
-```json
-curl --location 'https://eu.api.capillarytech.com/v3/promotions' \
---header 'content-type: application/json' \
---header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86MmQ1OTN2NWI5ZjAxMzU5NGIwNDllZTk=' \
---header 'Cookie: _cfuvid=BC9cwq9xQ4RRIGlUxLEwV1ldTNVbpH1faK4-1763285329155-0.0.1.1-604800000' \
---data '{
-  "metadata": {
-    "name": "Fresh Juice Weekly Coupon Limit",
-    "description": "Limit B5G1_JUICE coupon to 2 per user per calendar week, starting Sunday.",
-    "orgId": 100737,
-    "programId": 973,
-    "startDate": "2025-12-01T00:00:00+05:30",
-    "endDate": "2025-12-31T23:59:59+05:30",
-    "promotionType": "GENERIC",
-    "status": "DRAFT",
-    "timezoneName": "Asia/Kolkata",
-    "promoIdentifier": "fresh-juice-weekly-coupon-limit",
-    "promotionMetadata":[]
-  },
-  "customerEnrolment": {
-    "enrolmentMethod": "TRANSACTION",
-    "audienceGroups":[]
-  },
-  "activities":[
-    {
-      "id": "activity_1761xxxxxxa1",
-      "type": "SINGLE",
-      "name": "Issue B5G1 Coupon",
-      "event": "TransactionAdd",
-      "expJSON": "{\n  \"arity\": \"literal\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"true\"\n}",
-      "commonCycleActionMapping":[
-        {
-          "cycle": "Cycle_1",
-          "startDate": "2025-12-01T00:00:00+05:30",
-          "endDate": "2025-12-31T23:59:59+05:30",
-          "actions":[
-            {
-              "id": "temp_action_b5g1",
-              "actionName": "PE_ISSUE_VOUCHER_ACTION",
-              "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.PointsEngineIssueVoucherActionImpl",
-              "description": "Issue B5G1 Juice Voucher",
-              "mandatoryPropertiesValues": {
-                "VoucherSeriesId": "B5G1_JUICE"
-              },
-              "mandatoryComplexPropertiesValues": {},
-              "embeddedStrategies": []
-            }
-          ]
-        }
-      ],
-      "milestones":[]
-    }
-  ],
-  "limits":[
-    {
-      "granularity": "USER",
-      "actionType": "ISSUE_COUPON",
-      "actionSubTypeId": "B5G1_JUICE",
-      "limitType": "COUNT",
-      "limitValue": 2,
-      "period": {
-        "periodType": "FIXED_CALENDAR_WINDOW",
-        "periodUnit": "WEEKS",
-        "periodValue": 1,
-        "periodStartDay": "SUNDAY"
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  curl --location 'https://eu.api.capillarytech.com/v3/promotions' \
+  --header 'content-type: application/json' \
+  --header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86MmQ1OTN2NWI5ZjAxMzU5NGIwNDllZTk=' \
+  --header 'Cookie: _cfuvid=BC9cwq9xQ4RRIGlUxLEwV1ldTNVbpH1faK4-1763285329155-0.0.1.1-604800000' \
+  --data '{
+    "metadata": {
+      "name": "Fresh Juice Weekly Coupon Limit",
+      "description": "Limit B5G1_JUICE coupon to 2 per user per calendar week, starting Sunday.",
+      "orgId": 100737,
+      "programId": 973,
+      "startDate": "2025-12-01T00:00:00+05:30",
+      "endDate": "2025-12-31T23:59:59+05:30",
+      "promotionType": "GENERIC",
+      "status": "DRAFT",
+      "timezoneName": "Asia/Kolkata",
+      "promoIdentifier": "fresh-juice-weekly-coupon-limit",
+      "promotionMetadata":[]
+    },
+    "customerEnrolment": {
+      "enrolmentMethod": "TRANSACTION",
+      "audienceGroups":[]
+    },
+    "activities":[
+      {
+        "id": "activity_1761xxxxxxa1",
+        "type": "SINGLE",
+        "name": "Issue B5G1 Coupon",
+        "event": "TransactionAdd",
+        "expJSON": "{\n  \"arity\": \"literal\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"true\"\n}",
+        "commonCycleActionMapping":[
+          {
+            "cycle": "Cycle_1",
+            "startDate": "2025-12-01T00:00:00+05:30",
+            "endDate": "2025-12-31T23:59:59+05:30",
+            "actions":[
+              {
+                "id": "temp_action_b5g1",
+                "actionName": "PE_ISSUE_VOUCHER_ACTION",
+                "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.PointsEngineIssueVoucherActionImpl",
+                "description": "Issue B5G1 Juice Voucher",
+                "mandatoryPropertiesValues": {
+                  "VoucherSeriesId": "B5G1_JUICE"
+                },
+                "mandatoryComplexPropertiesValues": {},
+                "embeddedStrategies": []
+              }
+            ]
+          }
+        ],
+        "milestones":[]
       }
+    ],
+    "limits":[
+      {
+        "granularity": "USER",
+        "actionType": "ISSUE_COUPON",
+        "actionSubTypeId": "B5G1_JUICE",
+        "limitType": "COUNT",
+        "limitValue": 2,
+        "period": {
+          "periodType": "FIXED_CALENDAR_WINDOW",
+          "periodUnit": "WEEKS",
+          "periodValue": 1,
+          "periodStartDay": "SUNDAY"
+        }
+      }
+    ],
+    "liabilityOwnerSplitInfo":[],
+    "workflowMetadata": {
+      "optin": {},
+      "enrolment": {}
     }
-  ],
-  "liabilityOwnerSplitInfo":[],
-  "workflowMetadata": {
-    "optin": {},
-    "enrolment": {}
-  }
-}'
-```
+  }'
+  ```
+
+</CodeGroup>
 
 ### Applying the limits object to configure a promotion (Global Gadgets) : \[limits Object]
 
 ###### **Requirement:** Global Gadgets runs a loyalty promotion awarding points on every purchase from February to April 2026. To protect total liability, the promotion caps the total points awarded across all customers at 1,000,000 in any rolling 30-day window.
 
-```json
-curl --location 'https://eu.api.capillarytech.com/v3/promotions' \
---header 'content-type: application/json' \
---header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86MmQ1OTNTk1OGE2NWI5ZjAxMzU5NGIwNDllZTk=' \
---header 'Cookie: _cfuvid=BC9cwq9u_qIzIGlUxLEwV1ldTNVbpH1faK4-1763285329155-0.0.1.1-604800000' \
---data '{
-  "metadata": {
-    "name": "Global Gadgets Points Promotion",
-    "description": "Global Gadgets runs a loyalty promotion awarding points on every purchase from February to April 2026. To protect total liability, the promotion caps the total points awarded across all customers at 1,000,000 in any rolling 30-day window.",
-    "orgId": 100737,
-    "programId": 973,
-    "startDate": "2026-02-01T00:00:00+05:30",
-    "endDate": "2026-04-30T23:59:59+05:30",
-    "promotionType": "LOYALTY_EARNING",
-    "status": "DRAFT",
-    "timezoneName": "Asia/Kolkata",
-    "promoIdentifier": "global-gadgets-points-promotion",
-    "promotionMetadata":[]
-  },
-  "customerEnrolment": {
-    "enrolmentMethod": "TRANSACTION",
-    "audienceGroups": []
-  },
-  "activities":[
-    {
-      "id": "activity_1761xxxxxxa2",
-      "type": "SINGLE",
-      "name": "Award Points",
-      "event": "TransactionAdd",
-      "expJSON": "{\n  \"arity\": \"literal\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"true\"\n}",
-      "commonCycleActionMapping":[
-        {
-          "cycle": "Cycle_1",
-          "startDate": "2026-02-01T00:00:00+05:30",
-          "endDate": "2026-04-30T23:59:59+05:30",
-          "actions":[
-            {
-              "id": "temp_action_pts_lim",
-              "actionName": "AWARD_POINTS_ACTION",
-              "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.AwardPointsActionImpl",
-              "description": "Award Standard Points",
-              "mandatoryPropertiesValues": {
-                "AwardStrategy": "109010",
-                "ExpiryStrategy": "109006",
-                "PointType": "Points"
-              },
-              "mandatoryComplexPropertiesValues": {},
-              "embeddedStrategies": []
-            }
-          ]
-        }
-      ],
-      "milestones":[]
-    }
-  ],
-  "limits":[
-    {
-      "entityScope": "PROMOTION",
-      "granularity": "OVERALL",
-      "actionType": "AWARD_CURRENCY",
-      "actionSubTypeId": "Points",
-      "limitType": "SUM",
-      "limitValue": 1000000,
-      "period": {
-        "periodType": "MOVING_WINDOW",
-        "periodValue": 30,
-        "periodUnit": "DAYS"
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  curl --location 'https://eu.api.capillarytech.com/v3/promotions' \
+  --header 'content-type: application/json' \
+  --header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86MmQ1OTNTk1OGE2NWI5ZjAxMzU5NGIwNDllZTk=' \
+  --header 'Cookie: _cfuvid=BC9cwq9u_qIzIGlUxLEwV1ldTNVbpH1faK4-1763285329155-0.0.1.1-604800000' \
+  --data '{
+    "metadata": {
+      "name": "Global Gadgets Points Promotion",
+      "description": "Global Gadgets runs a loyalty promotion awarding points on every purchase from February to April 2026. To protect total liability, the promotion caps the total points awarded across all customers at 1,000,000 in any rolling 30-day window.",
+      "orgId": 100737,
+      "programId": 973,
+      "startDate": "2026-02-01T00:00:00+05:30",
+      "endDate": "2026-04-30T23:59:59+05:30",
+      "promotionType": "LOYALTY_EARNING",
+      "status": "DRAFT",
+      "timezoneName": "Asia/Kolkata",
+      "promoIdentifier": "global-gadgets-points-promotion",
+      "promotionMetadata":[]
+    },
+    "customerEnrolment": {
+      "enrolmentMethod": "TRANSACTION",
+      "audienceGroups": []
+    },
+    "activities":[
+      {
+        "id": "activity_1761xxxxxxa2",
+        "type": "SINGLE",
+        "name": "Award Points",
+        "event": "TransactionAdd",
+        "expJSON": "{\n  \"arity\": \"literal\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"true\"\n}",
+        "commonCycleActionMapping":[
+          {
+            "cycle": "Cycle_1",
+            "startDate": "2026-02-01T00:00:00+05:30",
+            "endDate": "2026-04-30T23:59:59+05:30",
+            "actions":[
+              {
+                "id": "temp_action_pts_lim",
+                "actionName": "AWARD_POINTS_ACTION",
+                "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.AwardPointsActionImpl",
+                "description": "Award Standard Points",
+                "mandatoryPropertiesValues": {
+                  "AwardStrategy": "109010",
+                  "ExpiryStrategy": "109006",
+                  "PointType": "Points"
+                },
+                "mandatoryComplexPropertiesValues": {},
+                "embeddedStrategies": []
+              }
+            ]
+          }
+        ],
+        "milestones":[]
       }
+    ],
+    "limits":[
+      {
+        "entityScope": "PROMOTION",
+        "granularity": "OVERALL",
+        "actionType": "AWARD_CURRENCY",
+        "actionSubTypeId": "Points",
+        "limitType": "SUM",
+        "limitValue": 1000000,
+        "period": {
+          "periodType": "MOVING_WINDOW",
+          "periodValue": 30,
+          "periodUnit": "DAYS"
+        }
+      }
+    ],
+    "liabilityOwnerSplitInfo":[],
+    "workflowMetadata": {
+      "optin": {},
+      "enrolment": {}
     }
-  ],
-  "liabilityOwnerSplitInfo":[],
-  "workflowMetadata": {
-    "optin": {},
-    "enrolment": {}
-  }
-}'
-```
+  }'
+  ```
+
+</CodeGroup>
 
 ### FIXED\_CALENDAR\_WINDOW - every 5 days from reference date : \[period Object]
 
 ###### **Requirement:** TechRetail runs a year-long loyalty promotion awarding points on every purchase. To prevent over-earning, each customer is capped at 100 points per 5-day period, with periods anchored from January 1, 2025.
 
-```json
-curl --location 'https://eu.api.capillarytech.com/v3/promotions' \
---header 'content-type: application/json' \
---header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86MmQ1OTNTk1OGE2NWI5ZjAxMzU5NGIwNDllZTk=' \
---header 'Cookie: _cfuvid=<your_cookie>' \
---data '{
-  "metadata": {
-    "name": "Every 5 Days Points Limit",
-    "description": "TechRetail runs a year-long loyalty promotion awarding points on every purchase. To prevent over-earning, each customer is capped at 100 points per 5-day period, with periods anchored from January 1, 2025.",
-    "orgId": 100737,
-    "programId": 2607,
-    "startDate": "2025-01-01T00:00:00+05:30",
-    "endDate": "2025-12-31T23:59:59+05:30",
-    "promotionType": "LOYALTY_EARNING",
-    "status": "DRAFT",
-    "timezoneName": "Asia/Kolkata",
-    "promoIdentifier": "techretail-5day-points-limit",
-    "promotionMetadata":[]
-  },
-  "customerEnrolment": {
-    "enrolmentMethod": "TRANSACTION",
-    "audienceGroups":[]
-  },
-  "activities":[
-    {
-      "id": "activity_001",
-      "type": "SINGLE",
-      "name": "Purchase Activity",
-      "event": "TransactionAdd",
-      "expJSON": "{\"arity\":\"literal\",\"type\":\"boolean:primitive\",\"value\":\"true\"}",
-      "commonCycleActionMapping":[
-        {
-          "cycle": "Cycle_1",
-          "startDate": "2025-01-01T00:00:00+05:30",
-          "endDate": "2025-12-31T23:59:59+05:30",
-          "actions":[
-            {
-              "id": "temp_action_pts",
-              "actionName": "AWARD_POINTS_ACTION",
-              "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.AwardPointsActionImpl",
-              "description": "Award Points",
-              "mandatoryPropertiesValues": {
-                "AwardStrategy": "109010",
-                "ExpiryStrategy": "109006",
-                "PointType": "Main"
-              },
-              "mandatoryComplexPropertiesValues": {},
-              "embeddedStrategies": []
-            }
-          ]
-        }
-      ],
-      "milestones":[]
-    }
-  ],
-  "limits":[
-    {
-      "granularity": "USER",
-      "actionType": "AWARD_CURRENCY",
-      "actionSubTypeId": "Points",
-      "limitType": "SUM",
-      "limitValue": 100,
-      "period": {
-        "periodType": "FIXED_CALENDAR_WINDOW",
-        "periodUnit": "DAYS",
-        "periodValue": 5,
-        "referenceDate": "2025-01-01T00:00:00Z"
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  curl --location 'https://eu.api.capillarytech.com/v3/promotions' \
+  --header 'content-type: application/json' \
+  --header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86MmQ1OTNTk1OGE2NWI5ZjAxMzU5NGIwNDllZTk=' \
+  --header 'Cookie: _cfuvid=<your_cookie>' \
+  --data '{
+    "metadata": {
+      "name": "Every 5 Days Points Limit",
+      "description": "TechRetail runs a year-long loyalty promotion awarding points on every purchase. To prevent over-earning, each customer is capped at 100 points per 5-day period, with periods anchored from January 1, 2025.",
+      "orgId": 100737,
+      "programId": 2607,
+      "startDate": "2025-01-01T00:00:00+05:30",
+      "endDate": "2025-12-31T23:59:59+05:30",
+      "promotionType": "LOYALTY_EARNING",
+      "status": "DRAFT",
+      "timezoneName": "Asia/Kolkata",
+      "promoIdentifier": "techretail-5day-points-limit",
+      "promotionMetadata":[]
+    },
+    "customerEnrolment": {
+      "enrolmentMethod": "TRANSACTION",
+      "audienceGroups":[]
+    },
+    "activities":[
+      {
+        "id": "activity_001",
+        "type": "SINGLE",
+        "name": "Purchase Activity",
+        "event": "TransactionAdd",
+        "expJSON": "{\"arity\":\"literal\",\"type\":\"boolean:primitive\",\"value\":\"true\"}",
+        "commonCycleActionMapping":[
+          {
+            "cycle": "Cycle_1",
+            "startDate": "2025-01-01T00:00:00+05:30",
+            "endDate": "2025-12-31T23:59:59+05:30",
+            "actions":[
+              {
+                "id": "temp_action_pts",
+                "actionName": "AWARD_POINTS_ACTION",
+                "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.AwardPointsActionImpl",
+                "description": "Award Points",
+                "mandatoryPropertiesValues": {
+                  "AwardStrategy": "109010",
+                  "ExpiryStrategy": "109006",
+                  "PointType": "Main"
+                },
+                "mandatoryComplexPropertiesValues": {},
+                "embeddedStrategies": []
+              }
+            ]
+          }
+        ],
+        "milestones":[]
       }
+    ],
+    "limits":[
+      {
+        "granularity": "USER",
+        "actionType": "AWARD_CURRENCY",
+        "actionSubTypeId": "Points",
+        "limitType": "SUM",
+        "limitValue": 100,
+        "period": {
+          "periodType": "FIXED_CALENDAR_WINDOW",
+          "periodUnit": "DAYS",
+          "periodValue": 5,
+          "referenceDate": "2025-01-01T00:00:00Z"
+        }
+      }
+    ],
+    "liabilityOwnerSplitInfo":[],
+    "workflowMetadata": {
+      "optin": {},
+      "enrolment": {}
     }
-  ],
-  "liabilityOwnerSplitInfo":[],
-  "workflowMetadata": {
-    "optin": {},
-    "enrolment": {}
-  }
-}'
-```
+  }'
+  ```
+
+</CodeGroup>
 
 ### FIXED\_CALENDAR\_WINDOW - every week starting Monday : \[period Object]
 
 ###### **Requirement:** FashionHub runs a year-long promotion issuing free shipping coupons on every purchase. To control distribution, each customer is limited to 3 coupon redemptions per week, with each week starting on Monday.
 
-```json
-curl --location 'https://eu.api.capillarytech.com/v3/promotions' \
---header 'content-type: application/json' \
---header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86MmQ1OTNTk1OGE2NWI5ZjAxMzU5NGIwNDllZTk=' \
---header 'Cookie: _cfuvid=<your_cookie>' \
---data '{
-  "metadata": {
-    "name": "Weekly Coupon Limit",
-    "description": "FashionHub runs a year-long promotion issuing free shipping coupons on every purchase. To control distribution, each customer is limited to 3 coupon redemptions per week, with each week starting on Monday.",
-    "orgId": 100737,
-    "programId": 2607,
-    "startDate": "2025-01-01T00:00:00+05:30",
-    "endDate": "2025-12-31T23:59:59+05:30",
-    "promotionType": "GENERIC",
-    "status": "DRAFT",
-    "timezoneName": "Asia/Kolkata",
-    "promoIdentifier": "fashionhub-weekly-coupon-limit",
-    "promotionMetadata":[]
-  },
-  "customerEnrolment": {
-    "enrolmentMethod": "TRANSACTION",
-    "audienceGroups": []
-  },
-  "activities":[
-    {
-      "id": "activity_002",
-      "type": "SINGLE",
-      "name": "Purchase Activity",
-      "event": "TransactionAdd",
-      "expJSON": "{\"arity\":\"literal\",\"type\":\"boolean:primitive\",\"value\":\"true\"}",
-      "commonCycleActionMapping":[
-        {
-          "cycle": "Cycle_1",
-          "startDate": "2025-01-01T00:00:00+05:30",
-          "endDate": "2025-12-31T23:59:59+05:30",
-          "actions":[
-            {
-              "id": "temp_action_coupon",
-              "actionName": "PE_ISSUE_VOUCHER_ACTION",
-              "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.PointsEngineIssueVoucherActionImpl",
-              "description": "Issue Free Shipping Coupon",
-              "mandatoryPropertiesValues": {
-                "VoucherSeriesId": "FREESHIP"
-              },
-              "mandatoryComplexPropertiesValues": {},
-              "embeddedStrategies": []
-            }
-          ]
-        }
-      ],
-      "milestones":[]
-    }
-  ],
-  "limits":[
-    {
-      "granularity": "USER",
-      "actionType": "ISSUE_COUPON",
-      "actionSubTypeId": "FREESHIP",
-      "limitType": "COUNT",
-      "limitValue": 3,
-      "period": {
-        "periodType": "FIXED_CALENDAR_WINDOW",
-        "periodUnit": "WEEKS",
-        "periodValue": 1,
-        "periodStartDay": "MONDAY"
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  curl --location 'https://eu.api.capillarytech.com/v3/promotions' \
+  --header 'content-type: application/json' \
+  --header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86MmQ1OTNTk1OGE2NWI5ZjAxMzU5NGIwNDllZTk=' \
+  --header 'Cookie: _cfuvid=<your_cookie>' \
+  --data '{
+    "metadata": {
+      "name": "Weekly Coupon Limit",
+      "description": "FashionHub runs a year-long promotion issuing free shipping coupons on every purchase. To control distribution, each customer is limited to 3 coupon redemptions per week, with each week starting on Monday.",
+      "orgId": 100737,
+      "programId": 2607,
+      "startDate": "2025-01-01T00:00:00+05:30",
+      "endDate": "2025-12-31T23:59:59+05:30",
+      "promotionType": "GENERIC",
+      "status": "DRAFT",
+      "timezoneName": "Asia/Kolkata",
+      "promoIdentifier": "fashionhub-weekly-coupon-limit",
+      "promotionMetadata":[]
+    },
+    "customerEnrolment": {
+      "enrolmentMethod": "TRANSACTION",
+      "audienceGroups": []
+    },
+    "activities":[
+      {
+        "id": "activity_002",
+        "type": "SINGLE",
+        "name": "Purchase Activity",
+        "event": "TransactionAdd",
+        "expJSON": "{\"arity\":\"literal\",\"type\":\"boolean:primitive\",\"value\":\"true\"}",
+        "commonCycleActionMapping":[
+          {
+            "cycle": "Cycle_1",
+            "startDate": "2025-01-01T00:00:00+05:30",
+            "endDate": "2025-12-31T23:59:59+05:30",
+            "actions":[
+              {
+                "id": "temp_action_coupon",
+                "actionName": "PE_ISSUE_VOUCHER_ACTION",
+                "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.PointsEngineIssueVoucherActionImpl",
+                "description": "Issue Free Shipping Coupon",
+                "mandatoryPropertiesValues": {
+                  "VoucherSeriesId": "FREESHIP"
+                },
+                "mandatoryComplexPropertiesValues": {},
+                "embeddedStrategies": []
+              }
+            ]
+          }
+        ],
+        "milestones":[]
       }
+    ],
+    "limits":[
+      {
+        "granularity": "USER",
+        "actionType": "ISSUE_COUPON",
+        "actionSubTypeId": "FREESHIP",
+        "limitType": "COUNT",
+        "limitValue": 3,
+        "period": {
+          "periodType": "FIXED_CALENDAR_WINDOW",
+          "periodUnit": "WEEKS",
+          "periodValue": 1,
+          "periodStartDay": "MONDAY"
+        }
+      }
+    ],
+    "liabilityOwnerSplitInfo":[],
+    "workflowMetadata": {
+      "optin": {},
+      "enrolment": {}
     }
-  ],
-  "liabilityOwnerSplitInfo":[],
-  "workflowMetadata": {
-    "optin": {},
-    "enrolment": {}
-  }
-}'
-```
+  }'
+  ```
+
+</CodeGroup>
 
 ### FIXED\_CALENDAR\_WINDOW - every calendar month : \[period Object]
 
 ###### **Requirement:** GroceryMart runs a year-long loyalty promotion awarding points on every purchase. To manage monthly earning potential, each customer is capped at 500 points per calendar month.
 
-```json
-curl --location 'https://eu.api.capillarytech.com/v3/promotions' \
---header 'content-type: application/json' \
---header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86MmQ1OTNTk1OGE2NWI5ZjAxMzU5NGIwNDllZTk=' \
---header 'Cookie: _cfuvid=<your_cookie>' \
---data '{
-  "metadata": {
-    "name": "Monthly Points Limit",
-    "description": "GroceryMart runs a year-long loyalty promotion awarding points on every purchase. To manage monthly earning potential, each customer is capped at 500 points per calendar month.",
-    "orgId": 100737,
-    "programId": 2607,
-    "startDate": "2025-01-01T00:00:00+05:30",
-    "endDate": "2025-12-31T23:59:59+05:30",
-    "promotionType": "LOYALTY_EARNING",
-    "status": "DRAFT",
-    "timezoneName": "Asia/Kolkata",
-    "promoIdentifier": "grocerymart-monthly-points-limit",
-    "promotionMetadata":[]
-  },
-  "customerEnrolment": {
-    "enrolmentMethod": "TRANSACTION",
-    "audienceGroups": []
-  },
-  "activities":[
-    {
-      "id": "activity_003",
-      "type": "SINGLE",
-      "name": "Purchase Activity",
-      "event": "TransactionAdd",
-      "expJSON": "{\"arity\":\"literal\",\"type\":\"boolean:primitive\",\"value\":\"true\"}",
-      "commonCycleActionMapping":[
-        {
-          "cycle": "Cycle_1",
-          "startDate": "2025-01-01T00:00:00+05:30",
-          "endDate": "2025-12-31T23:59:59+05:30",
-          "actions":[
-            {
-              "id": "temp_action_pts",
-              "actionName": "AWARD_POINTS_ACTION",
-              "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.AwardPointsActionImpl",
-              "description": "Award Points",
-              "mandatoryPropertiesValues": {
-                "AwardStrategy": "109010",
-                "ExpiryStrategy": "109006",
-                "PointType": "Main"
-              },
-              "mandatoryComplexPropertiesValues": {},
-              "embeddedStrategies": []
-            }
-          ]
-        }
-      ],
-      "milestones": []
-    }
-  ],
-  "limits":[
-    {
-      "granularity": "USER",
-      "actionType": "AWARD_CURRENCY",
-      "actionSubTypeId": "Points",
-      "limitType": "SUM",
-      "limitValue": 500,
-      "period": {
-        "periodType": "FIXED_CALENDAR_WINDOW",
-        "periodUnit": "MONTHS",
-        "periodValue": 1
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  curl --location 'https://eu.api.capillarytech.com/v3/promotions' \
+  --header 'content-type: application/json' \
+  --header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86MmQ1OTNTk1OGE2NWI5ZjAxMzU5NGIwNDllZTk=' \
+  --header 'Cookie: _cfuvid=<your_cookie>' \
+  --data '{
+    "metadata": {
+      "name": "Monthly Points Limit",
+      "description": "GroceryMart runs a year-long loyalty promotion awarding points on every purchase. To manage monthly earning potential, each customer is capped at 500 points per calendar month.",
+      "orgId": 100737,
+      "programId": 2607,
+      "startDate": "2025-01-01T00:00:00+05:30",
+      "endDate": "2025-12-31T23:59:59+05:30",
+      "promotionType": "LOYALTY_EARNING",
+      "status": "DRAFT",
+      "timezoneName": "Asia/Kolkata",
+      "promoIdentifier": "grocerymart-monthly-points-limit",
+      "promotionMetadata":[]
+    },
+    "customerEnrolment": {
+      "enrolmentMethod": "TRANSACTION",
+      "audienceGroups": []
+    },
+    "activities":[
+      {
+        "id": "activity_003",
+        "type": "SINGLE",
+        "name": "Purchase Activity",
+        "event": "TransactionAdd",
+        "expJSON": "{\"arity\":\"literal\",\"type\":\"boolean:primitive\",\"value\":\"true\"}",
+        "commonCycleActionMapping":[
+          {
+            "cycle": "Cycle_1",
+            "startDate": "2025-01-01T00:00:00+05:30",
+            "endDate": "2025-12-31T23:59:59+05:30",
+            "actions":[
+              {
+                "id": "temp_action_pts",
+                "actionName": "AWARD_POINTS_ACTION",
+                "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.AwardPointsActionImpl",
+                "description": "Award Points",
+                "mandatoryPropertiesValues": {
+                  "AwardStrategy": "109010",
+                  "ExpiryStrategy": "109006",
+                  "PointType": "Main"
+                },
+                "mandatoryComplexPropertiesValues": {},
+                "embeddedStrategies": []
+              }
+            ]
+          }
+        ],
+        "milestones": []
       }
+    ],
+    "limits":[
+      {
+        "granularity": "USER",
+        "actionType": "AWARD_CURRENCY",
+        "actionSubTypeId": "Points",
+        "limitType": "SUM",
+        "limitValue": 500,
+        "period": {
+          "periodType": "FIXED_CALENDAR_WINDOW",
+          "periodUnit": "MONTHS",
+          "periodValue": 1
+        }
+      }
+    ],
+    "liabilityOwnerSplitInfo":[],
+    "workflowMetadata": {
+      "optin": {},
+      "enrolment": {}
     }
-  ],
-  "liabilityOwnerSplitInfo":[],
-  "workflowMetadata": {
-    "optin": {},
-    "enrolment": {}
-  }
-}'
-```
+  }'
+  ```
+
+</CodeGroup>
 
 ### Applying the liabilityOwnerSplitInfo object to configure a promotion (DocDemo split) : \[liabilityOwnerSplitInfo Object]
 
 ###### **Requirement:** The brand has set up a promotion where the cost (liability) associated with the points awarded needs to be shared. The condition is: for any points given out by this promotion, the cost will be split equally (50/50) between two internal loyalty programs, specifically the "DocDemoDefaultProgram" and the "DocTransferPoints" program. This cost-sharing rule is active.
 
-```json
-curl --location 'https://eu.api.capillarytech.com/v3/promotions' \
---header 'content-type: application/json' \
---header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86MmQ1OTNhMjI2MTk1OGE2NWI5ZjAxMzU5NGIwNDllZTk=' \
---header 'Cookie: _cfuvid=BC9cwq9xQ4RRsN9u_qIzIGlUxLEwV1ldTNVbpH1faK4-1763285329155-0.0.1.1-604800000' \
---data '{
-  "metadata": {
-    "name": "Liability Split - DocDemo and DocTransfer",
-    "description": "Split liability 50/50 between DocDemoDefaultProgram (82) and DocTransferPoints (87).",
-    "orgId": 100737,
-    "programId": 973,
-    "startDate": "2025-11-20T00:00:00+05:30",
-    "endDate": "2025-12-31T23:59:59+05:30",
-    "promotionType": "LOYALTY_EARNING",
-    "status": "DRAFT",
-    "timezoneName": "Asia/Kolkata",
-    "promoIdentifier": "liability-split-docdemo-doctransfer",
-    "promotionMetadata":[]
-  },
-  "customerEnrolment": {
-    "enrolmentMethod": "TRANSACTION",
-    "audienceGroups":[]
-  },
-  "activities":[
-    {
-      "id": "activity_1761xxxxxxb1",
-      "type": "SINGLE",
-      "name": "Award Points",
-      "event": "TransactionAdd",
-      "expJSON": "{\n  \"arity\": \"literal\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"true\"\n}",
-      "commonCycleActionMapping":[
-        {
-          "cycle": "Cycle_1",
-          "startDate": "2025-11-20T00:00:00+05:30",
-          "endDate": "2025-12-31T23:59:59+05:30",
-          "actions":[
-            {
-              "id": "temp_action_pts_split",
-              "actionName": "AWARD_POINTS_ACTION",
-              "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.AwardPointsActionImpl",
-              "description": "100 Points",
-              "mandatoryPropertiesValues": {
-                "AwardStrategy": "109010",
-                "ExpiryStrategy": "109436",
-                "PointType": "Main"
-              },
-              "mandatoryComplexPropertiesValues": {},
-              "embeddedStrategies": []
-            }
-          ]
-        }
-      ],
-      "milestones": []
-    }
-  ],
-  "limits": [],
-  "liabilityOwnerSplitInfo":[
-    {
-      "liabilityOwnerId": 82,
-      "componentType": "PROMOTION",
-      "ratio": 50,
-      "active": true,
-      "liabilityOwnerName": "DocDemoDefaultProgram",
-      "liabilityOwnerType": "PROGRAM",
-      "orgId": 100737
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  curl --location 'https://eu.api.capillarytech.com/v3/promotions' \
+  --header 'content-type: application/json' \
+  --header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86MmQ1OTNhMjI2MTk1OGE2NWI5ZjAxMzU5NGIwNDllZTk=' \
+  --header 'Cookie: _cfuvid=BC9cwq9xQ4RRsN9u_qIzIGlUxLEwV1ldTNVbpH1faK4-1763285329155-0.0.1.1-604800000' \
+  --data '{
+    "metadata": {
+      "name": "Liability Split - DocDemo and DocTransfer",
+      "description": "Split liability 50/50 between DocDemoDefaultProgram (82) and DocTransferPoints (87).",
+      "orgId": 100737,
+      "programId": 973,
+      "startDate": "2025-11-20T00:00:00+05:30",
+      "endDate": "2025-12-31T23:59:59+05:30",
+      "promotionType": "LOYALTY_EARNING",
+      "status": "DRAFT",
+      "timezoneName": "Asia/Kolkata",
+      "promoIdentifier": "liability-split-docdemo-doctransfer",
+      "promotionMetadata":[]
     },
-    {
-      "liabilityOwnerId": 87,
-      "componentType": "PROMOTION",
-      "ratio": 50,
-      "active": true,
-      "liabilityOwnerName": "DocTransferPoints",
-      "liabilityOwnerType": "PROGRAM",
-      "orgId": 100737
+    "customerEnrolment": {
+      "enrolmentMethod": "TRANSACTION",
+      "audienceGroups":[]
+    },
+    "activities":[
+      {
+        "id": "activity_1761xxxxxxb1",
+        "type": "SINGLE",
+        "name": "Award Points",
+        "event": "TransactionAdd",
+        "expJSON": "{\n  \"arity\": \"literal\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"true\"\n}",
+        "commonCycleActionMapping":[
+          {
+            "cycle": "Cycle_1",
+            "startDate": "2025-11-20T00:00:00+05:30",
+            "endDate": "2025-12-31T23:59:59+05:30",
+            "actions":[
+              {
+                "id": "temp_action_pts_split",
+                "actionName": "AWARD_POINTS_ACTION",
+                "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.AwardPointsActionImpl",
+                "description": "100 Points",
+                "mandatoryPropertiesValues": {
+                  "AwardStrategy": "109010",
+                  "ExpiryStrategy": "109436",
+                  "PointType": "Main"
+                },
+                "mandatoryComplexPropertiesValues": {},
+                "embeddedStrategies": []
+              }
+            ]
+          }
+        ],
+        "milestones": []
+      }
+    ],
+    "limits": [],
+    "liabilityOwnerSplitInfo":[
+      {
+        "liabilityOwnerId": 82,
+        "componentType": "PROMOTION",
+        "ratio": 50,
+        "active": true,
+        "liabilityOwnerName": "DocDemoDefaultProgram",
+        "liabilityOwnerType": "PROGRAM",
+        "orgId": 100737
+      },
+      {
+        "liabilityOwnerId": 87,
+        "componentType": "PROMOTION",
+        "ratio": 50,
+        "active": true,
+        "liabilityOwnerName": "DocTransferPoints",
+        "liabilityOwnerType": "PROGRAM",
+        "orgId": 100737
+      }
+    ],
+    "workflowMetadata": {
+      "optin": {},
+      "enrolment": {}
     }
-  ],
-  "workflowMetadata": {
-    "optin": {},
-    "enrolment": {}
-  }
-}'
-```
+  }'
+  ```
+
+</CodeGroup>
 
 ### Applying the liabilityOwnerSplitInfo object to configure a promotion (Digital Hub standard) : \[liabilityOwnerSplitInfo Object]
 
 ###### **Requirement:** Digital Hub has set up a standard promotion linked to their main loyalty program (Org 100737, Prog 2607). For any rewards issued by this promotion, the configuration explicitly states: the full 100% of the cost (liability) is assigned solely to the main loyalty program (ID 2607). This setup confirms the default scenario where the program itself covers all expenses for the rewards given.
 
-```json
-curl --location 'https://eu.api.capillarytech.com/v3/promotions' \
---header 'content-type: application/json' \
---header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86MmQ1OTMTk1OGE2NWI5ZjAxMzU5NGIwNDllZTk=' \
---header 'Cookie: _cfuvid=BC9RRsN9u_qIzIGlUxLEwV1ldTNVbpH1faK4-1763285329155-0.0.1.1-604800000' \
---data '{
-  "metadata": {
-    "name": "Digital Hub Standard 100 Liability",
-    "description": "Standard promotion, 100% program liability to program 973.",
-    "orgId": 100737,
-    "programId": 973,
-    "startDate": "2025-12-01T00:00:00+05:30",
-    "endDate": "2025-12-31T23:59:59+05:30",
-    "promotionType": "GENERIC",
-    "status": "DRAFT",
-    "timezoneName": "Asia/Kolkata",
-    "promoIdentifier": "digital-hub-standard-liability",
-    "promotionMetadata":[]
-  },
-  "customerEnrolment": {
-    "enrolmentMethod": "TRANSACTION",
-    "audienceGroups": []
-  },
-  "activities":[
-    {
-      "id": "activity_1763288000001",
-      "name": "Activity 1",
-      "type": "SINGLE",
-      "event": "TransactionAdd",
-      "expJSON": "{\n  \"arity\": \"literal\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"true\"\n}",
-      "commonCycleActionMapping":[
-        {
-          "cycle": "Cycle_1",
-          "startDate": "2025-12-01T00:00:00+05:30",
-          "endDate": "2025-12-31T23:59:59+05:30",
-          "actions": []
-        }
-      ],
-      "milestones":[]
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  curl --location 'https://eu.api.capillarytech.com/v3/promotions' \
+  --header 'content-type: application/json' \
+  --header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86MmQ1OTMTk1OGE2NWI5ZjAxMzU5NGIwNDllZTk=' \
+  --header 'Cookie: _cfuvid=BC9RRsN9u_qIzIGlUxLEwV1ldTNVbpH1faK4-1763285329155-0.0.1.1-604800000' \
+  --data '{
+    "metadata": {
+      "name": "Digital Hub Standard 100 Liability",
+      "description": "Standard promotion, 100% program liability to program 973.",
+      "orgId": 100737,
+      "programId": 973,
+      "startDate": "2025-12-01T00:00:00+05:30",
+      "endDate": "2025-12-31T23:59:59+05:30",
+      "promotionType": "GENERIC",
+      "status": "DRAFT",
+      "timezoneName": "Asia/Kolkata",
+      "promoIdentifier": "digital-hub-standard-liability",
+      "promotionMetadata":[]
+    },
+    "customerEnrolment": {
+      "enrolmentMethod": "TRANSACTION",
+      "audienceGroups": []
+    },
+    "activities":[
+      {
+        "id": "activity_1763288000001",
+        "name": "Activity 1",
+        "type": "SINGLE",
+        "event": "TransactionAdd",
+        "expJSON": "{\n  \"arity\": \"literal\",\n  \"type\": \"boolean:primitive\",\n  \"value\": \"true\"\n}",
+        "commonCycleActionMapping":[
+          {
+            "cycle": "Cycle_1",
+            "startDate": "2025-12-01T00:00:00+05:30",
+            "endDate": "2025-12-31T23:59:59+05:30",
+            "actions": []
+          }
+        ],
+        "milestones":[]
+      }
+    ],
+    "limits": [],
+    "liabilityOwnerSplitInfo":[
+      {
+        "liabilityOwnerId": 82,
+        "componentType": "PROMOTION",
+        "ratio": 100,
+        "active": true,
+        "liabilityOwnerName": "DocDemoDefaultProgram",
+        "liabilityOwnerType": "PROGRAM",
+        "orgId": 100737
+      }
+    ],
+    "workflowMetadata": {
+      "optin": {},
+      "enrolment": {}
     }
-  ],
-  "limits": [],
-  "liabilityOwnerSplitInfo":[
-    {
-      "liabilityOwnerId": 82,
-      "componentType": "PROMOTION",
-      "ratio": 100,
-      "active": true,
-      "liabilityOwnerName": "DocDemoDefaultProgram",
-      "liabilityOwnerType": "PROGRAM",
-      "orgId": 100737
-    }
-  ],
-  "workflowMetadata": {
-    "optin": {},
-    "enrolment": {}
-  }
-}'
-```
+  }'
+  ```
+
+</CodeGroup>
 
 ### Broadcast promotion — Immediate, Once (Award Currency)
 
 A broadcast promotion that issues 500 points to all customers in two audience groups immediately after the promotion is approved. The reward is issued once.
 
-```bash
-curl --location 'https://eu.api.capillarytech.com/v3/promotions' \
---header 'Content-Type: application/json' \
---header 'Authorization: Basic <token>' \
---data '{
-  "metadata": {
-    "name": "VIP Summer Reward",
-    "description": "Reward VIP customers with 500 points",
-    "promotionType": "LOYALTY",
-    "promotionCategory": "BROADCAST",
-    "programId": "973",
-    "orgId": 51174,
-    "status": "DRAFT",
-    "startDate": "2026-06-01T00:00:00+05:30",
-    "endDate": "2026-06-30T23:59:59+05:30",
-    "timezoneName": "Asia/Kolkata",
-    "promoIdentifier": "vip-summer-reward-june",
-    "promotionMetadata":[]
-  },
-  "customerEnrolment": { "enrolmentMethod": "IMPORT" },
-  "liabilityOwnerSplitInfo":[
-    {
-      "liabilityOwnerId": 82,
-      "componentType": "PROMOTION",
-      "ratio": 100,
-      "active": true,
-      "liabilityOwnerName": "DocDemoDefaultProgram",
-      "liabilityOwnerType": "PROGRAM",
-      "orgId": 100737
-    }
-  ],
-  "broadcastMetadata": {
-    "source": "AUDIENCE_FILTER",
-    "audienceFilter": {
-      "audienceListIds": [1130180]
+<CodeGroup show-lines="true" tabs={["cURL"]}>
+
+  ```bash "cURL"
+  curl --location 'https://eu.api.capillarytech.com/v3/promotions' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Basic <token>' \
+  --data '{
+    "metadata": {
+      "name": "VIP Summer Reward",
+      "description": "Reward VIP customers with 500 points",
+      "promotionType": "LOYALTY",
+      "promotionCategory": "BROADCAST",
+      "programId": "973",
+      "orgId": 51174,
+      "status": "DRAFT",
+      "startDate": "2026-06-01T00:00:00+05:30",
+      "endDate": "2026-06-30T23:59:59+05:30",
+      "timezoneName": "Asia/Kolkata",
+      "promoIdentifier": "vip-summer-reward-june",
+      "promotionMetadata":[]
     },
-    "tillId": "75216507"
-  },
-  "activities":[
-    {
-      "id": "activity_broadcast_1",
-      "name": "Award 500 Points",
-      "type": "SINGLE",
-      "event": "BulkEMFEvent",
-      "milestones": [],
-      "expJSON": "{\"arity\":\"literal\",\"type\":\"boolean:primitive\",\"value\":\"true\"}",
-      "commonCycleActionMapping":[
-        {
-          "cycle": "Cycle_1",
-          "startDate": "2026-06-01T00:00:00+05:30",
-          "endDate": "2026-06-30T23:59:59+05:30",
-          "actions":[
-            {
-              "id": "temp_action_points_1",
-              "actionName": "ADVANCE_CURRENCY_ALLOCATION_ACTION",
-              "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.CommunicationDecoratorActionImpl",
-              "description": "Award 500 points",
-              "mandatoryPropertiesValues": {
-                "PointType": "Main",
-                "Currency": "POINTS",
-                "EvaluatedEntity": "USER",
-                "delegateActionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.AdvanceCurrencyAllocationActionImpl"
-              },
-              "mandatoryComplexPropertiesValues": {},
-              "embeddedStrategies":[
-                {
-                  "strategyTypeId": 1,
-                  "propertyValues": "{\"allocation_type\":\"FIXED\",\"allocation_values\":\"500,500,500,500,500,500,500,500\"}",
-                  "owner": "LOYALTY",
-                  "updatedViaNewUI": true
+    "customerEnrolment": { "enrolmentMethod": "IMPORT" },
+    "liabilityOwnerSplitInfo":[
+      {
+        "liabilityOwnerId": 82,
+        "componentType": "PROMOTION",
+        "ratio": 100,
+        "active": true,
+        "liabilityOwnerName": "DocDemoDefaultProgram",
+        "liabilityOwnerType": "PROGRAM",
+        "orgId": 100737
+      }
+    ],
+    "broadcastMetadata": {
+      "source": "AUDIENCE_FILTER",
+      "audienceFilter": {
+        "audienceListIds": [1130180]
+      },
+      "tillId": "75216507"
+    },
+    "activities":[
+      {
+        "id": "activity_broadcast_1",
+        "name": "Award 500 Points",
+        "type": "SINGLE",
+        "event": "BulkEMFEvent",
+        "milestones": [],
+        "expJSON": "{\"arity\":\"literal\",\"type\":\"boolean:primitive\",\"value\":\"true\"}",
+        "commonCycleActionMapping":[
+          {
+            "cycle": "Cycle_1",
+            "startDate": "2026-06-01T00:00:00+05:30",
+            "endDate": "2026-06-30T23:59:59+05:30",
+            "actions":[
+              {
+                "id": "temp_action_points_1",
+                "actionName": "ADVANCE_CURRENCY_ALLOCATION_ACTION",
+                "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.CommunicationDecoratorActionImpl",
+                "description": "Award 500 points",
+                "mandatoryPropertiesValues": {
+                  "PointType": "Main",
+                  "Currency": "POINTS",
+                  "EvaluatedEntity": "USER",
+                  "delegateActionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.AdvanceCurrencyAllocationActionImpl"
                 },
-                {
-                  "strategyTypeId": 3,
-                  "propertyValues": "{\"expiry_type\":\"SLAB_INDEPENDENT\",\"expiry_from\":\"CURRENT_DATE\",\"expiry_time_units\":\"NEVER,NEVER,NEVER,NEVER,NEVER,NEVER,NEVER,NEVER\"}",
-                  "owner": "LOYALTY",
-                  "updatedViaNewUI": true
-                }
-              ]
-            }
-          ]
-        }
-      ]
+                "mandatoryComplexPropertiesValues": {},
+                "embeddedStrategies":[
+                  {
+                    "strategyTypeId": 1,
+                    "propertyValues": "{\"allocation_type\":\"FIXED\",\"allocation_values\":\"500,500,500,500,500,500,500,500\"}",
+                    "owner": "LOYALTY",
+                    "updatedViaNewUI": true
+                  },
+                  {
+                    "strategyTypeId": 3,
+                    "propertyValues": "{\"expiry_type\":\"SLAB_INDEPENDENT\",\"expiry_from\":\"CURRENT_DATE\",\"expiry_time_units\":\"NEVER,NEVER,NEVER,NEVER,NEVER,NEVER,NEVER,NEVER\"}",
+                    "owner": "LOYALTY",
+                    "updatedViaNewUI": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "promotionSchedule": {
+      "schedule": {
+        "startType": "IMMEDIATE",
+        "frequency": "ONCE"
+      }
     }
-  ],
-  "promotionSchedule": {
-    "schedule": {
-      "startType": "IMMEDIATE",
-      "frequency": "ONCE"
-    }
-  }
-}'
-```
+  }'
+  ```
+
+</CodeGroup>
 
 ### Broadcast promotion — Specific date, Daily (Award Badge)
 
 A broadcast promotion that awards a badge to all customers in an audience group daily, starting on a specific date and continuing until the promotion end date.
 
-```bash
-curl --location 'https://eu.api.capillarytech.com/v3/promotions' \
---header 'Content-Type: application/json' \
---header 'Authorization: Basic <token>' \
---data '{
-  "metadata": {
-    "name": "Daily Loyalty Badge — June 2026",
-    "description": "Award a daily loyalty badge to VIP audience",
-    "promotionType": "LOYALTY",
-    "promotionCategory": "BROADCAST",
-    "programId": "973",
-    "orgId": 51174,
-    "status": "DRAFT",
-    "startDate": "2026-06-01T00:00:00+05:30",
-    "endDate": "2026-06-30T23:59:59+05:30",
-    "timezoneName": "Asia/Kolkata",
-    "promoIdentifier": "daily-badge-june-2026",
-    "promotionMetadata":[]
-  },
-  "customerEnrolment": { "enrolmentMethod": "IMPORT" },
-  "liabilityOwnerSplitInfo":[
-    {
-      "liabilityOwnerId": 82,
-      "componentType": "PROMOTION",
-      "ratio": 100,
-      "active": true,
-      "liabilityOwnerName": "DocDemoDefaultProgram",
-      "liabilityOwnerType": "PROGRAM",
-      "orgId": 100737
-    }
-  ],
-  "broadcastMetadata": {
-    "source": "AUDIENCE_FILTER",
-    "audienceFilter": {
-      "audienceListIds": [1130180]
+<CodeGroup show-lines="true" tabs={["cURL"]}>
+
+  ```bash "cURL"
+  curl --location 'https://eu.api.capillarytech.com/v3/promotions' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Basic <token>' \
+  --data '{
+    "metadata": {
+      "name": "Daily Loyalty Badge — June 2026",
+      "description": "Award a daily loyalty badge to VIP audience",
+      "promotionType": "LOYALTY",
+      "promotionCategory": "BROADCAST",
+      "programId": "973",
+      "orgId": 51174,
+      "status": "DRAFT",
+      "startDate": "2026-06-01T00:00:00+05:30",
+      "endDate": "2026-06-30T23:59:59+05:30",
+      "timezoneName": "Asia/Kolkata",
+      "promoIdentifier": "daily-badge-june-2026",
+      "promotionMetadata":[]
     },
-    "tillId": "75216507"
-  },
-  "activities":[
-    {
-      "id": "activity_broadcast_badge",
-      "name": "Award Daily Badge",
-      "type": "SINGLE",
-      "event": "BulkEMFEvent",
-      "milestones": [],
-      "expJSON": "{\"arity\":\"literal\",\"type\":\"boolean:primitive\",\"value\":\"true\"}",
-      "commonCycleActionMapping":[
-        {
-          "cycle": "Cycle_1",
-          "startDate": "2026-06-01T00:00:00+05:30",
-          "endDate": "2026-06-30T23:59:59+05:30",
-          "actions":[
-            {
-              "id": "temp_action_badge_1",
-              "actionName": "BADGE_EARN_ACTION",
-              "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.CommunicationDecoratorActionImpl",
-              "description": "Badge Issue",
-              "mandatoryPropertiesValues": {
-                "badgeMetaId": "<BADGE_META_ID>",
-                "badgeMetaName": "<BADGE_NAME>",
-                "referenceId": "<ORG_ID>_BulkEMFEvent_<UNIQUE_REF>",
-                "ownerType": "Loyalty_Promotion",
-                "delegateActionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.BadgeEarnActionImpl",
-                "Event Name": "BulkEMFEvent"
-              },
-              "mandatoryComplexPropertiesValues": {}
-            }
-          ]
-        }
-      ]
+    "customerEnrolment": { "enrolmentMethod": "IMPORT" },
+    "liabilityOwnerSplitInfo":[
+      {
+        "liabilityOwnerId": 82,
+        "componentType": "PROMOTION",
+        "ratio": 100,
+        "active": true,
+        "liabilityOwnerName": "DocDemoDefaultProgram",
+        "liabilityOwnerType": "PROGRAM",
+        "orgId": 100737
+      }
+    ],
+    "broadcastMetadata": {
+      "source": "AUDIENCE_FILTER",
+      "audienceFilter": {
+        "audienceListIds": [1130180]
+      },
+      "tillId": "75216507"
+    },
+    "activities":[
+      {
+        "id": "activity_broadcast_badge",
+        "name": "Award Daily Badge",
+        "type": "SINGLE",
+        "event": "BulkEMFEvent",
+        "milestones": [],
+        "expJSON": "{\"arity\":\"literal\",\"type\":\"boolean:primitive\",\"value\":\"true\"}",
+        "commonCycleActionMapping":[
+          {
+            "cycle": "Cycle_1",
+            "startDate": "2026-06-01T00:00:00+05:30",
+            "endDate": "2026-06-30T23:59:59+05:30",
+            "actions":[
+              {
+                "id": "temp_action_badge_1",
+                "actionName": "BADGE_EARN_ACTION",
+                "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.CommunicationDecoratorActionImpl",
+                "description": "Badge Issue",
+                "mandatoryPropertiesValues": {
+                  "badgeMetaId": "<BADGE_META_ID>",
+                  "badgeMetaName": "<BADGE_NAME>",
+                  "referenceId": "<ORG_ID>_BulkEMFEvent_<UNIQUE_REF>",
+                  "ownerType": "Loyalty_Promotion",
+                  "delegateActionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.BadgeEarnActionImpl",
+                  "Event Name": "BulkEMFEvent"
+                },
+                "mandatoryComplexPropertiesValues": {}
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "promotionSchedule": {
+      "schedule": {
+        "startType": "PARTICULAR_DATE",
+        "scheduleDate": "2026-06-01T09:00:00+05:30",
+        "frequency": "DAILY"
+      }
     }
-  ],
-  "promotionSchedule": {
-    "schedule": {
-      "startType": "PARTICULAR_DATE",
-      "scheduleDate": "2026-06-01T09:00:00+05:30",
-      "frequency": "DAILY"
-    }
-  }
-}'
-```
+  }'
+  ```
+
+</CodeGroup>
 
 ## Parameters & Headers
 
@@ -2731,4 +2799,3 @@ curl --location 'https://eu.api.capillarytech.com/v3/promotions' \
     </Expandable>
   </ParamField>
 </Expandable>
-

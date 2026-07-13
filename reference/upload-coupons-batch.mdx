@@ -20,17 +20,19 @@ This API helps to upload a batch of coupons to a coupon series. It provides the 
 
 ## API endpoint example
 
-```bash
-curl --location 'https://eu.intouch.capillarytech.com/coupon/api/v1/upload/file/541854' \
---header 'Postman-Token: 3056825f-5e0d-411e-a83d-e6ce0e6da3d2' \
---header 'cache-control: no-cache' \
---header 'X-CAP-API-OAUTH-TOKEN: eyJraWQiOiJrMSIsImFsZyI6IlJTMjU2In0.eyJpc3MiOiJDYXBpbGxhcnkiLCJleHAiOjE3MTc2NTE4OTcsImp0aSI6InAxUFZRa0ZFdDJ2RUlrVlZvcHRWRnciLCJpYXQiOjE3MTc2NTEyOTcsInN1YiI6IkFiaWppdGggUCIsImNsaWVudaXRrM05rR213WFp3QzVPbzBON21TbyIsImRlZmF1bHRfdGlsbCI6NzUxMjE4MjEsInNjb3BlcyI6IltdIn0.pkcgBFZqRZbPBg1vEDM0lTf4Mz5up_Xip5tZHOsnxd_EydmuvNSCfJHvBDA-4o6kxGVdxTVkYPDGF_eOi8PpjXDKmPHN_dmf-L7NeS3kxBLxuRvaukCsSF9eP1Ao8VTpGW-sjwroEzKqgVDk4NGuEaAgGZc-edGToCrSnmX7KMl3IYMW6mTNj1Gd-CCuP9zR1ohCXsY5nmGfs65rHH9jC56GCda1baRKMOibYokVgyUzP8buPyOabpjt-qZMAMwxFXAZ7nEYAcPaLACGGXkGTOu_qwGwvHAQzGub2pVtztsTL0a58OAO-vcs-4eNijyOzMB4CXMqE8LQhWM3pPiPyg' \
---form 'file=@"/C:/Users/abijhit.p/Downloads/couponbatchupload.csv"' \
---form 'customerIdentifier="MOBILE"' \
---form 'customerIdentifierColumn="0"'
-```
+<CodeGroup show-lines="true" tabs={["cURL"]}>
 
-<br />
+  ```bash "cURL"
+  curl --location 'https://eu.intouch.capillarytech.com/coupon/api/v1/upload/file/541854' \
+  --header 'Postman-Token: 3056825f-5e0d-411e-a83d-e6ce0e6da3d2' \
+  --header 'cache-control: no-cache' \
+  --header 'X-CAP-API-OAUTH-TOKEN: eyJraWQiOiJrMSIsImFsZyI6IlJTMjU2In0.eyJpc3MiOiJDYXBpbGxhcnkiLCJleHAiOjE3MTc2NTE4OTcsImp0aSI6InAxUFZRa0ZFdDJ2RUlrVlZvcHRWRnciLCJpYXQiOjE3MTc2NTEyOTcsInN1YiI6IkFiaWppdGggUCIsImNsaWVudaXRrM05rR213WFp3QzVPbzBON21TbyIsImRlZmF1bHRfdGlsbCI6NzUxMjE4MjEsInNjb3BlcyI6IltdIn0.pkcgBFZqRZbPBg1vEDM0lTf4Mz5up_Xip5tZHOsnxd_EydmuvNSCfJHvBDA-4o6kxGVdxTVkYPDGF_eOi8PpjXDKmPHN_dmf-L7NeS3kxBLxuRvaukCsSF9eP1Ao8VTpGW-sjwroEzKqgVDk4NGuEaAgGZc-edGToCrSnmX7KMl3IYMW6mTNj1Gd-CCuP9zR1ohCXsY5nmGfs65rHH9jC56GCda1baRKMOibYokVgyUzP8buPyOabpjt-qZMAMwxFXAZ7nEYAcPaLACGGXkGTOu_qwGwvHAQzGub2pVtztsTL0a58OAO-vcs-4eNijyOzMB4CXMqE8LQhWM3pPiPyg' \
+  --form 'file=@"/C:/Users/abijhit.p/Downloads/couponbatchupload.csv"' \
+  --form 'customerIdentifier="MOBILE"' \
+  --form 'customerIdentifierColumn="0"'
+  ```
+
+</CodeGroup>
 
 ## Path parameter
 
@@ -79,32 +81,36 @@ curl --location 'https://eu.intouch.capillarytech.com/coupon/api/v1/upload/file/
 | result.uploadJobStatuses.audienceGroupVersionId | Integer          | Version ID of the audience group.                            |
 | result.fileName                                 | String           | Name of the file associated with the result.                 |
 
-```json 200 OK
-{
-    "success": true,
-    "status": 200,
-    "result": {
-        "orgId": 100458,
-        "couponSeriesId": 541854,
-        "uploadJobStatuses": [
-            {
-                "jobId": 222696,
-                "uploadStatus": "STARTED",
-                "createdOn": "1717651325445",
-                "updatedOn": "1717651325445",
-                "errorFileUrl": null,
-                "successFileUrl": null,
-                "uploadedFileUrl": "couponbatchupload_1717651325326_541854.csv",
-                "totalUploadedCount": 0,
-                "actualRowCount": 0,
-                "errorCount": 0,
-                "uploadTableName": null,
-                "uploadedFileName": "couponbatchupload.csv",
-                "audienceGroupId": 0,
-                "audienceGroupVersionId": 0
-            }
-        ],
-        "fileName": "couponbatchupload_1717651325326_541854.csv"
-    }
-}
-```
+<CodeGroup show-lines="true" tabs={["200 OK"]}>
+
+  ```json "200 OK"
+  {
+      "success": true,
+      "status": 200,
+      "result": {
+          "orgId": 100458,
+          "couponSeriesId": 541854,
+          "uploadJobStatuses": [
+              {
+                  "jobId": 222696,
+                  "uploadStatus": "STARTED",
+                  "createdOn": "1717651325445",
+                  "updatedOn": "1717651325445",
+                  "errorFileUrl": null,
+                  "successFileUrl": null,
+                  "uploadedFileUrl": "couponbatchupload_1717651325326_541854.csv",
+                  "totalUploadedCount": 0,
+                  "actualRowCount": 0,
+                  "errorCount": 0,
+                  "uploadTableName": null,
+                  "uploadedFileName": "couponbatchupload.csv",
+                  "audienceGroupId": 0,
+                  "audienceGroupVersionId": 0
+              }
+          ],
+          "fileName": "couponbatchupload_1717651325326_541854.csv"
+      }
+  }
+  ```
+
+</CodeGroup>

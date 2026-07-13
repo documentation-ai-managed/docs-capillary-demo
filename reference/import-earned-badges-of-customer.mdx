@@ -18,27 +18,31 @@ For detailed information about our APIs and for hands-on testing, refer document
 
 ## Example request
 
-```bash Sample request
-curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/import/customerBadges' \
---header 'Content-Type: application/json' \
---header 'Authorization: Basic bWFkajU2YQ==' \
---header 'Cookie: _cfuvid=S8HjBH10RqTfOhguIBzGFsmmDRCu5LYrozbGHbzkPBE-1768884697575-0.0.1.1-604800000; _cfuvid=a29kRC1YIK1I8Q7ExG3CuyWB_.cTY7mz9Ldi1R5GmdU-1769693039796-0.0.1.1-604800000' \
---data '[
-   {
-       "badgeMetaId": "696f0fd40772ad476ecf74ac",
-       "customerId": 555567088
-       "earnExpiresOn": 1705828011
-  },
-   { 
-   "badgeMetaId": "697a16140772ad476ecfe51c", 
-   "customerId": 12098734, 
-   "earnEventDate": 1635792000,
-   "earnEventDateISO":"2025-09-10T15:00:00+05:30" 
-   "earnExpiresOn": 1667328000
-   "earnExpiresOnISO":"2022-11-02T00:10:00+05:30"
-   }
-]'
-```
+<CodeGroup show-lines="true" tabs={["Sample request"]}>
+
+  ```bash "Sample request"
+  curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/import/customerBadges' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Basic bWFkajU2YQ==' \
+  --header 'Cookie: _cfuvid=S8HjBH10RqTfOhguIBzGFsmmDRCu5LYrozbGHbzkPBE-1768884697575-0.0.1.1-604800000; _cfuvid=a29kRC1YIK1I8Q7ExG3CuyWB_.cTY7mz9Ldi1R5GmdU-1769693039796-0.0.1.1-604800000' \
+  --data '[
+     {
+         "badgeMetaId": "696f0fd40772ad476ecf74ac",
+         "customerId": 555567088
+         "earnExpiresOn": 1705828011
+    },
+     { 
+     "badgeMetaId": "697a16140772ad476ecfe51c", 
+     "customerId": 12098734, 
+     "earnEventDate": 1635792000,
+     "earnEventDateISO":"2025-09-10T15:00:00+05:30" 
+     "earnExpiresOn": 1667328000
+     "earnExpiresOnISO":"2022-11-02T00:10:00+05:30"
+     }
+  ]'
+  ```
+
+</CodeGroup>
 
 ## Prerequisites
 
@@ -65,36 +69,40 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/import/c
 
 ## Example response
 
-```json Sample response
-[
-    {
-        "data": {
-            "badgeMetaId": "696f0fd40772ad476ecf74ac",
-            "customerId": 555567088,
-            "earnedBadgeId": "697b5f6f0772ad476ecff272",
-            "expiresOn": 1705828011.000000000,
-            "expiresOnISO": "2024-01-21T09:06:51Z",
-            "requestId": "d9e144be-2450-4300-892f-798f9bb68ce2_1",
-            "issuedId": null
-        },
-        "errors": null,
-        "warnings": null
-    },
-    {
-        "data": {
-            "badgeMetaId": "697a16140772ad476ecfe51c",
-            "customerId": 12098734,
-            "earnedBadgeId": "697b5f6f0772ad476ecff275",
-            "expiresOn": 1667328000.000000000,
-            "expiresOnISO": "2022-11-01T18:40:00Z",
-            "requestId": "d9e144be-2450-4300-892f-798f9bb68ce2_2",
-            "issuedId": null
-        },
-        "errors": null,
-        "warnings": null
-    }
-]
-```
+<CodeGroup show-lines="true" tabs={["Sample response"]}>
+
+  ```json "Sample response"
+  [
+      {
+          "data": {
+              "badgeMetaId": "696f0fd40772ad476ecf74ac",
+              "customerId": 555567088,
+              "earnedBadgeId": "697b5f6f0772ad476ecff272",
+              "expiresOn": 1705828011.000000000,
+              "expiresOnISO": "2024-01-21T09:06:51Z",
+              "requestId": "d9e144be-2450-4300-892f-798f9bb68ce2_1",
+              "issuedId": null
+          },
+          "errors": null,
+          "warnings": null
+      },
+      {
+          "data": {
+              "badgeMetaId": "697a16140772ad476ecfe51c",
+              "customerId": 12098734,
+              "earnedBadgeId": "697b5f6f0772ad476ecff275",
+              "expiresOn": 1667328000.000000000,
+              "expiresOnISO": "2022-11-01T18:40:00Z",
+              "requestId": "d9e144be-2450-4300-892f-798f9bb68ce2_2",
+              "issuedId": null
+          },
+          "errors": null,
+          "warnings": null
+      }
+  ]
+  ```
+
+</CodeGroup>
 
 ## Response parameter
 

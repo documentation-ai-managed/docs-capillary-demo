@@ -10,18 +10,22 @@ Use this API to validate the OTP in the MFA flow. The `/mfa/otp/generate` API ge
 
 ## Example request
 
-```bash
-curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/otp/validate' \
---header 'Content-Type: application/json' \
---data '{
-	 "identifierType":"MOBILE",
-   "identifierValue":"18767431754", 
-    "deviceId": "1234",
-    "brand": "Bukl",
-    "sessionId": "P-b04c1001-ef08-4125-9886-f9d8b4c5d9b8",
-   "otp": 999999
-}'
-```
+<CodeGroup show-lines="true" tabs={["cURL"]}>
+
+  ```bash "cURL"
+  curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/otp/validate' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  	 "identifierType":"MOBILE",
+     "identifierValue":"18767431754", 
+      "deviceId": "1234",
+      "brand": "Bukl",
+      "sessionId": "P-b04c1001-ef08-4125-9886-f9d8b4c5d9b8",
+     "otp": 999999
+  }'
+  ```
+
+</CodeGroup>
 
 ## Resource information
 
@@ -60,25 +64,29 @@ curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/otp/validate' \
 | • role                      | string    | Indicates the user's role. Example: VIEW, USER.                                              |
 | • userRegisteredForPassword | boolean   | Indicates if the user is registered for a password.                                          |
 
-```json
-{
-    "status": {
-        "success": true,
-        "code": 200,
-        "message": "SUCCESS"
-    },
-    "auth": {
-        "token": "eyJpZHYiOlsiTU9CSUxFfDE4NzY3NDMxNzU0Il0sImRldiI6IjEyMzQiLCJvcmciOiJCVUtMIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOiIxNzgwNzc2IiwiaXNzIjoiQ0FQSUxMQVJZIFRFQ0hOT0xPR0lFUyIsImlzYyI6ImZhbHNlIiwib2djIjpbIjEwMDQ1OHxidWtsLmluZC5zb2x1dGlvbiJdLCJleHAiOjE3MTY5NjM0NTcsImlhdCI6MTcxNjk2MjU1Nywicm9sIjoiVVNFUiJ9.RNOnu2qd9b4CrH6ODsIc1OdeOg4EwFh7ssv0zlAG5pE",
-        "key": "eyJpZHYiOlsiTU9CSUxFfDE4NzY3NDMxNzU0Il0sImRldiI6IjEyMzQiLCJvcmciOiJCVUtMIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOiIxNzgwNzc2IiwiaXNzIjoiQ0FQSUxMQVJZIFRFQ0hOT0xPR0lFUyIsIm1mYSI6dHJ1ZSwiaWF0IjoxNzE2OTYyNTU3LCJyb2wiOiJBVVRIIn0.89CmFeLl_zfUBuv2Ea4eQIc3Wy8fJzlcRQad8UcqK-4"
-    },
-    "user": {
-        "appRegistered": false,
-        "sessionId": null,
-        "role": "USER",
-        "userRegisteredForPassword": false
-    }
-}
-```
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  {
+      "status": {
+          "success": true,
+          "code": 200,
+          "message": "SUCCESS"
+      },
+      "auth": {
+          "token": "eyJpZHYiOlsiTU9CSUxFfDE4NzY3NDMxNzU0Il0sImRldiI6IjEyMzQiLCJvcmciOiJCVUtMIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOiIxNzgwNzc2IiwiaXNzIjoiQ0FQSUxMQVJZIFRFQ0hOT0xPR0lFUyIsImlzYyI6ImZhbHNlIiwib2djIjpbIjEwMDQ1OHxidWtsLmluZC5zb2x1dGlvbiJdLCJleHAiOjE3MTY5NjM0NTcsImlhdCI6MTcxNjk2MjU1Nywicm9sIjoiVVNFUiJ9.RNOnu2qd9b4CrH6ODsIc1OdeOg4EwFh7ssv0zlAG5pE",
+          "key": "eyJpZHYiOlsiTU9CSUxFfDE4NzY3NDMxNzU0Il0sImRldiI6IjEyMzQiLCJvcmciOiJCVUtMIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOiIxNzgwNzc2IiwiaXNzIjoiQ0FQSUxMQVJZIFRFQ0hOT0xPR0lFUyIsIm1mYSI6dHJ1ZSwiaWF0IjoxNzE2OTYyNTU3LCJyb2wiOiJBVVRIIn0.89CmFeLl_zfUBuv2Ea4eQIc3Wy8fJzlcRQad8UcqK-4"
+      },
+      "user": {
+          "appRegistered": false,
+          "sessionId": null,
+          "role": "USER",
+          "userRegisteredForPassword": false
+      }
+  }
+  ```
+
+</CodeGroup>
 
 ## Error codes
 
@@ -86,4 +94,3 @@ curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/otp/validate' \
 | :--- | :--------------------------------- |
 | 3005 | External ID login must be enabled. |
 |      |                                    |
-

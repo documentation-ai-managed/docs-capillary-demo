@@ -11,12 +11,16 @@ This API retrieves the configuration details of cart promotions using their prom
 
 ## Example request
 
-```bash
-curl --location 'https://{Host}/api_gateway/v1/promotions/config?promotionIds=68e7966845de881062349048&includeExpired=true&includeInactive=true' \
---header 'Authorization: Basic Z2VvcmdlvY2RlbNWI5ZjAxMzU5NGIwNDllZTk=' \
---header 'Cookie: _cfuvid=DWAI.W93CwD84bJoUrRqwVps-1761979737913-0.0.1.1-604800000' \
---data ''
-```
+<CodeGroup show-lines="true" tabs={["cURL"]}>
+
+  ```bash "cURL"
+  curl --location 'https://{Host}/api_gateway/v1/promotions/config?promotionIds=68e7966845de881062349048&includeExpired=true&includeInactive=true' \
+  --header 'Authorization: Basic Z2VvcmdlvY2RlbNWI5ZjAxMzU5NGIwNDllZTk=' \
+  --header 'Cookie: _cfuvid=DWAI.W93CwD84bJoUrRqwVps-1761979737913-0.0.1.1-604800000' \
+  --data ''
+  ```
+
+</CodeGroup>
 
 ## Prerequisites
 
@@ -40,27 +44,31 @@ curl --location 'https://{Host}/api_gateway/v1/promotions/config?promotionIds=68
 
 ## Example response
 
-```json
-{
-    "data": [
-        {
-            "promotionId": "68e7966845de881062349048",
-            "promotionName": "Goldpromo",
-            "promotionType": "REWARD",
-            "expiry": 1758738599999,
-            "expiryISO": "2025-09-24T18:29:59Z",
-            "description": "testing 1234",
-            "reward": "Buy items of amount =  100.000000 Get 1000.000000 off on the bill",
-            "isActive": true,
-            "customFieldValues": {
-                "qwer": ""
-            },
-            "promotionRestrictions": {}
-        }
-    ],
-    "errors": []
-}
-```
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  {
+      "data": [
+          {
+              "promotionId": "68e7966845de881062349048",
+              "promotionName": "Goldpromo",
+              "promotionType": "REWARD",
+              "expiry": 1758738599999,
+              "expiryISO": "2025-09-24T18:29:59Z",
+              "description": "testing 1234",
+              "reward": "Buy items of amount =  100.000000 Get 1000.000000 off on the bill",
+              "isActive": true,
+              "customFieldValues": {
+                  "qwer": ""
+              },
+              "promotionRestrictions": {}
+          }
+      ],
+      "errors": []
+  }
+  ```
+
+</CodeGroup>
 
 ## Response parameters
 
@@ -104,5 +112,3 @@ curl --location 'https://{Host}/api_gateway/v1/promotions/config?promotionIds=68
 | 500  | Internal server error. Retry the request after a short delay, and contact support if the error persists.               |
 | 704  | Invalid reward type passed. Provide a valid reward type as per API specification.                                      |
 | 707  | The passed promotion type is not supported. Change the promotion type to one supported by the system.                  |
-
-<br />

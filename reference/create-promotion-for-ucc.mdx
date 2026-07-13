@@ -7,8 +7,6 @@ title: Create Loyalty Promotion for UCC
 ️ This API is being phased out and will no longer be available for creating new loyalty promotions.
 To create a new loyalty promotion, use the [Create a Loyalty Promotion](/reference/create-a-loyalty-promotion) API
 
-<br />
-
 </Callout>
 
 This API is used to create a loyalty promotion. A loyalty promotion rewards customers for achieving a target.
@@ -39,150 +37,154 @@ This API is used to create a loyalty promotion. A loyalty promotion rewards cust
 
 ## Sample request body
 
-```json
-{
-    "promotion": {
-        "id": -1,
-        "name": "promotion_name",
-        "programId": 2932,
-        "startDate": "2024-08-09T12:00:00+01:00",
-        "endDate": "2024-08-25T12:00:00+01:00",
-        "allocatePointsOn": "BILL",
-        "identifier": "promotion_identfier",
-        "eventName": "TARGETCOMPLETED",
-        "pointsOfferType": "LOYALTY",
-        "promotionType": "BILL",
-        "promotionSourceType": "USER_CREATED",
-        "limits": {
-            "pointsPerCustomer": -1,
-            "numberOfTimesPerCustomer": -1,
-            "totalPointsInPromotion": -1
-        },
-        "promotionRestrictions": {
-            "loyaltyEarningType": "ISSUE_AND_EARN",
-            "isStackable": false,
-            "isExclusive": false,
-            "isConsideredForRanking": false,
-            "targetRuleIds": [
-                123
-            ],
-            "targetGroupIds": [
-                1234567
-            ],
-            "restrictions": {
-                "redemptionRestrictions": [
-                    {
-                        "name": "MAX_ALLOWED_TIMES_PER_CUSTOMER",
-                        "value": 3,
-                        "type": "PERIOD_BASED",
-                        "periodType": "MOVING_WINDOW",
-                        "periodUnit": "WEEKLY"
-                    },
-                    {
-                        "name": "MAX_ALLOWED_TIMES_PER_PROMOTION",
-                        "value": 3,
-                        "type": "NON_PERIOD_BASED"
-                    }
-                ],
-                "issualRestrictions": [
-                    {
-                        "name": "MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER",
-                        "value": 3,
-                        "type": "NON_PERIOD_BASED"
-                    }
-                ],
-                "earnRestrictions": [
-                    {
-                        "name": "MAX_NUMBER_OF_EARNS_PER_CUSTOMER",
-                        "value": 3
-                    }
-                ],
-                "expiryRestrictions": [
-                    {
-                        "name": "ISSUAL_PROMOTION_EXPIRY_BASED_ON",
-                        "type": "PROMOTION",
-                        "value": 10
-                    }
-                ]
-            }
-        },
-        "rulesetInfos": [
-            {
-                "id": -1,
-                "contextID": 2932,
-                "orgID": 51174,
-                "contextType": "program",
-                "endpointName": "POINTSENGINE_ENDPOINT",
-                "name": "rulesetName_uniqueue1",
-                "type": "USER_CREATED",
-                "startDate": 1089532593324,
-                "endDate": 33593126193324,
-                "active": true,
-                "rules": [
-                    {
-                        "id": -1,
-                        "exp": "true",
-                        "expJSON": "{ \"arity\": \"literal\", \"value\": \"true\", \"type\": \"boolean:primitive\" }",
-                        "isActive": true,
-                        "caseToActions": {
-                            "true": [
-                                {
-                                    "id": -1,
-                                    "actionName": "AWARD_TARGET_POINTS_ACTION",
-                                    "mandatoryPropertiesValues": {
-                                        "ProRateOnSourceValue": "EVENT_DEFAULT_VALUE",
-                                        "DelayStrategy": "AS_DEFINED_IN_ALLOCATION_STRATEGY",
-                                        "SourceValueRoundingStrategy": "ACTUAL",
-                                        "ExpiryStrategy": "81042",
-                                        "AwardStrategy": "82690",
-                                        "PointsRoundingStrategy": "ACTUAL",
-                                        "TargetGroupId": "1234567",
-                                        "TargetRuleName": "TargetRuleName"
-                                    }
-                                }
-                            ]
-                        },
-                        "filterInfo": [],
-                        "description": "",
-                        "expDataType": "",
-                        "ruleSetId": -1,
-                        "updatedViaNewUI": false
-                    }
-                ],
-                "filterInfo": [
-                    {
-                        "id": -1,
-                        "contextType": "RULESET",
-                        "name": "LoyaltyType",
-                        "description": "LoyaltyType",
-                        "isInclude": true,
-                        "propertyToValues": {
-                            "loyaltyType": [
-                                "loyalty"
-                            ]
-                        }
-                    },
-                    {
-                        "id": -1,
-                        "contextType": "RULESET",
-                        "name": "EventSource",
-                        "description": "EventSource",
-                        "isInclude": true,
-                        "propertyToValues": {
-                            "eventSource": [
-                                "INSTORE"
-                            ]
-                        }
-                    }
-                ],
-                "cappingInfo": [],
-                "isRulesetForGlobalPromotion": "false",
-                "programIds": []
-            }
-        ]
-    }
-}
-```
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  {
+      "promotion": {
+          "id": -1,
+          "name": "promotion_name",
+          "programId": 2932,
+          "startDate": "2024-08-09T12:00:00+01:00",
+          "endDate": "2024-08-25T12:00:00+01:00",
+          "allocatePointsOn": "BILL",
+          "identifier": "promotion_identfier",
+          "eventName": "TARGETCOMPLETED",
+          "pointsOfferType": "LOYALTY",
+          "promotionType": "BILL",
+          "promotionSourceType": "USER_CREATED",
+          "limits": {
+              "pointsPerCustomer": -1,
+              "numberOfTimesPerCustomer": -1,
+              "totalPointsInPromotion": -1
+          },
+          "promotionRestrictions": {
+              "loyaltyEarningType": "ISSUE_AND_EARN",
+              "isStackable": false,
+              "isExclusive": false,
+              "isConsideredForRanking": false,
+              "targetRuleIds": [
+                  123
+              ],
+              "targetGroupIds": [
+                  1234567
+              ],
+              "restrictions": {
+                  "redemptionRestrictions": [
+                      {
+                          "name": "MAX_ALLOWED_TIMES_PER_CUSTOMER",
+                          "value": 3,
+                          "type": "PERIOD_BASED",
+                          "periodType": "MOVING_WINDOW",
+                          "periodUnit": "WEEKLY"
+                      },
+                      {
+                          "name": "MAX_ALLOWED_TIMES_PER_PROMOTION",
+                          "value": 3,
+                          "type": "NON_PERIOD_BASED"
+                      }
+                  ],
+                  "issualRestrictions": [
+                      {
+                          "name": "MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER",
+                          "value": 3,
+                          "type": "NON_PERIOD_BASED"
+                      }
+                  ],
+                  "earnRestrictions": [
+                      {
+                          "name": "MAX_NUMBER_OF_EARNS_PER_CUSTOMER",
+                          "value": 3
+                      }
+                  ],
+                  "expiryRestrictions": [
+                      {
+                          "name": "ISSUAL_PROMOTION_EXPIRY_BASED_ON",
+                          "type": "PROMOTION",
+                          "value": 10
+                      }
+                  ]
+              }
+          },
+          "rulesetInfos": [
+              {
+                  "id": -1,
+                  "contextID": 2932,
+                  "orgID": 51174,
+                  "contextType": "program",
+                  "endpointName": "POINTSENGINE_ENDPOINT",
+                  "name": "rulesetName_uniqueue1",
+                  "type": "USER_CREATED",
+                  "startDate": 1089532593324,
+                  "endDate": 33593126193324,
+                  "active": true,
+                  "rules": [
+                      {
+                          "id": -1,
+                          "exp": "true",
+                          "expJSON": "{ \"arity\": \"literal\", \"value\": \"true\", \"type\": \"boolean:primitive\" }",
+                          "isActive": true,
+                          "caseToActions": {
+                              "true": [
+                                  {
+                                      "id": -1,
+                                      "actionName": "AWARD_TARGET_POINTS_ACTION",
+                                      "mandatoryPropertiesValues": {
+                                          "ProRateOnSourceValue": "EVENT_DEFAULT_VALUE",
+                                          "DelayStrategy": "AS_DEFINED_IN_ALLOCATION_STRATEGY",
+                                          "SourceValueRoundingStrategy": "ACTUAL",
+                                          "ExpiryStrategy": "81042",
+                                          "AwardStrategy": "82690",
+                                          "PointsRoundingStrategy": "ACTUAL",
+                                          "TargetGroupId": "1234567",
+                                          "TargetRuleName": "TargetRuleName"
+                                      }
+                                  }
+                              ]
+                          },
+                          "filterInfo": [],
+                          "description": "",
+                          "expDataType": "",
+                          "ruleSetId": -1,
+                          "updatedViaNewUI": false
+                      }
+                  ],
+                  "filterInfo": [
+                      {
+                          "id": -1,
+                          "contextType": "RULESET",
+                          "name": "LoyaltyType",
+                          "description": "LoyaltyType",
+                          "isInclude": true,
+                          "propertyToValues": {
+                              "loyaltyType": [
+                                  "loyalty"
+                              ]
+                          }
+                      },
+                      {
+                          "id": -1,
+                          "contextType": "RULESET",
+                          "name": "EventSource",
+                          "description": "EventSource",
+                          "isInclude": true,
+                          "propertyToValues": {
+                              "eventSource": [
+                                  "INSTORE"
+                              ]
+                          }
+                      }
+                  ],
+                  "cappingInfo": [],
+                  "isRulesetForGlobalPromotion": "false",
+                  "programIds": []
+              }
+          ]
+      }
+  }
+  ```
+
+</CodeGroup>
 
 ## Request Parameters
 
@@ -254,99 +256,101 @@ This API is used to create a loyalty promotion. A loyalty promotion rewards cust
 | -- `cappingInfo` | Object | Optional capping information for the ruleset. |
 | -- `isRulesetForGlobalPromotion` | Boolean | Indicates if the ruleset is for a global promotion. |
 
-<br />
-
 ## Sample response
 
-```json
-{
-    "status": {
-        "code": 200,
-        "message": "success"
-    },
-    "validationErrors": null,
-    "data": [
-        {
-            "id": 200654,
-            "name": "test_promo_uniqueName10",
-            "promotionStatus": "COMPLETED",
-            "programId": 2822,
-            "startDate": "2024-08-09T00:00:00.284Z",
-            "endDate": "2024-08-10T23:59:59.285Z",
-            "identifier": "test_promo_uniqueIdentifier10",
-            "isActive": true,
-            "eventName": "TARGETCOMPLETED",
-            "allocatePointsOn": "BILL",
-            "limits": {
-                "pointsPerCustomer": -1,
-                "numberOfTimesPerCustomer": -1,
-                "totalPointsInPromotion": -1,
-                "totalPointsPerEventLimit": -1
-            },
-            "pointsOfferType": "LOYALTY",
-            "promotionRestrictions": {
-                "restrictions": {
-                    "redemptionRestrictions": [
-                        {
-                            "name": "MAX_ALLOWED_TIMES_PER_CUSTOMER",
-                            "value": 3,
-                            "type": "PERIOD_BASED",
-                            "periodType": "MOVING_WINDOW",
-                            "periodUnit": "WEEKLY"
-                        },
-                        {
-                            "name": "MAX_ALLOWED_TIMES_PER_PROMOTION",
-                            "value": 3,
-                            "type": "NON_PERIOD_BASED",
-                            "periodType": null,
-                            "periodUnit": null
-                        },
-                        {
-                            "name": "MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER",
-                            "value": 100,
-                            "type": "NON_PERIOD_BASED",
-                            "periodType": null,
-                            "periodUnit": null
-                        }
-                    ],
-                    "issualRestrictions": [
-                        {
-                            "name": "MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER",
-                            "value": 3
-                        }
-                    ],
-                    "earnRestrictions": [
-                        {
-                            "name": "MAX_NUMBER_OF_EARNS_PER_CUSTOMER",
-                            "value": 3
-                        }
-                    ],
-                    "expiryRestrictions": [
-                        {
-                            "name": "ISSUAL_PROMOTION_EXPIRY_BASED_ON",
-                            "value": 10,
-                            "type": "PROMOTION"
-                        }
-                    ]
-                },
-                "scope": null,
-                "isStackable": false,
-                "isConsideredForRanking": true,
-                "loyaltyEarningType": "ISSUE_AND_EARN",
-                "expiryReminder": null,
-                "isExclusive": false,
-                "isAlwaysApply": false,
-                "targetGroupIds": [
-                    1234567
-                ],
-                "targetRuleIds": [
-                    123
-                ]
-            }
-        }
-    ]
-}
-```
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  {
+      "status": {
+          "code": 200,
+          "message": "success"
+      },
+      "validationErrors": null,
+      "data": [
+          {
+              "id": 200654,
+              "name": "test_promo_uniqueName10",
+              "promotionStatus": "COMPLETED",
+              "programId": 2822,
+              "startDate": "2024-08-09T00:00:00.284Z",
+              "endDate": "2024-08-10T23:59:59.285Z",
+              "identifier": "test_promo_uniqueIdentifier10",
+              "isActive": true,
+              "eventName": "TARGETCOMPLETED",
+              "allocatePointsOn": "BILL",
+              "limits": {
+                  "pointsPerCustomer": -1,
+                  "numberOfTimesPerCustomer": -1,
+                  "totalPointsInPromotion": -1,
+                  "totalPointsPerEventLimit": -1
+              },
+              "pointsOfferType": "LOYALTY",
+              "promotionRestrictions": {
+                  "restrictions": {
+                      "redemptionRestrictions": [
+                          {
+                              "name": "MAX_ALLOWED_TIMES_PER_CUSTOMER",
+                              "value": 3,
+                              "type": "PERIOD_BASED",
+                              "periodType": "MOVING_WINDOW",
+                              "periodUnit": "WEEKLY"
+                          },
+                          {
+                              "name": "MAX_ALLOWED_TIMES_PER_PROMOTION",
+                              "value": 3,
+                              "type": "NON_PERIOD_BASED",
+                              "periodType": null,
+                              "periodUnit": null
+                          },
+                          {
+                              "name": "MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER",
+                              "value": 100,
+                              "type": "NON_PERIOD_BASED",
+                              "periodType": null,
+                              "periodUnit": null
+                          }
+                      ],
+                      "issualRestrictions": [
+                          {
+                              "name": "MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER",
+                              "value": 3
+                          }
+                      ],
+                      "earnRestrictions": [
+                          {
+                              "name": "MAX_NUMBER_OF_EARNS_PER_CUSTOMER",
+                              "value": 3
+                          }
+                      ],
+                      "expiryRestrictions": [
+                          {
+                              "name": "ISSUAL_PROMOTION_EXPIRY_BASED_ON",
+                              "value": 10,
+                              "type": "PROMOTION"
+                          }
+                      ]
+                  },
+                  "scope": null,
+                  "isStackable": false,
+                  "isConsideredForRanking": true,
+                  "loyaltyEarningType": "ISSUE_AND_EARN",
+                  "expiryReminder": null,
+                  "isExclusive": false,
+                  "isAlwaysApply": false,
+                  "targetGroupIds": [
+                      1234567
+                  ],
+                  "targetRuleIds": [
+                      123
+                  ]
+              }
+          }
+      ]
+  }
+  ```
+
+</CodeGroup>
 
 ## Response parameters
 

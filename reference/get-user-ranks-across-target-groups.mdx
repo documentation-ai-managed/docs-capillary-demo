@@ -45,22 +45,26 @@ For detailed information about our APIs and for hands-on testing, refer document
 
 ## Request body
 
-```json
-[
-   {
-        "orgId" : 50711,
-        "targetGroupId" : 232,
-        "targetRuleId" : 365,
-        "periodId": 243
-    },
-    {
-        "orgId" : 50711,
-        "targetGroupId" : 232,
-        "targetRuleId" : 366 ,
-        "periodId" : 243
-    }
-]
-```
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  [
+     {
+          "orgId" : 50711,
+          "targetGroupId" : 232,
+          "targetRuleId" : 365,
+          "periodId": 243
+      },
+      {
+          "orgId" : 50711,
+          "targetGroupId" : 232,
+          "targetRuleId" : 366 ,
+          "periodId" : 243
+      }
+  ]
+  ```
+
+</CodeGroup>
 
 ## Request body parameters
 
@@ -74,36 +78,40 @@ For detailed information about our APIs and for hands-on testing, refer document
 
 ## Response body
 
-```json
-{
-  "data": {
-    "lastSyncTime": "2024-06-24T17:37:00.000IST",
-    "lastSyncTimeISO": "2024-06-24T12:07:00.000Z",
-    "customerId": 381329847,
-    "userEnrichmentDetails": {
-      "mobile": "9988221100",
-      "last_name": "",
-      "first_name": "",
-      "email": "tom.sawyer@capillarytech.com"
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  {
+    "data": {
+      "lastSyncTime": "2024-06-24T17:37:00.000IST",
+      "lastSyncTimeISO": "2024-06-24T12:07:00.000Z",
+      "customerId": 381329847,
+      "userEnrichmentDetails": {
+        "mobile": "9988221100",
+        "last_name": "",
+        "first_name": "",
+        "email": "tom.sawyer@capillarytech.com"
+      },
+      "userRanks": [
+        {
+          "orgId": 50711,
+          "targetGroupId": 232,
+          "targetRuleId": 366,
+          "periodId": 243,
+          "achievedValue": 3000,
+          "rank": 1771,
+          "lastActivityTime": "2022-11-25T21:45:05.000IST",
+          "lastActivityTimeISO": "2022-11-25T16:15:05.000Z",
+          "totalUsersInTargetGroup": 4527
+        }
+      ]
     },
-    "userRanks": [
-      {
-        "orgId": 50711,
-        "targetGroupId": 232,
-        "targetRuleId": 366,
-        "periodId": 243,
-        "achievedValue": 3000,
-        "rank": 1771,
-        "lastActivityTime": "2022-11-25T21:45:05.000IST",
-        "lastActivityTimeISO": "2022-11-25T16:15:05.000Z",
-        "totalUsersInTargetGroup": 4527
-      }
-    ]
-  },
-  "errors": [],
-  "warnings": []
-}
-```
+    "errors": [],
+    "warnings": []
+  }
+  ```
+
+</CodeGroup>
 
 ## Response parameters
 

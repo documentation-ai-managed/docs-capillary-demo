@@ -6,31 +6,35 @@ The Earn Cart Promotion API enables the immediate granting of cart promotions to
 
 ## Example request
 
-```json
-curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/68f869d94a314550c4b46047/earn' \
---header 'Content-Type: application/json' \
---header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86NjVhMDgzYjk1MYmNkNzUxYmJiY2U=' \
---header 'Cookie: _cfuvid=BNm80wogtZv7lPgRUsybHmAv_l_3VQCTg-1772103718132-0.0.1.1-604800000' \
---data '{
-  "customerId": 566881933,
-  "earnedFromType": "ACTIVITY",
-  "earnedFromId": "TXN_12345_ABC",
-  "eventTime": 1761748253000,
-  "supplementaryCriteria": {
-    "loyaltyProgramId": 874,
-    "programType": "TIER",
-    "partnerProgramId": 25319
-  },
-  "eventDetails": {
-    "id": "TXN_12345_ABC",
-    "type": "TransactionAdd",
-    "eventPayload": {
-      "storeId": 101,
-      "amount": 75.50
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/68f869d94a314550c4b46047/earn' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86NjVhMDgzYjk1MYmNkNzUxYmJiY2U=' \
+  --header 'Cookie: _cfuvid=BNm80wogtZv7lPgRUsybHmAv_l_3VQCTg-1772103718132-0.0.1.1-604800000' \
+  --data '{
+    "customerId": 566881933,
+    "earnedFromType": "ACTIVITY",
+    "earnedFromId": "TXN_12345_ABC",
+    "eventTime": 1761748253000,
+    "supplementaryCriteria": {
+      "loyaltyProgramId": 874,
+      "programType": "TIER",
+      "partnerProgramId": 25319
+    },
+    "eventDetails": {
+      "id": "TXN_12345_ABC",
+      "type": "TransactionAdd",
+      "eventPayload": {
+        "storeId": 101,
+        "amount": 75.50
+      }
     }
-  }
-}'
-```
+  }'
+  ```
+
+</CodeGroup>
 
 ## Prerequisites
 
@@ -73,67 +77,87 @@ The `eventPayload` object stores additional context about the triggering event. 
 
 **For `TransactionAdd` events:**
 
-```json
-"eventPayload": {
-  "storeId": 101,
-  "amount": 75.50,
-  "billNumber": "BILL-2025-001234"
-}
-```
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  "eventPayload": {
+    "storeId": 101,
+    "amount": 75.50,
+    "billNumber": "BILL-2025-001234"
+  }
+  ```
+
+</CodeGroup>
 
 **For `CustomerRegistration` events:**
 
-```json
-"eventPayload": {
-  "registrationSource": "MOBILE_APP",
-  "storeId": 205
-}
-```
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  "eventPayload": {
+    "registrationSource": "MOBILE_APP",
+    "storeId": 205
+  }
+  ```
+
+</CodeGroup>
 
 **For `CustomerUpdate` events:**
 
-```json
-"eventPayload": {
-  "updatedFields": ["email", "mobile"],
-  "updateSource": "WEB_PORTAL"
-}
-```
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  "eventPayload": {
+    "updatedFields": ["email", "mobile"],
+    "updateSource": "WEB_PORTAL"
+  }
+  ```
+
+</CodeGroup>
 
 **For `MILESTONE` events:**
 
-```json
-"eventPayload": {
-  "milestoneName": "5th_purchase",
-  "milestoneId": 12345,
-  "transactionId": "TXN_98765"
-}
-```
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  "eventPayload": {
+    "milestoneName": "5th_purchase",
+    "milestoneId": 12345,
+    "transactionId": "TXN_98765"
+  }
+  ```
+
+</CodeGroup>
 
 ## Example response
 
-```json
-{
-    "data": {
-        "id": "6905ad0ecd58392443591e92",
-        "customerId": 567205858,
-        "promotionId": "6905a9ffb1cfc114606f7d0f",
-        "earnedFromType": "ACTIVITY",
-        "earnedFromId": "TXN_12345_ABC",
-        "eventTime": 1761748253000,
-        "eventTimeISO": "2025-10-29T14:30:53Z",
-        "eventDetails": {
-            "id": "TXN_12345_ABC",
-            "type": "TransactionAdd",
-            "eventPayload": {
-                "storeId": 101,
-                "amount": 75.5
-            }
-        },
-        "validTill": 1825085406000,
-        "validTillISO": "2027-11-01T16:10:06Z"
-    }
-}
-```
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  {
+      "data": {
+          "id": "6905ad0ecd58392443591e92",
+          "customerId": 567205858,
+          "promotionId": "6905a9ffb1cfc114606f7d0f",
+          "earnedFromType": "ACTIVITY",
+          "earnedFromId": "TXN_12345_ABC",
+          "eventTime": 1761748253000,
+          "eventTimeISO": "2025-10-29T14:30:53Z",
+          "eventDetails": {
+              "id": "TXN_12345_ABC",
+              "type": "TransactionAdd",
+              "eventPayload": {
+                  "storeId": 101,
+                  "amount": 75.5
+              }
+          },
+          "validTill": 1825085406000,
+          "validTillISO": "2027-11-01T16:10:06Z"
+      }
+  }
+  ```
+
+</CodeGroup>
 
 ## Response parameters
 
@@ -162,5 +186,3 @@ The `eventPayload` object stores additional context about the triggering event. 
 | 404  | Not Found: Indicates the specified cart promotionId in the URL does not exist.                                   |
 | 409  | Conflict: Indicates a potential business rule violation.                                                         |
 | 500  | Internal Server Error: Indicates an unexpected server error occurred. Retry the request.                         |
-
-<br />

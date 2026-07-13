@@ -6,17 +6,21 @@ This API can be used to fetch the Cart promotion details using the cart promotio
 
 **Note:** At present, the API to fetch cart promotion codes for existing code linked cart promotions is not available; you can download the generated code list via the "Manage Promo Codes" settings on the cart promotions listing page in the UI.
 
-<Image src="https://files.readme.io/a629aefecb53b9347aa41b49279e517266c1b80a775517a559c3809396f1ac05-Screenshot_2025-11-06_at_11.31.16_AM.png" width="70%" height="1080" alt="" />
+<Image src="https://files.readme.io/a629aefecb53b9347aa41b49279e517266c1b80a775517a559c3809396f1ac05-Screenshot_2025-11-06_at_11.31.16_AM.png" width="70%" height="1080" alt="Screenshot of the Manage Promo Codes settings showing the cart promotion code list" />
 
 ## Example request
 
-```json
-curl --location 'https://{Host}/api_gateway/v1/promotions/code?codes=DQCV73&mode=DISCOUNT' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
---header 'accept: application/json' \
---data ''
-```
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  curl --location 'https://{Host}/api_gateway/v1/promotions/code?codes=DQCV73&mode=DISCOUNT' \
+  --header 'Accept: application/json' \
+  --header 'Content-Type: application/json' \
+  --header 'accept: application/json' \
+  --data ''
+  ```
+
+</CodeGroup>
 
 ## Prerequisites
 
@@ -39,28 +43,32 @@ curl --location 'https://{Host}/api_gateway/v1/promotions/code?codes=DQCV73&mode
 
 ## Example response
 
-```json
-{
-    "data": [
-        {
-            "id": "68fb18d331d91c625a8d9e52",
-            "orgId": 100458,
-            "promotionId": "68fb18a431d91c625a8d9e51",
-            "promotionName": "eratg",
-            "code": "DQCV73",
-            "customerId": 566881933,
-            "active": true,
-            "createdOn": 1761286355257,
-            "createdOnISO": "2025-10-24T06:12:35Z",
-            "validTill": 1763787599999,
-            "validTillISO": "2025-11-22T04:59:59Z",
-            "mode": "DISCOUNT",
-            "redeemableFrom": 1761286355257,
-            "redeemableFromISO": "2025-10-24T06:12:35Z"
-        }
-    ]
-}
-```
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  {
+      "data": [
+          {
+              "id": "68fb18d331d91c625a8d9e52",
+              "orgId": 100458,
+              "promotionId": "68fb18a431d91c625a8d9e51",
+              "promotionName": "eratg",
+              "code": "DQCV73",
+              "customerId": 566881933,
+              "active": true,
+              "createdOn": 1761286355257,
+              "createdOnISO": "2025-10-24T06:12:35Z",
+              "validTill": 1763787599999,
+              "validTillISO": "2025-11-22T04:59:59Z",
+              "mode": "DISCOUNT",
+              "redeemableFrom": 1761286355257,
+              "redeemableFromISO": "2025-10-24T06:12:35Z"
+          }
+      ]
+  }
+  ```
+
+</CodeGroup>
 
 ## Response parameters
 
@@ -100,5 +108,3 @@ curl --location 'https://{Host}/api_gateway/v1/promotions/code?codes=DQCV73&mode
 | 1008 | Org not enabled for redemption without cart evaluation. Enable the feature or perform cart evaluation as required.  |
 | 1009 | Validation failure for redemption without cart evaluation. Check your request for all needed validation compliance. |
 | 500  | Internal server error. Retry after a short delay, and contact support if the error persists.                        |
-
-<br />

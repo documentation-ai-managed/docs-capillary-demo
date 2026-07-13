@@ -29,18 +29,22 @@ For detailed information about our APIs and for hands-on testing, refer document
 
 ## Example request
 
-```bash Sample request
-curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta/69381220cebb9648d8974518/unclaim' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
---header 'accept: application/json' \
---header 'Authorization: Basic bWFkaHVMjU2YQ==' \
---header 'Cookie: _cfuvid=GwR6P.Wo28InVQzxrZVpalpv9uu696nsUn.b7W_MO8Y-1772617632944-0.0.1.1-604800000' \
---data '{
-    "ownerType": "Loyalty",
-    "referenceId": "123"
-}'
-```
+<CodeGroup show-lines="true" tabs={["Sample request"]}>
+
+  ```bash "Sample request"
+  curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta/69381220cebb9648d8974518/unclaim' \
+  --header 'Accept: application/json' \
+  --header 'Content-Type: application/json' \
+  --header 'accept: application/json' \
+  --header 'Authorization: Basic bWFkaHVMjU2YQ==' \
+  --header 'Cookie: _cfuvid=GwR6P.Wo28InVQzxrZVpalpv9uu696nsUn.b7W_MO8Y-1772617632944-0.0.1.1-604800000' \
+  --data '{
+      "ownerType": "Loyalty",
+      "referenceId": "123"
+  }'
+  ```
+
+</CodeGroup>
 
 ## Request path parameters
 
@@ -55,26 +59,34 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMet
 | ownerType\*    | Enum      | Module where the badge was claimed. Supported values: Loyalty, Loyalty_Promotion, Referral_Campaigns, Journeys, Audience_Campaigns, Rewards_Catalog, Goodwill_Module, Milestones, Historical_Import |
 | referenceId\*  | String    | Unique reference ID of the owner type.                                                                                                                                                                    |
 
-```json
-{
-"ownerType":"Loyalty",
-"referenceId":"string"
-}
-```
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  {
+  "ownerType":"Loyalty",
+  "referenceId":"string"
+  }
+  ```
+
+</CodeGroup>
 
 ## Example response
 
-```json Sample response
-{
-    "data": {
-        "ownerType": "Loyalty",
-        "referenceId": "123",
-        "isActive": false
-    },
-    "errors": null,
-    "warnings": []
-}
-```
+<CodeGroup show-lines="true" tabs={["Sample response"]}>
+
+  ```json "Sample response"
+  {
+      "data": {
+          "ownerType": "Loyalty",
+          "referenceId": "123",
+          "isActive": false
+      },
+      "errors": null,
+      "warnings": []
+  }
+  ```
+
+</CodeGroup>
 
 ## Response parameters
 

@@ -65,20 +65,22 @@ For detailed information about our APIs and for hands-on testing, refer to the d
 | **initialBalance**    | Integer   | When a value is entered in this field, the user will enroll or re-enroll in the milestone's cycle or period, with the initial balance set to the user's target achieved value. For re-enrollment, if this field is set to "NULL," the user's target achieved value will resume from the value at which the user last unenrolled. This field does not apply to streaks and is applicable only to milestones. |
 | **resetStreakStatus** | boolean   | This field is only for streaks. If this field is set to `false`, the user will continue from the streak value before unenrolling. If this field is marked as `true` during re-enrollment, the streak value will be reset, effectively starting fresh.                                                                                                                                                       |
 
-<br />
+<CodeGroup show-lines="true" tabs={["JSON"]}>
 
-```json
-[
-  {       
-       "customerId": 345651201,  
-       "periodName": "PERIOD_G_29463_1",
-       "initialBalance": 100,
-       "resetStreakStatus": false
-  }
-] 
-//Maximum number records in the payload should be 1. For example, if there is a milestone with 10 cycles & want to enroll a user, then this API needs to be called 10 times as this is for each cycle. 
-//In the case of streak, no need of period name & user will be enrolled into all the periods.
-```
+  ```json "JSON"
+  [
+    {       
+         "customerId": 345651201,  
+         "periodName": "PERIOD_G_29463_1",
+         "initialBalance": 100,
+         "resetStreakStatus": false
+    }
+  ] 
+  //Maximum number records in the payload should be 1. For example, if there is a milestone with 10 cycles & want to enroll a user, then this API needs to be called 10 times as this is for each cycle. 
+  //In the case of streak, no need of period name & user will be enrolled into all the periods.
+  ```
+
+</CodeGroup>
 
 <Callout kind="info" title="Note">
 

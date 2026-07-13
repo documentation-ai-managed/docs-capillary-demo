@@ -48,137 +48,141 @@ This endpoint retrieves a paginated list of all unified promotions within the or
 
 ## Example response
 
-```json
-{
-    "data": {
-        "content": [
-            {
-                "metadata": {
-                    "name": "Efd Activity Based Prom",
-                    "description": "Enrollment for all members, requires activity-based opt-in.",
-                    "programId": "HiddenGemDefaultProgram_ID",
-                    "orgId": 100458,
-                    "startDate": "2025-11-27T00:00:00Z",
-                    "endDate": "2025-12-27T23:59:59Z",
-                    "timezoneName": "Asia/Kolkata",
-                    "promotionType": "LOYALTY",
-                    "status": "DRAFT",
-                    "promoIdentifier": null,
-                    "promotionId": 0,
-                    "createdOn": "2025-10-30T08:43:29Z",
-                    "lastModifiedOn": "2025-10-30T08:43:29Z",
-                    "createdBy": 0,
-                    "lastModifiedBy": 0,
-                    "loyaltyEarningType": null,
-                    "version": null,
-                    "draftDetails": null,
-                    "loyaltyConfigMetaData": {
-                        "isStackable": false,
-                        "isConsideredForRanking": false,
-                        "isExclusive": false,
-                        "isAlwaysApply": false,
-                        "skipEarnedDateCheckOnRedeem": null
-                    },
-                    "promotionMetadata": null,
-                    "commonStrategies": null,
-                    "promotionMode": "UNIFIED"
-                },
-                "customerEnrolment": {
-                    "enrolmentMethod": "TRANSACTION",
-                    "enrolmentMethod": "TRANSACTION",
-                    "customerEligibilityType": "ALL"
-                },
-                "activities": [
-                    {
-                        "type": "SINGLE",
-                        "id": "activity_reward_trigger",
-                        "type": "SINGLE",
-                        "name": "Main Reward Activity",
-                        "commonCycleActionMapping": [
-                            {
-                                "cycle": "cycle_promo_period",
-                                "actions": [
-                                    {
-                                        "id": "action_award_points",
-                                        "actionName": "AWARD_CURRENCY",
-                                        "actionClass": "com.capillary.loyalty.engine.actor.promotion.actions.AwardCurrency",
-                                        "mandatoryPropertiesValues": {
-                                            "POINTS_TO_AWARD": "100",
-                                            "CURRENCY_IDENTIFIER": "POINTS"
-                                        }
-                                    }
-                                ],
-                                "startDate": "2025-11-27",
-                                "endDate": "2025-12-27"
-                            }
-                        ],
-                        "event": "TransactionAdd",
-                        "allCycles": []
-                    }
-                ],
-                "comments": null,
-                "parentId": null,
-                "parentDetails": null,
-                "version": 1,
-                "limits": [],
-                "liabilityOwnerSplitInfo": [],
-                "id": "6903253184daf5486232dec9",
-                "workflowMetadata": {
-                    "enrolment": {
-                        "basedOn": null,
-                        "activities": null,
-                        "audienceMapping": null,
-                        "restrictions": null
-                    },
-                    "optin": {
-                        "basedOn": "ACTIVITY",
-                        "audienceMapping": null,
-                        "activities": [
-                            {
-                                "type": "SINGLE",
-                                "id": "activity_optin_trigger",
-                                "type": "SINGLE",
-                                "name": "Opt-in Trigger Activity",
-                                "event": "TransactionAdd",
-                                "allCycles": []
-                            }
-                        ],
-                        "restrictions": null
-                    }
-                },
-                "communicationApprovalStatus": null
-            }
-        ],
-        "pageable": {
-            "pageNumber": 0,
-            "pageSize": 10,
-            "sort": {
-                "empty": true,
-                "sorted": false,
-                "unsorted": true
-            },
-            "offset": 0,
-            "unpaged": false,
-            "paged": true
-        },
-        "totalElements": 1,
-        "totalPages": 1,
-        "last": true,
-        "size": 10,
-        "number": 0,
-        "sort": {
-            "empty": true,
-            "sorted": false,
-            "unsorted": true
-        },
-        "numberOfElements": 1,
-        "first": true,
-        "empty": false
-    },
-    "errors": null,
-    "warnings": null
-}
-```
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  {
+      "data": {
+          "content": [
+              {
+                  "metadata": {
+                      "name": "Efd Activity Based Prom",
+                      "description": "Enrollment for all members, requires activity-based opt-in.",
+                      "programId": "HiddenGemDefaultProgram_ID",
+                      "orgId": 100458,
+                      "startDate": "2025-11-27T00:00:00Z",
+                      "endDate": "2025-12-27T23:59:59Z",
+                      "timezoneName": "Asia/Kolkata",
+                      "promotionType": "LOYALTY",
+                      "status": "DRAFT",
+                      "promoIdentifier": null,
+                      "promotionId": 0,
+                      "createdOn": "2025-10-30T08:43:29Z",
+                      "lastModifiedOn": "2025-10-30T08:43:29Z",
+                      "createdBy": 0,
+                      "lastModifiedBy": 0,
+                      "loyaltyEarningType": null,
+                      "version": null,
+                      "draftDetails": null,
+                      "loyaltyConfigMetaData": {
+                          "isStackable": false,
+                          "isConsideredForRanking": false,
+                          "isExclusive": false,
+                          "isAlwaysApply": false,
+                          "skipEarnedDateCheckOnRedeem": null
+                      },
+                      "promotionMetadata": null,
+                      "commonStrategies": null,
+                      "promotionMode": "UNIFIED"
+                  },
+                  "customerEnrolment": {
+                      "enrolmentMethod": "TRANSACTION",
+                      "enrolmentMethod": "TRANSACTION",
+                      "customerEligibilityType": "ALL"
+                  },
+                  "activities": [
+                      {
+                          "type": "SINGLE",
+                          "id": "activity_reward_trigger",
+                          "type": "SINGLE",
+                          "name": "Main Reward Activity",
+                          "commonCycleActionMapping": [
+                              {
+                                  "cycle": "cycle_promo_period",
+                                  "actions": [
+                                      {
+                                          "id": "action_award_points",
+                                          "actionName": "AWARD_CURRENCY",
+                                          "actionClass": "com.capillary.loyalty.engine.actor.promotion.actions.AwardCurrency",
+                                          "mandatoryPropertiesValues": {
+                                              "POINTS_TO_AWARD": "100",
+                                              "CURRENCY_IDENTIFIER": "POINTS"
+                                          }
+                                      }
+                                  ],
+                                  "startDate": "2025-11-27",
+                                  "endDate": "2025-12-27"
+                              }
+                          ],
+                          "event": "TransactionAdd",
+                          "allCycles": []
+                      }
+                  ],
+                  "comments": null,
+                  "parentId": null,
+                  "parentDetails": null,
+                  "version": 1,
+                  "limits": [],
+                  "liabilityOwnerSplitInfo": [],
+                  "id": "6903253184daf5486232dec9",
+                  "workflowMetadata": {
+                      "enrolment": {
+                          "basedOn": null,
+                          "activities": null,
+                          "audienceMapping": null,
+                          "restrictions": null
+                      },
+                      "optin": {
+                          "basedOn": "ACTIVITY",
+                          "audienceMapping": null,
+                          "activities": [
+                              {
+                                  "type": "SINGLE",
+                                  "id": "activity_optin_trigger",
+                                  "type": "SINGLE",
+                                  "name": "Opt-in Trigger Activity",
+                                  "event": "TransactionAdd",
+                                  "allCycles": []
+                              }
+                          ],
+                          "restrictions": null
+                      }
+                  },
+                  "communicationApprovalStatus": null
+              }
+          ],
+          "pageable": {
+              "pageNumber": 0,
+              "pageSize": 10,
+              "sort": {
+                  "empty": true,
+                  "sorted": false,
+                  "unsorted": true
+              },
+              "offset": 0,
+              "unpaged": false,
+              "paged": true
+          },
+          "totalElements": 1,
+          "totalPages": 1,
+          "last": true,
+          "size": 10,
+          "number": 0,
+          "sort": {
+              "empty": true,
+              "sorted": false,
+              "unsorted": true
+          },
+          "numberOfElements": 1,
+          "first": true,
+          "empty": false
+      },
+      "errors": null,
+      "warnings": null
+  }
+  ```
+
+</CodeGroup>
 
 ## Response parameters
 
@@ -415,4 +419,3 @@ This endpoint retrieves a paginated list of all unified promotions within the or
 
   <ParamField header="Cookie" param-type="string" required="false" deprecated="false" show-location="true" />
 </Expandable>
-

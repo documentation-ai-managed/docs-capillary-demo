@@ -21,27 +21,31 @@ Capillary's custom reward fields let brands personalize loyalty programs with cu
 
 ## Example request
 
-```bash Sample request
-curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/customfield' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
---header 'accept: application/json' \
---header 'Authorization: Basic bWFkaHVfcjU2YQ==' \
---header 'Cookie: _cfuvid=EZk.XAGmnGytGPQFxLHCnFm_v4YhnMy7zloRQ46HJuo-1763640364440-0.0.1.1-604800000' \
---data '{
-     Mandatory Parameters
-    "name": "terrorz",
-    "description": "Custom Field of STRING Type",
-    "scope": "CATALOGUE_PROMOTION",
-    "dataType": "STRING",
-     Non-Mandatory Parameters
-    "orgId": 100737,
-    "isMandatory": false,
-    "isActive": true,
-     "defaultValue": "EV3",
-     "enumValues": ["EV1", "EV2", "EV3", "EV4", "EV5", "EV6", "EV7", "EV8", "EV9", "EV10", "EV11", "EV12", "EV13", "EV14", "EV15", "EV16", "EV17", "EV18", "EV19", "EV20", "EV21", "EV22", "EV23", "EV24", "EV25", "EV26", "EV27", "EV28", "EV29", "EV30"]
-}
-```
+<CodeGroup show-lines="true" tabs={["Sample request"]}>
+
+  ```bash "Sample request"
+  curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/customfield' \
+  --header 'Accept: application/json' \
+  --header 'Content-Type: application/json' \
+  --header 'accept: application/json' \
+  --header 'Authorization: Basic bWFkaHVfcjU2YQ==' \
+  --header 'Cookie: _cfuvid=EZk.XAGmnGytGPQFxLHCnFm_v4YhnMy7zloRQ46HJuo-1763640364440-0.0.1.1-604800000' \
+  --data '{
+       Mandatory Parameters
+      "name": "terrorz",
+      "description": "Custom Field of STRING Type",
+      "scope": "CATALOGUE_PROMOTION",
+      "dataType": "STRING",
+       Non-Mandatory Parameters
+      "orgId": 100737,
+      "isMandatory": false,
+      "isActive": true,
+       "defaultValue": "EV3",
+       "enumValues": ["EV1", "EV2", "EV3", "EV4", "EV5", "EV6", "EV7", "EV8", "EV9", "EV10", "EV11", "EV12", "EV13", "EV14", "EV15", "EV16", "EV17", "EV18", "EV19", "EV20", "EV21", "EV22", "EV23", "EV24", "EV25", "EV26", "EV27", "EV28", "EV29", "EV30"]
+  }
+  ```
+
+</CodeGroup>
 
 ## Prerequisites
 
@@ -154,8 +158,6 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/br
 
 </CodeGroup>
 
-<br />
-
 Response parameters
 
 | Parameter Name        | Data Type | Description                                                                                                                                                                                                                                    |
@@ -176,8 +178,6 @@ Response parameters
 | lastUpdatedOn         | Date      | Last update date and time of the field Epoch time format.                                                                                                                                                                                      |
 | lastUpdatedOnDateTime | String    | Last update date and time of the field in ISO 8601 format (YYYY-MM-DDTHH:MM:SSZ)                                                                                                                                                               |
 | enumValues            | Object    | Object containing the enum values.                                                                                                                                                                                                             |
-
-<br />
 
 <CodeGroup show-lines="true" tabs={["Scope : REWARD", "Scope : CATALOGUE_PROMOTION", "Scope: ISSUE_REWARD", "dataType: ENUM"]}>
 
@@ -261,8 +261,6 @@ Response parameters
   ```
 
 </CodeGroup>
-
-<br />
 
 ## API-specific error codes
 

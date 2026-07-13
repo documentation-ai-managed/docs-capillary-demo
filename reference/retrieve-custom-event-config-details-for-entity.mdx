@@ -26,18 +26,22 @@ For detailed information about our APIs and for hands-on testing, refer document
 
 ## API cURL example
 
-```bash
-curl --location --request GET 'eu.api.capillarytech.com/api_gateway/cortex/v1/neo-config/entity/TRANSACTION' \
---header 'Content-Type: application/json' \
---header 'Authorization: Basic bmlcmFqLmRvYzpiNGFmODA0MDA5Y2IwMzZhNGNjZGMzMzQzMWVmOWFjOQ==' \
---header 'Cookie: _cfuvid=dfGNwl01cEi2PH5VITS.zzfnmaVvZHqjsz8uMcy6KNA-1745384630231-0.0.1.1-604800000' \
---data '{
-  "orgId": 100737,
-  "entityType": "TRANSACTION",
-  "transformEndpoint": "/transform/transaction/custom",
-  "active": true
-}'
-```
+<CodeGroup show-lines="true" tabs={["cURL"]}>
+
+  ```bash "cURL"
+  curl --location --request GET 'eu.api.capillarytech.com/api_gateway/cortex/v1/neo-config/entity/TRANSACTION' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Basic bmlcmFqLmRvYzpiNGFmODA0MDA5Y2IwMzZhNGNjZGMzMzQzMWVmOWFjOQ==' \
+  --header 'Cookie: _cfuvid=dfGNwl01cEi2PH5VITS.zzfnmaVvZHqjsz8uMcy6KNA-1745384630231-0.0.1.1-604800000' \
+  --data '{
+    "orgId": 100737,
+    "entityType": "TRANSACTION",
+    "transformEndpoint": "/transform/transaction/custom",
+    "active": true
+  }'
+  ```
+
+</CodeGroup>
 
 ## Path Parameter
 
@@ -47,23 +51,27 @@ curl --location --request GET 'eu.api.capillarytech.com/api_gateway/cortex/v1/ne
 
 ## Response Body
 
-```json
-{
-  "data": {
-    "orgId": 100737,
-    "entityType": "TRANSACTION",
-    "transformEndpoint": "/transform/transaction/custom",
-    "active": true,
-    "auditInfo": {
-      "createdOn": "2025-04-23T06:59:56.411+00:00",
-      "createdBy": 75155282,
-      "lastUpdatedOn": "2025-04-23T07:06:33.947+00:00",
-      "lastUpdatedBy": 75155282
-    }
-  },
-  "errors": []
-}
-```
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  {
+    "data": {
+      "orgId": 100737,
+      "entityType": "TRANSACTION",
+      "transformEndpoint": "/transform/transaction/custom",
+      "active": true,
+      "auditInfo": {
+        "createdOn": "2025-04-23T06:59:56.411+00:00",
+        "createdBy": 75155282,
+        "lastUpdatedOn": "2025-04-23T07:06:33.947+00:00",
+        "lastUpdatedBy": 75155282
+      }
+    },
+    "errors": []
+  }
+  ```
+
+</CodeGroup>
 
 ## Response Parameter
 

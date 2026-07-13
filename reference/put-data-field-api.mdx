@@ -8,8 +8,6 @@ For detailed information about the APIs and for hands-on testing, refer to the [
 
 </Callout>
 
-<br />
-
 ## Prerequisites
 
 - [ ] Authentication: Basic/OAuth authentication
@@ -26,64 +24,68 @@ For detailed information about the APIs and for hands-on testing, refer to the [
 
 ## API cURL
 
-```bash
-curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/cortex/v1/dataFields/67c13be980eaa45a46519efa' \
---header 'Content-Type: application/json' \
---header 'Authorization: Basic cHJlcmFuYV9zaW5naDoyZmFhZmZjNZDRjMTc5Y2NlMzNhYzc5OTBjMTQ1Ng==' \
---header 'Cookie: _cfuvid=257QQtZKKeLsnIKUrPVpHcKPHvi2s4LSYFlH8VLHtc0-1743065149089-0.0.1.1-604800000; _cfuvid=Wp9DM7jKlGaLVdZEYrh2ApStBYz0xLZsHFHOWo.VnBw-1743484167715-0.0.1.1-604800000' \
---data '{
-  "searchStrategyType" : "PREFIX",
-  "entityType" : "CUSTOMER",
-  "dataFieldDefinitions" : [
-		{
-			"fieldId" : "firstName",
-			"fieldAlias" : "firstName",
-			"fieldType" : "DATA",
-			"dataSourceDetails" : {
-				"fieldReference" : "firstName"
-			},
-			"dataType" : "STRING"
-		},
-		{
-			"fieldId" : "lastName",
-			"fieldAlias" : "lastName",
-			"fieldType" : "DATA",
-			"dataSourceDetails" : {
-				"fieldReference" : "lastName"
-			},
-			"dataType" : "STRING"
-		},
-		{
-			"fieldId" : "mobile",
-			"fieldAlias" : "mobile",
-			"fieldType" : "DATA",
-			"dataSourceDetails" : {
-				"fieldReference" : "mobile"
-			},
-			"dataType" : "STRING"
-		},
-		{
-			"fieldId" : "email",
-			"fieldAlias" : "email",
-			"fieldType" : "DATA",
-			"dataSourceDetails" : {
-				"fieldReference" : "email"
-			},
-			"dataType" : "STRING"
-		},
-    {
-			"fieldId" : "externalId",
-			"fieldAlias" : "externalId",
-			"fieldType" : "DATA",
-			"dataSourceDetails" : {
-				"fieldReference" : "externalId"
-			},
-			"dataType" : "STRING"
-		}
+<CodeGroup show-lines="true" tabs={["cURL"]}>
 
-	]
-}'
-```
+  ```bash "cURL"
+  curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/cortex/v1/dataFields/67c13be980eaa45a46519efa' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Basic cHJlcmFuYV9zaW5naDoyZmFhZmZjNZDRjMTc5Y2NlMzNhYzc5OTBjMTQ1Ng==' \
+  --header 'Cookie: _cfuvid=257QQtZKKeLsnIKUrPVpHcKPHvi2s4LSYFlH8VLHtc0-1743065149089-0.0.1.1-604800000; _cfuvid=Wp9DM7jKlGaLVdZEYrh2ApStBYz0xLZsHFHOWo.VnBw-1743484167715-0.0.1.1-604800000' \
+  --data '{
+    "searchStrategyType" : "PREFIX",
+    "entityType" : "CUSTOMER",
+    "dataFieldDefinitions" : [
+  		{
+  			"fieldId" : "firstName",
+  			"fieldAlias" : "firstName",
+  			"fieldType" : "DATA",
+  			"dataSourceDetails" : {
+  				"fieldReference" : "firstName"
+  			},
+  			"dataType" : "STRING"
+  		},
+  		{
+  			"fieldId" : "lastName",
+  			"fieldAlias" : "lastName",
+  			"fieldType" : "DATA",
+  			"dataSourceDetails" : {
+  				"fieldReference" : "lastName"
+  			},
+  			"dataType" : "STRING"
+  		},
+  		{
+  			"fieldId" : "mobile",
+  			"fieldAlias" : "mobile",
+  			"fieldType" : "DATA",
+  			"dataSourceDetails" : {
+  				"fieldReference" : "mobile"
+  			},
+  			"dataType" : "STRING"
+  		},
+  		{
+  			"fieldId" : "email",
+  			"fieldAlias" : "email",
+  			"fieldType" : "DATA",
+  			"dataSourceDetails" : {
+  				"fieldReference" : "email"
+  			},
+  			"dataType" : "STRING"
+  		},
+      {
+  			"fieldId" : "externalId",
+  			"fieldAlias" : "externalId",
+  			"fieldType" : "DATA",
+  			"dataSourceDetails" : {
+  				"fieldReference" : "externalId"
+  			},
+  			"dataType" : "STRING"
+  		}
+
+  	]
+  }'
+  ```
+
+</CodeGroup>
 
 ## Query Parameter
 

@@ -7,8 +7,6 @@ title: Get Loyalty Promotion List for a Program
 ️ This API is being phased out and will no longer be available for viewing loyalty promotions.
 To view loyalty promotions, use the [Get Details of all Loyalty Promotions](/reference/get-loyalty-promotion-all) API
 
-<br />
-
 </Callout>
 
 Retrieves a paginated list of promotions for a given program. You can filter the promotions based on source type, event name etc.
@@ -17,13 +15,17 @@ By default, the types of promotions are not available for all the orgs. This nee
 
 ## Example request
 
-```bash Sample request
-curl --location 'https://eu.api.capillarytech.com/api_gateway/loyalty/v1/programs/973/promotionsV2?limit=100&offset=0&sourceType=USER_CREATED' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
---header 'Authorization: Basic **********' \
---header 'Cookie: _cfuvid=ZkF.LSNXg9S52IfnjuqAXPBT0mhsN4NBGQOun0VO.bo-1758631730852-0.0.1.1-604800000'
-```
+<CodeGroup show-lines="true" tabs={["Sample request"]}>
+
+  ```bash "Sample request"
+  curl --location 'https://eu.api.capillarytech.com/api_gateway/loyalty/v1/programs/973/promotionsV2?limit=100&offset=0&sourceType=USER_CREATED' \
+  --header 'Accept: application/json' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Basic **********' \
+  --header 'Cookie: _cfuvid=ZkF.LSNXg9S52IfnjuqAXPBT0mhsN4NBGQOun0VO.bo-1758631730852-0.0.1.1-604800000'
+  ```
+
+</CodeGroup>
 
 ## Prerequisites
 
@@ -58,210 +60,214 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/loyalty/v1/program
 
 ## Response body
 
-```json
-{
-    "status": {
-        "code": 200,
-        "message": "success"
-    },
-    "validationErrors": null,
-    "data": [
-        {
-            "id": 96664,
-            "name": "test_promo_uniqueName110",
-            "description": "creating promotion via API",
-            "promotionStatus": "LIVE",
-            "lastUpdateDate": "2025-06-23T09:25:04Z",
-            "lastUpdatedBy": -1,
-            "rulesetInfos": [
-                {
-                    "id": 126412694,
-                    "orgName": "DocDemo",
-                    "contextID": 2932,
-                    "orgID": 100737,
-                    "contextType": "program",
-                    "rules": [
-                        {
-                            "id": 126600796,
-                            "exp": "true",
-                            "expJSON": "{ \"arity\": \"literal\", \"value\": \"true\", \"type\": \"boolean:primitive\" }",
-                            "jsonType": "JNODE",
-                            "isActive": true,
-                            "priority": -1,
-                            "startDate": 1089532593324,
-                            "endDate": 33593126193324,
-                            "createdOn": 1750670704532,
-                            "caseToActions": {
-                                "true": [
-                                    {
-                                        "id": 126778453,
-                                        "actionName": "AWARD_TARGET_POINTS_ACTION",
-                                        "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.AwardTargetPointsActionImpl",
-                                        "mandatoryPropertiesValues": {
-                                            "TargetRuleId": "123",
-                                            "ProRateOnSourceValue": "EVENT_DEFAULT_VALUE",
-                                            "DelayStrategy": "AS_DEFINED_IN_ALLOCATION_STRATEGY",
-                                            "SourceValueRoundingStrategy": "ACTUAL",
-                                            "TargetGroupId": "1234567",
-                                            "ExpiryStrategy": "81042",
-                                            "TargetRuleName": "TargetRuleName",
-                                            "AwardStrategy": "82690",
-                                            "PointsRoundingStrategy": "ACTUAL"
-                                        },
-                                        "mandatoryComplexPropertiesValues": {},
-                                        "description": null
-                                    }
-                                ]
-                            },
-                            "ruleScope": "SERVER",
-                            "createdBy": -1,
-                            "modifiedBy": -1,
-                            "modifiedOn": 1750670704532,
-                            "name": "Rule 1",
-                            "description": "Rule 1",
-                            "expDataType": null,
-                            "filterInfo": [],
-                            "ruleSetId": 126412694,
-                            "updatedViaNewUI": false
-                        }
-                    ],
-                    "ruleScope": "SERVER",
-                    "startDate": 1089532593324,
-                    "endDate": 33593126193324,
-                    "createdOn": 1750670704532,
-                    "createdBy": -1,
-                    "modifiedBy": -1,
-                    "modifiedOn": 1750670704532,
-                    "name": "rulesetName_uniqueue1",
-                    "packageName": "",
-                    "description": "Promotional Rulesets",
-                    "filterInfo": [
-                        {
-                            "id": 126654282,
-                            "orgID": 100737,
-                            "ruleID": -1,
-                            "name": "LoyaltyType",
-                            "className": "com.capillary.shopbook.emf.impl.filter.LoyaltyTypeFilterImpl",
-                            "isInclude": true,
-                            "propertyToValues": {
-                                "loyaltyType": [
-                                    "loyalty"
-                                ]
-                            }
-                        },
-                        {
-                            "id": 126654283,
-                            "orgID": 100737,
-                            "ruleID": -1,
-                            "name": "EventSource",
-                            "className": "com.capillary.shopbook.emf.impl.filter.EventSourceFilterImpl",
-                            "isInclude": true,
-                            "propertyToValues": {
-                                "eventSource": [
-                                    "INSTORE"
-                                ]
-                            }
-                        }
-                    ],
-                    "eventType": null,
-                    "cappingInfo": [],
-                    "updatedViaNewUI": false,
-                    "label": "userCreatedLabel_2025-06-23T09:25:04.532Z",
-                    "private": true
-                }
-            ],
-            "programName": "DocDemoDefaultProgram",
-            "programId": 973,
-            "startDate": "2025-06-23T00:00Z",
-            "endDate": "2026-08-25T23:59:59Z",
-            "identifier": "test_promo_uniqueIdentifier110",
-            "isActive": true,
-            "eventName": "TARGETCOMPLETED",
-            "allocatePointsOn": "BILL",
-            "limits": {
-                "pointsPerCustomer": 10,
-                "numberOfTimesPerCustomer": 2,
-                "totalPointsInPromotion": 10,
-                "totalPointsPerEventLimit": -1
-            },
-            "useProportions": false,
-            "pointsOfferType": "LOYALTY",
-            "promotionRestrictions": {
-                "restrictions": {
-                    "redemptionRestrictions": [
-                        {
-                            "name": "MAX_ALLOWED_TIMES_PER_CUSTOMER",
-                            "value": 3,
-                            "type": "PERIOD_BASED",
-                            "periodType": "MOVING_WINDOW",
-                            "periodUnit": "WEEKLY"
-                        },
-                        {
-                            "name": "MAX_ALLOWED_TIMES_PER_PROMOTION",
-                            "value": 3,
-                            "type": "NON_PERIOD_BASED",
-                            "periodType": null,
-                            "periodUnit": null
-                        },
-                        {
-                            "name": "MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER",
-                            "value": 100,
-                            "type": "NON_PERIOD_BASED",
-                            "periodType": null,
-                            "periodUnit": null
-                        }
-                    ],
-                    "issualRestrictions": [
-                        {
-                            "name": "MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER",
-                            "value": 3
-                        }
-                    ],
-                    "earnRestrictions": [
-                        {
-                            "name": "MAX_NUMBER_OF_EARNS_PER_CUSTOMER",
-                            "value": 3
-                        }
-                    ],
-                    "expiryRestrictions": [
-                        {
-                            "name": "ISSUAL_PROMOTION_EXPIRY_BASED_ON",
-                            "value": 10,
-                            "type": "PROMOTION"
-                        }
-                    ]
-                },
-                "scope": null,
-                "loyaltyEarningType": "ISSUE_AND_EARN",
-                "expiryReminder": null,
-                "targetGroupIds": [
-                    1234567
-                ],
-                "targetRuleIds": [
-                    123
-                ],
-                "linkedTargetGroupVsTargetRuleIdMap": {
-                    "1234567": [
-                        123
-                    ]
-                },
-                "cappingStatus": null,
-                "skipEarnedDateCheckOnRedeem": false,
-                "isStackable": false,
-                "isConsideredForRanking": false,
-                "isExclusive": false,
-                "isAlwaysApply": false
-            }
-        }
-    ],
-    "pageDetails": {
-        "pageNumber": 0,
-        "pageSize": 100,
-        "totalEntries": 1,
-        "pageCount": 1
-    }
-}
-```
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  {
+      "status": {
+          "code": 200,
+          "message": "success"
+      },
+      "validationErrors": null,
+      "data": [
+          {
+              "id": 96664,
+              "name": "test_promo_uniqueName110",
+              "description": "creating promotion via API",
+              "promotionStatus": "LIVE",
+              "lastUpdateDate": "2025-06-23T09:25:04Z",
+              "lastUpdatedBy": -1,
+              "rulesetInfos": [
+                  {
+                      "id": 126412694,
+                      "orgName": "DocDemo",
+                      "contextID": 2932,
+                      "orgID": 100737,
+                      "contextType": "program",
+                      "rules": [
+                          {
+                              "id": 126600796,
+                              "exp": "true",
+                              "expJSON": "{ \"arity\": \"literal\", \"value\": \"true\", \"type\": \"boolean:primitive\" }",
+                              "jsonType": "JNODE",
+                              "isActive": true,
+                              "priority": -1,
+                              "startDate": 1089532593324,
+                              "endDate": 33593126193324,
+                              "createdOn": 1750670704532,
+                              "caseToActions": {
+                                  "true": [
+                                      {
+                                          "id": 126778453,
+                                          "actionName": "AWARD_TARGET_POINTS_ACTION",
+                                          "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.AwardTargetPointsActionImpl",
+                                          "mandatoryPropertiesValues": {
+                                              "TargetRuleId": "123",
+                                              "ProRateOnSourceValue": "EVENT_DEFAULT_VALUE",
+                                              "DelayStrategy": "AS_DEFINED_IN_ALLOCATION_STRATEGY",
+                                              "SourceValueRoundingStrategy": "ACTUAL",
+                                              "TargetGroupId": "1234567",
+                                              "ExpiryStrategy": "81042",
+                                              "TargetRuleName": "TargetRuleName",
+                                              "AwardStrategy": "82690",
+                                              "PointsRoundingStrategy": "ACTUAL"
+                                          },
+                                          "mandatoryComplexPropertiesValues": {},
+                                          "description": null
+                                      }
+                                  ]
+                              },
+                              "ruleScope": "SERVER",
+                              "createdBy": -1,
+                              "modifiedBy": -1,
+                              "modifiedOn": 1750670704532,
+                              "name": "Rule 1",
+                              "description": "Rule 1",
+                              "expDataType": null,
+                              "filterInfo": [],
+                              "ruleSetId": 126412694,
+                              "updatedViaNewUI": false
+                          }
+                      ],
+                      "ruleScope": "SERVER",
+                      "startDate": 1089532593324,
+                      "endDate": 33593126193324,
+                      "createdOn": 1750670704532,
+                      "createdBy": -1,
+                      "modifiedBy": -1,
+                      "modifiedOn": 1750670704532,
+                      "name": "rulesetName_uniqueue1",
+                      "packageName": "",
+                      "description": "Promotional Rulesets",
+                      "filterInfo": [
+                          {
+                              "id": 126654282,
+                              "orgID": 100737,
+                              "ruleID": -1,
+                              "name": "LoyaltyType",
+                              "className": "com.capillary.shopbook.emf.impl.filter.LoyaltyTypeFilterImpl",
+                              "isInclude": true,
+                              "propertyToValues": {
+                                  "loyaltyType": [
+                                      "loyalty"
+                                  ]
+                              }
+                          },
+                          {
+                              "id": 126654283,
+                              "orgID": 100737,
+                              "ruleID": -1,
+                              "name": "EventSource",
+                              "className": "com.capillary.shopbook.emf.impl.filter.EventSourceFilterImpl",
+                              "isInclude": true,
+                              "propertyToValues": {
+                                  "eventSource": [
+                                      "INSTORE"
+                                  ]
+                              }
+                          }
+                      ],
+                      "eventType": null,
+                      "cappingInfo": [],
+                      "updatedViaNewUI": false,
+                      "label": "userCreatedLabel_2025-06-23T09:25:04.532Z",
+                      "private": true
+                  }
+              ],
+              "programName": "DocDemoDefaultProgram",
+              "programId": 973,
+              "startDate": "2025-06-23T00:00Z",
+              "endDate": "2026-08-25T23:59:59Z",
+              "identifier": "test_promo_uniqueIdentifier110",
+              "isActive": true,
+              "eventName": "TARGETCOMPLETED",
+              "allocatePointsOn": "BILL",
+              "limits": {
+                  "pointsPerCustomer": 10,
+                  "numberOfTimesPerCustomer": 2,
+                  "totalPointsInPromotion": 10,
+                  "totalPointsPerEventLimit": -1
+              },
+              "useProportions": false,
+              "pointsOfferType": "LOYALTY",
+              "promotionRestrictions": {
+                  "restrictions": {
+                      "redemptionRestrictions": [
+                          {
+                              "name": "MAX_ALLOWED_TIMES_PER_CUSTOMER",
+                              "value": 3,
+                              "type": "PERIOD_BASED",
+                              "periodType": "MOVING_WINDOW",
+                              "periodUnit": "WEEKLY"
+                          },
+                          {
+                              "name": "MAX_ALLOWED_TIMES_PER_PROMOTION",
+                              "value": 3,
+                              "type": "NON_PERIOD_BASED",
+                              "periodType": null,
+                              "periodUnit": null
+                          },
+                          {
+                              "name": "MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER",
+                              "value": 100,
+                              "type": "NON_PERIOD_BASED",
+                              "periodType": null,
+                              "periodUnit": null
+                          }
+                      ],
+                      "issualRestrictions": [
+                          {
+                              "name": "MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER",
+                              "value": 3
+                          }
+                      ],
+                      "earnRestrictions": [
+                          {
+                              "name": "MAX_NUMBER_OF_EARNS_PER_CUSTOMER",
+                              "value": 3
+                          }
+                      ],
+                      "expiryRestrictions": [
+                          {
+                              "name": "ISSUAL_PROMOTION_EXPIRY_BASED_ON",
+                              "value": 10,
+                              "type": "PROMOTION"
+                          }
+                      ]
+                  },
+                  "scope": null,
+                  "loyaltyEarningType": "ISSUE_AND_EARN",
+                  "expiryReminder": null,
+                  "targetGroupIds": [
+                      1234567
+                  ],
+                  "targetRuleIds": [
+                      123
+                  ],
+                  "linkedTargetGroupVsTargetRuleIdMap": {
+                      "1234567": [
+                          123
+                      ]
+                  },
+                  "cappingStatus": null,
+                  "skipEarnedDateCheckOnRedeem": false,
+                  "isStackable": false,
+                  "isConsideredForRanking": false,
+                  "isExclusive": false,
+                  "isAlwaysApply": false
+              }
+          }
+      ],
+      "pageDetails": {
+          "pageNumber": 0,
+          "pageSize": 100,
+          "totalEntries": 1,
+          "pageCount": 1
+      }
+  }
+  ```
+
+</CodeGroup>
 
 ## Response parameters
 
@@ -401,5 +407,3 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/loyalty/v1/program
 | 4085  | `sourceType` parameter has an invalid value           |
 | 4056  | All mandatory query parameters are missing            |
 | 4050  | Query parameter is not supported                      |
-
-<br />

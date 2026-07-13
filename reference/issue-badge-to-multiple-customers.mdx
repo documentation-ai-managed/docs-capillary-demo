@@ -13,26 +13,30 @@ This API allows you to issue badges to the customer (the customer earns the badg
 
 ## Example request
 
-```bash
-curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/customer/earnBulk' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
---header 'accept: application/json' \
---header 'Authorization: Basic bWFkaHVI3MjU2YQ==' \
---header 'Cookie: _cfuvid=3_WeBHaCOoCMTu1WOqEmbpgNdxbEJfshHYOAHt8Pluk-1769690097065-0.0.1.1-604800000' \
---data '{
-    "badgeMetaId": "68d66ab3480b423e5c6857f4",
-    "customerIds": [
-        87654,74672,27864
-    ],
-    "requestId": "3785468349",
-    "issueEventDate": "2025-10-29T21:51:00.192Z",
-    "triggeredBy": {
-        "ownerType": "Loyalty",
-        "referenceId": "823626"
-    }
-}'
-```
+<CodeGroup show-lines="true" tabs={["cURL"]}>
+
+  ```bash "cURL"
+  curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/customer/earnBulk' \
+  --header 'Accept: application/json' \
+  --header 'Content-Type: application/json' \
+  --header 'accept: application/json' \
+  --header 'Authorization: Basic bWFkaHVI3MjU2YQ==' \
+  --header 'Cookie: _cfuvid=3_WeBHaCOoCMTu1WOqEmbpgNdxbEJfshHYOAHt8Pluk-1769690097065-0.0.1.1-604800000' \
+  --data '{
+      "badgeMetaId": "68d66ab3480b423e5c6857f4",
+      "customerIds": [
+          87654,74672,27864
+      ],
+      "requestId": "3785468349",
+      "issueEventDate": "2025-10-29T21:51:00.192Z",
+      "triggeredBy": {
+          "ownerType": "Loyalty",
+          "referenceId": "823626"
+      }
+  }'
+  ```
+
+</CodeGroup>
 
 ## Prerequisites
 
@@ -65,22 +69,24 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/customer
 | referenceId* | String | Enter a unique identifier to identify the owner (ownerType). The referenceId passed here should be the same as the referenceId in the [claim badge API](/reference/claim-badge). |
 | issueEventDate | instant | Specifies when the badge issuance event happened, in ISO 8601 format, including the region offset. (Optional: defaults to current time). For example, the badge issuance event happened at 14:30:45 on December 16, 2025, in India. Format for the request parameter: 2025-12-16T14:30:45+05:30 Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
 
-<br />
+<CodeGroup show-lines="true" tabs={["JSON"]}>
 
-```json
-{
-    "badgeMetaId": "68d66ab3480b423e5c6857f4",
-    "customerIds": [
-        87654,74672,27864
-    ],
-    "requestId": "3785468349",
-    "issueEventDate": "2025-10-29T21:51:00.192Z",
-    "triggeredBy": {
-        "ownerType": "Loyalty",
-        "referenceId": "823626"
-    }
-}
-```
+  ```json "JSON"
+  {
+      "badgeMetaId": "68d66ab3480b423e5c6857f4",
+      "customerIds": [
+          87654,74672,27864
+      ],
+      "requestId": "3785468349",
+      "issueEventDate": "2025-10-29T21:51:00.192Z",
+      "triggeredBy": {
+          "ownerType": "Loyalty",
+          "referenceId": "823626"
+      }
+  }
+  ```
+
+</CodeGroup>
 
 ## Example response
 

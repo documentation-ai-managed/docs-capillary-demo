@@ -139,64 +139,68 @@ This API allows you to create a search filter/criteria. After the search filter 
 | lastUpdatedBy           | Integer | User ID of the last updater.                                                        |
 | errors                  | Array   | List of errors encountered during processing (if any).                              |
 
-```json
-{
-    "data": {
-        "id": "67c091299e22382d75d405bc",
-        "orgId": 100737,
-        "name": "TransactionSearch3",
-        "searchStrategyType": "COMBINATION",
-        "entityType": "TRANSACTION",
-        "fieldDefinitions": [
-            {
-                "fieldId": "billNumber",
-                "fieldAlias": "billNumber",
-                "fieldType": "INDEXED",
-                "dataSourceDetails": {
-                    "fieldReference": "billNumber"
-                },
-                "dataType": "STRING"
-            }
-        ],
-        "dataFieldDefinitions": [
-            {
-                "fieldId": "billNumber",
-                "fieldAlias": "billNumber",
-                "fieldType": "DATA",
-                "dataSourceDetails": {
-                    "fieldReference": "billNumber"
-                },
-                "dataType": "STRING"
-            },
-            {
-                "fieldId": "billDate",
-                "fieldAlias": "billDate",
-                "fieldType": "DATA",
-                "dataSourceDetails": {
-                    "fieldReference": "billDate"
-                },
-                "dataType": "DATE"
-            }
-        ],
-        "searchDataPolicy": {
-            "dataRetentionPolicy": {
-                "unit": "DAYS",
-                "value": 10
-            },
-            "expireDataFrom": "CREATE"
-        },
-        "criteriaStatus": {
-            "status": "VERIFICATION_IN_PROGRESS"
-        },
-        "bulkJobStatus": "OPEN",
-        "auditInfo": {
-            "createdOn": "2025-02-27T16:22:01.911+00:00",
-            "createdBy": 75155282,
-            "lastUpdatedOn": "2025-02-27T16:22:01.911+00:00",
-            "lastUpdatedBy": 75155282
-        }
-    },
-    "errors": []
-}
+<CodeGroup show-lines="true" tabs={["JSON"]}>
 
-```
+  ```json "JSON"
+  {
+      "data": {
+          "id": "67c091299e22382d75d405bc",
+          "orgId": 100737,
+          "name": "TransactionSearch3",
+          "searchStrategyType": "COMBINATION",
+          "entityType": "TRANSACTION",
+          "fieldDefinitions": [
+              {
+                  "fieldId": "billNumber",
+                  "fieldAlias": "billNumber",
+                  "fieldType": "INDEXED",
+                  "dataSourceDetails": {
+                      "fieldReference": "billNumber"
+                  },
+                  "dataType": "STRING"
+              }
+          ],
+          "dataFieldDefinitions": [
+              {
+                  "fieldId": "billNumber",
+                  "fieldAlias": "billNumber",
+                  "fieldType": "DATA",
+                  "dataSourceDetails": {
+                      "fieldReference": "billNumber"
+                  },
+                  "dataType": "STRING"
+              },
+              {
+                  "fieldId": "billDate",
+                  "fieldAlias": "billDate",
+                  "fieldType": "DATA",
+                  "dataSourceDetails": {
+                      "fieldReference": "billDate"
+                  },
+                  "dataType": "DATE"
+              }
+          ],
+          "searchDataPolicy": {
+              "dataRetentionPolicy": {
+                  "unit": "DAYS",
+                  "value": 10
+              },
+              "expireDataFrom": "CREATE"
+          },
+          "criteriaStatus": {
+              "status": "VERIFICATION_IN_PROGRESS"
+          },
+          "bulkJobStatus": "OPEN",
+          "auditInfo": {
+              "createdOn": "2025-02-27T16:22:01.911+00:00",
+              "createdBy": 75155282,
+              "lastUpdatedOn": "2025-02-27T16:22:01.911+00:00",
+              "lastUpdatedBy": 75155282
+          }
+      },
+      "errors": []
+  }
+
+  ```
+
+</CodeGroup>

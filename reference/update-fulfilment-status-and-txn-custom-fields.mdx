@@ -46,30 +46,34 @@ This API is used to update fulfilment status and transaction custom fields for i
 | `fulfillmentDetails` | object | The `fulfillmentDetails` object tracks the status of each transaction's fulfillment process and provides information about the current state of reward fulfillment. Consider the following scenarios: **Scenario 1**: A customer places an order for a reward. To track the order through its various stages, [create statuses](/reference/create-fulfillment-status) such as "Order received," "Processing," "Shipped," and "Delivered." Include these statuses as values in the `fulfillmentDetails` object to provide real-time tracking information to the customer. **Scenario 2**: A customer reports an issue with a reward they received or requests a return. Update the `fulfillmentDetails` object with statuses like "Returned," "Refund processed," or "Issue resolved." This approach helps manage and track returns or complaints more effectively. |
 | `status` | string | The current status of the fulfillment process. Statuses can be created from [Create fulfillment status](/reference/create-fulfillment-status). |
 
-```json
-{
-    "transactions": [
-        {
-            "transactionId": 3482445,
-            "customerId": 85076836,
-            "rewardId": 177657,
-            "transactionCustomFields": {
-                "Partner_Order_Id" : "6565454987656",
-                "Date" : "10/09/2024",
-                "Time" : "evening",
-                "Seat_Section" : "Orchestra",
-                "Seat_Row" : "Q",
-                "Seat_Number" : "205",
-                "Paypal_Order_Id" : "45678",
-                "Paypal_amout" : "30$"
-            },
-            "fulfillmentDetails": {
-                "status": "Confirmed"
-            }
-        }
-    ]
-}
-```
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  {
+      "transactions": [
+          {
+              "transactionId": 3482445,
+              "customerId": 85076836,
+              "rewardId": 177657,
+              "transactionCustomFields": {
+                  "Partner_Order_Id" : "6565454987656",
+                  "Date" : "10/09/2024",
+                  "Time" : "evening",
+                  "Seat_Section" : "Orchestra",
+                  "Seat_Row" : "Q",
+                  "Seat_Number" : "205",
+                  "Paypal_Order_Id" : "45678",
+                  "Paypal_amout" : "30$"
+              },
+              "fulfillmentDetails": {
+                  "status": "Confirmed"
+              }
+          }
+      ]
+  }
+  ```
+
+</CodeGroup>
 
 ## Response parameters
 
@@ -83,28 +87,32 @@ This API is used to update fulfilment status and transaction custom fields for i
 | id                 | Unique id of the fulfillment details                        |
 | status             | Current status of the fulfillment process.                  |
 
-```json
-{
-    "transactions": [
-        {
-            "transactionId": 3482445,
-            "rewardId": 177657,
-            "customerId": 85076836,
-            "fulfillmentDetails": {
-                "id": 9,
-                "status": "Confirmed"
-            },
-            "transactionCustomFields": {
-                "Partner_Order_Id": "6565454987656",
-                "Date": "10/09/2024",
-                "Time": "evening",
-                "Seat_Section": "Orchestra",
-                "Seat_Row": "Q",
-                "Seat_Number": "205",
-                "Paypal_Order_Id": "45678",
-                "Paypal_amout": "30$"
-            }
-        }
-    ]
-}
-```
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  {
+      "transactions": [
+          {
+              "transactionId": 3482445,
+              "rewardId": 177657,
+              "customerId": 85076836,
+              "fulfillmentDetails": {
+                  "id": 9,
+                  "status": "Confirmed"
+              },
+              "transactionCustomFields": {
+                  "Partner_Order_Id": "6565454987656",
+                  "Date": "10/09/2024",
+                  "Time": "evening",
+                  "Seat_Section": "Orchestra",
+                  "Seat_Row": "Q",
+                  "Seat_Number": "205",
+                  "Paypal_Order_Id": "45678",
+                  "Paypal_amout": "30$"
+              }
+          }
+      ]
+  }
+  ```
+
+</CodeGroup>
