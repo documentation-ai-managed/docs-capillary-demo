@@ -2,4 +2,285 @@
 title: Update activation status of badge
 ---
 
+This API allows you to update the activation status of the badge.
 
+<Callout kind="tip" title="Note">
+
+For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
+
+</Callout>
+
+## Prerequisites
+
+* [ ] Authentication: Basic or OAuth authentication
+* [ ] Default access group
+
+## Resource information
+
+|               |                                                                    |
+| :------------ | :----------------------------------------------------------------- |
+| URI           | /api_gateway/v1/badges/badgeMeta/`{badgeId}`/`{activationStatus}` |
+| HTTP method   | PUT                                                                |
+| Pagination    | NA                                                                 |
+| Batch support | NA                                                                 |
+
+## Example request
+
+<CodeGroup show-lines="true" tabs={["Sample request when activationStatus =activate", "Sample request when activationStatus =deactivate"]}>
+
+  ```bash
+  curl --location --request PUT 'https://eucrm.cc.capillarytech.com/api_gateway/v1/badges/badgeMeta/68ccf60d28a4f97c042c83c1/activate' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Basic bWFkaHVI3MjU2YQ==' \
+  --data '{
+      "active": true
+  }'
+  ```
+
+  ```bash
+  curl --location --request PUT 'https://eucrm.cc.capillarytech.com/api_gateway/v1/badges/badgeMeta/68ccf60d28a4f97c042c83c1/deactivate' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Basic bWFk3MjU2YQ==' \
+  --data '{
+      "active": true
+  }'
+  ```
+
+</CodeGroup>
+
+## Request path parameter
+
+| Parameter          | Data Type | Description                                                            |
+| ------------------ | --------- | ---------------------------------------------------------------------- |
+| activationStatus* | Enum      | Activation status of the badge. Supported values: Activate, Deactivate |
+| badgeId*          | String    | Unique identifier ("id") generated during the creation of the badge    |
+
+<CodeGroup show-lines="true" tabs={["When activationStatus=activate", "When activationStatus=deactivate"]}>
+
+  ```bash
+  https://eucrm.cc.capillarytech.com/api_gateway/v1/badges/badgeMeta/6543688e66a87827bb61e62a/activate
+  ```
+
+  ```text
+  https://eucrm.cc.capillarytech.com/api_gateway/v1/badges/badgeMeta/6543688e66a87827bb61e62a/deactivate
+  ```
+
+</CodeGroup>
+
+## Example response
+
+<CodeGroup show-lines="true" tabs={["Sample response when activationStatus=activate", "Sample response when activationStatus=deactivate"]}>
+
+  ```json
+  {
+      "data": {
+          "id": "68ccf60d28a4f97c042c83c1",
+          "isActive": true
+      },
+      "errors": [],
+      "warnings": []
+  }
+  ```
+
+  ```json
+  {
+      "data": {
+          "id": "68ccf60d28a4f97c042c83c1",
+          "isActive": false
+      },
+      "errors": [],
+      "warnings": []
+  }
+  ```
+
+</CodeGroup>
+
+## Response parameter
+
+| Parameter | Data Type | Description                            |
+| --------- | --------- | -------------------------------------- |
+| id        | String    | Unique identifier for the badge.       |
+| isActive  | Boolean   | Indicates whether the badge is active. |
+| errors    | Array     | Contains details of any errors.        |
+| warnings  | Array     | Contains details of any warnings.      |
+
+## OpenAPI definition
+
+```json
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "v1",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://{host}",
+      "variables": {
+        "host": {
+          "default": "host"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/api_gateway/v1/badges/badgeMeta/{badgeId}/{activationStatus}": {
+      "put": {
+        "summary": "Update activation status of badge",
+        "description": "",
+        "operationId": "update-the-activation-status-of-badge",
+        "parameters": [
+          {
+            "name": "activationStatus",
+            "in": "path",
+            "description": "Status of the badge.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "activate",
+                "deactivate"
+              ]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Sample response when activationStatus=activate": {
+                    "value": {
+                      "data": {
+                        "id": "68ccf60d28a4f97c042c83c1",
+                        "isActive": true
+                      },
+                      "errors": [],
+                      "warnings": []
+                    },
+                    "summary": "Sample response when activationStatus=activate"
+                  },
+                  "Sample response when activationStatus=deactivate": {
+                    "value": {
+                      "data": {
+                        "id": "68ccf60d28a4f97c042c83c1",
+                        "isActive": false
+                      },
+                      "errors": [],
+                      "warnings": []
+                    },
+                    "summary": "Sample response when activationStatus=deactivate"
+                  }
+                },
+                "schema": {
+                  "oneOf": [
+                    {
+                      "title": "When activationStatus=activate",
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "example": "6543688e66a87827bb61e62a"
+                            },
+                            "isActive": {
+                              "type": "boolean",
+                              "example": true,
+                              "default": true
+                            }
+                          }
+                        },
+                        "errors": {
+                          "type": "array"
+                        },
+                        "warnings": {
+                          "type": "array"
+                        }
+                      }
+                    },
+                    {
+                      "title": "When activationStatus=deactivate",
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "example": "6543688e66a87827bb61e62a"
+                            },
+                            "isActive": {
+                              "type": "boolean",
+                              "example": false,
+                              "default": true
+                            }
+                          }
+                        },
+                        "errors": {
+                          "type": "array"
+                        },
+                        "warnings": {
+                          "type": "array"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "shell",
+              "code": "curl --location --request PUT 'https://eucrm.cc.capillarytech.com/api_gateway/v1/badges/badgeMeta/68ccf60d28a4f97c042c83c1/activate' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic bWFkaHVI3MjU2YQ==' \\\n--data '{\n    \"active\": true\n}'",
+              "name": "Sample request when activationStatus =activate"
+            },
+            {
+              "code": "curl --location --request PUT 'https://eucrm.cc.capillarytech.com/api_gateway/v1/badges/badgeMeta/68ccf60d28a4f97c042c83c1/deactivate' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic bWFk3MjU2YQ==' \\\n--data '{\n    \"active\": true\n}'",
+              "language": "shell",
+              "name": "Sample request when activationStatus =deactivate"
+            }
+          ],
+          "samples-languages": [
+            "shell"
+          ]
+        }
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "key": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  },
+  "x-readme-fauxas": true
+}
+```

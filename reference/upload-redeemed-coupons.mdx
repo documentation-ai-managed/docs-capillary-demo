@@ -5,3 +5,259 @@ title: Upload Redeemed Coupons
 Lets you upload coupons that are redeemed for a coupon series in bulk. 
 
 You can also import coupons (Capillary CRM) that are redeemed externally using an endpoint.
+
+#### Request Body Parameters
+
+| Parameter | Datatype | Description |
+| --- | --- | --- |
+| customerIdentifier* | enum | Unique identifier of the customer to update redeemed coupons. Values: MOBILE, EXTERNAL_ID, EMAIL, USER_ID. |
+| couponIdentifier* | enum | Coupon identifier used. Value: COUPON_ID, COUPON_CODE. |
+| file* | file | The CSV file that contains information of redeemed coupons. Each row in CSV file can contain following fields(columns marked with * are mandatory). * Customer identifier* : Field used to identify the customer, it can be userId, mobile, email or externalId. (userId will have more preference over the other customer identifiers, in case of multiple values) * Coupon identifier* : Field used to identify the redeemed coupon, It can be couponId, couponCode. (couponId has more preference over couponCode in case of multiple values) * Redeemed date in milliseconds* : Coupon redeemed time in Epoch * Redeemed at* : Coupon redeemed till’s Id * Bill Id : Transaction Id * Bill Number : Transaction Number Details. Sample file content: * File content sample 1: redeemed date in millis, redeemed at, user id, coupon id, bill id, bill number, details 1603128622000,50015497,23599838,23456,1603128596000 luci_auto_15039. File content sample 2: redeemed date in millis, redeemed at, mobile, coupon code ,bill id, bill number, details 1603128622000,50015497,9988776655,ABCDEF1,1603128596000 luci_auto_15039 |
+| uploadHeaders* | int | The sequence (starts from 0) of the columns in the attached csv file. This field accepts stringified JSON.Key name for the columns are as follows:**Customer identifier*** : Key name for this field varies according to the customerIdentifier param.MOBILE : mobileEXTERNAL_ID: externalIdEMAIL: emailUSER_ID: userId**Coupon identifier*** : Key name for this field varies according to the couponIdentifier param.COUPON_ID: couponIdCOUPON_CODE: couponCode**Redeemed date in milliseconds*** : redeemedDateInMillis**Redeemed at*** : redeemedAt**Bill Id** : billId**Bill Number** : billNumber**Details** : detailsFor the above file samples, the uploadHeaders will be:_Sample 1_ - `{"redeemedDateInMillis": 0, "redeemedAt": 1, "billNumber": 5, "couponId": 3, "userId": 2, "billId": 4, "details": 6}`_Sample 2_ - `{"redeemedDateInMillis": 0, "redeemedAt": 1, "billNumber": 5, "couponCode": 3, "mobile": 2, "billId": 4, "details": 6}` |
+| Details | string | Any additional details or notes to capture for redeemed coupon upload. |
+
+All parameters marked with * are mandatory.
+
+## OpenAPI definition
+
+```json
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "v1",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://{host}",
+      "variables": {
+        "host": {
+          "default": "host"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/upload/redeemFile/{couponSeriesId}": {
+      "post": {
+        "summary": "Upload Redeemed Coupons",
+        "description": "Lets you upload coupons that are redeemed for a coupon series in bulk. \n\nYou can also import coupons (Capillary CRM) that are redeemed externally using an endpoint.",
+        "operationId": "upload-redeemed-coupons",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "multipart/form-data"
+              ]
+            }
+          },
+          {
+            "in": "path",
+            "name": "couponSeriesId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "customerIdentifier",
+                  "couponIdentifier"
+                ],
+                "properties": {
+                  "customerIdentifier": {
+                    "type": "string",
+                    "description": "Unique identifier of the customer to update redeemed coupons.",
+                    "enum": [
+                      "MOBILE",
+                      "EXTERNAL_ID",
+                      "EMAIL",
+                      "USER_ID"
+                    ]
+                  },
+                  "couponIdentifier": {
+                    "type": "string",
+                    "description": "Coupon identifier used.",
+                    "enum": [
+                      "COUPON_ID",
+                      "COUPON_CODE"
+                    ]
+                  },
+                  "file": {
+                    "type": "string",
+                    "description": "The CSV file that contains information of redeemed coupons. Each row in CSV file can contain following fields(columns marked with * are mandatory)."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n   \"success\":true,\n   \"status\":200,\n   \"result\":{\n      \"orgId\":9619,\n      \"couponSeriesId\":953234,\n      \"redeemUploadJobStatuses\":[\n         {\n            \"jobId\":9137,\n            \"uploadRedeemedCouponStatus\":\"QUEUED\",\n            \"createdOn\":\"1603263535389\",\n            \"updatedOn\":\"1603263535389\",\n            \"errorFileUrl\":null,\n            \"successFileUrl\":null,\n            \"uploadedFileUrl\":\"couponCode_9603263533789_253294.csv\",\n            \"totalUploadedCount\":0,\n            \"actualRowCount\":0,\n            \"errorCount\":0,\n            \"uploadTableName\":null,\n            \"uploadedFileName\":\"couponCode_9603263533789_253294.csv\"\n         }\n      ],\n      \"fileName\":\"couponCode_9603263533789_253294.csv\"\n   }\n}\n"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true,
+                      "default": true
+                    },
+                    "status": {
+                      "type": "integer",
+                      "example": 200,
+                      "default": 0
+                    },
+                    "result": {
+                      "type": "object",
+                      "properties": {
+                        "orgId": {
+                          "type": "integer",
+                          "example": 9619,
+                          "default": 0
+                        },
+                        "couponSeriesId": {
+                          "type": "integer",
+                          "example": 953234,
+                          "default": 0
+                        },
+                        "redeemUploadJobStatuses": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "jobId": {
+                                "type": "integer",
+                                "example": 9137,
+                                "default": 0
+                              },
+                              "uploadRedeemedCouponStatus": {
+                                "type": "string",
+                                "example": "QUEUED"
+                              },
+                              "createdOn": {
+                                "type": "string",
+                                "example": "1603263535389"
+                              },
+                              "updatedOn": {
+                                "type": "string",
+                                "example": "1603263535389"
+                              },
+                              "errorFileUrl": {},
+                              "successFileUrl": {},
+                              "uploadedFileUrl": {
+                                "type": "string",
+                                "example": "couponCode_9603263533789_253294.csv"
+                              },
+                              "totalUploadedCount": {
+                                "type": "integer",
+                                "example": 0,
+                                "default": 0
+                              },
+                              "actualRowCount": {
+                                "type": "integer",
+                                "example": 0,
+                                "default": 0
+                              },
+                              "errorCount": {
+                                "type": "integer",
+                                "example": 0,
+                                "default": 0
+                              },
+                              "uploadTableName": {},
+                              "uploadedFileName": {
+                                "type": "string",
+                                "example": "couponCode_9603263533789_253294.csv"
+                              }
+                            }
+                          }
+                        },
+                        "fileName": {
+                          "type": "string",
+                          "example": "couponCode_9603263533789_253294.csv"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl -i -X POST \nhttps://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/redeemFile/253234 -H 'Content-Type: multipart/form-data' \n-H 'Authorization: Bearer YOUR_JWT_TOKEN' \n-F file=@couponCode.csv \n-F customerIdentifier=USER_ID \n-F couponIdentifier=COUPON_ID \n-F uploadHeaders='{\"redeemedAt\": 1, \"billNumber\": 5, \"couponCode\": 3, \"userId\": 2, \"billId\": 4, \"redeemedDateInMillis\": 0, \"details\": 6}'"
+            }
+          ],
+          "samples-languages": [
+            "curl"
+          ]
+        }
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "key": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  },
+  "x-readme-fauxas": true
+}
+```

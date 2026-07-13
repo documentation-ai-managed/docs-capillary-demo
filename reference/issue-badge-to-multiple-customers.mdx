@@ -2,4 +2,567 @@
 title: Issue badge to multiple customers
 ---
 
+This API allows you to issue badges to the customer (the customer earns the badge).
 
+<Callout kind="tip" title="Note">
+
+* For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
+* A badge can be issued via MemberCare without any owners or claim.
+
+</Callout>
+
+## Example request
+
+```bash
+curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/customer/earnBulk' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--header 'accept: application/json' \
+--header 'Authorization: Basic bWFkaHVI3MjU2YQ==' \
+--header 'Cookie: _cfuvid=3_WeBHaCOoCMTu1WOqEmbpgNdxbEJfshHYOAHt8Pluk-1769690097065-0.0.1.1-604800000' \
+--data '{
+    "badgeMetaId": "68d66ab3480b423e5c6857f4",
+    "customerIds": [
+        87654,74672,27864
+    ],
+    "requestId": "3785468349",
+    "issueEventDate": "2025-10-29T21:51:00.192Z",
+    "triggeredBy": {
+        "ownerType": "Loyalty",
+        "referenceId": "823626"
+    }
+}'
+```
+
+## Prerequisites
+
+* [ ] Authentication: Basic or OAuth authentication
+* [ ] Default access group
+
+## Resource information
+
+|               |                                       |
+| :------------ | :------------------------------------ |
+| URI           | /api_gateway/v1/badges/customer/earn |
+| HTTP method   | POST                                  |
+| Pagination    | No                                    |
+| Batch support | NA                                    |
+
+## API endpoint example
+
+`https://eucrm.cc.capillarytech.com/api_gateway/v1/badges/customer/earn`
+
+## Request body parameters
+
+| Parameter (Parameters marked with `*` are mandatory) | Data Type | Description |
+| --- | --- | --- |
+| badgeMetaId* | String | Unique identifier ("id") generated during the creation of the badge. |
+| customerId* | Number | Unique identifier for the customer. |
+| requestId* | String | Enter a unique identifier to identify the request. |
+| earnEventDate | Date | Defines the date on which the customer performed the activity. This date can be set up to 24 hours in the future from the current time, which allows badges to be earned based on when the customer's action occurred, not just when the system processes it. * The earn event date has to be between the badge start date and end date if it is a direct earn type of badge. * The earn event date has to be set between the badge issual start date and end date if it is an issue &amp; earn type of badge. * You can enter a past date to issue a badge against an older transaction. * This field will be deprecated in the future and is being replaced by `earnEventDateISO`. |
+| earnEventDateISO | String | Defines the date on which the customer performed the activity in ISO 8601 format in UTC and is independent of the user’s local time zone. For example: The activity was performed at 11:20:00 on March 15, 2026. Format for the request parameter: 2026-03-15T11:20:00Z Notes: * This date can be set up to 24 hours in the future from the current time. * For direct earn badges, the date must be between the badge start and end date. * For issue &amp; earn badges, the date must be between the badge issue's start and end date. * A past date can be entered to issue a badge against an older transaction. * Only if `earnEventDateISO` is null, `earnEventDate` parameter will be used. Time format: ISO 8601 time format eg. "2025-09-10T15:00:00+05:30 |
+| triggeredBy | Object | The object containing information about what triggered the action. |
+| ownerType* | Enum | The module for which the badge is being issued. Supported values: Loyalty, Loyalty_Promotion, Referral_Campaigns, Journeys, Audience_Campaigns, Rewards_Catalog, Goodwill_Module, Milestones, Historical_Import |
+| referenceId* | String | Enter a unique identifier to identify the owner (ownerType). The referenceId passed here should be the same as the referenceId in the [claim badge API](/reference/claim-badge). |
+| issueEventDate | instant | Specifies when the badge issuance event happened, in ISO 8601 format, including the region offset. (Optional: defaults to current time). For example, the badge issuance event happened at 14:30:45 on December 16, 2025, in India. Format for the request parameter: 2025-12-16T14:30:45+05:30 Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
+
+<br />
+
+```json
+{
+    "badgeMetaId": "68d66ab3480b423e5c6857f4",
+    "customerIds": [
+        87654,74672,27864
+    ],
+    "requestId": "3785468349",
+    "issueEventDate": "2025-10-29T21:51:00.192Z",
+    "triggeredBy": {
+        "ownerType": "Loyalty",
+        "referenceId": "823626"
+    }
+}
+```
+
+## Example response
+
+<CodeGroup show-lines="true" tabs={["Sample response", "200 OK"]}>
+
+  ```json
+  {
+      "data": {
+          "badgeMetaId": "68d66ab3480b423e5c6857f4",
+          "expiresOn": 1796311177.192000000,
+          "expiresOnISO": "2026-12-03T15:19:37Z",
+          "earnedBadgesList": [
+              {
+                  "customerId": 74672,
+                  "earnedBadgeId": "697b54340772ad476ecff1ae"
+              },
+              {
+                  "customerId": 87654,
+                  "earnedBadgeId": "697b54340772ad476ecff1af"
+              },
+              {
+                  "customerId": 27864,
+                  "earnedBadgeId": "697b54340772ad476ecff1b0"
+              }
+          ],
+          "totalCount": 3,
+          "earnedCount": 3,
+          "failedCount": 0,
+          "triggeredBy": {
+              "ownerType": "Loyalty",
+              "referenceId": "823626"
+          },
+          "failedEarnBadgeErrorList": []
+      },
+      "errors": [],
+      "warnings": []
+  }
+  ```
+
+  ```json
+  {
+      "data": {
+          "badgeMetaId": "66da90348bdb494a4f06576f",
+          "customerId": 11231,
+          "earnedBadgeId": "66da90618bdb494a4f065774",
+          "expiresOn": 1726809439.822462000,
+          "expiresOnISO": "2024-09-20T10:47:19+05:30",
+          "requestId": "NaYAzxXfJhHvRm4l7KiD",
+          "issuedId": "66da903a8bdb494a4f065770"
+      },
+      "errors": [],
+      "warnings": []
+  }
+
+  ```
+
+</CodeGroup>
+
+## Response parameters
+
+| Parameter | Data Type | Description |
+| --- | --- | --- |
+| badgeMetaId | String | Unique identifier for the badge metadata. |
+| customerId | Number | Unique identifier for the customer. |
+| earnedBadgeId | String | Unique identifier for the earned badge. |
+| expiresOn | Number | The time indicating when the badge expires, in epoch milliseconds timestamp format. |
+| expiresOnISO | String | The time indicating when the badge expires in ISO 8601 format, returned in the server time zone. EU server example 2025-09-10T15:00:00Z → 10 September 2025, 15:00:00 (UTC) India server example 2025-09-10T15:00:00+05:30 → 10 September 2025, 15:00:00 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
+| requestId | String | A unique identifier to identify the request. |
+| issuedId | String | A Unique identifier representing the specific issuance instance of the badge. |
+| errors | Array | Array to list any errors. |
+| warnings | Array | Array to list any warnings. |
+
+## API-specific error codes
+
+| Error code | Description                                     |
+| :--------- | :---------------------------------------------- |
+| 809        | Request with the same requestId is not allowed. |
+| 811        | Badge issue is mandatory before earn.           |
+| 804        | RequestId information is missing.               |
+
+## OpenAPI definition
+
+```json
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "v1",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://{host}",
+      "variables": {
+        "host": {
+          "default": "host"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/api_gateway/v1/badges/customer/earnBulk": {
+      "post": {
+        "summary": "Issue badge to multiple customers",
+        "description": "",
+        "operationId": "issue-badge-to-multiple-customers",
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Failure: Badge Overlapping": {
+                    "value": "{\n    \"data\": {\n        \"badgeMetaId\": \"66f3be92a8647e03dc526a5f\",\n        \"triggeredBy\": {\n            \"ownerType\": \"Loyalty\",\n            \"referenceId\": \"xyz\"\n        },\n        \"expiresOn\": 1722155344.000000000,\n        \"issuedBadges\": [\n            {\n                \"customerId\": 11115,\n                \"issuedId\": \"66f3bf91c7bf1e4d65e126b1\",\n                \"error\": {\n                    \"code\": 1040,\n                    \"message\": \"An active issue for the badge already exists.\",\n                    \"reference\": null\n                },\n                \"status\": \"EXPIRED\"\n            }\n        ],\n        \"requestId\": \"VGagtK2zN16jkRU56zs1\"\n    },\n    \"errors\": [],\n    \"warnings\": []\n}"
+                  },
+                  "Sample response": {
+                    "value": {
+                      "data": {
+                        "badgeMetaId": "68d66ab3480b423e5c6857f4",
+                        "expiresOn": 1796311177.192,
+                        "expiresOnISO": "2026-12-03T15:19:37Z",
+                        "earnedBadgesList": [
+                          {
+                            "customerId": 74672,
+                            "earnedBadgeId": "697b54340772ad476ecff1ae"
+                          },
+                          {
+                            "customerId": 87654,
+                            "earnedBadgeId": "697b54340772ad476ecff1af"
+                          },
+                          {
+                            "customerId": 27864,
+                            "earnedBadgeId": "697b54340772ad476ecff1b0"
+                          }
+                        ],
+                        "totalCount": 3,
+                        "earnedCount": 3,
+                        "failedCount": 0,
+                        "triggeredBy": {
+                          "ownerType": "Loyalty",
+                          "referenceId": "823626"
+                        },
+                        "failedEarnBadgeErrorList": []
+                      },
+                      "errors": [],
+                      "warnings": []
+                    },
+                    "summary": "Sample response"
+                  },
+                  "OK": {
+                    "summary": "OK",
+                    "value": {
+                      "data": {
+                        "badgeMetaId": "66da90348bdb494a4f06576f",
+                        "customerId": 11231,
+                        "earnedBadgeId": "66da90618bdb494a4f065774",
+                        "expiresOn": 1726809439.822462,
+                        "expiresOnISO": "2024-09-20T10:47:19+05:30",
+                        "requestId": "NaYAzxXfJhHvRm4l7KiD",
+                        "issuedId": "66da903a8bdb494a4f065770"
+                      },
+                      "errors": [],
+                      "warnings": []
+                    }
+                  }
+                },
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "badgeMetaId": {
+                              "type": "string",
+                              "example": "653de334b3cda7078c7c68eb"
+                            },
+                            "triggeredBy": {
+                              "type": "object",
+                              "properties": {
+                                "ownerType": {
+                                  "type": "string",
+                                  "example": "Loyalty"
+                                },
+                                "referenceId": {
+                                  "type": "string",
+                                  "example": "123457"
+                                }
+                              }
+                            },
+                            "expiresOn": {
+                              "type": "number",
+                              "example": 1717935013.12171,
+                              "default": 0
+                            },
+                            "issuedBadges": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "customerId": {
+                                    "type": "integer",
+                                    "example": 553162563,
+                                    "default": 0
+                                  },
+                                  "issuedId": {
+                                    "type": "string",
+                                    "example": "661681a535bc684e9e72553a"
+                                  },
+                                  "error": {}
+                                }
+                              }
+                            },
+                            "requestId": {
+                              "type": "string",
+                              "example": "1234"
+                            }
+                          }
+                        },
+                        "errors": {
+                          "type": "array"
+                        },
+                        "warnings": {
+                          "type": "array"
+                        }
+                      }
+                    },
+                    {
+                      "title": "Failure: Badge Overlapping",
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "badgeMetaId": {
+                              "type": "string",
+                              "example": "66f3be92a8647e03dc526a5f"
+                            },
+                            "triggeredBy": {
+                              "type": "object",
+                              "properties": {
+                                "ownerType": {
+                                  "type": "string",
+                                  "example": "Loyalty"
+                                },
+                                "referenceId": {
+                                  "type": "string",
+                                  "example": "xyz"
+                                }
+                              }
+                            },
+                            "expiresOn": {
+                              "type": "integer",
+                              "example": 1722155344,
+                              "default": 0
+                            },
+                            "issuedBadges": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "customerId": {
+                                    "type": "integer",
+                                    "example": 11115,
+                                    "default": 0
+                                  },
+                                  "issuedId": {
+                                    "type": "string",
+                                    "example": "66f3bf91c7bf1e4d65e126b1"
+                                  },
+                                  "error": {
+                                    "type": "object",
+                                    "properties": {
+                                      "code": {
+                                        "type": "integer",
+                                        "example": 1040,
+                                        "default": 0
+                                      },
+                                      "message": {
+                                        "type": "string",
+                                        "example": "An active issue for the badge already exists."
+                                      },
+                                      "reference": {}
+                                    }
+                                  },
+                                  "status": {
+                                    "type": "string",
+                                    "example": "EXPIRED"
+                                  }
+                                }
+                              }
+                            },
+                            "requestId": {
+                              "type": "string",
+                              "example": "VGagtK2zN16jkRU56zs1"
+                            }
+                          }
+                        },
+                        "errors": {
+                          "type": "array"
+                        },
+                        "warnings": {
+                          "type": "array"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "409",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n    \"data\": null,\n    \"errors\": [\n        {\n            \"code\": 810,\n            \"message\": \"BadgeMeta needs to be claimed first\",\n            \"reference\": null\n        }\n    ],\n    \"warnings\": null\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {},
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "code": {
+                            "type": "integer",
+                            "example": 810,
+                            "default": 0
+                          },
+                          "message": {
+                            "type": "string",
+                            "example": "BadgeMeta needs to be claimed first"
+                          },
+                          "reference": {}
+                        }
+                      }
+                    },
+                    "warnings": {}
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "badgeMetaId",
+                  "customerId",
+                  "requestId",
+                  "triggeredBy"
+                ],
+                "properties": {
+                  "badgeMetaId": {
+                    "type": "string",
+                    "description": "Unique identifier (\"id\") generated during the creation of the badge."
+                  },
+                  "customerId": {
+                    "type": "number",
+                    "description": "Unique identifier for the customer."
+                  },
+                  "requestId": {
+                    "type": "string",
+                    "description": "Enter a unique identifier to identify the request."
+                  },
+                  "earnEventDate": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "Defines the date on which the customer performed the activity. This date can be set up to 24 hours in the future from the current time, which allows badges to be earned based on when the customer's action occurred, not just when the system processes it.\n* The earn event date has to be between the badge start date and end date if it is a direct earn type of badge.\n* The earn event date has to be set between the badge issual start date and end date if it is an issue & earn type of badge.\n* You can enter a past date to issue a badge against an older transaction.\n* This field will be deprecated in the future and is being replaced by earnEventDateISO."
+                  },
+                  "earnEventDateISO": {
+                    "type": "string",
+                    "description": "Defines the date on which the customer performed the activity in ISO 8601 format in UTC and is independent of the user's local time zone. For example: The activity was performed at 11:20:00 on March 15, 2026. Format for the request parameter: 2026-03-15T11:20:00Z. Notes: * This date can be set up to 24 hours in the future from the current time. * For direct earn badges, the date must be between the badge start and end date. * For issue & earn badges, the date must be between the badge issue's start and end date. * A past date can be entered to issue a badge against an older transaction. * Only if earnEventDateISO is null, earnEventDate parameter will be used. Time format: ISO 8601 time format eg. \"2025-09-10T15:00:00+05:30\""
+                  },
+                  "triggeredBy": {
+                    "type": "object",
+                    "description": "The object containing information about what triggered the action.",
+                    "required": [
+                      "ownerType",
+                      "referenceId"
+                    ],
+                    "properties": {
+                      "ownerType": {
+                        "type": "string",
+                        "enum": [
+                          "Loyalty",
+                          "Loyalty_Promotion",
+                          "Referral_Campaigns",
+                          "Journeys",
+                          "Audience_Campaigns",
+                          "Rewards_Catalog",
+                          "Goodwill_Module",
+                          "Milestones",
+                          "Historical_Import"
+                        ],
+                        "description": "The module for which the badge is being issued. Supported values: Loyalty, Loyalty_Promotion, Referral_Campaigns, Journeys, Audience_Campaigns, Rewards_Catalog, Goodwill_Module, Milestones, Historical_Import"
+                      },
+                      "referenceId": {
+                        "type": "string",
+                        "description": "Enter a unique identifier to identify the owner (ownerType). The referenceId passed here should be the same as the referenceId in the claim badge API."
+                      }
+                    }
+                  },
+                  "issueEventDate": {
+                    "type": "string",
+                    "description": "Specifies when the badge issuance event happened, in ISO 8601 format, including the region offset. (Optional: defaults to current time). For example, the badge issuance event happened at 14:30:45 on December 16, 2025, in India. Format for the request parameter: 2025-12-16T14:30:45+05:30. Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request."
+                  }
+                }
+              },
+              "examples": {
+                "Request Example": {
+                  "value": {
+                    "badgeMetaId": "68d66ab3480b423e5c6857f4",
+                    "customerIds": [
+                      87654,
+                      74672,
+                      27864
+                    ],
+                    "requestId": "3785468349",
+                    "issueEventDate": "2025-10-29T21:51:00.192Z",
+                    "triggeredBy": {
+                      "ownerType": "Loyalty",
+                      "referenceId": "823626"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-readme": {
+          "code-samples": [
+            {
+              "code": "curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/customer/earnBulk' \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--header 'accept: application/json' \\\n--header 'Authorization: Basic bWFkaHVI3MjU2YQ==' \\\n--header 'Cookie: _cfuvid=3_WeBHaCOoCMTu1WOqEmbpgNdxbEJfshHYOAHt8Pluk-1769690097065-0.0.1.1-604800000' \\\n--data '{\n    \"badgeMetaId\": \"68d66ab3480b423e5c6857f4\",\n    \"customerIds\": [\n        87654,74672,27864\n    ],\n    \"requestId\": \"3785468349\",\n    \"issueEventDate\": \"2025-10-29T21:51:00.192Z\",\n    \"triggeredBy\": {\n        \"ownerType\": \"Loyalty\",\n        \"referenceId\": \"823626\"\n    }\n}'",
+              "language": "shell",
+              "name": "Sample request"
+            }
+          ],
+          "samples-languages": [
+            "shell"
+          ]
+        }
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "key": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  },
+  "x-readme-fauxas": true
+}
+```

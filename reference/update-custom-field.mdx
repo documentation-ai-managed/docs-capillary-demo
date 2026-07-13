@@ -2,4 +2,759 @@
 title: Update reward custom field
 ---
 
+This API allows you to update a custom field created for a reward.
 
+<Callout kind="tip" title="Note">
+
+For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
+
+</Callout>
+
+## Prerequisites
+
+* [ ] Authentication: Basic or OAuth authentication details
+* [ ] Access group resource: Default
+
+## Resource information
+
+|               |                                                        |
+| :------------ | :----------------------------------------------------- |
+| URI           | /api_gateway/rewards/core/v1/brand/customfield/`{id}` |
+| HTTP method   | PUT                                                    |
+| Rate limit    | NA                                                     |
+| Batch support | NA                                                     |
+
+## API endpoint example
+
+`https://eucrm.cc.capillarytech.com/api_gateway/rewards/core/v1/brand/customfield/106`
+
+## Request path parameter
+
+| Parameter | Data Type | Description                                  |
+| :-------- | :-------- | :------------------------------------------- |
+| id*      | String    | Unique name identifier for the custom field. |
+
+## Request body parameter
+
+| Parameter Name | Data Type | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| -------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name*         | String    | Unique name identifier for the custom field.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| orgId          | String    | Unique identifier for the organisation. To retrieve the orgId, use the [Get Org Details](https://docs.capillarytech.com/reference/get-org-details) API.                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| description*  | String    | Description for the custom field.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| isMandatory    | Boolean   | Indicates if the custom field is mandatory. Supported values:<br />`true`: Field is mandatory<br />`false`: Field is optional (default value)                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| isActive       | Boolean   | Indicates the status of the custom field. Supported values:<br />`true`: Status is active (default value)<br />`false`: Status is inactive.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| scope*        | Enum      | Indicates where the additional custom fields will apply. Supported values:<br />`REWARD`: While creating or updating a reward.<br />`ISSUE_REWARD`: While issuing a reward.<br />`CATALOGUE_PROMOTION`: While creating or updating a [promotion](https://docs.capillarytech.com/docs/loyalty-promotions-basic-and-advanced).                                                                                                                                                                                                                                                                          |
+| defaultValue   | String    | Default value for the custom field used when no value is specified.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| dataType*     | String    | Type of data for the custom field. Supported values:<br />`BOOLEAN`, `ENUM`, `DATE`, `STRING`, `INTEGER`.<br />255 is the character limit for the datatype `STRING`.<br /><br />Use `ENUM` as the `dataType` to define a set of pre-defined values, ensuring error-free management of reward metadata. For example, as a reward manager, you can create a custom field called "Reward Category" and define possible values such as "Discount," "Free Gift," and "Cashback." When creating or updating a reward, you can select one of these predefined values for the "Reward Category" custom field. |
+| enumValues     | Object    | Object containing the enum values. This parameter is required if `dataType` is `ENUM`.<br />**Note**:<br /><br />- Define enum values using double quotes in a comma-separated list.<br />- You can provide a maximum of 30 enum values per custom field.<br />- When creating a reward, you can provide only one enum value per custom field in the `customFields` object.<br />- Each enum value must not exceed 80 characters.<br />- Allowed special characters: `[]()-_ `.<br />- Values must be unique within the custom field.<br />- `defaultValue` must be provided if `dataType` is `ENUM`. |
+
+<br />
+
+<CodeGroup show-lines="true" tabs={["Scope : REWARD", "Scope : CATALOGUE_PROMOTION", "Scope: ISSUE_REWARD", "dataType: ENUM"]}>
+
+  ```json
+  {
+      "orgId": 100458,
+      "name": "CF1A112",
+      "description": "CF1A112",
+      "isMandatory": false,
+      "isActive": true,
+      "scope": "REWARD",
+      "defaultValue": null,
+      "dataType": "STRING"
+  }
+  ```
+
+  ```json
+  {
+      "orgId": 100458,
+      "name": "Order confirmed",
+      "description": "Reward is processing",
+      "isMandatory": false,
+      "isActive": true,
+      "scope": "CATALOGUE_PROMOTION",
+      "defaultValue": null,
+      "dataType": "STRING"
+  }
+  ```
+
+  ```json
+  {
+      "orgId": 100458,
+      "name": "CF1A112",
+      "description": "CF1A112",
+      "isMandatory": false,
+      "isActive": true,
+      "scope": "ISSUE_REWARD",
+      "defaultValue": null,
+      "dataType": "STRING"
+  }
+  ```
+
+  ```json
+  {
+      "orgId": 100458,
+      "name": "CustomField",
+      "description": "",
+      "isMandatory": false,
+      "isActive": false,
+      "defaultValue": "PRIMARY",
+      "dataType": "ENUM",
+      "scope": "ISSUE_REWARD",
+      "enumValues": [
+          "PRIMARY",
+          "SECONDARY"
+      ]
+  }
+  ```
+
+</CodeGroup>
+
+<br />
+
+## Response parameters
+
+| Parameter Name        | Data Type | Description                                                                                                                                                                                                                                  |
+| --------------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id                    | Integer   | Unique identifier for the custom field.                                                                                                                                                                                                      |
+| orgId                 | Integer   | Unique identifier of the organisation.                                                                                                                                                                                                       |
+| name                  | String    | Unique name for the custom field.                                                                                                                                                                                                            |
+| description           | String    | Description of the custom field.                                                                                                                                                                                                             |
+| isMandatory           | Boolean   | Indicates if the custom field is mandatory. Possible values:<br />`true`: Field is mandatory<br />`false`: Field is optional (default value)                                                                                                 |
+| isActive              | Boolean   | Specify the status of the custom field. Possible values:<br />`true`: Status is active (default value)<br />`false`: Status is inactive.                                                                                                     |
+| scope                 | String    | Specify where the additional custom fields will apply. Possible values:<br />`REWARD`: While creating or updating a reward.<br />`ISSUE_REWARD`: While issuing a reward.<br />`CATALOGUE_PROMOTION`: While creating or updating a promotion. |
+| defaultValue          | String    | Default value for the custom field used when no value is specified.                                                                                                                                                                          |
+| dataType              | String    | Type of data for the custom field. Possible values:<br />`BOOLEAN`, `ENUM`, `DATE`, `STRING`, `INTEGER`.                                                                                                                                     |
+| createdBy             | Integer   | Unique customer identifier of the user who created the custom field                                                                                                                                                                          |
+| createdOn             | Date      | Creation date and time of the field in Epoch time format.                                                                                                                                                                                    |
+| createdOnDateTime     | String    | Creation date and time of the field in ISO 8601 format (YYYY-MM-DDTHH:MM:SSZ)                                                                                                                                                                |
+| lastUpdatedBy         | Integer   | Unique customer identifier of the user who last updated the custom field                                                                                                                                                                     |
+| lastUpdatedOn         | Date      | Last update date and time of the field in Epoch time format.                                                                                                                                                                                 |
+| enumValues            | Object    | Object containing the enum values.                                                                                                                                                                                                           |
+| lastUpdatedOnDateTime | String    | Last updated date and time of the field in ISO 8601 format (YYYY-MM-DDTHH:MM:SSZ).                                                                                                                                                           |
+
+<br />
+
+<CodeGroup show-lines="true" tabs={["Scope : REWARD", "Scope : CATALOGUE_PROMOTION", "Scope: ISSUE_REWARD", "dataType: ENUM"]}>
+
+  ```json
+  {
+      "id": 18880,
+      "orgId": 100737,
+      "name": "age_update",
+      "description": "CF1A",
+      "isMandatory": false,
+      "isActive": true,
+      "scope": "REWARD",
+      "defaultValue": null,
+      "dataType": "STRING",
+      "createdBy": 75155282,
+      "createdOn": 1741934782959,
+      "createdOnDateTime": "2025-03-14T06:46:22Z",
+      "lastUpdatedBy": 75155282,
+      "lastUpdatedOn": 1741934782959,
+      "enumValues": null,
+      "lastUpdatedOnDateTime": "2025-03-14T06:46:22Z"
+  }
+
+  ```
+
+  ```json
+  {
+      "id": 6913,
+      "orgId": 100458,
+      "name": "Order confirmed",
+      "description": "Reward is processing",
+      "isMandatory": false,
+      "isActive": true,
+      "scope": "CATALOGUE_PROMOTION",
+      "defaultValue": null,
+      "dataType": "STRING",
+      "createdBy": 75130850,
+      "createdOn": null,
+      "lastUpdatedBy": 75130850,
+      "lastUpdatedOn": null
+  }
+  ```
+
+  ```json
+  {
+      "id": 210,
+      "orgId": 100458,
+      "name": "CF1A112",
+      "description": "CF1A112",
+      "isMandatory": false,
+      "isActive": true,
+      "scope": "ISSUE_REWARD",
+      "defaultValue": null,
+      "dataType": "STRING",
+      "createdBy": 75086856,
+      "createdOn": null,
+      "lastUpdatedBy": 75086856,
+      "lastUpdatedOn": null
+  }
+  ```
+
+  ```json
+  {
+      "id": 15006,
+      "orgId": 1231,
+      "name": "CustomField",
+      "description": "",
+      "isMandatory": false,
+      "isActive": true,
+      "scope": "ISSUE_REWARD",
+      "defaultValue": "PRIMARY",
+      "dataType": "ENUM",
+      "createdBy": 50716508,
+      "createdOn": null,
+      "lastUpdatedBy": 50716508,
+      "lastUpdatedOn": null,
+      "enumValues": [
+          "PRIMARY",
+          "SECONDARY"
+      ]
+  }
+  ```
+
+</CodeGroup>
+
+## API-specific error codes
+
+| Error code | Description | Reason |
+| --- | --- | --- |
+| 3022 | ISSUE REWARD scope limit reached, max is `{max_limit}`. Allowed limit is 10. | * |
+| 3025 | Default value not found in the enum list | The default value provided does not match any of the enums. |
+| 3030 | Enum value cannot be empty | One or more enum values are null. |
+| 3024 | Invalid characters in enum value. Allowed characters: [a-z,A-Z,0-9,[]() -_ ] | One or more enum values have an unsupported character. |
+| 400 | ENUM's list size is out of limit | The enum object does not contain any values. |
+| 3028 | Enum value exceeds the limit of 80 characters | One or more enum values have exceeded the supported character limit. |
+| 3029 | Duplicate enum values found | A duplicate enum is provided |
+
+## OpenAPI definition
+
+```json
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "v1",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://{host}",
+      "variables": {
+        "host": {
+          "default": "host"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/api_gateway/rewards/core/v1/brand/customfield/{id}": {
+      "put": {
+        "summary": "Update reward custom field",
+        "description": "",
+        "operationId": "update-custom-field",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Unique name identifier for the custom field.",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "description",
+                  "scope",
+                  "dataType"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Unique name identifier for the custom field."
+                  },
+                  "orgId": {
+                    "type": "string",
+                    "description": "Unique identifier of the organisation. To retrieve the orgId, use the Get Org Details API."
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Description for the custom field."
+                  },
+                  "isMandatory": {
+                    "type": "boolean",
+                    "description": "Specify if the custom field is mandatory."
+                  },
+                  "isActive": {
+                    "type": "boolean",
+                    "description": "Parameter to define if the custom field is active or not"
+                  },
+                  "scope": {
+                    "type": "string",
+                    "description": "Specify where the additional custom fields will apply",
+                    "enum": [
+                      "REWARD",
+                      "ISSUE_REWARD",
+                      "CATALOGUE_PROMOTION"
+                    ]
+                  },
+                  "dataType": {
+                    "type": "string",
+                    "description": "Type of data for the custom field. 255 is the character limit with datatype as string",
+                    "enum": [
+                      "BOOLEAN",
+                      "ENUM",
+                      "DATE",
+                      "STRING",
+                      "INTEGER"
+                    ]
+                  },
+                  "enumValues": {
+                    "type": "array",
+                    "description": "Object containing the enum values. This parameter is required if dataType is ENUM.",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "Request body": {
+                  "value": {
+                    "orgId": 100458,
+                    "name": "CF1A_update",
+                    "description": "CF1A",
+                    "isMandatory": false,
+                    "isActive": true,
+                    "scope": "REWARD",
+                    "defaultValue": null,
+                    "dataType": "STRING"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Scope: REWARD": {
+                    "value": "{\n    \"id\": 18880,\n    \"orgId\": 100737,\n    \"name\": \"age_update\",\n    \"description\": \"CF1A\",\n    \"isMandatory\": false,\n    \"isActive\": true,\n    \"scope\": \"REWARD\",\n    \"defaultValue\": null,\n    \"dataType\": \"STRING\",\n    \"createdBy\": 75155282,\n    \"createdOn\": 1741934782959,\n    \"createdOnDateTime\": \"2025-03-14T06:46:22Z\",\n    \"lastUpdatedBy\": 75155282,\n    \"lastUpdatedOn\": 1741934782959,\n    \"enumValues\": null,\n    \"lastUpdatedOnDateTime\": \"2025-03-14T06:46:22Z\"\n}"
+                  },
+                  "Scope: CATALOGUE_PROMOTION": {
+                    "value": "{\n    \"id\": 107,\n    \"orgId\": 100458,\n    \"name\": \"CF1A_update\",\n    \"description\": \"CF1A\",\n    \"isMandatory\": false,\n    \"isActive\": true,\n    \"scope\": \"CATALOGUE_PROMOTION\",\n    \"defaultValue\": null,\n    \"dataType\": \"STRING\",\n    \"createdBy\": null,\n    \"createdOn\": null,\n    \"lastUpdatedBy\": 75086856,\n    \"lastUpdatedOn\": null\n}"
+                  },
+                  "Scope: ISSUE_REWARD": {
+                    "value": "{\n    \"id\": 108,\n    \"orgId\": 100458,\n    \"name\": \"CF1A_update\",\n    \"description\": \"CF1A\",\n    \"isMandatory\": false,\n    \"isActive\": true,\n    \"scope\": \"ISSUE_REWARD\",\n    \"defaultValue\": null,\n    \"dataType\": \"STRING\",\n    \"createdBy\": null,\n    \"createdOn\": null,\n    \"lastUpdatedBy\": 75086856,\n    \"lastUpdatedOn\": null\n}"
+                  }
+                },
+                "schema": {
+                  "oneOf": [
+                    {
+                      "title": "Scope: REWARD",
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "example": 18880,
+                          "default": 0
+                        },
+                        "orgId": {
+                          "type": "integer",
+                          "example": 100737,
+                          "default": 0
+                        },
+                        "name": {
+                          "type": "string",
+                          "example": "age_update"
+                        },
+                        "description": {
+                          "type": "string",
+                          "example": "CF1A"
+                        },
+                        "isMandatory": {
+                          "type": "boolean",
+                          "example": false,
+                          "default": true
+                        },
+                        "isActive": {
+                          "type": "boolean",
+                          "example": true,
+                          "default": true
+                        },
+                        "scope": {
+                          "type": "string",
+                          "example": "REWARD"
+                        },
+                        "defaultValue": {},
+                        "dataType": {
+                          "type": "string",
+                          "example": "STRING"
+                        },
+                        "createdBy": {
+                          "type": "integer",
+                          "example": 75155282,
+                          "default": 0
+                        },
+                        "createdOn": {
+                          "type": "integer",
+                          "example": 1741934782959,
+                          "default": 0
+                        },
+                        "createdOnDateTime": {
+                          "type": "string",
+                          "example": "2025-03-14T06:46:22Z"
+                        },
+                        "lastUpdatedBy": {
+                          "type": "integer",
+                          "example": 75155282,
+                          "default": 0
+                        },
+                        "lastUpdatedOn": {
+                          "type": "integer",
+                          "example": 1741934782959,
+                          "default": 0
+                        },
+                        "enumValues": {},
+                        "lastUpdatedOnDateTime": {
+                          "type": "string",
+                          "example": "2025-03-14T06:46:22Z"
+                        }
+                      }
+                    },
+                    {
+                      "title": "Scope: CATALOGUE_PROMOTION",
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "example": 107,
+                          "default": 0
+                        },
+                        "orgId": {
+                          "type": "integer",
+                          "example": 100458,
+                          "default": 0
+                        },
+                        "name": {
+                          "type": "string",
+                          "example": "CF1A_update"
+                        },
+                        "description": {
+                          "type": "string",
+                          "example": "CF1A"
+                        },
+                        "isMandatory": {
+                          "type": "boolean",
+                          "example": false,
+                          "default": true
+                        },
+                        "isActive": {
+                          "type": "boolean",
+                          "example": true,
+                          "default": true
+                        },
+                        "scope": {
+                          "type": "string",
+                          "example": "CATALOGUE_PROMOTION"
+                        },
+                        "defaultValue": {},
+                        "dataType": {
+                          "type": "string",
+                          "example": "STRING"
+                        },
+                        "createdBy": {},
+                        "createdOn": {},
+                        "lastUpdatedBy": {
+                          "type": "integer",
+                          "example": 75086856,
+                          "default": 0
+                        },
+                        "lastUpdatedOn": {}
+                      }
+                    },
+                    {
+                      "title": "Scope: ISSUE_REWARD",
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "example": 108,
+                          "default": 0
+                        },
+                        "orgId": {
+                          "type": "integer",
+                          "example": 100458,
+                          "default": 0
+                        },
+                        "name": {
+                          "type": "string",
+                          "example": "CF1A_update"
+                        },
+                        "description": {
+                          "type": "string",
+                          "example": "CF1A"
+                        },
+                        "isMandatory": {
+                          "type": "boolean",
+                          "example": false,
+                          "default": true
+                        },
+                        "isActive": {
+                          "type": "boolean",
+                          "example": true,
+                          "default": true
+                        },
+                        "scope": {
+                          "type": "string",
+                          "example": "ISSUE_REWARD"
+                        },
+                        "defaultValue": {},
+                        "dataType": {
+                          "type": "string",
+                          "example": "STRING"
+                        },
+                        "createdBy": {},
+                        "createdOn": {},
+                        "lastUpdatedBy": {
+                          "type": "integer",
+                          "example": 75086856,
+                          "default": 0
+                        },
+                        "lastUpdatedOn": {}
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Wrong default value": {
+                    "value": "{\n    \"status\": {\n        \"success\": false,\n        \"code\": 3025,\n        \"message\": \"Default value not found in the enum list\"\n    }\n}"
+                  },
+                  "ENUM value empty": {
+                    "value": "{\n    \"status\": {\n        \"success\": false,\n        \"code\": 3030,\n        \"message\": \"Enum value cannot be empty\"\n    }\n}"
+                  },
+                  "Unsupported character in ENUM": {
+                    "value": "{\n    \"status\": {\n        \"success\": false,\n        \"code\": 3024,\n        \"message\": \"Invalid characters in enum value. Allowed characters: [a-z,A-Z,0-9,[]()-_ ]\"\n    }\n}"
+                  },
+                  "No ENUM provided": {
+                    "value": "{\n    \"status\": {\n        \"success\": false,\n        \"code\": 400,\n        \"message\": \"ENUM's list size is out of limit\"\n    }\n}"
+                  },
+                  "ENUM character limit exceeded": {
+                    "value": "{\n    \"status\": {\n        \"success\": false,\n        \"code\": 3028,\n        \"message\": \"Enum value exceeds the limit of 80 characters\"\n    }\n}"
+                  },
+                  "Duplicate ENUM values provided": {
+                    "value": "{\n    \"status\": {\n        \"success\": false,\n        \"code\": 3029,\n        \"message\": \"Duplicate enum values found\"\n    }\n}"
+                  }
+                },
+                "schema": {
+                  "oneOf": [
+                    {
+                      "title": "Wrong default value",
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "object",
+                          "properties": {
+                            "success": {
+                              "type": "boolean",
+                              "example": false,
+                              "default": true
+                            },
+                            "code": {
+                              "type": "integer",
+                              "example": 3025,
+                              "default": 0
+                            },
+                            "message": {
+                              "type": "string",
+                              "example": "Default value not found in the enum list"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "title": "ENUM value empty",
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "object",
+                          "properties": {
+                            "success": {
+                              "type": "boolean",
+                              "example": false,
+                              "default": true
+                            },
+                            "code": {
+                              "type": "integer",
+                              "example": 3030,
+                              "default": 0
+                            },
+                            "message": {
+                              "type": "string",
+                              "example": "Enum value cannot be empty"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "title": "Unsupported character in ENUM",
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "object",
+                          "properties": {
+                            "success": {
+                              "type": "boolean",
+                              "example": false,
+                              "default": true
+                            },
+                            "code": {
+                              "type": "integer",
+                              "example": 3024,
+                              "default": 0
+                            },
+                            "message": {
+                              "type": "string",
+                              "example": "Invalid characters in enum value. Allowed characters: [a-z,A-Z,0-9,[]()-_ ]"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "title": "No ENUM provided",
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "object",
+                          "properties": {
+                            "success": {
+                              "type": "boolean",
+                              "example": false,
+                              "default": true
+                            },
+                            "code": {
+                              "type": "integer",
+                              "example": 400,
+                              "default": 0
+                            },
+                            "message": {
+                              "type": "string",
+                              "example": "ENUM's list size is out of limit"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "title": "ENUM character limit exceeded",
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "object",
+                          "properties": {
+                            "success": {
+                              "type": "boolean",
+                              "example": false,
+                              "default": true
+                            },
+                            "code": {
+                              "type": "integer",
+                              "example": 3028,
+                              "default": 0
+                            },
+                            "message": {
+                              "type": "string",
+                              "example": "Enum value exceeds the limit of 80 characters"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "title": "Duplicate ENUM values provided",
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "object",
+                          "properties": {
+                            "success": {
+                              "type": "boolean",
+                              "example": false,
+                              "default": true
+                            },
+                            "code": {
+                              "type": "integer",
+                              "example": 3029,
+                              "default": 0
+                            },
+                            "message": {
+                              "type": "string",
+                              "example": "Duplicate enum values found"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "key": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  },
+  "x-readme-fauxas": true
+}
+```

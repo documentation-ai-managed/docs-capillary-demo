@@ -2,4 +2,321 @@
 title: Upload Coupons (Batch)
 ---
 
+This API helps to upload a batch of coupons to a coupon series. It provides the status of the upload process, organization ID, coupon series ID, job status, timestamps for creation and updates, and file information related to the upload.
 
+## Prerequisites
+
+* [ ] Authentication: OAuth authentication details
+* [ ] Access group: Write access to coupon group resource
+
+## Resource information
+
+|               |                                              |
+| :------------ | :------------------------------------------- |
+| URI           | coupon/api/v1/upload/file/`{couponSeriedId}` |
+| HTTP method   | POST                                         |
+| Pagination    | NA                                           |
+| Rate limit    | NA                                           |
+| Batch support | Yes                                          |
+
+## API endpoint example
+
+```bash
+curl --location 'https://eu.intouch.capillarytech.com/coupon/api/v1/upload/file/541854' \
+--header 'Postman-Token: 3056825f-5e0d-411e-a83d-e6ce0e6da3d2' \
+--header 'cache-control: no-cache' \
+--header 'X-CAP-API-OAUTH-TOKEN: YOUR_JWT_TOKEN' \
+--form 'file=@"/C:/Users/abijhit.p/Downloads/couponbatchupload.csv"' \
+--form 'customerIdentifier="MOBILE"' \
+--form 'customerIdentifierColumn="0"'
+```
+
+<br />
+
+## Path parameter
+
+| Parameter        | Description                                                          |
+| :--------------- | :------------------------------------------------------------------- |
+| couponSeriedId* | Unique ID of the coupon series for which you need to upload coupons. |
+
+## Body parameter
+
+| Parameter | Description |
+| --- | --- |
+| file* | Name of the CSV file containing customer and coupon details. There is no limit to the number of coupon codes—including externally managed coupons—that you can add in a file, but it is recommended to keep each batch to a maximum of 500,000 entries. |
+| customerIdentifier* | Customer identifier type used in the CSV file. Customer identifier type used in the CSV file. Supported values, MOBILE, EXTENAL_ID, and EMAIL. Use NOT_TAGGED as the identifier to upload only coupon codes. |
+| customerIdentifierColumn | Column ID of the customer identifier in the uploaded CSV file. |
+
+## Header Required
+
+| Header                  | Description                    |
+| ----------------------- | ------------------------------ |
+| Content-Type*          | multipart/form-data            |
+| x-cap-api-oauth-token* | Generated authentication token |
+
+## Response parameter
+
+| Parameter                                       | Data Type        | Description                                                  |
+| ----------------------------------------------- | ---------------- | ------------------------------------------------------------ |
+| success                                         | Boolean          | Indicates whether the API call was successful.               |
+| status                                          | Integer          | HTTP status code of the API response.                        |
+| result                                          | Object           | Contains the result data of the API call.                    |
+| result.orgId                                    | Integer          | Organization ID associated with the result.                  |
+| result.couponSeriesId                           | Integer          | ID of the coupon series.                                     |
+| result.uploadJobStatuses                        | Array of Objects | List of upload job statuses related to the coupon series.    |
+| result.uploadJobStatuses.jobId                  | Integer          | Job ID of the upload status.                                 |
+| result.uploadJobStatuses.uploadStatus           | String           | Status of the upload (e.g., STARTED).                        |
+| result.uploadJobStatuses.createdOn              | String           | Timestamp when the upload job was created.                   |
+| result.uploadJobStatuses.updatedOn              | String           | Timestamp when the upload job was last updated.              |
+| result.uploadJobStatuses.errorFileUrl           | String or null   | URL for the error file if any errors occurred during upload. |
+| result.uploadJobStatuses.successFileUrl         | String or null   | URL for the success file if the upload was successful.       |
+| result.uploadJobStatuses.uploadedFileUrl        | String           | URL of the uploaded file.                                    |
+| result.uploadJobStatuses.totalUploadedCount     | Integer          | Total number of uploaded rows.                               |
+| result.uploadJobStatuses.actualRowCount         | Integer          | Actual number of rows in the uploaded file.                  |
+| result.uploadJobStatuses.errorCount             | Integer          | Number of errors encountered during upload.                  |
+| result.uploadJobStatuses.uploadTableName        | String or null   | Name of the table where uploaded data is stored.             |
+| result.uploadJobStatuses.uploadedFileName       | String           | Name of the uploaded file.                                   |
+| result.uploadJobStatuses.audienceGroupId        | Integer          | ID of the audience group.                                    |
+| result.uploadJobStatuses.audienceGroupVersionId | Integer          | Version ID of the audience group.                            |
+| result.fileName                                 | String           | Name of the file associated with the result.                 |
+
+```json title="200 OK"
+{
+    "success": true,
+    "status": 200,
+    "result": {
+        "orgId": 100458,
+        "couponSeriesId": 541854,
+        "uploadJobStatuses": [
+            {
+                "jobId": 222696,
+                "uploadStatus": "STARTED",
+                "createdOn": "1717651325445",
+                "updatedOn": "1717651325445",
+                "errorFileUrl": null,
+                "successFileUrl": null,
+                "uploadedFileUrl": "couponbatchupload_1717651325326_541854.csv",
+                "totalUploadedCount": 0,
+                "actualRowCount": 0,
+                "errorCount": 0,
+                "uploadTableName": null,
+                "uploadedFileName": "couponbatchupload.csv",
+                "audienceGroupId": 0,
+                "audienceGroupVersionId": 0
+            }
+        ],
+        "fileName": "couponbatchupload_1717651325326_541854.csv"
+    }
+}
+```
+
+## OpenAPI definition
+
+```json
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "v1",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://{host}",
+      "variables": {
+        "host": {
+          "default": "host"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/coupon/api/v1/upload/file/{couponSeriedId}": {
+      "post": {
+        "summary": "Upload Coupons (Batch)",
+        "description": "",
+        "operationId": "upload-coupons-batch",
+        "parameters": [
+          {
+            "name": "couponSeriedId*",
+            "in": "path",
+            "description": "Unique ID of the coupon series for which you need to upload coupons.",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "RAW_BODY": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Sample Response": {
+                    "value": "{\n    \"success\": true,\n    \"status\": 200,\n    \"result\": {\n        \"orgId\": 100458,\n        \"couponSeriesId\": 541854,\n        \"uploadJobStatuses\": [\n            {\n                \"jobId\": 222696,\n                \"uploadStatus\": \"STARTED\",\n                \"createdOn\": \"1717651325445\",\n                \"updatedOn\": \"1717651325445\",\n                \"errorFileUrl\": null,\n                \"successFileUrl\": null,\n                \"uploadedFileUrl\": \"couponbatchupload_1717651325326_541854.csv\",\n                \"totalUploadedCount\": 0,\n                \"actualRowCount\": 0,\n                \"errorCount\": 0,\n                \"uploadTableName\": null,\n                \"uploadedFileName\": \"couponbatchupload.csv\",\n                \"audienceGroupId\": 0,\n                \"audienceGroupVersionId\": 0\n            }\n        ],\n        \"fileName\": \"couponbatchupload_1717651325326_541854.csv\"\n    }\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true,
+                      "default": true
+                    },
+                    "status": {
+                      "type": "integer",
+                      "example": 200,
+                      "default": 0
+                    },
+                    "result": {
+                      "type": "object",
+                      "properties": {
+                        "orgId": {
+                          "type": "integer",
+                          "example": 100458,
+                          "default": 0
+                        },
+                        "couponSeriesId": {
+                          "type": "integer",
+                          "example": 541854,
+                          "default": 0
+                        },
+                        "uploadJobStatuses": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "jobId": {
+                                "type": "integer",
+                                "example": 222696,
+                                "default": 0
+                              },
+                              "uploadStatus": {
+                                "type": "string",
+                                "example": "STARTED"
+                              },
+                              "createdOn": {
+                                "type": "string",
+                                "example": "1717651325445"
+                              },
+                              "updatedOn": {
+                                "type": "string",
+                                "example": "1717651325445"
+                              },
+                              "errorFileUrl": {},
+                              "successFileUrl": {},
+                              "uploadedFileUrl": {
+                                "type": "string",
+                                "example": "couponbatchupload_1717651325326_541854.csv"
+                              },
+                              "totalUploadedCount": {
+                                "type": "integer",
+                                "example": 0,
+                                "default": 0
+                              },
+                              "actualRowCount": {
+                                "type": "integer",
+                                "example": 0,
+                                "default": 0
+                              },
+                              "errorCount": {
+                                "type": "integer",
+                                "example": 0,
+                                "default": 0
+                              },
+                              "uploadTableName": {},
+                              "uploadedFileName": {
+                                "type": "string",
+                                "example": "couponbatchupload.csv"
+                              },
+                              "audienceGroupId": {
+                                "type": "integer",
+                                "example": 0,
+                                "default": 0
+                              },
+                              "audienceGroupVersionId": {
+                                "type": "integer",
+                                "example": 0,
+                                "default": 0
+                              }
+                            }
+                          }
+                        },
+                        "fileName": {
+                          "type": "string",
+                          "example": "couponbatchupload_1717651325326_541854.csv"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "key": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  },
+  "x-readme-fauxas": true
+}
+```

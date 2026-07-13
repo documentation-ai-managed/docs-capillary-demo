@@ -2,4 +2,935 @@
 title: Get all brand rewards using Brand ID
 ---
 
+This API is used to retrieve list of rewards owned by brands based on filters.
 
+<Callout kind="tip" title="Note">
+
+* For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
+* The `groupName `filter allows only one group name at a time; multiple names separated by commas are not supported.
+
+</Callout>
+
+## Prerequisites
+
+* [ ] Authentication: Basic or OAuth authentication
+* [ ] Default access group
+
+## Resource information
+
+|                        |                                                             |
+| :--------------------- | :---------------------------------------------------------- |
+| URI                    | api_gateway/rewards/core/v1/reward/list/brand`{BrandID}` |
+| HTTP Method            | GET                                                         |
+| Pagination             | Yes Default - 100                                           |
+| Batch support          | No                                                          |
+| Rate limit information | None                                                        |
+
+## API endpoint example
+
+`https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/list/brand/1?page=0&size=20&redemptionType=MILES&rewardName=gold&vendorIds=18,19`
+
+## Request path parameters
+
+| Parameter Name | Data Type | Description                     |
+| -------------- | --------- | ------------------------------- |
+| brandId*      | Integer   | Unique identifier of the brand. |
+
+## Request query parameters
+
+| Parameter Name       | Data Type | Description                                                                                                                                                                                                                                                                                                                                                                                                   |
+| :------------------- | :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **`Page`**           | Integer   | Allows you to retrieve details of a specific page.                                                                                                                                                                                                                                                                                                                                                            |
+| **`Size`**           | Long      | The number of results to show per page. Default: `100`.                                                                                                                                                                                                                                                                                                                                                       |
+| **`ownerType`**      | Enum      | The module for which the reward was created. Only **one** `ownerType` can be used as a filter. **Supported values:** `Loyalty program`, `Milestones`, `Campaigns`, `Journeys`, `Goodwill`.                                                                                                                                                                                                                    |
+| **`ownerId`**        | String    | The unique identifier of the owner to claim the reward.                                                                                                                                                                                                                                                                                                                                                       |
+| **`startDate`**      | Long      | The start date of the reward in **epoch format**. Any rewards between the specified start and end date will be displayed. If either the start or end date falls within the timeline, the reward will still be included in the response. If `startDate` is used as a filter, `endDate` must also be specified, and vice versa.                                                                                 |
+| **`endDate`**        | Long      | The end date of the reward in **epoch format**. Any rewards between the specified start and end date will be displayed. If either the start or end date falls within the timeline, the reward will still be included in the response.                                                                                                                                                                         |
+| **`rewardStatus`**   | Enum      | Indicates the current state of the reward. Only **one** `rewardStatus` can be used as a filter. Supported values:<br/>- **`LIVE`**: The reward is currently available for redemption.<br/>- **`UPCOMING`**: The reward will be available in the future.<br/>- **`ENDED`**: The reward is no longer available.                                                                                                 |
+| **`vendorId`**       | Integer   | A collection of identifiers for vendors associated with the reward. Multiple `vendorId` values are supported, separated by a comma (`,`). **For example:** `VendorId=36,32`. There is no specific limit on the number of `vendorId` values.                                                                                                                                                                   |
+| **`redemptionType`** | Enum      | Specifies the category of reward redemption available, indicating how users can redeem the reward. Only **one** `redemptionType` can be used as a filter. **Supported values:** `GAMES`, `AUCTION`, `CART_PROMOTION`, `CASH_WALLET`, `VENDOR_ONLY_REWARD`, `VOUCHER`, `CASH_BACK`, `INTOUCH_REWARD`, `PHYSICAL_REWARD`, `CHARITY`, `MILES`, `GIFT_CARD`, `SWEEPSTAKES`, `VENDOR_INTOUCH_REWARD`, `CARD_DISC`. |
+| **`rewardName`**     | String    | The name of the reward that was created. `rewardName` supports **partial search**. Users can search for a reward using part of its name, and results that match the partial input will be returned. **For example:** Searching for "Gold" could return "Gold Star Reward" or "Golden Points".                                                                                                                 |
+| **`enabled`**        | Boolean   | A boolean value indicating whether the reward is currently **active** (`true`) or **inactive** (`false`) for users.                                                                                                                                                                                                                                                                                           |
+| **`language`**       | Enum      | Filters the response based on the reward language. Use this parameter to retrieve rewards in a specific language. For example, to display rewards in English, set the parameter to `en`.                                                                                                                                                                                                                      |
+| **`groupName`**      | String    | Filters rewards that are categorized under a specific group, for example: `'Seasonal Specials'`.                                                                                                                                                                                                                                                                                                              |
+
+```http title="API Endpoint"
+https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/list/brand/1?page=0&size=20&startDate=1727254620000&endDate=1752244980000&rewardType=CHARITY&rewardStatus=LIVE
+```
+
+## Response parameters
+
+| Parameter             | Description                                                                                                                                      |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| status                | Object containing the status of the reward details                                                                                               |
+| success               | Indicates if the operation was successful                                                                                                        |
+| code                  | Status code of the operation                                                                                                                     |
+| message               | Status message                                                                                                                                   |
+| rewardList            | List of rewards                                                                                                                                  |
+| id                    | Unique identifier of the reward. This is the reward ID which was generated during reward creation.                                               |
+| name                  | Name of the reward                                                                                                                               |
+| startTime             | Start time of the reward availability                                                                                                            |
+| startDateTime         | Start date and time of the field in ISO 8601 format (YYYY-MM-DDTHH:MM:SSZ)                                                                       |
+| endTime               | End time of the reward availability                                                                                                              |
+| endDateTime           | End date and time of the field in ISO 8601 format (YYYY-MM-DDTHH:MM:SSZ)                                                                         |
+| type                  | Type of the reward.                                                                                                                              |
+| priority              | Priority of the reward                                                                                                                           |
+| enabled               | Indicates if the reward is enabled                                                                                                               |
+| intouchPoints         | Points required for the reward                                                                                                                   |
+| redemptionType        | Type of redemption for the reward                                                                                                                |
+| customFields          | Custom fields for additional information                                                                                                         |
+| status                | Indicates the current state of the reward. Example: LIVE, UPCOMING, ENDED                                                                        |
+| intouchSeriesId       | Coupon series ID or cart promotion ID when intouch reward is selected.                                                                           |
+| vendorId              | Unique ID of the vendor.                                                                                                                         |
+| vendorName            | Name of the vendor.                                                                                                                              |
+| vendorRedemptionId    | Unique vendor redemption ID which was generated from this [API](https://docs.capillarytech.com/reference/create-vendor-redemption).              |
+| vendorRedemptionName  | Name of the vendor redemption.                                                                                                                   |
+| lastUpdatedOn         | Date on which the Reward was last updated in Epoch format .                                                                                      |
+| lastUpdatedBy         | Identifier of the user who last updated the status                                                                                               |
+| owners                | List of owners of the reward                                                                                                                     |
+| ownerType             | Module for which the reward was created.                                                                                                         |
+| ownerId               | Unique identifier of the owner to claim the reward.                                                                                              |
+| pagingDto             | The object containing paging details                                                                                                             |
+| paymentConfigs        | The list of payment mode supported by the reward.                                                                                                |
+| groups                | An array containing information about groups and rewards associated with reward.                                                                 |
+| last                  | Indicates if it is the last page                                                                                                                 |
+| totalElements         | Total number of elements                                                                                                                         |
+| totalPages            | Total number of pages                                                                                                                            |
+| numberOfElements      | Number of elements in the current page                                                                                                           |
+| first                 | Indicates if it is the first page                                                                                                                |
+| size                  | The number of items or records returned in a single API response.                                                                                |
+| number                | Current page number                                                                                                                              |
+| rewardRank            | The rank or priority of the reward within its category or program                                                                                |
+| lastUpdatedOnDateTime | Date and time of the most recent reward modification.The ISO 8601 timestamp format is used: YYYY-MM-DDTHH:MM:SSZ. (e.g., `2023-10-05T14:30:00Z`) |
+| createdBy             | The user who created the reward.                                                                                                                 |
+
+<br />
+
+<CodeGroup show-lines="true" tabs={["200- Response", "200- With Owner type", "Failure: Invalid Brand ID", "Failure: Both startDate and endDate is mandatory"]}>
+
+  ```json
+  {
+      "status": {
+          "success": true,
+          "code": 6101,
+          "message": "Reward details fetched successfully"
+      },
+      "rewardList": [
+          {
+              "id": 345839,
+              "name": "New year tes",
+              "startTime": "2025-04-02 10:20:10",
+              "startDateTime": "2025-04-02T10:20:10Z",
+              "endTime": "2025-04-02 10:25:10",
+              "endDateTime": "2025-04-02T10:25:10Z",
+              "type": "VOUCHER",
+              "priority": 1,
+              "enabled": true,
+              "intouchPoints": 0,
+              "redemptionType": "MILES",
+              "customFields": {
+                  "A": "1",
+                  "CF1233": "1",
+                  "EnumCF2": "r1",
+                  "EnumCF1": "white"
+              },
+              "owners": null,
+              "paymentConfigs": [
+                  {
+                      "paymentMode": "FREE",
+                      "id": 5717
+                  }
+              ],
+              "groups": [],
+              "rewardRank": null,
+              "status": "ENDED",
+              "intouchSeriesId": null,
+              "vendorRedemptionId": 13417,
+              "vendorRedemptionName": "Delta",
+              "vendorId": 21,
+              "vendorName": "Delta",
+              "lastUpdatedOn": 1743667380000,
+              "lastUpdatedOnDateTime": "2025-04-03T08:03:00Z",
+              "lastUpdatedBy": 75106389,
+              "createdBy": 75106389
+          },
+          {
+              "id": 346323,
+              "name": "Go Test fastest",
+              "startTime": "2025-04-03 05:29:47",
+              "startDateTime": "2025-04-03T05:29:47Z",
+              "endTime": "2025-04-03 05:34:47",
+              "endDateTime": "2025-04-03T05:34:47Z",
+              "type": "VOUCHER",
+              "priority": null,
+              "enabled": true,
+              "intouchPoints": 0,
+              "redemptionType": "MILES",
+              "customFields": {
+                  "A": "1",
+                  "CF1233": "1",
+                  "EnumCF2": "r1",
+                  "EnumCF1": "white",
+                  "CF1": "test"
+              },
+              "owners": null,
+              "paymentConfigs": [
+                  {
+                      "paymentMode": "FREE",
+                      "id": 5751
+                  }
+              ],
+              "groups": [],
+              "rewardRank": null,
+              "status": "ENDED",
+              "intouchSeriesId": null,
+              "vendorRedemptionId": 13417,
+              "vendorRedemptionName": "Delta",
+              "vendorId": 21,
+              "vendorName": "Delta",
+              "lastUpdatedOn": 1743666079000,
+              "lastUpdatedOnDateTime": "2025-04-03T07:41:19Z",
+              "lastUpdatedBy": 75106389,
+              "createdBy": 75106389
+          }
+      ],
+      "pagingDto": {
+          "last": false,
+          "totalElements": 759,
+          "totalPages": 380,
+          "numberOfElements": 2,
+          "first": false,
+          "size": 2,
+          "number": 2
+      }
+  }
+  ```
+
+  ```json
+  {
+      "status": {
+          "success": true,
+          "code": 6101,
+          "message": "Reward details fetched successfully"
+      },
+      "rewardList": [
+          {
+              "id": 265893,
+              "name": "testreward1",
+              "startTime": "2024-11-14 06:11:00",
+              "endTime": "2025-07-11 14:43:00",
+              "type": "VOUCHER",
+              "priority": 1,
+              "enabled": true,
+              "intouchPoints": 500,
+              "redemptionType": "INTOUCH_REWARD",
+              "customFields": {
+                  "testdate": "2020-01-01 01:01:01",
+                  "CF1": "Custom field 1"
+              },
+              "owners": [
+                  {
+                      "ownerType": "LOYALTY_PROGRAM",
+                      "ownerId": "469"
+                  }
+              ],
+              "paymentConfigs": [
+                  {
+                      "paymentMode": "FREE",
+                      "id": 1955
+                  }
+              ],
+              "groups": [],
+              "rewardRank": 1,
+              "status": "LIVE",
+              "intouchSeriesId": "415446",
+              "vendorRedemptionId": null,
+              "vendorRedemptionName": null,
+              "vendorId": null,
+              "vendorName": null,
+              "lastUpdatedOn": 1731564635000,
+              "lastUpdatedBy": null
+          },
+          {
+              "id": 265892,
+              "name": "testreward1",
+              "startTime": "2024-11-14 06:10:00",
+              "endTime": "2025-07-11 14:43:00",
+              "type": "VOUCHER",
+              "priority": 1,
+              "enabled": true,
+              "intouchPoints": 500,
+              "redemptionType": "INTOUCH_REWARD",
+              "customFields": {
+                  "testdate": "2020-01-01 01:01:01",
+                  "CF1": "Custom field 1"
+              },
+              "owners": [
+                  {
+                      "ownerType": "LOYALTY_PROGRAM",
+                      "ownerId": "469"
+                  }
+              ],
+              "paymentConfigs": [
+                  {
+                      "paymentMode": "POINTS",
+                      "id": 1954,
+                      "points": 100.0000
+                  }
+              ],
+              "groups": [],
+              "rewardRank": 1,
+              "status": "LIVE",
+              "intouchSeriesId": "415446",
+              "vendorRedemptionId": null,
+              "vendorRedemptionName": null,
+              "vendorId": null,
+              "vendorName": null,
+              "lastUpdatedOn": 1731564549000,
+              "lastUpdatedBy": null
+          },
+          {
+              "id": 265891,
+              "name": "testreward1",
+              "startTime": "2024-11-14 06:08:00",
+              "endTime": "2025-07-11 14:43:00",
+              "type": "VOUCHER",
+              "priority": 1,
+              "enabled": true,
+              "intouchPoints": 500,
+              "redemptionType": "INTOUCH_REWARD",
+              "customFields": {
+                  "testdate": "2020-01-01 01:01:01",
+                  "CF1": "Custom field 1"
+              },
+              "owners": [
+                  {
+                      "ownerType": "LOYALTY_PROGRAM",
+                      "ownerId": "469"
+                  }
+              ],
+              "paymentConfigs": [
+                  {
+                      "paymentMode": "POINTS",
+                      "id": 1953,
+                      "points": 100.0000
+                  }
+              ],
+              "groups": [],
+              "rewardRank": 1,
+              "status": "LIVE",
+              "intouchSeriesId": "415446",
+              "vendorRedemptionId": null,
+              "vendorRedemptionName": null,
+              "vendorId": null,
+              "vendorName": null,
+              "lastUpdatedOn": 1731564479000,
+              "lastUpdatedBy": null
+          }
+      ],
+      "pagingDto": {
+          "last": true,
+          "totalElements": 3,
+          "totalPages": 1,
+          "numberOfElements": 3,
+          "first": true,
+          "size": 20,
+          "number": 0
+      }
+  }
+  ```
+
+  ```json
+  {
+      "status": {
+          "success": false,
+          "code": 3004,
+          "message": "Brand not found"
+      }
+  }
+  ```
+
+  ```json
+  {
+      "status": {
+          "success": false,
+          "code": 11028,
+          "message": "Ensure both startDate and endDate are provided"
+      },
+
+  ```
+
+</CodeGroup>
+
+## API-specific error codes
+
+| Error code | Description     |
+| :--------- | :-------------- |
+| 3004       | Brand not found |
+
+## OpenAPI definition
+
+```json
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "v1",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://{host}",
+      "variables": {
+        "host": {
+          "default": "host"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/api_gateway/rewards/core/v1/reward/list/brand/{BrandID}?ownerId={ownerId}&ownerType={ownerType}": {
+      "get": {
+        "summary": "Get all brand rewards using Brand ID",
+        "description": "",
+        "operationId": "get-reward-list",
+        "parameters": [
+          {
+            "name": "BrandId",
+            "in": "path",
+            "description": "Unique identifier of the brand",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "required": true
+          },
+          {
+            "name": "ownerType",
+            "in": "query",
+            "description": "Module for which the reward was created.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Loyalty program",
+                "Milestones",
+                "Campaigns",
+                "Journeys",
+                "Goodwill."
+              ]
+            }
+          },
+          {
+            "name": "ownerId",
+            "in": "query",
+            "description": "Unique identifier of the owner to claim the reward.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "Results to show per page. Default - 100",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Allows to retrieve details of a specific page.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "language",
+            "in": "query",
+            "description": "Filters the response based on the reward language. Use this parameter to retrieve rewards in a specific language. For example, to display rewards in English, set the parameter to en",
+            "schema": {
+              "type": "string",
+              "enum": [
+                ""
+              ],
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "With OwnerType": {
+                    "value": "{\n    \"status\": {\n        \"success\": true,\n        \"code\": 6101,\n        \"message\": \"Reward details fetched successfully\"\n    },\n    \"rewardList\": [\n        {\n            \"id\": 345839,\n            \"name\": \"New year tes\",\n            \"startTime\": \"2025-04-02 10:20:10\",\n            \"startDateTime\": \"2025-04-02T10:20:10Z\",\n            \"endTime\": \"2025-04-02 10:25:10\",\n            \"endDateTime\": \"2025-04-02T10:25:10Z\",\n            \"type\": \"VOUCHER\",\n            \"priority\": 1,\n            \"enabled\": true,\n            \"intouchPoints\": 0,\n            \"redemptionType\": \"MILES\",\n            \"customFields\": {\n                \"A\": \"1\",\n                \"CF1233\": \"1\",\n                \"EnumCF2\": \"r1\",\n                \"EnumCF1\": \"white\"\n            },\n            \"owners\": null,\n            \"paymentConfigs\": [\n                {\n                    \"paymentMode\": \"FREE\",\n                    \"id\": 5717\n                }\n            ],\n            \"groups\": [],\n            \"rewardRank\": null,\n            \"status\": \"ENDED\",\n            \"intouchSeriesId\": null,\n            \"vendorRedemptionId\": 13417,\n            \"vendorRedemptionName\": \"Delta\",\n            \"vendorId\": 21,\n            \"vendorName\": \"Delta\",\n            \"lastUpdatedOn\": 1743667380000,\n            \"lastUpdatedOnDateTime\": \"2025-04-03T08:03:00Z\",\n            \"lastUpdatedBy\": 75106389,\n            \"createdBy\": 75106389\n        },\n        {\n            \"id\": 346323,\n            \"name\": \"Go Test fastest\",\n            \"startTime\": \"2025-04-03 05:29:47\",\n            \"startDateTime\": \"2025-04-03T05:29:47Z\",\n            \"endTime\": \"2025-04-03 05:34:47\",\n            \"endDateTime\": \"2025-04-03T05:34:47Z\",\n            \"type\": \"VOUCHER\",\n            \"priority\": null,\n            \"enabled\": true,\n            \"intouchPoints\": 0,\n            \"redemptionType\": \"MILES\",\n            \"customFields\": {\n                \"A\": \"1\",\n                \"CF1233\": \"1\",\n                \"EnumCF2\": \"r1\",\n                \"EnumCF1\": \"white\",\n                \"CF1\": \"test\"\n            },\n            \"owners\": null,\n            \"paymentConfigs\": [\n                {\n                    \"paymentMode\": \"FREE\",\n                    \"id\": 5751\n                }\n            ],\n            \"groups\": [],\n            \"rewardRank\": null,\n            \"status\": \"ENDED\",\n            \"intouchSeriesId\": null,\n            \"vendorRedemptionId\": 13417,\n            \"vendorRedemptionName\": \"Delta\",\n            \"vendorId\": 21,\n            \"vendorName\": \"Delta\",\n            \"lastUpdatedOn\": 1743666079000,\n            \"lastUpdatedOnDateTime\": \"2025-04-03T07:41:19Z\",\n            \"lastUpdatedBy\": 75106389,\n            \"createdBy\": 75106389\n        }\n    ],\n    \"pagingDto\": {\n        \"last\": false,\n        \"totalElements\": 759,\n        \"totalPages\": 380,\n        \"numberOfElements\": 2,\n        \"first\": false,\n        \"size\": 2,\n        \"number\": 2\n    }\n}"
+                  },
+                  "Result": {
+                    "value": "{\n    \"status\": {\n        \"success\": true,\n        \"code\": 6101,\n        \"message\": \"Reward details fetched successfully\"\n    },\n    \"rewardList\": [\n        {\n            \"id\": 20867,\n            \"name\": \"name_first\",\n            \"startTime\": \"2024-11-01 03:53:01\",\n            \"endTime\": \"2027-01-15 07:26:45\",\n            \"type\": \"VOUCHER\",\n            \"priority\": 1,\n            \"enabled\": true,\n            \"intouchPoints\": 1,\n            \"redemptionType\": \"SWEEPSTAKES\",\n            \"customFields\": {},\n            \"owners\": null,\n            \"paymentConfigs\": [\n                {\n                    \"paymentMode\": \"CASH\",\n                    \"id\": 813,\n                    \"cash\": 25.0000\n                }\n            ],\n            \"groups\": [\n                {\n                    \"groupName\": \"groupName014\",\n                    \"groupRank\": 8\n                }\n            ],\n            \"rewardRank\": 10,\n            \"status\": \"UPCOMING\",\n            \"intouchSeriesId\": null,\n            \"vendorRedemptionId\": 1627,\n            \"vendorRedemptionName\": \"demo vendor for physicalReward\",\n            \"vendorId\": 17,\n            \"vendorName\": \"testVendor002\",\n            \"lastUpdatedOn\": 1725359777000,\n            \"lastUpdatedBy\": null\n        }\n    ],\n    \"pagingDto\": {\n        \"last\": true,\n        \"totalElements\": 1,\n        \"totalPages\": 1,\n        \"numberOfElements\": 1,\n        \"first\": true,\n        \"size\": 10,\n        \"number\": 0\n    }\n}"
+                  }
+                },
+                "schema": {
+                  "oneOf": [
+                    {
+                      "title": "With OwnerType",
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "object",
+                          "properties": {
+                            "success": {
+                              "type": "boolean",
+                              "example": true,
+                              "default": true
+                            },
+                            "code": {
+                              "type": "integer",
+                              "example": 6101,
+                              "default": 0
+                            },
+                            "message": {
+                              "type": "string",
+                              "example": "Reward details fetched successfully"
+                            }
+                          }
+                        },
+                        "rewardList": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer",
+                                "example": 345839,
+                                "default": 0
+                              },
+                              "name": {
+                                "type": "string",
+                                "example": "New year tes"
+                              },
+                              "startTime": {
+                                "type": "string",
+                                "example": "2025-04-02 10:20:10"
+                              },
+                              "startDateTime": {
+                                "type": "string",
+                                "example": "2025-04-02T10:20:10Z"
+                              },
+                              "endTime": {
+                                "type": "string",
+                                "example": "2025-04-02 10:25:10"
+                              },
+                              "endDateTime": {
+                                "type": "string",
+                                "example": "2025-04-02T10:25:10Z"
+                              },
+                              "type": {
+                                "type": "string",
+                                "example": "VOUCHER"
+                              },
+                              "priority": {
+                                "type": "integer",
+                                "example": 1,
+                                "default": 0
+                              },
+                              "enabled": {
+                                "type": "boolean",
+                                "example": true,
+                                "default": true
+                              },
+                              "intouchPoints": {
+                                "type": "integer",
+                                "example": 0,
+                                "default": 0
+                              },
+                              "redemptionType": {
+                                "type": "string",
+                                "example": "MILES"
+                              },
+                              "customFields": {
+                                "type": "object",
+                                "properties": {
+                                  "A": {
+                                    "type": "string",
+                                    "example": "1"
+                                  },
+                                  "CF1233": {
+                                    "type": "string",
+                                    "example": "1"
+                                  },
+                                  "EnumCF2": {
+                                    "type": "string",
+                                    "example": "r1"
+                                  },
+                                  "EnumCF1": {
+                                    "type": "string",
+                                    "example": "white"
+                                  }
+                                }
+                              },
+                              "owners": {},
+                              "paymentConfigs": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "paymentMode": {
+                                      "type": "string",
+                                      "example": "FREE"
+                                    },
+                                    "id": {
+                                      "type": "integer",
+                                      "example": 5717,
+                                      "default": 0
+                                    }
+                                  }
+                                }
+                              },
+                              "groups": {
+                                "type": "array"
+                              },
+                              "rewardRank": {},
+                              "status": {
+                                "type": "string",
+                                "example": "ENDED"
+                              },
+                              "intouchSeriesId": {},
+                              "vendorRedemptionId": {
+                                "type": "integer",
+                                "example": 13417,
+                                "default": 0
+                              },
+                              "vendorRedemptionName": {
+                                "type": "string",
+                                "example": "Delta"
+                              },
+                              "vendorId": {
+                                "type": "integer",
+                                "example": 21,
+                                "default": 0
+                              },
+                              "vendorName": {
+                                "type": "string",
+                                "example": "Delta"
+                              },
+                              "lastUpdatedOn": {
+                                "type": "integer",
+                                "example": 1743667380000,
+                                "default": 0
+                              },
+                              "lastUpdatedOnDateTime": {
+                                "type": "string",
+                                "example": "2025-04-03T08:03:00Z"
+                              },
+                              "lastUpdatedBy": {
+                                "type": "integer",
+                                "example": 75106389,
+                                "default": 0
+                              },
+                              "createdBy": {
+                                "type": "integer",
+                                "example": 75106389,
+                                "default": 0
+                              }
+                            }
+                          }
+                        },
+                        "pagingDto": {
+                          "type": "object",
+                          "properties": {
+                            "last": {
+                              "type": "boolean",
+                              "example": false,
+                              "default": true
+                            },
+                            "totalElements": {
+                              "type": "integer",
+                              "example": 759,
+                              "default": 0
+                            },
+                            "totalPages": {
+                              "type": "integer",
+                              "example": 380,
+                              "default": 0
+                            },
+                            "numberOfElements": {
+                              "type": "integer",
+                              "example": 2,
+                              "default": 0
+                            },
+                            "first": {
+                              "type": "boolean",
+                              "example": false,
+                              "default": true
+                            },
+                            "size": {
+                              "type": "integer",
+                              "example": 2,
+                              "default": 0
+                            },
+                            "number": {
+                              "type": "integer",
+                              "example": 2,
+                              "default": 0
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "object",
+                          "properties": {
+                            "success": {
+                              "type": "boolean",
+                              "example": true,
+                              "default": true
+                            },
+                            "code": {
+                              "type": "integer",
+                              "example": 6101,
+                              "default": 0
+                            },
+                            "message": {
+                              "type": "string",
+                              "example": "Reward details fetched successfully"
+                            }
+                          }
+                        },
+                        "rewardList": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer",
+                                "example": 20867,
+                                "default": 0
+                              },
+                              "name": {
+                                "type": "string",
+                                "example": "name_first"
+                              },
+                              "startTime": {
+                                "type": "string",
+                                "example": "2024-11-01 03:53:01"
+                              },
+                              "endTime": {
+                                "type": "string",
+                                "example": "2027-01-15 07:26:45"
+                              },
+                              "type": {
+                                "type": "string",
+                                "example": "VOUCHER"
+                              },
+                              "priority": {
+                                "type": "integer",
+                                "example": 1,
+                                "default": 0
+                              },
+                              "enabled": {
+                                "type": "boolean",
+                                "example": true,
+                                "default": true
+                              },
+                              "intouchPoints": {
+                                "type": "integer",
+                                "example": 1,
+                                "default": 0
+                              },
+                              "redemptionType": {
+                                "type": "string",
+                                "example": "SWEEPSTAKES"
+                              },
+                              "customFields": {
+                                "type": "object",
+                                "properties": {}
+                              },
+                              "owners": {},
+                              "paymentConfigs": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "paymentMode": {
+                                      "type": "string",
+                                      "example": "CASH"
+                                    },
+                                    "id": {
+                                      "type": "integer",
+                                      "example": 813,
+                                      "default": 0
+                                    },
+                                    "cash": {
+                                      "type": "integer",
+                                      "example": 25,
+                                      "default": 0
+                                    }
+                                  }
+                                }
+                              },
+                              "groups": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "groupName": {
+                                      "type": "string",
+                                      "example": "groupName014"
+                                    },
+                                    "groupRank": {
+                                      "type": "integer",
+                                      "example": 8,
+                                      "default": 0
+                                    }
+                                  }
+                                }
+                              },
+                              "rewardRank": {
+                                "type": "integer",
+                                "example": 10,
+                                "default": 0
+                              },
+                              "status": {
+                                "type": "string",
+                                "example": "UPCOMING"
+                              },
+                              "intouchSeriesId": {},
+                              "vendorRedemptionId": {
+                                "type": "integer",
+                                "example": 1627,
+                                "default": 0
+                              },
+                              "vendorRedemptionName": {
+                                "type": "string",
+                                "example": "demo vendor for physicalReward"
+                              },
+                              "vendorId": {
+                                "type": "integer",
+                                "example": 17,
+                                "default": 0
+                              },
+                              "vendorName": {
+                                "type": "string",
+                                "example": "testVendor002"
+                              },
+                              "lastUpdatedOn": {
+                                "type": "integer",
+                                "example": 1725359777000,
+                                "default": 0
+                              },
+                              "lastUpdatedBy": {}
+                            }
+                          }
+                        },
+                        "pagingDto": {
+                          "type": "object",
+                          "properties": {
+                            "last": {
+                              "type": "boolean",
+                              "example": true,
+                              "default": true
+                            },
+                            "totalElements": {
+                              "type": "integer",
+                              "example": 1,
+                              "default": 0
+                            },
+                            "totalPages": {
+                              "type": "integer",
+                              "example": 1,
+                              "default": 0
+                            },
+                            "numberOfElements": {
+                              "type": "integer",
+                              "example": 1,
+                              "default": 0
+                            },
+                            "first": {
+                              "type": "boolean",
+                              "example": true,
+                              "default": true
+                            },
+                            "size": {
+                              "type": "integer",
+                              "example": 10,
+                              "default": 0
+                            },
+                            "number": {
+                              "type": "integer",
+                              "example": 0,
+                              "default": 0
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/list/brand/1?page=0&size=20' \\\n--header 'Authorization: Basic aWFtc2hpdmFhbms6NDAblahblahkNWI1YTI5MWY=' \\\n--header 'Cookie: _cfuvid=QbjsRhi.Ql7ZC6uSBP98acGYFfR9hGAQv4cQ2w34JpU-1727244469000-0.0.1.1-604800000'"
+            }
+          ],
+          "samples-languages": [
+            "curl"
+          ]
+        }
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "key": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  },
+  "x-readme-fauxas": true
+}
+```

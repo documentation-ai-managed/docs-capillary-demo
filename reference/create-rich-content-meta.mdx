@@ -2,4 +2,255 @@
 title: Create Rich Text Content Metadata for Rewards
 ---
 
+The Rich Content Metadata feature allows brands to define and manage rich text content for rewards. Rich text includes content such as:
 
+* Detailed reward descriptions.
+* Custom terms and conditions.
+* Any dynamic content to enhance the reward experience.\
+  This metadata is stored separately and can be linked to a reward using the Create Reward API.
+
+  **Note** You can add a maximum of 20 Rich Content Metadata for an organization.
+
+## Prerequisites
+
+* [ ] Authentication: Basic or OAuth authentication
+
+## Resource information
+
+|             |                                                     |
+| :---------- | :-------------------------------------------------- |
+| URI         | /api_gateway/rewards/core/v1/brand/richContentMeta |
+| HTTP Method | POST                                                |
+
+## API endpoint example
+
+> `https://{host}/api_gateway/rewards/core/v1/brand/richContentMeta`
+
+### Request Body Parameters
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `name`* | `String` | Unique identifier for the rich content metadata (Max: 256 characters). |
+| `description` | `String` | Description of the metadata (Max: 256 characters). |
+| `isMandatory`* | `Boolean` | Indicates whether metadata is mandatory (`true` or `false`). |
+| `scope`* | `Enum` | Must be `"REWARD"` (case-sensitive). |
+| `defaultValue` | `String` | The default value is shown when rich text content is unavailable for a specific reward. **Required**: Only if `isMandatory` is set to `true`. **Optional**: If `isMandatory` is false. **Max Length**: 50,000 characters. |
+| `isActive` | `Boolean` | Defaults to true during Rich Text Content Metadata creation, even if set to false. |
+
+**Note:** `defaultValue` is required only when isMandatory is true.
+
+### Example Request
+
+```json
+{
+    "name": "terms&conditions",
+    "description": "RC2_desc",
+    "isMandatory": true,
+    "isActive": true,
+    "scope": "REWARD",
+    "defaultValue": "here is your rich content"
+}
+```
+
+### Example Response
+
+```json
+{
+    "id": 9,
+    "name": "terms&conditions",
+    "description": "RC2_desc",
+    "isMandatory": true,
+    "isActive": true,
+    "scope": "REWARD",
+    "defaultValue": "here is your rich content",
+    "createdBy": 75161973,
+    "createdOn": 1743268460227,
+    "lastUpdatedBy": 75161973,
+    "lastUpdatedOn": 1743268460227
+}
+```
+
+### Response Parameters
+
+| Parameter       | Description                                                                        |
+| --------------- | ---------------------------------------------------------------------------------- |
+| `id`            | Unique identifier for metadata.                                                    |
+| `name`          | Metadata name.                                                                     |
+| `description`   | Metadata description.                                                              |
+| `isMandatory`   | Whether metadata is mandatory.                                                     |
+| `isActive`      | Status of metadata.                                                                |
+| `scope`         | Scope of the metadata.                                                             |
+| `defaultValue`  | Default assigned value.                                                            |
+| `createdBy`     | User ID of the creator.                                                            |
+| `createdOn`     | Indicates Creation timestamp. Timestamps are in UTC (milliseconds since epoch).    |
+| `lastUpdatedBy` | User ID of the last updater.                                                       |
+| `lastUpdatedOn` | Indicates Last update timestamp. Timestamps are in UTC (milliseconds since epoch). |
+
+**Note** `createdBy` and `lastUpdatedBy` fields are automatically set based on the authenticated user.
+
+### Error code
+
+| Code                                                       | Description                                                                  |
+| ---------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| 400 - Invalid request parameters.                          | Ensure all required parameters are included in the request body.             |
+| 400 - value is not one of declared Enum                    | Ensure provided Enum field matches one of the supported values.              |
+| 400 - `defaultValue` is required when isMandatory is true. | Ensure `defaultValue` is not set to null, when `isMandatory` is set to true. |
+| 500 - Internal server error.                               | Retry the request after a short delay. The issue may be temporary.           |
+
+## OpenAPI definition
+
+```json
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "v1",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://{host}",
+      "variables": {
+        "host": {
+          "default": "host"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/api_gateway/rewards/core/v1/brand/richContentMeta": {
+      "post": {
+        "summary": "Create Rich Text Content Metadata for Rewards",
+        "description": "",
+        "operationId": "create-rich-content-meta",
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n    \"id\": 6,\n    \"name\": \"RCtest\",\n    \"description\": \"RC2_desc\",\n    \"isMandatory\": true,\n    \"isActive\": false,\n    \"scope\": \"REWARD\",\n    \"defaultValue\": \"en\",\n    \"createdBy\": 75161973,\n    \"createdOn\": 1743258861441,\n    \"lastUpdatedBy\": 75161973,\n    \"lastUpdatedOn\": 1743258861441\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 6,
+                      "default": 0
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "RCtest"
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "RC2_desc"
+                    },
+                    "isMandatory": {
+                      "type": "boolean",
+                      "example": true,
+                      "default": true
+                    },
+                    "isActive": {
+                      "type": "boolean",
+                      "example": false,
+                      "default": true
+                    },
+                    "scope": {
+                      "type": "string",
+                      "example": "REWARD"
+                    },
+                    "defaultValue": {
+                      "type": "string",
+                      "example": "en"
+                    },
+                    "createdBy": {
+                      "type": "integer",
+                      "example": 75161973,
+                      "default": 0
+                    },
+                    "createdOn": {
+                      "type": "integer",
+                      "example": 1743258861441,
+                      "default": 0
+                    },
+                    "lastUpdatedBy": {
+                      "type": "integer",
+                      "example": 75161973,
+                      "default": 0
+                    },
+                    "lastUpdatedOn": {
+                      "type": "integer",
+                      "example": 1743258861441,
+                      "default": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/richContentMeta' \\\n--header 'Content-Type: application/json' \\\n--header 'Accept: */*' \\\n--header 'Authorization: Basic YXV0b3N0b3JlMS50aWxsMS0xNjgwMTY5MjIxOjIwMmNiOTYyYWM1OTA3NWI5NjRiMDcxNTJkMjM0Yjcw' \\\n--header 'X-CAP-API-AUTH-ORG-ID: 50339' \\\n--data '{\n    \"name\": \"RCtest\",\n    \"description\": \"RC2_desc\",\n    \"isMandatory\": true,\n    \"isActive\": true,\n    \"scope\": \"REWARD\",\n    \"defaultValue\": \"en\"\n}'",
+              "name": "create rich content"
+            }
+          ],
+          "samples-languages": [
+            "curl"
+          ]
+        }
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "key": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  },
+  "x-readme-fauxas": true
+}
+```

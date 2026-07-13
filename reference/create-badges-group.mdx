@@ -2,4 +2,304 @@
 title: Create badges group
 ---
 
+This API allows you to create a group for the badges.
 
+<Callout kind="tip" title="Note">
+
+For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call)
+
+</Callout>
+
+<Callout kind="alert" title="**Warning**">
+
+Badge group name should be unique and is case sensitive.
+
+</Callout>
+
+## Example request
+
+```bash title="Sample request"
+curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/group' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--header 'accept: application/json' \
+--header 'Authorization: Basic bWFkaHVzI3MjU2YQ==' \
+--header 'Cookie: _cfuvid=LbgLgMATQVG7rxgU6obNtuTjuntKzGkHg15XluHdUPI-1768984490920-0.0.1.1-604800000' \
+--data '{
+    "name": "skjhfdjfhgiok",
+    "rank": 214748364
+}'
+```
+
+## Prerequisites
+
+* [ ] Authentication: Basic or OAuth authentication
+* [ ] Access group resource: WRITE access to target loyalty access group resource
+
+## Resource information
+
+|               |                              |
+| :------------ | :--------------------------- |
+| URI           | api_gateway/v1/badges/group |
+| HTTP method   | POST                         |
+| Rate limit    | NA                           |
+| Batch support | NA                           |
+
+## Request body parameters
+
+| Parameters | Datatype | Description |
+| --- | --- | --- |
+| Name* | String | Name of the badge group. Ex: GROUP_RANK_2 |
+| Rank* | Integer | The rank of the group is used to create an order among different groups. The brand assigns the rank, and groups with higher rank are prioritized over other groups. Ex: To encourage customers as they progress through course modules, you can organize badges into three groups corresponding to three-course modules. After completing each module, customers earn a badge. Upon achieving a set of badges, they are associated with a group such as Expert, Intermediate, or Beginner. |
+
+<br />
+
+```json
+{
+    "name": "skjhfdjfhgiok",
+    "rank": 214748364
+}
+```
+
+## Example response
+
+```json title="Sample response"
+{
+    "data": {
+        "id": "69708faa0772ad476ecf8511",
+        "orgId": 100737,
+        "name": "skjhfdjfhgiok",
+        "rank": 214748364,
+        "createdBy": 75197372,
+        "createdOn": 1768984490.856013000,
+        "createdOnISO": "2026-01-21T08:34:50Z",
+        "lastUpdatedBy": 75197372,
+        "lastUpdatedOn": 1768984490.856013000,
+        "lastUpdatedOnISO": "2026-01-21T08:34:50Z",
+        "isActive": true
+    },
+    "errors": [],
+    "warnings": []
+}
+```
+
+## Response parameters
+
+| Parameter | Datatype | Description |
+| --- | --- | --- |
+| id | String | Unique ID of the group. |
+| orgId | Integer | Unique iD of the org. |
+| name | String | Name of the group |
+| rank | Integer | The rank of the group assigned by the user. |
+| createdBy | Integer | User ID who created the group. |
+| createdOn | Float | Timestamp indicating when the group was created |
+| createdOnISO | String | Timestamp indicating when the group was created, in ISO 8601 format, returned in the server time zone. EU server example 2025-12-16T14:30:45Z → 16 December 2025, 14:30:45 (UTC) India server example 2025-12-16T14:30:45+05:30 → 16 December 2025, 14:30:45 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
+| lastUpdatedBy | Integer | User ID who last updated the group. |
+| lastUpdatedOn | Float | Timestamp indicating when the group was last updated |
+| lastUpdatedOnISO |  | Timestamp indicating when the group was last updated, in ISO 8601 format, returned in the server time zone. EU server example 2025-12-16T14:30:45Z → 16 December 2025, 14:30:45 (UTC) India server example 2025-12-16T14:30:45+05:30 → 16 December 2025, 14:30:45 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
+| isActive | Boolean | Indicates whether the group is currently active or not. |
+
+## API-specific error codes
+
+| Error code | Description                  |
+| :--------- | :--------------------------- |
+| 733        | Group Name should be Unique. |
+| 732        | Group Rank is Mandatory.     |
+| 735        | Group name is mandatory.     |
+
+## OpenAPI definition
+
+```json
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "v1",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://{host}",
+      "variables": {
+        "host": {
+          "default": "host"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/api_gateway/v1/badges/group": {
+      "post": {
+        "summary": "Create badges group",
+        "description": "",
+        "operationId": "create-badges-group",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "rank"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the group"
+                  },
+                  "rank": {
+                    "type": "string",
+                    "description": "Rank of the group"
+                  }
+                }
+              },
+              "examples": {
+                "Request Example": {
+                  "value": {
+                    "name": "skjhfdjfhgiok",
+                    "rank": 214748364
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Sample response": {
+                    "value": {
+                      "data": {
+                        "id": "69708faa0772ad476ecf8511",
+                        "orgId": 100737,
+                        "name": "skjhfdjfhgiok",
+                        "rank": 214748364,
+                        "createdBy": 75197372,
+                        "createdOn": 1768984490.856013,
+                        "createdOnISO": "2026-01-21T08:34:50Z",
+                        "lastUpdatedBy": 75197372,
+                        "lastUpdatedOn": 1768984490.856013,
+                        "lastUpdatedOnISO": "2026-01-21T08:34:50Z",
+                        "isActive": true
+                      },
+                      "errors": [],
+                      "warnings": []
+                    },
+                    "summary": "Sample response"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "example": "6581281e8f68666070de15c5"
+                        },
+                        "orgId": {
+                          "type": "integer",
+                          "example": 50156,
+                          "default": 0
+                        },
+                        "name": {
+                          "type": "string",
+                          "example": "GROUP_RANK_4"
+                        },
+                        "rank": {
+                          "type": "integer",
+                          "example": 2,
+                          "default": 0
+                        },
+                        "createdBy": {
+                          "type": "integer",
+                          "example": 123,
+                          "default": 0
+                        },
+                        "createdOn": {
+                          "type": "number",
+                          "example": 1702963230.96642,
+                          "default": 0
+                        },
+                        "lastUpdatedBy": {
+                          "type": "integer",
+                          "example": 123,
+                          "default": 0
+                        },
+                        "lastUpdatedOn": {
+                          "type": "number",
+                          "example": 1702963230.96642,
+                          "default": 0
+                        },
+                        "isActive": {
+                          "type": "boolean",
+                          "example": true,
+                          "default": true
+                        }
+                      }
+                    },
+                    "errors": {
+                      "type": "array"
+                    },
+                    "warnings": {
+                      "type": "array"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "key": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  },
+  "x-readme-fauxas": true
+}
+```

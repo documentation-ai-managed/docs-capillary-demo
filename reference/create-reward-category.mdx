@@ -3,3 +3,290 @@ title: Create Reward Category
 ---
 
 Create a new reward category.
+
+This API lets you create a new reward category. A Reward Category is a metadata attribute used to classify rewards into predefined groups based on their nature or purpose. For example, categories can include fashion, electronics, or groceries.
+
+<Callout kind="tip" title="Note">
+
+For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
+
+</Callout>
+
+## Prerequisites
+
+* [ ] Authentication - Basic or OAuth authentication details
+* [ ] Default access group
+* [ ] Brand ID
+
+## Resource information
+
+|               |                                                        |
+| :------------ | :----------------------------------------------------- |
+| URL           | /api_gateway/rewards/core/v1/metadata/category/create |
+| HTTP method   | POST                                                   |
+| Pagination    | NA                                                     |
+| Rate limit    | NA                                                     |
+| Batch support | NA                                                     |
+
+## API endpoint example
+
+`https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/metadata/category/create`
+
+## Request body parameters
+
+| Parameter  (Parameters marked with * are mandatory) | Data Type | Description                                                                                                                                             |
+| ---------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| brandId*                                            | Long      | Unique identifier for the brand. To retrieve brandId, refer to the [Retrieve Brand ID API](/reference/retrieve-brand-id). |
+| name*                                               | String    | Name of the reward category to be created. The name supports special characters, is not case-sensitive, and can be up to 255 characters in length.      |
+
+```json title="Sample Request"
+{
+  "brandId": 61,
+  "name": "DOCDEMO22"
+}
+```
+
+## Response parameters
+
+| Parameter             | Description                                                                                                                                                                                             |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| status                | Contains the status details for reward category creation.                                                                                                                                               |
+| -success              | Indicates whether the operation was successful. **Values:** `true` or `false`.                                                                                                                          |
+| -code                 | Response code for the operation. **Example:** `2002`                                                                                                                                                    |
+| -message              | Message describing the result of the operation.                                                                                                                                                         |
+| category              | Contains the reward category details.                                                                                                                                                                   |
+| -id                   | Unique identifier for the created reward category.                                                                                                                                                      |
+| -name                 | Name of the created reward category.                                                                                                                                                                    |
+| -enabled              | Current active status of the reward category. If true, the reward category is currently active, else it is inactive.**Values:**`true` or `false`. When creating a reward category, the value is `true`. |
+| lastUpdatedOn         | Indicates the timestamp when the reward category was updated. The timestamp is in Epoch time format.                                                                                                    |
+| lastUpdatedBy         | The till ID of the user who last updated the reward category.                                                                                                                                           |
+| createdBy             | The till ID of the user who created the reward category.                                                                                                                                                |
+| createdOn             | Indicates the timestamp when the reward category was created. The timestamp is in Epoch time format.                                                                                                    |
+| createdOnDateTime     | Indicates the date and time when the reward category was created, formatted in ISO 8601.                                                                                                                |
+| lastUpdatedOnDateTime | Indicates the date and time when the reward category was updated, formatted in ISO 8601.                                                                                                                |
+
+<br />
+
+<CodeGroup show-lines="true" tabs={["Sample Response", "Invalid brandId", "Category name null"]}>
+
+  ```json
+  {
+      "status": {
+          "success": true,
+          "code": 2002,
+          "message": "Category save successfully"
+      },
+      "category": {
+          "id": 344,
+          "name": "DOCDEMO22",
+          "enabled": true,
+          "createdOn": 1748950177000,
+          "lastUpdatedOn": 1748950177000,
+          "createdBy": 75161973,
+          "lastUpdatedBy": 75161973,
+          "createdOnDateTime": "2025-06-03T11:29:37Z",
+          "lastUpdatedOnDateTime": "2025-06-03T11:29:37Z"
+      }
+  }
+  ```
+
+  ```json
+  {
+      "status": {
+          "success": false,
+          "code": 3004,
+          "message": "Brand not found"
+      },
+      "category": null
+  }
+  ```
+
+  ```json
+  {
+      "status": {
+          "success": false,
+          "code": 400,
+          "message": "name can't be null or empty."
+      }
+  }
+  ```
+
+</CodeGroup>
+
+<br />
+
+## Error Codes
+
+| Error code | Message                      | Description                              |
+| :--------- | :--------------------------- | :--------------------------------------- |
+| 3004       | brand not found              | Invalid brandId in the request.          |
+| 400        | name can't be null or empty. | Name of the category has to be provided. |
+
+## OpenAPI definition
+
+```json
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "v1",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://{host}",
+      "variables": {
+        "host": {
+          "default": "host"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/api_gateway/rewards/core/v1/metadata/category/create": {
+      "post": {
+        "summary": "Create Reward Category",
+        "description": "Create a new reward category.",
+        "operationId": "create-reward-category",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "brandId",
+                  "name"
+                ],
+                "properties": {
+                  "brandId": {
+                    "type": "integer",
+                    "description": "Unique identifier for the brand.",
+                    "format": "int64"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the reward category to be created."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Sample Response": {
+                    "value": "{\n    \"status\": {\n        \"success\": true,\n        \"code\": 2002,\n        \"message\": \"Category save successfully\"\n    },\n    \"category\": {\n        \"id\": 129,\n        \"name\": \"general\",\n        \"enabled\": true\n    }\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "success": {
+                          "type": "boolean",
+                          "example": true,
+                          "default": true
+                        },
+                        "code": {
+                          "type": "integer",
+                          "example": 2002,
+                          "default": 0
+                        },
+                        "message": {
+                          "type": "string",
+                          "example": "Category save successfully"
+                        }
+                      }
+                    },
+                    "category": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "example": 129,
+                          "default": 0
+                        },
+                        "name": {
+                          "type": "string",
+                          "example": "general"
+                        },
+                        "enabled": {
+                          "type": "boolean",
+                          "example": true,
+                          "default": true
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/metadata/category/create' \\\n--header 'Content-Type: application/json' \\\n--header 'Accept: */*' \\\n--header 'Authorization: Basic Z2VvcmdlLmpvaG5zb246OTg4OTU2NWI4ODVhMmY4ZWE1MTk1MjA2NWEwYTEzNzg=' \\\n--header 'Cookie: _cfuvid=3BPRCKcXmguhyneZhg0pLHUUOWEZslsUp2nfMzbbgvA-1750919264238-0.0.1.1-604800000' \\\n--data '{\n  \"brandId\": 61,\n  \"name\": \"General\"\n}'",
+              "name": "Sample Request"
+            }
+          ],
+          "samples-languages": [
+            "curl"
+          ]
+        }
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "key": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  },
+  "x-readme-fauxas": true
+}
+```

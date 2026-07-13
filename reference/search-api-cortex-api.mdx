@@ -2,4 +2,179 @@
 title: Perform Search (Cortex API)
 ---
 
+<Callout kind="alert" title="Notes">
 
+* Make sure that you have access to `EntitySearch` resource. For more information, see [access group documentation](https://docs.capillarytech.com/docs/access-group).
+* By default, this search (cortex search) is not enbabled for all the orgs. Raise a Jira ticket to the sustenance team to activate.
+* Make sure that a valid search criteria is available.
+* Deleted customers are not included in the search results.
+
+</Callout>
+
+This API is used when you want only matching customer or transaction ID values in the results for a given search. Further, if you want to add additional information to the search result, use the [Datafield API](/reference/create-data-field) to enrich the search result.
+
+## API endpoint
+
+`{host}//api_gateway/cortex/v1/search`
+
+## Body parameters
+
+| Parameter          | Type    | Description                                                                                                                                                                                                                | Required |
+| ------------------ | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| `entityType`       | String  | The type of entity to search. Supported values: TRANSACTION, CUSTOMER.                                                                                                                                                     | Yes      |
+| `limit`            | Integer | The default value is often set to 10. The maximum value supported is 20. The search result is listed as per the customer registration date. The newly added customer is listed first.                                      | No       |
+| `offset`           | Integer | The starting point for the pagination. The default value for offset is 0, meaning the pagination starts from the first record. Any non-negative integer, representing the starting point for the pagination, is supported. | No       |
+| `searchConditions` | Array   | List of conditions to filter the search results.                                                                                                                                                                           | Yes      |
+| `fieldId`          | String  | The field name to search. eg: ,billNumber, deliveryStatus etc. For search using prefix (Customer OR crteria), use field ID as `search_prefix`.                                                                             | Yes      |
+| `operator`         | Enum    | The comparison operator. Supported values EQUALS, STARTS_WITH, and RANGE (for date or date time fields). You cannot apply RANGE on multiple fields.                                                                       | Optional |
+| `values`           | Array   | Values to search against the field name (`fieldId`). For billDate, the date should be provided in epoch format.                                                                                                            | Yes      |
+
+## Response parameters
+
+| Parameter                              | Type   | Description                                                                                                                                  |
+| -------------------------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `data`                                 | Array  | Contains the list of entities returned in the response.                                                                                      |
+| `data[].entityType`                    | String | The type of entity retrieved (e.g., `TRANSACTION`). Based on the search,                                                                     |
+| Transaction or Customer Search Details |        | Based on the defined search, the transaction or customer details along with the custom field/extended field/other enrichment details appear. |
+| `warnings`                             | Array  | List of warning messages, if any.                                                                                                            |
+| `errors`                               | Array  | List of error messages, if any.                                                                                                              |
+
+## Error Codes
+
+| Error Code | Description                                                  |
+| :--------- | :----------------------------------------------------------- |
+| 1000       | Header not present                                           |
+| 1002       | Entity type cannot be empty                                  |
+| 1003       | Field descriptions cannot be empty                           |
+| 1004       | Field identifier cannot be empty                             |
+| 1005       | Field data source cannot be empty                            |
+| 1006       | Field data type cannot be empty                              |
+| 1007       | Problems with search conditions                              |
+| 1011       | Offset cannot be negative                                    |
+| 1023       | Some search conditions are null or empty                     |
+| 1024       | Field identifier is missing                                  |
+| 1025       | Search operator is missing                                   |
+| 1026       | Search values are missing                                    |
+| 1027       | Search conditions must be present                            |
+| 1028       | Only one value supported for equals operator                 |
+| 1029       | Indexed fields are missing from search conditions            |
+| 1042       | Maximum range operators allowed per search exceeded          |
+| 1043       | Range search only supported on date fields                   |
+| 1044       | Range search on date field only allowed with values in epoch |
+
+## OpenAPI definition
+
+```json
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "v1",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://{host}",
+      "variables": {
+        "host": {
+          "default": "host"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/api_gateway/cortex/v1/search": {
+      "post": {
+        "summary": "Perform Search (Cortex API)",
+        "description": "",
+        "operationId": "search-api-cortex-api",
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}{\n    \"data\": {\n        \"orgId\": 100737,\n        \"entityType\": \"CUSTOMER\",\n        \"entityDetails\": [\n            {\n                \"entityId\": \"564647512\",\n                \"entityData\": {\n                    \"firstName\": \"dave\",\n                    \"lastName\": \"mustaine\"\n                }\n            },\n            {\n                \"entityId\": \"564647566\",\n                \"entityData\": {\n                    \"firstName\": \"dave\",\n                    \"lastName\": \"mustaine\",\n                    \"externalId\": \"mega123\"\n                }\n            },\n            {\n                \"entityId\": \"564647568\",\n                \"entityData\": {\n                    \"firstName\": \"dave\",\n                    \"lastName\": \"mustaine\",\n                    \"externalId\": \"mega1234\"\n                }\n            },\n            {\n                \"entityId\": \"564647574\",\n                \"entityData\": {\n                    \"firstName\": \"dave\",\n                    \"lastName\": \"mustaine\",\n                    \"mobile\": \"9988221100\",\n                    \"externalId\": \"mega12345\",\n                    \"email\": \"tom.sawyer@capillarytech.com\"\n                }\n            },\n            {\n                \"entityId\": \"564647589\",\n                \"entityData\": {\n                    \"firstName\": \"dave\",\n                    \"lastName\": \"mustaine\",\n                    \"externalId\": \"mega123457\"\n                }\n            },\n            {\n                \"entityId\": \"564662467\",\n                \"entityData\": {\n                    \"firstName\": \"dave\",\n                    \"lastName\": \"mustaine\",\n                    \"externalId\": \"mega123458\"\n                }\n            },\n            {\n                \"entityId\": \"564662468\",\n                \"entityData\": {\n                    \"firstName\": \"dave\",\n                    \"lastName\": \"mustaine\",\n                    \"externalId\": \"mega123459\"\n                }\n            },\n            {\n                \"entityId\": \"564663537\",\n                \"entityData\": {\n                    \"firstName\": \"dave\",\n                    \"lastName\": \"mustaine\",\n                    \"externalId\": \"mega1\"\n                }\n            },\n            {\n                \"entityId\": \"564663541\",\n                \"entityData\": {\n                    \"firstName\": \"dave\",\n                    \"lastName\": \"mustaine1\",\n                    \"externalId\": \"megaa\"\n                }\n            },\n            {\n                \"entityId\": \"564663557\",\n                \"entityData\": {\n                    \"firstName\": \"dave\",\n                    \"lastName\": \"mustaine1\",\n                    \"externalId\": \"megaa1\"\n                }\n            }\n        ]\n    },\n    \"errors\": []\n}"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl --location 'eu.api.capillarytech.com/api_gateway/cortex/v1/search' \\\n--header 'Content-Type: application/json' \\\n--data '{\n    \"entityType\": \"CUSTOMER\",\n\n    \"searchConditions\": [\n        {\n            \"fieldId\": \"search_prefix\",\n            \"operator\": \"STARTS_WITH\",\n            \"values\": [\n                \"Dave\"\n            ]\n        }\n    ]\n\n} '",
+              "name": "Using starts_with"
+            },
+            {
+              "language": "curl",
+              "code": "curl --location 'eu.api.capillarytech.com/api_gateway/cortex/v1/search' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic bmVlcmFqLmRvYzpiNGFmO0MDA5Y2IwMzZhNGNjZGMzMzQzMWVmOWFjOQ==' \\\n--header 'Cookie: _cfuvid=712eXDq0ppxlT168Xp.8agHB9AIF3dm1OHgmh0Qi_x0-1747981082674-0.0.1.1-604800000' \\\n--data '{\n    \"entityType\": \"CUSTOMER\",\n\n    \"searchConditions\": [\n        {\n            \"fieldId\": \"search_prefix\",\n            \"operator\": \"STARTS_WITH\",\n            \"values\": [\n                \"Dave\"\n            ]\n        }\n    ],\n    \"limit\": 10,\n    \"offset\":3\n\n} '",
+              "name": "with limit and offset"
+            },
+            {
+              "language": "curl",
+              "code": "curl --location 'eu.api.capillarytech.com/api_gateway/cortex/v1/search' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic bmVlcmFqLmRvYzpiNGFmO0MDA5Y2IwMzZhNGNjZGMzMzQzMWVmOWFjOQ==' \\\n--header 'Cookie: _cfuvid=712eXDq0ppxlT168Xp.8agHB9AIF3dm1OHgmh0Qi_x0-1747981082674-0.0.1.1-604800000' \\\n--data '{\n    \"entityType\": \"CUSTOMER\",\n\n    \"searchConditions\": [\n        {\n            \"fieldId\": \"firstName\",\n            \"operator\": \"EQUALS,\n            \"values\": [\n                \"Dave\"\n            ]\n        }\n    ],\n    \"limit\": 10,\n    \"offset\":3\n\n} '",
+              "name": "using Equals"
+            },
+            {
+              "language": "curl",
+              "code": "curl --location 'eu.api.capillarytech.com/api_gateway/cortex/v1/search' \\\n--header 'Content-Type: application/json' \\\n--data '{\n    \"entityType\": \"CUSTOMER\",\n\n    \"searchConditions\": [\n        {\n            \"fieldId\": \"createdAt\",\n            \"operator\": \"RANGE\",\n            \"values\": [\n                1625097600, 1625184000\n            ]\n        }\n    ]\n\n} '",
+              "name": "with range"
+            }
+          ],
+          "samples-languages": [
+            "curl"
+          ]
+        }
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "key": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  },
+  "x-readme-fauxas": true
+}
+```

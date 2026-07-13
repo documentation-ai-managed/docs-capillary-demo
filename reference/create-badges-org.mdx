@@ -2,4 +2,2133 @@
 title: Create badges
 ---
 
+This API allows you to update badges.
 
+<Callout kind="tip" title="Note">
+
+For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .:
+
+</Callout>
+
+<Callout kind="danger" title="️ Attention">
+
+You cannot claim a badge during badge creation or updation.
+
+Badge name should be unique and is case sensitive.
+
+</Callout>
+
+## Prerequisites
+
+* [ ] Authentication: Basic or OAuth authentication
+* [ ] Default access group
+
+## Resource information
+
+|               |                                   |
+| :------------ | :-------------------------------- |
+| URI           | /api_gateway/v1/badges/badgeMeta |
+| HTTP method   | PUT                               |
+| Pagination    | NA                                |
+| Batch support | NA                                |
+
+## Example request
+
+<CodeGroup show-lines="true" tabs={["Sample request for earn type- ISSUE_EARN", "Sample request for expiry type- ABSOLUTE"]}>
+
+  ```bash
+  curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta' \
+  --data '{
+      "name": "Badge Issue ",
+      "description": "Make 5 transactions",
+      "startOn":1764679795,
+      "startOnISO": "2025-12-21T00:00:00Z",
+      "expiresOn": 1796215795000,
+      "expiresOnISO": "2026-09-20T03:46:40Z",
+      "createdOnISO":"2026-12-21T03:46:40Z",
+
+       "earnType": "ISSUE_EARN",
+           "badgeRank": 3,
+      "earnedBadgeExpiry": {
+          "relativeExpirytype": "WEEKS",
+          "value": 2,
+          "expiryType": "RELATIVE"
+      },
+      "issuedBadgeExpiry": {
+          "type": "FIXED_DATE",
+          "expiresOn": 1926235957,
+          "expiryType": "ABSOLUTE"
+      },
+      "isActive": true,
+      "ownership": {
+          "restrictedToOwners": [
+              "Loyalty",
+              "Audience_Campaigns",
+              "Loyalty_Promotion",
+              "Referral_Campaigns",
+              "Rewards_Catalog",
+              "Milestones",
+              "Journeys",
+              "Goodwill_Module",
+              "Historical_Import"
+          ]
+      },
+      "benefits": [
+          {
+              "benefitType": "COUPON",
+              "seriesId": 13745
+          }
+      ],
+    "images": [
+      {
+        "name": "Issued",
+        "fileSvcHandle": "qwer-8634-8938",
+          "url": "https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d",
+          "tag": "EARNED"
+      }
+    ],
+  "customerConstraints": [
+      {
+        "constraintType": "CUSTOMER_BADGE_FIXED_WINDOW",
+        "maxEarnLimit": 2,
+        "durationType":"DAYS",
+        "refreshRate":3,
+        "startDayOfTheWeek":1
+      }
+  ],
+      "badgeConstraints": [
+          {
+              "constraintType": "BADGE_FIXED_VALUE",
+              "maxEarnLimit": 10000
+          },
+          {
+              "constraintType": "BADGE_ROLLING_WINDOW",
+              "rollType": "DAYS",
+              "rollValue": 1,
+              "maxEarnLimit": 300
+          },
+          {
+              "constraintType": "BADGE_ROLLING_WINDOW",
+              "rollType": "WEEKS",
+              "rollValue": 1,
+              "maxEarnLimit": 3000
+          }
+      ]
+  }'
+  ```
+
+  ```bash
+  curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Basic bWFkaH2YQ==' \
+  --header 'Cookie: _cfuvid=rvSJsUbK4DDG1qt9p.ywFArkr5WoVyHK8rR8vhrDpB4-1768813084882-0.0.1.1-604800000' \
+  --data '{
+      "name": "badgetestjan16 01",
+      
+      "startOn": 1768714500,
+      "expiresOn": 1769751300,
+      "earnedBadgeExpiry": {
+          "expiryType": "ABSOLUTE",
+          "type": "FIXED_DATE",
+          "expiresOn": 1769751300
+      },
+      "ownership": {
+          "restrictedToOwners": [
+              "Loyalty",
+              "Milestones"
+          ],
+          "claims": [
+              {
+                  "ownerType": "Loyalty",
+                  "referenceId": "626"
+              }
+          ]
+      },
+      "customerConstraints": [
+          {
+              "constraintType": "CUSTOMER_BADGE_FIXED_VALUE",
+              "maxEarnLimit": 100
+          },
+          {
+              "constraintType": "CUSTOMER_BADGE_ROLLING_WINDOW",
+              "maxEarnForDays": 1,
+              "rollForDays": 1,
+              "maxEarnForWeeks": 2,
+              "rollForWeeks": 1,
+              "maxEarnForMonths": 10,
+              "rollForMonths": 1
+          }
+      ],
+      "badgeConstraints": [
+          {
+              "constraintType": "BADGE_FIXED_VALUE",
+              "maxEarnLimit": 10000
+          },
+          {
+              "constraintType": "CUSTOMER_BADGE_FIXED_WINDOW",
+              "maxEarnLimit": 2,
+              "durationType": "WEEKS",
+              "refreshRate": 3,
+              "startDayOfTheWeek": 1
+          }
+      
+  ],
+  "earnType": "EARN"
+  }'
+  ```
+
+</CodeGroup>
+
+<br />
+
+## Request body parameters
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| id | String | Yes | Unique badge meta ID generated during creation of the badge. Mandatory to pass the badge meta ID to update the badge. |
+| name | String | Yes | Name of the badge (e.g., "10% off on watches"). Badge name should be unique and is case sensitive. |
+| description | String | Optional | Brief description of the badge (e.g., "Purchase 2 watches, get a $100 voucher"). |
+| startOn | Date Time | Conditional | Timestamp indicating when a badge starts in epoch seconds. Cannot be set more than 100 years in the past. Cannot be changed for live or expired badges. Upcoming badges allow updating the startOn date, even to a past date. Note: This field will be deprecated in the future and is being replaced by `startOnISO` |
+| startOnISO | String | Optional | Defines the badge's start date in ISO 8601 format, including the region offset. For example: The start date is at 14:30:45 on December 16, 2025, in India. Format for the request parameter: 2025-12-16T14:30:45+05:30. Notes: * This parameter overrides the value set in the startOn parameter. * The date cannot be set more than 100 years in the past. |
+| expiresOn | Date Time | Conditional | Timestamp indicating when the badge ends in epoch seconds. `expiresOn` or `expiresOnISO` is required when expiry type is `FIXED_DATE`. Note: This field will be deprecated in the future and is being replaced by `expiresOnISO` |
+| expiresOnISO | String | Conditional | Defines the badge's expiration date in ISO 8601 format, including the region offset. For example: The expiration date is at 14:30:45 on December 16, 2025, in India. Format for the request parameter: 2025-12-16T14:30:45+05:30. Notes: * This parameter overrides the value set in the expiresOn parameter. * If expiresOnISO is provided, the system ignores expiresOn. expiresOn is only used if expiresOnISO is null. * This parameter is mandatory when the expiry type is set to FIXED_DATE (either expiresOn or expiresOnISO must be provided). |
+| earnType | Enum | Enum | The method the brand can issue the badge. Supported values: "EARN", "ISSUE_EARN". EARN: Selected customers are enrolled for the badge and upon fulfillment of the earn condition, the badge is issued. ISSUE_EARN: The badges are issued directly to the customer who fulfills the earn condition (no enrolment to badges-related program). |
+| badgeRank | Integer | Optional | Badge rank is the rank of a badge within a group, the user can define the badge rank even if the group is not linked with the badge. |
+| .earnedBadgeExpiry | Object | Yes | Object containing details about the expiry of earned badges. |
+| ..relativeExpiryType | Enum | Optional | Expiry type relative to the badge issue. Supported values: "DAYS", "WEEKS", "MONTHS". Applicable when expiryType is RELATIVE. |
+| ..expiryType | Enum | Yes | Type of badge expiry. Supported values: "RELATIVE", "ABSOLUTE", "NEVER". `RELATIVE`: Based on when the badge was issued. `ABSOLUTE`: Based on the fixed date from the badge issual. `NEVER`: The badges will never expire after issual. |
+| ..type | Enum | Yes | Type refers to the badge expiration method. Supported values: "WITH_BADGE_META", "FIXED_DATE". WITH_BADGE_META: The expiry is based on the mandatory expiresOn parameter. FIXED_DATE: The expiry is based on the expiry date of the incentives associated with the badge. |
+| ..expireWithBadgeMeta | Boolean | Yes | Indicates if the badge should expire based on the mandatory parameter expiresOn. |
+| ownership | Object | Yes | An object containing ownership restrictions. Cannot remove an owner if it has an active badge claim associated with it. |
+| ownership.restrictedToOwners | Object | Yes | List of owner categories that are allowed to claim the badge. Supported values: Loyalty, Loyalty_Promotion, Referral_Campaigns, Journeys, Audience_Campaigns, Membercare, Rewards_Catalog, Goodwill_Module, Milestones, Historical_Import |
+| .customerConstraints | Array | Optional | List of constraints specific to customers. Applicable when earnType is EARN. |
+| ..constraintType | Enum | Optional | Type of customer constraint. Supported values: "CUSTOMER_BADGE_FIXED_WINDOW", "CUSTOMER_BADGE_FIXED_VALUE", "CUSTOMER_BADGE_ROLLING_WINDOW", "CUSTOMER_BADGE_NO_LIMIT". |
+| ..durationType | Enum | Optional | Duration of the badge constraint. Supported values: "DAILY", "WEEKLY", "MONTHLY". If DAILY, refreshRate is mandatory. If WEEKLY, startDayOfTheWeek is mandatory (default: Monday). |
+| ..refreshRate | Integer | Optional | Number of days the fixed window duration is. |
+| ..startDayOfTheWeek | Enum | Optional | Day on which the cycle starts. Supported values: "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY". |
+| ..maxEarnLimit | Integer | Optional | The maximum limit a customer can earn during the week. |
+| ..maxEarnForDays | Integer | Optional | Maximum earning limit per day. Applicable for CUSTOMER_BADGE_ROLLING_WINDOW. |
+| ..rollForDays | Integer | Optional | The number of days for rolling calculation. Applicable only when CUSTOMER_BADGE_ROLLING_WINDOW is opted. |
+| ..maxEarnForWeeks | Integer | Optional | Maximum earning limit per week. Applicable only when CUSTOMER_BADGE_ROLLING_WINDOW is opted. |
+| .rollForWeeks | Integer | Optional | Number of weeks for rolling calculation. Applicable only when CUSTOMER_BADGE_ROLLING_WINDOW is opted. |
+| ..maxEarnForMonths | Integer | Optional | Maximum earning limit per month. Applicable only when CUSTOMER_BADGE_ROLLING_WINDOW is opted. |
+| ..rollForMonths | Integer | Optional | Number of months for rolling calculation. Applicable only when CUSTOMER_BADGE_ROLLING_WINDOW is opted. |
+| .badgeConstraints | Array | Optional | Restrictions that are applied on the badge. Applicable when issue type is EARN. |
+| ..constraintType | Enum | Optional | Type of badge constraint. Supported values: "BADGE_FIXED_WINDOW", "BADGE_ROLLING_WINDOW", "BADGE_FIXED_VALUE", "BADGE_NO_LIMIT". |
+| ..durationType | Enum | Optional | Duration of the badge constraint. Supported values: "DAILY", "WEEKLY", "MONTHLY". If DAILY, refreshRate is mandatory. If WEEKLY, startDayOfTheWeek is mandatory (default: Monday). |
+| ..refreshRate | Integer | Optional | Number of days the fixed window duration is. |
+| ..startDayOfTheWeek | Enum | Optional | Day on which the cycle starts. Supported values: "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY". |
+| ..maxEarnLimit | Integer | Optional | The maximum limit a customer can earn during the period. |
+| ..rollType | Enum | Optional | Timeframe of the rolling window. Supported values: "DAYS", "WEEKS", "MONTHS". |
+| ..rollValue | Integer | Optional | Value for rolling window calculation. |
+| ..maxEarnLimit | Integer | Optional | Maximum limit a badge can earn. |
+| isActive | Boolean | Yes | Indicates whether the badge is currently active. |
+| customFields | Object | Optional | List of custom fields. |
+| customFields.customFieldName | String | Optional | Name of the custom field. |
+| customFields.customFieldValue | String | Optional | Value of the custom field. |
+| badgeGroupId | String | Optional | Unique group ID associated with the badge. To add the badge to a group, pass badgeGroupId value. |
+
+<br />
+
+<Callout kind="info" title="**Note**">
+
+* Fields marked with * in the original documentation are required
+* Timestamps should be in epoch time format
+* The system uses the server's cluster time for determining badge expiry
+* Badge names are case sensitive and must be unique
+* You cannot remove an owner if it has an active badge claim associated with it****
+
+</Callout>
+
+<CodeGroup show-lines="true" tabs={["Request body", "Request - Fixed window", "Request - with badge expiry"]}>
+
+  ```json
+   {
+          "id": "8",
+          "orgId": 100606,
+          "name": "EARN-TYPE",
+          "description": "Purchase 5 pet products in 3 months and get a pet grooming voucher",
+          "startOn": 1799632870.000000000,
+          "expiresOn": 1828754110.000000000,
+          "earnedBadgeExpiry": {
+              "expiryType": "ABSOLUTE",
+              "type": "WITH_BADGE_META",
+              "expiresOn": null,
+              "expireWithBadgeMeta": true
+          },
+          "issuedBadgeExpiry": null,
+          "images": [],
+          "ownership": {
+              "restrictedToOwners": [
+                  "Audience_Campaigns",
+                  "Loyalty",
+                  "Milestones"
+              ],
+              "claims": []
+          },
+          "customerConstraints": [
+              {
+                  "constraintType": "CUSTOMER_BADGE_FIXED_VALUE",
+                  "maxEarnLimit": 100
+              },
+              {
+                  "constraintType": "CUSTOMER_BADGE_ROLLING_WINDOW",
+                  "maxEarnForDays": 1,
+                  "rollForDays": 1,
+                  "maxEarnForWeeks": 2,
+                  "rollForWeeks": 1,
+                  "maxEarnForMonths": 10,
+                  "rollForMonths": 1
+              }
+          ],
+          "badgeConstraints": [
+              {
+                  "constraintType": "BADGE_FIXED_VALUE",
+                  "maxEarnLimit": 1000
+              },
+              {
+                  "constraintType": "BADGE_ROLLING_WINDOW",
+                  "rollType": "DAYS",
+                  "rollValue": 1,
+                  "maxEarnLimit": 100
+              },
+              {
+                  "constraintType": "BADGE_ROLLING_WINDOW",
+                  "rollType": "MONTHS",
+                  "rollValue": 1,
+                  "maxEarnLimit": 10000
+              },
+              {
+                  "constraintType": "BADGE_ROLLING_WINDOW",
+                  "rollType": "WEEKS",
+                  "rollValue": 1,
+                  "maxEarnLimit": 2000
+              }
+          ],
+          "badgeGroupId": null,
+          "badgeRank": 1,
+          "earnType": "EARN",
+          "issuedCount": 0,
+          "earnedCount": 0,
+          "status": "UPCOMING",
+          "createdOn": 1707897126.091000000,
+          "createdBy": 75097962,
+          "lastUpdatedOn": 1707897126.091000000,
+          "lastUpdatedBy": 75097962,
+          "active": false
+      }
+  ```
+
+  ```json
+  {
+      "id": "661e11563753c37878a8b2c7",
+      "orgId": 100606,
+      "name": "This is a badge",
+      "description": "Purchase products worth minimum 1K in the month of March and get this badge",
+      "startOn": 1808338345.000000000,
+      "expiresOn": 1828754110.000000000,
+      "earnedBadgeExpiry": {
+          "expiryType": "ABSOLUTE",
+          "type": "FIXED_DATE",
+          "expiresOn": 1828754110.000000000,
+          "expireWithBadgeMeta": false
+      },
+      "issuedBadgeExpiry": null,
+      "images": [],
+      "ownership": {
+          "restrictedToOwners": [
+              "Loyalty"
+          ],
+          "claims": []
+      },
+     "customerConstraints": [
+          {
+              "constraintType": "CUSTOMER_BADGE_FIXED_WINDOW",
+              "referenceId": "e6791ec9-e92f-34af-bdc3-be2607fdf82c",
+              "durationType": "DAYS",
+              "refreshRate": 5,
+              "maxEarnLimit": 1,
+              "cycleStatus": "UPCOMING",
+              "startDate": 1808338345.000000000,
+              "endDate": 1828754110.000000000
+          }
+      ],
+     /*  "customerConstraints": [
+         
+          {
+              "constraintType": "CUSTOMER_BADGE_ROLLING_WINDOW",
+              "maxEarnForDays": 50,
+              "rollForDays": 5,
+              "maxEarnForWeeks": 100,
+              "rollForWeeks": 1,
+              "maxEarnForMonths": 200,
+              "rollForMonths": 1
+          },
+          {
+              "constraintType": "CUSTOMER_BADGE_FIXED_VALUE",
+              "maxEarnLimit": 5000
+          }
+      ],*/
+      "badgeConstraints": [
+          {
+              "constraintType": "BADGE_FIXED_VALUE",
+              "maxEarnLimit": 1000
+          },
+          {
+              "constraintType": "BADGE_ROLLING_WINDOW",
+              "rollType": "DAYS",
+              "rollValue": 1,
+              "maxEarnLimit": 100
+          },
+          {
+              "constraintType": "BADGE_ROLLING_WINDOW",
+              "rollType": "WEEKS",
+              "rollValue": 1,
+              "maxEarnLimit": 2000
+          },
+          {
+              "constraintType": "BADGE_ROLLING_WINDOW",
+              "rollType": "MONTHS",
+              "rollValue": 1,
+              "maxEarnLimit": 10000
+          }
+      ],
+      "badgeGroupId": null,
+      "badgeRank": null,
+      "earnType": "EARN",
+      "status": "UPCOMING",
+      "createdOn": 1713246550.885000000,
+      "createdBy": 75097962,
+      "lastUpdatedOn": 1713246550.885000000,
+      "lastUpdatedBy": 75097962,
+      "customFields": {
+      
+      },
+      "active": true
+  }
+  ```
+
+  ```json
+  {
+      "id" : "66decf4459a5c872324b9577",
+      "name": "Badge Issue earn40",
+  	"description": "Badge With coupon benefit updated 2",
+      "issuedBadgeExpiry": {
+         "expiryType": "ABSOLUTE",
+              "type": "FIXED_DATE",
+              "expiresOn": 1726655584
+      },
+      "earnedBadgeExpiry": {
+         "expiryType": "ABSOLUTE",
+              "type": "FIXED_DATE",
+              "expiresOn": 1726655584
+      },
+      "ownership": {
+  		"restrictedToOwners": [
+  			"Loyalty"
+  		],
+  		"claims": [{
+  				"ownerType": "Loyalty",
+  				"referenceId": "xyz"
+  			}
+  		]
+  	},
+      "startOn": 1725964384,
+      "expiresOn": 1726655584,  // Cannot be updated to past date.
+      "earnType": "EARN"
+  }
+  ```
+
+</CodeGroup>
+
+## Example response
+
+<CodeGroup show-lines="true" tabs={["Sample response for earn type- ISSUE_EARN", "Sample response for expiry type- ABSOLUTE"]}>
+
+  ```json
+  {
+      "data": {
+          "id": "696df3810772ad476ecf6a07",
+          "badgeNumericId": 107,
+          "orgId": 100737,
+          "name": "Badge Issue earn type",
+          "description": "Make 5 transactions",
+          "startOn": 1716803487,
+          "startOnISO": "2024-05-27T09:51:27Z",
+          "expiresOn": 1726804000,
+          "expiresOnISO": "2024-09-20T03:46:40Z",
+          "earnedBadgeExpiry": {
+              "expiryType": "RELATIVE",
+              "relativeExpirytype": "WEEKS",
+              "value": 2
+          },
+          "issuedBadgeExpiry": {
+              "expiryType": "ABSOLUTE",
+              "type": "FIXED_DATE",
+              "expiresOn": 1926235957,
+              "expiresOnISO": "2031-01-15T09:32:37Z",
+              "expireWithBadgeMeta": false
+          },
+          "images": [
+              {
+                  "name": "Issued",
+                  "fileSvcHandle": "qwer-8634-8938",
+                  "url": "https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d",
+                  "tag": "EARNED"
+              }
+          ],
+          "ownership": {
+              "restrictedToOwners": [
+                  "Loyalty",
+                  "Audience_Campaigns"
+              ],
+              "claims": []
+          },
+          "customerConstraints": [
+              {
+                  "constraintType": "CUSTOMER_BADGE_FIXED_WINDOW",
+                  "referenceId": "e6791ec9-e92f-34af-bdc3-be2607fdf82c",
+                  "durationType": "DAYS",
+                  "refreshRate": 3,
+                  "maxEarnLimit": 2,
+                  "cycleStatus": "ACTIVE",
+                  "startDate": 1716803487,
+                  "startDateISO": "2024-05-27T09:51:27Z",
+                  "endDate": 1926235957,
+                  "endDateISO": "2031-01-15T09:32:37Z"
+              }
+          ],
+          "badgeConstraints": [
+              {
+                  "constraintType": "BADGE_FIXED_VALUE",
+                  "maxEarnLimit": 10000
+              },
+              {
+                  "constraintType": "BADGE_ROLLING_WINDOW",
+                  "rollType": "WEEKS",
+                  "rollValue": 1,
+                  "maxEarnLimit": 3000
+              },
+              {
+                  "constraintType": "BADGE_ROLLING_WINDOW",
+                  "rollType": "DAYS",
+                  "rollValue": 1,
+                  "maxEarnLimit": 300
+              }
+          ],
+          "benefits": [],
+          "tags": [],
+          "badgeGroupId": null,
+          "badgeRank": 3,
+          "earnType": "ISSUE_EARN",
+          "status": "EXPIRED",
+          "createdOn": 1768813441.180822,
+          "createdOnISO": "2026-01-19T09:04:01Z",
+          "createdBy": 75197372,
+          "lastUpdatedOn": 1768813441.180822,
+          "lastUpdatedOnISO": "2026-01-19T09:04:01Z",
+          "lastUpdatedBy": 75197372,
+          "customFields": {},
+          "active": true
+      },
+      "errors": [],
+      "warnings": []
+  }
+  ```
+
+  ```json
+  {
+      "data": {
+          "id": "696df21c0772ad476ecf69d4",
+          "badgeNumericId": 106,
+          "orgId": 100737,
+          "name": "badgetestjan16 01",
+          "description": null,
+          "startOn": 1768714500,
+          "startOnISO": "2026-01-18T05:35:00Z",
+          "expiresOn": 1769751300,
+          "expiresOnISO": "2026-01-30T05:35:00Z",
+          "earnedBadgeExpiry": {
+              "expiryType": "ABSOLUTE",
+              "type": "FIXED_DATE",
+              "expiresOn": 1769751300,
+              "expiresOnISO": "2026-01-30T05:35:00Z",
+              "expireWithBadgeMeta": false
+          },
+          "issuedBadgeExpiry": null,
+          "images": [],
+          "ownership": {
+              "restrictedToOwners": [
+                  "Milestones",
+                  "Loyalty"
+              ],
+              "claims": []
+          },
+          "customerConstraints": [
+              {
+                  "constraintType": "CUSTOMER_BADGE_FIXED_VALUE",
+                  "maxEarnLimit": 100
+              },
+              {
+                  "constraintType": "CUSTOMER_BADGE_ROLLING_WINDOW",
+                  "maxEarnForDays": 1,
+                  "rollForDays": 1,
+                  "maxEarnForWeeks": 2,
+                  "rollForWeeks": 1,
+                  "maxEarnForMonths": 10,
+                  "rollForMonths": 1
+              },
+              {
+                  "constraintType": "CUSTOMER_BADGE_FIXED_WINDOW",
+                  "referenceId": "53b1267d-4907-364a-a2ae-5989a9b2123a",
+                  "durationType": "WEEKS",
+                  "startDayOfTheWeek": "TUESDAY",
+                  "maxEarnLimit": 2,
+                  "startDateISO": null,
+                  "endDateISO": null
+              }
+          ],
+          "badgeConstraints": [
+              {
+                  "constraintType": "BADGE_FIXED_VALUE",
+                  "maxEarnLimit": 10000
+              }
+          ],
+          "benefits": [],
+          "tags": [],
+          "badgeGroupId": null,
+          "badgeRank": null,
+          "earnType": "EARN",
+          "status": "LIVE",
+          "createdOn": 1768813084.80786,
+          "createdOnISO": "2026-01-19T08:58:04Z",
+          "createdBy": 75197372,
+          "lastUpdatedOn": 1768813084.80786,
+          "lastUpdatedOnISO": "2026-01-19T08:58:04Z",
+          "lastUpdatedBy": 75197372,
+          "customFields": {},
+          "active": true
+      },
+      "errors": [],
+      "warnings": []
+  }
+  ```
+
+</CodeGroup>
+
+## Response parameters
+
+| Parameter | Description |
+| --- | --- |
+| .data | The main container for the response data. |
+| ..id | Unique identifier for the badge. |
+| ..orgId | Identifier for the organization associated with the badge. |
+| ..name | Name of the badge. |
+| ..description | Description of the badge. |
+| ..startOn | Timestamp for when the badge starts. |
+| .earnedBadgeExpiry | Details about the expiry of an earned badge. |
+| ..expiryType | Type of expiry for the earned badge. |
+| ..type | Type of badge expiry. |
+| ..expiresOn | Timestamp indicating when the badge ends, in epoch milliseconds time format. |
+| ..expiresOnISO | Timestamp indicating when the badge ends, in ISO 8601 time format. |
+| .issuedBadgeExpiry | Details about the expiry of the issued badge |
+| .images | Array of images related to the item. |
+| ..name | Name of the image. |
+| ..fileSvcHandle | Service handle for the image file. |
+| ..url | URL of the image. |
+| .ownership | Details about the ownership of the item. |
+| .ownership.restrictedToOwners | Array of owner types who have restricted access. |
+| .customerConstraints | Limit on how many badges can be issued to a particular customer. |
+| .badgeConstraints | Limit on how many quantities of a reward can be given to customers. |
+| .badgeGroupId | Group ID for the badge. |
+| .badgeRank | Badge rank is the rank within a group. A user can define the badge rank even if a group is not linked with the badge. |
+| .earnType | The method by which the brand can issue the badge. Supported values: EARN, ISSUE EARN. - Earn: The selected customers are enrolled for the badge, and upon fulfillment of the earn condition, the badge is issued. - Issue Earn: Badges are issued directly to the customer who fulfills the earn condition. |
+| .issuedCount | Count of how many times the badge has been issued. |
+| .earnedCount | Count of how many times the badge has been earned. |
+| .status | The badge can have three statuses upon creation. Supported values: LIVE, UPCOMING, ENDED/EXPIRED. - LIVE: Badges that are in a live state and can be earned. - UPCOMING: Badges that are upcoming on a future date. - EXPIRED/ENDED: Badges that have expired and cannot be earned. |
+| .createdOn | Timestamp for when the badge was created. |
+| .createdOnISO | Timestamp for when the badge was created, in ISO 8601 format, returned in the server time zone. EU server example 2025-12-16T14:30:45Z → 16 December 2025, 14:30:45 (UTC) India server example 2025-12-16T14:30:45+05:30 → 16 December 2025, 14:30:45 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
+| .createdBy | Identifier of the user who created the badge. |
+| .lastUpdatedOn | Timestamp for the last update made to the badge, in epoch milliseconds timestamp format. |
+| lastUpdatedOnISO | Timestamp for the last update made to the badge, in ISO 8601 format, returned in the server time zone. EU server example 2025-12-16T14:30:45Z → 16 December 2025, 14:30:45 (UTC) India server example 2025-12-16T14:30:45+05:30 → 16 December 2025, 14:30:45 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
+| .lastUpdatedBy | Identifier of the user who last updated the badge. |
+| .customFields | List of custom fields. |
+| .customFields.customFieldName | Name of the custom field. |
+| .customFields.customFieldValue | Value of the custom field. |
+| .active | Indicates whether the badge is active or not. |
+| errors | Contains details of any error. |
+| warnings | Contains details of any warning. |
+
+<CodeGroup show-lines="true" tabs={["200", "Response-Fixed window", "Response: With badge Expiry", "Failure: Start date cannot change after badge is live", "Failure: Start Date should be before End Date", "Failure: Expiry date cannot be past date", "Failure: Interchanging of fixed window to rolling window and vice versa is not allowed."]}>
+
+  ```json
+  {
+      "data": {
+          "id": "692d2b942814b4096ebb9aa1",
+          "badgeNumericId": 81,
+          "orgId": 100737,
+          "name": "Badge Issue earn2d72",
+          "description": "Make 5 transactions",
+          "startOn": 1753056000,
+          "startOnISO": "2025-07-21T00:00:00Z",
+          "expiresOn": 1789876000,
+          "expiresOnISO": "2026-09-20T03:46:40Z",
+          "earnedBadgeExpiry": {
+              "expiryType": "RELATIVE",
+              "relativeExpirytype": "WEEKS",
+              "value": 2
+          },
+          "issuedBadgeExpiry": {
+              "expiryType": "ABSOLUTE",
+              "type": "FIXED_DATE",
+              "expiresOn": 1926235957,
+              "expiresOnISO": "2031-01-15T09:32:37Z",
+              "expireWithBadgeMeta": false
+          },
+          "images": [
+              {
+                  "name": "Issued",
+                  "fileSvcHandle": "qwer-8634-8938",
+                  "url": "https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d",
+                  "tag": "EARNED"
+              }
+          ],
+          "ownership": {
+              "restrictedToOwners": [
+                  "Referral_Campaigns",
+                  "Audience_Campaigns",
+                  "Loyalty_Promotion",
+                  "Goodwill_Module",
+                  "Journeys",
+                  "Loyalty",
+                  "Milestones",
+                  "Historical_Import",
+                  "Rewards_Catalog"
+              ],
+              "claims": []
+          },
+          "customerConstraints": [
+              {
+                  "constraintType": "CUSTOMER_BADGE_FIXED_WINDOW",
+                  "referenceId": "e6791ec9-e92f-34af-bdc3-be2607fdf82c",
+                  "durationType": "DAYS",
+                  "refreshRate": 3,
+                  "maxEarnLimit": 2,
+                  "cycleStatus": "ACTIVE",
+                  "startDate": 1753056000,
+                  "startDateISO": "2025-07-21T00:00:00Z",
+                  "endDate": 1926235957,
+                  "endDateISO": "2031-01-15T09:32:37Z"
+              }
+          ],
+          "badgeConstraints": [
+              {
+                  "constraintType": "BADGE_ROLLING_WINDOW",
+                  "rollType": "DAYS",
+                  "rollValue": 1,
+                  "maxEarnLimit": 300
+              },
+              {
+                  "constraintType": "BADGE_FIXED_VALUE",
+                  "maxEarnLimit": 10000
+              },
+              {
+                  "constraintType": "BADGE_ROLLING_WINDOW",
+                  "rollType": "WEEKS",
+                  "rollValue": 1,
+                  "maxEarnLimit": 3000
+              }
+          ],
+          "benefits": [
+              {
+                  "benefitType": "COUPON",
+                  "seriesId": 13745
+              }
+          ],
+          "tags": [],
+          "badgeGroupId": null,
+          "badgeRank": 3,
+          "earnType": "ISSUE_EARN",
+          "status": "LIVE",
+          "createdOn": 1764567956.97866,
+          "createdOnISO": "2025-12-01T05:45:56Z",
+          "createdBy": 75197941,
+          "lastUpdatedOn": 1764567956.97866,
+          "lastUpdatedOnISO": "2025-12-01T05:45:56Z",
+          "lastUpdatedBy": 75197941,
+          "customFields": {},
+          "active": true
+      },
+      "errors": [],
+      "warnings": []
+  }
+  ```
+
+  ```json
+  {
+      "data": {
+          "id": "661e11563753c37878a8b2c7",
+          "orgId": 100606,
+          "name": "This is a badge",
+          "description": "Purchase products worth minimum 1K in the month of March and get this badge",
+          "startOn": 1808338345.000000000,
+          "expiresOn": 1828754110.000000000,
+          "earnedBadgeExpiry": {
+              "expiryType": "ABSOLUTE",
+              "type": "FIXED_DATE",
+              "expiresOn": 1828754110.000000000,
+              "expireWithBadgeMeta": false
+          },
+          "issuedBadgeExpiry": null,
+          "images": [],
+          "ownership": {
+              "restrictedToOwners": [
+                  "Loyalty"
+              ],
+              "claims": []
+          },
+          "customerConstraints": [
+              {
+                  "constraintType": "CUSTOMER_BADGE_FIXED_WINDOW",
+                  "referenceId": "1c11e757-4f00-3bb2-8aa0-b34e25083bb3",
+                  "durationType": "DAYS",
+                  "refreshRate": 5,
+                  "maxEarnLimit": 1,
+                  "cycleStatus": "UPCOMING",
+                  "startDate": 1808338345.000000000,
+                  "endDate": 1828754110.000000000
+              }
+          ],
+          "badgeConstraints": [
+              {
+                  "constraintType": "BADGE_FIXED_VALUE",
+                  "maxEarnLimit": 1000
+              },
+              {
+                  "constraintType": "BADGE_ROLLING_WINDOW",
+                  "rollType": "WEEKS",
+                  "rollValue": 1,
+                  "maxEarnLimit": 2000
+              },
+              {
+                  "constraintType": "BADGE_ROLLING_WINDOW",
+                  "rollType": "DAYS",
+                  "rollValue": 1,
+                  "maxEarnLimit": 100
+              },
+              {
+                  "constraintType": "BADGE_ROLLING_WINDOW",
+                  "rollType": "MONTHS",
+                  "rollValue": 1,
+                  "maxEarnLimit": 10000
+              }
+          ],
+          "tags": [],
+          "badgeGroupId": null,
+          "badgeRank": null,
+          "earnType": "EARN",
+          "status": "UPCOMING",
+          "createdOn": 1713246550.885000000,
+          "createdBy": 75097962,
+          "lastUpdatedOn": 1713955758.488460000,
+          "lastUpdatedBy": 75097962,
+          "customFields": {},
+          "active": true
+      },
+      "errors": [],
+      "warnings": []
+  }
+  ```
+
+  ```json
+  {
+      "data": {
+          "id": "66decf4459a5c872324b9577",
+          "badgeNumericId": 47,
+          "orgId": 100458,
+          "name": "Badge Issue earn40",
+          "description": "Badge With coupon benefit updated 2",
+          "startOn": 1725964384.000000000,
+          "expiresOn": 1726655584.000000000,
+          "earnedBadgeExpiry": {
+              "expiryType": "ABSOLUTE",
+              "type": "FIXED_DATE",
+              "expiresOn": 1726655584.000000000,
+              "expireWithBadgeMeta": false
+          },
+          "issuedBadgeExpiry": {
+              "expiryType": "ABSOLUTE",
+              "type": "FIXED_DATE",
+              "expiresOn": 1726655584.000000000,
+              "expireWithBadgeMeta": false
+          },
+          "images": [],
+          "ownership": {
+              "restrictedToOwners": [
+                  "Loyalty"
+              ],
+              "claims": []
+          },
+          "customerConstraints": [],
+          "badgeConstraints": [],
+          "tags": [],
+          "badgeGroupId": null,
+          "badgeRank": null,
+          "earnType": "EARN",
+          "status": "UPCOMING",
+          "createdOn": 1725878084.045000000,
+          "createdBy": 75130850,
+          "lastUpdatedOn": 1725878207.750104000,
+          "lastUpdatedBy": 75130850,
+          "customFields": {},
+          "active": true
+      },
+      "errors": [],
+      "warnings": []
+  }
+  ```
+
+  ```json
+      "errors": [
+          {
+              "code": 723,
+              "message": "Start Date cannot change once the badge is live",
+              "reference": null
+          },
+  ```
+
+  ```json
+      "errors": [
+          {
+              "code": 720,
+              "message": "Start Date should be before End Date",
+              "reference": null
+          }
+  ```
+
+  ```json
+      "errors": [
+          {
+              "code": 724,
+              "message": "Expiry Date cannot be past date",
+              "reference": null
+          }
+  ```
+
+  ```json
+      "errors": [
+          {
+              "code": 826,
+              "message": "Change from rolling window or fixed constraint to fixed window or vice versa is not allowed.",
+              "reference": null
+          }
+  ```
+
+</CodeGroup>
+
+## API-specific error codes
+
+| Error code | Description                                                                                  |
+| :--------- | :------------------------------------------------------------------------------------------- |
+| 400        | Invalid enum value                                                                           |
+| 720        | Start Date should be before End Date                                                         |
+| 723        | Start Date cannot change once the badge is live                                              |
+| 724        | Expiry Date cannot be past date                                                              |
+| 826        | Change from rolling window or fixed constraint to fixed window or vice versa is not allowed. |
+| 705        | Expiry date is mandatory.                                                                    |
+
+## OpenAPI definition
+
+```json
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "v1",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://{host}",
+      "variables": {
+        "host": {
+          "default": "host"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/api_gateway/v1/badges/badgeMeta": {
+      "post": {
+        "summary": "Create badges",
+        "description": "",
+        "operationId": "create-badges-org",
+        "parameters": [
+          {
+            "name": "X-CAP-BADGES-MIGRATION:",
+            "in": "header",
+            "description": "Enables you to use historical badges.",
+            "schema": {
+              "type": "string",
+              "default": "migration"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "RAW_BODY": {
+                    "type": "string",
+                    "description": "{     \"name\": \"Furry Friend Badge\",     \"description\": \"Purchase 5 pet products in 3 months and get a pet grooming voucher\",     \"startOn\": 1699596721,     \"expiresOn\": 1828754110,     \"earnedBadgeExpiry\": {         \"expiryType\": \"RELATIVE\",         \"relativeExpirytype\": \"MONTHS\",         \"value\": 3     },     \"ownership\": {         \"restrictedToOwners\": [             \"Loyalty\"         ]     },     \"customerConstraints\": [         {             \"constraintType\": \"CUSTOMER_BADGE_FIXED_VALUE\",             \"maxEarnLimit\": 1         }     ],     \"badgeConstraints\": [         {             \"constraintType\": \"BADGE_FIXED_VALUE\",             \"maxEarnLimit\": 1000         }     ],     \"earnType\": \"EARN\",     \"benefits\": [         {             \"benefitType\": \"COUPON\",             \"seriesId\": 13686         },         {             \"benefitType\": \"LOYALTY_POINTS\",             \"points\": 100,             \"programId\": 626,             \"promotionId\": 80332,             \"allocationStrategyId\": 1489,             \"expirationStrategyId\": 3843         }     ],     \"tags\": [         {             \"name\": \"Type\",             \"value\": \"Birthday\"         }     ] }",
+                    "format": "json"
+                  }
+                }
+              },
+              "examples": {
+                "Earn type- Fixed window": {
+                  "value": {
+                    "name": "BADGE12",
+                    "description": "Purchase 5 pet products in 3 months and get a pet grooming voucher",
+                    "startOn": 1716803487,
+                    "expiresOn": 1726804000,
+                    "badgeRank": 1,
+                    "earnedBadgeExpiry": {
+                      "expiryType": "ABSOLUTE",
+                      "type": "WITH_BADGE_META",
+                      "expireWithBadgeMeta": true
+                    },
+                    "ownership": {
+                      "restrictedToOwners": [
+                        "Loyalty",
+                        "Milestones"
+                      ]
+                    },
+                    "customerConstraints": [
+                      {
+                        "constraintType": "CUSTOMER_BADGE_FIXED_WINDOW",
+                        "durationType": "DAYS",
+                        "refreshRate": 3,
+                        "startDayOfTheWeek": "TUESDAY",
+                        "maxEarnLimit": 1
+                      }
+                    ],
+                    "badgeConstraints": [
+                      {
+                        "constraintType": "BADGE_FIXED_WINDOW",
+                        "maxEarnLimit": 2,
+                        "durationType": "DAYS",
+                        "refreshRate": 3,
+                        "startDayOfTheWeek": 1
+                      }
+                    ],
+                    "earnType": "EARN",
+                    "active": false
+                  }
+                },
+                "Active=false": {
+                  "value": {
+                    "name": "test6578791",
+                    "description": "Purchase 5 pet products in 3 months and get a pet grooming voucher",
+                    "startOn": 1799632870,
+                    "expiresOn": 1828754110,
+                    "earnedBadgeExpiry": {
+                      "expiryType": "ABSOLUTE",
+                      "type": "WITH_BADGE_META",
+                      "expireWithBadgeMeta": true
+                    },
+                    "ownership": {
+                      "restrictedToOwners": [
+                        "Loyalty",
+                        "Milestones"
+                      ],
+                      "claims": [
+                        {
+                          "ownerType": "Loyalty",
+                          "referenceId": "626"
+                        }
+                      ]
+                    },
+                    "customerConstraints": [
+                      {
+                        "constraintType": "CUSTOMER_BADGE_FIXED_VALUE",
+                        "maxEarnLimit": 100
+                      },
+                      {
+                        "constraintType": "CUSTOMER_BADGE_ROLLING_WINDOW",
+                        "maxEarnForDays": 1,
+                        "rollForDays": 1,
+                        "maxEarnForWeeks": 2,
+                        "rollForWeeks": 1,
+                        "maxEarnForMonths": 10,
+                        "rollForMonths": 1
+                      }
+                    ],
+                    "badgeConstraints": [
+                      {
+                        "constraintType": "BADGE_FIXED_VALUE",
+                        "maxEarnLimit": 1000
+                      },
+                      {
+                        "constraintType": "BADGE_ROLLING_WINDOW",
+                        "rollType": "DAYS",
+                        "rollValue": 1,
+                        "maxEarnLimit": 100
+                      },
+                      {
+                        "constraintType": "BADGE_ROLLING_WINDOW",
+                        "rollType": "WEEKS",
+                        "rollValue": 1,
+                        "maxEarnLimit": 2000
+                      },
+                      {
+                        "constraintType": "BADGE_ROLLING_WINDOW",
+                        "rollType": "MONTHS",
+                        "rollValue": 1,
+                        "maxEarnLimit": 10000
+                      }
+                    ],
+                    "earnType": "EARN",
+                    "customFields": {
+                      "CF1": "CF1",
+                      "CF2 INTEGER": "1"
+                    },
+                    "active": false
+                  }
+                },
+                "Historical badges": {
+                  "value": {
+                    "orgId": 50933,
+                    "name": "demo testkerl2n26df132",
+                    "description": "string",
+                    "startOn": "2023-11-14T21:51:00.192Z",
+                    "expiresOn": "2026-12-03T15:19:37.192Z",
+                    "earnedBadgeExpiry": {
+                      "expiryType": "ABSOLUTE",
+                      "type": "WITH_BADGE_META",
+                      "expiresOn": "2024-11-03T15:19:37.192Z",
+                      "expireWithBadgeMeta": true
+                    },
+                    "issuedBadgeExpiry": {
+                      "expiryType": "ABSOLUTE",
+                      "type": "WITH_BADGE_META",
+                      "expiresOn": "2024-11-03T15:19:37.192Z",
+                      "expireWithBadgeMeta": true
+                    },
+                    "images": [
+                      {
+                        "name": "string",
+                        "fileSvcHandle": "string",
+                        "url": "string",
+                        "tag": "UN_EARNED"
+                      }
+                    ],
+                    "ownership": {
+                      "restrictedToOwners": [
+                        "Loyalty"
+                      ],
+                      "claims": [
+                        {
+                          "badgeMetaId": "string",
+                          "ownerType": "Loyalty",
+                          "referenceId": "string"
+                        }
+                      ]
+                    },
+                    "customerConstraints": [
+                      {
+                        "constraintType": "BADGE_NO_LIMIT",
+                        "maxEarnLimit": 0
+                      },
+                      {
+                        "constraintType": "BADGE_NO_LIMIT",
+                        "maxEarnLimit": 0
+                      },
+                      {
+                        "constraintType": "BADGE_NO_LIMIT"
+                      },
+                      {
+                        "constraintType": "BADGE_NO_LIMIT"
+                      },
+                      {
+                        "constraintType": "BADGE_NO_LIMIT",
+                        "rollType": "DAYS",
+                        "rollValue": 0,
+                        "maxEarnLimit": 0
+                      },
+                      {
+                        "constraintType": "BADGE_NO_LIMIT",
+                        "maxEarnForDays": 0,
+                        "rollForDays": 0,
+                        "maxEarnForWeeks": 0,
+                        "rollForWeeks": 0,
+                        "maxEarnForMonths": 0,
+                        "rollForMonths": 0
+                      }
+                    ],
+                    "badgeConstraints": [
+                      {
+                        "constraintType": "BADGE_NO_LIMIT",
+                        "maxEarnLimit": 0
+                      },
+                      {
+                        "constraintType": "BADGE_NO_LIMIT",
+                        "maxEarnLimit": 0
+                      },
+                      {
+                        "constraintType": "BADGE_NO_LIMIT"
+                      },
+                      {
+                        "constraintType": "BADGE_NO_LIMIT"
+                      },
+                      {
+                        "constraintType": "BADGE_NO_LIMIT",
+                        "rollType": "DAYS",
+                        "rollValue": 0,
+                        "maxEarnLimit": 0
+                      },
+                      {
+                        "constraintType": "BADGE_NO_LIMIT",
+                        "maxEarnForDays": 0,
+                        "rollForDays": 0,
+                        "maxEarnForWeeks": 0,
+                        "rollForWeeks": 0,
+                        "maxEarnForMonths": 0,
+                        "rollForMonths": 0
+                      }
+                    ],
+                    "earnType": "EARN",
+                    "issuedCount": 0,
+                    "earnedCount": 0,
+                    "status": "LIVE",
+                    "createdOn": "2023-11-03T15:19:37.192Z",
+                    "createdBy": 0,
+                    "lastUpdatedOn": "2023-11-03T15:19:37.192Z",
+                    "lastUpdatedBy": 0,
+                    "customFields": {
+                      "CF1": "CF1",
+                      "CF2 INTEGER": "1"
+                    },
+                    "active": true
+                  }
+                },
+                "Earn type- Rolling window": {
+                  "value": {
+                    "name": "Badge_Earn",
+                    "description": "Purchase 5 pet products in 3 months and get a pet grooming voucher",
+                    "startOn": 1716803487,
+                    "expiresOn": 1726804000,
+                    "earnedBadgeExpiry": {
+                      "expiryType": "ABSOLUTE",
+                      "type": "WITH_BADGE_META",
+                      "expireWithBadgeMeta": true
+                    },
+                    "ownership": {
+                      "restrictedToOwners": [
+                        "Loyalty",
+                        "Milestones"
+                      ]
+                    },
+                    "customerConstraints": [
+                      {
+                        "constraintType": "CUSTOMER_BADGE_FIXED_VALUE",
+                        "maxEarnLimit": 100
+                      }
+                    ],
+                    "badgeConstraints": [
+                      {
+                        "constraintType": "BADGE_FIXED_WINDOW",
+                        "maxEarnLimit": 2,
+                        "durationType": "DAYS",
+                        "refreshRate": 3,
+                        "startDayOfTheWeek": 1
+                      }
+                    ],
+                    "earnType": "EARN",
+                    "active": false
+                  }
+                },
+                "Issue earn type- Rolling window": {
+                  "value": {
+                    "name": "Badge_Issue_earntype",
+                    "description": "Make 5 transactions in a month, get a badge and 10% off coupon",
+                    "startOn": 1716803487,
+                    "expiresOn": 1726804000,
+                    "earnType": "ISSUE_EARN",
+                    "earnedBadgeExpiry": {
+                      "relativeExpirytype": "WEEKS",
+                      "value": 2,
+                      "expiryType": "RELATIVE"
+                    },
+                    "issuedBadgeExpiry": {
+                      "type": "FIXED_DATE",
+                      "expiresOn": 1926235957,
+                      "expiryType": "ABSOLUTE"
+                    },
+                    "isActive": true,
+                    "ownership": {
+                      "restrictedToOwners": [
+                        "Loyalty",
+                        "Audience_Campaigns"
+                      ]
+                    },
+                    "customerConstraints": [
+                      {
+                        "constraintType": "CUSTOMER_BADGE_ROLLING_WINDOW",
+                        "maxEarnForDays": 50,
+                        "rollForDays": 5,
+                        "maxEarnForWeeks": 100,
+                        "rollForWeeks": 1,
+                        "maxEarnForMonths": 200,
+                        "rollForMonths": 1
+                      },
+                      {
+                        "constraintType": "CUSTOMER_BADGE_FIXED_VALUE",
+                        "maxEarnLimit": 5000
+                      }
+                    ],
+                    "badgeConstraints": [
+                      {
+                        "constraintType": "BADGE_FIXED_VALUE",
+                        "maxEarnLimit": 10000
+                      },
+                      {
+                        "constraintType": "BADGE_ROLLING_WINDOW",
+                        "rollType": "DAYS",
+                        "rollValue": 1,
+                        "maxEarnLimit": 300
+                      },
+                      {
+                        "constraintType": "BADGE_ROLLING_WINDOW",
+                        "rollType": "WEEKS",
+                        "rollValue": 1,
+                        "maxEarnLimit": 3000
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "201",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Sample response for earn type- ISSUE_EARN": {
+                    "value": {
+                      "data": {
+                        "id": "696df3810772ad476ecf6a07",
+                        "badgeNumericId": 107,
+                        "orgId": 100737,
+                        "name": "Badge Issue earn type",
+                        "description": "Make 5 transactions",
+                        "startOn": 1716803487,
+                        "startOnISO": "2024-05-27T09:51:27Z",
+                        "expiresOn": 1726804000,
+                        "expiresOnISO": "2024-09-20T03:46:40Z",
+                        "earnedBadgeExpiry": {
+                          "expiryType": "RELATIVE",
+                          "relativeExpirytype": "WEEKS",
+                          "value": 2
+                        },
+                        "issuedBadgeExpiry": {
+                          "expiryType": "ABSOLUTE",
+                          "type": "FIXED_DATE",
+                          "expiresOn": 1926235957,
+                          "expiresOnISO": "2031-01-15T09:32:37Z",
+                          "expireWithBadgeMeta": false
+                        },
+                        "images": [
+                          {
+                            "name": "Issued",
+                            "fileSvcHandle": "qwer-8634-8938",
+                            "url": "https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d",
+                            "tag": "EARNED"
+                          }
+                        ],
+                        "ownership": {
+                          "restrictedToOwners": [
+                            "Loyalty",
+                            "Audience_Campaigns"
+                          ],
+                          "claims": []
+                        },
+                        "customerConstraints": [
+                          {
+                            "constraintType": "CUSTOMER_BADGE_FIXED_WINDOW",
+                            "referenceId": "e6791ec9-e92f-34af-bdc3-be2607fdf82c",
+                            "durationType": "DAYS",
+                            "refreshRate": 3,
+                            "maxEarnLimit": 2,
+                            "cycleStatus": "ACTIVE",
+                            "startDate": 1716803487,
+                            "startDateISO": "2024-05-27T09:51:27Z",
+                            "endDate": 1926235957,
+                            "endDateISO": "2031-01-15T09:32:37Z"
+                          }
+                        ],
+                        "badgeConstraints": [
+                          {
+                            "constraintType": "BADGE_FIXED_VALUE",
+                            "maxEarnLimit": 10000
+                          },
+                          {
+                            "constraintType": "BADGE_ROLLING_WINDOW",
+                            "rollType": "WEEKS",
+                            "rollValue": 1,
+                            "maxEarnLimit": 3000
+                          },
+                          {
+                            "constraintType": "BADGE_ROLLING_WINDOW",
+                            "rollType": "DAYS",
+                            "rollValue": 1,
+                            "maxEarnLimit": 300
+                          }
+                        ],
+                        "benefits": [],
+                        "tags": [],
+                        "badgeGroupId": null,
+                        "badgeRank": 3,
+                        "earnType": "ISSUE_EARN",
+                        "status": "EXPIRED",
+                        "createdOn": 1768813441.180822,
+                        "createdOnISO": "2026-01-19T09:04:01Z",
+                        "createdBy": 75197372,
+                        "lastUpdatedOn": 1768813441.180822,
+                        "lastUpdatedOnISO": "2026-01-19T09:04:01Z",
+                        "lastUpdatedBy": 75197372,
+                        "customFields": {},
+                        "active": true
+                      },
+                      "errors": [],
+                      "warnings": []
+                    },
+                    "summary": "Sample response for earn type- ISSUE_EARN"
+                  },
+                  "Sample response for expiry type- ABSOLUTE": {
+                    "value": {
+                      "data": {
+                        "id": "696df21c0772ad476ecf69d4",
+                        "badgeNumericId": 106,
+                        "orgId": 100737,
+                        "name": "badgetestjan16 01",
+                        "description": null,
+                        "startOn": 1768714500,
+                        "startOnISO": "2026-01-18T05:35:00Z",
+                        "expiresOn": 1769751300,
+                        "expiresOnISO": "2026-01-30T05:35:00Z",
+                        "earnedBadgeExpiry": {
+                          "expiryType": "ABSOLUTE",
+                          "type": "FIXED_DATE",
+                          "expiresOn": 1769751300,
+                          "expiresOnISO": "2026-01-30T05:35:00Z",
+                          "expireWithBadgeMeta": false
+                        },
+                        "issuedBadgeExpiry": null,
+                        "images": [],
+                        "ownership": {
+                          "restrictedToOwners": [
+                            "Milestones",
+                            "Loyalty"
+                          ],
+                          "claims": []
+                        },
+                        "customerConstraints": [
+                          {
+                            "constraintType": "CUSTOMER_BADGE_FIXED_VALUE",
+                            "maxEarnLimit": 100
+                          },
+                          {
+                            "constraintType": "CUSTOMER_BADGE_ROLLING_WINDOW",
+                            "maxEarnForDays": 1,
+                            "rollForDays": 1,
+                            "maxEarnForWeeks": 2,
+                            "rollForWeeks": 1,
+                            "maxEarnForMonths": 10,
+                            "rollForMonths": 1
+                          },
+                          {
+                            "constraintType": "CUSTOMER_BADGE_FIXED_WINDOW",
+                            "referenceId": "53b1267d-4907-364a-a2ae-5989a9b2123a",
+                            "durationType": "WEEKS",
+                            "startDayOfTheWeek": "TUESDAY",
+                            "maxEarnLimit": 2,
+                            "startDateISO": null,
+                            "endDateISO": null
+                          }
+                        ],
+                        "badgeConstraints": [
+                          {
+                            "constraintType": "BADGE_FIXED_VALUE",
+                            "maxEarnLimit": 10000
+                          }
+                        ],
+                        "benefits": [],
+                        "tags": [],
+                        "badgeGroupId": null,
+                        "badgeRank": null,
+                        "earnType": "EARN",
+                        "status": "LIVE",
+                        "createdOn": 1768813084.80786,
+                        "createdOnISO": "2026-01-19T08:58:04Z",
+                        "createdBy": 75197372,
+                        "lastUpdatedOn": 1768813084.80786,
+                        "lastUpdatedOnISO": "2026-01-19T08:58:04Z",
+                        "lastUpdatedBy": 75197372,
+                        "customFields": {},
+                        "active": true
+                      },
+                      "errors": [],
+                      "warnings": []
+                    },
+                    "summary": "Sample response for expiry type- ABSOLUTE"
+                  }
+                },
+                "schema": {
+                  "oneOf": [
+                    {
+                      "title": "Earn type- Response",
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "example": "662749408fe258516a88fe89"
+                            },
+                            "orgId": {
+                              "type": "integer",
+                              "example": 100458,
+                              "default": 0
+                            },
+                            "name": {
+                              "type": "string",
+                              "example": "BADGE123"
+                            },
+                            "description": {
+                              "type": "string",
+                              "example": "Purchase 5 pet products in 3 months and get a pet grooming voucher"
+                            },
+                            "startOn": {
+                              "type": "integer",
+                              "example": 1716803487,
+                              "default": 0
+                            },
+                            "expiresOn": {
+                              "type": "integer",
+                              "example": 1726804000,
+                              "default": 0
+                            },
+                            "earnedBadgeExpiry": {
+                              "type": "object",
+                              "properties": {
+                                "expiryType": {
+                                  "type": "string",
+                                  "example": "ABSOLUTE"
+                                },
+                                "type": {
+                                  "type": "string",
+                                  "example": "WITH_BADGE_META"
+                                },
+                                "expiresOn": {},
+                                "expireWithBadgeMeta": {
+                                  "type": "boolean",
+                                  "example": true,
+                                  "default": true
+                                }
+                              }
+                            },
+                            "issuedBadgeExpiry": {},
+                            "images": {
+                              "type": "array"
+                            },
+                            "ownership": {
+                              "type": "object",
+                              "properties": {
+                                "restrictedToOwners": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string",
+                                    "example": "Milestones"
+                                  }
+                                },
+                                "claims": {
+                                  "type": "array"
+                                }
+                              }
+                            },
+                            "customerConstraints": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "constraintType": {
+                                    "type": "string",
+                                    "example": "CUSTOMER_BADGE_FIXED_WINDOW"
+                                  },
+                                  "referenceId": {
+                                    "type": "string",
+                                    "example": "e6791ec9-e92f-34af-bdc3-be2607fdf82c"
+                                  },
+                                  "durationType": {
+                                    "type": "string",
+                                    "example": "DAYS"
+                                  },
+                                  "refreshRate": {
+                                    "type": "integer",
+                                    "example": 3,
+                                    "default": 0
+                                  },
+                                  "maxEarnLimit": {
+                                    "type": "integer",
+                                    "example": 1,
+                                    "default": 0
+                                  },
+                                  "cycleStatus": {
+                                    "type": "string",
+                                    "example": "UPCOMING"
+                                  },
+                                  "startDate": {
+                                    "type": "integer",
+                                    "example": 1716803487,
+                                    "default": 0
+                                  },
+                                  "endDate": {
+                                    "type": "integer",
+                                    "example": 1726804000,
+                                    "default": 0
+                                  }
+                                }
+                              }
+                            },
+                            "badgeConstraints": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "constraintType": {
+                                    "type": "string",
+                                    "example": "BADGE_FIXED_WINDOW"
+                                  },
+                                  "referenceId": {
+                                    "type": "string",
+                                    "example": "a1350b49-eb8e-3500-9e43-01f5493c91c1"
+                                  },
+                                  "durationType": {
+                                    "type": "string",
+                                    "example": "DAYS"
+                                  },
+                                  "refreshRate": {
+                                    "type": "integer",
+                                    "example": 3,
+                                    "default": 0
+                                  },
+                                  "maxEarnLimit": {
+                                    "type": "integer",
+                                    "example": 2,
+                                    "default": 0
+                                  },
+                                  "startDate": {
+                                    "type": "integer",
+                                    "example": 1716803487,
+                                    "default": 0
+                                  },
+                                  "endDate": {
+                                    "type": "integer",
+                                    "example": 1726804000,
+                                    "default": 0
+                                  },
+                                  "cycleStatus": {
+                                    "type": "string",
+                                    "example": "UPCOMING"
+                                  }
+                                }
+                              }
+                            },
+                            "benefits": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "benefitType": {
+                                    "type": "string",
+                                    "example": "COUPON"
+                                  },
+                                  "seriesId": {
+                                    "type": "integer",
+                                    "example": 6789,
+                                    "default": 0
+                                  }
+                                }
+                              }
+                            },
+                            "badgeGroupId": {},
+                            "badgeRank": {
+                              "type": "integer",
+                              "example": 1,
+                              "default": 0
+                            },
+                            "earnType": {
+                              "type": "string",
+                              "example": "EARN"
+                            },
+                            "status": {
+                              "type": "string",
+                              "example": "UPCOMING"
+                            },
+                            "createdOn": {
+                              "type": "number",
+                              "example": 1713850688.8114,
+                              "default": 0
+                            },
+                            "createdBy": {
+                              "type": "integer",
+                              "example": 75086856,
+                              "default": 0
+                            },
+                            "lastUpdatedOn": {
+                              "type": "number",
+                              "example": 1713850688.8114,
+                              "default": 0
+                            },
+                            "lastUpdatedBy": {
+                              "type": "integer",
+                              "example": 75086856,
+                              "default": 0
+                            },
+                            "customFields": {
+                              "type": "object",
+                              "properties": {}
+                            },
+                            "active": {
+                              "type": "boolean",
+                              "example": false,
+                              "default": true
+                            }
+                          }
+                        },
+                        "errors": {
+                          "type": "array"
+                        },
+                        "warnings": {
+                          "type": "array"
+                        }
+                      }
+                    },
+                    {
+                      "title": "Issue earn type- Response",
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "example": "662748a08fe258516a88fe88"
+                            },
+                            "orgId": {
+                              "type": "integer",
+                              "example": 100458,
+                              "default": 0
+                            },
+                            "name": {
+                              "type": "string",
+                              "example": "Badge Issue earn"
+                            },
+                            "description": {
+                              "type": "string",
+                              "example": "Make 5 transactions"
+                            },
+                            "startOn": {
+                              "type": "integer",
+                              "example": 1716803487,
+                              "default": 0
+                            },
+                            "expiresOn": {
+                              "type": "integer",
+                              "example": 1726804000,
+                              "default": 0
+                            },
+                            "earnedBadgeExpiry": {
+                              "type": "object",
+                              "properties": {
+                                "expiryType": {
+                                  "type": "string",
+                                  "example": "RELATIVE"
+                                },
+                                "relativeExpirytype": {
+                                  "type": "string",
+                                  "example": "WEEKS"
+                                },
+                                "value": {
+                                  "type": "integer",
+                                  "example": 2,
+                                  "default": 0
+                                }
+                              }
+                            },
+                            "issuedBadgeExpiry": {
+                              "type": "object",
+                              "properties": {
+                                "expiryType": {
+                                  "type": "string",
+                                  "example": "ABSOLUTE"
+                                },
+                                "type": {
+                                  "type": "string",
+                                  "example": "FIXED_DATE"
+                                },
+                                "expiresOn": {
+                                  "type": "integer",
+                                  "example": 1926235957,
+                                  "default": 0
+                                },
+                                "expireWithBadgeMeta": {
+                                  "type": "boolean",
+                                  "example": false,
+                                  "default": true
+                                }
+                              }
+                            },
+                            "images": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "name": {
+                                    "type": "string",
+                                    "example": "Issued"
+                                  },
+                                  "fileSvcHandle": {
+                                    "type": "string",
+                                    "example": "qwer-8634-8938"
+                                  },
+                                  "url": {
+                                    "type": "string",
+                                    "example": "https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d"
+                                  },
+                                  "tag": {
+                                    "type": "string",
+                                    "example": "EARNED"
+                                  }
+                                }
+                              }
+                            },
+                            "ownership": {
+                              "type": "object",
+                              "properties": {
+                                "restrictedToOwners": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string",
+                                    "example": "Audience_Campaigns"
+                                  }
+                                },
+                                "claims": {
+                                  "type": "array"
+                                }
+                              }
+                            },
+                            "customerConstraints": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "constraintType": {
+                                    "type": "string",
+                                    "example": "CUSTOMER_BADGE_FIXED_WINDOW"
+                                  },
+                                  "referenceId": {
+                                    "type": "string",
+                                    "example": "e6791ec9-e92f-34af-bdc3-be2607fdf82c"
+                                  },
+                                  "durationType": {
+                                    "type": "string",
+                                    "example": "DAYS"
+                                  },
+                                  "refreshRate": {
+                                    "type": "integer",
+                                    "example": 3,
+                                    "default": 0
+                                  },
+                                  "maxEarnLimit": {
+                                    "type": "integer",
+                                    "example": 2,
+                                    "default": 0
+                                  },
+                                  "cycleStatus": {
+                                    "type": "string",
+                                    "example": "UPCOMING"
+                                  },
+                                  "startDate": {
+                                    "type": "integer",
+                                    "example": 1716803487,
+                                    "default": 0
+                                  },
+                                  "endDate": {
+                                    "type": "integer",
+                                    "example": 1926235957,
+                                    "default": 0
+                                  }
+                                }
+                              }
+                            },
+                            "badgeConstraints": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "constraintType": {
+                                    "type": "string",
+                                    "example": "BADGE_FIXED_VALUE"
+                                  },
+                                  "maxEarnLimit": {
+                                    "type": "integer",
+                                    "example": 10000,
+                                    "default": 0
+                                  }
+                                }
+                              }
+                            },
+                            "benefits": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "benefitType": {
+                                    "type": "string",
+                                    "example": "COUPON"
+                                  },
+                                  "seriesId": {
+                                    "type": "integer",
+                                    "example": 13745,
+                                    "default": 0
+                                  }
+                                }
+                              }
+                            },
+                            "badgeGroupId": {},
+                            "badgeRank": {
+                              "type": "integer",
+                              "example": 3,
+                              "default": 0
+                            },
+                            "earnType": {
+                              "type": "string",
+                              "example": "ISSUE_EARN"
+                            },
+                            "status": {
+                              "type": "string",
+                              "example": "UPCOMING"
+                            },
+                            "createdOn": {
+                              "type": "number",
+                              "example": 1713850528.63438,
+                              "default": 0
+                            },
+                            "createdBy": {
+                              "type": "integer",
+                              "example": 75086856,
+                              "default": 0
+                            },
+                            "lastUpdatedOn": {
+                              "type": "number",
+                              "example": 1713850528.63438,
+                              "default": 0
+                            },
+                            "lastUpdatedBy": {
+                              "type": "integer",
+                              "example": 75086856,
+                              "default": 0
+                            },
+                            "customFields": {
+                              "type": "object",
+                              "properties": {}
+                            },
+                            "active": {
+                              "type": "boolean",
+                              "example": true,
+                              "default": true
+                            }
+                          }
+                        },
+                        "errors": {
+                          "type": "array"
+                        },
+                        "warnings": {
+                          "type": "array"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n    \"data\": null,\n    \"errors\": [\n        {\n            \"code\": 728,\n            \"message\": \"Atleast one owner is required\",\n            \"reference\": \"ownership.restrictedToOwners\"\n        },\n        {\n            \"code\": 725,\n            \"message\": \"Badge name cannot be duplicate\",\n            \"reference\": null\n        },\n        {\n            \"code\": 722,\n            \"message\": \"Start Date cannot be past date\",\n            \"reference\": null\n        }\n    ],\n    \"warnings\": null\n}"
+                  },
+                  "Bad request": {
+                    "value": "{\n    \"data\": null,\n    \"errors\": [\n        {\n            \"code\": 714,\n            \"message\": \"Owner type is not allowed, Please check the configuration\",\n            \"reference\": null\n        },\n        {\n            \"code\": 728,\n            \"message\": \"Atleast one owner is required\",\n            \"reference\": \"ownership.restrictedToOwners\"\n        }\n    ],\n    \"warnings\": null\n}"
+                  }
+                },
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {},
+                        "errors": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "code": {
+                                "type": "integer",
+                                "example": 728,
+                                "default": 0
+                              },
+                              "message": {
+                                "type": "string",
+                                "example": "Atleast one owner is required"
+                              },
+                              "reference": {
+                                "type": "string",
+                                "example": "ownership.restrictedToOwners"
+                              }
+                            }
+                          }
+                        },
+                        "warnings": {}
+                      }
+                    },
+                    {
+                      "title": "Bad request",
+                      "type": "object",
+                      "properties": {
+                        "data": {},
+                        "errors": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "code": {
+                                "type": "integer",
+                                "example": 714,
+                                "default": 0
+                              },
+                              "message": {
+                                "type": "string",
+                                "example": "Owner type is not allowed, Please check the configuration"
+                              },
+                              "reference": {}
+                            }
+                          }
+                        },
+                        "warnings": {}
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "500",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n    \"data\": null,\n    \"errors\": [\n        {\n            \"code\": 999999,\n            \"message\": \"HV000028: Unexpected exception during isValid call.\",\n            \"reference\": null\n        }\n    ],\n    \"warnings\": null\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {},
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "code": {
+                            "type": "integer",
+                            "example": 999999,
+                            "default": 0
+                          },
+                          "message": {
+                            "type": "string",
+                            "example": "HV000028: Unexpected exception during isValid call."
+                          },
+                          "reference": {}
+                        }
+                      }
+                    },
+                    "warnings": {}
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic bWFka2YQ==' \\\n--header 'Cookie: _cfuvid=rvSJsUbK4DDG1qt9p.ywFArkr5WoVyHK8rR8vhrDpB4-1768813084882-0.0.1.1-604800000' \\\n--data '{\n    \"name\": \"Badge Issue earn type\",\n    \"description\": \"Make 5 transactions\",\n    \"startOn\": 1716803487,\n    \"expiresOn\": 1726804000,\n     \"earnType\": \"ISSUE_EARN\",\n         \"badgeRank\": 3,\n    \"earnedBadgeExpiry\": {\n        \"relativeExpirytype\": \"WEEKS\",\n        \"value\": 2,\n        \"expiryType\": \"RELATIVE\"\n    },\n    \"issuedBadgeExpiry\": {\n        \"type\": \"FIXED_DATE\",\n        \"expiresOn\": 1926235957,\n        \"expiryType\": \"ABSOLUTE\"\n    },\n    \"isActive\": true,\n    \"ownership\": {\n        \"restrictedToOwners\": [\n            \"Loyalty\",\n            \"Audience_Campaigns\"\n        ]\n    },\n  \"images\": [\n    {\n      \"name\": \"Issued\",\n      \"fileSvcHandle\": \"qwer-8634-8938\",\n        \"url\": \"https://firebasestorage.googleapis.com/v0/b/createbadges.appspot.com/o/images%2Fsuccess1.jpg?alt=media&token=66b2f0bc-9c55-4e33-a5e9-c6be96d94f2d\",\n        \"tag\": \"EARNED\"\n    }\n  ],\n\"customerConstraints\": [\n    {\n      \"constraintType\": \"CUSTOMER_BADGE_FIXED_WINDOW\",\n      \"maxEarnLimit\": 2,\n      \"durationType\":\"DAYS\",\n      \"refreshRate\":3,\n      \"startDayOfTheWeek\":1\n    }\n],\n    \"badgeConstraints\": [\n        {\n            \"constraintType\": \"BADGE_FIXED_VALUE\",\n            \"maxEarnLimit\": 10000\n        },\n        {\n            \"constraintType\": \"BADGE_ROLLING_WINDOW\",\n            \"rollType\": \"DAYS\",\n            \"rollValue\": 1,\n            \"maxEarnLimit\": 300\n        },\n        {\n            \"constraintType\": \"BADGE_ROLLING_WINDOW\",\n            \"rollType\": \"WEEKS\",\n            \"rollValue\": 1,\n            \"maxEarnLimit\": 3000\n        }\n    ]\n}'",
+              "name": "Sample request for earn type- ISSUE_EARN"
+            },
+            {
+              "language": "curl",
+              "code": "curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic bWFkaH2YQ==' \\\n--header 'Cookie: _cfuvid=rvSJsUbK4DDG1qt9p.ywFArkr5WoVyHK8rR8vhrDpB4-1768813084882-0.0.1.1-604800000' \\\n--data '{\n    \"name\": \"badgetestjan16 01\",\n    \n    \"startOn\": 1768714500,\n    \"expiresOn\": 1769751300,\n    \"earnedBadgeExpiry\": {\n        \"expiryType\": \"ABSOLUTE\",\n        \"type\": \"FIXED_DATE\",\n        \"expiresOn\": 1769751300\n    },\n    \"ownership\": {\n        \"restrictedToOwners\": [\n            \"Loyalty\",\n            \"Milestones\"\n        ],\n        \"claims\": [\n            {\n                \"ownerType\": \"Loyalty\",\n                \"referenceId\": \"626\"\n            }\n        ]\n    },\n    \"customerConstraints\": [\n        {\n            \"constraintType\": \"CUSTOMER_BADGE_FIXED_VALUE\",\n            \"maxEarnLimit\": 100\n        },\n        {\n            \"constraintType\": \"CUSTOMER_BADGE_ROLLING_WINDOW\",\n            \"maxEarnForDays\": 1,\n            \"rollForDays\": 1,\n            \"maxEarnForWeeks\": 2,\n            \"rollForWeeks\": 1,\n            \"maxEarnForMonths\": 10,\n            \"rollForMonths\": 1\n        }\n    ],\n    \"badgeConstraints\": [\n        {\n            \"constraintType\": \"BADGE_FIXED_VALUE\",\n            \"maxEarnLimit\": 10000\n        },\n        {\n            \"constraintType\": \"CUSTOMER_BADGE_FIXED_WINDOW\",\n            \"maxEarnLimit\": 2,\n            \"durationType\": \"WEEKS\",\n            \"refreshRate\": 3,\n            \"startDayOfTheWeek\": 1\n        }\n    \n],\n\"earnType\": \"EARN\"\n}'",
+              "name": "Sample request for expiry type- ABSOLUTE"
+            }
+          ],
+          "samples-languages": [
+            "curl"
+          ]
+        }
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "key": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  },
+  "x-readme-fauxas": true
+}
+```

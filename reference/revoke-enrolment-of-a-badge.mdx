@@ -2,4 +2,568 @@
 title: Revoke enrolled badges
 ---
 
+This API allows you to revoke the enrolment of a badge for the customer.
 
+<Callout kind="tip" title="Note">
+
+For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
+
+</Callout>
+
+## Prerequisites
+
+* [ ] Authentication: Basic or OAuth authentication
+* [ ] Default access group
+
+## Resource information
+
+|               |                                                        |
+| :------------ | :----------------------------------------------------- |
+| URI           | /api_gateway/v1/badges/badgeMeta/customer/revokeIssue |
+| HTTP method   | POST                                                   |
+| Rate limit    | NA                                                     |
+| Batch support | NA                                                     |
+
+## API endpoint example
+
+`https://eucrm.cc.capillarytech.com/api_gateway/v1/badges/badgeMeta/customer/revokeIssue`
+
+## Request body parameters
+
+| Parameter     | Data Type | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| ------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| badgeMetaId* | String    | Unique identifier ("id") generated during the creation of the badge                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| customers*   | Array     | Contains unique identifier for the customer related to the revoked badge. If customerId is passed and there are multiple issuances, all associated issuances will be revoked. Limit for passing customers and revokeIssuals are **20**.                                                                                                                                                                                                                                                |
+| revokeIssuals | Array     | Contains the details of the customer (`customerId`) and the badge issue ID (`issueId`) that need to be revoked. **NOTE:** The fields customers and revokeIssuals are mutually exclusive, meaning only one of them should be provided at a time in the request. If revokeIssuals is passed, the API will only revoke the specified issualId provided in the request. If both customers and revokeIssuals are passed then revokeIssuals are given priority and customers will be ignore. |
+
+<CodeGroup show-lines="true" tabs={["With Revoke Issuals", "With only customers"]}>
+
+  ```json
+  {
+     "badgeMetaId": "670371e39235f02fd5d71cbd",
+     "revokeIssuals": [
+         { "customerId": "387403362", "issueId": "236" },
+         { "customerId": "387403360", "issueId": "234" }
+     ]
+  }
+  ```
+
+  ```json
+  {
+    "badgeMetaId": "654bb48766a87827bb61e631",
+    "customers": [
+      123,62090013
+    ]
+  }
+  ```
+
+</CodeGroup>
+
+## Response parameters
+
+| Parameter           | Description                                                         |
+| ------------------- | ------------------------------------------------------------------- |
+| badgeMetaId         | Unique identifier for the badge metadata.                           |
+| revokedIssuedBadges | Contains details about the badges that were attempted to be revoked |
+| customerId          | Unique identifier for the customer related to the revoked badge.    |
+| issuedId            | Unique identifier for the issued badge that was revoked.            |
+| error               | Object to indicate any errors.                                      |
+| requestId           | A unique identifier for the request.                                |
+| errors              | Array to list any errors.                                           |
+| warnings            | Array to list any warnings.                                         |
+
+<CodeGroup show-lines="true" tabs={["Single customer", "Multiple customers", "With Revoke Issuals", "Failure: Customer is not issued", "Failure: Issued badge doesn't belong to customer", "Failure: RevokeIssuals or CustomerId is mandatory"]}>
+
+  ```json
+  {
+      "data": {
+          "badgeMetaId": "653de84db3cda7078c7c68ed",
+          "revokedIssuedBadges": [
+              {
+                  "customerId": 62090013,
+                  "issuedId": "653e024bb3cda7078c7c6903",
+                  "error": null
+              }
+          ],
+          "requestId": null
+      },
+      "errors": [],
+      "warnings": []
+  }
+  ```
+
+  ```json
+  {
+      "data": {
+          "badgeMetaId": "654bb48766a87827bb61e631",
+          "revokedIssuedBadges": [
+              {
+                  "customerId": 123,
+                  "issuedId": "654cc02b6bccde1274b6d3a7",
+                  "error": null
+              },
+              {
+                  "customerId": 62090013,
+                  "issuedId": "654cc03e6bccde1274b6d3a9",
+                  "error": null
+              }
+          ],
+          "requestId": null
+      },
+      "errors": [],
+      "warnings": []
+  }
+  ```
+
+  ```json
+  {
+     "data": {
+         "badgeMetaId": "66e3ef1b5abea9582ae4f301",
+         "revokedIssuedBadges": [
+             { "customerId": 12323, "issuedId": "66e3ef1e5abea9582ae4f302" }
+         ]
+     },
+     "errors": [],
+     "warnings": []
+  }
+  ```
+
+  ```json
+  {
+      "data": {
+          "badgeMetaId": "670371e39235f02fd5d71cbd",
+          "revokedIssuedBadges": [
+              {
+                  "customerId": 555567088,
+                  "error": {
+                      "code": 404,
+                      "message": "Customer doesn't have issue instance",
+                      "reference": null
+                  }
+              }
+          ],
+          "requestId": null
+      },
+      "errors": [],
+      "warnings": []
+  }
+  ```
+
+  ```json
+  {
+    "data": {
+      "badgeMetaId": "66e3d6335abea9582ae4f264",
+      "revokedIssuedBadges": [
+        {
+          "customerId": 12323,
+          "issuedId": "66e3ef1e5abea9582ae4f302",
+          "error": {
+            "message": "issue doesn't belong to customer",
+            "reference": null
+          }
+        }
+      ],
+      "requestId": null
+    },
+    "errors": [],
+    "warnings": []
+  }
+  ```
+
+  ```json
+  {
+      "data": null,
+      "errors": [
+          {
+              "code": 1051,
+              "message": "RevokeIssuals or CustomerId is mandatory",
+              "reference": null
+          }
+      ],
+      "warnings": null
+  }
+  ```
+
+</CodeGroup>
+
+## API-specific error codes
+
+| Error code | Description                               |
+| :--------- | :---------------------------------------- |
+| 404        | Passed badge is not issued.               |
+| 1051       | RevokeIssuals or CustomerId is not passed |
+
+## OpenAPI definition
+
+```json
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "v1",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://{host}",
+      "variables": {
+        "host": {
+          "default": "host"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/api_gateway/v1/badges/badgeMeta/customer/revokeIssue": {
+      "post": {
+        "summary": "Revoke enrolled badges",
+        "description": "",
+        "operationId": "revoke-enrolment-of-a-badge",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "badgeMetaId",
+                  "customers"
+                ],
+                "properties": {
+                  "badgeMetaId": {
+                    "type": "string",
+                    "description": "Unique identifier for the badge metadata"
+                  },
+                  "customers": {
+                    "type": "object",
+                    "properties": {
+                      "customerID": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "With Revoke Issuals": {
+                  "value": {
+                    "badgeMetaId": "670371e39235f02fd5d71cbd",
+                    "revokeIssuals": [
+                      {
+                        "customerId": "387403362",
+                        "issueId": "236"
+                      },
+                      {
+                        "customerId": "387403360",
+                        "issueId": "234"
+                      }
+                    ]
+                  }
+                },
+                "Multiple customers": {
+                  "value": {
+                    "badgeMetaId": "654bb48766a87827bb61e631",
+                    "customers": [
+                      123,
+                      62090013
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Single Customer": {
+                    "value": "{\n    \"data\": {\n        \"badgeMetaId\": \"653de84db3cda7078c7c68ed\",\n        \"revokedIssuedBadges\": [\n            {\n                \"customerId\": 62090013,\n                \"issuedId\": \"653e024bb3cda7078c7c6903\",\n                \"error\": null\n            }\n        ],\n        \"requestId\": null\n    },\n    \"errors\": [],\n    \"warnings\": []\n}"
+                  },
+                  "Failure: Customer is not issued": {
+                    "value": "{\n    \"data\": {\n        \"badgeMetaId\": \"653de84db3cda7078c7c68ed\",\n        \"revokedIssuedBadges\": [\n            {\n                \"customerId\": 123,\n                \"issuedId\": null,\n                \"error\": {\n                    \"code\": 404,\n                    \"message\": \"Customer doesn't have issue instance\",\n                    \"reference\": null\n                }\n            }\n        ],\n        \"requestId\": null\n    },\n    \"errors\": [],\n    \"warnings\": []\n}"
+                  },
+                  "Multiple Customer": {
+                    "value": "{\n    \"data\": {\n        \"badgeMetaId\": \"654bb48766a87827bb61e631\",\n        \"revokedIssuedBadges\": [\n            {\n                \"customerId\": 123,\n                \"issuedId\": \"654cc02b6bccde1274b6d3a7\",\n                \"error\": null\n            },\n            {\n                \"customerId\": 62090013,\n                \"issuedId\": \"654cc03e6bccde1274b6d3a9\",\n                \"error\": null\n            }\n        ],\n        \"requestId\": null\n    },\n    \"errors\": [],\n    \"warnings\": []\n}"
+                  },
+                  "With Revoke Issual": {
+                    "value": "{\n   \"data\": {\n       \"badgeMetaId\": \"66e3ef1b5abea9582ae4f301\",\n       \"revokedIssuedBadges\": [\n           { \"customerId\": 12323, \"issuedId\": \"66e3ef1e5abea9582ae4f302\" }\n       ]\n   },\n   \"errors\": [],\n   \"warnings\": []\n}"
+                  },
+                  "Failure: RevokeIssuals or CustomerId is not passed": {
+                    "value": "{\n    \"data\": null,\n    \"errors\": [\n        {\n            \"code\": 1051,\n            \"message\": \"RevokeIssuals or CustomerId is mandatory\",\n            \"reference\": null\n        }\n    ],\n    \"warnings\": null\n}"
+                  }
+                },
+                "schema": {
+                  "oneOf": [
+                    {
+                      "title": "Single Customer",
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "badgeMetaId": {
+                              "type": "string",
+                              "example": "653de84db3cda7078c7c68ed"
+                            },
+                            "revokedIssuedBadges": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "customerId": {
+                                    "type": "integer",
+                                    "example": 62090013,
+                                    "default": 0
+                                  },
+                                  "issuedId": {
+                                    "type": "string",
+                                    "example": "653e024bb3cda7078c7c6903"
+                                  },
+                                  "error": {}
+                                }
+                              }
+                            },
+                            "requestId": {}
+                          }
+                        },
+                        "errors": {
+                          "type": "array"
+                        },
+                        "warnings": {
+                          "type": "array"
+                        }
+                      }
+                    },
+                    {
+                      "title": "Failure: Customer is not issued",
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "badgeMetaId": {
+                              "type": "string",
+                              "example": "653de84db3cda7078c7c68ed"
+                            },
+                            "revokedIssuedBadges": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "customerId": {
+                                    "type": "integer",
+                                    "example": 123,
+                                    "default": 0
+                                  },
+                                  "issuedId": {},
+                                  "error": {
+                                    "type": "object",
+                                    "properties": {
+                                      "code": {
+                                        "type": "integer",
+                                        "example": 404,
+                                        "default": 0
+                                      },
+                                      "message": {
+                                        "type": "string",
+                                        "example": "Customer doesn't have issue instance"
+                                      },
+                                      "reference": {}
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "requestId": {}
+                          }
+                        },
+                        "errors": {
+                          "type": "array"
+                        },
+                        "warnings": {
+                          "type": "array"
+                        }
+                      }
+                    },
+                    {
+                      "title": "Multiple Customer",
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "badgeMetaId": {
+                              "type": "string",
+                              "example": "654bb48766a87827bb61e631"
+                            },
+                            "revokedIssuedBadges": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "customerId": {
+                                    "type": "integer",
+                                    "example": 123,
+                                    "default": 0
+                                  },
+                                  "issuedId": {
+                                    "type": "string",
+                                    "example": "654cc02b6bccde1274b6d3a7"
+                                  },
+                                  "error": {}
+                                }
+                              }
+                            },
+                            "requestId": {}
+                          }
+                        },
+                        "errors": {
+                          "type": "array"
+                        },
+                        "warnings": {
+                          "type": "array"
+                        }
+                      }
+                    },
+                    {
+                      "title": "With Revoke Issual",
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "badgeMetaId": {
+                              "type": "string",
+                              "example": "66e3ef1b5abea9582ae4f301"
+                            },
+                            "revokedIssuedBadges": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "customerId": {
+                                    "type": "integer",
+                                    "example": 12323,
+                                    "default": 0
+                                  },
+                                  "issuedId": {
+                                    "type": "string",
+                                    "example": "66e3ef1e5abea9582ae4f302"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "errors": {
+                          "type": "array"
+                        },
+                        "warnings": {
+                          "type": "array"
+                        }
+                      }
+                    },
+                    {
+                      "title": "Failure: RevokeIssuals or CustomerId is not passed",
+                      "type": "object",
+                      "properties": {
+                        "data": {},
+                        "errors": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "code": {
+                                "type": "integer",
+                                "example": 1051,
+                                "default": 0
+                              },
+                              "message": {
+                                "type": "string",
+                                "example": "RevokeIssuals or CustomerId is mandatory"
+                              },
+                              "reference": {}
+                            }
+                          }
+                        },
+                        "warnings": {}
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n    \"data\": null,\n    \"errors\": [\n        {\n            \"code\": 404,\n            \"message\": \"Passed badge is not found\",\n            \"reference\": null\n        }\n    ],\n    \"warnings\": null\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {},
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "code": {
+                            "type": "integer",
+                            "example": 404,
+                            "default": 0
+                          },
+                          "message": {
+                            "type": "string",
+                            "example": "Passed badge is not found"
+                          },
+                          "reference": {}
+                        }
+                      }
+                    },
+                    "warnings": {}
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "key": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  },
+  "x-readme-fauxas": true
+}
+```

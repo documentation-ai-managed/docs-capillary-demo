@@ -2,4 +2,425 @@
 title: Get user rank across target groups
 ---
 
+The API fetches a user’s rankings in all enrolled targets within a timeframe.
 
+<Callout kind="tip" title="Note">
+
+For detailed information about our APIs and for hands-on testing, refer documentation on [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on [making your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
+
+</Callout>
+
+## Prerequisites
+
+* [ ] Authentication: Basic/OAuth authentication
+* [ ] Default access group
+* [ ] Enable leaderboards for the organisation.
+* [ ] Create a target milestone or streak.
+* [ ] Enable leaderboards for the milestone or streak
+
+## Resource Information
+
+|                        |                                                                |
+| :--------------------- | :------------------------------------------------------------- |
+| URI                    | api_gateway/intouch-api-v3/v3.1/leaderboards/user`{userId}` |
+| HTTP Method            | GET                                                            |
+| Pagination             | No                                                             |
+| Rate limit information | NA                                                             |
+
+## API Endpoint Example
+
+`https://eu.api.capillarytech.com/api_gateway/intouch-api-v3/v3.1/leaderboards/user/381329847`
+
+## Headers
+
+| Header         | Description                                                                                                                                                                                                                                                                                                                                                                                                        |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| DATA-SCOPE-ORG | List of Organisation IDs                                                                                                                                                                                                                                                                                                                                                                                           |
+| DATA-SCOPE     | Scopes define what data can be accessed using the API. You can use scopes to control access to data from a parent or child organisation. Defining a scope ensures that the response contains only data from the respective organisation. Supported headers: SELF, OTHER and ALL.  Refer to connected orgs [data scopes](https://docs.capillarytech.com/reference/connected-orgs-data-scopes) for more information. |
+
+## Request query parameters
+
+| Parameters (Parameters marked with * sign are mandatory) | Type | Description                    |
+| --------------------------------------------------------- | ---- | ------------------------------ |
+| userID                                                    | Int  | The unique ID of the customer. |
+
+## Request body
+
+```json
+[
+   {
+        "orgId" : 50711,
+        "targetGroupId" : 232,
+        "targetRuleId" : 365,
+        "periodId": 243
+    },
+    {
+        "orgId" : 50711,
+        "targetGroupId" : 232,
+        "targetRuleId" : 366 ,
+        "periodId" : 243
+    }
+]
+```
+
+## Request body parameters
+
+| Parameters (Parameters marked with * sign are mandatory) | Type | Description                                           |
+| --------------------------------------------------------- | ---- | ----------------------------------------------------- |
+| orgId                                                     | Long | Unique identifier for the organisation.               |
+| targetGroupId*                                           | Long | Unique identifier for target group                    |
+| targetRuleId*                                            | Long | Unique identifier for target rule.                    |
+| Maximum of 25 rule IDs supported.                         |      |                                                       |
+| periodId                                                  | Long | Identifier of period for which result will be fetched |
+
+## Response body
+
+```json
+{
+  "data": {
+    "lastSyncTime": "2024-06-24T17:37:00.000IST",
+    "lastSyncTimeISO": "2024-06-24T12:07:00.000Z",
+    "customerId": 381329847,
+    "userEnrichmentDetails": {
+      "mobile": "9988221100",
+      "last_name": "",
+      "first_name": "",
+      "email": "tom.sawyer@capillarytech.com"
+    },
+    "userRanks": [
+      {
+        "orgId": 50711,
+        "targetGroupId": 232,
+        "targetRuleId": 366,
+        "periodId": 243,
+        "achievedValue": 3000,
+        "rank": 1771,
+        "lastActivityTime": "2022-11-25T21:45:05.000IST",
+        "lastActivityTimeISO": "2022-11-25T16:15:05.000Z",
+        "totalUsersInTargetGroup": 4527
+      }
+    ]
+  },
+  "errors": [],
+  "warnings": []
+}
+```
+
+## Response parameters
+
+| Parameters | Data Type | Description |
+| --- | --- | --- |
+| data | Object | An object that contains details of the leaderboard. |
+| – lastSyncTime | String | The time when the data was updated. Supported format: `YYYY-MM-DDTHH:MM:SS.000z` The system uses the organisation time zone to display the time. Note: This field will be deprecated in the future and is being replaced by lastSyncTimeISO |
+| – lastSyncTimeISO |  | Indicates the last sync date and time in ISO 8601 format, returned in the server time zone. EU server example 2025-12-16T14:30:45Z → 16 December 2025, 14:30:45 (UTC) India server example 2025-12-16T14:30:45+05:30 → 16 December 2025, 14:30:45 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
+| – customerId | Integer | Identifier of the customer. |
+| – userEnrichmentDetails | Object | An object that contains key-value pairs of information related to the user. |
+| – userRanks | Object | A list of the user’s ranks across different target rules. |
+| – orgId | Integer | The organisation ID to which the target group belongs. |
+| – targetGroupId | Integer | The unique identifier for the target group. |
+| – targetRuleId | Integer | The unique ID of the target rule. A target rule is a set of parameters that define the rules for achieving a target. |
+| – periodId | Integer | The unique ID of the target period. A period is a set of parameters that define the timeframe for a target. |
+| – achievedValue | Long | The value achieved by the user for that target rule. Example: If the customer has earned 5000 points, the value will be 5000. |
+| – rank | Integer | Rank of the user in the target group for the target rule in the target period. |
+| – lastActivityTime | String | Last activity time Supported format: `YYYY-MM-DDTHH:MM:SS.000z` Note: This field will be deprecated in the future and is being replaced by lastActivityTimeISO. |
+| -lastActivityTimeISO | DateTime | Indicates the last activity's date and time in ISO 8601 format, returned in the server time zone. EU server example 2025-12-16T14:30:45Z → 16 December 2025, 14:30:45 (UTC) India server example 2025-12-16T14:30:45+05:30 → 16 December 2025, 14:30:45 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
+| – totalUsersInTargetGroup | Integer | The number of users enrolled in the target rule. |
+| errors | Object | Errors encountered while fetching the object. |
+| warnings | Object | Warnings encountered while fetching object. |
+
+## API-specific warnings and errors
+
+| Error Code | Description | Reason |
+| --- | --- | --- |
+| * | Maximum number of target rules allowed is 25, only first 25 target rules will be considered | More than 25 target rules are passed in the request body |
+| * | Target group id 999 not found or deactivated | The target group ID is invalid or not found. |
+| * | Leaderboard is not enabled for the target group id 43879 | Leaderboard is not enabled for the requested target group. |
+| * | Target rule id 999 does not belong to target group id 232 | The target rule ID passed does not belong to the target group passed or is invalid. |
+| * | Target period id 999 not found for the target id 366 | The target period ID passed does not belong to the target group passed or is invalid. |
+| * | No active target period found for the target id 366 | The current target period does not exist. |
+| 51512 | The following orgs are not part of the hierarchy | One or more of the organisations passed is not part of the connected organisation hierarchy. |
+| 310133 | Leaderboards are not enabled for the following orgs | Leaderboards are not enabled for the organisation. |
+
+## OpenAPI definition
+
+```json
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "v1",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://{host}",
+      "variables": {
+        "host": {
+          "default": "host"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/api_gateway/intouch-api-v3/v3.1/leaderboards/user/{userID}": {
+      "get": {
+        "summary": "Get user rank across target groups",
+        "description": "",
+        "operationId": "get-user-ranks-across-target-groups",
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "query",
+            "description": "The unique ID of the customer.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "DATA-SCOPE-ORG",
+            "in": "header",
+            "description": "List of Organisation IDs",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "DATA-SCOPE",
+            "in": "header",
+            "description": "Scopes define what data can be accessed using the API. You can use scopes to control access to data from a parent or child organisation. Defining a scope ensures that the response contains only data from the respective organisation.  Supported headers: SELF, OTHER and ALL.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "targetGroupId",
+                  "targetRuleId"
+                ],
+                "properties": {
+                  "orgId": {
+                    "type": "integer",
+                    "description": "Unique identifier for the organisation.",
+                    "format": "int64"
+                  },
+                  "targetGroupId": {
+                    "type": "integer",
+                    "description": "Unique identifier for target group",
+                    "format": "int64"
+                  },
+                  "targetRuleId": {
+                    "type": "integer",
+                    "description": "Unique identifier for target rule. Maximum of 25 rule IDs supported.",
+                    "format": "int64"
+                  },
+                  "periodId": {
+                    "type": "integer",
+                    "description": "Identifier of period for which result will be fetched",
+                    "format": "int64"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": {
+                      "data": {
+                        "lastSyncTime": "2024-06-24T17:37:00.000IST",
+                        "lastSyncTimeISO": "2024-06-24T12:07:00.000Z",
+                        "customerId": 381329847,
+                        "userEnrichmentDetails": {
+                          "mobile": "9988221100",
+                          "last_name": "",
+                          "first_name": "",
+                          "email": "tom.sawyer@capillarytech.com"
+                        },
+                        "userRanks": [
+                          {
+                            "orgId": 50711,
+                            "targetGroupId": 232,
+                            "targetRuleId": 366,
+                            "periodId": 243,
+                            "achievedValue": 3000,
+                            "rank": 1771,
+                            "lastActivityTime": "2022-11-25T21:45:05.000IST",
+                            "lastActivityTimeISO": "2022-11-25T16:15:05.000Z",
+                            "totalUsersInTargetGroup": 4527
+                          }
+                        ]
+                      },
+                      "errors": [],
+                      "warnings": []
+                    }
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "lastSyncTime": {
+                          "type": "string",
+                          "example": "2024-06-24T17:37:00.000IST"
+                        },
+                        "customerId": {
+                          "type": "integer",
+                          "example": 381329847,
+                          "default": 0
+                        },
+                        "userEnrichmentDetails": {
+                          "type": "object",
+                          "properties": {
+                            "mobile": {
+                              "type": "string",
+                              "example": "9988221100"
+                            },
+                            "last_name": {
+                              "type": "string",
+                              "example": ""
+                            },
+                            "first_name": {
+                              "type": "string",
+                              "example": ""
+                            },
+                            "email": {
+                              "type": "string",
+                              "example": "tom.sawyer@capillarytech.com"
+                            }
+                          }
+                        },
+                        "userRanks": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "orgId": {
+                                "type": "integer",
+                                "example": 50711,
+                                "default": 0
+                              },
+                              "targetGroupId": {
+                                "type": "integer",
+                                "example": 232,
+                                "default": 0
+                              },
+                              "targetRuleId": {
+                                "type": "integer",
+                                "example": 366,
+                                "default": 0
+                              },
+                              "periodId": {
+                                "type": "integer",
+                                "example": 243,
+                                "default": 0
+                              },
+                              "achievedValue": {
+                                "type": "integer",
+                                "example": 3000,
+                                "default": 0
+                              },
+                              "rank": {
+                                "type": "integer",
+                                "example": 1771,
+                                "default": 0
+                              },
+                              "lastActivityTime": {
+                                "type": "string",
+                                "example": "2022-11-25T21:45:05.000IST"
+                              },
+                              "totalUsersInTargetGroup": {
+                                "type": "integer",
+                                "example": 4527,
+                                "default": 0
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "errors": {
+                      "type": "array"
+                    },
+                    "warnings": {
+                      "type": "array"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl -L -X GET 'https://eu.api.capillarytech.com/api_gateway/intouch-api-v3/v3.1/leaderboards/user/381329847' --d '[\n   {\n        \"orgId\" : 50711,\n        \"targetGroupId\" : 232,\n        \"targetRuleId\" : 365,\n        \"periodId\": 243\n    },\n    {\n        \"orgId\" : 50711,\n        \"targetGroupId\" : 232,\n        \"targetRuleId\" : 366 ,\n        \"periodId\" : 243\n    }"
+            }
+          ],
+          "samples-languages": [
+            "curl"
+          ]
+        }
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "key": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  },
+  "x-readme-fauxas": true
+}
+```

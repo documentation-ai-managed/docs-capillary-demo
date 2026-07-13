@@ -2,4 +2,351 @@
 title: Get list of Catalog promotions
 ---
 
+This API is used to get the list of catalog promotions for a brand.
 
+<Callout kind="tip" title="Note">
+
+For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
+
+</Callout>
+
+## Prerequisites
+
+* [ ] Authentication: Basic or OAuth authentication
+* [ ] Default access group
+
+## Resource information
+
+|                        |                                                           |
+| :--------------------- | :-------------------------------------------------------- |
+| URI                    | /api_gateway/rewards/core/v1/promotion/brand`{brand Id}` |
+| HTTP Method            | GET                                                       |
+| Pagination             | No                                                        |
+| Batch support          | No                                                        |
+| Rate limit information | None                                                      |
+
+## API endpoint example
+
+`https://eucrm.cc.capillarytech.com/api_gateway/rewards/core/v1/promotion/brand/1`
+
+## Request path parameters
+
+| Parameters | Data Type | Description                            |
+| :--------- | :-------- | :------------------------------------- |
+| Brand ID* | Integer   | Unique identifier for the brand. Ex: 1 |
+
+<br />
+
+```bash
+https://eucrm.cc.capillarytech.com/api_gateway/rewards/core/v1/promotion/brand/1 
+```
+
+<br />
+
+## Response parameters
+
+| Parameter Name        | Data Type   | Description                                                                          |
+| --------------------- | ----------- | ------------------------------------------------------------------------------------ |
+| status                | Object      | Contains the status information of the request.                                      |
+| success               | Boolean     | Indicates the success status of the request.                                         |
+| code                  | Integer     | The status code of the response.                                                     |
+| message               | String      | The message describing the status.                                                   |
+| id                    | Integer     | The unique identifier of the catalog promotion.                                      |
+| name                  | String      | The name of the catalog promotion.                                                   |
+| orgId                 | Integer     | The organization ID associated with the promotion.                                   |
+| isEnabled             | Boolean     | Indicates whether the promotion is enabled.                                          |
+| startTime             | String      | The start time of the promotion.                                                     |
+| startDateTime         | String      | Start date and time of the field in ISO 8601 format (YYYY-MM-DDTHH:MM:SSZ)           |
+| endTime               | String      | The end time of the promotion.                                                       |
+| endDateTime           | String      | End date and time of the field in ISO 8601 format (YYYY-MM-DDTHH:MM:SSZ)             |
+| discountType          | String      | The type of discount applied in the promotion.                                       |
+| discountValue         | Number      | The value of the discount.                                                           |
+| lastUpdatedOn         | Date        | Last updated on date and time of the field in `YYYY-MM-DDTHH:MM:SS`                  |
+| lastUpdatedOnDateTime | String      | Last updated on date and time of the field in ISO 8601 format (YYYY-MM-DDTHH:MM:SSZ) |
+| createdOn             | Date        | Created on date and time of the field in `YYYY-MM-DDTHH:MM:SS`                       |
+| createdOnDateTime     | String      | Created on date and time of the field in ISO 8601 format (YYYY-MM-DDTHH:MM:SSZ)      |
+| lastUpdatedBy         | Integer     | The ID of the user who last updated the promotion.                                   |
+| createdBy             | Integer     | The ID of the user who created the promotion.                                        |
+| languageSpecificInfo  | Null/Object | Language-specific information, if available.                                         |
+
+```json title="200 OK"
+{
+    "status": {
+        "success": true,
+        "code": 11008,
+        "message": "Catalog promotion fetched successfully."
+    },
+    "catalogPromotions": [
+        {
+            "id": 1,
+            "name": "P1- R-5165 P1- R-5165 upadted 2",
+            "orgId": 100458,
+            "isEnabled": false,
+            "startTime": "2023-04-26 06:58:49",
+            "startDateTime": "2023-04-26T06:58:49Z",
+            "endTime": "2024-10-25 11:16:00",
+            "endDateTime": "2024-10-25T11:16:00Z",
+            "discountType": "ABSOLUTE",
+            "discountValue": 1.00,
+            "lastUpdatedOn": "2023-11-16 10:10:03",
+            "lastUpdatedOnDateTime": "2023-11-16T10:10:03Z",
+            "createdOn": "2023-04-25 13:59:28",
+            "createdOnDateTime": "2023-11-16T10:10:03Z",
+            "lastUpdatedBy": 75078478,
+            "createdBy": 75078478,
+            "languageSpecificInfo": null,
+            "customFields": {
+                "A": "1",
+                "CF1233": "1",
+                "EnumCF2": "r1",
+                "EnumCF1": "white"
+            }
+        },
+        {
+            "id": 8800,
+            "name": "test1",
+            "orgId": 100458,
+            "isEnabled": true,
+            "startTime": "2025-03-14 20:58:49",
+            "startDateTime": "2025-03-14T20:58:49Z",
+            "endTime": "2025-10-25 05:46:00",
+            "endDateTime": "2025-10-25T05:46:00Z",
+            "discountType": "ABSOLUTE",
+            "discountValue": 1.00,
+            "lastUpdatedOn": "2025-03-13 09:48:42",
+            "lastUpdatedOnDateTime": "2025-03-13T09:48:42Z",
+            "createdOn": "2025-03-13 09:48:42",
+            "createdOnDateTime": "2025-03-13T09:48:42Z",
+            "lastUpdatedBy": 75140757,
+            "createdBy": 75140757,
+            "languageSpecificInfo": null,
+            "customFields": {
+                "A": "1",
+                "CF1233": "1",
+                "EnumCF2": "r1",
+                "EnumCF1": "white"
+            }
+        }
+    ]
+}
+```
+
+## OpenAPI definition
+
+```json
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "v1",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://{host}",
+      "variables": {
+        "host": {
+          "default": "host"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/api_gateway/rewards/core/v1/promotion/brand/{brand Id}": {
+      "get": {
+        "summary": "Get list of Catalog promotions",
+        "description": "",
+        "operationId": "get-list-of-catalog-promotions",
+        "parameters": [
+          {
+            "name": "BrandId",
+            "in": "query",
+            "description": "Unique ID of the brand.",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n    \"status\": {\n        \"success\": true,\n        \"code\": 11008,\n        \"message\": \"Catalog promotion fetched successfully.\"\n    },\n    \"catalogPromotions\": [\n        {\n            \"id\": 1,\n            \"name\": \"P1- R-5165 P1- R-5165 upadted 2\",\n            \"orgId\": 100458,\n            \"isEnabled\": false,\n            \"startTime\": \"2023-04-26 06:58:49\",\n            \"startDateTime\": \"2023-04-26T06:58:49Z\",\n            \"endTime\": \"2024-10-25 11:16:00\",\n            \"endDateTime\": \"2024-10-25T11:16:00Z\",\n            \"discountType\": \"ABSOLUTE\",\n            \"discountValue\": 1.00,\n            \"lastUpdatedOn\": \"2023-11-16 10:10:03\",\n            \"lastUpdatedOnDateTime\": \"2023-11-16T10:10:03Z\",\n            \"createdOn\": \"2023-04-25 13:59:28\",\n            \"createdOnDateTime\": \"2023-11-16T10:10:03Z\",\n            \"lastUpdatedBy\": 75078478,\n            \"createdBy\": 75078478,\n            \"languageSpecificInfo\": null,\n            \"customFields\": {\n                \"A\": \"1\",\n                \"CF1233\": \"1\",\n                \"EnumCF2\": \"r1\",\n                \"EnumCF1\": \"white\"\n            }\n        },\n        {\n            \"id\": 8800,\n            \"name\": \"test1\",\n            \"orgId\": 100458,\n            \"isEnabled\": true,\n            \"startTime\": \"2025-03-14 20:58:49\",\n            \"startDateTime\": \"2025-03-14T20:58:49Z\",\n            \"endTime\": \"2025-10-25 05:46:00\",\n            \"endDateTime\": \"2025-10-25T05:46:00Z\",\n            \"discountType\": \"ABSOLUTE\",\n            \"discountValue\": 1.00,\n            \"lastUpdatedOn\": \"2025-03-13 09:48:42\",\n            \"lastUpdatedOnDateTime\": \"2025-03-13T09:48:42Z\",\n            \"createdOn\": \"2025-03-13 09:48:42\",\n            \"createdOnDateTime\": \"2025-03-13T09:48:42Z\",\n            \"lastUpdatedBy\": 75140757,\n            \"createdBy\": 75140757,\n            \"languageSpecificInfo\": null,\n            \"customFields\": {\n                \"A\": \"1\",\n                \"CF1233\": \"1\",\n                \"EnumCF2\": \"r1\",\n                \"EnumCF1\": \"white\"\n            }\n        }\n    ]\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "success": {
+                          "type": "boolean",
+                          "example": true,
+                          "default": true
+                        },
+                        "code": {
+                          "type": "integer",
+                          "example": 11008,
+                          "default": 0
+                        },
+                        "message": {
+                          "type": "string",
+                          "example": "Catalog promotion fetched successfully."
+                        }
+                      }
+                    },
+                    "catalogPromotions": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "example": 1,
+                            "default": 0
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "P1- R-5165 P1- R-5165 upadted 2"
+                          },
+                          "orgId": {
+                            "type": "integer",
+                            "example": 100458,
+                            "default": 0
+                          },
+                          "isEnabled": {
+                            "type": "boolean",
+                            "example": false,
+                            "default": true
+                          },
+                          "startTime": {
+                            "type": "string",
+                            "example": "2023-04-26 06:58:49"
+                          },
+                          "startDateTime": {
+                            "type": "string",
+                            "example": "2023-04-26T06:58:49Z"
+                          },
+                          "endTime": {
+                            "type": "string",
+                            "example": "2024-10-25 11:16:00"
+                          },
+                          "endDateTime": {
+                            "type": "string",
+                            "example": "2024-10-25T11:16:00Z"
+                          },
+                          "discountType": {
+                            "type": "string",
+                            "example": "ABSOLUTE"
+                          },
+                          "discountValue": {
+                            "type": "integer",
+                            "example": 1,
+                            "default": 0
+                          },
+                          "lastUpdatedOn": {
+                            "type": "string",
+                            "example": "2023-11-16 10:10:03"
+                          },
+                          "lastUpdatedOnDateTime": {
+                            "type": "string",
+                            "example": "2023-11-16T10:10:03Z"
+                          },
+                          "createdOn": {
+                            "type": "string",
+                            "example": "2023-04-25 13:59:28"
+                          },
+                          "createdOnDateTime": {
+                            "type": "string",
+                            "example": "2023-11-16T10:10:03Z"
+                          },
+                          "lastUpdatedBy": {
+                            "type": "integer",
+                            "example": 75078478,
+                            "default": 0
+                          },
+                          "createdBy": {
+                            "type": "integer",
+                            "example": 75078478,
+                            "default": 0
+                          },
+                          "languageSpecificInfo": {},
+                          "customFields": {
+                            "type": "object",
+                            "properties": {
+                              "A": {
+                                "type": "string",
+                                "example": "1"
+                              },
+                              "CF1233": {
+                                "type": "string",
+                                "example": "1"
+                              },
+                              "EnumCF2": {
+                                "type": "string",
+                                "example": "r1"
+                              },
+                              "EnumCF1": {
+                                "type": "string",
+                                "example": "white"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "https://eucrm.cc.capillarytech.com/api_gateway/rewards/core/v1/promotion/brand/1"
+            }
+          ],
+          "samples-languages": [
+            "curl"
+          ]
+        }
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "key": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  },
+  "x-readme-fauxas": true
+}
+```

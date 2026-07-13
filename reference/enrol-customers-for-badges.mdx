@@ -2,4 +2,549 @@
 title: Enrol customers for badges
 ---
 
+This API allows you to enroll customers for badges. The badges are issued based on the fulfillment criteria.
 
+<Callout kind="tip" title="Note">
+
+* For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
+* A badge can be issued via MemberCare without any owners or claim.
+
+</Callout>
+
+## Prerequisites
+
+* [ ] Authentication: Basic or OAuth authentication
+* [ ] Default access group
+
+## Resource information
+
+|               |                                                      |
+| :------------ | :--------------------------------------------------- |
+| URI           | /api_gateway/v1/badges/badgeMeta/customer/issueBulk |
+| HTTP method   | POST                                                 |
+| Pagination    | NA                                                   |
+| Batch support | NA                                                   |
+
+## Example request
+
+<CodeGroup show-lines="true" tabs={["Sample request for single customer", "Sample request for multiple customers"]}>
+
+  ```bash
+  curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta/customer/issueBulk' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Basic Z2VvcmdmNkNzUxYmJiY2U=' \
+  --header 'Cookie: _cfuvid=60YlXkyLfDaY1gOO1YdxKbhVquLZtaBlNd58D9_8rpU-1765282802951-0.0.1.1-604800000' \
+  --data '{
+     "badgeMetaId": "693804d8cebb9648d8974489",
+     "triggeredBy": {
+         "ownerType": "Loyalty",
+         "referenceId": "string"
+     },
+     "issueEventDate": "2025-11-03T21:51:00.192Z",
+     "issueEventDateISO": "2025-04-23T08:14:15Z", 
+     "customers": [
+         566881933],
+     "requestId": "434e0d861777711w2yyybj265"
+  }'
+  ```
+
+  ```bash
+  curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta/customer/issueBulk' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Basic Z2VvcmdNzUxYmJiY2U=' \
+  --header 'Cookie: _cfuvid=60YlXkyLfDaY1gOO1YdxKbhVquLZtaBlNd58D9_8rpU-1765282802951-0.0.1.1-604800000' \
+  --data '{
+     "badgeMetaId": "693804d8cebb9648d8974489",
+     "triggeredBy": {
+         "ownerType": "Loyalty",
+         "referenceId": "string"
+     },
+     "issueEventDate": "2025-11-03T21:51:00.192Z",
+     "issueEventDateISO": "2025-04-23T08:14:15Z", 
+     "customers": [
+         566881933,
+         566881934
+     ],
+     "requestId": "434e0d861777711w2yyybj265"
+  }'
+  ```
+
+</CodeGroup>
+
+## Request body parameters
+
+| Parameter | Mandatory | Data Type | Description |
+| --- | --- | --- | --- |
+| badgeMetaId | Yes | String | Unique identifier ("id") generated during the creation of the badge |
+| customers | No | Array | Array of customer identifiers associated with the badge. |
+| requestId | Yes | String | Enter a unique identifier to identify the request. |
+| issueEventDate | No | String | The date on which the customer was enrolled in the badge. Issue event date has to be between the badge start date and end date, in epoch milliseconds format.Note: This field will be deprecated in the future and is being replaced by `issueEventDateISO` |
+| issueEventDateISO | No | String | Defines the date on which the customer was enrolled in the badge in ISO 8601 format, including the region offset. For example: The enrollment date is at 09:15:30.500 on January 20, 2026, in UTC. Format for the request parameter: 2026-01-20T09:15:30.500Z. Notes: * This parameter overrides the value set in the issueEventDate parameter. * The issueEventDate parameter is only used if issueEventDateISO is null. * The issue event date must fall between the badge's start date and end date. * Ensure the format follows the standard: YYYY-MM-DDTHH:MM:SS.SSSZ. |
+| triggeredBy | Yes | Object | Object containing information about what triggered the action. |
+| ownerType | Yes | Enum | The module for which the badge has been created. Supported values: Loyalty, Loyalty_Promotion, Referral_Campaigns, Journeys, Audience_Campaigns, Rewards_Catalog, Goodwill_Module, Milestones, Historical_Import. Note: Customers can be enrolled to a badge using an `ownerType` that is not listed at the time of badge creation. If a supported `ownerType` is passed during enrollment, the system allows the enrollment. |
+| referenceId | No | String | Enter a unique identifier to identify the owner (ownerType). |
+
+<CodeGroup show-lines="true" tabs={["Single customers", "Multiple customers"]}>
+
+  ```json
+  {
+      "badgeMetaId": "66276dc68fe258516a88ff8e",
+      "customers": [
+    62090013
+      ],
+      "requestId": "21390",
+      "issueEventDate" : 1713860055,
+      "issueEventDateISO" : "2024-04-23T13:44:15+05:30"
+      "triggeredBy": {
+          "ownerType": "Loyalty",
+          "referenceId": "123694"
+      }
+  }
+  ```
+
+  ```json
+  {
+      "badgeMetaId": "653de84db3cda7078c7c68ed",
+      "customers": [
+          62090013, 123
+      ],
+      "requestId": "10few789",
+    	"issueEventDate" : 1713860055,
+      "issueEventDateISO" : "2024-04-23T13:44:15+05:30"
+      "triggeredBy": {
+          "ownerType": "Loyalty",
+          "referenceId": "626"
+      }
+  }
+  ```
+
+</CodeGroup>
+
+## Example response
+
+<CodeGroup show-lines="true" tabs={["Sample response for single customer", "Sample response for multiple customers"]}>
+
+  ```json
+  {
+      "data": {
+          "badgeMetaId": "69807855eba595729385eb1b",
+          "triggeredBy": {
+              "ownerType": "Rewards_Catalog",
+              "referenceId": "123"
+          },
+          "expiresOn": 1926235957.000000000,
+          "expiresOnISO": "2031-01-15T09:32:37Z",
+          "issuedBadges": [
+              {
+                  "customerId": 566135941,
+                  "issuedId": "69807865eba595729385eb1c",
+                  "status": "ACTIVE"
+              }
+          ],
+          "requestId": "req12"
+      },
+      "errors": [],
+      "warnings": []
+  }
+  ```
+
+  ```json
+  {
+      "data": {
+          "badgeMetaId": "6980795d0772ad476ed02639",
+          "triggeredBy": {
+              "ownerType": "Rewards_Catalog",
+              "referenceId": "123"
+          },
+          "expiresOn": 1926235957.000000000,
+          "expiresOnISO": "2031-01-15T09:32:37Z",
+          "issuedBadges": [
+              {
+                  "customerId": 566135941,
+                  "issuedId": "69807969eba595729385eb28",
+                  "status": "ACTIVE"
+              },
+              {
+                  "customerId": 565039506,
+                  "issuedId": "69807969eba595729385eb29",
+                  "status": "ACTIVE"
+              }
+          ],
+          "requestId": "req14"
+      },
+      "errors": [],
+      "warnings": []
+  }
+  ```
+
+</CodeGroup>
+
+## Response parameters
+
+| Parameter | Data Type | Description |
+| --- | --- | --- |
+| badgeMetaId | String | Unique identifier ("id") generated during the creation of the badge |
+| triggeredBy | Object | Contains details about the trigger for the badge. |
+| ownerType | String | Type of owner. |
+| referenceId | String | Enter a user input identifier to link the owner of the badge. |
+| expiresOn | Number | The time indicating when the badge expires, in epoch milliseconds format. |
+| expiresOnISO | String | The time indicating when the badge expires in ISO 8601 format, returned in the server time zone. EU server example 2026-02-04T06:56:48.000Z → 04 February 2026, 06:56:48 (UTC) India server example 2026-02-04T12:26:48.000+05:30 → 04 February 2026, 12:26:48 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
+| issuedBadges | Array | Array of objects representing issued badges. |
+| customerId | Number | Unique identifier for the customer associated with the badge. |
+| issuedId | String | Unique identifier for the issued badge. |
+| requestId | String | Enter a unique input as the identifier for the request. |
+| errors | Array | Array to list any errors. |
+| warnings | Array | Array to list any warnings. |
+
+## API-specific error codes
+
+| Error code | Description                                                                                             |
+| :--------- | :------------------------------------------------------------------------------------------------------ |
+| 809        | Request with the same requestId is not allowed                                                          |
+| 816        | Event date is not in duration of badge meta. Pass the issue event date.                                 |
+| 801        | Only `ISSUE_EARN` type badge can be issued                                                              |
+| 1040       | An active issue for the badge already exists. Ensure the customer is not already enrolled in the badge. |
+| 1039       | Only active badge can be issued. Ensure that the badge is not in an upcoming or expired state.          |
+| 803        | Triggering module info is missing.                                                                      |
+| 804        | `RequestId` is missing.                                                                                 |
+| 716        | Owner type information is missing.                                                                      |
+
+<br />
+
+## OpenAPI definition
+
+```json
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "v1",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://{host}",
+      "variables": {
+        "host": {
+          "default": "host"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/api_gateway/v1/badges/badgeMeta/customer/issueBulk": {
+      "post": {
+        "summary": "Enrol customers for badges",
+        "description": "",
+        "operationId": "enrol-customers-for-badges",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "badgeMetaId"
+                ],
+                "properties": {
+                  "badgeMetaId": {
+                    "type": "string",
+                    "description": "Unique meta ID of the badge."
+                  },
+                  "customers": {
+                    "type": "object",
+                    "properties": {}
+                  },
+                  "requestId": {
+                    "type": "string"
+                  },
+                  "triggeredBy": {
+                    "type": "object",
+                    "properties": {}
+                  },
+                  "issueEventDate": {
+                    "type": "string",
+                    "description": "The date on which customer was enrolled in the badge. Issue event date has to be between the badge start date and end date. Timestamp in the ISO 8601 standard format format YYYY-MM-DDTHH:MM:SS.SSSZ.",
+                    "format": "date-time"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Sample response for single customer": {
+                    "value": {
+                      "data": {
+                        "badgeMetaId": "69807855eba595729385eb1b",
+                        "triggeredBy": {
+                          "ownerType": "Rewards_Catalog",
+                          "referenceId": "123"
+                        },
+                        "expiresOn": 1926235957,
+                        "expiresOnISO": "2031-01-15T09:32:37Z",
+                        "issuedBadges": [
+                          {
+                            "customerId": 566135941,
+                            "issuedId": "69807865eba595729385eb1c",
+                            "status": "ACTIVE"
+                          }
+                        ],
+                        "requestId": "req12"
+                      },
+                      "errors": [],
+                      "warnings": []
+                    },
+                    "summary": "Sample response for single customer"
+                  },
+                  "Sample response for multiple customers": {
+                    "value": {
+                      "data": {
+                        "badgeMetaId": "6980795d0772ad476ed02639",
+                        "triggeredBy": {
+                          "ownerType": "Rewards_Catalog",
+                          "referenceId": "123"
+                        },
+                        "expiresOn": 1926235957,
+                        "expiresOnISO": "2031-01-15T09:32:37Z",
+                        "issuedBadges": [
+                          {
+                            "customerId": 566135941,
+                            "issuedId": "69807969eba595729385eb28",
+                            "status": "ACTIVE"
+                          },
+                          {
+                            "customerId": 565039506,
+                            "issuedId": "69807969eba595729385eb29",
+                            "status": "ACTIVE"
+                          }
+                        ],
+                        "requestId": "req14"
+                      },
+                      "errors": [],
+                      "warnings": []
+                    },
+                    "summary": "Sample response for multiple customers"
+                  }
+                },
+                "schema": {
+                  "oneOf": [
+                    {
+                      "title": "Single customer",
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "badgeMetaId": {
+                              "type": "string",
+                              "example": "66276dc68fe258516a88ff8e"
+                            },
+                            "triggeredBy": {
+                              "type": "object",
+                              "properties": {
+                                "ownerType": {
+                                  "type": "string",
+                                  "example": "Loyalty"
+                                },
+                                "referenceId": {
+                                  "type": "string",
+                                  "example": "123694"
+                                }
+                              }
+                            },
+                            "expiresOn": {
+                              "type": "integer",
+                              "example": 1926235957,
+                              "default": 0
+                            },
+                            "issuedBadges": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "customerId": {
+                                    "type": "integer",
+                                    "example": 62090013,
+                                    "default": 0
+                                  },
+                                  "issuedId": {
+                                    "type": "string",
+                                    "example": "66276df28fe258516a88ff8f"
+                                  },
+                                  "error": {}
+                                }
+                              }
+                            },
+                            "requestId": {
+                              "type": "string",
+                              "example": "21390"
+                            }
+                          }
+                        },
+                        "errors": {
+                          "type": "array"
+                        },
+                        "warnings": {
+                          "type": "array"
+                        }
+                      }
+                    },
+                    {
+                      "title": "Multiple customers",
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "badgeMetaId": {
+                              "type": "string",
+                              "example": "653de84db3cda7078c7c68ed"
+                            },
+                            "triggeredBy": {
+                              "type": "object",
+                              "properties": {
+                                "ownerType": {
+                                  "type": "string",
+                                  "example": "Loyalty"
+                                },
+                                "referenceId": {
+                                  "type": "string",
+                                  "example": "626"
+                                }
+                              }
+                            },
+                            "expiresOn": {
+                              "type": "number",
+                              "example": 1702120189.4079,
+                              "default": 0
+                            },
+                            "issuedBadges": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "customerId": {
+                                    "type": "integer",
+                                    "example": 123,
+                                    "default": 0
+                                  },
+                                  "issuedId": {
+                                    "type": "string",
+                                    "example": "654cbdfd6bccde1274b6d3a0"
+                                  },
+                                  "error": {}
+                                }
+                              }
+                            },
+                            "requestId": {
+                              "type": "string",
+                              "example": "10few789"
+                            }
+                          }
+                        },
+                        "errors": {
+                          "type": "array"
+                        },
+                        "warnings": {
+                          "type": "array"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n    \"data\": null,\n    \"errors\": [\n        {\n            \"code\": 809,\n            \"message\": \"Request with same requestId is not allowed\",\n            \"reference\": null\n        }\n    ],\n    \"warnings\": null\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {},
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "code": {
+                            "type": "integer",
+                            "example": 809,
+                            "default": 0
+                          },
+                          "message": {
+                            "type": "string",
+                            "example": "Request with same requestId is not allowed"
+                          },
+                          "reference": {}
+                        }
+                      }
+                    },
+                    "warnings": {}
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta/customer/issueBulk' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86NjVhMDgzYjk1MWY5MGY1NTY5NDk1YmNkNzUxYmJiY2U=' \\\n--header 'Cookie: _cfuvid=60YlXkyLfDaY1gOO1YdxKbhVquLZtaBlNd58D9_8rpU-1765282802951-0.0.1.1-604800000' \\\n--data '{\n   \"badgeMetaId\": \"693804d8cebb9648d8974489\",\n   \"triggeredBy\": {\n       \"ownerType\": \"Loyalty\",\n       \"referenceId\": \"string\"\n   },\n   \"issueEventDate\": \"2025-11-03T21:51:00.192Z\",\n   \"issueEventDateISO\": \"2025-04-23T08:14:15Z\", \n   \"customers\": [\n       566881933],\n   \"requestId\": \"434e0d861777711w2yyybj265\"\n}'",
+              "name": "Sample request for single customer"
+            },
+            {
+              "language": "curl",
+              "code": "curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta/customer/issueBulk' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86NjVhMDgzYjk1MWY5MGY1NTY5NDk1YmNkNzUxYmJiY2U=' \\\n--header 'Cookie: _cfuvid=60YlXkyLfDaY1gOO1YdxKbhVquLZtaBlNd58D9_8rpU-1765282802951-0.0.1.1-604800000' \\\n--data '{\n   \"badgeMetaId\": \"693804d8cebb9648d8974489\",\n   \"triggeredBy\": {\n       \"ownerType\": \"Loyalty\",\n       \"referenceId\": \"string\"\n   },\n   \"issueEventDate\": \"2025-11-03T21:51:00.192Z\",\n   \"issueEventDateISO\": \"2025-04-23T08:14:15Z\", \n   \"customers\": [\n       566881933,\n       566881934\n   ],\n   \"requestId\": \"434e0d861777711w2yyybj265\"\n}'",
+              "name": "Sample request for multiple customers"
+            }
+          ],
+          "samples-languages": [
+            "curl"
+          ]
+        }
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "key": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  },
+  "x-readme-fauxas": true
+}
+```

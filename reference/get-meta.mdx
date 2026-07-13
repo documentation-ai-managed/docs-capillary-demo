@@ -3,3 +3,273 @@ title: Retrieve search criteria details
 ---
 
 This API enables you to retrieve the search criteria details using the search criteria ID obtained during creation of the search criteria.
+
+<Callout kind="danger">
+
+️ Make sure that you have appropriate access control configured. For more information, see [access group documentation](https://docs.capillarytech.com/docs/access-group).
+
+</Callout>
+
+## API endpoint
+
+`{host}/api_gateway/cortex/v1/criteria/{id}`
+
+## Query parameters
+
+| Parameter | Type   | Description                                                 |
+| :-------- | :----- | :---------------------------------------------------------- |
+| id        | String | The search criteria ID obtained during the search criteria. |
+
+## Response parameters
+
+| Parameter                                                 | Description                                                                                                           |
+| --------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| data                                                      | An object containing the criteria data.                                                                               |
+| data.id                                                   | The ID of the search criteria (e.g., "64b117d756bb3f20312aae7f").                                                     |
+| data.orgId                                                | The ID of the organization associated with the criteria (e.g., 2064).                                                 |
+| data.name                                                 | The name of the search criteria (e.g., "criteria_1231_1").                                                          |
+| data.entityType                                           | The type of entity associated with the search criteria (e.g., "TRANSACTION").                                         |
+| data.fieldDefinitions                                     | An array containing the definitions of fields used in the search criteria.                                            |
+| data.fieldDefinitions[].fieldId                          | The ID of the search field (e.g., "destination" or "origin").                                                         |
+| data.fieldDefinitions[].fieldAlias                       | The alias or display name of the search field (e.g., "destination" or "origin").                                      |
+| data.fieldDefinitions[].dataSourceDetails.fieldReference | The reference to the search field in the data source (e.g., "extendedFields.destination" or "extendedFields.origin"). |
+| data.fieldDefinitions[].dataType                         | The data type of the search field (e.g., "STRING").                                                                   |
+| data.searchDataPolicy                                     | An object defining the data retention policy and expiration details for the search data.                              |
+| data.searchDataPolicy.dataRetentionPolicy.unit            | The unit of time for the data retention policy (e.g., "DAYS").                                                        |
+| data.searchDataPolicy.dataRetentionPolicy.value           | The value or duration for the data retention policy (e.g., 30).                                                       |
+| data.searchDataPolicy.expireDataFrom                      | Specifies the event that triggers the expiration of data (e.g., "CREATE").                                            |
+| data.active                                               | Indicates whether the criteria is active (true/false).                                                                |
+| data.bulkJobStatus                                        | The status of any associated bulk job (e.g., "OPEN").                                                                 |
+| data.auditInfo                                            | An object containing audit information about the criteria.                                                            |
+| data.auditInfo.createdOn                                  | The timestamp indicating when the criteria was created.                                                               |
+| data.auditInfo.createdBy                                  | The ID of the user who created the criteria.                                                                          |
+| data.auditInfo.lastUpdatedOn                              | The timestamp indicating when the search criteria was last updated.                                                   |
+| data.auditInfo.lastUpdatedBy                              | The ID of the user who last updated the criteria.                                                                     |
+| errors                                                    | An array containing any error messages.                                                                               |
+
+## OpenAPI definition
+
+```json
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "v1",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://{host}",
+      "variables": {
+        "host": {
+          "default": "host"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/api_gateway/cortex/v1/criteria/{id}": {
+      "get": {
+        "summary": "Retrieve search criteria details",
+        "description": "This API enables you to retrieve the search criteria details using the search criteria ID obtained during creation of the search criteria.",
+        "operationId": "get-meta",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID that you obtained during meta-search creation.",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Criteria details": {
+                    "value": "{\n    \"data\": {\n        \"id\": \"64b117d756bb3f20312aae7f\",\n        \"orgId\": 2064,\n        \"name\": \"criteria_1231_1\",\n        \"entityType\": \"TRANSACTION\",\n        \"fieldDefinitions\": [\n            {\n                \"fieldId\": \"destination\",\n                \"fieldAlias\": \"destination\",\n                \"dataSourceDetails\": {\n                    \"fieldReference\": \"extendedFields.destination\"\n                },\n                \"dataType\": \"STRING\"\n            },\n            {\n                \"fieldId\": \"origin\",\n                \"fieldAlias\": \"origin\",\n                \"dataSourceDetails\": {\n                    \"fieldReference\": \"extendedFields.origin\"\n                },\n                \"dataType\": \"STRING\"\n            }\n        ],\n        \"searchDataPolicy\": {\n            \"dataRetentionPolicy\": {\n                \"unit\": \"DAYS\",\n                \"value\": 30\n            },\n            \"expireDataFrom\": \"CREATE\"\n        },\n        \"active\": true,\n        \"bulkJobStatus\": \"OPEN\",\n        \"auditInfo\": {\n            \"createdOn\": \"2023-07-14T09:39:35.353+00:00\",\n            \"createdBy\": 13425520,\n            \"lastUpdatedOn\": \"2023-07-14T09:39:35.353+00:00\",\n            \"lastUpdatedBy\": 13425520\n        }\n    },\n    \"errors\": []\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "example": "64b117d756bb3f20312aae7f"
+                        },
+                        "orgId": {
+                          "type": "integer",
+                          "example": 2064,
+                          "default": 0
+                        },
+                        "name": {
+                          "type": "string",
+                          "example": "criteria_1231_1"
+                        },
+                        "entityType": {
+                          "type": "string",
+                          "example": "TRANSACTION"
+                        },
+                        "fieldDefinitions": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "fieldId": {
+                                "type": "string",
+                                "example": "destination"
+                              },
+                              "fieldAlias": {
+                                "type": "string",
+                                "example": "destination"
+                              },
+                              "dataSourceDetails": {
+                                "type": "object",
+                                "properties": {
+                                  "fieldReference": {
+                                    "type": "string",
+                                    "example": "extendedFields.destination"
+                                  }
+                                }
+                              },
+                              "dataType": {
+                                "type": "string",
+                                "example": "STRING"
+                              }
+                            }
+                          }
+                        },
+                        "searchDataPolicy": {
+                          "type": "object",
+                          "properties": {
+                            "dataRetentionPolicy": {
+                              "type": "object",
+                              "properties": {
+                                "unit": {
+                                  "type": "string",
+                                  "example": "DAYS"
+                                },
+                                "value": {
+                                  "type": "integer",
+                                  "example": 30,
+                                  "default": 0
+                                }
+                              }
+                            },
+                            "expireDataFrom": {
+                              "type": "string",
+                              "example": "CREATE"
+                            }
+                          }
+                        },
+                        "active": {
+                          "type": "boolean",
+                          "example": true,
+                          "default": true
+                        },
+                        "bulkJobStatus": {
+                          "type": "string",
+                          "example": "OPEN"
+                        },
+                        "auditInfo": {
+                          "type": "object",
+                          "properties": {
+                            "createdOn": {
+                              "type": "string",
+                              "example": "2023-07-14T09:39:35.353+00:00"
+                            },
+                            "createdBy": {
+                              "type": "integer",
+                              "example": 13425520,
+                              "default": 0
+                            },
+                            "lastUpdatedOn": {
+                              "type": "string",
+                              "example": "2023-07-14T09:39:35.353+00:00"
+                            },
+                            "lastUpdatedBy": {
+                              "type": "integer",
+                              "example": 13425520,
+                              "default": 0
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "errors": {
+                      "type": "array"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "https://apac.api.capillarytech.com/api_gateway/cortex/v1/criteria/64b117d756bb3f20312aae7f",
+              "name": "Retrieve search criteria details"
+            }
+          ],
+          "samples-languages": [
+            "curl"
+          ]
+        }
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "key": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  },
+  "x-readme-fauxas": true
+}
+```

@@ -2,4 +2,360 @@
 title: Update Vendor Redemption
 ---
 
-Update Vendor Redemption API enables a brand to modify an existing vendor redemption configuration with updated details.
+Update Vendor Redemption API enables a brand to modify an existing vendor redemption configuration with updated details. A vendor redemption can also be updated for disabled vendors.
+
+<Callout kind="tip" title="Note">
+
+For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
+
+</Callout>
+
+## Example request
+
+```bash title="Sample request"
+curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/vendor/redemption/34443/brand/61' \
+--header 'Content-Type: application/json' \
+--header 'Accept: application/json' \
+--header 'Authorization: Basic bWFkaHVU2YQ==' \
+--header 'Cookie: _cfuvid=n5.Z39H9xIs0DR219d1iOxrl73PaXk1ymkn3rClOfZ4-1764151707509-0.0.1.1-604800000' \
+--data '{
+    "name": "UAT Vendor Redemption 6 update 1",
+    "redemptionType": "MILES",
+    "actions": [
+        {
+            "apiUrl": "https://eucrm.cc.capillarytech.com/v1.1/coupon/issue",
+            "apiBodyField": "{\"root\": {\"coupon\": [{\"customer\": {\"mobile\": \"${mobile}\"}, \"series_id\": 716308}]}}",
+            "apiBody": "{\"root\": {\"coupon\": [{\"customer\": {\"mobile\": \"${mobile}\"}, \"series_id\": 716308}]}}",
+            "name": "test12345",
+            "execOrder": 1,
+            "apiType": "POST",
+            "retryAction": false,
+            "actionId": 20811,
+            "enabled": true,
+            "apiHeaders": {
+                "Authorization": "Basic Ymxpc3M6MWY5OTRhMjQ1M2M0MWM3YzVjZTJmNGRjNzU5MWI1NzY=",
+                "Content-Type": "application/json"
+            },
+            "contextKeys": {
+                "voucher": "response.coupon.code"
+            }
+        }
+    ],
+    "responseKeys": [
+        "voucher"
+    ],
+    "vendorId": "430",
+    "enabled": true
+}'
+```
+
+## Prerequisites
+
+* [ ] Authentication: Basic or OAuth authentication
+* [ ] Default access group
+
+## Resource information
+
+|                        |                                                                                    |
+| :--------------------- | :--------------------------------------------------------------------------------- |
+| URI                    | /api_gateway/rewards/core/v1/vendor/redemption/`{redemptionId}`/brand/`{brandId}` |
+| HTTP Method            | PUT                                                                                |
+| Pagination             | No                                                                                 |
+| Batch support          | No                                                                                 |
+| Rate limit information | None                                                                               |
+
+## Path Parameters
+
+Note: Parameters marked with `(*)` are mandatory.
+
+| Parameter      | Data Type | Description                                                                                                                               |
+| :------------- | :-------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
+| **`id*`**      | Integer   | The unique identifier of the redemption.                                                                                                  |
+| **`brandId*`** | Integer   | The unique identifier of the brand. You can get the brand ID from this [API](/reference/retrieve-brand-id). |
+
+## Request Body Parameters
+
+Note: Parameters marked with `(*)` are mandatory.
+
+| Parameter | Data Type | Description |
+| --- | --- | --- |
+| `name` | String | The name defined by the brand for the vendor reward. |
+| **`redemptionType*`** | Enum | Specifies the method by which the customer can redeem rewards. Supported values: `GAMES`, `AUCTION`, `CART_PROMOTION`, `CASH_WALLET`, `VENDOR_ONLY_REWARD`, `VOUCHER`, `CASH_BACK`, `INTOUCH_REWARD`, `PHYSICAL_REWARD`, `CHARITY`, `MILES`, `GIFT_CARD`, `SWEEPSTAKES`, `VENDOR_INTOUCH_REWARD`, `CARD_DISC` **VENDOR_ONLY_REWARD**`: These are either points or coupons created at the vendor end. `**VENDOR_INTOUCH_REWARD**`: These are vendor rewards created at the Capillary end. It's not recommended to use `VENDOR_INTOUCH_REWARD`instead, use `VENDOR_ONLY_REWARD` to issue coupons directly through the vendor API. |
+| **`actions*`** | Object | Specifies the Name, Endpoint URL, API Type, API Headers, and the API Body of the internal API that executes a specific action. |
+| `- apiUrl`* | String | The URL to which the API request is made. For example, `"apiUrl": "https://partial.com/reward/issue"` specifies the endpoint where the request to issue a reward will be made. |
+| `- apiBodyField` |  |  |
+| `- apiBody` | String | The API body for the external API endpoint specified in `apiUrl`. You can also include custom fields, fulfillment status, and reward transaction ID. The fulfillment status and reward transaction ID are variables resolved in the backend according to the associated transaction.\\- **Custom Field**: Enables brands to add additional data in the API request. Use the format `customfield_customFieldName`. For example, a custom field named "Address: Bangalore" should be written as `customfield_Address` then it will replace the value of custom field with Bangalore. Note: Only custom fields created with `ISSUE_REWARD` scope are supported. **Fulfillment Status**: Enables updating the fulfillment status. Use the parameter `fulfillmentStatus`, formatted in camelCase. **Reward Transaction ID**: Enables adding the reward transaction ID. This helps the vendor to identify the transaction associated with the issued reward. Use the parameter `rewardTransactionId`, formatted in camelCase. **NOTE:** The API body supports other parameters that can be included based on the brand's specific requirements or integration needs.\- Internal Capillary APIs can also be used. |
+| `- name`* | String | The name of the action to be executed. |
+| `- execOrder`* | Integer | The execution order of the action. |
+| `- apiType`* | String | The HTTP method to be used for the API request. |
+| `- retryAction` | Boolean | Indicates whether the action should be retried on failure (`true`/`false`). |
+| `- actionId` | Integer | A unique identifier for the action. |
+| `- enabled` | Boolean | Specifies if the action is active (`true`/`false`). |
+| `- apiHeaders`* | Object | An object containing the headers to be sent with the API request. |
+| `-- Authorization` | String | The authorization header containing the authentication credentials. |
+| `-- Content-Type` | String | The content type header indicating the format of the request body. |
+| `- contextKeys`* | Object | An object containing context keys for extracting values from the response. |
+| `-- voucher` | String | The context key for extracting the voucher ID from the response. |
+| `responseKeys` | Array | A list of response keys expected from the vendor API. |
+| **`vendorId*`** | String | The unique ID of the vendor. |
+| `enabled` | Boolean | Indicates whether this vendor redemption configuration is active (`true`/`false`). |
+
+## Example response
+
+```json title="Sample response"
+{
+    "status": {
+        "success": true,
+        "code": 5016,
+        "message": "Vendor redemption updated successfully"
+    },
+    "redemption": {
+        "id": 34443,
+        "name": "UAT Vendor Redemption 6 update 1",
+        "redemptionType": "MILES",
+        "enabled": true,
+        "lastUpdatedOn": 1764157003000,
+        "lastUpdatedOnDateTime": "2025-11-26T11:36:43Z",
+        "actionCount": 77,
+        "createdBy": 75155297,
+        "lastUpdatedBy": 75197372,
+        "createdOn": 1759749421000,
+        "createdOnDateTime": "2025-10-06T11:17:01Z"
+    }
+}
+```
+
+## Response Parameters
+
+| Parameter            | Data Type | Description                                                                 |
+| :------------------- | :-------- | :-------------------------------------------------------------------------- |
+| **`success`**        | Boolean   | Indicates whether the API call was successful.                              |
+| **`code`**           | Integer   | The code associated with the response.                                      |
+| **`message`**        | String    | A message providing details about the response.                             |
+| **`id`**             | Integer   | The unique identifier for the redemption object.                            |
+| **`name`**           | String    | The name associated with the redemption object.                             |
+| **`redemptionType`** | Enum      | The type of redemption.                                                     |
+| **`enabled`**        | Boolean   | Indicates whether the redemption is currently enabled.                      |
+| **`lastUpdatedOn`**  | Date      | The timestamp when the vendor redemption was updated, in Epoch time format. |
+| **`lastUpdatedBy`**  | Long      | The till ID of the user who last updated the vendor redemption record.      |
+| **`createdBy`**      | String    | The till ID of the user who created the vendor redemption.                  |
+| **`createdOn`**      | String    | The timestamp when the vendor redemption was created, in Epoch time format. |
+
+<br />
+
+## OpenAPI definition
+
+```json
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "v1",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://{host}",
+      "variables": {
+        "host": {
+          "default": "host"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/api_gateway/rewards/core/v1/vendor/redemption/{redemptionId}/brand/{brandId}": {
+      "put": {
+        "summary": "Update Vendor Redemption",
+        "description": "Update Vendor Redemption API enables a brand to modify an existing vendor redemption configuration with updated details.",
+        "operationId": "update-vendor-redemption",
+        "parameters": [
+          {
+            "name": "brandId",
+            "in": "path",
+            "description": "Unique identifier of the brand.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "redemptionId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": {
+                      "status": {
+                        "success": true,
+                        "code": 5016,
+                        "message": "Vendor redemption updated successfully"
+                      },
+                      "redemption": {
+                        "id": 34443,
+                        "name": "UAT Vendor Redemption 6 update 1",
+                        "redemptionType": "MILES",
+                        "enabled": true,
+                        "lastUpdatedOn": 1764157003000,
+                        "lastUpdatedOnDateTime": "2025-11-26T11:36:43Z",
+                        "actionCount": 77,
+                        "createdBy": 75155297,
+                        "lastUpdatedBy": 75197372,
+                        "createdOn": 1759749421000,
+                        "createdOnDateTime": "2025-10-06T11:17:01Z"
+                      }
+                    }
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "success": {
+                          "type": "boolean",
+                          "example": true,
+                          "default": true
+                        },
+                        "code": {
+                          "type": "integer",
+                          "example": 5016,
+                          "default": 0
+                        },
+                        "message": {
+                          "type": "string",
+                          "example": "Vendor redemption updated successfully"
+                        }
+                      }
+                    },
+                    "redemption": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "example": 25772,
+                          "default": 0
+                        },
+                        "name": {
+                          "type": "string",
+                          "example": "miles"
+                        },
+                        "redemptionType": {
+                          "type": "string",
+                          "example": "MILES"
+                        },
+                        "enabled": {
+                          "type": "boolean",
+                          "example": true,
+                          "default": true
+                        },
+                        "lastUpdatedOn": {
+                          "type": "integer",
+                          "example": 1747903919000,
+                          "default": 0
+                        },
+                        "lastUpdatedOnDateTime": {
+                          "type": "string",
+                          "example": "2025-05-22T08:51:59Z"
+                        },
+                        "actionCount": {
+                          "type": "integer",
+                          "example": 4,
+                          "default": 0
+                        },
+                        "createdBy": {},
+                        "lastUpdatedBy": {
+                          "type": "integer",
+                          "example": 75161973,
+                          "default": 0
+                        },
+                        "createdOn": {
+                          "type": "integer",
+                          "example": 1744720255000,
+                          "default": 0
+                        },
+                        "createdOnDateTime": {
+                          "type": "string",
+                          "example": "2025-04-15T12:30:55Z"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "shell",
+              "code": "curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/vendor/redemption/34443/brand/61' \\\n--header 'Content-Type: application/json' \\\n--header 'Accept: application/json' \\\n--header 'Authorization: Basic bWFkaHVfcmU2YQ==' \\\n--header 'Cookie: _cfuvid=n5.Z39H9xIs0DR219d1iOxrl73PaXk1ymkn3rClOfZ4-1764151707509-0.0.1.1-604800000' \\\n--data '{\n    \"name\": \"UAT Vendor Redemption 6 update 1\",\n    \"redemptionType\": \"MILES\",\n    \"actions\": [\n        {\n            \"apiUrl\": \"https://eucrm.cc.capillarytech.com/v1.1/coupon/issue\",\n            \"apiBodyField\": \"{\\\"root\\\": {\\\"coupon\\\": [{\\\"customer\\\": {\\\"mobile\\\": \\\"${mobile}\\\"}, \\\"series_id\\\": 716308}]}}\",\n            \"apiBody\": \"{\\\"root\\\": {\\\"coupon\\\": [{\\\"customer\\\": {\\\"mobile\\\": \\\"${mobile}\\\"}, \\\"series_id\\\": 716308}]}}\",\n            \"name\": \"test12345\",\n            \"execOrder\": 1,\n            \"apiType\": \"POST\",\n            \"retryAction\": false,\n            \"actionId\": 20811,\n            \"enabled\": true,\n            \"apiHeaders\": {\n                \"Authorization\": \"Basic Ymxpc3M6MWY5OTRhMjQ1M2M0MWM3YzVjZTJmNGRjNzU5MWI1NzY=\",\n                \"Content-Type\": \"application/json\"\n            },\n            \"contextKeys\": {\n                \"voucher\": \"response.coupon.code\"\n            }\n        }\n    ],\n    \"responseKeys\": [\n        \"voucher\"\n    ],\n    \"vendorId\": \"430\",\n    \"enabled\": true\n}'",
+              "name": "Sample request"
+            }
+          ],
+          "samples-languages": [
+            "shell"
+          ]
+        }
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "key": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  },
+  "x-readme-fauxas": true
+}
+```

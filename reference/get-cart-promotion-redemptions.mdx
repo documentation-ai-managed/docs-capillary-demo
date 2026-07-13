@@ -3,3 +3,267 @@ title: Get Cart Promotion Redemptions
 ---
 
 Retrieves all promotion redemptions.
+
+This API retrieves redemption history for cart promotion codes, including transaction details, discount amounts, and whether the redemption was applied at the cart level or line-item level.
+
+* When you call this API with the `codes` parameter, the system returns redemption records for the specified promotion codes.
+* Use this API when you need to look up when, where, and how specific promotion codes were redeemed.
+* Pass the `includeRedemptions` parameter as `true` to get full redemption details including transaction information.
+* This API supports both `DISCOUNT` and `PAYMENT_VOUCHER` modes for cart promotions.
+
+**Note:** To get the list of available promotion codes for a code-linked cart promotion, download the code list from the "Manage Promo Codes" settings on the cart promotions listing page in the UI.
+
+<Image src="https://files.readme.io/a629aefecb53b9347aa41b49279e517266c1b80a775517a559c3809396f1ac05-Screenshot_2025-11-06_at_11.31.16_AM.png" width="70%" height="1080" alt="" />
+
+## Example request
+
+```bash
+curl --location 'https://{Host}/api_gateway/v1/promotions/redemptions?codes=UQ38T&mode=DISCOUNT&includeRedemptions=true' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86NhMDgzYjk1MWY5MGY1NxYmJiY2U='
+```
+
+## Prerequisites
+
+* Authentication: Basic or OAuth authentication.
+* Default access group
+
+## Resource information
+
+|               |    |
+| :------------ | :- |
+| Pagination    | No |
+| Batch support | No |
+
+## Query parameters
+
+| Field              | Type    | Required | Description                                                                                |
+| :----------------- | :------ | :------- | :----------------------------------------------------------------------------------------- |
+| codes              | String  | Yes      | Specifies the cart promotion code(s) for which you want to retrieve redemption details.    |
+| mode               | String  | Yes      | Specifies the mode of the cart promotion. Supported values: `DISCOUNT`, `PAYMENT_VOUCHER`. |
+| includeRedemptions | Boolean | Optional | If `true`, includes full redemption details for the codes. Default is `false`.             |
+
+## Example response
+
+```json
+{
+    "data": [
+        {
+            "id": "69145b5cd39e256f754a9309",
+            "orgId": 100737,
+            "promotionId": "6914232679e37261fe5d4ef3",
+            "promoCode": "UQ38T",
+            "customerId": 566881933,
+            "redemptionDate": 1762991906000,
+            "redemptionDateISO": "2025-11-12T23:58:26Z",
+            "transactionIdentifier": "893409463",
+            "transactionNumber": "nusmbers-erfWDse3sst7ss-5176417625s0600sw0",
+            "promotionName": "Jo_voucher_test",
+            "transactionEntityIdentifier": "REGULAR_b_893409463",
+            "cartEvaluationId": "691457fa79e37261fe5d51b7",
+            "redemptionTill": 75197941,
+            "discount": "100.000000",
+            "redemptionCount": 1,
+            "amount": "1000.000000",
+            "redemptionType": "CART"
+        },
+        {
+            "id": "68b54abc7880ba5aa7cf56ee",
+            "orgId": 100737,
+            "promotionId": "68b5401db51b7777eca02900",
+            "earnedPromotionId": "67e63559e1c34e7d8e9348aa",
+            "customerId": -1,
+            "redemptionDate": 1756720800000,
+            "redemptionDateISO": "2025-09-01T10:00:00Z",
+            "transactionIdentifier": "890697432",
+            "transactionNumber": "txn-31",
+            "promotionName": "SeptemberPromo",
+            "promotionMessageLabel": "",
+            "transactionEntityIdentifier": "REGULAR_l_4028300239",
+            "redemptionTill": 75152721,
+            "discount": "500.000000",
+            "redemptionCount": 1,
+            "discountAppliedQuantity": "1.000000",
+            "promotionAppliedQuantity": "1.000000",
+            "amount": "500.000000",
+            "sku": "Sku#Fuel",
+            "redemptionType": "LINEITEM",
+            "productId": 501241333
+        }
+    ],
+    "errors": []
+}
+```
+
+## Response parameters
+
+| Field                        | Type   | Description                                                                                                                                                                                                                                                                                                                                                                               |
+| :--------------------------- | :----- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| data                         | Array  | List of redemption records for the specified promotion code(s).                                                                                                                                                                                                                                                                                                                           |
+| .id                          | String | Unique identifier for the redemption record.                                                                                                                                                                                                                                                                                                                                              |
+| .orgId                       | Number | Organization ID.                                                                                                                                                                                                                                                                                                                                                                          |
+| .promotionId                 | String | Unique identifier of the cart promotion.                                                                                                                                                                                                                                                                                                                                                  |
+| .promoCode                   | String | The promotion code that was redeemed.                                                                                                                                                                                                                                                                                                                                                     |
+| .customerId                  | Number | Customer ID associated with the redemption. A value of `-1` indicates a POS or anonymous redemption.                                                                                                                                                                                                                                                                                      |
+| .redemptionDate              | Number | Timestamp of when the redemption occurred. Time format: Epoch milliseconds.                                                                                                                                                                                                                                                                                                               |
+| .redemptionDateISO           | String | Timestamp of when the redemption occurred, in ISO 8601 format, returned in the server time zone. EU server example: `2025-11-12T23:58:26Z` → 12 November 2025, 23:58:26 (UTC). India server example: `2025-11-13T05:28:26+05:30` → 13 November 2025, 05:28:26 (IST). Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
+| .transactionIdentifier       | String | Unique identifier for the transaction.                                                                                                                                                                                                                                                                                                                                                    |
+| .transactionNumber           | String | Customer-facing bill or receipt number.                                                                                                                                                                                                                                                                                                                                                   |
+| .promotionName               | String | Name of the cart promotion.                                                                                                                                                                                                                                                                                                                                                               |
+| .promotionMessageLabel       | String | Optional message label associated with the promotion.                                                                                                                                                                                                                                                                                                                                     |
+| .transactionEntityIdentifier | String | Entity type and identifier. `REGULAR_b_` prefix indicates a cart-level redemption; `REGULAR_l_` prefix indicates a line-item level redemption.                                                                                                                                                                                                                                            |
+| .cartEvaluationId            | String | Unique identifier of the cart evaluation session during which the redemption occurred.                                                                                                                                                                                                                                                                                                    |
+| .redemptionTill              | Number | Till/POS ID where the redemption was processed.                                                                                                                                                                                                                                                                                                                                           |
+| .discount                    | String | Discount amount applied during the redemption.                                                                                                                                                                                                                                                                                                                                            |
+| .redemptionCount             | Number | Number of redemption units recorded in this transaction.                                                                                                                                                                                                                                                                                                                                  |
+| .amount                      | String | Transaction amount (for cart-level) or line item amount (for line-item level) associated with the redemption.                                                                                                                                                                                                                                                                             |
+| .redemptionType              | String | Type of redemption. Supported values: `CART` (cart-level discount), `LINEITEM` (line-item level discount), `PAYMENT_VOUCHER` (payment voucher redemption).                                                                                                                                                                                                                                |
+| .earnedPromotionId           | String | Unique identifier of the earned promotion being redeemed. Returned when the redemption is linked to a previously earned promotion.                                                                                                                                                                                                                                                        |
+| .discountAppliedQuantity     | String | Quantity of items on which the discount was applied. Returned for line-item redemptions.                                                                                                                                                                                                                                                                                                  |
+| .promotionAppliedQuantity    | String | Quantity of items eligible for the promotion. Returned for line-item redemptions.                                                                                                                                                                                                                                                                                                         |
+| .sku                         | String | Product SKU associated with the redemption. Returned for line-item redemptions.                                                                                                                                                                                                                                                                                                           |
+| .productId                   | Number | Product ID associated with the redemption. Returned for line-item redemptions.                                                                                                                                                                                                                                                                                                            |
+| errors                       | Array  | List of errors, if any.                                                                                                                                                                                                                                                                                                                                                                   |
+
+## Error codes
+
+| Code | Description                                                                                              |
+| :--- | :------------------------------------------------------------------------------------------------------- |
+| 400  | Invalid request. Check required parameters. Ensure `codes` and `mode` are provided and valid.            |
+| 404  | Promotion or redemption not found. Verify the promotion code exists and has redemption records.          |
+| 405  | Organization not enabled for this operation. Contact Capillary support to enable this feature.           |
+| 500  | Internal server error. Retry the request after a short delay, and contact support if the error persists. |
+
+## OpenAPI definition
+
+```json
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "v1",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://{host}",
+      "variables": {
+        "host": {
+          "default": "host"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/api_gateway/v1/promotions/redemptions": {
+      "get": {
+        "summary": "Get Cart Promotion Redemptions",
+        "description": "Retrieves all promotion redemptions.",
+        "operationId": "get-cart-promotion-redemptions",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "RAW_BODY": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": {
+                      "data": [
+                        {
+                          "id": "69ba4047e858de5b297c39ab",
+                          "orgId": 100737,
+                          "promotionId": "69ba4011eed927720584cd3b",
+                          "promotionName": "Test Discount Promo3334",
+                          "code": "ALAWW",
+                          "customerId": 566881933,
+                          "active": true,
+                          "createdOn": 1773813831669,
+                          "createdOnISO": "2026-03-18T06:03:51Z",
+                          "validTill": 1774656000000,
+                          "validTillISO": "2026-03-28T00:00:00Z",
+                          "mode": "DISCOUNT",
+                          "redeemableFrom": 1773813831669,
+                          "redeemableFromISO": "2026-03-18T06:03:51Z",
+                          "restrictions": {
+                            "Code": [
+                              {
+                                "kpi": "REDEMPTION",
+                                "maxLimit": "1.000000",
+                                "remainingRedemption": "1.000000",
+                                "tempRedemption": "0.000000"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "key": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  },
+  "x-readme-fauxas": true
+}
+```

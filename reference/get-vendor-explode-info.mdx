@@ -2,4 +2,430 @@
 title: Get Vendor Details
 ---
 
+This API enables you retrieve vendor details using Vendor ID
 
+<Callout kind="tip" title="Note">
+
+For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
+
+</Callout>
+
+## Prerequisites
+
+* [ ] Authentication: Basic or OAuth authentication
+* [ ] Default access group
+
+## API Specification
+
+|                        |                                                            |
+| :--------------------- | :--------------------------------------------------------- |
+| URI                    | /api_gateway/rewards/core/v1/vendor`{vendorId}`/details |
+| HTTP Method            | GET                                                        |
+| Pagination             | No                                                         |
+| Batch support          | No                                                         |
+| Rate limit information | None                                                       |
+
+## API endpoint example
+
+`https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/vendor/36/details`
+
+## Request path parameters
+
+| Parameter Name | Data Type | Description                                                        |
+| -------------- | --------- | ------------------------------------------------------------------ |
+| vendorId*     | Integer   | Unique identifier of the vendor. You can get the vendorID from UI. |
+
+## Response parameters
+
+| Parameter Name          | Description                                                                                                                                                                           |
+| :---------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **`success`**           | An object containing details about the status of the request.                                                                                                                         |
+| `code`                  | The status code of the request.                                                                                                                                                       |
+| `message`               | The status message of the request.                                                                                                                                                    |
+| **`vendor`**            | An object containing details on the vendor that's been created.                                                                                                                       |
+| `- id`                  | A unique ID generated for the vendor upon successful creation.                                                                                                                        |
+| `- name`                | The unique name of the vendor.                                                                                                                                                        |
+| `- code`                | A unique identification code for the vendor.                                                                                                                                          |
+| `- brandId`             | The unique brand ID of the organization.                                                                                                                                              |
+| `- rank`                | The rank assigned to the vendor, used for ordering and prioritizing.                                                                                                                  |
+| `- description`         | The description for the vendor.                                                                                                                                                       |
+| **`enabled`**           | Indicates whether the vendor is enabled or disabled.                                                                                                                                  |
+| `vendorDetails`         | An object containing details on the vendor, if any.                                                                                                                                   |
+| `vendorTypes`           | The type of vendor. These are specialized vendor types with customized solutions for reward issuance in Capillary's system. Supported types: `LINKAJA`/`AIRSPRING`/`OVO`/`BONUSLINK`. |
+| `- images`              | An object containing details on the images for the vendor, if any.                                                                                                                    |
+| `--name`                | A unique name identifier for the image.                                                                                                                                               |
+| `--id`                  | A unique ID generated when an image is created. This ID is the `file_handle` for the associated image in the Capillary system. To add an image, raise a ticket to the support team.   |
+| `--altText`             | A descriptive text that conveys the meaning and context of the image.                                                                                                                 |
+| `--url`                 | A direct link to the image.                                                                                                                                                           |
+| `--isExternal`          | Indicates if the image is from an external source.                                                                                                                                    |
+| `- videos`              | An object containing details on videos associated with the vendor.                                                                                                                    |
+| `--name`                | A unique name identifier for the video.                                                                                                                                               |
+| `--id`                  | A unique ID generated when a video is created. This ID is the `file_handle` for the associated video in the Capillary system. To add a video, raise a ticket to the support team.     |
+| `--altText`             | A descriptive text that conveys the meaning and context of the video.                                                                                                                 |
+| `--url`                 | A direct link to the video.                                                                                                                                                           |
+| `--isExternal`          | Indicates if the video is from an external source.                                                                                                                                    |
+| `type`                  | The type of vendor. Supported values: `REWARDS`. If set to `REWARDS`, it refers to a generic vendor used for issuing rewards.                                                         |
+| `redemptionsConfigured` | Specifies the number of redemptions that have been configured.                                                                                                                        |
+| `lastUpdatedOn`         | The last updated date and time of the vendor in Epoch time format.                                                                                                                    |
+| `lastUpdatedOnDateTime` | The last updated date and time of the vendor in ISO 8601 format (YYYY-MM-DDTHH:MM:SSZ).                                                                                               |
+| `encryptionRequired`    | Indicates if encryption is required for transactions with the vendor.                                                                                                                 |
+| `lastUpdatedBy`         | The till ID of the user who last updated the vendor redemption record.                                                                                                                |
+| `createdBy`             | The till ID of the user who created the vendor redemption.                                                                                                                            |
+| `createdOn`             | Indicates the timestamp when the vendor redemption was created. The timestamp is in Epoch time format.                                                                                |
+| `createdOnDateTime`     | Indicates the date and time when the vendor redemption was created, formatted in ISO 8601.                                                                                            |
+
+<br />
+
+<CodeGroup show-lines="true" tabs={["Response", "Failure: Invalid VendorID"]}>
+
+  ```json
+  {
+      "status": {
+          "success": true,
+          "code": 5001,
+          "message": "Vendor fetched successfully"
+      },
+      "vendor": {
+          "id": 59,
+          "name": "DocVendor7",
+          "code": "Doc007",
+          "brandId": 61,
+          "rank": null,
+          "description": null,
+          "enabled": true,
+          "vendorTypes": null,
+          "vendorDetails": {},
+          "images": [
+              {
+                  "name": "imageName001",
+                  "altText": null,
+                  "id": null,
+                  "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6RFSqYEgenJSDc0Wo_eoEKzxd0iXvTOO-LQ&s",
+                  "isExternal": true
+              }
+          ],
+          "videos": [
+              {
+                  "name": "videoName001",
+                  "altText": null,
+                  "id": null,
+                  "url": "https://videos.pexels.com/video-files/6265096/6265096-uhd_1440_2560_30fps.mp4",
+                  "isExternal": true
+              }
+          ],
+          "type": "REWARDS",
+          "redemptionsConfigured": 1,
+          "createdOn": 1739783601000,
+          "lastUpdatedOn": 1739783601000,
+          "lastUpdatedOnDateTime": "2025-02-17T09:13:21Z",
+          "createdBy": null,
+          "lastUpdatedBy": null,
+          "createdOnDateTime": "2025-02-17T09:13:21Z",
+          "encryptionRequired": false
+      }
+  }
+  ```
+
+  ```json
+  {
+      "status": {
+          "success": false,
+          "code": 5004,
+          "message": "Vendor not found"
+      },
+      "vendor": null
+  }
+  ```
+
+</CodeGroup>
+
+## API-specific error codes
+
+| Error Code | Description       |
+| :--------- | :---------------- |
+| 5004       | Invalid Vendor ID |
+
+## OpenAPI definition
+
+```json
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "v1",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://{host}",
+      "variables": {
+        "host": {
+          "default": "host"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/api_gateway/rewards/core/v1/vendor/{VendorId}/details": {
+      "get": {
+        "summary": "Get Vendor Details",
+        "description": "",
+        "operationId": "get-vendor-explode-info",
+        "parameters": [
+          {
+            "name": "VendorId",
+            "in": "path",
+            "description": "Unique ID of the Vendor.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n    \"status\": {\n        \"success\": true,\n        \"code\": 5001,\n        \"message\": \"Vendor fetched successfully\"\n    },\n    \"vendor\": {\n        \"id\": 59,\n        \"name\": \"DocVendor7\",\n        \"code\": \"Doc007\",\n        \"brandId\": 61,\n        \"rank\": null,\n        \"description\": null,\n        \"enabled\": true,\n        \"vendorTypes\": null,\n        \"vendorDetails\": {},\n        \"images\": [\n            {\n                \"name\": \"imageName001\",\n                \"altText\": null,\n                \"id\": null,\n                \"url\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6RFSqYEgenJSDc0Wo_eoEKzxd0iXvTOO-LQ&s\",\n                \"isExternal\": true\n            }\n        ],\n        \"videos\": [\n            {\n                \"name\": \"videoName001\",\n                \"altText\": null,\n                \"id\": null,\n                \"url\": \"https://videos.pexels.com/video-files/6265096/6265096-uhd_1440_2560_30fps.mp4\",\n                \"isExternal\": true\n            }\n        ],\n        \"type\": \"REWARDS\",\n        \"redemptionsConfigured\": 1,\n        \"createdOn\": 1739783601000,\n        \"lastUpdatedOn\": 1739783601000,\n        \"lastUpdatedOnDateTime\": \"2025-02-17T09:13:21Z\",\n        \"createdBy\": null,\n        \"lastUpdatedBy\": null,\n        \"createdOnDateTime\": \"2025-02-17T09:13:21Z\",\n        \"encryptionRequired\": false\n    }\n}"
+                  },
+                  "Failure: Invalid Vendor ID": {
+                    "value": "{\n    \"status\": {\n        \"success\": false,\n        \"code\": 5004,\n        \"message\": \"Vendor not found\"\n    },\n    \"vendor\": null\n}"
+                  }
+                },
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "object",
+                          "properties": {
+                            "success": {
+                              "type": "boolean",
+                              "example": true,
+                              "default": true
+                            },
+                            "code": {
+                              "type": "integer",
+                              "example": 5001,
+                              "default": 0
+                            },
+                            "message": {
+                              "type": "string",
+                              "example": "Vendor fetched successfully"
+                            }
+                          }
+                        },
+                        "vendor": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "integer",
+                              "example": 59,
+                              "default": 0
+                            },
+                            "name": {
+                              "type": "string",
+                              "example": "DocVendor7"
+                            },
+                            "code": {
+                              "type": "string",
+                              "example": "Doc007"
+                            },
+                            "brandId": {
+                              "type": "integer",
+                              "example": 61,
+                              "default": 0
+                            },
+                            "rank": {},
+                            "description": {},
+                            "enabled": {
+                              "type": "boolean",
+                              "example": true,
+                              "default": true
+                            },
+                            "vendorTypes": {},
+                            "vendorDetails": {
+                              "type": "object",
+                              "properties": {}
+                            },
+                            "images": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "name": {
+                                    "type": "string",
+                                    "example": "imageName001"
+                                  },
+                                  "altText": {},
+                                  "id": {},
+                                  "url": {
+                                    "type": "string",
+                                    "example": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6RFSqYEgenJSDc0Wo_eoEKzxd0iXvTOO-LQ&s"
+                                  },
+                                  "isExternal": {
+                                    "type": "boolean",
+                                    "example": true,
+                                    "default": true
+                                  }
+                                }
+                              }
+                            },
+                            "videos": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "name": {
+                                    "type": "string",
+                                    "example": "videoName001"
+                                  },
+                                  "altText": {},
+                                  "id": {},
+                                  "url": {
+                                    "type": "string",
+                                    "example": "https://videos.pexels.com/video-files/6265096/6265096-uhd_1440_2560_30fps.mp4"
+                                  },
+                                  "isExternal": {
+                                    "type": "boolean",
+                                    "example": true,
+                                    "default": true
+                                  }
+                                }
+                              }
+                            },
+                            "type": {
+                              "type": "string",
+                              "example": "REWARDS"
+                            },
+                            "redemptionsConfigured": {
+                              "type": "integer",
+                              "example": 1,
+                              "default": 0
+                            },
+                            "createdOn": {
+                              "type": "integer",
+                              "example": 1739783601000,
+                              "default": 0
+                            },
+                            "lastUpdatedOn": {
+                              "type": "integer",
+                              "example": 1739783601000,
+                              "default": 0
+                            },
+                            "lastUpdatedOnDateTime": {
+                              "type": "string",
+                              "example": "2025-02-17T09:13:21Z"
+                            },
+                            "createdBy": {},
+                            "lastUpdatedBy": {},
+                            "createdOnDateTime": {
+                              "type": "string",
+                              "example": "2025-02-17T09:13:21Z"
+                            },
+                            "encryptionRequired": {
+                              "type": "boolean",
+                              "example": false,
+                              "default": true
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "title": "Failure: Invalid Vendor ID",
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "object",
+                          "properties": {
+                            "success": {
+                              "type": "boolean",
+                              "example": false,
+                              "default": true
+                            },
+                            "code": {
+                              "type": "integer",
+                              "example": 5004,
+                              "default": 0
+                            },
+                            "message": {
+                              "type": "string",
+                              "example": "Vendor not found"
+                            }
+                          }
+                        },
+                        "vendor": {}
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/vendor/59/details' \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic bmFtYW5fZG9jOmzA3MWJmYjM5OGM5ZmM2YjZlY2I2MmEy' \\\n--header 'Cookie: _cfuvid=fmRA3Hit0aFMwbfKLvt4ueC_cBYGp6.izrIrTxsLCds-1727420270955-0.0.1.1-604800000; _cfuvid=FJsFTsQxFxFqUup40xQQ36aT7bnuhPmb6nYOClavKpU-1739797830423-0.0.1.1-604800000'"
+            }
+          ],
+          "samples-languages": [
+            "curl"
+          ]
+        }
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "key": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  },
+  "x-readme-fauxas": true
+}
+```

@@ -3,3 +3,474 @@ title: Post Cart Promotions Code link API
 ---
 
 This API is used to link the code of the cart promotion earned by the customer to the customer id.
+
+This API links a cart promotion code to a specific customer.
+
+* When you call this API, the system associates the promotion code with the customer, allowing only that customer to redeem the code.
+* Use this API when you have code-based promotions that need to be personalized to individual customers, such as unique referral codes or targeted promo codes.
+* You can only link a code to one customer at a time. To link codes to multiple customers, make separate API calls for each customer.
+* Both `DISCOUNT` and `PAYMENT_VOUCHER` modes are supported for code linking.
+
+## Example request
+
+```json
+curl --location 'https://{Host}/api_gateway/v1/promotions/code/link' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Basic Z2VvcmdlLmJ1a2w6NzYzNDGQ3YzI4ZjU4ZjY3MmNhZjY1ZmY=' \
+--header 'Cookie: _cfuvidt2b9D_Wbvu39g2t0iT.W9RDJ0-1751522911573-0.0.1.1-604800000; _cfuvid=DWAI.W93CwD8HSqqIDN38lKP84bJoUrRqwVps-1761979737913-0.0.1.1-604800000' \
+--data '{
+  "customerId": 566881933,
+  "code": "DQCV73",
+  "mode": "DISCOUNT"
+}'
+```
+
+## Prerequisites
+
+* Authentication: Basic or OAuth authentication.
+* Default access group
+
+## Resource information
+
+|               |    |
+| :------------ | :- |
+| Pagination    | No |
+| Batch support | No |
+
+## Body parameters
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| customerId | Number | Yes | Specifies the unique identifier for the customer for whom you want to link the cart promotion code. |
+| code | String | Yes | Specifies the cart promotion code to be linked. This can be discount code or the gift voucher code. |
+| mode | Enum | Yes | Specifies the cart promotion mode. Supported values: DISCOUNT, PAYMENT_VOUCHER. DISCOUNT - Use this for code-linked promotions. PAYMENT-VOUCHER - Use this for gift voucher-linked cart promotions. |
+
+## Example response
+
+```json
+{
+    "data": {
+        "id": "6912d23dd39e256f754a8411",
+        "orgId": 100737,
+        "promotionId": "6912d21e6629ee07040e1613",
+        "promotionName": "code_linked promotion",
+        "code": "888590",
+        "customerId": 566881933,
+        "active": true,
+        "createdOn": 1762841149535,
+        "createdOnISO": "2025-11-11T06:05:49Z",
+        "validTill": 1767205799999,
+        "validTillISO": "2025-12-31T18:29:59Z",
+        "mode": "DISCOUNT",
+        "redeemableFrom": 1762841149535,
+        "redeemableFromISO": "2025-11-11T06:05:49Z"
+    }
+}
+```
+
+## Response parameters
+
+| Field | Type | Description |
+| --- | --- | --- |
+| data | Object | Defines the primary response object, containing the linked cart promotion code details. |
+| errors | Array | Defines a list of error objects. |
+| ..id | String | Specifies the unique identifier for this specific cart promotion code record. |
+| ..orgId | Number | Specifies the Organization ID to which the code belongs. |
+| ..promotionId | String | Specifies the unique identifier for the cart promotion that this code activates. |
+| ..promotionName | String | Specifies the name of the cart promotion the code is linked to. |
+| ..code | String | Specifies the cart promotion code itself. |
+| ..customerId | Number | Specifies the Customer identifier that this code is now linked to. |
+| ..active | Boolean | Indicates whether the code is currently active and available for use. |
+| ..createdOn | Number | Indicates the creation timestamp in epoch milliseconds. |
+| ..createdOnISO | String | Specifies the creation timestamp in ISO 8601 format, returned in the server time zone. EU server example 2026-02-04T08:53:21Z → 04 February 2026, 08:53:21 (UTC) India server example 2026-02-04T14:23:21+05:30 → 04 February 2026, 14:23:21 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
+| ..validTill | Number | Indicates the expiration timestamp in epoch milliseconds. |
+| ..validTillISO | String | Specifies the expiration timestamp in ISO 8601 format, returned in the server time zone. EU server example 2026-02-04T08:54:12Z → 04 February 2026, 08:54:12 (UTC) India server example 2026-02-04T14:24:12+05:30 → 04 February 2026, 14:24:12 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
+| ..mode | String | Specifies the cart promotion's operational mode. |
+| ..redeemableFrom | Number | Indicates the timestamp in UTC from when the code can be first used. Time format: epoch milliseconds |
+| ..redeemableFromISO | String | Specifies the timestamp in UTC from when the code is redeemable in ISO 8601 format, returned in the server time zone. EU server example 2026-02-04T08:54:07Z → 04 February 2026, 08:54:07 (UTC) India server example 2026-02-04T14:24:07+05:30 → 04 February 2026, 14:24:07 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
+
+## Error codes
+
+| Code | Description                                                                                                                   |
+| ---- | ----------------------------------------------------------------------------------------------------------------------------- |
+| 400  | Invalid request. Check required parameters. Ensure all required parameters, including a valid `code`, are provided and valid. |
+| 1001 | Invalid code. Provide a valid code.                                                                                           |
+| 1002 | Code has expired. Use a non-expired code.                                                                                     |
+| 1004 | Code has been already redeemed. Use a code that has not already been redeemed.                                                |
+| 1005 | Code linked to another customer. Provide a code that is not already linked.                                                   |
+| 1006 | Invalid customer identifier. Provide a valid customer identifier.                                                             |
+| 1007 | Error while fetching customer identifier. Retry after checking the customer identifier details and service status.            |
+| 500  | Internal server error. Retry the request after a short delay, and contact support if the error persists.                      |
+
+<br />
+
+## OpenAPI definition
+
+```json
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "v1",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://{host}",
+      "variables": {
+        "host": {
+          "default": "host"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/api_gateway/v1/promotions/{code}/link": {
+      "post": {
+        "summary": "Post Cart Promotions Code link API",
+        "description": "This API is used to link the code of the cart promotion earned by the customer to the customer id.",
+        "operationId": "post-promotions-code-link-api",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "description": "Code assigned to the promotion which can be used for redemption",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "customerId": {
+                    "type": "integer",
+                    "description": "Unique id assigned to the customer",
+                    "format": "int32"
+                  },
+                  "code": {
+                    "type": "string",
+                    "description": "Code assigned to the promotion which can be used for redemption"
+                  },
+                  "mode": {
+                    "type": "string",
+                    "description": "The mode of promotion"
+                  }
+                }
+              },
+              "examples": {
+                "Request Body": {
+                  "value": {
+                    "customerId": 1,
+                    "code": "string",
+                    "mode": "DISCOUNT"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": ""
+                  },
+                  "New Example": {
+                    "summary": "New Example",
+                    "value": {
+                      "data": {
+                        "id": "68662004ee52f074465e1063",
+                        "orgId": 100737,
+                        "promotionId": "68661fe0ee52f074465e1062",
+                        "promotionName": "code promotion",
+                        "code": "40807",
+                        "customerId": 387509610,
+                        "active": true,
+                        "createdOn": 1751523332753,
+                        "validTill": 1753986599999,
+                        "mode": "DISCOUNT",
+                        "redeemableFrom": 1751523332753
+                      }
+                    }
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "orgId": {
+                          "type": "integer",
+                          "example": 0,
+                          "default": 0
+                        },
+                        "promotionId": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "promotionName": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "code": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "customerId": {
+                          "type": "integer",
+                          "example": 0,
+                          "default": 0
+                        },
+                        "active": {
+                          "type": "boolean",
+                          "example": true,
+                          "default": true
+                        },
+                        "createdOn": {
+                          "type": "integer",
+                          "example": 0,
+                          "default": 0
+                        },
+                        "validTill": {
+                          "type": "integer",
+                          "example": 0,
+                          "default": 0
+                        },
+                        "mode": {
+                          "type": "string",
+                          "example": "DISCOUNT"
+                        },
+                        "apiError": {
+                          "type": "object",
+                          "properties": {
+                            "code": {
+                              "type": "integer",
+                              "example": 0,
+                              "default": 0
+                            },
+                            "message": {
+                              "type": "string",
+                              "example": "string"
+                            }
+                          }
+                        },
+                        "redeemableFrom": {
+                          "type": "integer",
+                          "example": 0,
+                          "default": 0
+                        },
+                        "restrictions": {
+                          "type": "object",
+                          "properties": {
+                            "additionalProp1": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "kpi": {
+                                    "type": "string",
+                                    "example": "REDEMPTION"
+                                  },
+                                  "maxLimit": {
+                                    "type": "integer",
+                                    "example": 0,
+                                    "default": 0
+                                  },
+                                  "remainingRedemption": {
+                                    "type": "integer",
+                                    "example": 0,
+                                    "default": 0
+                                  },
+                                  "tempRedemption": {
+                                    "type": "integer",
+                                    "example": 0,
+                                    "default": 0
+                                  },
+                                  "periodStart": {
+                                    "type": "integer",
+                                    "example": 0,
+                                    "default": 0
+                                  },
+                                  "periodEnd": {
+                                    "type": "integer",
+                                    "example": 0,
+                                    "default": 0
+                                  }
+                                }
+                              }
+                            },
+                            "additionalProp2": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "kpi": {
+                                    "type": "string",
+                                    "example": "REDEMPTION"
+                                  },
+                                  "maxLimit": {
+                                    "type": "integer",
+                                    "example": 0,
+                                    "default": 0
+                                  },
+                                  "remainingRedemption": {
+                                    "type": "integer",
+                                    "example": 0,
+                                    "default": 0
+                                  },
+                                  "tempRedemption": {
+                                    "type": "integer",
+                                    "example": 0,
+                                    "default": 0
+                                  },
+                                  "periodStart": {
+                                    "type": "integer",
+                                    "example": 0,
+                                    "default": 0
+                                  },
+                                  "periodEnd": {
+                                    "type": "integer",
+                                    "example": 0,
+                                    "default": 0
+                                  }
+                                }
+                              }
+                            },
+                            "additionalProp3": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "kpi": {
+                                    "type": "string",
+                                    "example": "REDEMPTION"
+                                  },
+                                  "maxLimit": {
+                                    "type": "integer",
+                                    "example": 0,
+                                    "default": 0
+                                  },
+                                  "remainingRedemption": {
+                                    "type": "integer",
+                                    "example": 0,
+                                    "default": 0
+                                  },
+                                  "tempRedemption": {
+                                    "type": "integer",
+                                    "example": 0,
+                                    "default": 0
+                                  },
+                                  "periodStart": {
+                                    "type": "integer",
+                                    "example": 0,
+                                    "default": 0
+                                  },
+                                  "periodEnd": {
+                                    "type": "integer",
+                                    "example": 0,
+                                    "default": 0
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "code": {
+                            "type": "integer",
+                            "example": 0,
+                            "default": 0
+                          },
+                          "message": {
+                            "type": "string",
+                            "example": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "code": "",
+              "language": "shell",
+              "name": "Generic curl"
+            }
+          ],
+          "samples-languages": [
+            "shell"
+          ]
+        }
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "key": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  },
+  "x-readme-fauxas": true
+}
+```

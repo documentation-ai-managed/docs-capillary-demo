@@ -3,3 +3,1699 @@ title: Get Details of all Loyalty Promotions
 ---
 
 Lists all promotions.
+
+<Callout kind="danger">
+
+️ This API is being phased out and will no longer be available for viewing loyalty promotions.
+To view loyalty promotions, use the [Get Details of all Loyalty Promotions](/reference/get-loyalty-promotion-all) API
+
+<br />
+
+</Callout>
+
+This API lists and provides details of all the promotions available in the org. This includes the types of promotions, point and redemption restriction details, start and end dates, activation status etc, ranking and stacking information.
+
+By default, the types of promotions, ranking and stacking are not available for all the orgs. This needs to be enabled separately. For more details on the types of promotions, refer [Types of promotions](https://docs.capillarytech.com/docs/advanced-loyalty-promotions).
+
+<Callout kind="info" title="Note">
+
+This API fetches results for loyalty promotions created on the [old UI](https://docs.capillarytech.com/docs/loyalty-promotions-basic-and-advanced#/).
+
+</Callout>
+
+### Types of promotions
+
+There are three different types of promotions:
+
+* GENERIC (UI term - Available without issue)
+* LOYALTY (UI term - Direct issue)
+* LOYALTY_EARNING (UI term - Enrol &amp; Issue)
+
+The field `pointsOfferType `in the response provides information on the type of promotion.
+
+### Limits and restrictions
+
+If the [Types of promotions](https://docs.capillarytech.com/docs/advanced-loyalty-promotions) is enabled for your organisation, then the information regarding the limits and restrictions on issual, earning, or redemption is available in the object  *promotionRestriction*. This information is also replicated in the  *limits* and *customerUsage* objects.
+
+## API endpoint example
+
+```bash title="Sample cURL"
+curl --location 'https://eu.api.capillarytech.com/api_gateway/loyalty/v1/programs/promotions/list?limit=10&offset=0' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--header 'accept: application/json' \
+--header 'Authorization: Basic ************' \
+--header 'Cookie: _cfuvid=oCx4C8KazrLVe76IdGzzaE5SAVi3XBrgSQL3V8eaXIQ-1758619160515-0.0.1.1-604800000'
+```
+
+## Prerequisites
+
+* [ ] Authentication: Basic or OAuth authentication
+* [ ] Access group resource: Read access to customer group resource
+
+## Resource information
+
+|                       |                                                   |
+| :-------------------- | :------------------------------------------------ |
+| URI                   | /api_gateway/loyalty/v1/programs/promotions/list |
+| HTTP method           | GET                                               |
+| Pagination supported? | Yes                                               |
+| Batch support         | No                                                |
+
+## Query Parameters
+
+| (Parameters marked with * are mandatory) | Data Type | Description |
+| --- | --- | --- |
+| limit* | Integer | Number of entries in a page. Maximum value: 100 |
+| offset* | Integer | Page number you want to fetch. |
+| program | Long | Program ID associated with the promotion. |
+| status | Enum | Status of promotion. Valid values are COMPLETED, LIVE, UPCOMING, INACTIVE. |
+| activity | Enum | Event name for promotion. Valid values are CustomerRegistration, CustomerUpdate, GenericEvent, NewBill, PointsContributionToGroup, PointsTransfer, ReturnBill,TargetCompleted, TransactionAdd, ALL. |
+| startDate | String | Start date of the promotion in ISO8601 format. Example: 2024-04-04T00:00Z |
+| endDate | String | End date of promotion in ISO8601 format. Example: 2024-04-27T23:59:59Z |
+| promotionName | String | Name of the promotion. In case you want to fetch data of a specific promotion. |
+
+**Note**: startDate and endDate must appear in pairs.
+
+## Response Parameters
+
+| Parameter | Data Type | Description |
+| --- | --- | --- |
+| status | Object | An object containing the status code and message of the response. |
+| code | Integer | The status code indicating the result of the request. |
+| message | String | A message providing additional information about the status. |
+| validationErrors | Object | An object containing validation errors, if any. |
+| data | Object | An object containing promotion data retrieved from the request. |
+| id | Long | The ID of the promotion. |
+| name | String | The name of the promotion. |
+| description | String | The description of the promotion. |
+| promotionStatus | String | The status of the promotion. Values are COMPLETED, LIVE, UPCOMING, or INACTIVE |
+| lastUpdateDate | String (Date) | The date and time when the promotion was last updated. |
+| startRuleIdentifier | String | Identifier for the loyalty promotion ruleset. A ruleset defines the reward conditions for the loyalty promotion. |
+| lastUpdatedBy | Integer | The ID of the user who last updated the promotion. |
+| programName | String | The name of the program associated with the promotion. |
+| promotionType | String | Identifies where the promotion is applied, if it's customer level promotion or transaction level promotion. |
+| programId | Long | The ID of the program associated with the promotion. |
+| startDate | String (Date) | The start date and time of the promotion. |
+| endDate | String (Date) | The end date and time of the promotion. |
+| identifier | String | Universally unique identifier of the promotion. |
+| isActive | Boolean | Indicates if the promotion is currently active. |
+| eventName | String | The name of the event associated with the promotion. |
+| pointsOfferType | String | The type of promotion. The types of promotion are GENERIC, LOYALTY, and LOYALTY_EARNING. |
+| * promotionRestrictions | Object | Restrictions and settings for the promotion. Issual restrictions - Provides info on the restrictions on the enrolment of the customers. earnRestrictions provides information on the restrictions on the promotion issual. expiryRestrictions provide info on the enrol and issue expiry. Redemption restrictions provides information on the maximum redemptions of points per issue of promotion |
+| -- redemptionRestrictions | Object | Contains information on the redemption limits for a promotion. |
+| --- name | Enum | Type of redemption restriction. Possible values: `MAX_ALLOWED_POINTS_PER_EVENT`: The maximum points that can be earned for a single activity (make a transaction, redeem points etc.) done by a customer. `MAX_ALLOWED_TIMES_PER_CUSTOMER`: The maximum number of activities (make a transaction, redeem points etc.) a customer can do to earn points. `MAX_ALLOWED_POINTS_PER_CUSTOMER`:The maximum number of points a customer can earn from a promotion. `MAX_ALLOWED_TIMES_PER_PROMOTION`: The maximum number of activities (make a transaction, redeem points etc.) allowed across all customers in the brand for the promotion. `MAX_ALLOWED_POINTS_PER_PROMOTION`:The maximum number of points available across all customers in the brand for the promotion. `MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER`:The maximum number of times a customer can redeem a promotion after earning |
+| --- value | Integer | Number of units corresponding to the `name`. Specify `-1` for no limit (max limit: 100). |
+| --- type | Enum | Type of period for restriction. Possible values: `PERIOD_BASED`, `NON_PERIOD_BASED`. |
+| --- periodType | Enum | Type of period. Supported value: `MOVING_WINDOW`. |
+| --- periodUnit | Enum | Frequency of the period. Possible values: `DAILY`, `WEEKLY`, `MONTHLY`. |
+| -- issualRestrictions | Object | Contains information on the issual limits for a promotion. |
+| --- name | Enum | Type of issual restriction. Possible values: `MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER`: Maximum number of times a promotion can be issued to a customer. |
+| --- value | Integer | Number of units corresponding to the `name`. Specify `-1` for no limit (max limit: 100). |
+| -- earnRestrictions | Object | Contains information on the earn limits for a promotion (specific to enrol-and-issue promotions). |
+| --- name | Enum | Type of earn restriction. Possible values: `MAX_NUMBER_OF_EARNS_PER_CUSTOMER`: The maximum number of times a loyalty promotion can be issued to a customer. `MAX_NUMBER_OF_EARNS_PER_PROMOTION`: The maximum number of times a loyalty promotion can be issued across customers. `MAX_POINTS_PER_EARN_PER_CUSTOMER`: The maximum number of points a customer can earn in a single event from a promotion. |
+| --- value | Integer | Number of units corresponding to the `name`. Specify `-1` for no limit (max limit: 100). |
+| -- expiryRestrictions | Object | Contains information on the expiry for a promotion (mandatory for all promotion types). |
+| --- name | Enum | Action that is expiring. Possible values: `ISSUAL_PROMOTION_EXPIRY_BASED_ON`: The time period within which the customer must complete the activity required to issue the loyalty promotion. Once this lapses, the customer cannot earn the loyalty promotion. `EARN_PROMOTION_EXPIRY_BASED_ON`: The time period within which the customer must complete the activity required to receive the loyalty promotion benefits. Once this lapses, the customer cannot earn the benefits. |
+| --- type | Enum | Type of expiration. Possible values: `PROMOTION`, `CUSTOM`. |
+| --- value | Integer | Number of days the loyalty promotion expires from the date of issual. |
+| isAlwaysApply | Boolean | Indicates whether the promotion is always applied. |
+| isStackable | Boolean | Indicates whether the promotion is stackable. |
+| isConsideredForRanking | Boolean | Indicates whether the promotion is considered for ranking. |
+| loyaltyEarningType | String | This parameter is not in use. |
+| expiryReminder | String | The expiry reminder settings for the promotion. |
+| isExclusive | Boolean | Indicates whether the promotion is exclusive. |
+| scope | String | The scope of the promotion. |
+| cappingStatus | Boolean | Indicates if the loyalty promotion has restrictions on reward currencies. The value will be `true` or `false` only if the loyalty promotion has a fixed-window calendar. `true`: Capping is enabled for the loyalty promotion. `false`: Capping is disabled for the loyalty promotion. `null`: Loyalty promotion does not have a fixed-window calendar. |
+| pageDetails | Object | An object containing details about the pagination of the response. |
+| pageNumber | Integer | The current page number. |
+| pageSize | Integer | The number of entries per page. |
+| totalEntries | Integer | The total number of entries. |
+| pageCount | Integer | The total number of pages in the response. |
+
+<br />
+
+```json title="Sample Response"
+{
+    "status": {
+        "code": 200,
+        "message": "success"
+    },
+    "validationErrors": null,
+    "data": [
+        {
+            "id": 106985,
+            "name": "Premium Partner Program - Transaction Benefits",
+            "description": "Ongoing benefits for partner program members",
+            "promotionStatus": "INACTIVE",
+            "lastUpdateDate": "2025-09-23T03:51:19Z",
+            "startRuleIdentifier": "ruleset_f8101376-26e9-4c24-aab8-d8ef454de4c8",
+            "lastUpdatedBy": 75184878,
+            "programName": "DocDemoDefaultProgram",
+            "promotionType": "BILL",
+            "programId": 973,
+            "startDate": "2024-12-31T18:30Z",
+            "endDate": "2025-12-31T18:29:59Z",
+            "identifier": "21e881f3-4b58-4f3c-b491-0dcd49b57d55",
+            "isActive": false,
+            "eventName": "TRANSACTIONADD",
+            "pointsOfferType": "GENERIC",
+            "promotionRestrictions": {
+                "restrictions": {
+                    "redemptionRestrictions": [
+                        {
+                            "name": "MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER",
+                            "value": 100,
+                            "type": "NON_PERIOD_BASED",
+                            "periodType": null,
+                            "periodUnit": null
+                        }
+                    ],
+                    "issualRestrictions": [],
+                    "earnRestrictions": [],
+                    "expiryRestrictions": []
+                },
+                "scope": null,
+                "loyaltyEarningType": null,
+                "expiryReminder": null,
+                "targetGroupIds": null,
+                "targetRuleIds": null,
+                "linkedTargetGroupVsTargetRuleIdMap": null,
+                "cappingStatus": null,
+                "skipEarnedDateCheckOnRedeem": false,
+                "isStackable": false,
+                "isConsideredForRanking": false,
+                "isExclusive": true,
+                "isAlwaysApply": false
+            }
+        },
+        {
+            "id": 106984,
+            "name": "Premium Partner Program - Enrollment Benefits",
+            "description": "Welcome benefits for new partner program members",
+            "promotionStatus": "INACTIVE",
+            "lastUpdateDate": "2025-09-23T03:51:18Z",
+            "startRuleIdentifier": "ruleset_c87a9a69-31b9-4666-8b43-8d018d91be9f",
+            "lastUpdatedBy": 75184878,
+            "programName": "DocDemoDefaultProgram",
+            "promotionType": "CUSTOMER",
+            "programId": 973,
+            "startDate": "2024-12-31T18:30Z",
+            "endDate": "2025-12-31T18:29:59Z",
+            "identifier": "22a60c9d-9d96-4039-85f2-d80aae837a9e",
+            "isActive": false,
+            "eventName": "CUSTOMERREGISTRATION",
+            "pointsOfferType": "LOYALTY_EARNING",
+            "promotionRestrictions": {
+                "restrictions": {
+                    "redemptionRestrictions": [
+                        {
+                            "name": "MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER",
+                            "value": 100,
+                            "type": "NON_PERIOD_BASED",
+                            "periodType": null,
+                            "periodUnit": null
+                        }
+                    ],
+                    "issualRestrictions": [
+                        {
+                            "name": "MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER",
+                            "value": 1
+                        }
+                    ],
+                    "earnRestrictions": [
+                        {
+                            "name": "MAX_NUMBER_OF_EARNS_PER_CUSTOMER",
+                            "value": 1
+                        },
+                        {
+                            "name": "MAX_POINTS_PER_EARN_PER_CUSTOMER",
+                            "value": -1
+                        }
+                    ],
+                    "expiryRestrictions": [
+                        {
+                            "name": "EARN_PROMOTION_EXPIRY_BASED_ON",
+                            "value": 365,
+                            "type": "CUSTOM"
+                        },
+                        {
+                            "name": "ISSUAL_PROMOTION_EXPIRY_BASED_ON",
+                            "value": 365,
+                            "type": "CUSTOM"
+                        }
+                    ]
+                },
+                "scope": null,
+                "loyaltyEarningType": "ISSUE_AND_EARN",
+                "expiryReminder": null,
+                "targetGroupIds": null,
+                "targetRuleIds": null,
+                "linkedTargetGroupVsTargetRuleIdMap": null,
+                "cappingStatus": null,
+                "skipEarnedDateCheckOnRedeem": false,
+                "isStackable": false,
+                "isConsideredForRanking": false,
+                "isExclusive": true,
+                "isAlwaysApply": false
+            }
+        },
+        {
+            "id": 106442,
+            "name": "Customer_566135941_Event_Trigger",
+            "description": "Special event trigger for customer 566135941 - simulating event type 12",
+            "promotionStatus": "INACTIVE",
+            "lastUpdateDate": "2025-09-18T05:36:50Z",
+            "startRuleIdentifier": "ruleset_3d77dcfe-9af9-4530-aefa-1b7be9717160",
+            "lastUpdatedBy": 75184878,
+            "programName": "DocDemoDefaultProgram",
+            "promotionType": "BILL",
+            "programId": 973,
+            "startDate": "2024-12-31T18:30Z",
+            "endDate": "2025-12-31T18:29:59Z",
+            "identifier": "32ac1cdb-b11d-4d81-9c5a-f35b6824f0a7",
+            "isActive": false,
+            "eventName": "TRANSACTIONADD",
+            "pointsOfferType": "GENERIC",
+            "promotionRestrictions": {
+                "restrictions": {
+                    "redemptionRestrictions": [
+                        {
+                            "name": "MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER",
+                            "value": 100,
+                            "type": "NON_PERIOD_BASED",
+                            "periodType": null,
+                            "periodUnit": null
+                        }
+                    ],
+                    "issualRestrictions": [],
+                    "earnRestrictions": [],
+                    "expiryRestrictions": []
+                },
+                "scope": null,
+                "loyaltyEarningType": null,
+                "expiryReminder": null,
+                "targetGroupIds": null,
+                "targetRuleIds": null,
+                "linkedTargetGroupVsTargetRuleIdMap": null,
+                "cappingStatus": null,
+                "skipEarnedDateCheckOnRedeem": false,
+                "isStackable": false,
+                "isConsideredForRanking": false,
+                "isExclusive": true,
+                "isAlwaysApply": false
+            }
+        },
+        {
+            "id": 105593,
+            "name": "100 Points for $500+ Purchase",
+            "description": "Earn 100 bonus points when you spend more than $500 in a single transaction",
+            "promotionStatus": "INACTIVE",
+            "lastUpdateDate": "2025-09-10T17:40:07Z",
+            "startRuleIdentifier": "ruleset_4b1441ac-41d2-4c1e-8e74-a90829c0fdb4",
+            "lastUpdatedBy": 75184878,
+            "programName": "DocDemoDefaultProgram",
+            "promotionType": "BILL",
+            "programId": 973,
+            "startDate": "2024-12-31T18:30Z",
+            "endDate": "2025-12-31T18:29:59Z",
+            "identifier": "cdee661c-4e57-4736-963d-cd21760707a1",
+            "isActive": false,
+            "eventName": "TRANSACTIONADD",
+            "pointsOfferType": "GENERIC",
+            "promotionRestrictions": {
+                "restrictions": {
+                    "redemptionRestrictions": [
+                        {
+                            "name": "MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER",
+                            "value": 100,
+                            "type": "NON_PERIOD_BASED",
+                            "periodType": null,
+                            "periodUnit": null
+                        }
+                    ],
+                    "issualRestrictions": [],
+                    "earnRestrictions": [],
+                    "expiryRestrictions": []
+                },
+                "scope": null,
+                "loyaltyEarningType": null,
+                "expiryReminder": null,
+                "targetGroupIds": null,
+                "targetRuleIds": null,
+                "linkedTargetGroupVsTargetRuleIdMap": null,
+                "cappingStatus": null,
+                "skipEarnedDateCheckOnRedeem": false,
+                "isStackable": false,
+                "isConsideredForRanking": false,
+                "isExclusive": true,
+                "isAlwaysApply": false
+            }
+        },
+        {
+            "id": 104203,
+            "name": "AllRewardsDirect",
+            "description": "",
+            "promotionStatus": "COMPLETED",
+            "lastUpdateDate": "2025-08-29T10:42:24Z",
+            "startRuleIdentifier": "ruleset_20250829103332",
+            "lastUpdatedBy": 75139931,
+            "programName": "DocDemoDefaultProgram",
+            "promotionType": "BILL",
+            "programId": 973,
+            "startDate": "2025-08-01T00:00Z",
+            "endDate": "2025-08-31T23:59:59Z",
+            "identifier": "d28dfcb6-9386-42e3-84f1-2eb681d8f49a",
+            "isActive": true,
+            "eventName": "TRANSACTIONADD",
+            "pointsOfferType": "LOYALTY",
+            "promotionRestrictions": {
+                "restrictions": {
+                    "redemptionRestrictions": [
+                        {
+                            "name": "MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER",
+                            "value": 1,
+                            "type": "NON_PERIOD_BASED",
+                            "periodType": null,
+                            "periodUnit": null
+                        }
+                    ],
+                    "issualRestrictions": [
+                        {
+                            "name": "MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER",
+                            "value": 100
+                        }
+                    ],
+                    "earnRestrictions": [
+                        {
+                            "name": "MAX_NUMBER_OF_EARNS_PER_CUSTOMER",
+                            "value": 1
+                        },
+                        {
+                            "name": "MAX_POINTS_PER_EARN_PER_CUSTOMER",
+                            "value": -1
+                        }
+                    ],
+                    "expiryRestrictions": [
+                        {
+                            "name": "EARN_PROMOTION_EXPIRY_BASED_ON",
+                            "value": 0,
+                            "type": "PROMOTION"
+                        }
+                    ]
+                },
+                "scope": null,
+                "loyaltyEarningType": null,
+                "expiryReminder": null,
+                "targetGroupIds": null,
+                "targetRuleIds": null,
+                "linkedTargetGroupVsTargetRuleIdMap": null,
+                "cappingStatus": null,
+                "skipEarnedDateCheckOnRedeem": false,
+                "isStackable": false,
+                "isConsideredForRanking": false,
+                "isExclusive": false,
+                "isAlwaysApply": false
+            }
+        },
+        {
+            "id": 104202,
+            "name": "AllRewards",
+            "description": "",
+            "promotionStatus": "LIVE",
+            "lastUpdateDate": "2025-08-29T10:47:07Z",
+            "startRuleIdentifier": "ruleset_20250829102418",
+            "lastUpdatedBy": 75139931,
+            "programName": "DocDemoDefaultProgram",
+            "promotionType": "BILL",
+            "programId": 973,
+            "startDate": "2025-08-01T00:00Z",
+            "endDate": "2025-12-31T23:59:59Z",
+            "identifier": "f2402ce8-538a-4936-8af6-5fd86ca0bf19",
+            "isActive": true,
+            "eventName": "TRANSACTIONADD",
+            "pointsOfferType": "GENERIC",
+            "promotionRestrictions": {
+                "restrictions": {
+                    "redemptionRestrictions": [
+                        {
+                            "name": "MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER",
+                            "value": 100,
+                            "type": "NON_PERIOD_BASED",
+                            "periodType": null,
+                            "periodUnit": null
+                        }
+                    ],
+                    "issualRestrictions": [],
+                    "earnRestrictions": [],
+                    "expiryRestrictions": []
+                },
+                "scope": null,
+                "loyaltyEarningType": null,
+                "expiryReminder": null,
+                "targetGroupIds": null,
+                "targetRuleIds": null,
+                "linkedTargetGroupVsTargetRuleIdMap": null,
+                "cappingStatus": null,
+                "skipEarnedDateCheckOnRedeem": false,
+                "isStackable": false,
+                "isConsideredForRanking": false,
+                "isExclusive": true,
+                "isAlwaysApply": false
+            }
+        },
+        {
+            "id": 103848,
+            "name": "test_promo11",
+            "description": "test",
+            "promotionStatus": "LIVE",
+            "lastUpdateDate": "2025-08-26T06:51:03Z",
+            "startRuleIdentifier": "ruleset_20250826065058",
+            "lastUpdatedBy": 75164387,
+            "programName": "DocDemoDefaultProgram",
+            "promotionType": "CUSTOMER",
+            "programId": 973,
+            "startDate": "2025-08-26T00:00Z",
+            "endDate": "2025-09-29T23:59:59Z",
+            "identifier": "b3e52fd7-ca6d-4f07-b0da-c3fac9caa950",
+            "isActive": true,
+            "eventName": "TARGETCOMPLETED",
+            "pointsOfferType": "GENERIC",
+            "promotionRestrictions": {
+                "restrictions": {
+                    "redemptionRestrictions": [
+                        {
+                            "name": "MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER",
+                            "value": 100,
+                            "type": "NON_PERIOD_BASED",
+                            "periodType": null,
+                            "periodUnit": null
+                        }
+                    ],
+                    "issualRestrictions": [],
+                    "earnRestrictions": [],
+                    "expiryRestrictions": []
+                },
+                "scope": null,
+                "loyaltyEarningType": null,
+                "expiryReminder": null,
+                "targetGroupIds": null,
+                "targetRuleIds": null,
+                "linkedTargetGroupVsTargetRuleIdMap": null,
+                "cappingStatus": null,
+                "skipEarnedDateCheckOnRedeem": false,
+                "isStackable": false,
+                "isConsideredForRanking": false,
+                "isExclusive": false,
+                "isAlwaysApply": false
+            }
+        },
+        {
+            "id": 100508,
+            "name": "doc_test27",
+            "description": "wdcfwdecfwcfwdecf",
+            "promotionStatus": "LIVE",
+            "lastUpdateDate": "2025-07-27T08:28:33Z",
+            "startRuleIdentifier": "ruleset_20250727082826",
+            "lastUpdatedBy": 75160045,
+            "programName": "DocTransferPoints",
+            "promotionType": "CUSTOMER",
+            "programId": 983,
+            "startDate": "2025-07-31T00:00Z",
+            "endDate": "2025-09-24T23:59:59Z",
+            "identifier": "c320cd35-266e-4148-a29d-97b4ca542095",
+            "isActive": true,
+            "eventName": "POINTSREDEMPTION",
+            "pointsOfferType": "LOYALTY",
+            "promotionRestrictions": {
+                "restrictions": {
+                    "redemptionRestrictions": [
+                        {
+                            "name": "MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER",
+                            "value": 1,
+                            "type": "NON_PERIOD_BASED",
+                            "periodType": null,
+                            "periodUnit": null
+                        }
+                    ],
+                    "issualRestrictions": [
+                        {
+                            "name": "MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER",
+                            "value": 100
+                        }
+                    ],
+                    "earnRestrictions": [
+                        {
+                            "name": "MAX_NUMBER_OF_EARNS_PER_CUSTOMER",
+                            "value": 1
+                        },
+                        {
+                            "name": "MAX_POINTS_PER_EARN_PER_CUSTOMER",
+                            "value": -1
+                        }
+                    ],
+                    "expiryRestrictions": [
+                        {
+                            "name": "EARN_PROMOTION_EXPIRY_BASED_ON",
+                            "value": 0,
+                            "type": "PROMOTION"
+                        }
+                    ]
+                },
+                "scope": null,
+                "loyaltyEarningType": null,
+                "expiryReminder": null,
+                "targetGroupIds": null,
+                "targetRuleIds": null,
+                "linkedTargetGroupVsTargetRuleIdMap": null,
+                "cappingStatus": null,
+                "skipEarnedDateCheckOnRedeem": false,
+                "isStackable": false,
+                "isConsideredForRanking": false,
+                "isExclusive": false,
+                "isAlwaysApply": false
+            }
+        },
+        {
+            "id": 99350,
+            "name": "Test Direct promo",
+            "description": "Test Direct promo",
+            "promotionStatus": "COMPLETED",
+            "lastUpdateDate": "2025-07-18T11:39:04Z",
+            "startRuleIdentifier": "ruleset_20250717065119",
+            "lastUpdatedBy": 75175714,
+            "programName": "DocDemoDefaultProgram",
+            "promotionType": "CUSTOMER",
+            "programId": 973,
+            "startDate": "2025-07-17T00:00Z",
+            "endDate": "2025-07-18T23:59:59Z",
+            "identifier": "0a523fbf-5a61-44e6-ba63-8d3d9cca36da",
+            "isActive": true,
+            "eventName": "GENERICEVENT",
+            "eventSubTypeName": "TestEvent1",
+            "pointsOfferType": "LOYALTY",
+            "promotionRestrictions": {
+                "restrictions": {
+                    "redemptionRestrictions": [
+                        {
+                            "name": "MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER",
+                            "value": 2,
+                            "type": "NON_PERIOD_BASED",
+                            "periodType": null,
+                            "periodUnit": null
+                        }
+                    ],
+                    "issualRestrictions": [
+                        {
+                            "name": "MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER",
+                            "value": 100
+                        }
+                    ],
+                    "earnRestrictions": [
+                        {
+                            "name": "MAX_NUMBER_OF_EARNS_PER_CUSTOMER",
+                            "value": 5
+                        },
+                        {
+                            "name": "MAX_POINTS_PER_EARN_PER_CUSTOMER",
+                            "value": -1
+                        },
+                        {
+                            "name": "MAX_NUMBER_OF_EARN_PER_PROMOTION",
+                            "value": 100
+                        }
+                    ],
+                    "expiryRestrictions": [
+                        {
+                            "name": "EARN_PROMOTION_EXPIRY_BASED_ON",
+                            "value": 0,
+                            "type": "PROMOTION"
+                        }
+                    ]
+                },
+                "scope": null,
+                "loyaltyEarningType": null,
+                "expiryReminder": null,
+                "targetGroupIds": null,
+                "targetRuleIds": null,
+                "linkedTargetGroupVsTargetRuleIdMap": null,
+                "cappingStatus": null,
+                "skipEarnedDateCheckOnRedeem": false,
+                "isStackable": false,
+                "isConsideredForRanking": false,
+                "isExclusive": false,
+                "isAlwaysApply": false
+            }
+        },
+        {
+            "id": 99269,
+            "name": "Test promo",
+            "description": "Test promo",
+            "promotionStatus": "COMPLETED",
+            "lastUpdateDate": "2025-07-18T11:40:57Z",
+            "startRuleIdentifier": "ruleset_20250716130240",
+            "lastUpdatedBy": 75175714,
+            "programName": "DocDemoDefaultProgram",
+            "promotionType": "BILL",
+            "programId": 973,
+            "startDate": "2025-07-16T00:00Z",
+            "endDate": "2025-07-18T23:59:59Z",
+            "identifier": "945d2c84-8d09-4a43-9f82-c88c7f4fe5ae",
+            "isActive": true,
+            "eventName": "TRANSACTIONADD",
+            "pointsOfferType": "LOYALTY_EARNING",
+            "promotionRestrictions": {
+                "restrictions": {
+                    "redemptionRestrictions": [
+                        {
+                            "name": "MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER",
+                            "value": 2,
+                            "type": "NON_PERIOD_BASED",
+                            "periodType": null,
+                            "periodUnit": null
+                        }
+                    ],
+                    "issualRestrictions": [
+                        {
+                            "name": "MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER",
+                            "value": 10
+                        }
+                    ],
+                    "earnRestrictions": [
+                        {
+                            "name": "MAX_NUMBER_OF_EARNS_PER_CUSTOMER",
+                            "value": 5
+                        },
+                        {
+                            "name": "MAX_POINTS_PER_EARN_PER_CUSTOMER",
+                            "value": -1
+                        },
+                        {
+                            "name": "MAX_NUMBER_OF_EARN_PER_PROMOTION",
+                            "value": 100
+                        }
+                    ],
+                    "expiryRestrictions": [
+                        {
+                            "name": "ISSUAL_PROMOTION_EXPIRY_BASED_ON",
+                            "value": 0,
+                            "type": "PROMOTION"
+                        },
+                        {
+                            "name": "EARN_PROMOTION_EXPIRY_BASED_ON",
+                            "value": 0,
+                            "type": "PROMOTION"
+                        }
+                    ]
+                },
+                "scope": null,
+                "loyaltyEarningType": "ISSUE_AND_EARN",
+                "expiryReminder": null,
+                "targetGroupIds": null,
+                "targetRuleIds": null,
+                "linkedTargetGroupVsTargetRuleIdMap": null,
+                "cappingStatus": null,
+                "skipEarnedDateCheckOnRedeem": false,
+                "isStackable": false,
+                "isConsideredForRanking": false,
+                "isExclusive": true,
+                "isAlwaysApply": false
+            }
+        }
+    ],
+    "pageDetails": {
+        "pageNumber": 0,
+        "pageSize": 10,
+        "totalEntries": 21,
+        "pageCount": 3
+    }
+}
+```
+
+## API-specific error codes
+
+| Error code | Description                                        |
+| :--------- | :------------------------------------------------- |
+| 4054       | `offset` or `limit` missing                        |
+| 4053       | `startDate` or `endDate` missing                   |
+| 4057       | `startDate` or `endDate` not in the correct format |
+| 2010       | Program ID is incorrect                            |
+| 4055       | Value of `limit` is greater than 100               |
+| 4056       | `offset` and `limit` query parameters missing      |
+| 4052       | `status` is invalid                                |
+| 4050       | Parameters passed are not supported                |
+
+## OpenAPI definition
+
+```json
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "v1",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://{host}",
+      "variables": {
+        "host": {
+          "default": "host"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/api_gateway/loyalty/v1/programs/promotions/list": {
+      "get": {
+        "summary": "Get Details of all Loyalty Promotions",
+        "description": "Lists all promotions.",
+        "operationId": "get-promotion-details",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of entries in a page.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Page number you want to fetch.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "program",
+            "in": "query",
+            "description": "Program ID for which you want to get the promotion metadata.",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Status of promotion.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "COMPLETED",
+                "LIVE",
+                "UPCOMING",
+                "INACTIVE"
+              ]
+            }
+          },
+          {
+            "name": "activity",
+            "in": "query",
+            "description": "Event name for promotion.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "CustomerRegistration",
+                "CustomerUpdate",
+                "GenericEvent",
+                "NewBill",
+                "PointsContributionToGroup",
+                "PointsTransfer",
+                "ReturnBill",
+                "TargetCompleted",
+                "TransactionAdd",
+                "ALL"
+              ]
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "Start date of the promotion.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "End date of promotion.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "promotionName",
+            "in": "query",
+            "description": "Promotion name.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": {
+                      "status": {
+                        "code": 200,
+                        "message": "success"
+                      },
+                      "validationErrors": null,
+                      "data": [
+                        {
+                          "id": 106985,
+                          "name": "Premium Partner Program - Transaction Benefits",
+                          "description": "Ongoing benefits for partner program members",
+                          "promotionStatus": "INACTIVE",
+                          "lastUpdateDate": "2025-09-23T03:51:19Z",
+                          "startRuleIdentifier": "ruleset_f8101376-26e9-4c24-aab8-d8ef454de4c8",
+                          "lastUpdatedBy": 75184878,
+                          "programName": "DocDemoDefaultProgram",
+                          "promotionType": "BILL",
+                          "programId": 973,
+                          "startDate": "2024-12-31T18:30Z",
+                          "endDate": "2025-12-31T18:29:59Z",
+                          "identifier": "21e881f3-4b58-4f3c-b491-0dcd49b57d55",
+                          "isActive": false,
+                          "eventName": "TRANSACTIONADD",
+                          "pointsOfferType": "GENERIC",
+                          "promotionRestrictions": {
+                            "restrictions": {
+                              "redemptionRestrictions": [
+                                {
+                                  "name": "MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER",
+                                  "value": 100,
+                                  "type": "NON_PERIOD_BASED",
+                                  "periodType": null,
+                                  "periodUnit": null
+                                }
+                              ],
+                              "issualRestrictions": [],
+                              "earnRestrictions": [],
+                              "expiryRestrictions": []
+                            },
+                            "scope": null,
+                            "loyaltyEarningType": null,
+                            "expiryReminder": null,
+                            "targetGroupIds": null,
+                            "targetRuleIds": null,
+                            "linkedTargetGroupVsTargetRuleIdMap": null,
+                            "cappingStatus": null,
+                            "skipEarnedDateCheckOnRedeem": false,
+                            "isStackable": false,
+                            "isConsideredForRanking": false,
+                            "isExclusive": true,
+                            "isAlwaysApply": false
+                          }
+                        },
+                        {
+                          "id": 106984,
+                          "name": "Premium Partner Program - Enrollment Benefits",
+                          "description": "Welcome benefits for new partner program members",
+                          "promotionStatus": "INACTIVE",
+                          "lastUpdateDate": "2025-09-23T03:51:18Z",
+                          "startRuleIdentifier": "ruleset_c87a9a69-31b9-4666-8b43-8d018d91be9f",
+                          "lastUpdatedBy": 75184878,
+                          "programName": "DocDemoDefaultProgram",
+                          "promotionType": "CUSTOMER",
+                          "programId": 973,
+                          "startDate": "2024-12-31T18:30Z",
+                          "endDate": "2025-12-31T18:29:59Z",
+                          "identifier": "22a60c9d-9d96-4039-85f2-d80aae837a9e",
+                          "isActive": false,
+                          "eventName": "CUSTOMERREGISTRATION",
+                          "pointsOfferType": "LOYALTY_EARNING",
+                          "promotionRestrictions": {
+                            "restrictions": {
+                              "redemptionRestrictions": [
+                                {
+                                  "name": "MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER",
+                                  "value": 100,
+                                  "type": "NON_PERIOD_BASED",
+                                  "periodType": null,
+                                  "periodUnit": null
+                                }
+                              ],
+                              "issualRestrictions": [
+                                {
+                                  "name": "MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER",
+                                  "value": 1
+                                }
+                              ],
+                              "earnRestrictions": [
+                                {
+                                  "name": "MAX_NUMBER_OF_EARNS_PER_CUSTOMER",
+                                  "value": 1
+                                },
+                                {
+                                  "name": "MAX_POINTS_PER_EARN_PER_CUSTOMER",
+                                  "value": -1
+                                }
+                              ],
+                              "expiryRestrictions": [
+                                {
+                                  "name": "EARN_PROMOTION_EXPIRY_BASED_ON",
+                                  "value": 365,
+                                  "type": "CUSTOM"
+                                },
+                                {
+                                  "name": "ISSUAL_PROMOTION_EXPIRY_BASED_ON",
+                                  "value": 365,
+                                  "type": "CUSTOM"
+                                }
+                              ]
+                            },
+                            "scope": null,
+                            "loyaltyEarningType": "ISSUE_AND_EARN",
+                            "expiryReminder": null,
+                            "targetGroupIds": null,
+                            "targetRuleIds": null,
+                            "linkedTargetGroupVsTargetRuleIdMap": null,
+                            "cappingStatus": null,
+                            "skipEarnedDateCheckOnRedeem": false,
+                            "isStackable": false,
+                            "isConsideredForRanking": false,
+                            "isExclusive": true,
+                            "isAlwaysApply": false
+                          }
+                        },
+                        {
+                          "id": 106442,
+                          "name": "Customer_566135941_Event_Trigger",
+                          "description": "Special event trigger for customer 566135941 - simulating event type 12",
+                          "promotionStatus": "INACTIVE",
+                          "lastUpdateDate": "2025-09-18T05:36:50Z",
+                          "startRuleIdentifier": "ruleset_3d77dcfe-9af9-4530-aefa-1b7be9717160",
+                          "lastUpdatedBy": 75184878,
+                          "programName": "DocDemoDefaultProgram",
+                          "promotionType": "BILL",
+                          "programId": 973,
+                          "startDate": "2024-12-31T18:30Z",
+                          "endDate": "2025-12-31T18:29:59Z",
+                          "identifier": "32ac1cdb-b11d-4d81-9c5a-f35b6824f0a7",
+                          "isActive": false,
+                          "eventName": "TRANSACTIONADD",
+                          "pointsOfferType": "GENERIC",
+                          "promotionRestrictions": {
+                            "restrictions": {
+                              "redemptionRestrictions": [
+                                {
+                                  "name": "MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER",
+                                  "value": 100,
+                                  "type": "NON_PERIOD_BASED",
+                                  "periodType": null,
+                                  "periodUnit": null
+                                }
+                              ],
+                              "issualRestrictions": [],
+                              "earnRestrictions": [],
+                              "expiryRestrictions": []
+                            },
+                            "scope": null,
+                            "loyaltyEarningType": null,
+                            "expiryReminder": null,
+                            "targetGroupIds": null,
+                            "targetRuleIds": null,
+                            "linkedTargetGroupVsTargetRuleIdMap": null,
+                            "cappingStatus": null,
+                            "skipEarnedDateCheckOnRedeem": false,
+                            "isStackable": false,
+                            "isConsideredForRanking": false,
+                            "isExclusive": true,
+                            "isAlwaysApply": false
+                          }
+                        },
+                        {
+                          "id": 105593,
+                          "name": "100 Points for $500+ Purchase",
+                          "description": "Earn 100 bonus points when you spend more than $500 in a single transaction",
+                          "promotionStatus": "INACTIVE",
+                          "lastUpdateDate": "2025-09-10T17:40:07Z",
+                          "startRuleIdentifier": "ruleset_4b1441ac-41d2-4c1e-8e74-a90829c0fdb4",
+                          "lastUpdatedBy": 75184878,
+                          "programName": "DocDemoDefaultProgram",
+                          "promotionType": "BILL",
+                          "programId": 973,
+                          "startDate": "2024-12-31T18:30Z",
+                          "endDate": "2025-12-31T18:29:59Z",
+                          "identifier": "cdee661c-4e57-4736-963d-cd21760707a1",
+                          "isActive": false,
+                          "eventName": "TRANSACTIONADD",
+                          "pointsOfferType": "GENERIC",
+                          "promotionRestrictions": {
+                            "restrictions": {
+                              "redemptionRestrictions": [
+                                {
+                                  "name": "MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER",
+                                  "value": 100,
+                                  "type": "NON_PERIOD_BASED",
+                                  "periodType": null,
+                                  "periodUnit": null
+                                }
+                              ],
+                              "issualRestrictions": [],
+                              "earnRestrictions": [],
+                              "expiryRestrictions": []
+                            },
+                            "scope": null,
+                            "loyaltyEarningType": null,
+                            "expiryReminder": null,
+                            "targetGroupIds": null,
+                            "targetRuleIds": null,
+                            "linkedTargetGroupVsTargetRuleIdMap": null,
+                            "cappingStatus": null,
+                            "skipEarnedDateCheckOnRedeem": false,
+                            "isStackable": false,
+                            "isConsideredForRanking": false,
+                            "isExclusive": true,
+                            "isAlwaysApply": false
+                          }
+                        },
+                        {
+                          "id": 104203,
+                          "name": "AllRewardsDirect",
+                          "description": "",
+                          "promotionStatus": "COMPLETED",
+                          "lastUpdateDate": "2025-08-29T10:42:24Z",
+                          "startRuleIdentifier": "ruleset_20250829103332",
+                          "lastUpdatedBy": 75139931,
+                          "programName": "DocDemoDefaultProgram",
+                          "promotionType": "BILL",
+                          "programId": 973,
+                          "startDate": "2025-08-01T00:00Z",
+                          "endDate": "2025-08-31T23:59:59Z",
+                          "identifier": "d28dfcb6-9386-42e3-84f1-2eb681d8f49a",
+                          "isActive": true,
+                          "eventName": "TRANSACTIONADD",
+                          "pointsOfferType": "LOYALTY",
+                          "promotionRestrictions": {
+                            "restrictions": {
+                              "redemptionRestrictions": [
+                                {
+                                  "name": "MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER",
+                                  "value": 1,
+                                  "type": "NON_PERIOD_BASED",
+                                  "periodType": null,
+                                  "periodUnit": null
+                                }
+                              ],
+                              "issualRestrictions": [
+                                {
+                                  "name": "MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER",
+                                  "value": 100
+                                }
+                              ],
+                              "earnRestrictions": [
+                                {
+                                  "name": "MAX_NUMBER_OF_EARNS_PER_CUSTOMER",
+                                  "value": 1
+                                },
+                                {
+                                  "name": "MAX_POINTS_PER_EARN_PER_CUSTOMER",
+                                  "value": -1
+                                }
+                              ],
+                              "expiryRestrictions": [
+                                {
+                                  "name": "EARN_PROMOTION_EXPIRY_BASED_ON",
+                                  "value": 0,
+                                  "type": "PROMOTION"
+                                }
+                              ]
+                            },
+                            "scope": null,
+                            "loyaltyEarningType": null,
+                            "expiryReminder": null,
+                            "targetGroupIds": null,
+                            "targetRuleIds": null,
+                            "linkedTargetGroupVsTargetRuleIdMap": null,
+                            "cappingStatus": null,
+                            "skipEarnedDateCheckOnRedeem": false,
+                            "isStackable": false,
+                            "isConsideredForRanking": false,
+                            "isExclusive": false,
+                            "isAlwaysApply": false
+                          }
+                        },
+                        {
+                          "id": 104202,
+                          "name": "AllRewards",
+                          "description": "",
+                          "promotionStatus": "LIVE",
+                          "lastUpdateDate": "2025-08-29T10:47:07Z",
+                          "startRuleIdentifier": "ruleset_20250829102418",
+                          "lastUpdatedBy": 75139931,
+                          "programName": "DocDemoDefaultProgram",
+                          "promotionType": "BILL",
+                          "programId": 973,
+                          "startDate": "2025-08-01T00:00Z",
+                          "endDate": "2025-12-31T23:59:59Z",
+                          "identifier": "f2402ce8-538a-4936-8af6-5fd86ca0bf19",
+                          "isActive": true,
+                          "eventName": "TRANSACTIONADD",
+                          "pointsOfferType": "GENERIC",
+                          "promotionRestrictions": {
+                            "restrictions": {
+                              "redemptionRestrictions": [
+                                {
+                                  "name": "MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER",
+                                  "value": 100,
+                                  "type": "NON_PERIOD_BASED",
+                                  "periodType": null,
+                                  "periodUnit": null
+                                }
+                              ],
+                              "issualRestrictions": [],
+                              "earnRestrictions": [],
+                              "expiryRestrictions": []
+                            },
+                            "scope": null,
+                            "loyaltyEarningType": null,
+                            "expiryReminder": null,
+                            "targetGroupIds": null,
+                            "targetRuleIds": null,
+                            "linkedTargetGroupVsTargetRuleIdMap": null,
+                            "cappingStatus": null,
+                            "skipEarnedDateCheckOnRedeem": false,
+                            "isStackable": false,
+                            "isConsideredForRanking": false,
+                            "isExclusive": true,
+                            "isAlwaysApply": false
+                          }
+                        },
+                        {
+                          "id": 103848,
+                          "name": "test_promo11",
+                          "description": "test",
+                          "promotionStatus": "LIVE",
+                          "lastUpdateDate": "2025-08-26T06:51:03Z",
+                          "startRuleIdentifier": "ruleset_20250826065058",
+                          "lastUpdatedBy": 75164387,
+                          "programName": "DocDemoDefaultProgram",
+                          "promotionType": "CUSTOMER",
+                          "programId": 973,
+                          "startDate": "2025-08-26T00:00Z",
+                          "endDate": "2025-09-29T23:59:59Z",
+                          "identifier": "b3e52fd7-ca6d-4f07-b0da-c3fac9caa950",
+                          "isActive": true,
+                          "eventName": "TARGETCOMPLETED",
+                          "pointsOfferType": "GENERIC",
+                          "promotionRestrictions": {
+                            "restrictions": {
+                              "redemptionRestrictions": [
+                                {
+                                  "name": "MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER",
+                                  "value": 100,
+                                  "type": "NON_PERIOD_BASED",
+                                  "periodType": null,
+                                  "periodUnit": null
+                                }
+                              ],
+                              "issualRestrictions": [],
+                              "earnRestrictions": [],
+                              "expiryRestrictions": []
+                            },
+                            "scope": null,
+                            "loyaltyEarningType": null,
+                            "expiryReminder": null,
+                            "targetGroupIds": null,
+                            "targetRuleIds": null,
+                            "linkedTargetGroupVsTargetRuleIdMap": null,
+                            "cappingStatus": null,
+                            "skipEarnedDateCheckOnRedeem": false,
+                            "isStackable": false,
+                            "isConsideredForRanking": false,
+                            "isExclusive": false,
+                            "isAlwaysApply": false
+                          }
+                        },
+                        {
+                          "id": 100508,
+                          "name": "doc_test27",
+                          "description": "wdcfwdecfwcfwdecf",
+                          "promotionStatus": "LIVE",
+                          "lastUpdateDate": "2025-07-27T08:28:33Z",
+                          "startRuleIdentifier": "ruleset_20250727082826",
+                          "lastUpdatedBy": 75160045,
+                          "programName": "DocTransferPoints",
+                          "promotionType": "CUSTOMER",
+                          "programId": 983,
+                          "startDate": "2025-07-31T00:00Z",
+                          "endDate": "2025-09-24T23:59:59Z",
+                          "identifier": "c320cd35-266e-4148-a29d-97b4ca542095",
+                          "isActive": true,
+                          "eventName": "POINTSREDEMPTION",
+                          "pointsOfferType": "LOYALTY",
+                          "promotionRestrictions": {
+                            "restrictions": {
+                              "redemptionRestrictions": [
+                                {
+                                  "name": "MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER",
+                                  "value": 1,
+                                  "type": "NON_PERIOD_BASED",
+                                  "periodType": null,
+                                  "periodUnit": null
+                                }
+                              ],
+                              "issualRestrictions": [
+                                {
+                                  "name": "MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER",
+                                  "value": 100
+                                }
+                              ],
+                              "earnRestrictions": [
+                                {
+                                  "name": "MAX_NUMBER_OF_EARNS_PER_CUSTOMER",
+                                  "value": 1
+                                },
+                                {
+                                  "name": "MAX_POINTS_PER_EARN_PER_CUSTOMER",
+                                  "value": -1
+                                }
+                              ],
+                              "expiryRestrictions": [
+                                {
+                                  "name": "EARN_PROMOTION_EXPIRY_BASED_ON",
+                                  "value": 0,
+                                  "type": "PROMOTION"
+                                }
+                              ]
+                            },
+                            "scope": null,
+                            "loyaltyEarningType": null,
+                            "expiryReminder": null,
+                            "targetGroupIds": null,
+                            "targetRuleIds": null,
+                            "linkedTargetGroupVsTargetRuleIdMap": null,
+                            "cappingStatus": null,
+                            "skipEarnedDateCheckOnRedeem": false,
+                            "isStackable": false,
+                            "isConsideredForRanking": false,
+                            "isExclusive": false,
+                            "isAlwaysApply": false
+                          }
+                        },
+                        {
+                          "id": 99350,
+                          "name": "Test Direct promo",
+                          "description": "Test Direct promo",
+                          "promotionStatus": "COMPLETED",
+                          "lastUpdateDate": "2025-07-18T11:39:04Z",
+                          "startRuleIdentifier": "ruleset_20250717065119",
+                          "lastUpdatedBy": 75175714,
+                          "programName": "DocDemoDefaultProgram",
+                          "promotionType": "CUSTOMER",
+                          "programId": 973,
+                          "startDate": "2025-07-17T00:00Z",
+                          "endDate": "2025-07-18T23:59:59Z",
+                          "identifier": "0a523fbf-5a61-44e6-ba63-8d3d9cca36da",
+                          "isActive": true,
+                          "eventName": "GENERICEVENT",
+                          "eventSubTypeName": "TestEvent1",
+                          "pointsOfferType": "LOYALTY",
+                          "promotionRestrictions": {
+                            "restrictions": {
+                              "redemptionRestrictions": [
+                                {
+                                  "name": "MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER",
+                                  "value": 2,
+                                  "type": "NON_PERIOD_BASED",
+                                  "periodType": null,
+                                  "periodUnit": null
+                                }
+                              ],
+                              "issualRestrictions": [
+                                {
+                                  "name": "MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER",
+                                  "value": 100
+                                }
+                              ],
+                              "earnRestrictions": [
+                                {
+                                  "name": "MAX_NUMBER_OF_EARNS_PER_CUSTOMER",
+                                  "value": 5
+                                },
+                                {
+                                  "name": "MAX_POINTS_PER_EARN_PER_CUSTOMER",
+                                  "value": -1
+                                },
+                                {
+                                  "name": "MAX_NUMBER_OF_EARN_PER_PROMOTION",
+                                  "value": 100
+                                }
+                              ],
+                              "expiryRestrictions": [
+                                {
+                                  "name": "EARN_PROMOTION_EXPIRY_BASED_ON",
+                                  "value": 0,
+                                  "type": "PROMOTION"
+                                }
+                              ]
+                            },
+                            "scope": null,
+                            "loyaltyEarningType": null,
+                            "expiryReminder": null,
+                            "targetGroupIds": null,
+                            "targetRuleIds": null,
+                            "linkedTargetGroupVsTargetRuleIdMap": null,
+                            "cappingStatus": null,
+                            "skipEarnedDateCheckOnRedeem": false,
+                            "isStackable": false,
+                            "isConsideredForRanking": false,
+                            "isExclusive": false,
+                            "isAlwaysApply": false
+                          }
+                        },
+                        {
+                          "id": 99269,
+                          "name": "Test promo",
+                          "description": "Test promo",
+                          "promotionStatus": "COMPLETED",
+                          "lastUpdateDate": "2025-07-18T11:40:57Z",
+                          "startRuleIdentifier": "ruleset_20250716130240",
+                          "lastUpdatedBy": 75175714,
+                          "programName": "DocDemoDefaultProgram",
+                          "promotionType": "BILL",
+                          "programId": 973,
+                          "startDate": "2025-07-16T00:00Z",
+                          "endDate": "2025-07-18T23:59:59Z",
+                          "identifier": "945d2c84-8d09-4a43-9f82-c88c7f4fe5ae",
+                          "isActive": true,
+                          "eventName": "TRANSACTIONADD",
+                          "pointsOfferType": "LOYALTY_EARNING",
+                          "promotionRestrictions": {
+                            "restrictions": {
+                              "redemptionRestrictions": [
+                                {
+                                  "name": "MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER",
+                                  "value": 2,
+                                  "type": "NON_PERIOD_BASED",
+                                  "periodType": null,
+                                  "periodUnit": null
+                                }
+                              ],
+                              "issualRestrictions": [
+                                {
+                                  "name": "MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER",
+                                  "value": 10
+                                }
+                              ],
+                              "earnRestrictions": [
+                                {
+                                  "name": "MAX_NUMBER_OF_EARNS_PER_CUSTOMER",
+                                  "value": 5
+                                },
+                                {
+                                  "name": "MAX_POINTS_PER_EARN_PER_CUSTOMER",
+                                  "value": -1
+                                },
+                                {
+                                  "name": "MAX_NUMBER_OF_EARN_PER_PROMOTION",
+                                  "value": 100
+                                }
+                              ],
+                              "expiryRestrictions": [
+                                {
+                                  "name": "ISSUAL_PROMOTION_EXPIRY_BASED_ON",
+                                  "value": 0,
+                                  "type": "PROMOTION"
+                                },
+                                {
+                                  "name": "EARN_PROMOTION_EXPIRY_BASED_ON",
+                                  "value": 0,
+                                  "type": "PROMOTION"
+                                }
+                              ]
+                            },
+                            "scope": null,
+                            "loyaltyEarningType": "ISSUE_AND_EARN",
+                            "expiryReminder": null,
+                            "targetGroupIds": null,
+                            "targetRuleIds": null,
+                            "linkedTargetGroupVsTargetRuleIdMap": null,
+                            "cappingStatus": null,
+                            "skipEarnedDateCheckOnRedeem": false,
+                            "isStackable": false,
+                            "isConsideredForRanking": false,
+                            "isExclusive": true,
+                            "isAlwaysApply": false
+                          }
+                        }
+                      ],
+                      "pageDetails": {
+                        "pageNumber": 0,
+                        "pageSize": 10,
+                        "totalEntries": 21,
+                        "pageCount": 3
+                      }
+                    }
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "integer",
+                          "example": 200,
+                          "default": 0
+                        },
+                        "message": {
+                          "type": "string",
+                          "example": "success"
+                        }
+                      }
+                    },
+                    "validationErrors": {},
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "example": 56796,
+                            "default": 0
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Happyhour"
+                          },
+                          "description": {
+                            "type": "string",
+                            "example": "Promotion Description"
+                          },
+                          "promotionStatus": {
+                            "type": "string",
+                            "example": "INACTIVE"
+                          },
+                          "lastUpdateDate": {
+                            "type": "string",
+                            "example": "2024-04-16T07:39:05Z"
+                          },
+                          "lastUpdatedBy": {
+                            "type": "integer",
+                            "example": 606249,
+                            "default": 0
+                          },
+                          "programName": {
+                            "type": "string",
+                            "example": "Default Program"
+                          },
+                          "promotionType": {
+                            "type": "string",
+                            "example": "BILL"
+                          },
+                          "programId": {
+                            "type": "integer",
+                            "example": 469,
+                            "default": 0
+                          },
+                          "startDate": {
+                            "type": "string",
+                            "example": "2024-04-04T00:00Z"
+                          },
+                          "endDate": {
+                            "type": "string",
+                            "example": "2024-04-27T23:59:59Z"
+                          },
+                          "identifier": {
+                            "type": "string",
+                            "example": "d32dd076-67b2-4b15-b52d-83f9c4785589"
+                          },
+                          "isActive": {
+                            "type": "boolean",
+                            "example": false,
+                            "default": true
+                          },
+                          "eventName": {
+                            "type": "string",
+                            "example": "TRANSACTIONADD"
+                          },
+                          "pointsOfferType": {
+                            "type": "string",
+                            "example": "GENERIC"
+                          },
+                          "promotionRestrictions": {
+                            "type": "object",
+                            "properties": {
+                              "restrictions": {
+                                "type": "object",
+                                "properties": {
+                                  "redemptionRestrictions": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "name": {
+                                          "type": "string",
+                                          "example": "MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER"
+                                        },
+                                        "value": {
+                                          "type": "integer",
+                                          "example": 100,
+                                          "default": 0
+                                        },
+                                        "type": {
+                                          "type": "string",
+                                          "example": "NON_PERIOD_BASED"
+                                        },
+                                        "periodType": {},
+                                        "periodUnit": {}
+                                      }
+                                    }
+                                  },
+                                  "issualRestrictions": {
+                                    "type": "array"
+                                  },
+                                  "earnRestrictions": {
+                                    "type": "array"
+                                  },
+                                  "expiryRestrictions": {
+                                    "type": "array"
+                                  }
+                                }
+                              },
+                              "scope": {},
+                              "isStackable": {
+                                "type": "boolean",
+                                "example": false,
+                                "default": true
+                              },
+                              "isConsideredForRanking": {
+                                "type": "boolean",
+                                "example": false,
+                                "default": true
+                              },
+                              "loyaltyEarningType": {},
+                              "expiryReminder": {},
+                              "isExclusive": {
+                                "type": "boolean",
+                                "example": false,
+                                "default": true
+                              },
+                              "isAlwaysApply": {
+                                "type": "boolean",
+                                "example": false,
+                                "default": true
+                              },
+                              "cappingStatus": {
+                                "type": "boolean",
+                                "example": true,
+                                "default": true
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "pageDetails": {
+                      "type": "object",
+                      "properties": {
+                        "pageNumber": {
+                          "type": "integer",
+                          "example": 1,
+                          "default": 0
+                        },
+                        "pageSize": {
+                          "type": "integer",
+                          "example": 5,
+                          "default": 0
+                        },
+                        "totalEntries": {
+                          "type": "integer",
+                          "example": 88,
+                          "default": 0
+                        },
+                        "pageCount": {
+                          "type": "integer",
+                          "example": 18,
+                          "default": 0
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "code": "curl --location 'https://eu.api.capillarytech.com/api_gateway/loyalty/v1/programs/promotions/list?limit=10&offset=0' \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--header 'accept: application/json' \\\n--header 'Authorization: Basic ************' \\\n--header 'Cookie: _cfuvid=oCx4C8KazrLVe76IdGzzaE5SAVi3XBrgSQL3V8eaXIQ-1758619160515-0.0.1.1-604800000'",
+              "language": "shell",
+              "name": ""
+            }
+          ],
+          "samples-languages": [
+            "shell"
+          ]
+        }
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "key": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  },
+  "x-readme-fauxas": true
+}
+```

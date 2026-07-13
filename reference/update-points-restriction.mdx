@@ -2,4 +2,585 @@
 title: Points - Update points restriction
 ---
 
+The API allows you to update the points restriction the brands can apply to the customer to the number of points they burn/redeem in the rewards catalog.
 
+<Callout kind="tip" title="Note">
+
+For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
+
+</Callout>
+
+## Prerequisites
+
+* [ ] Authentication: Basic or OAuth authentication
+* [ ] Default access group
+
+## Resource information
+
+|                        |                                                |
+| :--------------------- | :--------------------------------------------- |
+| URI                    | api_gateway/rewards/core/v1/brand/constraints |
+| HTTP Method            | PUT                                            |
+| Pagination             | No                                             |
+| Batch support          | No                                             |
+| Rate limit information | None                                           |
+
+## API endpoint example
+
+`https://eucrm.cc.capillarytech.com/api_gateway/rewards/core/v1/brand/constraints`
+
+## Request body parameters
+
+| Parameter                   | Data Type | Description                                                                                                                                                                                                                                                                                                                                                                                                           |
+| :-------------------------- | :-------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`rewardConstraintId*`**   | Integer   | The unique identifier for the reward constraint, generated when the points restriction is created. This is mandatory for updating the points restriction.                                                                                                                                                                                                                                                             |
+| **`kpi*`**                  | String    | The Key Performance Indicator (KPI) on which the restriction is applied. Supported value: `POINTS`.                                                                                                                                                                                                                                                                                                                   |
+| **`constraintLevel*`**      | Enum      | The level at which restrictions are defined by the organization and applied. <br/><br/>Supported values: `CUSTOMER_SEGMENT`, `CUSTOMER_TIER`, `CUSTOMER_LOYALTY_PROGRAM`, `CUSTOMER_REDEMPTION_TYPE`, `CUSTOMER_SUPPL_PROGRAM`, `REWARD`, `CUSTOMER_LABEL`, `CUSTOMER`, `TRANSACTION`.<br/><br/>Only one combination of `Constraint_Level` and `KPI` is allowed with `DAILY`, `WEEKLY`, or `MONTHLY` `frequencyType`. |
+| **`frequencyType*`**        | Enum      | The frequency at which the constraint is applied. Supported values: `DAILY`, `WEEKLY`, `MONTHLY`.                                                                                                                                                                                                                                                                                                                     |
+| **`intervalValue*`**        | Integer   | The interval at which the frequency is applied.                                                                                                                                                                                                                                                                                                                                                                       |
+| **`constraintLimitValue*`** | Integer   | The limit value for the constraint.                                                                                                                                                                                                                                                                                                                                                                                   |
+| **`isActive*`**             | Boolean   | The status of the constraint, indicating whether it is active (`true`) or not (`false`).                                                                                                                                                                                                                                                                                                                              |
+| **`redemptionType*`**       | String    | The type of InTouch reward. <br/><br/>Supported values: `GAMES`, `AUCTION`, `CART_PROMOTION`, `CASH_WALLET`, `VENDOR_ONLY_REWARD`, `VOUCHER`, `CASH_BACK`, `INTOUCH_REWARD`, `PHYSICAL_REWARD`, `CHARITY`, `MILES`, `GIFT_CARD`, `SWEEPSTAKES`, `VENDOR_INTOUCH_REWARD`, `CARD_DISC`.                                                                                                                                 |
+
+<br />
+
+<CodeGroup show-lines="true" tabs={["Org level constraint", "constraintLevel : CUSTOMER", "Multiple Constraints", "constraintLevel : CUSTOMER_SUPPL_PROGRAM", "constraintLevel : CUSTOMER_SEGMENT", "constraintLevel : CUSTOMER_LOYALTY_PROGRAM", "constraintLevel : CUSTOMER_LABEL", "constraintLevel : CUSTOMER_TIER"]}>
+
+  ```json
+  [
+      {   
+          "kpi" :"POINTS",
+          "constraintLevel" : "CUSTOMER_REDEMPTION_TYPE",
+          "frequencyType" : "MONTHLY",
+          "intervalValue" : 1,
+          "constraintLimitValue" : 100,
+          "isActive" : true,
+          "redemptionType": "NULL"
+      }
+  ]
+  ```
+
+  ```json
+  [
+      {
+          "orgId": 51544,
+          "kpi": "POINTS",
+          "constraintLevel": "CUSTOMER",
+          "frequencyType": "DAILY",
+          "constraintLimitValue": 3,
+          "isActive": true,
+          "intervalValue": 1,
+          "redemptionType": "INTOUCH_REWARD"
+      }
+  ]
+  ```
+
+  ```json
+  [
+      {   "kpi" :"POINTS",
+          "constraintLevel" : "CUSTOMER",
+          "frequencyType" : "DAILY",
+          "intervalValue" : 1,
+          "constraintLimitValue" : 5,
+          "isActive" : true,
+          "redemptionType": "VOUCHER"
+      },
+      {   "kpi" :"POINTS",
+          "constraintLevel" : "CUSTOMER_REDEMPTION_TYPE",
+          "frequencyType" : "WEEKLY",
+          "intervalValue" : 1,
+          "constraintLimitValue" : 10,
+          "isActive" : true,
+          "redemptionType": "CHARITY"
+      },
+      {   "kpi" :"POINTS",
+          "constraintLevel" : "CUSTOMER_REDEMPTION_TYPE",
+          "frequencyType" : "WEEKLY",
+          "intervalValue" : 1,
+          "constraintLimitValue" : 10,
+          "isActive" : true,
+          "redemptionType": "GAMES"
+      }
+
+  ]
+  ```
+
+  ```json
+  [
+      {
+          "orgId": 4000036,
+          "kpi": "POINTS",
+          "constraintLevel": "CUSTOMER_SUPPL_PROGRAM",
+          "frequencyType": "WEEKLY",
+          "constraintLimitValue": 10000,
+          "supplementaryProgramId":"27001187",
+          "isActive": true,
+          "intervalValue": 90000
+      }
+  ]
+  ```
+
+  ```json
+    [  {
+          "orgId": 4000036,
+          "kpi": "POINTS",
+          "constraintLevel": "CUSTOMER_SEGMENT",
+          "frequencyType": "WEEKLY",
+          "constraintLimitValue": 3000,
+          "segmentId":"6136",
+          "partitionId":"2676",
+          "isActive": true,
+          "intervalValue": 100
+      }
+  ]
+  ```
+
+  ```json
+  [
+      {   
+          "orgId": 4000036,      
+          "kpi" :"POINTS",
+          "constraintLevel" : "CUSTOMER_LOYALTY_PROGRAM",
+          "programId" : 469,
+          "frequencyType" : "DAILY",
+          "intervalValue" : 1,
+          "constraintLimitValue" : 5,
+          "isActive" : true
+      }
+  ]
+  ```
+
+  ```json
+  [
+      {   
+          "orgId": 4000036,      
+          "kpi" :"POINTS",
+          "constraintLevel" : "CUSTOMER_LABEL",
+          "label":"Fashion",
+          "frequencyType" : "DAILY",
+          "intervalValue" : 1,
+          "constraintLimitValue" : 5,
+          "isActive" : true
+      }
+  ]
+  ```
+
+  ```json
+  [
+      {   "kpi" :"POINTS",
+          "constraintLevel" : "CUSTOMER_TIER",
+          "tierId" : 1,
+          "frequencyType" : "DAILY",
+          "intervalValue" : 1,
+          "constraintLimitValue" : 5,
+          "isActive" : true
+      }
+  ]
+  ```
+
+</CodeGroup>
+
+<br />
+
+## Response parameters
+
+| Parameter                  | Data Type | Description                                                                                                                                                                                                                                                                      |
+| :------------------------- | :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`rewardConstraintId`**   | Integer   | A unique identifier for the reward constraint.                                                                                                                                                                                                                                   |
+| **`orgId`**                | Integer   | The identifier for the organization.                                                                                                                                                                                                                                             |
+| **`kpi`**                  | String    | The KPI on which the restriction is applied. Supported value: **POINTS**.                                                                                                                                                                                                        |
+| **`constraintLevel`**      | String    | The level at which restrictions are defined by the organization and applied. <br/><br/>Supported values: `CUSTOMER_CONTENT_TYPE`, `CUSTOMER`.<br/><br/>Only one combination of `Constraint_Level` and `KPI` is allowed with the `DAILY`, `WEEKLY`, or `MONTHLY` `frequencyType`. |
+| **`frequencyType`**        | String    | The frequency at which the constraint is applied, e.g., `"DAILY"`.                                                                                                                                                                                                               |
+| **`constraintLimitValue`** | Integer   | The limit value for the constraint, set at `15`.                                                                                                                                                                                                                                 |
+| **`isActive`**             | Boolean   | The status indicating whether the constraint is active.                                                                                                                                                                                                                          |
+| **`intervalValue`**        | Integer   | The interval at which the frequency is applied; here, it's daily (`1`).                                                                                                                                                                                                          |
+| **`status.success`**       | Boolean   | Indicates if the status check was successful.                                                                                                                                                                                                                                    |
+| **`status.code`**          | Integer   | The status code associated with the constraint check.                                                                                                                                                                                                                            |
+| **`redemptionType`**       | String    | The type of redemption managed by this constraint, `"POINTS"`.                                                                                                                                                                                                                   |
+
+<br />
+
+<CodeGroup show-lines="true" tabs={["Org Level constraint", "constraintLevel: CUSTOMER_REDEMPTION_TYPE", "Multiple constraints", "constraintLevel: CUSTOMER_SUPPL_PROGRAM", "constraintLevel: CUSTOMER_SEGMENT", "constraintLevel: CUSTOMER_LOYALTY_PROGRAM", "constraintLevel: CUSTOMER_LABEL", "constraintLevel : CUSTOMER_TIER"]}>
+
+  ```json
+  [
+      {
+          "rewardConstraintId": 6759,
+          "orgId": 50672,
+          "kpi": "POINTS",
+          "constraintLevel": "CUSTOMER",
+          "frequencyType": "DAILY",
+          "constraintLimitValue": 8,
+          "isActive": false,
+          "intervalValue": 3,
+          "status": {
+              "success": true,
+              "code": 0
+          }
+      }
+  ]
+  ```
+
+  ```json
+  [
+      {
+          "rewardConstraintId": 7010,
+          "orgId": 50672,
+          "kpi": "POINTS",
+          "constraintLevel": "CUSTOMER_REDEMPTION_TYPE",
+          "frequencyType": "MONTHLY",
+          "constraintLimitValue": 100,
+          "isActive": true,
+          "status": {
+              "success": true,
+              "code": 0
+          },
+          "redemptionType": "NULL"
+      }
+  ]
+  ```
+
+  ```json
+  [
+      {
+          "rewardConstraintId": 6984,
+          "orgId": 50672,
+          "kpi": "POINTS",
+          "constraintLevel": "CUSTOMER_REDEMPTION_TYPE",
+          "frequencyType": "WEEKLY",
+          "constraintLimitValue": 10,
+          "isActive": true,
+          "startDayOfTheWeek": "MONDAY",
+          "status": {
+              "success": true,
+              "code": 0
+          },
+          "redemptionType": "CHARITY"
+      },
+      {
+          "rewardConstraintId": 6985,
+          "orgId": 50672,
+          "kpi": "POINTS",
+          "constraintLevel": "CUSTOMER_REDEMPTION_TYPE",
+          "frequencyType": "WEEKLY",
+          "constraintLimitValue": 10,
+          "isActive": true,
+          "startDayOfTheWeek": "MONDAY",
+          "status": {
+              "success": true,
+              "code": 0
+          },
+          "redemptionType": "GAMES"
+      },
+      {
+          "rewardConstraintId": 4915,
+          "orgId": 50672,
+          "kpi": "POINTS",
+          "constraintLevel": "CUSTOMER",
+          "frequencyType": "DAILY",
+          "constraintLimitValue": 5,
+          "isActive": true,
+          "intervalValue": 1,
+          "status": {
+              "success": true,
+              "code": 0,
+          },
+         "redemptionType": "VOUCHER"
+      }
+  ]
+  ```
+
+  ```json
+  [
+      {
+          "rewardConstraintId": 2888,
+          "orgId": 4000036,
+          "kpi": "POINTS",
+          "constraintLevel": "CUSTOMER_SUPPL_PROGRAM",
+          "frequencyType": "WEEKLY",
+          "constraintLimitValue": 10000,
+          "isActive": true,
+          "startDayOfTheWeek": "MONDAY",
+          "status": {
+              "success": true,
+              "code": 0
+          },
+          "supplementaryProgramId": "27001187"
+      }
+  ]
+  ```
+
+  ```json
+  [
+      {
+          "rewardConstraintId": 2887,
+          "orgId": 4000036,
+          "kpi": "POINTS",
+          "constraintLevel": "CUSTOMER_SEGMENT",
+          "frequencyType": "WEEKLY",
+          "constraintLimitValue": 3000,
+          "isActive": true,
+          "startDayOfTheWeek": "MONDAY",
+          "status": {
+              "success": true,
+              "code": 0
+          },
+          "segmentId": "6136",
+          "partitionId": "2676"
+      }
+  ]
+  ```
+
+  ```json
+  [
+      {
+          "rewardConstraintId": 11664,
+          "orgId": 100458,
+          "kpi": "POINTS",
+          "constraintLevel": "CUSTOMER_LOYALTY_PROGRAM",
+          "frequencyType": "DAILY",
+          "constraintLimitValue": 5,
+          "isActive": true,
+          "intervalValue": 1,
+          "status": {
+              "success": true,
+              "code": 0
+          },
+          "programId": "469"
+      }
+  ]
+  ```
+
+  ```json
+  [
+      {
+          "rewardConstraintId": 11667,
+          "orgId": 100458,
+          "kpi": "POINTS",
+          "constraintLevel": "CUSTOMER_LABEL",
+          "frequencyType": "DAILY",
+          "constraintLimitValue": 5,
+          "isActive": true,
+          "intervalValue": 1,
+          "status": {
+              "success": true,
+              "code": 0
+          },
+          "label": "Fashion"
+      }
+  ]
+  ```
+
+  ```json
+  [
+      {
+          "rewardConstraintId": 13059,
+          "orgId": 100458,
+          "kpi": "POINTS",
+          "constraintLevel": "CUSTOMER_TIER",
+          "frequencyType": "DAILY",
+          "constraintLimitValue": 5,
+          "isActive": true,
+          "intervalValue": 1,
+          "status": {
+              "success": true,
+              "code": 0
+          },
+          "tierId": "1"
+      }
+  ]
+  ```
+
+</CodeGroup>
+
+## API-specific errors
+
+| Error code | Description                                                                                                                           |
+| :--------- | :------------------------------------------------------------------------------------------------------------------------------------ |
+| 12014      | Constraint already exist.                                                                                                             |
+| 12015      | Constraint does not exist with the passed constraintId, create a new constraint.                                                      |
+| 12016      | Cannot pass rewardConstraintId in the create new constraint API.                                                                      |
+| 12017      | Pass the rewardConstraintId in the update points constraint AP.                                                                       |
+| 12019      | The limit of org level constraint is reached. Please disable existing constraints to add new constraints. **Max org constraints: 50** |
+| 12020      | The limit of org level KPIs is reached. Please disable existing KPI constraints to add new constraints. **Max org constraints: 15**   |
+| 12022      | Multiple restrictions are passed. Only one combination of constraint level and KPI is allowed.                                        |
+
+## OpenAPI definition
+
+```json
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "v1",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://{host}",
+      "variables": {
+        "host": {
+          "default": "host"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/api_gateway/rewards/core/v1/brand/constraints": {
+      "put": {
+        "summary": "Points - Update points restriction",
+        "description": "",
+        "operationId": "update-points-restriction",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "RAW_BODY": {
+                    "type": "string",
+                    "description": "[     {   \"rewardConstraintId\": 6759,         \"kpi\" :\"POINTS\",         \"constraintLevel\" : \"CUSTOMER\",         \"frequencyType\" : \"DAILY\",         \"intervalValue\" : 3,         \"constraintLimitValue\" : 8,         \"isActive\" : false     } ]"
+                  }
+                }
+              },
+              "examples": {
+                "Request Example": {
+                  "value": [
+                    {
+                      "rewardConstraintId": 6759,
+                      "kpi": "POINTS",
+                      "constraintLevel": "CUSTOMER",
+                      "frequencyType": "DAILY",
+                      "intervalValue": 3,
+                      "constraintLimitValue": 8,
+                      "isActive": false
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "[\n    {\n        \"rewardConstraintId\": 6759,\n        \"orgId\": 50672,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER\",\n        \"frequencyType\": \"DAILY\",\n        \"constraintLimitValue\": 8,\n        \"isActive\": false,\n        \"intervalValue\": 3,\n        \"status\": {\n            \"success\": true,\n            \"code\": 0\n        }\n    }\n]"
+                  }
+                },
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "rewardConstraintId": {
+                        "type": "integer",
+                        "example": 6759,
+                        "default": 0
+                      },
+                      "orgId": {
+                        "type": "integer",
+                        "example": 50672,
+                        "default": 0
+                      },
+                      "kpi": {
+                        "type": "string",
+                        "example": "POINTS"
+                      },
+                      "constraintLevel": {
+                        "type": "string",
+                        "example": "CUSTOMER"
+                      },
+                      "frequencyType": {
+                        "type": "string",
+                        "example": "DAILY"
+                      },
+                      "constraintLimitValue": {
+                        "type": "integer",
+                        "example": 8,
+                        "default": 0
+                      },
+                      "isActive": {
+                        "type": "boolean",
+                        "example": false,
+                        "default": true
+                      },
+                      "intervalValue": {
+                        "type": "integer",
+                        "example": 3,
+                        "default": 0
+                      },
+                      "status": {
+                        "type": "object",
+                        "properties": {
+                          "success": {
+                            "type": "boolean",
+                            "example": true,
+                            "default": true
+                          },
+                          "code": {
+                            "type": "integer",
+                            "example": 0,
+                            "default": 0
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "key": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  },
+  "x-readme-fauxas": true
+}
+```

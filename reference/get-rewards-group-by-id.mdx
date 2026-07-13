@@ -2,4 +2,257 @@
 title: Groups - Get rewards group by ID
 ---
 
+This API allows you to retrieve details of a group using the group ID.
 
+<Callout kind="tip" title="Note">
+
+For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
+
+</Callout>
+
+## Example request
+
+```bash title="Sample request"
+curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/group/10417' \
+--header 'Authorization: Basic bWFkaHVfjU2YQ==' \
+--header 'Cookie: _cfuvid=BNKMdc2rm4I7MYA3KIlxZDn.nhxE7URS3m2d4Ipaduo-1764062400363-0.0.1.1-604800000'
+```
+
+## Prerequisites
+
+* [ ] Authentication: Basic or OAuth authentication
+* [ ] Default access group
+
+## Resource information
+
+|               |                                            |
+| :------------ | :----------------------------------------- |
+| URI           | /api_gateway/rewards/core/v1/group/`{id}` |
+| HTTP method   | GET                                        |
+| Pagination    | No                                         |
+| Rate limit    | NA                                         |
+| Batch support | NA                                         |
+
+## Request path parameter
+
+| Parameter name | Data Type | Description                     |
+| :------------- | :-------- | :------------------------------ |
+| id*           | Integer   | Unique identifier of the group. |
+
+## Example response
+
+```json title="Sample response"
+{
+    "id": 10417,
+    "orgId": 100737,
+    "name": "UAT Group 2",
+    "rank": 2,
+    "isActive": true,
+    "createdBy": 75155292,
+    "createdOn": 1758007038000,
+    "createdOnDateTime": "2025-09-16T07:17:18Z",
+    "lastUpdatedBy": 75155297,
+    "lastUpdatedOn": 1758011894000,
+    "lastUpdatedOnDateTime": "2025-09-16T08:38:14Z"
+}
+```
+
+## Response parameters
+
+| Parameter Name        | Data Type | Description                                                                       |
+| --------------------- | --------- | --------------------------------------------------------------------------------- |
+| id                    | Integer   | Unique identifier of the group.                                                   |
+| orgId                 | Integer   | Identifier for the org.                                                           |
+| name                  | String    | Name of the group.                                                                |
+| rank                  | Integer   | Rank associated with the group.                                                   |
+| isActive              | Boolean   | Indicates if the entry is active.                                                 |
+| createdBy             | Integer   | Identifier of the user who created the group.                                     |
+| createdOn             | Date      | Creation date and time of the field in Epoch format                               |
+| createdOnDateTime     | String    | Creation date and time of the field in ISO 8601 format (YYYY-MM-DDTHH:MM:SSZ)     |
+| lastUpdatedBy         | Integer   | Identifier of the user who last updated the group.                                |
+| lastUpdatedOn         | Date      | Last Updated date and time of the field in Epoch format.                          |
+| lastUpdatedOnDateTime | String    | Last Updated date and time of the field in ISO 8601 format (YYYY-MM-DDTHH:MM:SSZ) |
+
+## OpenAPI definition
+
+```json
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "v1",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://{host}",
+      "variables": {
+        "host": {
+          "default": "host"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/api_gateway/rewards/core/v1/group/{id}": {
+      "get": {
+        "summary": "Groups - Get rewards group by ID",
+        "description": "",
+        "operationId": "get-rewards-group-by-id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Unique identifier for the group.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Sample response": {
+                    "value": {
+                      "id": 10417,
+                      "orgId": 100737,
+                      "name": "UAT Group 2",
+                      "rank": 2,
+                      "isActive": true,
+                      "createdBy": 75155292,
+                      "createdOn": 1758007038000,
+                      "createdOnDateTime": "2025-09-16T07:17:18Z",
+                      "lastUpdatedBy": 75155297,
+                      "lastUpdatedOn": 1758011894000,
+                      "lastUpdatedOnDateTime": "2025-09-16T08:38:14Z"
+                    },
+                    "summary": "Sample response"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 2295,
+                      "default": 0
+                    },
+                    "orgId": {
+                      "type": "integer",
+                      "example": 100737,
+                      "default": 0
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "groupName016"
+                    },
+                    "rank": {
+                      "type": "integer",
+                      "example": 8,
+                      "default": 0
+                    },
+                    "isActive": {
+                      "type": "boolean",
+                      "example": true,
+                      "default": true
+                    },
+                    "createdBy": {
+                      "type": "integer",
+                      "example": 75155282,
+                      "default": 0
+                    },
+                    "createdOn": {
+                      "type": "integer",
+                      "example": 1741942980000,
+                      "default": 0
+                    },
+                    "createdOnDateTime": {
+                      "type": "string",
+                      "example": "2025-03-14T09:03:00Z"
+                    },
+                    "lastUpdatedBy": {
+                      "type": "integer",
+                      "example": 75155282,
+                      "default": 0
+                    },
+                    "lastUpdatedOn": {
+                      "type": "integer",
+                      "example": 1741942980000,
+                      "default": 0
+                    },
+                    "lastUpdatedOnDateTime": {
+                      "type": "string",
+                      "example": "2025-03-14T09:03:00Z"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "shell",
+              "code": "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/group/10417' \\\n--header 'Authorization: Basic bWFkaHVfjU2YQ==' \\\n--header 'Cookie: _cfuvid=BNKMdc2rm4I7MYA3KIlxZDn.nhxE7URS3m2d4Ipaduo-1764062400363-0.0.1.1-604800000'",
+              "name": "Sample request"
+            }
+          ],
+          "samples-languages": [
+            "shell"
+          ]
+        }
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "key": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  },
+  "x-readme-fauxas": true
+}
+```

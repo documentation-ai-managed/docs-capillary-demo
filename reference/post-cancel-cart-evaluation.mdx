@@ -3,3 +3,248 @@ title: Cancel Cart Evaluation - Cart Promotion
 ---
 
 This API is used to cancel pending carts where a promotion is locked.
+
+Consider a scenario where a particular promotion is applied in a cart but the transaction has not been processed yet. Such a state is called a locked state or pending cart state. This state prevents this promotion from being applied to any other cart. To proceed ahead, the current cart has to be released or canceled. This API can thus be used to cancel any pending carts.
+
+<Callout kind="tip" title="Note">
+
+For an overview on our APIs and for hands-on testing, refer to [API overview ](https://docs.capillarytech.com/reference/apioverview)and [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) documentation.
+
+</Callout>
+
+## Prerequisites
+
+* [ ] Authentication - Basic or OAuth authentication
+* [ ] Access group resource - Write access to customer group resource
+* [ ] customerId and evaluationId
+
+## API Endpoint Example
+
+`https://eu.api.capillarytech.com/api_gateway/v1/promotions/customer/565039518/evaluations/67e3dd673919452f135e2f23/cancel`
+
+## Path Parameter
+
+| Parameter (Parameters marked as * are required) | Data Type | Description                                                                                                                                                                                              |
+| :----------------------------------------------- | :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| customerId*                                     | Long      | Unique Identifier of the customer issuing Cart Promotion                                                                                                                                                 |
+| evaluationId*                                   | String    | Unique identifier that is generated when a cart evaluation is performed. To get evaluationId refer to [Post Evaluate Cart Promotion.](https://docs.capillarytech.com/reference/post-evaluate-promotions) |
+
+## Response Body
+
+<CodeGroup show-lines="true" tabs={["200 ok", "404 Not found"]}>
+
+  ```json
+  {
+      "data": {
+          "status": true,
+          "code": 201,
+          "message": "Successfully closed pending cart."
+      },
+      "errors": []
+  }
+  ```
+
+  ```json
+  {
+      "errors": [
+          {
+              "code": 404,
+              "message": "Passed evaluation log id is not found"
+          }
+      ]
+  }
+  ```
+
+</CodeGroup>
+
+<br />
+
+## Response Parameter
+
+| Parameter | Data Type | Description                                                                                                   |
+| :-------- | :-------- | :------------------------------------------------------------------------------------------------------------ |
+| data      | Object    | Contains details of the cart evaluation cancellation status; not present if the cancellation is unsuccessful. |
+| -status   | Boolean   | Indicates whether the cart evaluation cancellation was successful.                                            |
+| -code     | Integer   | Response code related to the cart evaluation cancellation.                                                    |
+| -message  | String    | Message corresponding to the response code for the cart evaluation cancellation.                              |
+| error     | Object    | Contains details of any errors that occurred during the cancellation process.                                 |
+
+## Error codes
+
+| Code | Description                                                                                                                       |
+| ---- | --------------------------------------------------------------------------------------------------------------------------------- |
+| 400  | Invalid request. Check required parameters. Ensure all required parameters (`customerId`, `evaluationId`) are provided and valid. |
+| 404  | Customer or evaluation not found. Use valid and existing `customerId` and `evaluationId`.                                         |
+| 701  | Error while calling segmentation engine. Check segmentation engine service connectivity and logs.                                 |
+| 702  | Error while getting org entities. Confirm org entities and service health.                                                        |
+| 703  | Org timezone fetch failed. Verify org timezone configuration and service availability.                                            |
+| 707  | The passed promotion type is not supported. Change the promotion type to one supported by the system.                             |
+| 500  | Internal server error. Retry the request after a short delay, and contact support if the error persists.                          |
+
+<br />
+
+## OpenAPI definition
+
+```json
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "v1",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://{host}",
+      "variables": {
+        "host": {
+          "default": "host"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/v1/promotions/customer/{customerId}/evaluation/{evaluationId}/cancel": {
+      "put": {
+        "summary": "Cancel Cart Evaluation - Cart Promotion",
+        "description": "This API is used to cancel pending carts where a promotion is locked.",
+        "operationId": "post-cancel-cart-evaluation",
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "path",
+            "description": "Unique Identifier of the customer",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "evaluationId",
+            "in": "path",
+            "description": "Unique identifier that is generated when a cart evaluation is performed.",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n    \"data\": {\n        \"status\": true,\n        \"code\": 201,\n        \"message\": \"Successfully closed pending cart.\"\n    },\n    \"errors\": []\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "boolean",
+                          "example": true,
+                          "default": true
+                        },
+                        "code": {
+                          "type": "integer",
+                          "example": 201,
+                          "default": 0
+                        },
+                        "message": {
+                          "type": "string",
+                          "example": "Successfully closed pending cart."
+                        }
+                      }
+                    },
+                    "errors": {
+                      "type": "array"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n    \"errors\": [\n        {\n            \"code\": 404,\n            \"message\": \"Passed evaluation log id is not found\"\n        }\n    ]\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "code": {
+                            "type": "integer",
+                            "example": 404,
+                            "default": 0
+                          },
+                          "message": {
+                            "type": "string",
+                            "example": "Passed evaluation log id is not found"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/customer/565039518/evaluations/67e3dd673919452f135e2f23/cancel?format=json' \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--header 'accept: application/json' \\\n--header 'Authorization: Basic UHJlcmYV9zaW5naDoyZmFhZmZjNjY5ZDRjMTc5Y2NlMzNhYzc5OTBjMTQ1Ng==' \\\n--header 'Cookie: CS=2c807081dddb4e7ca19263eea37c6836; _cfuvid=vOR_5OPEjCb_tkeMx.ChSLrA0y5Twfkp2vPk7fEHVxc-1738753364650-0.0.1.1-604800000; _cfuvid=zP7.7RFADYbKBhOOOXaxjPMpBmiYK5v1mxmI_5t6N1g-1742997587555-0.0.1.1-604800000'\n"
+            }
+          ],
+          "samples-languages": [
+            "curl"
+          ]
+        }
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "key": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  },
+  "x-readme-fauxas": true
+}
+```

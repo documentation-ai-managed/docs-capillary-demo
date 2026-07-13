@@ -3,3 +3,1350 @@ title: Get Loyalty Promotion List for a Program
 ---
 
 Retrieves a paginated list of promotions for a given program.
+
+<Callout kind="danger">
+
+️ This API is being phased out and will no longer be available for viewing loyalty promotions.
+To view loyalty promotions, use the [Get Details of all Loyalty Promotions](/reference/get-loyalty-promotion-all) API
+
+<br />
+
+</Callout>
+
+Retrieves a paginated list of promotions for a given program. You can filter the promotions based on source type, event name etc.
+
+By default, the types of promotions are not available for all the orgs. This needs to be enabled separately. For more details on the types of promotions, refer [Types of promotions](https://docs.capillarytech.com/docs/advanced-loyalty-promotions).
+
+## Example request
+
+```bash title="Sample request"
+curl --location 'https://eu.api.capillarytech.com/api_gateway/loyalty/v1/programs/973/promotionsV2?limit=100&offset=0&sourceType=USER_CREATED' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Basic **********' \
+--header 'Cookie: _cfuvid=ZkF.LSNXg9S52IfnjuqAXPBT0mhsN4NBGQOun0VO.bo-1758631730852-0.0.1.1-604800000'
+```
+
+## Prerequisites
+
+* [ ] Authentication: Basic or OAuth credentials
+* [ ] Access group resource: Read access to customer group resource
+
+## Resource information
+
+|               |                                                              |
+| :------------ | :----------------------------------------------------------- |
+| URI           | /api_gateway/loyalty/v1/programs/`{programId}`/promotionsV2 |
+| HTTP Method   | GET                                                          |
+| Pagination    | Yes                                                          |
+| Batch support | No                                                           |
+
+## Path parameters
+
+| Parameter Name | Data Type | Description              |
+| :------------- | :-------- | :----------------------- |
+| programId      | String    | Unique ID of the program |
+
+## Query parameters
+
+| Parameter Name              | Data Type | Description                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| :-------------------------- | :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `limit*`                    | String    | Number of results that need to be displayed. The values from zero to a maximum of 100 are supported.                                                                                                                                                                                                                                                                                                                                |
+| `sourceType*`               | ENUM      | Filter promotion data based on its source type. Possible values are `UI`, `IMPORT`, `GOODWILL`, `CAMPAIGN`, `POINTS_TRANSFER`, `IMPORT_API`, `PROMOTION_API`, `POINTS_CONTRIBUTION_TO_GROUP`,`MANUAL_POINTS_ADJUSTMENT`, `BADGES`, `USER_CREATED` <br/><br/> Use the filter `USER_CREATED` to filter the promotions created for [User Created Challenges (UCC)](https://docs.capillarytech.com/reference/user-created-challenges) |
+| `offset*`                   | String    | Start index for data retrieval. This value should not be negative.                                                                                                                                                                                                                                                                                                                                                                  |
+| `promotionId`               | Integer   | The unique ID of the promotion.                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `includeInactivePromotions` | Boolean   | Include promotions that are currently inactive.<br/>By default this is set to false.                                                                                                                                                                                                                                                                                                                                               |
+| `startRuleIdentifier`       | Integer   | The unique identifier of the start rule.                                                                                                                                                                                                                                                                                                                                                                                            |
+| `eventName`                 | String    | Set the event name to filter based on an event.                                                                                                                                                                                                                                                                                                                                                                                     |
+
+## Response body
+
+```json
+{
+    "status": {
+        "code": 200,
+        "message": "success"
+    },
+    "validationErrors": null,
+    "data": [
+        {
+            "id": 96664,
+            "name": "test_promo_uniqueName110",
+            "description": "creating promotion via API",
+            "promotionStatus": "LIVE",
+            "lastUpdateDate": "2025-06-23T09:25:04Z",
+            "lastUpdatedBy": -1,
+            "rulesetInfos": [
+                {
+                    "id": 126412694,
+                    "orgName": "DocDemo",
+                    "contextID": 2932,
+                    "orgID": 100737,
+                    "contextType": "program",
+                    "rules": [
+                        {
+                            "id": 126600796,
+                            "exp": "true",
+                            "expJSON": "{ \"arity\": \"literal\", \"value\": \"true\", \"type\": \"boolean:primitive\" }",
+                            "jsonType": "JNODE",
+                            "isActive": true,
+                            "priority": -1,
+                            "startDate": 1089532593324,
+                            "endDate": 33593126193324,
+                            "createdOn": 1750670704532,
+                            "caseToActions": {
+                                "true": [
+                                    {
+                                        "id": 126778453,
+                                        "actionName": "AWARD_TARGET_POINTS_ACTION",
+                                        "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.AwardTargetPointsActionImpl",
+                                        "mandatoryPropertiesValues": {
+                                            "TargetRuleId": "123",
+                                            "ProRateOnSourceValue": "EVENT_DEFAULT_VALUE",
+                                            "DelayStrategy": "AS_DEFINED_IN_ALLOCATION_STRATEGY",
+                                            "SourceValueRoundingStrategy": "ACTUAL",
+                                            "TargetGroupId": "1234567",
+                                            "ExpiryStrategy": "81042",
+                                            "TargetRuleName": "TargetRuleName",
+                                            "AwardStrategy": "82690",
+                                            "PointsRoundingStrategy": "ACTUAL"
+                                        },
+                                        "mandatoryComplexPropertiesValues": {},
+                                        "description": null
+                                    }
+                                ]
+                            },
+                            "ruleScope": "SERVER",
+                            "createdBy": -1,
+                            "modifiedBy": -1,
+                            "modifiedOn": 1750670704532,
+                            "name": "Rule 1",
+                            "description": "Rule 1",
+                            "expDataType": null,
+                            "filterInfo": [],
+                            "ruleSetId": 126412694,
+                            "updatedViaNewUI": false
+                        }
+                    ],
+                    "ruleScope": "SERVER",
+                    "startDate": 1089532593324,
+                    "endDate": 33593126193324,
+                    "createdOn": 1750670704532,
+                    "createdBy": -1,
+                    "modifiedBy": -1,
+                    "modifiedOn": 1750670704532,
+                    "name": "rulesetName_uniqueue1",
+                    "packageName": "",
+                    "description": "Promotional Rulesets",
+                    "filterInfo": [
+                        {
+                            "id": 126654282,
+                            "orgID": 100737,
+                            "ruleID": -1,
+                            "name": "LoyaltyType",
+                            "className": "com.capillary.shopbook.emf.impl.filter.LoyaltyTypeFilterImpl",
+                            "isInclude": true,
+                            "propertyToValues": {
+                                "loyaltyType": [
+                                    "loyalty"
+                                ]
+                            }
+                        },
+                        {
+                            "id": 126654283,
+                            "orgID": 100737,
+                            "ruleID": -1,
+                            "name": "EventSource",
+                            "className": "com.capillary.shopbook.emf.impl.filter.EventSourceFilterImpl",
+                            "isInclude": true,
+                            "propertyToValues": {
+                                "eventSource": [
+                                    "INSTORE"
+                                ]
+                            }
+                        }
+                    ],
+                    "eventType": null,
+                    "cappingInfo": [],
+                    "updatedViaNewUI": false,
+                    "label": "userCreatedLabel_2025-06-23T09:25:04.532Z",
+                    "private": true
+                }
+            ],
+            "programName": "DocDemoDefaultProgram",
+            "programId": 973,
+            "startDate": "2025-06-23T00:00Z",
+            "endDate": "2026-08-25T23:59:59Z",
+            "identifier": "test_promo_uniqueIdentifier110",
+            "isActive": true,
+            "eventName": "TARGETCOMPLETED",
+            "allocatePointsOn": "BILL",
+            "limits": {
+                "pointsPerCustomer": 10,
+                "numberOfTimesPerCustomer": 2,
+                "totalPointsInPromotion": 10,
+                "totalPointsPerEventLimit": -1
+            },
+            "useProportions": false,
+            "pointsOfferType": "LOYALTY",
+            "promotionRestrictions": {
+                "restrictions": {
+                    "redemptionRestrictions": [
+                        {
+                            "name": "MAX_ALLOWED_TIMES_PER_CUSTOMER",
+                            "value": 3,
+                            "type": "PERIOD_BASED",
+                            "periodType": "MOVING_WINDOW",
+                            "periodUnit": "WEEKLY"
+                        },
+                        {
+                            "name": "MAX_ALLOWED_TIMES_PER_PROMOTION",
+                            "value": 3,
+                            "type": "NON_PERIOD_BASED",
+                            "periodType": null,
+                            "periodUnit": null
+                        },
+                        {
+                            "name": "MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER",
+                            "value": 100,
+                            "type": "NON_PERIOD_BASED",
+                            "periodType": null,
+                            "periodUnit": null
+                        }
+                    ],
+                    "issualRestrictions": [
+                        {
+                            "name": "MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER",
+                            "value": 3
+                        }
+                    ],
+                    "earnRestrictions": [
+                        {
+                            "name": "MAX_NUMBER_OF_EARNS_PER_CUSTOMER",
+                            "value": 3
+                        }
+                    ],
+                    "expiryRestrictions": [
+                        {
+                            "name": "ISSUAL_PROMOTION_EXPIRY_BASED_ON",
+                            "value": 10,
+                            "type": "PROMOTION"
+                        }
+                    ]
+                },
+                "scope": null,
+                "loyaltyEarningType": "ISSUE_AND_EARN",
+                "expiryReminder": null,
+                "targetGroupIds": [
+                    1234567
+                ],
+                "targetRuleIds": [
+                    123
+                ],
+                "linkedTargetGroupVsTargetRuleIdMap": {
+                    "1234567": [
+                        123
+                    ]
+                },
+                "cappingStatus": null,
+                "skipEarnedDateCheckOnRedeem": false,
+                "isStackable": false,
+                "isConsideredForRanking": false,
+                "isExclusive": false,
+                "isAlwaysApply": false
+            }
+        }
+    ],
+    "pageDetails": {
+        "pageNumber": 0,
+        "pageSize": 100,
+        "totalEntries": 1,
+        "pageCount": 1
+    }
+}
+```
+
+## Response parameters
+
+| **Field** | **Data Type** | **Description** |
+| --- | --- | --- |
+| `status` | Object | Contains the status of the API response. |
+| • `code` | Integer | The HTTP status code indicating the outcome of the request. |
+| • `message` | String | A human-readable message summarising the outcome of the API request. |
+| `validationErrors` | Object or null | Contains validation error details when the request fails server-side validation; null if no errors occur. |
+| `data` | Array of Objects | Contains the list of promotions matching the request parameters and filters. |
+| • `id` | Integer | The unique identifier for the promotion. |
+| • `name` | String | The name of the promotion. |
+| • `description` | String | A text field describing the promotion's purpose and business context. |
+| • `promotionStatus` | String | The operational status of the promotion, indicating its current position in the promotion lifecycle. |
+| • `lastUpdateDate` | String (ISO 8601) | The date and time when the promotion was last modified, in ISO 8601 format. |
+| • `lastUpdatedBy` | Integer | The user ID of the person who performed the most recent modification to the promotion. |
+| • `rulesetInfos` | Array of Objects | The rulesets that define the conditions and actions governing how the promotion is evaluated and applied. |
+| • `id` | Integer | The unique identifier for the ruleset. |
+| • `orgName` | String | The name of the organization that owns and manages this ruleset. |
+| • `contextID` | Integer | The ID of the context, such as a program, in which the ruleset is configured and evaluated. |
+| • `orgID` | Integer | The unique system ID of the organization that owns this ruleset. |
+| • `contextType` | String | Specifies the context category, such as program or campaign, determining how the ruleset is applied. |
+| • `rules` | Array of Objects | The rules that define the eligibility conditions and triggering logic for the promotion within this ruleset. |
+| • `id` | Integer | Unique identifier for the rule. |
+| • `exp` | String | The conditional expression evaluated to determine whether the rule's actions are triggered. |
+| • `expJSON` | String | The structured JSON format of the rule expression, enabling programmatic evaluation of the rule logic. |
+| • `jsonType` | String | Specifies the JSON node structure type used to represent the rule expression. |
+| • `isActive` | Boolean | Indicates if this rule is currently enforced during promotion evaluation; inactive rules are skipped. |
+| • `priority` | Integer | Determines the evaluation order when multiple rules exist; lower values execute first and take precedence. |
+| • `startDate` | Long | The epoch timestamp marking when this rule becomes active and begins to be evaluated. |
+| • `endDate` | Long | The epoch timestamp marking when this rule stops being evaluated. |
+| • `createdOn` | Long | The epoch timestamp recording when this rule was originally created. |
+| • `caseToActions` | Object | Maps rule expression outcomes to the actions the promotion executes when each outcome is satisfied. |
+| • `true` | Array of Objects | Actions to be executed when the expression evaluates to true. |
+| • `id` | Integer | ID of the action to be executed. |
+| • `actionName` | String | The type of action to be performed, such as awarding points or issuing vouchers, when the rule condition is met. |
+| • `actionClass` | String | The fully qualified Java class containing the implementation logic for this action. |
+| • `mandatoryPropertiesValues` | Object | The required configuration parameters for the action, controlling how it executes. |
+| • `(key-value pairs)` | Varies (String, Integer) | Specific mandatory properties and their values. |
+| • `mandatoryComplexPropertiesValues` | Object | Complex structured configurations required by the action; empty if no complex properties are needed. |
+| • `description` | String or null | Description of the action (if applicable). |
+| • `ruleScope` | String | Specifies where the rule is evaluated, such as server-side or client-side, determining its execution environment. |
+| • `createdBy` | Integer | The user ID of the person who originally created this rule. |
+| • `modifiedBy` | Integer | The user ID of the person who made the most recent changes to this rule. |
+| • `modifiedOn` | Long | The epoch timestamp recording when this rule was last updated. |
+| • `name` | String | The display name assigned to this rule for identification within the ruleset. |
+| • `description` | String | A summary documenting the purpose and behaviour of this rule. |
+| • `ruleSetId` | Integer | The unique identifier linking this rule to its parent ruleset. |
+| • `updatedViaNewUI` | Boolean | Indicates if this rule was last modified using the Loyalty+ UI. |
+| • `ruleScope` | String | Specifies the execution scope, such as server-side or client-side, determining where the ruleset's rules are evaluated. |
+| • `startDate` | String | The epoch timestamp in milliseconds marking when this ruleset becomes active. |
+| • `endDate` | String | The epoch timestamp in milliseconds marking when this ruleset expires and stops being evaluated. |
+| • `createdOn` | Long | Date the rule was created, in epoch time. |
+| • `createdBy` | Integer | The user ID of the person who originally created this ruleset. |
+| • `modifiedBy` | Integer | The user ID of the person who made the most recent changes to this ruleset. |
+| • `modifiedOn` | Long | Date the rule was last modified, in epoch time. |
+| • `name` | String | The display name assigned to this ruleset for identification and reference. |
+| • `packageName` | String | The package identifier used to group related rulesets together. |
+| • `description` | String | A summary describing the purpose and scope of this ruleset. |
+| • `filterInfo` | Array | The filter objects that restrict which customers or conditions the ruleset's rules are evaluated against. |
+| • `id` | Integer | Unique identifier of the filter. |
+| • `orgID` | Integer | Organization ID linked to the filter. |
+| • `ruleID` | Integer | Rule ID associated with the filter. |
+| • `name` | String | Name of the filter. Example: LoyaltyType, EventSource |
+| • `className` | String | Java class name that implements the filter. |
+| • `isInclude` | Boolean | Indicates whether the filter: -`true` : Includes entities that match the property values defined in `propertyToValues`. -`false` : Excludes entities that match the property values defined in `propertyToValues`. |
+| • `propertyToValues` | Object | Key-to-list mapping of filter properties. |
+| • `eventType` | String | The category of customer event that triggers this ruleset's evaluation. |
+| • `cappingInfo` | Array | The capping configuration objects that enforce quantity or frequency limits on promotion benefits within the ruleset. |
+| • `updatedViaNewUI` | Boolean | Indicates if this rule was last modified using the Loyalty+ UI. |
+| • `label` | String | A display tag used to organise and identify this ruleset. |
+| • `private` | Boolean | Indicates if this ruleset is restricted to specific organisations or contexts, rather than shared broadly. |
+| • `programName` | String | The name of the loyalty program under which this promotion operates. |
+| • `programId` | Integer | The unique ID of the loyalty program to which this promotion belongs. |
+| • `startDate` | String (ISO 8601) | Specifies the date and time from which the promotion becomes active, in ISO 8601 format. |
+| • `endDate` | String (ISO 8601) | Specifies the date and time when the promotion stops being available to customers, in ISO 8601 format. |
+| • `identifier` | String | Specifies the external identifier configured for the promotion — a human-readable or externally assigned string used to reference it across systems. |
+| • `isActive` | Boolean | Indicates if the promotion is currently available for earning and redemption. |
+| • `eventName` | String | Specifies the customer action or milestone that activates this promotion. |
+| • `allocatePointsOn` | String | Specifies the transaction event at which promotion points are credited to the customer. |
+| • `limits` | Object | Defines various limits related to the promotion. |
+| • `pointsPerCustomer` | Integer | The maximum total points a single customer can earn from this promotion; -1 means unlimited. |
+| • `numberOfTimesPerCustomer` | Integer | The maximum number of times a customer can earn from this promotion; -1 means unlimited. |
+| • `totalPointsInPromotion` | Integer | The maximum total points available across all customers for this promotion; -1 means no overall cap. |
+| • `totalPointsPerEventLimit` | Integer | The maximum points awardable in a single event occurrence; -1 means no per-event cap. |
+| • `useProportions` | Boolean | Indicates if points are distributed proportionally based on transaction values rather than as fixed amounts. |
+| • `pointsOfferType` | String | Specifies the category of points awarded by this promotion. |
+| • `promotionRestrictions` | Object | Defines restrictions for the promotion. |
+| • `restrictions` | Object | Object of redemption restrictions. |
+| • `redemptionRestrictions` | Object | Contains information on the redemption limits for a promotion. |
+| • `name` | Enum | Type of redemption restriction. Possible values:`MAX_ALLOWED_POINTS_PER_EVENT`: The maximum points that can be earned for a single activity (make a transaction, redeem points etc.) done by a customer.`MAX_ALLOWED_TIMES_PER_CUSTOMER`: The maximum number of activities (make a transaction, redeem points etc.) a customer can do to earn points.`MAX_ALLOWED_POINTS_PER_CUSTOMER`:The maximum number of points a customer can earn from a promotion.`MAX_ALLOWED_TIMES_PER_PROMOTION`: The maximum number of activities (make a transaction, redeem points etc.) allowed across all customers in the brand for the promotion.`MAX_ALLOWED_POINTS_PER_PROMOTION`:The maximum number of points available across all customers in the brand for the promotion.`MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER`:The maximum number of times a customer can redeem a promotion after earning |
+| • `value` | Integer | Number of units corresponding to the `name`. Specify `-1` for no limit (max limit: 100). |
+| • `type` | Enum | Type of period for restriction. Possible values: `PERIOD_BASED`, `NON_PERIOD_BASED`. |
+| • `periodType` | Enum | Type of period. Supported value: `MOVING_WINDOW`. |
+| • `periodUnit` | Enum | Frequency of the period. Possible values: `DAILY`, `WEEKLY`, `MONTHLY`. |
+| • `issualRestrictions` | Object | Contains information on the issual limits for a promotion. |
+| • `name` | Enum | Type of issual restriction. Possible values:`MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER`: Maximum number of times a promotion can be issued to a customer. |
+| • `value` | Integer | Number of units corresponding to the `name`. Specify `-1` for no limit (max limit: 100). |
+| • `earnRestrictions` | Object | Contains information on the earn limits for a promotion (specific to enrol-and-issue promotions). |
+| • `name` | Enum | Type of earn restriction. Possible values:`MAX_NUMBER_OF_EARNS_PER_CUSTOMER`: The maximum number of times a loyalty promotion can be issued to a customer.`MAX_NUMBER_OF_EARNS_PER_PROMOTION`: The maximum number of times a loyalty promotion can be issued across customers.`MAX_POINTS_PER_EARN_PER_CUSTOMER`: The maximum number of points a customer can earn in a single event from a promotion. |
+| • `value` | Integer | Number of units corresponding to the `name`. Specify `-1` for no limit (max limit: 100). |
+| • `expiryRestrictions` | Object | Contains information on the expiry for a promotion (mandatory for all promotion types). |
+| • `name` | Enum | Action that is expiring. Possible values:`ISSUAL_PROMOTION_EXPIRY_BASED_ON`: The time period within which the customer must complete the activity required to issue the loyalty promotion. Once this lapses, the customer cannot earn the loyalty promotion.`EARN_PROMOTION_EXPIRY_BASED_ON`: The time period within which the customer must complete the activity required to receive the loyalty promotion benefits. Once this lapses, the customer cannot earn the benefits. |
+| • `type` | Enum | Type of expiration. Possible values: `PROMOTION`, `CUSTOM`. |
+| • `value` | Integer | Number of days the loyalty promotion expires from the date of issual. |
+| `scope` | Object or null | Scope of the promotion restrictions. |
+| `isStackable` | Boolean | Indicates if the promotion can be applied alongside other active promotions within the same transaction. |
+| `isConsideredForRanking` | Boolean | Indicates if the promotion is included in priority ranking, which controls which promotions take precedence when multiple are applicable to the same transaction. |
+| `loyaltyEarningType` | String | Indicates how customers earn rewards under this promotion — whether points are issued automatically or the customer must first opt in before earning. |
+| `expiryReminder` | String | Specifies the configuration for automated reminder communications sent to customers before their promotion benefits expire. |
+| `isExclusive` | Boolean | Indicates if the promotion is evaluated in isolation, preventing any other promotion from being applied in the same transaction. |
+| `isAlwaysApply` | Boolean | Indicates if the promotion is applied unconditionally, bypassing the ranking and stacking rules configured for the org. |
+| `targetGroupIds` | Array of Integers | The customer group IDs specifying which target segments are eligible for this promotion. |
+| `linkedTargetGroupVsTargetRuleIdMap` | Object | Maps each target customer group to the specific eligibility rules that apply to that group for this promotion. |
+| `cappingStatus` | String | Indicates whether capping limits are currently enforced, disabled, or not configured during promotion evaluation. |
+| `skipEarnedDateCheckOnRedeem` | Boolean | Determines whether redemption must occur within the validity window for the earned promotion. * false (default): Enforces date checks during redemption. The event date must be between the `createdOn` and `expiresOn` dates of the earn. * true: Skips the earned date window check during redemption; redemption can proceed even if the event date is before `createdOn` or after `expiresOn`. |
+| `targetRuleIds` | Array of Integers | The rule IDs specifying which earning rules define the points and benefits available through this promotion. |
+| `pageDetails` | Object | Contains metadata about the paginated result set, including current page, page size, and total record counts. |
+| • `pageNumber` | Integer | Current page number in the paginated result. |
+| • `pageSize` | Integer | Number of items displayed per page. |
+| • `totalEntries` | Integer | Total number of records available for pagination. |
+| • `pageCount` | Integer | Total number of pages available for the current query and page size. |
+
+## API specific error codes
+
+| Error | Description                                           |
+| :---- | :---------------------------------------------------- |
+| 8013  | Identifier name missing or incorrect.                 |
+| 8015  | Identifier value missing or incorrect.                |
+| 8003  | Source is missing or incorrect.                       |
+| 4086  | `limit`, `offset`, or `sourceType` is missing         |
+| 4055  | `limit`  is greater than 100                          |
+| 4027  | `promotionId` or `startRuleIdentifier`  doesn't exist |
+| 4083  | Incorrect event name is passed                        |
+| 4082  | `eventName` is null / empty                           |
+| 4084  | `sourceType` is empty / null                          |
+| 4085  | `sourceType` parameter has an invalid value           |
+| 4056  | All mandatory query parameters are missing            |
+| 4050  | Query parameter is not supported                      |
+
+<br />
+
+## OpenAPI definition
+
+```json
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "v1",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://{host}",
+      "variables": {
+        "host": {
+          "default": "host"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/api_gateway/loyalty/v1/programs/{programId}/promotionsV2?limit=100&offset=0&sourceType=USER_CREATED": {
+      "get": {
+        "summary": "Get Loyalty Promotion List for a Program",
+        "description": "Retrieves a paginated list of promotions for a given program.",
+        "operationId": "get-loyalty-promotion-list-for-a-program",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results that need to be displayed. The values from zero to a maximum of 100 are supported.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sourceType",
+            "in": "query",
+            "description": "Filter promotion data based on its source type.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                ""
+              ]
+            }
+          },
+          {
+            "name": "programId",
+            "in": "path",
+            "description": "Unique ID of the program.",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Start index for data retrieval. This value should not be negative.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": {
+                      "status": {
+                        "code": 200,
+                        "message": "success"
+                      },
+                      "validationErrors": null,
+                      "data": [
+                        {
+                          "id": 96664,
+                          "name": "test_promo_uniqueName110",
+                          "description": "creating promotion via API",
+                          "promotionStatus": "LIVE",
+                          "lastUpdateDate": "2025-06-23T09:25:04Z",
+                          "lastUpdatedBy": -1,
+                          "rulesetInfos": [
+                            {
+                              "id": 126412694,
+                              "orgName": "DocDemo",
+                              "contextID": 2932,
+                              "orgID": 100737,
+                              "contextType": "program",
+                              "rules": [
+                                {
+                                  "id": 126600796,
+                                  "exp": "true",
+                                  "expJSON": "{ \"arity\": \"literal\", \"value\": \"true\", \"type\": \"boolean:primitive\" }",
+                                  "jsonType": "JNODE",
+                                  "isActive": true,
+                                  "priority": -1,
+                                  "startDate": 1089532593324,
+                                  "endDate": 33593126193324,
+                                  "createdOn": 1750670704532,
+                                  "caseToActions": {
+                                    "true": [
+                                      {
+                                        "id": 126778453,
+                                        "actionName": "AWARD_TARGET_POINTS_ACTION",
+                                        "actionClass": "com.capillary.shopbook.pointsengine.endpoint.impl.action.AwardTargetPointsActionImpl",
+                                        "mandatoryPropertiesValues": {
+                                          "TargetRuleId": "123",
+                                          "ProRateOnSourceValue": "EVENT_DEFAULT_VALUE",
+                                          "DelayStrategy": "AS_DEFINED_IN_ALLOCATION_STRATEGY",
+                                          "SourceValueRoundingStrategy": "ACTUAL",
+                                          "TargetGroupId": "1234567",
+                                          "ExpiryStrategy": "81042",
+                                          "TargetRuleName": "TargetRuleName",
+                                          "AwardStrategy": "82690",
+                                          "PointsRoundingStrategy": "ACTUAL"
+                                        },
+                                        "mandatoryComplexPropertiesValues": {},
+                                        "description": null
+                                      }
+                                    ]
+                                  },
+                                  "ruleScope": "SERVER",
+                                  "createdBy": -1,
+                                  "modifiedBy": -1,
+                                  "modifiedOn": 1750670704532,
+                                  "name": "Rule 1",
+                                  "description": "Rule 1",
+                                  "expDataType": null,
+                                  "filterInfo": [],
+                                  "ruleSetId": 126412694,
+                                  "updatedViaNewUI": false
+                                }
+                              ],
+                              "ruleScope": "SERVER",
+                              "startDate": 1089532593324,
+                              "endDate": 33593126193324,
+                              "createdOn": 1750670704532,
+                              "createdBy": -1,
+                              "modifiedBy": -1,
+                              "modifiedOn": 1750670704532,
+                              "name": "rulesetName_uniqueue1",
+                              "packageName": "",
+                              "description": "Promotional Rulesets",
+                              "filterInfo": [
+                                {
+                                  "id": 126654282,
+                                  "orgID": 100737,
+                                  "ruleID": -1,
+                                  "name": "LoyaltyType",
+                                  "className": "com.capillary.shopbook.emf.impl.filter.LoyaltyTypeFilterImpl",
+                                  "isInclude": true,
+                                  "propertyToValues": {
+                                    "loyaltyType": [
+                                      "loyalty"
+                                    ]
+                                  }
+                                },
+                                {
+                                  "id": 126654283,
+                                  "orgID": 100737,
+                                  "ruleID": -1,
+                                  "name": "EventSource",
+                                  "className": "com.capillary.shopbook.emf.impl.filter.EventSourceFilterImpl",
+                                  "isInclude": true,
+                                  "propertyToValues": {
+                                    "eventSource": [
+                                      "INSTORE"
+                                    ]
+                                  }
+                                }
+                              ],
+                              "eventType": null,
+                              "cappingInfo": [],
+                              "updatedViaNewUI": false,
+                              "label": "userCreatedLabel_2025-06-23T09:25:04.532Z",
+                              "private": true
+                            }
+                          ],
+                          "programName": "DocDemoDefaultProgram",
+                          "programId": 973,
+                          "startDate": "2025-06-23T00:00Z",
+                          "endDate": "2026-08-25T23:59:59Z",
+                          "identifier": "test_promo_uniqueIdentifier110",
+                          "isActive": true,
+                          "eventName": "TARGETCOMPLETED",
+                          "allocatePointsOn": "BILL",
+                          "limits": {
+                            "pointsPerCustomer": 10,
+                            "numberOfTimesPerCustomer": 2,
+                            "totalPointsInPromotion": 10,
+                            "totalPointsPerEventLimit": -1
+                          },
+                          "useProportions": false,
+                          "pointsOfferType": "LOYALTY",
+                          "promotionRestrictions": {
+                            "restrictions": {
+                              "redemptionRestrictions": [
+                                {
+                                  "name": "MAX_ALLOWED_TIMES_PER_CUSTOMER",
+                                  "value": 3,
+                                  "type": "PERIOD_BASED",
+                                  "periodType": "MOVING_WINDOW",
+                                  "periodUnit": "WEEKLY"
+                                },
+                                {
+                                  "name": "MAX_ALLOWED_TIMES_PER_PROMOTION",
+                                  "value": 3,
+                                  "type": "NON_PERIOD_BASED",
+                                  "periodType": null,
+                                  "periodUnit": null
+                                },
+                                {
+                                  "name": "MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER",
+                                  "value": 100,
+                                  "type": "NON_PERIOD_BASED",
+                                  "periodType": null,
+                                  "periodUnit": null
+                                }
+                              ],
+                              "issualRestrictions": [
+                                {
+                                  "name": "MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER",
+                                  "value": 3
+                                }
+                              ],
+                              "earnRestrictions": [
+                                {
+                                  "name": "MAX_NUMBER_OF_EARNS_PER_CUSTOMER",
+                                  "value": 3
+                                }
+                              ],
+                              "expiryRestrictions": [
+                                {
+                                  "name": "ISSUAL_PROMOTION_EXPIRY_BASED_ON",
+                                  "value": 10,
+                                  "type": "PROMOTION"
+                                }
+                              ]
+                            },
+                            "scope": null,
+                            "loyaltyEarningType": "ISSUE_AND_EARN",
+                            "expiryReminder": null,
+                            "targetGroupIds": [
+                              1234567
+                            ],
+                            "targetRuleIds": [
+                              123
+                            ],
+                            "linkedTargetGroupVsTargetRuleIdMap": {
+                              "1234567": [
+                                123
+                              ]
+                            },
+                            "cappingStatus": null,
+                            "skipEarnedDateCheckOnRedeem": false,
+                            "isStackable": false,
+                            "isConsideredForRanking": false,
+                            "isExclusive": false,
+                            "isAlwaysApply": false
+                          }
+                        }
+                      ],
+                      "pageDetails": {
+                        "pageNumber": 0,
+                        "pageSize": 100,
+                        "totalEntries": 1,
+                        "pageCount": 1
+                      }
+                    }
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "integer",
+                          "example": 200,
+                          "default": 0
+                        },
+                        "message": {
+                          "type": "string",
+                          "example": "success"
+                        }
+                      }
+                    },
+                    "validationErrors": {},
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "example": 201399,
+                            "default": 0
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "1726568617"
+                          },
+                          "description": {
+                            "type": "string",
+                            "example": "creating promotion via API"
+                          },
+                          "promotionStatus": {
+                            "type": "string",
+                            "example": "LIVE"
+                          },
+                          "lastUpdateDate": {
+                            "type": "string",
+                            "example": "2024-09-17T10:23:37Z"
+                          },
+                          "lastUpdatedBy": {
+                            "type": "integer",
+                            "example": -1,
+                            "default": 0
+                          },
+                          "rulesetInfos": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "integer",
+                                  "example": 2030798,
+                                  "default": 0
+                                },
+                                "orgName": {
+                                  "type": "string",
+                                  "example": "Nirvana Originals"
+                                },
+                                "contextID": {
+                                  "type": "integer",
+                                  "example": 2822,
+                                  "default": 0
+                                },
+                                "orgID": {
+                                  "type": "integer",
+                                  "example": 4000110,
+                                  "default": 0
+                                },
+                                "contextType": {
+                                  "type": "string",
+                                  "example": "program"
+                                },
+                                "rules": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": {
+                                        "type": "integer",
+                                        "example": 2134515,
+                                        "default": 0
+                                      },
+                                      "exp": {
+                                        "type": "string",
+                                        "example": "true"
+                                      },
+                                      "expJSON": {
+                                        "type": "string",
+                                        "example": "{ \"arity\": \"literal\", \"value\": \"true\", \"type\": \"boolean:primitive\" }"
+                                      },
+                                      "jsonType": {
+                                        "type": "string",
+                                        "example": "JNODE"
+                                      },
+                                      "isActive": {
+                                        "type": "boolean",
+                                        "example": true,
+                                        "default": true
+                                      },
+                                      "priority": {
+                                        "type": "integer",
+                                        "example": -1,
+                                        "default": 0
+                                      },
+                                      "startDate": {
+                                        "type": "integer",
+                                        "example": 1089532593324,
+                                        "default": 0
+                                      },
+                                      "endDate": {
+                                        "type": "integer",
+                                        "example": 33593126193324,
+                                        "default": 0
+                                      },
+                                      "createdOn": {
+                                        "type": "integer",
+                                        "example": 1726568617611,
+                                        "default": 0
+                                      },
+                                      "caseToActions": {
+                                        "type": "object",
+                                        "properties": {
+                                          "true": {
+                                            "type": "array",
+                                            "items": {
+                                              "type": "object",
+                                              "properties": {
+                                                "id": {
+                                                  "type": "integer",
+                                                  "example": 2220059,
+                                                  "default": 0
+                                                },
+                                                "actionName": {
+                                                  "type": "string",
+                                                  "example": "AWARD_TARGET_POINTS_ACTION"
+                                                },
+                                                "actionClass": {
+                                                  "type": "string",
+                                                  "example": "com.capillary.shopbook.pointsengine.endpoint.impl.action.AwardTargetPointsActionImpl"
+                                                },
+                                                "mandatoryPropertiesValues": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "TargetRuleId": {
+                                                      "type": "string",
+                                                      "example": "71085"
+                                                    },
+                                                    "ProRateOnSourceValue": {
+                                                      "type": "string",
+                                                      "example": "ACHIEVED_VALUE"
+                                                    },
+                                                    "DelayStrategy": {
+                                                      "type": "string",
+                                                      "example": "AS_DEFINED_IN_ALLOCATION_STRATEGY"
+                                                    },
+                                                    "SourceValueRoundingStrategy": {
+                                                      "type": "string",
+                                                      "example": "ACTUAL"
+                                                    },
+                                                    "TargetGroupId": {
+                                                      "type": "string",
+                                                      "example": "39534"
+                                                    },
+                                                    "ExpiryStrategy": {
+                                                      "type": "string",
+                                                      "example": "102863"
+                                                    },
+                                                    "PointType": {
+                                                      "type": "string",
+                                                      "example": "Main"
+                                                    },
+                                                    "AwardStrategy": {
+                                                      "type": "string",
+                                                      "example": "102860"
+                                                    },
+                                                    "PointsRoundingStrategy": {
+                                                      "type": "string",
+                                                      "example": "ACTUAL"
+                                                    },
+                                                    "TargetName": {
+                                                      "type": "string",
+                                                      "example": "172464910566"
+                                                    }
+                                                  }
+                                                },
+                                                "mandatoryComplexPropertiesValues": {
+                                                  "type": "object",
+                                                  "properties": {}
+                                                },
+                                                "description": {}
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "ruleScope": {
+                                        "type": "string",
+                                        "example": "SERVER"
+                                      },
+                                      "createdBy": {
+                                        "type": "integer",
+                                        "example": -1,
+                                        "default": 0
+                                      },
+                                      "modifiedBy": {
+                                        "type": "integer",
+                                        "example": -1,
+                                        "default": 0
+                                      },
+                                      "modifiedOn": {
+                                        "type": "integer",
+                                        "example": 1726568617611,
+                                        "default": 0
+                                      },
+                                      "name": {
+                                        "type": "string",
+                                        "example": "Rule 1"
+                                      },
+                                      "description": {
+                                        "type": "string",
+                                        "example": "Rule 1"
+                                      },
+                                      "expDataType": {},
+                                      "filterInfo": {
+                                        "type": "array"
+                                      },
+                                      "ruleSetId": {
+                                        "type": "integer",
+                                        "example": 2030798,
+                                        "default": 0
+                                      },
+                                      "updatedViaNewUI": {
+                                        "type": "boolean",
+                                        "example": false,
+                                        "default": true
+                                      }
+                                    }
+                                  }
+                                },
+                                "ruleScope": {
+                                  "type": "string",
+                                  "example": "SERVER"
+                                },
+                                "startDate": {
+                                  "type": "integer",
+                                  "example": 1089532593324,
+                                  "default": 0
+                                },
+                                "endDate": {
+                                  "type": "integer",
+                                  "example": 33593126193324,
+                                  "default": 0
+                                },
+                                "createdOn": {
+                                  "type": "integer",
+                                  "example": 1726568617610,
+                                  "default": 0
+                                },
+                                "createdBy": {
+                                  "type": "integer",
+                                  "example": -1,
+                                  "default": 0
+                                },
+                                "modifiedBy": {
+                                  "type": "integer",
+                                  "example": -1,
+                                  "default": 0
+                                },
+                                "modifiedOn": {
+                                  "type": "integer",
+                                  "example": 1726568617610,
+                                  "default": 0
+                                },
+                                "name": {
+                                  "type": "string",
+                                  "example": "1726568617"
+                                },
+                                "packageName": {
+                                  "type": "string",
+                                  "example": ""
+                                },
+                                "description": {
+                                  "type": "string",
+                                  "example": "Promotional Rulesets"
+                                },
+                                "filterInfo": {
+                                  "type": "array"
+                                },
+                                "eventType": {},
+                                "cappingInfo": {
+                                  "type": "array"
+                                },
+                                "updatedViaNewUI": {
+                                  "type": "boolean",
+                                  "example": false,
+                                  "default": true
+                                },
+                                "label": {
+                                  "type": "string",
+                                  "example": "userCreatedLabel_2024-09-17T10:23:37.610Z"
+                                },
+                                "private": {
+                                  "type": "boolean",
+                                  "example": true,
+                                  "default": true
+                                }
+                              }
+                            }
+                          },
+                          "programName": {
+                            "type": "string",
+                            "example": "NirvanaOriginsDefaultProgram"
+                          },
+                          "programId": {
+                            "type": "integer",
+                            "example": 2822,
+                            "default": 0
+                          },
+                          "startDate": {
+                            "type": "string",
+                            "example": "2024-08-09T00:00Z"
+                          },
+                          "endDate": {
+                            "type": "string",
+                            "example": "2024-09-30T23:59:59Z"
+                          },
+                          "identifier": {
+                            "type": "string",
+                            "example": "identifier_123"
+                          },
+                          "isActive": {
+                            "type": "boolean",
+                            "example": true,
+                            "default": true
+                          },
+                          "eventName": {
+                            "type": "string",
+                            "example": "TARGETCOMPLETED"
+                          },
+                          "allocatePointsOn": {
+                            "type": "string",
+                            "example": "BILL"
+                          },
+                          "limits": {
+                            "type": "object",
+                            "properties": {
+                              "pointsPerCustomer": {
+                                "type": "integer",
+                                "example": -1,
+                                "default": 0
+                              },
+                              "numberOfTimesPerCustomer": {
+                                "type": "integer",
+                                "example": -1,
+                                "default": 0
+                              },
+                              "totalPointsInPromotion": {
+                                "type": "integer",
+                                "example": -1,
+                                "default": 0
+                              },
+                              "totalPointsPerEventLimit": {
+                                "type": "integer",
+                                "example": -1,
+                                "default": 0
+                              }
+                            }
+                          },
+                          "useProportions": {
+                            "type": "boolean",
+                            "example": false,
+                            "default": true
+                          },
+                          "pointsOfferType": {
+                            "type": "string",
+                            "example": "LOYALTY"
+                          },
+                          "promotionRestrictions": {
+                            "type": "object",
+                            "properties": {
+                              "restrictions": {
+                                "type": "object",
+                                "properties": {
+                                  "redemptionRestrictions": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "name": {
+                                          "type": "string",
+                                          "example": "MAX_ALLOWED_TIMES_PER_CUSTOMER"
+                                        },
+                                        "value": {
+                                          "type": "integer",
+                                          "example": 3,
+                                          "default": 0
+                                        },
+                                        "type": {
+                                          "type": "string",
+                                          "example": "PERIOD_BASED"
+                                        },
+                                        "periodType": {
+                                          "type": "string",
+                                          "example": "MOVING_WINDOW"
+                                        },
+                                        "periodUnit": {
+                                          "type": "string",
+                                          "example": "WEEKLY"
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "issualRestrictions": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "name": {
+                                          "type": "string",
+                                          "example": "MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER"
+                                        },
+                                        "value": {
+                                          "type": "integer",
+                                          "example": 3,
+                                          "default": 0
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "earnRestrictions": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "name": {
+                                          "type": "string",
+                                          "example": "MAX_NUMBER_OF_EARNS_PER_CUSTOMER"
+                                        },
+                                        "value": {
+                                          "type": "integer",
+                                          "example": 3,
+                                          "default": 0
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "expiryRestrictions": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "name": {
+                                          "type": "string",
+                                          "example": "ISSUAL_PROMOTION_EXPIRY_BASED_ON"
+                                        },
+                                        "value": {
+                                          "type": "integer",
+                                          "example": 10,
+                                          "default": 0
+                                        },
+                                        "type": {
+                                          "type": "string",
+                                          "example": "PROMOTION"
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "scope": {},
+                              "isStackable": {
+                                "type": "boolean",
+                                "example": false,
+                                "default": true
+                              },
+                              "isConsideredForRanking": {
+                                "type": "boolean",
+                                "example": true,
+                                "default": true
+                              },
+                              "loyaltyEarningType": {
+                                "type": "string",
+                                "example": "ISSUE_AND_EARN"
+                              },
+                              "expiryReminder": {},
+                              "isExclusive": {
+                                "type": "boolean",
+                                "example": false,
+                                "default": true
+                              },
+                              "isAlwaysApply": {
+                                "type": "boolean",
+                                "example": false,
+                                "default": true
+                              },
+                              "targetGroupIds": {
+                                "type": "array",
+                                "items": {
+                                  "type": "integer",
+                                  "example": 39534,
+                                  "default": 0
+                                }
+                              },
+                              "targetRuleIds": {
+                                "type": "array",
+                                "items": {
+                                  "type": "integer",
+                                  "example": 71085,
+                                  "default": 0
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "pageDetails": {
+                      "type": "object",
+                      "properties": {
+                        "pageNumber": {
+                          "type": "integer",
+                          "example": 5,
+                          "default": 0
+                        },
+                        "pageSize": {
+                          "type": "integer",
+                          "example": 10,
+                          "default": 0
+                        },
+                        "totalEntries": {
+                          "type": "integer",
+                          "example": 23,
+                          "default": 0
+                        },
+                        "pageCount": {
+                          "type": "integer",
+                          "example": 3,
+                          "default": 0
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n    \"status\": {\n        \"code\": 400,\n        \"message\": \"Bad Request\"\n    },\n    \"validationErrors\": {\n        \"otherErrors\": {\n            \"data\": [\n                {\n                    \"status\": false,\n                    \"responseCode\": 4085,\n                    \"responseMessage\": \"SourceType passed is invalid, valid values are (UI, IMPORT, GOODWILL, CAMPAIGN, POINTS_TRANSFER, IMPORT_API, PROMOTION_API, POINTS_CONTRIBUTION_TO_GROUP,MANUAL_POINTS_ADJUSTMENT, BADGES, USER_CREATED)\",\n                    \"valid\": false\n                }\n            ]\n        }\n    },\n    \"data\": null\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "integer",
+                          "example": 400,
+                          "default": 0
+                        },
+                        "message": {
+                          "type": "string",
+                          "example": "Bad Request"
+                        }
+                      }
+                    },
+                    "validationErrors": {
+                      "type": "object",
+                      "properties": {
+                        "otherErrors": {
+                          "type": "object",
+                          "properties": {
+                            "data": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "status": {
+                                    "type": "boolean",
+                                    "example": false,
+                                    "default": true
+                                  },
+                                  "responseCode": {
+                                    "type": "integer",
+                                    "example": 4085,
+                                    "default": 0
+                                  },
+                                  "responseMessage": {
+                                    "type": "string",
+                                    "example": "SourceType passed is invalid, valid values are (UI, IMPORT, GOODWILL, CAMPAIGN, POINTS_TRANSFER, IMPORT_API, PROMOTION_API, POINTS_CONTRIBUTION_TO_GROUP,MANUAL_POINTS_ADJUSTMENT, BADGES, USER_CREATED)"
+                                  },
+                                  "valid": {
+                                    "type": "boolean",
+                                    "example": false,
+                                    "default": true
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "data": {}
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "shell",
+              "code": "curl --location 'https://eu.api.capillarytech.com/api_gateway/loyalty/v1/programs/973/promotionsV2?limit=100&offset=0&sourceType=USER_CREATED' \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic **********' \\\n--header 'Cookie: _cfuvid=ZkF.LSNXg9S52IfnjuqAXPBT0mhsN4NBGQOun0VO.bo-1758631730852-0.0.1.1-604800000'"
+            }
+          ],
+          "samples-languages": [
+            "shell"
+          ]
+        }
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "key": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  },
+  "x-readme-fauxas": true
+}
+```

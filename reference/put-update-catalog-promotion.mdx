@@ -2,4 +2,381 @@
 title: Update catalog promotion
 ---
 
+This API is used to update catalog promotion and link/de-link to a reward(s)
 
+**Expired**: Do not allow any of the fields to be edited.
+
+**Running**:
+
+1. Cannot change: start date, discount_type, discount_value.
+2. Can change (impacts rewards discounted points)
+
+end date: end date >= now and end date >= start date.
+
+isEnabled - Disable but cannot enable again. After disabling, the linked reward can be linked to another active promotion. Re-enabling will violate the constraint of only one reward linked to an active promotion.
+
+Linking a reward - update the link table accordingly.
+
+Unlinking a reward - Set isActive = false in the link table.
+
+3. Can change other details of the promotion (name, desc….etc)
+
+**Scheduled**: Similar to running but start_date, discount_type, discount_value fields also can be updated.
+
+**Cannot delete a promotion similar to a reward.**
+
+<Callout kind="tip" title="Note">
+
+For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
+
+</Callout>
+
+## Example request
+
+```bash title="Sample request"
+curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/promotion/14862/brand/61' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--header 'accept: application/json' \
+--header 'Authorization: Basic bWFkaHV2YQ==' \
+--header 'Cookie: _cfuvid=qrR26fiL9O7hSaVDD64eltEicRcuyxTkMuk2MPS2moc-1764581884487-0.0.1.1-604800000' \
+--data '
+{
+  "startTime": "2025-12-04T10:08:00.000Z",
+  "endTime": "2025-12-14T06:10:00.000Z",
+  "discountType": "PERCENTAGE",
+  "discountValue": 20,
+  "brandId": "61",
+  "languageSpecificInfo": [
+    {
+      "languageCode": "en",
+      "name": 72738382,
+      "description": 7273838,
+      "enabled": true
+    }  
+  ],
+  "rewardIds": [
+    496584
+  ]
+}
+'
+```
+
+## Prerequisites
+
+* [ ] Authentication: Basic or OAuth authentication
+* [ ] Default access group
+
+## Resource information
+
+|                        |                                                                            |
+| :--------------------- | :------------------------------------------------------------------------- |
+| URI                    | /api_gateway/rewards/core/v1/promotion/`{promotionId}`/brand/`{brand Id}` |
+| HTTP Method            | PUT                                                                        |
+| Pagination             | No                                                                         |
+| Batch support          | No                                                                         |
+| Rate limit information | None                                                                       |
+
+## Request path parameters
+
+| Parameter      | Data Type | Description                                                                                                                               |
+| -------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| brandId*      | Long      | You can use the [API](https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/getAll) and retrieve the brand ID of your brand. |
+| Promotion Id* | String    | Unique identifier for the promotion. Ex: 112295                                                                                           |
+
+## Request body parameters
+
+| Parameter            | Data Type         | Description                                                                              |
+| -------------------- | ----------------- | ---------------------------------------------------------------------------------------- |
+| endTime              | String            | The end time of the promotion. Ex: 2024-10-25T11:16:00Z                                  |
+| startTime            | String            | The start time of the promotion. For example: 2025-12-04T10:08:00.000Z                   |
+| discountType*       | Enum              | Type of discount applied to the promotion. Supported values: ABSOLUTE, PERCENTAGE, FIXED |
+| discountValue*      | Number            | Value of the discount.                                                                   |
+| languageSpecificInfo | Array             | Array containing language-specific information.                                          |
+| .languageCode        | String            | Language code for the specific entry. Ex: en                                             |
+| .name                | String            | Name of the item in the specified language                                               |
+| .description         | String            | Description of the item in the specified language                                        |
+| .enabled             | Boolean           | Indicates if the language specific info is enabled                                       |
+| rewardIds*          | Array of Integers | Array of reward IDs associated with the promotion                                        |
+
+## Example response
+
+```json title="Sample response"
+{
+    "status": {
+        "success": true,
+        "code": 11021,
+        "message": "Catalog promotion updated successfully."
+    },
+    "catalogPromotion": {
+        "id": 14862
+    },
+    "failedRewards": []
+}
+```
+
+## Response parameters
+
+| Parameter        | Data Type                  | Description                                     |
+| ---------------- | -------------------------- | ----------------------------------------------- |
+| status           | Object                     | Container for the status information            |
+| success          | Boolean                    | Indicates the success of the operation          |
+| code             | Integer                    | Status code for the operation                   |
+| message          | String                     | Description message of the operation status     |
+| catalogPromotion | Object                     | Container for catalog promotion information     |
+| id               | Integer                    | Unique identifier of the catalog promotion      |
+| failedRewards    | Array (Empty in this case) | Array containing any failed rewards information |
+
+```json
+{
+   "status": {
+       "success": true,
+       "code": 11021,
+       "message": "Catalog promotion updated successfully."
+   },
+   "catalogPromotion": {
+       "id": 8
+   },
+   "failedRewards": []
+}
+```
+
+## Error codes
+
+| Error code | Description                                                                                              |
+| :--------- | :------------------------------------------------------------------------------------------------------- |
+| 6004       | Reward not found or disabled. Ensure to provide a valid rewardId.                                        |
+| 11004      | Reward already linked to active catalog promotion.                                                       |
+| 11007      | Catalog promotion not found.                                                                             |
+| 11015      | Reward expired or disabled or free. Cannot apply catalog promotion. Ensure to provide a active rewardId. |
+| 11013      | Catalog promotion is disabled.                                                                           |
+| 11020      | Catalog promotion end time cannot be before start time.                                                  |
+| 11021      | Catalog promotion updated successfully                                                                   |
+| 11022      | Cannot change start date of a running catalog promotion.                                                 |
+| 11024      | Failed to update expired catalog promotion.                                                              |
+| 11025      | Invalid discount value. This error occurs when the `discountValue` parameter is missing.                 |
+| 500        | Internal server error.                                                                                   |
+
+## OpenAPI definition
+
+```json
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "v1",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://{host}",
+      "variables": {
+        "host": {
+          "default": "host"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/api_gateway/rewards/core/v1/promotion/{promotionId}/brand/{brand Id}": {
+      "put": {
+        "summary": "Update catalog promotion",
+        "description": "",
+        "operationId": "put-update-catalog-promotion",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "brand Id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "promotionId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "RAW_BODY": {
+                    "type": "string",
+                    "description": "Sample request body",
+                    "default": "{        \"endTime\": \"2024-10-25T11:16:00Z\",        \"discountType\": \"ABSOLUTE\",        \"discountValue\": 1.00,        \"languageSpecificInfo\": [            {                \"languageCode\": \"en\",                \"name\": \"P1- R-5165 P1- R-5165 upadted 2.1\",                \"description\": \"description\",                \"enabled\": true            }        ],    \"rewardIds\":    [        112295    ] }"
+                  }
+                }
+              },
+              "examples": {
+                "Request Body": {
+                  "value": {
+                    "endTime": "2024-10-25T11:16:00Z",
+                    "discountType": "ABSOLUTE",
+                    "discountValue": 1,
+                    "languageSpecificInfo": [
+                      {
+                        "languageCode": "en",
+                        "name": "P1- R-5165 P1- R-5165 upadted 2.1",
+                        "description": "description",
+                        "enabled": true
+                      }
+                    ],
+                    "rewardIds": [
+                      112295
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Sample response": {
+                    "value": {
+                      "status": {
+                        "success": true,
+                        "code": 11021,
+                        "message": "Catalog promotion updated successfully."
+                      },
+                      "catalogPromotion": {
+                        "id": 14862
+                      },
+                      "failedRewards": []
+                    },
+                    "summary": "Sample response"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "success": {
+                          "type": "boolean",
+                          "example": true,
+                          "default": true
+                        },
+                        "code": {
+                          "type": "integer",
+                          "example": 11021,
+                          "default": 0
+                        },
+                        "message": {
+                          "type": "string",
+                          "example": "Catalog promotion updated successfully."
+                        }
+                      }
+                    },
+                    "catalogPromotion": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "example": 8,
+                          "default": 0
+                        }
+                      }
+                    },
+                    "failedRewards": {
+                      "type": "array"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "500",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n   \"status\": {\n       \"success\": false,\n       \"code\": 500,\n       \"message\": \"We are sorry, something gone wrong.\"\n   }\n}\n\n"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "success": {
+                          "type": "boolean",
+                          "example": false,
+                          "default": true
+                        },
+                        "code": {
+                          "type": "integer",
+                          "example": 500,
+                          "default": 0
+                        },
+                        "message": {
+                          "type": "string",
+                          "example": "We are sorry, something gone wrong."
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "code": "curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/promotion/14862/brand/61' \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--header 'accept: application/json' \\\n--header 'Authorization: Basic bWFkaHV2YQ==' \\\n--header 'Cookie: _cfuvid=qrR26fiL9O7hSaVDD64eltEicRcuyxTkMuk2MPS2moc-1764581884487-0.0.1.1-604800000' \\\n--data '\n{\n  \"startTime\": \"2025-12-04T10:08:00.000Z\",\n  \"endTime\": \"2025-12-14T06:10:00.000Z\",\n  \"discountType\": \"PERCENTAGE\",\n  \"discountValue\": 20,\n  \"brandId\": \"61\",\n  \"languageSpecificInfo\": [\n    {\n      \"languageCode\": \"en\",\n      \"name\": 72738382,\n      \"description\": 7273838,\n      \"enabled\": true\n    }  \n  ],\n  \"rewardIds\": [\n    496584\n  ]\n}\n'",
+              "language": "shell",
+              "name": "Sample request"
+            }
+          ],
+          "samples-languages": [
+            "shell"
+          ]
+        }
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "key": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  },
+  "x-readme-fauxas": true
+}
+```

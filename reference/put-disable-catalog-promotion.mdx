@@ -2,4 +2,223 @@
 title: Disable Catalog promotion
 ---
 
+This API is used to disable a catalog promotion for a particular brand.
 
+<Callout kind="info" title="**Note*">
+
+* To disable a promotion, set status=false in the URL.
+* Disabled Promotion cannot be enabled again.
+
+</Callout>
+
+<Callout kind="tip" title="Note">
+
+For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
+
+</Callout>
+
+## Prerequisites
+
+* [ ] Authentication: Basic or OAuth authentication
+* [ ] Default access group
+
+## Resource information
+
+|                        |                                                                                        |
+| :--------------------- | :------------------------------------------------------------------------------------- |
+| URI                    | /api_gateway/rewards/core/v1/promotion`{promotion Id}`/status/false/brand`{brand Id}` |
+| HTTP Method            | PUT                                                                                    |
+| Pagination             | No                                                                                     |
+| Batch support          | No                                                                                     |
+| Rate limit information | None                                                                                   |
+
+## API endpoint example
+
+`https://eucrm.cc.capillarytech.com/api_gateway/rewards/core/v1/promotion/2/status/false/brand/1`
+
+## Request path parameters
+
+| Parameters     | Data Type | Description                                |
+| :------------- | :-------- | :----------------------------------------- |
+| Promotion Id* | String    | Unique identifier for the promotion. Ex: 2 |
+| Brand ID*     | Integer   | Unique identifier for the brand. Ex: 1     |
+
+<br />
+
+```bash
+https://eucrm.cc.capillarytech.com/api_gateway/rewards/core/v1/promotion/2/status/false/brand/1
+```
+
+<br />
+
+## Response parameters
+
+| Parameter Name | Data Type | Description                                     |
+| -------------- | --------- | ----------------------------------------------- |
+| status         | Object    | Contains the status information of the request. |
+| success        | Boolean   | Indicates the status of the request.            |
+| code           | Integer   | The status code of the response.                |
+| message        | String    | The message describing the status.              |
+
+```json title="200 OK"
+{
+   "status": {
+       "success": true,
+       "code": 11011,
+       "message": "Catalog promotion status updated successfully."
+   }
+}
+```
+
+## API-specific error code
+
+| Error codes | Description                    |
+| :---------- | :----------------------------- |
+| 11013       | Catalog promotion is disabled. |
+
+## OpenAPI definition
+
+```json
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "v1",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://{host}",
+      "variables": {
+        "host": {
+          "default": "host"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/api_gateway/rewards/core/v1/promotion/{promotion Id}/status/false/brand/{brand Id}": {
+      "put": {
+        "summary": "Disable Catalog promotion",
+        "description": "",
+        "operationId": "put-disable-catalog-promotion",
+        "parameters": [
+          {
+            "name": "promotionId",
+            "in": "query",
+            "description": "Unique ID of the promotion.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "brandId",
+            "in": "query",
+            "description": "Unique ID of the brand.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n    \"status\": {\n        \"success\": true,\n        \"code\": 11013,\n        \"message\": \"Catalog promotion is disabled.\"\n    }\n}"
+                  }
+                },
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "object",
+                          "properties": {
+                            "success": {
+                              "type": "boolean",
+                              "example": true,
+                              "default": true
+                            },
+                            "code": {
+                              "type": "integer",
+                              "example": 11011,
+                              "default": 0
+                            },
+                            "message": {
+                              "type": "string",
+                              "example": "Catalog promotion status updated successfully."
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "object",
+                          "properties": {
+                            "success": {
+                              "type": "boolean",
+                              "example": true,
+                              "default": true
+                            },
+                            "code": {
+                              "type": "integer",
+                              "example": 11013,
+                              "default": 0
+                            },
+                            "message": {
+                              "type": "string",
+                              "example": "Catalog promotion is disabled."
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "key": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  },
+  "x-readme-fauxas": true
+}
+```

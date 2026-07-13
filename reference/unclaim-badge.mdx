@@ -2,4 +2,280 @@
 title: Unclaim badge
 ---
 
+This API allows you to unclaim a badge.  Using an unclaim API you can soft delete the active claim from the claims list.
 
+For example:
+
+A badge named Furry Friend Badge is owned by Loyalty and Milestones. Loyalty has successfully claimed the badge under program ID: 123, associating the badge claim with Loyalty as owner and reference ID: ABC. Using the unclaim badge API, you can remove Loyalty’s claim over the badge.
+
+<Callout kind="tip" title="Note">
+
+For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
+
+</Callout>
+
+## Prerequisites
+
+* [ ] Authentication: Basic or OAuth authentication
+* [ ] Default access group
+
+## Resource information
+
+|               |                                                       |
+| :------------ | :---------------------------------------------------- |
+| URI           | /api_gateway/v1/badges/badgeMeta/`{badgeId}`/unclaim |
+| HTTP Method   | POST                                                  |
+| Pagination    | No                                                    |
+| Batch support | No                                                    |
+
+## Example request
+
+```bash title="Sample request"
+curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta/69381220cebb9648d8974518/unclaim' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--header 'accept: application/json' \
+--header 'Authorization: Basic bWFkaHVMjU2YQ==' \
+--header 'Cookie: _cfuvid=GwR6P.Wo28InVQzxrZVpalpv9uu696nsUn.b7W_MO8Y-1772617632944-0.0.1.1-604800000' \
+--data '{
+    "ownerType": "Loyalty",
+    "referenceId": "123"
+}'
+```
+
+## Request path parameters
+
+| Parameter Name | Data Type | Description             |
+| :------------- | :-------- | :---------------------- |
+| badgeId*      | String    | Unique ID of the badge. |
+
+## Request body parameters
+
+| Parameter Name | Data Type | Description                                                                                                                                                                                               |
+| -------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ownerType*    | Enum      | Module where the badge was claimed. Supported values: Loyalty, Loyalty_Promotion, Referral_Campaigns, Journeys, Audience_Campaigns, Rewards_Catalog, Goodwill_Module, Milestones, Historical_Import |
+| referenceId*  | String    | Unique reference ID of the owner type.                                                                                                                                                                    |
+
+```json
+{
+"ownerType":"Loyalty",
+"referenceId":"string"
+}
+```
+
+## Example response
+
+```json title="Sample response"
+{
+    "data": {
+        "ownerType": "Loyalty",
+        "referenceId": "123",
+        "isActive": false
+    },
+    "errors": null,
+    "warnings": []
+}
+```
+
+## Response parameters
+
+| Parameter Name | Data Type | Description |
+| --- | --- | --- |
+| ownerType | Enum | Module wheere the badge was claimed. Supported values: Loyalty program, Milestones, Campaigns, Journeys, Goodwill. |
+| referenceId | String | Unique reference ID of the owner type. |
+| isActive | Boolean | Indicates whether the badge is active. |
+
+## API-specific error codes
+
+| Error code | Description                        |
+| :--------- | :--------------------------------- |
+| 737        | Claim not found in existing claims |
+
+## OpenAPI definition
+
+```json
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "v1",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://{host}",
+      "variables": {
+        "host": {
+          "default": "host"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/api_gateway/v1/badges/badgeMeta/{badgeId}/unclaim": {
+      "post": {
+        "summary": "Unclaim badge",
+        "description": "",
+        "operationId": "unclaim-badge",
+        "parameters": [
+          {
+            "name": "badgeId",
+            "in": "path",
+            "description": "Unique ID of the badge.",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "ownerType",
+                  "referenceId"
+                ],
+                "properties": {
+                  "ownerType": {
+                    "type": "string",
+                    "description": "Module for which the reward was created.",
+                    "enum": [
+                      "LOYALTY",
+                      "REFERRAL_CAMPAIGNS",
+                      "JOURNEYS",
+                      "AUDIENCE_CAMPAIGNS",
+                      "REWARDS_CATALOG",
+                      "GOODWILL_MODULE",
+                      "MILESTONES"
+                    ]
+                  },
+                  "referenceId": {
+                    "type": "string",
+                    "description": "Reference ID of the owner type."
+                  }
+                }
+              },
+              "examples": {
+                "Request Example": {
+                  "value": {
+                    "ownerType": "Loyalty",
+                    "referenceId": "123"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Sample response": {
+                    "value": {
+                      "data": {
+                        "ownerType": "Loyalty",
+                        "referenceId": "123",
+                        "isActive": false
+                      },
+                      "errors": null,
+                      "warnings": []
+                    },
+                    "summary": "Sample response"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "ownerType": {
+                          "type": "string",
+                          "example": "Loyalty"
+                        },
+                        "referenceId": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "isActive": {
+                          "type": "boolean",
+                          "example": false,
+                          "default": true
+                        }
+                      }
+                    },
+                    "errors": {},
+                    "warnings": {
+                      "type": "array"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "code": "curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta/69381220cebb9648d8974518/unclaim' \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--header 'accept: application/json' \\\n--header 'Authorization: Basic bWFkaHVMjU2YQ==' \\\n--header 'Cookie: _cfuvid=GwR6P.Wo28InVQzxrZVpalpv9uu696nsUn.b7W_MO8Y-1772617632944-0.0.1.1-604800000' \\\n--data '{\n    \"ownerType\": \"Loyalty\",\n    \"referenceId\": \"123\"\n}'",
+              "language": "shell",
+              "name": "Example request"
+            }
+          ],
+          "samples-languages": [
+            "shell"
+          ]
+        }
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "key": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  },
+  "x-readme-fauxas": true
+}
+```

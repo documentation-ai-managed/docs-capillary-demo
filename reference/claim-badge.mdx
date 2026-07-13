@@ -2,4 +2,373 @@
 title: Claim badge
 ---
 
+This API allows you to claim the badge using badge ID.
 
+<Callout kind="tip" title="Note">
+
+For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
+
+</Callout>
+
+## Prerequisites
+
+* [ ] Authentication: Basic or OAuth authentication
+* [ ] Default access group
+
+## Resource information
+
+|               |                                                      |
+| :------------ | :--------------------------------------------------- |
+| URI           | /api_gateway/v1/badges/badgeMeta`{badgeId}`/claim |
+| HTTP method   | POST                                                 |
+| Pagination    | NA                                                   |
+| Batch support | NA                                                   |
+
+## Example request
+
+```bash title="Sample request"
+curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta/69381220cebb9648d8974518/claim' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--header 'accept: application/json' \
+--header 'Authorization: Basic bWFka3MjU2YQ==' \
+--header 'Cookie: _cfuvid=h41NNNJlaGGCp71UuFTcMjP3q.OYkoR9IigSN5f_pGY-1768819014360-0.0.1.1-604800000' \
+--data '{
+    "ownerType": "Loyalty",
+    "referenceId": "123"
+}'
+```
+
+## Request path parameters
+
+| Parameter Name | Data Type | Description                                                                                       |
+| :------------- | :-------- | :------------------------------------------------------------------------------------------------ |
+| badgeID*      | String    | Unique identifier ("id") generated during the creation of the badge. Ex: 653df084b3cda7078c7c68f1 |
+
+## Request body parameters
+
+| Parameter | Data Type | Description |
+| --- | --- | --- |
+| ownerType* | Enum | The module for which the badge is being claimed. Supported values: Loyalty, Loyalty_Promotion, Referral_Campaigns, Journeys, Audience_Campaigns, Rewards_Catalog, Goodwill_Module, Milestones, Historical_Import |
+| referenceId* | String | Enter a unique identifier to identify the badge owner (ownerType). |
+
+## Example request
+
+```json
+curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta/693804d8cebb9648d8974489/claim' \
+--header 'Authorization: Basic Z2VvcmdlL86NjVhMDgzYjk1MWY5MGY1NTY5NDk1YmNkNzUxYmJiY2U=' \
+--header 'Cookie: _cfuvid=xqa2vacPOC_9d5xoORuyNOUReJ4nYUCw-1765278778115-0.0.1.1-604800000; _cfuvid=60YlXkyLfDaY1gOO1YdxKbhVquLZtaBlNd58D9_8rpU-1765282802951-0.0.1.1-604800000' \
+--header 'Content-Type: application/json' \
+--data '{
+    "ownerType": "Loyalty",
+    "referenceId": "123"
+}'
+```
+
+## Example response
+
+```json title="Sample response"
+{
+    "data": {
+        "ownerType": "Loyalty",
+        "referenceId": "123",
+        "isActive": true
+    },
+    "errors": null,
+    "warnings": []
+}
+```
+
+## Response parameters
+
+| Parameter   | Data Type | Description                                      |
+| ----------- | --------- | ------------------------------------------------ |
+| badgeMetaId | String    | Unique identifier for the badge metadata.        |
+| ownerType   | String    | The module for which the badge is being claimed. |
+| referenceId | String    | An identifier associated with the owner.         |
+| errors      | String    | Contains details of any errors.                  |
+| warnings    | Array     | Contains details of any warnings.                |
+
+## API-specific error codes
+
+| Error code | Description                               |
+| :--------- | :---------------------------------------- |
+| 717        | OwnerId is mandatory.                     |
+| 400        | Invalid enum value.                       |
+| 900        | The badge is already claimed by the user. |
+| 716        | Owner type is mandatory.                  |
+
+## OpenAPI definition
+
+```json
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "v1",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://{host}",
+      "variables": {
+        "host": {
+          "default": "host"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/api_gateway/v1/badges/badgeMeta/{badgeId}/claim": {
+      "post": {
+        "summary": "Claim badge",
+        "description": "",
+        "operationId": "claim-badge",
+        "parameters": [
+          {
+            "name": "badgeId",
+            "in": "path",
+            "description": "Unique Identifier for the badge.Unique Identifier for the badge.",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "ownerType",
+                  "referenceId"
+                ],
+                "properties": {
+                  "ownerType": {
+                    "type": "string",
+                    "description": "The module for which the badge is being claimed.",
+                    "enum": [
+                      "LOYALTY/REFERRAL_CAMPAIGNS/JOURNEYS/AUDIENCE_CAMPAIGNS/   REWARDS_CATALOG/ GOODWILL_MODULE/ MILESTONES"
+                    ]
+                  },
+                  "referenceId": {
+                    "type": "string",
+                    "description": "A unique identifier associated with the owner."
+                  }
+                }
+              },
+              "examples": {
+                "Request body": {
+                  "value": {
+                    "ownerType": "Loyalty",
+                    "referenceId": "123"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": {
+                      "data": {
+                        "ownerType": "Loyalty",
+                        "referenceId": "123",
+                        "isActive": true
+                      },
+                      "errors": null,
+                      "warnings": []
+                    }
+                  }
+                },
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "badgeMetaId": {},
+                            "ownerType": {
+                              "type": "string",
+                              "example": "Loyalty"
+                            },
+                            "referenceId": {
+                              "type": "string",
+                              "example": "626"
+                            }
+                          }
+                        },
+                        "errors": {},
+                        "warnings": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "code": {
+                                "type": "integer",
+                                "example": 900,
+                                "default": 0
+                              },
+                              "message": {
+                                "type": "string",
+                                "example": "Badge is already claimed by this owner"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "badgeMetaId": {
+                              "type": "string",
+                              "example": "653df084b3cda7078c7c68f1"
+                            },
+                            "ownerType": {
+                              "type": "string",
+                              "example": "Loyalty"
+                            },
+                            "referenceId": {
+                              "type": "string",
+                              "example": "123"
+                            }
+                          }
+                        },
+                        "errors": {},
+                        "warnings": {
+                          "type": "array"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n    \"data\": null,\n    \"errors\": [\n        {\n            \"code\": 400,\n            \"message\": \"Invalid enum value: 'LOYALTY' for the field: 'ownerType'. The value must be one of: [Loyalty, Referral_Campaigns, Journeys, Audience_Campaigns, Rewards_Catalog, Goodwill_Module, Milestones].\",\n            \"reference\": null\n        }\n    ],\n    \"warnings\": null\n}"
+                  }
+                },
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {},
+                        "errors": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "code": {
+                                "type": "integer",
+                                "example": 717,
+                                "default": 0
+                              },
+                              "message": {
+                                "type": "string",
+                                "example": "Owner id is mandatory"
+                              },
+                              "reference": {
+                                "type": "string",
+                                "example": "referenceId"
+                              }
+                            }
+                          }
+                        },
+                        "warnings": {}
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {},
+                        "errors": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "code": {
+                                "type": "integer",
+                                "example": 400,
+                                "default": 0
+                              },
+                              "message": {
+                                "type": "string",
+                                "example": "Invalid enum value: 'LOYALTY' for the field: 'ownerType'. The value must be one of: [Loyalty, Referral_Campaigns, Journeys, Audience_Campaigns, Rewards_Catalog, Goodwill_Module, Milestones]."
+                              },
+                              "reference": {}
+                            }
+                          }
+                        },
+                        "warnings": {}
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "code": "curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta/69381220cebb9648d8974518/claim' \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--header 'accept: application/json' \\\n--header 'Authorization: Basic bWFkaHVfcjMjU2YQ==' \\\n--header 'Cookie: _cfuvid=h41NNNJlaGGCp71UuFTcMjP3q.OYkoR9IigSN5f_pGY-1768819014360-0.0.1.1-604800000' \\\n--data '{\n    \"ownerType\": \"Loyalty\",\n    \"referenceId\": \"123\"\n}'",
+              "language": "shell",
+              "name": "Sample request"
+            }
+          ],
+          "samples-languages": [
+            "shell"
+          ]
+        }
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "key": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  },
+  "x-readme-fauxas": true
+}
+```

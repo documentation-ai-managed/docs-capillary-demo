@@ -2,4 +2,238 @@
 title: Enable or Update Custom Event Tranformation
 ---
 
+This API enables custom event transformation logic for your organization. You can only have **one** active configuration per entity at any given time.
 
+<Callout kind="tip" title="Note\">
+
+For detailed API documentation and interactive testing, see [API overview](https://docs.capillarytech.com/reference/apioverview) and [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
+
+</Callout>
+
+### Prerequisites
+
+* **Authentication:** Basic or OAuth
+* **Access:** Default access group
+
+### Resource information
+
+| Property       | Value                               |
+| -------------- | ----------------------------------- |
+| **URI**        | `/api_gateway/cortex/v1/neo-config` |
+| **Method**     | POST                                |
+| **Pagination** | N/A                                 |
+| **Rate limit** | Default                             |
+| **Batch**      | N/A                                 |
+
+### API endpoint example
+
+```http
+POST https://eu.api.capillarytech.com/api_gateway/cortex/v1/neo-config
+```
+
+### Request body
+
+<CodeGroup show-lines="true" tabs={["Transaction", "Customer"]}>
+
+  ```json
+  {
+    "orgId": 100737,
+    "entityType": "TRANSACTION",
+    "transformEndpoint": "/transform/transaction/custom",
+    "active": true
+  }
+  ```
+
+  ```json
+  {
+    "orgId": 100737,
+    "entityType": "CUSTOMER",
+    "transformEndpoint": "/transform/customer/custom",
+    "active": true
+  }
+  ```
+
+</CodeGroup>
+
+<br />
+
+### Request body parameters
+
+| Parameter               | Type    | Description                                                                                                               |
+| :---------------------- | :------ | :------------------------------------------------------------------------------------------------------------------------ |
+| **orgId***             | long    | Your organization ID.                                                                                                     |
+| **entityType***        | string  | Entity to configure. Supported: `CUSTOMER`, `TRANSACTION`.                                                                |
+| **transformEndpoint*** | string  | Path of the NEO service endpoint for transformations (e.g., `/transform/transaction/custom`).                             |
+| active                  | boolean | Whether this configuration is active. Use `false` to deactivate an existing config by re-submitting with `active: false`. |
+
+### Response body example
+
+```json
+{
+  "data": {
+    "orgId": 100737,
+    "entityType": "TRANSACTION",
+    "transformEndpoint": "/transform/transaction/custom",
+    "active": true,
+    "auditInfo": {
+      "createdOn": "2025-04-23T06:59:56.411+00:00",
+      "createdBy": 75155282,
+      "lastUpdatedOn": "2025-04-23T07:06:33.947+00:00",
+      "lastUpdatedBy": 75155282
+    }
+  },
+  "errors": []
+}
+```
+
+### Response parameters
+
+| Parameter                 | Type    | Description                                      |
+| :------------------------ | :------ | :----------------------------------------------- |
+| `orgId`                   | long    | The organization ID (`100737`).                  |
+| `entityType`              | string  | Entity configured (`CUSTOMER` or `TRANSACTION`). |
+| `transformEndpoint`       | string  | Configured transformation endpoint path.         |
+| `active`                  | boolean | Whether the configuration is active.             |
+| `auditInfo.createdOn`     | date    | Creation timestamp (ISO 8601).                   |
+| `auditInfo.createdBy`     | long    | User ID who created the config.                  |
+| `auditInfo.lastUpdatedOn` | date    | Last update timestamp (ISO 8601).                |
+| `auditInfo.lastUpdatedBy` | long    | User ID who last updated the config.             |
+| `errors`                  | array   | List of errors, if any (empty on success).       |
+
+### API error codes
+
+| **Error code** | **Description** |
+| --- | --- |
+| **`400 BAD_REQUEST`** | * The request body is invalid JSON\- Required fields are missing\- The request body fails validation\- Constraint violations occur |
+| **`401 UNAUTHORIZED`** | * Authentication is missing or invalid\- The auth token is not provided |
+| **`403 FORBIDDEN`** | * The authenticated user doesn't have permission to create configurations |
+| **`500 INTERNAL_SERVER_ERROR`** | * Unexpected server errors occur\- Database operations fail\- Other runtime exceptions occur |
+
+## OpenAPI definition
+
+```json
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "v1",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://{host}",
+      "variables": {
+        "host": {
+          "default": "host"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/api_gateway/cortex/v1/neo-config": {
+      "post": {
+        "summary": "Enable or Update Custom Event Tranformation",
+        "description": "",
+        "operationId": "enable-custom-event-for-cortex-search",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "RAW_BODY": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": {
+                      "data": {
+                        "orgId": 100737,
+                        "entityType": "TRANSACTION",
+                        "transformEndpoint": "/transform/transaction/custom",
+                        "active": true,
+                        "auditInfo": {
+                          "createdOn": "2025-04-23T06:59:56.411+00:00",
+                          "createdBy": 75155282,
+                          "lastUpdatedOn": "2025-04-23T07:06:33.947+00:00",
+                          "lastUpdatedBy": 75155282
+                        }
+                      },
+                      "errors": []
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl --location 'eu.api.capillarytech.com/api_gateway/cortex/v1/neo-config' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic bmVlcmFqLmRvYzpiNFmODA0MDA5Y2IwMzZhNGNjZGMzMzQzMWVmOWFjOQ==' \\\n--header 'Cookie: _cfuvid=dfGNwl01cEi2PH5VITS.zzfnmaVvZHqjsz8uMcy6KNA-1745384630231-0.0.1.1-604800000' \\\n--data '{\n  \"orgId\": 100737,\n  \"entityType\": \"TRANSACTION\",\n  \"transformEndpoint\": \"/transform/transaction/custom\",\n  \"active\": true\n}'"
+            }
+          ],
+          "samples-languages": [
+            "curl"
+          ]
+        }
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "key": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  },
+  "x-readme-fauxas": true
+}
+```

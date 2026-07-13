@@ -2,4 +2,337 @@
 title: Get badge custom field by ID
 ---
 
+This API allows you to retrieve custom field details using custom field ID.
 
+<Callout kind="tip" title="Note">
+
+For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
+
+</Callout>
+
+## Example request
+
+```bash title="Sample request"
+curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/customField/68c80d2e28a4f97c042c5daa' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--header 'accept: application/json' \
+--header 'Authorization: Basic bWFkaHVzI3MjU2YQ==' \
+--header 'Cookie: _cfuvid=.WgVCi5zQoIGi4K1C9BdZuw_u5XdPxOmzWrvi.sO9xA-1771420714759-0.0.1.1-604800000'
+```
+
+## Prerequisites
+
+* [ ] Authentication: Basic or OAuth authentication
+* [ ] Default access group
+
+## Resource information
+
+|                      |                                                       |
+| :------------------- | :---------------------------------------------------- |
+| URI                  | /api_gateway/v1/badges/customField/`{customFieldId}` |
+| HTTP method          | GET                                                   |
+| Pagination supported | No                                                    |
+| Rate limit           | NA                                                    |
+| Batch support        | NA                                                    |
+
+## Request path parameter
+
+| Parameter Name  | Data Type | Description                    |
+| :-------------- | :-------- | :----------------------------- |
+| customFieldId* | String    | Unique ID of the custom field. |
+
+## Example response
+
+```json title="Sample response"
+{
+    "data": {
+        "id": "68c80d2e28a4f97c042c5daa",
+        "orgId": 100737,
+        "name": "CF 155",
+        "isMandatory": false,
+        "defaultValue": null,
+        "isActive": true,
+        "dataType": "STRING",
+        "createdOn": 1757941038.711000000,
+        "createdOnISO": "2025-09-15T12:57:18Z",
+        "createdBy": 75176138,
+        "lastUpdatedOn": 1762843579.904000000,
+        "lastUpdatedOnISO": "2025-11-11T06:46:19Z",
+        "lastUpdatedBy": 75176138
+    },
+    "errors": [],
+    "warnings": []
+}
+```
+
+## Response parameters
+
+| Parameter Name | Data Type | Description |
+| --- | --- | --- |
+| id | String | The unique identifier of the custom field. |
+| orgId | Integer | The org ID the custom field belongs to. |
+| name | String | The name of the custom field. |
+| isMandatory | Boolean | Indicates if the custom field is mandatory. |
+| defaultValue | String | The default value of the custom field. |
+| isActive | Boolean | Indicates if the custom field is active. |
+| dataType | Enum | The data type of the custom field's value. |
+| createdOn | Date | The timestamp when the custom field was created, in epoch timestamp format. |
+| createdOnISO | String | The timestamp when the custom field was created, in ISO 8601 format, is returned in the server time zone. EU server example 2025-12-16T14:30:45Z → 16 December 2025, 14:30:45 (UTC) India server example 2025-12-16T14:30:45+05:30 → 16 December 2025, 14:30:45 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
+| createdBy | Integer | The identifier of the user who created the custom field. |
+| lastUpdatedOn | Date | The timestamp of the last update to the custom field, in epoch timestamp format. |
+| lastUpdatedOnISO | String | The timestamp when the custom field was last updated, in ISO 8601 format, is returned in the server time zone. EU server example 2025-12-16T14:30:45Z → 16 December 2025, 14:30:45 (UTC) India server example 2025-12-16T14:30:45+05:30 → 16 December 2025, 14:30:45 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
+| lastUpdatedBy | Integer | The identifier of the user who last updated the custom field. |
+| errors | Object | A list of errors, if any, occurred during the operation. |
+| warnings | Object | A list of warnings, if any, occurred during the operation. |
+
+## OpenAPI definition
+
+```json
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "v1",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://{host}",
+      "variables": {
+        "host": {
+          "default": "host"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/api_gateway/v1/badges/customField/{customFieldId}": {
+      "get": {
+        "summary": "Get badge custom field by ID",
+        "description": "",
+        "operationId": "get-custom-field-by-id",
+        "parameters": [
+          {
+            "name": "customFieldId",
+            "in": "path",
+            "description": "Unique ID of the custom field.",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "dataType"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the custom field."
+                  },
+                  "isMandatory": {
+                    "type": "string",
+                    "description": "Indicates if the custom field is mandatory."
+                  },
+                  "defaultValue": {
+                    "type": "string",
+                    "description": "Default value of the custom field."
+                  },
+                  "isActive": {
+                    "type": "string",
+                    "description": "Indicates if the update is currently active."
+                  },
+                  "dataType": {
+                    "type": "string",
+                    "description": "Data type of the custom field.",
+                    "enum": [
+                      "INTEGER",
+                      "BOOLEAN",
+                      "DATE",
+                      "STRING"
+                    ]
+                  }
+                }
+              },
+              "examples": {
+                "Request Example": {
+                  "value": {
+                    "name": "CF31 date",
+                    "isMandatory": false,
+                    "defaultValue": "cgvhjb",
+                    "isActive": true,
+                    "dataType": "STRING"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Sample response": {
+                    "value": {
+                      "data": {
+                        "id": "68c80d2e28a4f97c042c5daa",
+                        "orgId": 100737,
+                        "name": "CF 155",
+                        "isMandatory": false,
+                        "defaultValue": null,
+                        "isActive": true,
+                        "dataType": "STRING",
+                        "createdOn": 1757941038.711,
+                        "createdOnISO": "2025-09-15T12:57:18Z",
+                        "createdBy": 75176138,
+                        "lastUpdatedOn": 1762843579.904,
+                        "lastUpdatedOnISO": "2025-11-11T06:46:19Z",
+                        "lastUpdatedBy": 75176138
+                      },
+                      "errors": [],
+                      "warnings": []
+                    },
+                    "summary": "Sample response"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "example": "65bb446bfd3e324f2cac8871"
+                        },
+                        "orgId": {
+                          "type": "integer",
+                          "example": 100606,
+                          "default": 0
+                        },
+                        "name": {
+                          "type": "string",
+                          "example": "CF31 date"
+                        },
+                        "isMandatory": {
+                          "type": "boolean",
+                          "example": false,
+                          "default": true
+                        },
+                        "defaultValue": {
+                          "type": "string",
+                          "example": "cgvhjb"
+                        },
+                        "isActive": {
+                          "type": "boolean",
+                          "example": true,
+                          "default": true
+                        },
+                        "dataType": {
+                          "type": "string",
+                          "example": "STRING"
+                        },
+                        "createdOn": {
+                          "type": "number",
+                          "example": 1706771563.483,
+                          "default": 0
+                        },
+                        "createdBy": {
+                          "type": "integer",
+                          "example": 75097962,
+                          "default": 0
+                        },
+                        "lastUpdatedOn": {
+                          "type": "number",
+                          "example": 1707979249.78829,
+                          "default": 0
+                        },
+                        "lastUpdatedBy": {
+                          "type": "integer",
+                          "example": 75097962,
+                          "default": 0
+                        }
+                      }
+                    },
+                    "errors": {
+                      "type": "array"
+                    },
+                    "warnings": {
+                      "type": "array"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "code": "curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/customField/68c80d2e28a4f97c042c5daa' \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--header 'accept: application/json' \\\n--header 'Authorization: Basic bWFkaHVzI3MjU2YQ==' \\\n--header 'Cookie: _cfuvid=.WgVCi5zQoIGi4K1C9BdZuw_u5XdPxOmzWrvi.sO9xA-1771420714759-0.0.1.1-604800000'",
+              "language": "shell",
+              "name": "Example request"
+            }
+          ],
+          "samples-languages": [
+            "shell"
+          ]
+        }
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "key": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  },
+  "x-readme-fauxas": true
+}
+```

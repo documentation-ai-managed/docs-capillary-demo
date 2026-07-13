@@ -2,4 +2,215 @@
 title: Retrieve Custom Event Config Details for an Entity
 ---
 
+This API allows you to retrieve the custom event transformation logics created for an entity for your org.
 
+<Callout kind="tip" title="Note">
+
+For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
+
+</Callout>
+
+## Prerequisites
+
+* [ ] Authentication: Basic/OAuth authentication
+* [ ] Default access group
+
+## Resource Information
+
+|               |                                                          |
+| :------------ | :------------------------------------------------------- |
+| URI           | /api_gateway/cortex/v1/neo-config/entity/`{entityType}` |
+| HTTP method   | GET                                                      |
+| Pagination    | NA                                                       |
+| Rate limit    | Default                                                  |
+| Batch support | NA                                                       |
+
+## API cURL example
+
+```bash
+curl --location --request GET 'eu.api.capillarytech.com/api_gateway/cortex/v1/neo-config/entity/TRANSACTION' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Basic bmlcmFqLmRvYzpiNGFmODA0MDA5Y2IwMzZhNGNjZGMzMzQzMWVmOWFjOQ==' \
+--header 'Cookie: _cfuvid=dfGNwl01cEi2PH5VITS.zzfnmaVvZHqjsz8uMcy6KNA-1745384630231-0.0.1.1-604800000' \
+--data '{
+  "orgId": 100737,
+  "entityType": "TRANSACTION",
+  "transformEndpoint": "/transform/transaction/custom",
+  "active": true
+}'
+```
+
+## Path Parameter
+
+| Parameter  | Description                                          |
+| :--------- | :--------------------------------------------------- |
+| entitytype | Entity type. Supported values: Transaction, Customer |
+
+## Response Body
+
+```json
+{
+  "data": {
+    "orgId": 100737,
+    "entityType": "TRANSACTION",
+    "transformEndpoint": "/transform/transaction/custom",
+    "active": true,
+    "auditInfo": {
+      "createdOn": "2025-04-23T06:59:56.411+00:00",
+      "createdBy": 75155282,
+      "lastUpdatedOn": "2025-04-23T07:06:33.947+00:00",
+      "lastUpdatedBy": 75155282
+    }
+  },
+  "errors": []
+}
+```
+
+## Response Parameter
+
+| **Parameter**                  | **Type** | **Description**                                                         |
+| ------------------------------ | -------- | ----------------------------------------------------------------------- |
+| `data.orgId`                   | long     | The ID of the organization.                                             |
+| `data.entityType`              | String   | The type of entity this configuration applies to (e.g., `TRANSACTION`). |
+| `data.transformEndpoint`       | String   | API endpoint used to transform the transaction data.                    |
+| `data.active`                  | Boolean  | Indicates whether the configuration is currently active.                |
+| `data.auditInfo.createdOn`     | String   | Timestamp when the configuration was created in ISO 8601 format.        |
+| `data.auditInfo.createdBy`     | long     | User ID of the person who created the configuration.                    |
+| `data.auditInfo.lastUpdatedOn` | String   | Timestamp when the configuration was last updated in ISO 8601 format.   |
+| `data.auditInfo.lastUpdatedBy` | long     | User ID of the person who last updated the configuration.               |
+| `errors`                       | Array    | List of errors encountered (empty array if no errors).                  |
+
+## Error Codes
+
+| **Error code** | **Description** |
+| --- | --- |
+| 400 BAD_REQUEST | * The request body is invalid JSON- Required fields are missing- The request body fails validation - Constraint violations occur |
+| 401 UNAUTHORIZED | * Authentication is missing or invalid- The auth token is not provided |
+| 403 FORBIDDEN | * The authenticated user doesn't have permission to create configurations |
+| 500 INTERNAL_SERVER_ERROR | * Unexpected server errors occur- Database operations fail- Other runtime exceptions occur |
+
+## OpenAPI definition
+
+```json
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "v1",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://{host}",
+      "variables": {
+        "host": {
+          "default": "host"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/api_gateway/cortex/v1/neo-config/entity/{entityType}": {
+      "get": {
+        "summary": "Retrieve Custom Event Config Details for an Entity",
+        "description": "",
+        "operationId": "retrieve-custom-event-config-details-for-entity",
+        "parameters": [
+          {
+            "name": "entitytype",
+            "in": "path",
+            "description": "TRANSACTION, CUSTOMER",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": {
+                      "data": {
+                        "orgId": 100737,
+                        "entityType": "TRANSACTION",
+                        "transformEndpoint": "/transform/transaction/custom",
+                        "active": true,
+                        "auditInfo": {
+                          "createdOn": "2025-04-23T06:59:56.411+00:00",
+                          "createdBy": 75155282,
+                          "lastUpdatedOn": "2025-04-23T07:06:33.947+00:00",
+                          "lastUpdatedBy": 75155282
+                        }
+                      },
+                      "errors": []
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl --location --request GET 'eu.api.capillarytech.com/api_gateway/cortex/v1/neo-config/entity/TRANSACTION' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic bmlcmFqLmRvYzpiNGFmODA0MDA5Y2IwMzZhNGNjZGMzMzQzMWVmOWFjOQ==' \\\n--header 'Cookie: _cfuvid=dfGNwl01cEi2PH5VITS.zzfnmaVvZHqjsz8uMcy6KNA-1745384630231-0.0.1.1-604800000' \\\n--data '{\n  \"orgId\": 100737,\n  \"entityType\": \"TRANSACTION\",\n  \"transformEndpoint\": \"/transform/transaction/custom\",\n  \"active\": true\n}'"
+            }
+          ],
+          "samples-languages": [
+            "curl"
+          ]
+        }
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "key": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  },
+  "x-readme-fauxas": true
+}
+```

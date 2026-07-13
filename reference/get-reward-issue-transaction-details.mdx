@@ -2,4 +2,1869 @@
 title: Get Transaction Details by Customer ID and Reward Transaction ID
 ---
 
+<Callout kind="danger">
 
+  Internal API Not Exposed
+
+</Callout>
+
+<br />
+
+This API retrieves the detailed information of a specific issued reward using the reward transaction ID.
+
+<Callout kind="tip" title="Note">
+
+For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
+
+</Callout>
+
+## Prerequisites
+
+* [ ] Authentication: Basic or OAuth authentication
+* [ ] Default access group
+
+## API Specification
+
+|                        |                                                                                                 |
+| :--------------------- | :---------------------------------------------------------------------------------------------- |
+| URI                    | api_gateway/rewards/core/v1/management/customer/`{customerId}`/issuals/`{rewardTransactionId}` |
+| HTTP Method            | GET                                                                                             |
+| Pagination             | No                                                                                              |
+| Batch support          | No                                                                                              |
+| Rate limit information | None                                                                                            |
+
+## API endpoint example
+
+`https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/management/customer/383428154/issuals/84630`
+
+## Request query parameter
+
+| Parameter | Data Type | Description |
+| --- | --- | --- |
+| `couponCodeCase` | Enum | This parameter helps to retrieve the coupon code in the desired letter cases. By default, the system automatically converts the coupon code to upper case.\ Supported Values: LOWER, UPPER, AS_IT_IS `LOWER` - Converts the coupon code to lowercase. Example: "ABCD1234" → "abcd1234" `UPPER` - Converts the coupon code to uppercase. Example: "abcd1234" → "ABCD1234" `AS_IT_IS` - Returns the coupon code exactly as it was created. Example: "abAB123" → "abAB123" |
+
+## Request path parameters
+
+| Parameter           | Data Type | Description                                                                                                       |
+| ------------------- | --------- | ----------------------------------------------------------------------------------------------------------------- |
+| customerId          | String    | Unique identifier of the customer. Ex: 112295                                                                     |
+| rewardTransactionId | String    | Unique identifier of the reward transaction. The reward transaction is generated during the issual of the reward. |
+
+<CodeGroup show-lines="true" tabs={["curl", "With couponCodeCase filter"]}>
+
+  ```bash
+  curl --location 'https://crm-staging-new.cc.capillarytech.com/api_gateway/rewards/core/v1/management/customer/345635195/issuals/927488?couponCodeCase=AS_IT_IS' \
+  --header 'Authorization: Basic dGlsbGF1dG9fMTIzOjI3NDFlNjJiZTZiZTYyNGY2N2IwMGQxZDZhNWQ2MWJm'
+  ```
+
+  ```bash
+  curl --location 'https://crm-staging-new.cc.capillarytech.com/api_gateway/rewards/core/v1/management/customer/345635195/issuals/927488?couponCodeCase=AS_IT_IS' \
+  --header 'Authorization: Basic dGlsbGF1dG9fMTIzOjI3NDFlNjJiZTZiZTYyNGY2N2IwMGQxZDZhNWQ2MWJm'
+  ```
+
+</CodeGroup>
+
+## Response parameters
+
+| Parameter                          | Data Type | Description                                                                                                                                                                                                                                                                                                                                   |
+| ---------------------------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| status                             | string    | An array containing the status details of the reward issue transaction.                                                                                                                                                                                                                                                                       |
+| success                            | boolean   | Indicates whether the transaction was successful.                                                                                                                                                                                                                                                                                             |
+| code                               | string    | A unique code representing the status of the transaction.                                                                                                                                                                                                                                                                                     |
+| message                            | string    | A message providing details about the status of the transaction.                                                                                                                                                                                                                                                                              |
+| data                               | object    | Contains detailed information about the reward transaction.                                                                                                                                                                                                                                                                                   |
+| rewardTransactionId                | string    | Unique identifier for the reward transaction. The reward transaction is generated during the issual of the reward.                                                                                                                                                                                                                            |
+| customerId                         | long      | The ID of the customer associated with the reward transaction.                                                                                                                                                                                                                                                                                |
+| orgId                              | long      | The ID of the organization associated with the transaction.                                                                                                                                                                                                                                                                                   |
+| rewardIssueRefId                   | string    | A reference ID for the reward issuance.                                                                                                                                                                                                                                                                                                       |
+| rewardTransactionDate              | long      | The timestamp of the reward transaction in milliseconds.                                                                                                                                                                                                                                                                                      |
+| status                             | object    | Status details of the reward issuance.                                                                                                                                                                                                                                                                                                        |
+| success                            | boolean   | Indicates whether the reward issuance was successful.                                                                                                                                                                                                                                                                                         |
+| -code                              | string    | A unique code representing the status of the reward issuance.                                                                                                                                                                                                                                                                                 |
+| -message                           | string    | A message providing additional information about the status of the reward issuance.                                                                                                                                                                                                                                                           |
+| -quantity                          | int       | The number of rewards issued.                                                                                                                                                                                                                                                                                                                 |
+| requestedQuantity                  | int       | This field represents the original quantity that was requested.                                                                                                                                                                                                                                                                               |
+| groupRedemption                    | boolean   | Indicates if the redemption is a group redemption.                                                                                                                                                                                                                                                                                            |
+| rewardDetails                      | object    | Contains details about the specific reward.                                                                                                                                                                                                                                                                                                   |
+| -rewardId                          | long      | The ID of the reward.                                                                                                                                                                                                                                                                                                                         |
+| -languageCode                      | string    | The language code for the reward details.                                                                                                                                                                                                                                                                                                     |
+| -name                              | string    | The name of the reward.                                                                                                                                                                                                                                                                                                                       |
+| -description                       | string    | A description of the reward.                                                                                                                                                                                                                                                                                                                  |
+| -rewardRank                        | int       | The rank of the reward.                                                                                                                                                                                                                                                                                                                       |
+| -groups                            | array     | A list of groups associated with the reward.                                                                                                                                                                                                                                                                                                  |
+| -imageId                           | string    | The ID of the reward image.                                                                                                                                                                                                                                                                                                                   |
+| -imageUrl                          | string    | The URL of the reward image.                                                                                                                                                                                                                                                                                                                  |
+| -intouchPoints                     | int       | The number of intouch points associated with the reward.                                                                                                                                                                                                                                                                                      |
+| -images                            | array     | A list of images associated with the reward.                                                                                                                                                                                                                                                                                                  |
+| --name                             | string    | Name of the image.                                                                                                                                                                                                                                                                                                                            |
+| --altText                          | string    | Alternative text or description of the image.                                                                                                                                                                                                                                                                                                 |
+| --id                               | string    | Identifier for internally stored images, generated when uploaded to the file service. Not applicable for external images.                                                                                                                                                                                                                     |
+| --url                              | string    | URL of the image.                                                                                                                                                                                                                                                                                                                             |
+| --isExternal                       | boolean   | Indicates if the image is hosted on an external server.                                                                                                                                                                                                                                                                                       |
+| -videos                            | array     | A list of videos associated with the reward.                                                                                                                                                                                                                                                                                                  |
+| --name                             | string    | Name of the video.                                                                                                                                                                                                                                                                                                                            |
+| --altText                          | string    | Alternative text or description of the video.                                                                                                                                                                                                                                                                                                 |
+| --id                               | string    | Identifier for internally stored videos, generated when uploaded to the file service. Not applicable for external videos.                                                                                                                                                                                                                     |
+| --url                              | string    | URL of the video.                                                                                                                                                                                                                                                                                                                             |
+| --isExternal                       | boolean   | Indicates if the video is hosted on an external server.                                                                                                                                                                                                                                                                                       |
+| pointsRedemption                   | object    | Details about the points redemption process.                                                                                                                                                                                                                                                                                                  |
+| -redeemedPoints                    | int       | The number of points redeemed.                                                                                                                                                                                                                                                                                                                |
+| -redeemedPointsInDecimal           | decimal   | The number of points redeemed, expressed as a decimal value rounded to 3 decimal places. Rounding follows the HALF_UP method, where if the fourth decimal digit is 5 or more, the third decimal rounds up. For example, 21.4555 becomes 21.456, and 21.4554 becomes 21.455. This field will have values only for conversion ratio rewards.   |
+| -pointsRedemptionRefId             | string    | A unique identifier generated each time rewards are issued. This field stores identifier, allowing you to track points redemption transaction.                                                                                                                                                                                                |
+| -pointsRedemptionRefIds            | array     | A unique identifier generated each time rewards are issued. This field stores a list of these identifiers, allowing you to track multiple points redemption transactions.                                                                                                                                                                     |
+| status                             | object    | Status details of the points redemption.                                                                                                                                                                                                                                                                                                      |
+| success                            | boolean   | Indicates whether the points redemption was successful.                                                                                                                                                                                                                                                                                       |
+| code                               | string    | A unique code representing the status of the points redemption.                                                                                                                                                                                                                                                                               |
+| message                            | string    | A message providing additional information about the points redemption status.                                                                                                                                                                                                                                                                |
+| redemptionDetails                  | array     | An array of objects specifying the details about the redemption process.                                                                                                                                                                                                                                                                      |
+| -redemptionType                    | string    | Specifies the category of reward redemption available. It indicates how users can redeem the reward.                                                                                                                                                                                                                                          |
+| -totalRedemptionValue              | double    | The total value of the redemption.                                                                                                                                                                                                                                                                                                            |
+| vouchers                           | array     | A list of vouchers associated with the redemption.                                                                                                                                                                                                                                                                                            |
+| vouchers.code                      | string    | The unique code for the voucher. Note: The casing of the coupon code is based on the `couponCodeCase` query parameter.                                                                                                                                                                                                                        |
+| vouchers.codeExpiry                | string    | The expiration date of the voucher. Format : "YYYY-MM-DD HH:MM:SS"                                                                                                                                                                                                                                                                            |
+| vouchers.codeExpiryDateTime        | string    | The expiration date of the voucher in ISO 8601 format.                                                                                                                                                                                                                                                                                        |
+| vendorRewards                      | object    | Contains vendor-specific reward details.                                                                                                                                                                                                                                                                                                      |
+| rewards                            | array     | A list of rewards issued by the vendor.                                                                                                                                                                                                                                                                                                       |
+| customFields                       | object    | Custom fields for additional information.                                                                                                                                                                                                                                                                                                     |
+| transactionCustomFields            | object    | Custom fields associated with the transaction.                                                                                                                                                                                                                                                                                                |
+| fulfillmentDetails                 | object    | Fulfilment details associated with the reward.                                                                                                                                                                                                                                                                                                |
+| fulfillmentDetailsAuditLog         | array     | Displays history of fulfilment statuses.                                                                                                                                                                                                                                                                                                      |
+| ownerId                            | string    | The ID of the owner associated with the reward transaction.                                                                                                                                                                                                                                                                                   |
+| eventLogId                         | string    | A plain string identifier used to identify the transaction associated with a reward issual.                                                                                                                                                                                                                                                   |
+| languageSpecificInfo               | object    | Contains language-specific details for the reward.                                                                                                                                                                                                                                                                                            |
+| languageSpecificInfo.richContentRO | object    | Rich content related to the reward, such as HTML or multimedia, enabled for display purposes. Use to provide formatted text.                                                                                                                                                                                                                  |
+| richContentRO.content              | string    | The HTML-formatted rich text content.                                                                                                                                                                                                                                                                                                         |
+| richContentRO.isEnabled            | boolean   | Indicates whether the rich text content is enabled. Possible Values: `true` or `false`                                                                                                                                                                                                                                                        |
+| defaultValue                       | string    | Default value if rich text content is not mapped to the reward. Required if `isMandatory` is set to `true`                                                                                                                                                                                                                                    |
+| vendorId                           | Integer   | Retrieves the rewards associated with a specific vendor.                                                                                                                                                                                                                                                                                      |
+| redemptionType                     | Integer   | Retrieves rewards based on their redemption type. <br />**Possible values:**`GAMES, AUCTION, CART_PROMOTION, CASH_WALLET, VENDOR_ONLY_REWARD, VOUCHER, CASH_BACK, INTOUCH_REWARD, PHYSICAL_REWARD, CHARITY, MILES, GIFT_CARD, SWEEPSTAKES, VENDOR_INTOUCH_REWARD, CARD_DISC`. Multiple redemptionType values can be filtered using comma (,). |
+
+<br />
+
+<CodeGroup show-lines="true" tabs={["200 OK", "With revenue metadata", "With 'altText' for images and videos", "With couponCodeCase Filter"]}>
+
+  ```json
+  {
+      "status": [
+  {
+      "success": true,
+      "code": 200,
+      "message": "Reward issue transactions details fetched successfully"
+  }
+      ],
+      "data": {
+      "rewardTransactionId": "94044",
+      "customerId": 423931087,
+      "orgId": 4000036,
+      "rewardIssueRefId": "Transaction-1716621508000",
+      "rewardTransactionDate": 1743528316000,
+      "status": {
+      "success": true,
+      "code": 200,
+      "message": "Reward issued successfully"
+  },
+      "quantity": 5,
+      "requestedQuantity": 5,
+      "groupRedemption": false,
+      "rewardDetails": {
+      "rewardId": 38879,
+      "languageCode": "en",
+      "name": " INTOUCH Enabled EN",
+      "description": "Description EN",
+      "groups": [],
+      "imageId": "EXDR12987U",
+      "imageUrl": "https://s3.us-west-2.amazonaws.com/devenv-crm-solutionsvannnld9gg/marvel_automation/EXDR12987U?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEO%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJGMEQCIDwpr%2FOgnDL192RMiujWeKSoQMAr4zTRpQbi0m0%2F%2BjJzAiB6BqPYE9rTP%2By3jtKNSlzkooZJnga%2BoOCHxkw3j0d8qirOAgiI%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAUaDDQ4NjQ1Njk4NjI2NiIMPVAwU9vBR8iQdFLtKqICRVh%2Bi7IQUjBVICNZy%2B%2B9x2HMkTgpGvZqBabeB%2FXe8i%2BhMEe%2F6YfUF3VFs%2FG0LXPdQLx82N7EH5%2B4ypCzP3%2BaTCRix7cYLRDxSa%2BgBO2mOHF2ZsC4S5Gk8Izbj7e0y7rMb%2BJ%2Ffd7UT%2FOeowYKo2gsHk3JB90DJr5zbXRjGjhVC8X19JZ%2BSm%2F68AKy15JnKFpLbHsDfXVicR088Xr7DBeQIP19hMNZDTdzheYYbjM6nQYpaCDVTJmItSkcHBsZohwNJqolt9PreCkyY16WN7g5Sogal%2FeNcS%2FqUAT9PEVHacTWdz4T1360Gfr8xHtz2IQoxlOzNR0di9PZFLIY4JVX%2BiBEDNWVzQnGNbtnEU5a%2BtLvLIUkTN76y3F3uSY9llsP75Awq%2FLBwAY6ngHRJdISAJ3mqfjfAbUGrHnMLR5YeQI%2BrusQTGqW%2BK4kwF2Ty2m80IakeuzpYWmHOQ8FwL7kOtHI02ugrxZqDhxw6jXKKkrU2rUnTUNaiGB6pN3qmZ17FUuqI8Yy0S1DxlekB7lKbL5fasuCN6FoO%2FJR2Q%2B0i2MAu4Xh0zcSmPcgmHN74LtBZ%2Fbn9%2Fq8xHwXMcY8rXJuoUBZyoPvF%2FeBqw%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250429T070059Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=ASIAXCQYYRKNLMTLQEB3%2F20250429%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=2fff47e7e6a578849605a791bb9907c8e38d3796349b180483ff839d5241ddc8",
+      "intouchPoints": 1,
+      "redemptionType": "MILES",
+      "vendorName": "test002",
+      "vendorId": 38,
+      "vendorRedemptionId": 2386,
+      "vendorRedemptionName": "VENDOR REDEMPTION-Postman_Test",
+      "images": [],
+      "videos": []
+  },
+      "pointsRedemption": {
+      "redeemedPoints": 5,
+      "vendorName": "Points001",
+      "pointsRedemptionRefId": "5kq5uP",
+      "pointsRedemptionRefIds": [
+      "5kq5uP"
+      ],
+      "status": {
+      "success": true,
+      "code": 200,
+      "message": "Points redeemed successfully."
+  },
+      "vendorId": 47
+  },
+      "redemptionDetails": {
+      "redemptionType": "MILES",
+      "totalRedemptionValue": null
+  },
+      "vouchers": [],
+      "vendorRewards": {
+      "rewards": [
+  {
+      "json": "{\"voucher\": \"1534699\", \"pointsRedeemed\": \"5\"}"
+  },
+  {
+      "json": "{\"voucher\": \"1534700\", \"pointsRedeemed\": \"5\"}"
+  },
+  {
+      "json": "{\"voucher\": \"1534701\", \"pointsRedeemed\": \"5\"}"
+  },
+  {
+      "json": "{\"voucher\": \"1534702\", \"pointsRedeemed\": \"5\"}"
+  },
+  {
+      "json": "{\"voucher\": \"1534703\", \"pointsRedeemed\": \"5\"}"
+  }
+      ]
+  },
+      "customFields": {
+      "CF1_FALLBACK_1": "CF1_DV",
+      "CF2_FALLBACK_1": "CF2_DV"
+  },
+      "richContentRO": {
+      "RC__2": {
+      "content": "RC__2_DV",
+      "isEnabled": true
+  },
+      "RC__1": {
+      "content": "RC__1_DV",
+      "isEnabled": true
+  }
+  },
+      "ownerId": "",
+      "eventDateTime": "2025-04-01T17:25:16Z",
+      "issueDateTime": "2025-04-01T17:25:16Z"
+  }
+  }
+  ```
+
+  ```json
+  {
+      "status": [
+  {
+      "success": true,
+      "code": 200,
+      "message": "Reward issue transactions details fetched successfully"
+  }
+      ],
+      "data": {
+      "rewardTransactionId": "17337",
+      "rewardIssueRefId": "transactionNumber",
+      "rewardTransactionDate": 1709715033000,
+      "status": {
+      "success": true,
+      "code": 200,
+      "message": "Reward issued successfully"
+  },
+      "quantity": 1,
+      "groupRedemption": false,
+      "rewardDetails": {
+      "rewardId": 6834,
+      "languageCode": "en",
+      "name": " INTOUCH Enabled",
+      "description": "Description",
+      "imageId": "EXDR12987U",
+      "imageUrl": "https://s3.us-west-2.amazonaws.com/devenv-crm-solutionsvannnld9gg/marvel_automation/EXDR12987U?X-Amz-Security-Token=FwoGZXIvYXdzELr%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDDP8T9uN3cAstrAKoyLcAcNt9HvLcn79YTO%2F0glMCtFy1d6wnZiNGBvp%2Ff3vSltITx7OfgQsbqGtn7DKigqaWAjvnbVWNuNqnDzjzpX1FrSi1rLMnsgCZft3iFKTm3hlhzWlzLz5vR8cFQT6zfSHBy21%2FmxihnYpezB4Lv3qmy%2B84YWo1m95XPHCzvI3Sm%2B2PjtDgHhUchz3u1kL1v%2Bet2ZXsrh2Ohr4L3D5gisp35DVA4DzbWaaciOyJaA2cn37atfcuoQp4zgmBLQ8d%2FfssP5DAhzjZaoQwWBuBNirWKNA%2FQvEG0cThifoIXwonNqgrwYyLY1rvytALzqJdLGfupaZmTIK3kBoOniOjE94ywZBz1MNF7LeEWLHWb%2BLJ18ziw%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240306T085348Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIAXCQYYRKNPPABXCPZ%2F20240306%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=60b44f05b120b061bfaeca7233d610c8221daafdaa6fc9d134b3920afb1d95f3",
+      "intouchPoints": 1,
+      "intouchSeriesId": "1135336",
+      "redemptionType": "INTOUCH_REWARD",
+      "vendorName": null,
+      "vendorId": null,
+      "vendorRedemptionId": null,
+      "vendorRedemptionName": null,
+      "images": [],
+      "videos": []
+  },
+      "pointsRedemption": {
+      "redeemedPoints": 1,
+      "vendorName": "Points vendor_1",
+      "referenceId": null,
+      "pointsRedemptionRefId": "0rjghc",
+      "status": {
+      "success": true,
+      "code": 200,
+      "message": "Points redeemed successfully."
+  },
+      "stageReferenceId": null,
+      "vendorId": null,
+      "requestBody": null,
+      "responseBody": null,
+      "headers": null
+  },
+      "pointsRedemptionCheck": null,
+      "issueReward": null,
+      "revokeReward": null,
+      "constraintsCheck": null,
+      "catalogPromotions": null,
+      "appliedPromotions": null,
+      "vouchers": [
+  {
+      "code": "XS35QH1HA1OFHP269NZ0H0UCIZSY7S22F2DMP",
+      "revenueDetails": {
+      "brandCommission": 1.00,
+      "capillaryCommission": 0.00,
+      "affiliateCommission": 1.20,
+      "endCustomerCommission": 1.30
+  }
+  }
+      ],
+      "promotions": null,
+      "customFields": {
+      "0a17": "defaultValue",
+      "2d8a": "defaultValue",
+  },
+      "ownerType": null,
+      "ownerId": "",
+      "groupName": null,
+      "groupRank": null,
+      "rewardRank": null
+  }
+  }
+  ```
+
+  ```json
+  {
+      "status": [
+  {
+      "success": true,
+      "code": 200,
+      "message": "Reward issue transactions details fetched successfully"
+  }
+      ],
+      "data": {
+      "rewardTransactionId": "338926",
+      "customerId": 564488660,
+      "orgId": 100737,
+      "rewardIssueRefId": "transactionNumber",
+      "rewardTransactionDate": 1739180128000,
+      "status": {
+      "success": true,
+      "code": 200,
+      "message": "Reward issued successfully"
+  },
+      "quantity": 1,
+      "requestedQuantity": 1,
+      "groupRedemption": false,
+      "rewardDetails": {
+      "rewardId": 313501,
+      "languageCode": "en",
+      "name": " INTOUCH Enabled",
+      "description": "Description",
+      "groups": [],
+      "imageId": "EXDR12987U",
+      "imageUrl": "https://s3.eu-west-1.amazonaws.com/eucrm-solutions/DOCDEMO/EXDR12987U?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEOX%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCWV1LXdlc3QtMSJHMEUCIC8Xs6yX8y6blmci0kZQDe2tqRbrSW6Rcry4po63zWjzAiEA%2F8WeX2dFC%2BXx3JtDsR%2Fp0JPAPHu6eWR5C%2BGFDqjt3uIqvgII%2Fv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw1MDI4MTI3NzkyNjciDO5Ey0oIbicQGNC6gyqSAjD%2B49V4wIjNaXnNQkKI%2FBmNSrk2FapUFU0FJIjeM3kmluN3pXF0bae%2BTZzZ4jJrEU%2FoJRKEI7o4htcWLyTE4BQnWjqDOw1PfQIgm86LJwzYsBQYXd%2FzlRAbQox4lUOd7jtab1WzNe0%2F%2FCZLHZukfu6Senf1xxF0FZ2unvGhZgTa78nuZ3M5AYkFCchZDTJfX0zZ0q0gBty1Jk3JR%2BsP%2Fso8t8i5lTegz05NGN%2F8fWqKuFwxqh3MdcjntEtRCZEYHRf2DV7NLk9hlxq0F%2BXlEgye4IjNkfQWO7h2LZQI9yRsknLaQLcSSKEwdnd90IAVieXq6d%2FiE2aOcB9HbbTXuQH06AHgzTrDi2JTQ0%2F61%2B%2FBdBowl%2Fe1vQY6nQFElWN4x9QnjC0xTX5Unq2ORocyPEpfuWdeejGz2GnzpQ7i95ylmK7XMW8pt2ZM%2Bi%2FyqkH1ty02Taib0fdUzGlbKE1MmzRjGCfV4x8FLov0L82qSEKLB%2FmHl1IL25CJxUGIRaxpf2KCYxRG%2BxxFHNwmx05TpfJfITUhuex%2FFEzD6CBCZhajymLDvDa0%2Fa%2B7Nt%2BK%2BSv5xSbJC8xRZ10E&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250213T045655Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=ASIAXKEP2EMBY2B2CPB3%2F20250213%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Signature=00b61012b33ca16ec7c967941ad527a4a4dd3828a6756818f839f9d2904edb3b",
+      "intouchPoints": 0,
+      "redemptionType": "PHYSICAL_REWARD",
+      "images": [
+  {
+      "name": "imageName",
+      "altText": "product picture",
+      "id": null,
+      "url": "mypic.com",
+      "isExternal": true
+  }
+      ],
+      "videos": [
+  {
+      "name": "videoName",
+      "altText": "product picture",
+      "id": null,
+      "url": "mypic.com",
+      "isExternal": true
+  }
+      ]
+  },
+      "pointsRedemption": {
+      "redeemedPoints": 0,
+      "pointsRedemptionRefIds": [
+      null
+      ],
+      "status": {
+      "success": true,
+      "code": 200,
+      "message": "Points redeemed successfully."
+  }
+  },
+      "redemptionDetails": {
+      "redemptionType": "PHYSICAL_REWARD",
+      "totalRedemptionValue": null
+  },
+      "vouchers": [],
+      "vendorRewards": {
+      "rewards": [
+  {
+      "json": "{}"
+  }
+      ]
+  },
+      "ownerId": ""
+  }
+  }
+  ```
+
+  ```text
+  {
+      "status": [
+  {
+      "success": true,
+      "code": 200,
+      "message": "Reward issue transactions details fetched successfully"
+  }
+      ],
+      "data": {
+      "rewardTransactionId": "927488",
+      "customerId": 345635195,
+      "orgId": 50339,
+      "rewardIssueRefId": "1718950196",
+      "rewardTransactionDate": 1747372097000,
+      "status": {
+      "success": true,
+      "code": 200,
+      "message": "Reward issued successfully"
+  },
+      "quantity": 1,
+      "requestedQuantity": 1,
+      "groupRedemption": false,
+      "rewardDetails": {
+      "rewardId": 139831,
+      "languageCode": "en",
+      "name": "english rewardName",
+      "description": "hello",
+      "groups": [],
+      "imageId": "EXDR12987U",
+      "imageUrl": "https://s3.amazonaws.com/crm-staging-new-solutions/AutomationBrandMarvel/EXDR12987U?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEJH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJHMEUCIQCIKtw%2BXC2TqRzite7DiaPtyN7p9934t66wn0xrNmDdLQIgWH7wtldcDVFMlTeA%2FH4GflOD3DNzGWmWKlRn49B0ce8qvwIIWhAFGgw0ODY0NTY5ODYyNjYiDM40FhBLlqqH%2FGFYbyqcAjhc5mR%2Fy%2B6e3wJPjC7lOa9uZq8irxGO3arNg%2FzSE1d2%2BSC0jYcfDNXBxqj%2Bl3YisF1mvLb8VgHs%2B%2BRPivnY2eazmqD066%2BYc4euOTSPtW3EcOgO4%2F4lG0FwLyxC%2BaV95%2BaY%2FMyU%2F%2Fj2cKisPSSbygnAJy8FvQQTjnbTJW1gaICAl4DVzj7OX4Va3gY7qG62JVj%2FEbT3KZzkz1NxAcDKCn1Fhtye7qkuRy4MuJak7FBrlzpWdhYCMQqUe1%2F%2BM92ojPt69tydhwP9fpAla3ra%2BGqlgeG7V8vD5YBetPWU2%2Fil1yA14nAL4kC53JVG%2BG293yJ1dKTsiOhU5DT5G%2F0WO53cX0Gbhgoimlfi7ftIhDoOQsqq92Pa9QQhp3AtMMLs1cEGOp0B4U67C6hM%2Fz44qEWwJv9H7cJVzAelJbFpcfOTBkzip9CMh2KYRu4wT4JugEj63Zz3%2FrcLcTEIKgO%2Fp6vYWgJ%2B9Ku7uLVFToTifX9LnfV6XiVOrfd29HG9Rb7MeQ44qGmsz6DWlQP11Noz4TeXD0HyaxMznFAluKxxDPJipw1mVKkNM1OTOXHUfv08tBhB8IGeiq03k8xJeKpzEn%2BNmw%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250527T082522Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIAXCQYYRKNPEDLZPZL%2F20250527%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=0e8acc31cb787690f2cd746cf2421ed7be74aa7f947600fe826d65e8d4cc7fc7",
+      "intouchPoints": 0,
+      "intouchSeriesId": "96303",
+      "redemptionType": "INTOUCH_REWARD",
+      "images": [],
+      "videos": []
+  },
+      "pointsRedemption": {
+      "redeemedPoints": 0,
+      "vendorName": "test004",
+      "pointsRedemptionRefIds": [
+      null
+      ],
+      "status": {
+      "success": true,
+      "code": 200,
+      "message": "Points redeemed successfully."
+  },
+      "vendorId": 37
+  },
+      "redemptionDetails": {
+      "redemptionType": "INTOUCH_REWARD",
+      "totalRedemptionValue": null
+  },
+      "vouchers": [
+  {
+      "code": "UPPERlower003",
+      "codeExpiry": "2025-06-15 00:00:00",
+      "codeExpiryDateTime": "2025-06-15T00:00:00Z",
+      "redemptionDetails": {
+      "redemptionType": "INTOUCH_REWARD",
+      "redemptionValue": null
+  }
+  }
+      ],
+      "vendorRewards": {
+      "rewards": []
+  },
+      "customFields": {
+      "CF1_451fda2c2025-05-26 21:02:59.928852": "defaultValue_1",
+      "CF2_3a9ec2332025-05-26 21:02:59.928866": "defaultValue_2"
+  },
+      "richContentRO": {
+      "ea3aa7c12025-05-27 13:55:15.791334": {
+      "content": "<p>We know that January is a time when lots of us start to plan for our next holiday, giving us something to look forward to at the start of the year.&nbsp;</p>\\\\n<p>With that in mind, we'd like to introduce Santander Boosts members to The World Online, a&nbsp;private travel platform with 24/7 access to special rates and curated deals.&nbsp;</p>\\\\n<p>",
+      "isEnabled": true
+  },
+      "b4a8723f2025-05-27 13:55:15.791359": {
+      "content": "<ul>\r\n<li>Santander Boosts may include links to third-party content from participating retailers or promoters. We are not responsible for this content or any additional information they capture or seek, and links may not always work or be available.</li>\r\n<li>Access to the The World Online is exclusively available to Santander Boosts members that are a minimum of 18 years of age.</li>\r\n<li>Inventory is subject to availability.</li>\r\n<li>Santander Boosts members can view booking confirmation details, including cancellations. To do this, Santander Boosts members can find the offer under the 'Activated' tab in the 'My Offers' section of the navigation menu in Santander Boosts. Then click the 'Book and manage travel' button associated with the offer. This will redirect you to The World Online site, where you can click on the 'My Account' icon then click on 'Purchases' to View existing bookings.</li>",
+      "isEnabled": true
+  }
+  },
+      "ownerId": "",
+      "eventDateTime": "2025-05-16T05:08:17Z",
+      "issueDateTime": "2025-05-16T05:08:17Z"
+  }
+  }
+  ```
+
+</CodeGroup>
+
+## Error codes
+
+| Error Code | Description                  |
+| :--------- | :--------------------------- |
+| 6004       | Reward not found or disabled |
+
+`<style>`
+  .InputGroupe2EvBGz2cnqy \{
+   display: flex;
+   gap: 2px;
+   position: relative;
+\}
+
+    .Button.APIRequest-example-button1DGMsfaOTVNW \{
+       position: relative;
+       width: 140px;
+       white-space: nowrap;
+       overflow: hidden;
+       text-overflow: ellipsis;
+       padding: 6px 12px;
+       text-align: left;
+       transition: width 0.2s ease-out;
+       z-index: 1;
+       display: block;
+       direction: ltr;
+       unicode-bidi: embed;
+       padding-right: 20px;
+       background: #1e2329;
+       border: none;
+       border-radius: 6px;
+       color: #94a3b8;
+       font-size: 13px;
+    \}
+
+    .Button.APIRequest-example-button1DGMsfaOTVNW span,
+    .Button.APIRequest-example-button1DGMsfaOTVNW div \{
+       text-align: left;
+       direction: ltr;
+    \}
+
+    .Button.APIRequest-example-button1DGMsfaOTVNW:hover \{
+       width: auto;
+       z-index: 10;
+       background: #262b33;
+    \}
+
+    .Button.APIRequest-example-button1DGMsfaOTVNW.APIRequest-example-button_activeXJeukHyaHZXB \{
+       z-index: 20;
+       background: #2c333d;
+       color: #ffffff;
+    \}
+    `</style>`
+
+## OpenAPI definition
+
+```json
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "v1",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://{host}",
+      "variables": {
+        "host": {
+          "default": "host"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/api_gateway/rewards/core/v1/management/customer/{customerId}/issuals/{rewardTransactionId}": {
+      "get": {
+        "summary": "Get Transaction Details by Customer ID and Reward Transaction ID",
+        "description": "",
+        "operationId": "get-reward-issue-transaction-details",
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "path",
+            "description": "Unique identifier of the customer.",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "rewardTransactionId",
+            "in": "path",
+            "description": "Unique identifier of the reward transaction.",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n    \"status\": [\n        {\n            \"success\": true,\n            \"code\": 200,\n            \"message\": \"Reward issue transactions details fetched successfully\"\n        }\n    ],\n    \"data\": {\n        \"rewardTransactionId\": \"395932\",\n        \"customerId\": 565039504,\n        \"orgId\": 100737,\n        \"rewardIssueRefId\": \"transactionNumber\",\n        \"rewardTransactionDate\": 1746586678000,\n        \"status\": {\n            \"success\": true,\n            \"code\": 200,\n            \"message\": \"Reward issued successfully\"\n        },\n        \"quantity\": 1,\n        \"requestedQuantity\": 1,\n        \"groupRedemption\": false,\n        \"rewardDetails\": {\n            \"rewardId\": 367238,\n            \"languageCode\": \"en\",\n            \"name\": \"BETA-EN TRUE\",\n            \"description\": \"testreward1\",\n            \"groups\": [],\n            \"intouchPoints\": 500,\n            \"redemptionType\": \"VOUCHER\",\n            \"images\": [],\n            \"videos\": []\n        },\n        \"pointsRedemption\": {\n            \"redeemedPoints\": 500,\n            \"vendorName\": \"DocVendor8\",\n            \"pointsRedemptionRefId\": \"YfNdt3\",\n            \"pointsRedemptionRefIds\": [\n                \"YfNdt3\"\n            ],\n            \"status\": {\n                \"success\": true,\n                \"code\": 200,\n                \"message\": \"Points redeemed successfully.\"\n            },\n            \"vendorId\": 60\n        },\n        \"redemptionDetails\": {\n            \"redemptionType\": \"VOUCHER\",\n            \"totalRedemptionValue\": null\n        },\n        \"vouchers\": [],\n        \"vendorRewards\": {\n            \"rewards\": [\n                {\n                    \"json\": \"{\\\"pointsRedeemed\\\": \\\"500\\\"}\"\n                }\n            ]\n        },\n        \"richContentRO\": {\n            \"RC345\": {\n                \"content\": \"en\",\n                \"isEnabled\": true\n            },\n            \"RCtestgeorgetrue\": {\n                \"content\": \"en\",\n                \"isEnabled\": true\n            },\n            \"RCtestgeorge2\": {\n                \"content\": \"en\",\n                \"isEnabled\": true\n            },\n            \"richcontentfrench\": {\n                \"content\": \"this is the default value\",\n                \"isEnabled\": true\n            },\n            \"RCtestCREATE\": {\n                \"content\": \"en\",\n                \"isEnabled\": true\n            },\n            \"RCtestgeorge4\": {\n                \"content\": \"en\",\n                \"isEnabled\": true\n            },\n            \"richcontentenglish\": {\n                \"content\": \"HERE IS YOUR ENGLISH CONTENT (IS ENABLED TRUE)\",\n                \"isEnabled\": true\n            },\n            \"Golden2reward\": {\n                \"content\": \"20% Discount Applied\",\n                \"isEnabled\": true\n            }\n        },\n        \"ownerId\": \"\",\n        \"eventDateTime\": \"2025-05-07T02:57:58Z\",\n        \"issueDateTime\": \"2025-05-07T02:57:58Z\"\n    }\n}"
+                  },
+                  "couponCodeCase=AS_IT_IS": {
+                    "value": "{\n    \"status\": [\n        {\n            \"success\": true,\n            \"code\": 200,\n            \"message\": \"Reward issue transactions details fetched successfully\"\n        }\n    ],\n    \"data\": {\n        \"rewardTransactionId\": \"927488\",\n        \"customerId\": 345635195,\n        \"orgId\": 50339,\n        \"rewardIssueRefId\": \"1718950196\",\n        \"rewardTransactionDate\": 1747372097000,\n        \"status\": {\n            \"success\": true,\n            \"code\": 200,\n            \"message\": \"Reward issued successfully\"\n        },\n        \"quantity\": 1,\n        \"requestedQuantity\": 1,\n        \"groupRedemption\": false,\n        \"rewardDetails\": {\n            \"rewardId\": 139831,\n            \"languageCode\": \"en\",\n            \"name\": \"english rewardName\",\n            \"description\": \"hello\",\n            \"groups\": [],\n            \"imageId\": \"EXDR12987U\",\n            \"imageUrl\": \"https://s3.amazonaws.com/crm-staging-new-solutions/AutomationBrandMarvel/EXDR12987U?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEJH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJHMEUCIQCIKtw%2BXC2TqRzite7DiaPtyN7p9934t66wn0xrNmDdLQIgWH7wtldcDVFMlTeA%2FH4GflOD3DNzGWmWKlRn49B0ce8qvwIIWhAFGgw0ODY0NTY5ODYyNjYiDM40FhBLlqqH%2FGFYbyqcAjhc5mR%2Fy%2B6e3wJPjC7lOa9uZq8irxGO3arNg%2FzSE1d2%2BSC0jYcfDNXBxqj%2Bl3YisF1mvLb8VgHs%2B%2BRPivnY2eazmqD066%2BYc4euOTSPtW3EcOgO4%2F4lG0FwLyxC%2BaV95%2BaY%2FMyU%2F%2Fj2cKisPSSbygnAJy8FvQQTjnbTJW1gaICAl4DVzj7OX4Va3gY7qG62JVj%2FEbT3KZzkz1NxAcDKCn1Fhtye7qkuRy4MuJak7FBrlzpWdhYCMQqUe1%2F%2BM92ojPt69tydhwP9fpAla3ra%2BGqlgeG7V8vD5YBetPWU2%2Fil1yA14nAL4kC53JVG%2BG293yJ1dKTsiOhU5DT5G%2F0WO53cX0Gbhgoimlfi7ftIhDoOQsqq92Pa9QQhp3AtMMLs1cEGOp0B4U67C6hM%2Fz44qEWwJv9H7cJVzAelJbFpcfOTBkzip9CMh2KYRu4wT4JugEj63Zz3%2FrcLcTEIKgO%2Fp6vYWgJ%2B9Ku7uLVFToTifX9LnfV6XiVOrfd29HG9Rb7MeQ44qGmsz6DWlQP11Noz4TeXD0HyaxMznFAluKxxDPJipw1mVKkNM1OTOXHUfv08tBhB8IGeiq03k8xJeKpzEn%2BNmw%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250527T082522Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIAXCQYYRKNPEDLZPZL%2F20250527%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=0e8acc31cb787690f2cd746cf2421ed7be74aa7f947600fe826d65e8d4cc7fc7\",\n            \"intouchPoints\": 0,\n            \"intouchSeriesId\": \"96303\",\n            \"redemptionType\": \"INTOUCH_REWARD\",\n            \"images\": [],\n            \"videos\": []\n        },\n        \"pointsRedemption\": {\n            \"redeemedPoints\": 0,\n            \"vendorName\": \"test004\",\n            \"pointsRedemptionRefIds\": [\n                null\n            ],\n            \"status\": {\n                \"success\": true,\n                \"code\": 200,\n                \"message\": \"Points redeemed successfully.\"\n            },\n            \"vendorId\": 37\n        },\n        \"redemptionDetails\": {\n            \"redemptionType\": \"INTOUCH_REWARD\",\n            \"totalRedemptionValue\": null\n        },\n        \"vouchers\": [\n            {\n                \"code\": \"UPPERlower003\",\n                \"codeExpiry\": \"2025-06-15 00:00:00\",\n                \"codeExpiryDateTime\": \"2025-06-15T00:00:00Z\",\n                \"redemptionDetails\": {\n                    \"redemptionType\": \"INTOUCH_REWARD\",\n                    \"redemptionValue\": null\n                }\n            }\n        ],\n        \"vendorRewards\": {\n            \"rewards\": []\n        },\n        \"customFields\": {\n            \"CF1_451fda2c2025-05-26 21:02:59.928852\": \"defaultValue_1\",\n            \"CF2_3a9ec2332025-05-26 21:02:59.928866\": \"defaultValue_2\"\n        },\n        \"richContentRO\": {\n            \"ea3aa7c12025-05-27 13:55:15.791334\": {\n                \"content\": \"<p>We know that January is a time when lots of us start to plan for our next holiday, giving us something to look forward to at the start of the year.&nbsp;</p>\\\\\\\\n<p>With that in mind, we'd like to introduce Santander Boosts members to The World Online, a&nbsp;private travel platform with 24/7 access to special rates and curated deals.&nbsp;</p>\\\\\\\\n<p>\",\n                \"isEnabled\": true\n            },\n            \"b4a8723f2025-05-27 13:55:15.791359\": {\n                \"content\": \"<ul>\\r\\n<li>Santander Boosts may include links to third-party content from participating retailers or promoters. We are not responsible for this content or any additional information they capture or seek, and links may not always work or be available.</li>\\r\\n<li>Access to the The World Online is exclusively available to Santander Boosts members that are a minimum of 18 years of age.</li>\\r\\n<li>Inventory is subject to availability.</li>\\r\\n<li>Santander Boosts members can view booking confirmation details, including cancellations. To do this, Santander Boosts members can find the offer under the 'Activated' tab in the 'My Offers' section of the navigation menu in Santander Boosts. Then click the 'Book and manage travel' button associated with the offer. This will redirect you to The World Online site, where you can click on the 'My Account' icon then click on 'Purchases' to View existing bookings.</li>\",\n                \"isEnabled\": true\n            }\n        },\n        \"ownerId\": \"\",\n        \"eventDateTime\": \"2025-05-16T05:08:17Z\",\n        \"issueDateTime\": \"2025-05-16T05:08:17Z\"\n    }\n}"
+                  },
+                  "couponCodeCase = UPPER": {
+                    "value": "{\n    \"status\": [\n        {\n            \"success\": true,\n            \"code\": 200,\n            \"message\": \"Reward issue transactions details fetched successfully\"\n        }\n    ],\n    \"data\": {\n        \"rewardTransactionId\": \"927488\",\n        \"customerId\": 345635195,\n        \"orgId\": 50339,\n        \"rewardIssueRefId\": \"1718950196\",\n        \"rewardTransactionDate\": 1747372097000,\n        \"status\": {\n            \"success\": true,\n            \"code\": 200,\n            \"message\": \"Reward issued successfully\"\n        },\n        \"quantity\": 1,\n        \"requestedQuantity\": 1,\n        \"groupRedemption\": false,\n        \"rewardDetails\": {\n            \"rewardId\": 139831,\n            \"languageCode\": \"en\",\n            \"name\": \"english rewardName\",\n            \"description\": \"hello\",\n            \"groups\": [],\n            \"imageId\": \"EXDR12987U\",\n            \"imageUrl\": \"https://s3.amazonaws.com/crm-staging-new-solutions/AutomationBrandMarvel/EXDR12987U?X-Amz-Security-Token=IQoJb3JpZ2luX2VjED0aCXVzLWVhc3QtMSJHMEUCIDdiny0ZSOUcF7EibKTJv9zlt2jxzV6zRlC3HElGSPaUAiEAyVKkXW1Cn%2Bn1syBFpIZLBhd42sDxMmgjW6AtZNNHpBYqvwIIFhAFGgw0ODY0NTY5ODYyNjYiDPIQTS0SUoykHmQsbiqcAuzQPcwZ%2F94VKuZMpXFHPPoy5X15DHJOzOnJUUJ2ltixLHhf4fbHVdM033Gtr0Lm8obFVRRajrYnqzPcMEQIEQh%2BTWOQgE6vS5sCg3%2FtFDwFXWTtrL30pIcO%2Fps6DgBipaYWuJPP6sSEi3%2F9%2Bvvx99tjjnvTBkGjGsoJtnKs5PhqTVcgCjqm6742oqvEpsabdpmneuMtag87H5nkfrGuIJx6e9d97%2FJAw8PxQD%2BgC2IrhgoSwqSfMirrNKDtqHLgpMt7kQnMMfq2g9zo%2FFz%2FgRJJ8Q5ut7BQj7R2OpPFpQd15Kcwt45kEzztWqBJUKj2Yzgcrn6dSM1k5bRK9gfWCXJceXaTIWJPHYAz4ES6lkgpJZ1A8QMYsoyOWwu8MN3Z%2B8EGOp0BOJX4Zx2EF8rO3hiYXMxHlZws6g618MnVlUM9ds1yUrx1F4Ci2SngZSSsanX%2FO8GSTYEWCSDjAuX77RVIJC6giPZVJPz7UcfxpK6lB44QjLVynUdAwCJwB8pZgxGnwFFHgVUudF%2B5EC1SbmRnjP7pmB9Si50FpL8XsZnDoyAAzUv2qLQmYDQf9YLxhpZ1J0xy5onbcyB0OgZU4%2BFrcQ%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250603T124653Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIAXCQYYRKNDPQM2XMS%2F20250603%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=b9ef5ed3be98ea669c12e8e6bd099519da41b906648dbf4d35c89fe1555d7ad6\",\n            \"intouchPoints\": 0,\n            \"intouchSeriesId\": \"96303\",\n            \"redemptionType\": \"INTOUCH_REWARD\",\n            \"images\": [],\n            \"videos\": []\n        },\n        \"pointsRedemption\": {\n            \"redeemedPoints\": 0,\n            \"vendorName\": \"test004\",\n            \"pointsRedemptionRefIds\": [\n                null\n            ],\n            \"status\": {\n                \"success\": true,\n                \"code\": 200,\n                \"message\": \"Points redeemed successfully.\"\n            },\n            \"vendorId\": 37\n        },\n        \"redemptionDetails\": {\n            \"redemptionType\": \"INTOUCH_REWARD\",\n            \"totalRedemptionValue\": null\n        },\n        \"vouchers\": [\n            {\n                \"code\": \"UPPERLOWER003\",\n                \"codeExpiry\": \"2025-06-15 00:00:00\",\n                \"codeExpiryDateTime\": \"2025-06-15T00:00:00Z\",\n                \"redemptionDetails\": {\n                    \"redemptionType\": \"INTOUCH_REWARD\",\n                    \"redemptionValue\": null\n                }\n            }\n        ],\n        \"vendorRewards\": {\n            \"rewards\": []\n        },\n        \"customFields\": {\n            \"CF2_0122a5852025-06-03 13:59:47.736781\": \"defaultValue_2\",\n            \"CF1_c26dfde12025-06-03 13:59:47.736770\": \"defaultValue_1\"\n        },\n        \"richContentRO\": {},\n        \"ownerId\": \"\",\n        \"eventDateTime\": \"2025-05-16T05:08:17Z\",\n        \"issueDateTime\": \"2025-05-16T05:08:17Z\"\n    }\n}"
+                  },
+                  "couponCodeCase = LOWER": {
+                    "value": "{\n    \"status\": [\n        {\n            \"success\": true,\n            \"code\": 200,\n            \"message\": \"Reward issue transactions details fetched successfully\"\n        }\n    ],\n    \"data\": {\n        \"rewardTransactionId\": \"927488\",\n        \"customerId\": 345635195,\n        \"orgId\": 50339,\n        \"rewardIssueRefId\": \"1718950196\",\n        \"rewardTransactionDate\": 1747372097000,\n        \"status\": {\n            \"success\": true,\n            \"code\": 200,\n            \"message\": \"Reward issued successfully\"\n        },\n        \"quantity\": 1,\n        \"requestedQuantity\": 1,\n        \"groupRedemption\": false,\n        \"rewardDetails\": {\n            \"rewardId\": 139831,\n            \"languageCode\": \"en\",\n            \"name\": \"english rewardName\",\n            \"description\": \"hello\",\n            \"groups\": [],\n            \"imageId\": \"EXDR12987U\",\n            \"imageUrl\": \"https://s3.amazonaws.com/crm-staging-new-solutions/AutomationBrandMarvel/EXDR12987U?X-Amz-Security-Token=IQoJb3JpZ2luX2VjED0aCXVzLWVhc3QtMSJHMEUCIDdiny0ZSOUcF7EibKTJv9zlt2jxzV6zRlC3HElGSPaUAiEAyVKkXW1Cn%2Bn1syBFpIZLBhd42sDxMmgjW6AtZNNHpBYqvwIIFhAFGgw0ODY0NTY5ODYyNjYiDPIQTS0SUoykHmQsbiqcAuzQPcwZ%2F94VKuZMpXFHPPoy5X15DHJOzOnJUUJ2ltixLHhf4fbHVdM033Gtr0Lm8obFVRRajrYnqzPcMEQIEQh%2BTWOQgE6vS5sCg3%2FtFDwFXWTtrL30pIcO%2Fps6DgBipaYWuJPP6sSEi3%2F9%2Bvvx99tjjnvTBkGjGsoJtnKs5PhqTVcgCjqm6742oqvEpsabdpmneuMtag87H5nkfrGuIJx6e9d97%2FJAw8PxQD%2BgC2IrhgoSwqSfMirrNKDtqHLgpMt7kQnMMfq2g9zo%2FFz%2FgRJJ8Q5ut7BQj7R2OpPFpQd15Kcwt45kEzztWqBJUKj2Yzgcrn6dSM1k5bRK9gfWCXJceXaTIWJPHYAz4ES6lkgpJZ1A8QMYsoyOWwu8MN3Z%2B8EGOp0BOJX4Zx2EF8rO3hiYXMxHlZws6g618MnVlUM9ds1yUrx1F4Ci2SngZSSsanX%2FO8GSTYEWCSDjAuX77RVIJC6giPZVJPz7UcfxpK6lB44QjLVynUdAwCJwB8pZgxGnwFFHgVUudF%2B5EC1SbmRnjP7pmB9Si50FpL8XsZnDoyAAzUv2qLQmYDQf9YLxhpZ1J0xy5onbcyB0OgZU4%2BFrcQ%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250603T124746Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIAXCQYYRKNDPQM2XMS%2F20250603%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=f01ab574f2631e620ab058b8070be823dff150ce9059dc2b71d5ab330acbc2a3\",\n            \"intouchPoints\": 0,\n            \"intouchSeriesId\": \"96303\",\n            \"redemptionType\": \"INTOUCH_REWARD\",\n            \"images\": [],\n            \"videos\": []\n        },\n        \"pointsRedemption\": {\n            \"redeemedPoints\": 0,\n            \"vendorName\": \"test004\",\n            \"pointsRedemptionRefIds\": [\n                null\n            ],\n            \"status\": {\n                \"success\": true,\n                \"code\": 200,\n                \"message\": \"Points redeemed successfully.\"\n            },\n            \"vendorId\": 37\n        },\n        \"redemptionDetails\": {\n            \"redemptionType\": \"INTOUCH_REWARD\",\n            \"totalRedemptionValue\": null\n        },\n        \"vouchers\": [\n            {\n                \"code\": \"upperlower003\",\n                \"codeExpiry\": \"2025-06-15 00:00:00\",\n                \"codeExpiryDateTime\": \"2025-06-15T00:00:00Z\",\n                \"redemptionDetails\": {\n                    \"redemptionType\": \"INTOUCH_REWARD\",\n                    \"redemptionValue\": null\n                }\n            }\n        ],\n        \"vendorRewards\": {\n            \"rewards\": []\n        },\n        \"customFields\": {\n            \"CF2_0122a5852025-06-03 13:59:47.736781\": \"defaultValue_2\",\n            \"CF1_c26dfde12025-06-03 13:59:47.736770\": \"defaultValue_1\"\n        },\n        \"richContentRO\": {},\n        \"ownerId\": \"\",\n        \"eventDateTime\": \"2025-05-16T05:08:17Z\",\n        \"issueDateTime\": \"2025-05-16T05:08:17Z\"\n    }\n}"
+                  }
+                },
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "success": {
+                                "type": "boolean",
+                                "example": true,
+                                "default": true
+                              },
+                              "code": {
+                                "type": "integer",
+                                "example": 200,
+                                "default": 0
+                              },
+                              "message": {
+                                "type": "string",
+                                "example": "Reward issue transactions details fetched successfully"
+                              }
+                            }
+                          }
+                        },
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "rewardTransactionId": {
+                              "type": "string",
+                              "example": "395932"
+                            },
+                            "customerId": {
+                              "type": "integer",
+                              "example": 565039504,
+                              "default": 0
+                            },
+                            "orgId": {
+                              "type": "integer",
+                              "example": 100737,
+                              "default": 0
+                            },
+                            "rewardIssueRefId": {
+                              "type": "string",
+                              "example": "transactionNumber"
+                            },
+                            "rewardTransactionDate": {
+                              "type": "integer",
+                              "example": 1746586678000,
+                              "default": 0
+                            },
+                            "status": {
+                              "type": "object",
+                              "properties": {
+                                "success": {
+                                  "type": "boolean",
+                                  "example": true,
+                                  "default": true
+                                },
+                                "code": {
+                                  "type": "integer",
+                                  "example": 200,
+                                  "default": 0
+                                },
+                                "message": {
+                                  "type": "string",
+                                  "example": "Reward issued successfully"
+                                }
+                              }
+                            },
+                            "quantity": {
+                              "type": "integer",
+                              "example": 1,
+                              "default": 0
+                            },
+                            "requestedQuantity": {
+                              "type": "integer",
+                              "example": 1,
+                              "default": 0
+                            },
+                            "groupRedemption": {
+                              "type": "boolean",
+                              "example": false,
+                              "default": true
+                            },
+                            "rewardDetails": {
+                              "type": "object",
+                              "properties": {
+                                "rewardId": {
+                                  "type": "integer",
+                                  "example": 367238,
+                                  "default": 0
+                                },
+                                "languageCode": {
+                                  "type": "string",
+                                  "example": "en"
+                                },
+                                "name": {
+                                  "type": "string",
+                                  "example": "BETA-EN TRUE"
+                                },
+                                "description": {
+                                  "type": "string",
+                                  "example": "testreward1"
+                                },
+                                "groups": {
+                                  "type": "array"
+                                },
+                                "intouchPoints": {
+                                  "type": "integer",
+                                  "example": 500,
+                                  "default": 0
+                                },
+                                "redemptionType": {
+                                  "type": "string",
+                                  "example": "VOUCHER"
+                                },
+                                "images": {
+                                  "type": "array"
+                                },
+                                "videos": {
+                                  "type": "array"
+                                }
+                              }
+                            },
+                            "pointsRedemption": {
+                              "type": "object",
+                              "properties": {
+                                "redeemedPoints": {
+                                  "type": "integer",
+                                  "example": 500,
+                                  "default": 0
+                                },
+                                "vendorName": {
+                                  "type": "string",
+                                  "example": "DocVendor8"
+                                },
+                                "pointsRedemptionRefId": {
+                                  "type": "string",
+                                  "example": "YfNdt3"
+                                },
+                                "pointsRedemptionRefIds": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string",
+                                    "example": "YfNdt3"
+                                  }
+                                },
+                                "status": {
+                                  "type": "object",
+                                  "properties": {
+                                    "success": {
+                                      "type": "boolean",
+                                      "example": true,
+                                      "default": true
+                                    },
+                                    "code": {
+                                      "type": "integer",
+                                      "example": 200,
+                                      "default": 0
+                                    },
+                                    "message": {
+                                      "type": "string",
+                                      "example": "Points redeemed successfully."
+                                    }
+                                  }
+                                },
+                                "vendorId": {
+                                  "type": "integer",
+                                  "example": 60,
+                                  "default": 0
+                                }
+                              }
+                            },
+                            "redemptionDetails": {
+                              "type": "object",
+                              "properties": {
+                                "redemptionType": {
+                                  "type": "string",
+                                  "example": "VOUCHER"
+                                },
+                                "totalRedemptionValue": {}
+                              }
+                            },
+                            "vouchers": {
+                              "type": "array"
+                            },
+                            "vendorRewards": {
+                              "type": "object",
+                              "properties": {
+                                "rewards": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "json": {
+                                        "type": "string",
+                                        "example": "{\"pointsRedeemed\": \"500\"}"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "richContentRO": {
+                              "type": "object",
+                              "properties": {
+                                "RC345": {
+                                  "type": "object",
+                                  "properties": {
+                                    "content": {
+                                      "type": "string",
+                                      "example": "en"
+                                    },
+                                    "isEnabled": {
+                                      "type": "boolean",
+                                      "example": true,
+                                      "default": true
+                                    }
+                                  }
+                                },
+                                "RCtestgeorgetrue": {
+                                  "type": "object",
+                                  "properties": {
+                                    "content": {
+                                      "type": "string",
+                                      "example": "en"
+                                    },
+                                    "isEnabled": {
+                                      "type": "boolean",
+                                      "example": true,
+                                      "default": true
+                                    }
+                                  }
+                                },
+                                "RCtestgeorge2": {
+                                  "type": "object",
+                                  "properties": {
+                                    "content": {
+                                      "type": "string",
+                                      "example": "en"
+                                    },
+                                    "isEnabled": {
+                                      "type": "boolean",
+                                      "example": true,
+                                      "default": true
+                                    }
+                                  }
+                                },
+                                "richcontentfrench": {
+                                  "type": "object",
+                                  "properties": {
+                                    "content": {
+                                      "type": "string",
+                                      "example": "this is the default value"
+                                    },
+                                    "isEnabled": {
+                                      "type": "boolean",
+                                      "example": true,
+                                      "default": true
+                                    }
+                                  }
+                                },
+                                "RCtestCREATE": {
+                                  "type": "object",
+                                  "properties": {
+                                    "content": {
+                                      "type": "string",
+                                      "example": "en"
+                                    },
+                                    "isEnabled": {
+                                      "type": "boolean",
+                                      "example": true,
+                                      "default": true
+                                    }
+                                  }
+                                },
+                                "RCtestgeorge4": {
+                                  "type": "object",
+                                  "properties": {
+                                    "content": {
+                                      "type": "string",
+                                      "example": "en"
+                                    },
+                                    "isEnabled": {
+                                      "type": "boolean",
+                                      "example": true,
+                                      "default": true
+                                    }
+                                  }
+                                },
+                                "richcontentenglish": {
+                                  "type": "object",
+                                  "properties": {
+                                    "content": {
+                                      "type": "string",
+                                      "example": "HERE IS YOUR ENGLISH CONTENT (IS ENABLED TRUE)"
+                                    },
+                                    "isEnabled": {
+                                      "type": "boolean",
+                                      "example": true,
+                                      "default": true
+                                    }
+                                  }
+                                },
+                                "Golden2reward": {
+                                  "type": "object",
+                                  "properties": {
+                                    "content": {
+                                      "type": "string",
+                                      "example": "20% Discount Applied"
+                                    },
+                                    "isEnabled": {
+                                      "type": "boolean",
+                                      "example": true,
+                                      "default": true
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "ownerId": {
+                              "type": "string",
+                              "example": ""
+                            },
+                            "eventDateTime": {
+                              "type": "string",
+                              "example": "2025-05-07T02:57:58Z"
+                            },
+                            "issueDateTime": {
+                              "type": "string",
+                              "example": "2025-05-07T02:57:58Z"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "title": "couponCodeCase=AS_IT_IS",
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "success": {
+                                "type": "boolean",
+                                "example": true,
+                                "default": true
+                              },
+                              "code": {
+                                "type": "integer",
+                                "example": 200,
+                                "default": 0
+                              },
+                              "message": {
+                                "type": "string",
+                                "example": "Reward issue transactions details fetched successfully"
+                              }
+                            }
+                          }
+                        },
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "rewardTransactionId": {
+                              "type": "string",
+                              "example": "927488"
+                            },
+                            "customerId": {
+                              "type": "integer",
+                              "example": 345635195,
+                              "default": 0
+                            },
+                            "orgId": {
+                              "type": "integer",
+                              "example": 50339,
+                              "default": 0
+                            },
+                            "rewardIssueRefId": {
+                              "type": "string",
+                              "example": "1718950196"
+                            },
+                            "rewardTransactionDate": {
+                              "type": "integer",
+                              "example": 1747372097000,
+                              "default": 0
+                            },
+                            "status": {
+                              "type": "object",
+                              "properties": {
+                                "success": {
+                                  "type": "boolean",
+                                  "example": true,
+                                  "default": true
+                                },
+                                "code": {
+                                  "type": "integer",
+                                  "example": 200,
+                                  "default": 0
+                                },
+                                "message": {
+                                  "type": "string",
+                                  "example": "Reward issued successfully"
+                                }
+                              }
+                            },
+                            "quantity": {
+                              "type": "integer",
+                              "example": 1,
+                              "default": 0
+                            },
+                            "requestedQuantity": {
+                              "type": "integer",
+                              "example": 1,
+                              "default": 0
+                            },
+                            "groupRedemption": {
+                              "type": "boolean",
+                              "example": false,
+                              "default": true
+                            },
+                            "rewardDetails": {
+                              "type": "object",
+                              "properties": {
+                                "rewardId": {
+                                  "type": "integer",
+                                  "example": 139831,
+                                  "default": 0
+                                },
+                                "languageCode": {
+                                  "type": "string",
+                                  "example": "en"
+                                },
+                                "name": {
+                                  "type": "string",
+                                  "example": "english rewardName"
+                                },
+                                "description": {
+                                  "type": "string",
+                                  "example": "hello"
+                                },
+                                "groups": {
+                                  "type": "array"
+                                },
+                                "imageId": {
+                                  "type": "string",
+                                  "example": "EXDR12987U"
+                                },
+                                "imageUrl": {
+                                  "type": "string",
+                                  "example": "https://s3.amazonaws.com/crm-staging-new-solutions/AutomationBrandMarvel/EXDR12987U?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEJH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJHMEUCIQCIKtw%2BXC2TqRzite7DiaPtyN7p9934t66wn0xrNmDdLQIgWH7wtldcDVFMlTeA%2FH4GflOD3DNzGWmWKlRn49B0ce8qvwIIWhAFGgw0ODY0NTY5ODYyNjYiDM40FhBLlqqH%2FGFYbyqcAjhc5mR%2Fy%2B6e3wJPjC7lOa9uZq8irxGO3arNg%2FzSE1d2%2BSC0jYcfDNXBxqj%2Bl3YisF1mvLb8VgHs%2B%2BRPivnY2eazmqD066%2BYc4euOTSPtW3EcOgO4%2F4lG0FwLyxC%2BaV95%2BaY%2FMyU%2F%2Fj2cKisPSSbygnAJy8FvQQTjnbTJW1gaICAl4DVzj7OX4Va3gY7qG62JVj%2FEbT3KZzkz1NxAcDKCn1Fhtye7qkuRy4MuJak7FBrlzpWdhYCMQqUe1%2F%2BM92ojPt69tydhwP9fpAla3ra%2BGqlgeG7V8vD5YBetPWU2%2Fil1yA14nAL4kC53JVG%2BG293yJ1dKTsiOhU5DT5G%2F0WO53cX0Gbhgoimlfi7ftIhDoOQsqq92Pa9QQhp3AtMMLs1cEGOp0B4U67C6hM%2Fz44qEWwJv9H7cJVzAelJbFpcfOTBkzip9CMh2KYRu4wT4JugEj63Zz3%2FrcLcTEIKgO%2Fp6vYWgJ%2B9Ku7uLVFToTifX9LnfV6XiVOrfd29HG9Rb7MeQ44qGmsz6DWlQP11Noz4TeXD0HyaxMznFAluKxxDPJipw1mVKkNM1OTOXHUfv08tBhB8IGeiq03k8xJeKpzEn%2BNmw%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250527T082522Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIAXCQYYRKNPEDLZPZL%2F20250527%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=0e8acc31cb787690f2cd746cf2421ed7be74aa7f947600fe826d65e8d4cc7fc7"
+                                },
+                                "intouchPoints": {
+                                  "type": "integer",
+                                  "example": 0,
+                                  "default": 0
+                                },
+                                "intouchSeriesId": {
+                                  "type": "string",
+                                  "example": "96303"
+                                },
+                                "redemptionType": {
+                                  "type": "string",
+                                  "example": "INTOUCH_REWARD"
+                                },
+                                "images": {
+                                  "type": "array"
+                                },
+                                "videos": {
+                                  "type": "array"
+                                }
+                              }
+                            },
+                            "pointsRedemption": {
+                              "type": "object",
+                              "properties": {
+                                "redeemedPoints": {
+                                  "type": "integer",
+                                  "example": 0,
+                                  "default": 0
+                                },
+                                "vendorName": {
+                                  "type": "string",
+                                  "example": "test004"
+                                },
+                                "pointsRedemptionRefIds": {
+                                  "type": "array",
+                                  "items": {}
+                                },
+                                "status": {
+                                  "type": "object",
+                                  "properties": {
+                                    "success": {
+                                      "type": "boolean",
+                                      "example": true,
+                                      "default": true
+                                    },
+                                    "code": {
+                                      "type": "integer",
+                                      "example": 200,
+                                      "default": 0
+                                    },
+                                    "message": {
+                                      "type": "string",
+                                      "example": "Points redeemed successfully."
+                                    }
+                                  }
+                                },
+                                "vendorId": {
+                                  "type": "integer",
+                                  "example": 37,
+                                  "default": 0
+                                }
+                              }
+                            },
+                            "redemptionDetails": {
+                              "type": "object",
+                              "properties": {
+                                "redemptionType": {
+                                  "type": "string",
+                                  "example": "INTOUCH_REWARD"
+                                },
+                                "totalRedemptionValue": {}
+                              }
+                            },
+                            "vouchers": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "code": {
+                                    "type": "string",
+                                    "example": "UPPERlower003"
+                                  },
+                                  "codeExpiry": {
+                                    "type": "string",
+                                    "example": "2025-06-15 00:00:00"
+                                  },
+                                  "codeExpiryDateTime": {
+                                    "type": "string",
+                                    "example": "2025-06-15T00:00:00Z"
+                                  },
+                                  "redemptionDetails": {
+                                    "type": "object",
+                                    "properties": {
+                                      "redemptionType": {
+                                        "type": "string",
+                                        "example": "INTOUCH_REWARD"
+                                      },
+                                      "redemptionValue": {}
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "vendorRewards": {
+                              "type": "object",
+                              "properties": {
+                                "rewards": {
+                                  "type": "array"
+                                }
+                              }
+                            },
+                            "customFields": {
+                              "type": "object",
+                              "properties": {
+                                "CF1_451fda2c2025-05-26 21:02:59.928852": {
+                                  "type": "string",
+                                  "example": "defaultValue_1"
+                                },
+                                "CF2_3a9ec2332025-05-26 21:02:59.928866": {
+                                  "type": "string",
+                                  "example": "defaultValue_2"
+                                }
+                              }
+                            },
+                            "richContentRO": {
+                              "type": "object",
+                              "properties": {
+                                "ea3aa7c12025-05-27 13:55:15.791334": {
+                                  "type": "object",
+                                  "properties": {
+                                    "content": {
+                                      "type": "string",
+                                      "example": "<p>We know that January is a time when lots of us start to plan for our next holiday, giving us something to look forward to at the start of the year.&nbsp;</p>\\\\n<p>With that in mind, we'd like to introduce Santander Boosts members to The World Online, a&nbsp;private travel platform with 24/7 access to special rates and curated deals.&nbsp;</p>\\\\n<p>"
+                                    },
+                                    "isEnabled": {
+                                      "type": "boolean",
+                                      "example": true,
+                                      "default": true
+                                    }
+                                  }
+                                },
+                                "b4a8723f2025-05-27 13:55:15.791359": {
+                                  "type": "object",
+                                  "properties": {
+                                    "content": {
+                                      "type": "string",
+                                      "example": "<ul>\r\n<li>Santander Boosts may include links to third-party content from participating retailers or promoters. We are not responsible for this content or any additional information they capture or seek, and links may not always work or be available.</li>\r\n<li>Access to the The World Online is exclusively available to Santander Boosts members that are a minimum of 18 years of age.</li>\r\n<li>Inventory is subject to availability.</li>\r\n<li>Santander Boosts members can view booking confirmation details, including cancellations. To do this, Santander Boosts members can find the offer under the 'Activated' tab in the 'My Offers' section of the navigation menu in Santander Boosts. Then click the 'Book and manage travel' button associated with the offer. This will redirect you to The World Online site, where you can click on the 'My Account' icon then click on 'Purchases' to View existing bookings.</li>"
+                                    },
+                                    "isEnabled": {
+                                      "type": "boolean",
+                                      "example": true,
+                                      "default": true
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "ownerId": {
+                              "type": "string",
+                              "example": ""
+                            },
+                            "eventDateTime": {
+                              "type": "string",
+                              "example": "2025-05-16T05:08:17Z"
+                            },
+                            "issueDateTime": {
+                              "type": "string",
+                              "example": "2025-05-16T05:08:17Z"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "title": "couponCodeCase = UPPER",
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "success": {
+                                "type": "boolean",
+                                "example": true,
+                                "default": true
+                              },
+                              "code": {
+                                "type": "integer",
+                                "example": 200,
+                                "default": 0
+                              },
+                              "message": {
+                                "type": "string",
+                                "example": "Reward issue transactions details fetched successfully"
+                              }
+                            }
+                          }
+                        },
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "rewardTransactionId": {
+                              "type": "string",
+                              "example": "927488"
+                            },
+                            "customerId": {
+                              "type": "integer",
+                              "example": 345635195,
+                              "default": 0
+                            },
+                            "orgId": {
+                              "type": "integer",
+                              "example": 50339,
+                              "default": 0
+                            },
+                            "rewardIssueRefId": {
+                              "type": "string",
+                              "example": "1718950196"
+                            },
+                            "rewardTransactionDate": {
+                              "type": "integer",
+                              "example": 1747372097000,
+                              "default": 0
+                            },
+                            "status": {
+                              "type": "object",
+                              "properties": {
+                                "success": {
+                                  "type": "boolean",
+                                  "example": true,
+                                  "default": true
+                                },
+                                "code": {
+                                  "type": "integer",
+                                  "example": 200,
+                                  "default": 0
+                                },
+                                "message": {
+                                  "type": "string",
+                                  "example": "Reward issued successfully"
+                                }
+                              }
+                            },
+                            "quantity": {
+                              "type": "integer",
+                              "example": 1,
+                              "default": 0
+                            },
+                            "requestedQuantity": {
+                              "type": "integer",
+                              "example": 1,
+                              "default": 0
+                            },
+                            "groupRedemption": {
+                              "type": "boolean",
+                              "example": false,
+                              "default": true
+                            },
+                            "rewardDetails": {
+                              "type": "object",
+                              "properties": {
+                                "rewardId": {
+                                  "type": "integer",
+                                  "example": 139831,
+                                  "default": 0
+                                },
+                                "languageCode": {
+                                  "type": "string",
+                                  "example": "en"
+                                },
+                                "name": {
+                                  "type": "string",
+                                  "example": "english rewardName"
+                                },
+                                "description": {
+                                  "type": "string",
+                                  "example": "hello"
+                                },
+                                "groups": {
+                                  "type": "array"
+                                },
+                                "imageId": {
+                                  "type": "string",
+                                  "example": "EXDR12987U"
+                                },
+                                "imageUrl": {
+                                  "type": "string",
+                                  "example": "https://s3.amazonaws.com/crm-staging-new-solutions/AutomationBrandMarvel/EXDR12987U?X-Amz-Security-Token=IQoJb3JpZ2luX2VjED0aCXVzLWVhc3QtMSJHMEUCIDdiny0ZSOUcF7EibKTJv9zlt2jxzV6zRlC3HElGSPaUAiEAyVKkXW1Cn%2Bn1syBFpIZLBhd42sDxMmgjW6AtZNNHpBYqvwIIFhAFGgw0ODY0NTY5ODYyNjYiDPIQTS0SUoykHmQsbiqcAuzQPcwZ%2F94VKuZMpXFHPPoy5X15DHJOzOnJUUJ2ltixLHhf4fbHVdM033Gtr0Lm8obFVRRajrYnqzPcMEQIEQh%2BTWOQgE6vS5sCg3%2FtFDwFXWTtrL30pIcO%2Fps6DgBipaYWuJPP6sSEi3%2F9%2Bvvx99tjjnvTBkGjGsoJtnKs5PhqTVcgCjqm6742oqvEpsabdpmneuMtag87H5nkfrGuIJx6e9d97%2FJAw8PxQD%2BgC2IrhgoSwqSfMirrNKDtqHLgpMt7kQnMMfq2g9zo%2FFz%2FgRJJ8Q5ut7BQj7R2OpPFpQd15Kcwt45kEzztWqBJUKj2Yzgcrn6dSM1k5bRK9gfWCXJceXaTIWJPHYAz4ES6lkgpJZ1A8QMYsoyOWwu8MN3Z%2B8EGOp0BOJX4Zx2EF8rO3hiYXMxHlZws6g618MnVlUM9ds1yUrx1F4Ci2SngZSSsanX%2FO8GSTYEWCSDjAuX77RVIJC6giPZVJPz7UcfxpK6lB44QjLVynUdAwCJwB8pZgxGnwFFHgVUudF%2B5EC1SbmRnjP7pmB9Si50FpL8XsZnDoyAAzUv2qLQmYDQf9YLxhpZ1J0xy5onbcyB0OgZU4%2BFrcQ%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250603T124653Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIAXCQYYRKNDPQM2XMS%2F20250603%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=b9ef5ed3be98ea669c12e8e6bd099519da41b906648dbf4d35c89fe1555d7ad6"
+                                },
+                                "intouchPoints": {
+                                  "type": "integer",
+                                  "example": 0,
+                                  "default": 0
+                                },
+                                "intouchSeriesId": {
+                                  "type": "string",
+                                  "example": "96303"
+                                },
+                                "redemptionType": {
+                                  "type": "string",
+                                  "example": "INTOUCH_REWARD"
+                                },
+                                "images": {
+                                  "type": "array"
+                                },
+                                "videos": {
+                                  "type": "array"
+                                }
+                              }
+                            },
+                            "pointsRedemption": {
+                              "type": "object",
+                              "properties": {
+                                "redeemedPoints": {
+                                  "type": "integer",
+                                  "example": 0,
+                                  "default": 0
+                                },
+                                "vendorName": {
+                                  "type": "string",
+                                  "example": "test004"
+                                },
+                                "pointsRedemptionRefIds": {
+                                  "type": "array",
+                                  "items": {}
+                                },
+                                "status": {
+                                  "type": "object",
+                                  "properties": {
+                                    "success": {
+                                      "type": "boolean",
+                                      "example": true,
+                                      "default": true
+                                    },
+                                    "code": {
+                                      "type": "integer",
+                                      "example": 200,
+                                      "default": 0
+                                    },
+                                    "message": {
+                                      "type": "string",
+                                      "example": "Points redeemed successfully."
+                                    }
+                                  }
+                                },
+                                "vendorId": {
+                                  "type": "integer",
+                                  "example": 37,
+                                  "default": 0
+                                }
+                              }
+                            },
+                            "redemptionDetails": {
+                              "type": "object",
+                              "properties": {
+                                "redemptionType": {
+                                  "type": "string",
+                                  "example": "INTOUCH_REWARD"
+                                },
+                                "totalRedemptionValue": {}
+                              }
+                            },
+                            "vouchers": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "code": {
+                                    "type": "string",
+                                    "example": "UPPERLOWER003"
+                                  },
+                                  "codeExpiry": {
+                                    "type": "string",
+                                    "example": "2025-06-15 00:00:00"
+                                  },
+                                  "codeExpiryDateTime": {
+                                    "type": "string",
+                                    "example": "2025-06-15T00:00:00Z"
+                                  },
+                                  "redemptionDetails": {
+                                    "type": "object",
+                                    "properties": {
+                                      "redemptionType": {
+                                        "type": "string",
+                                        "example": "INTOUCH_REWARD"
+                                      },
+                                      "redemptionValue": {}
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "vendorRewards": {
+                              "type": "object",
+                              "properties": {
+                                "rewards": {
+                                  "type": "array"
+                                }
+                              }
+                            },
+                            "customFields": {
+                              "type": "object",
+                              "properties": {
+                                "CF2_0122a5852025-06-03 13:59:47.736781": {
+                                  "type": "string",
+                                  "example": "defaultValue_2"
+                                },
+                                "CF1_c26dfde12025-06-03 13:59:47.736770": {
+                                  "type": "string",
+                                  "example": "defaultValue_1"
+                                }
+                              }
+                            },
+                            "richContentRO": {
+                              "type": "object",
+                              "properties": {}
+                            },
+                            "ownerId": {
+                              "type": "string",
+                              "example": ""
+                            },
+                            "eventDateTime": {
+                              "type": "string",
+                              "example": "2025-05-16T05:08:17Z"
+                            },
+                            "issueDateTime": {
+                              "type": "string",
+                              "example": "2025-05-16T05:08:17Z"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "title": "couponCodeCase = LOWER",
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "success": {
+                                "type": "boolean",
+                                "example": true,
+                                "default": true
+                              },
+                              "code": {
+                                "type": "integer",
+                                "example": 200,
+                                "default": 0
+                              },
+                              "message": {
+                                "type": "string",
+                                "example": "Reward issue transactions details fetched successfully"
+                              }
+                            }
+                          }
+                        },
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "rewardTransactionId": {
+                              "type": "string",
+                              "example": "927488"
+                            },
+                            "customerId": {
+                              "type": "integer",
+                              "example": 345635195,
+                              "default": 0
+                            },
+                            "orgId": {
+                              "type": "integer",
+                              "example": 50339,
+                              "default": 0
+                            },
+                            "rewardIssueRefId": {
+                              "type": "string",
+                              "example": "1718950196"
+                            },
+                            "rewardTransactionDate": {
+                              "type": "integer",
+                              "example": 1747372097000,
+                              "default": 0
+                            },
+                            "status": {
+                              "type": "object",
+                              "properties": {
+                                "success": {
+                                  "type": "boolean",
+                                  "example": true,
+                                  "default": true
+                                },
+                                "code": {
+                                  "type": "integer",
+                                  "example": 200,
+                                  "default": 0
+                                },
+                                "message": {
+                                  "type": "string",
+                                  "example": "Reward issued successfully"
+                                }
+                              }
+                            },
+                            "quantity": {
+                              "type": "integer",
+                              "example": 1,
+                              "default": 0
+                            },
+                            "requestedQuantity": {
+                              "type": "integer",
+                              "example": 1,
+                              "default": 0
+                            },
+                            "groupRedemption": {
+                              "type": "boolean",
+                              "example": false,
+                              "default": true
+                            },
+                            "rewardDetails": {
+                              "type": "object",
+                              "properties": {
+                                "rewardId": {
+                                  "type": "integer",
+                                  "example": 139831,
+                                  "default": 0
+                                },
+                                "languageCode": {
+                                  "type": "string",
+                                  "example": "en"
+                                },
+                                "name": {
+                                  "type": "string",
+                                  "example": "english rewardName"
+                                },
+                                "description": {
+                                  "type": "string",
+                                  "example": "hello"
+                                },
+                                "groups": {
+                                  "type": "array"
+                                },
+                                "imageId": {
+                                  "type": "string",
+                                  "example": "EXDR12987U"
+                                },
+                                "imageUrl": {
+                                  "type": "string",
+                                  "example": "https://s3.amazonaws.com/crm-staging-new-solutions/AutomationBrandMarvel/EXDR12987U?X-Amz-Security-Token=IQoJb3JpZ2luX2VjED0aCXVzLWVhc3QtMSJHMEUCIDdiny0ZSOUcF7EibKTJv9zlt2jxzV6zRlC3HElGSPaUAiEAyVKkXW1Cn%2Bn1syBFpIZLBhd42sDxMmgjW6AtZNNHpBYqvwIIFhAFGgw0ODY0NTY5ODYyNjYiDPIQTS0SUoykHmQsbiqcAuzQPcwZ%2F94VKuZMpXFHPPoy5X15DHJOzOnJUUJ2ltixLHhf4fbHVdM033Gtr0Lm8obFVRRajrYnqzPcMEQIEQh%2BTWOQgE6vS5sCg3%2FtFDwFXWTtrL30pIcO%2Fps6DgBipaYWuJPP6sSEi3%2F9%2Bvvx99tjjnvTBkGjGsoJtnKs5PhqTVcgCjqm6742oqvEpsabdpmneuMtag87H5nkfrGuIJx6e9d97%2FJAw8PxQD%2BgC2IrhgoSwqSfMirrNKDtqHLgpMt7kQnMMfq2g9zo%2FFz%2FgRJJ8Q5ut7BQj7R2OpPFpQd15Kcwt45kEzztWqBJUKj2Yzgcrn6dSM1k5bRK9gfWCXJceXaTIWJPHYAz4ES6lkgpJZ1A8QMYsoyOWwu8MN3Z%2B8EGOp0BOJX4Zx2EF8rO3hiYXMxHlZws6g618MnVlUM9ds1yUrx1F4Ci2SngZSSsanX%2FO8GSTYEWCSDjAuX77RVIJC6giPZVJPz7UcfxpK6lB44QjLVynUdAwCJwB8pZgxGnwFFHgVUudF%2B5EC1SbmRnjP7pmB9Si50FpL8XsZnDoyAAzUv2qLQmYDQf9YLxhpZ1J0xy5onbcyB0OgZU4%2BFrcQ%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250603T124746Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIAXCQYYRKNDPQM2XMS%2F20250603%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=f01ab574f2631e620ab058b8070be823dff150ce9059dc2b71d5ab330acbc2a3"
+                                },
+                                "intouchPoints": {
+                                  "type": "integer",
+                                  "example": 0,
+                                  "default": 0
+                                },
+                                "intouchSeriesId": {
+                                  "type": "string",
+                                  "example": "96303"
+                                },
+                                "redemptionType": {
+                                  "type": "string",
+                                  "example": "INTOUCH_REWARD"
+                                },
+                                "images": {
+                                  "type": "array"
+                                },
+                                "videos": {
+                                  "type": "array"
+                                }
+                              }
+                            },
+                            "pointsRedemption": {
+                              "type": "object",
+                              "properties": {
+                                "redeemedPoints": {
+                                  "type": "integer",
+                                  "example": 0,
+                                  "default": 0
+                                },
+                                "vendorName": {
+                                  "type": "string",
+                                  "example": "test004"
+                                },
+                                "pointsRedemptionRefIds": {
+                                  "type": "array",
+                                  "items": {}
+                                },
+                                "status": {
+                                  "type": "object",
+                                  "properties": {
+                                    "success": {
+                                      "type": "boolean",
+                                      "example": true,
+                                      "default": true
+                                    },
+                                    "code": {
+                                      "type": "integer",
+                                      "example": 200,
+                                      "default": 0
+                                    },
+                                    "message": {
+                                      "type": "string",
+                                      "example": "Points redeemed successfully."
+                                    }
+                                  }
+                                },
+                                "vendorId": {
+                                  "type": "integer",
+                                  "example": 37,
+                                  "default": 0
+                                }
+                              }
+                            },
+                            "redemptionDetails": {
+                              "type": "object",
+                              "properties": {
+                                "redemptionType": {
+                                  "type": "string",
+                                  "example": "INTOUCH_REWARD"
+                                },
+                                "totalRedemptionValue": {}
+                              }
+                            },
+                            "vouchers": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "code": {
+                                    "type": "string",
+                                    "example": "upperlower003"
+                                  },
+                                  "codeExpiry": {
+                                    "type": "string",
+                                    "example": "2025-06-15 00:00:00"
+                                  },
+                                  "codeExpiryDateTime": {
+                                    "type": "string",
+                                    "example": "2025-06-15T00:00:00Z"
+                                  },
+                                  "redemptionDetails": {
+                                    "type": "object",
+                                    "properties": {
+                                      "redemptionType": {
+                                        "type": "string",
+                                        "example": "INTOUCH_REWARD"
+                                      },
+                                      "redemptionValue": {}
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "vendorRewards": {
+                              "type": "object",
+                              "properties": {
+                                "rewards": {
+                                  "type": "array"
+                                }
+                              }
+                            },
+                            "customFields": {
+                              "type": "object",
+                              "properties": {
+                                "CF2_0122a5852025-06-03 13:59:47.736781": {
+                                  "type": "string",
+                                  "example": "defaultValue_2"
+                                },
+                                "CF1_c26dfde12025-06-03 13:59:47.736770": {
+                                  "type": "string",
+                                  "example": "defaultValue_1"
+                                }
+                              }
+                            },
+                            "richContentRO": {
+                              "type": "object",
+                              "properties": {}
+                            },
+                            "ownerId": {
+                              "type": "string",
+                              "example": ""
+                            },
+                            "eventDateTime": {
+                              "type": "string",
+                              "example": "2025-05-16T05:08:17Z"
+                            },
+                            "issueDateTime": {
+                              "type": "string",
+                              "example": "2025-05-16T05:08:17Z"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "6004": {
+                    "value": "{\n   \"status\": {\n       \"success\": false,\n       \"code\": 6004,\n       \"message\": \"Reward not found or disabled.\"\n   },\n   \"reward\": null\n}\n\n"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "success": {
+                          "type": "boolean",
+                          "example": false,
+                          "default": true
+                        },
+                        "code": {
+                          "type": "integer",
+                          "example": 6004,
+                          "default": 0
+                        },
+                        "message": {
+                          "type": "string",
+                          "example": "Reward not found or disabled."
+                        }
+                      }
+                    },
+                    "reward": {}
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/management/customer/565039504/issuals/395932' \\\n--header 'Authorization: Basic Z2VvcmdlLmpvaG5zb246OTg4OTU2NWI4ODVhMmY4ZWE1MTk1MjA2NWEwYTEzNzg=' \\\n--header 'Cookie: _cfuvid=s520o8rX9tVLiOyry2yniPe3kg60UO.xHzQLaDBklaQ-1746616580925-0.0.1.1-604800000'"
+            },
+            {
+              "language": "curl",
+              "code": "curl --location 'https://crm-staging-new.cc.capillarytech.com/api_gateway/rewards/core/v1/management/customer/345635195/issuals/927488?couponCodeCase=AS_IT_IS' \\\n--header 'Authorization: Basic dGlsbGF1dG9fMTIzOjI3NDFlNjJiZTZiZTYyNGY2N2IwMGQxZDZhNWQ2MWJm'",
+              "name": "couponCodeCase=AS_IT_IS"
+            },
+            {
+              "language": "curl",
+              "code": "curl --location 'https://crm-staging-new.cc.capillarytech.com/api_gateway/rewards/core/v1/management/customer/345635195/issuals/927488?couponCodeCase=UPPER' \\\n--header 'Authorization: Basic dGlsbGF1dG9fMTIzOjI3NDFlNjJiZTZiZTYyNGY2N2IwMGQxZDZhNWQ2MWJm'",
+              "name": "couponCodeCase = UPPER"
+            },
+            {
+              "language": "curl",
+              "code": "curl --location 'https://crm-staging-new.cc.capillarytech.com/api_gateway/rewards/core/v1/management/customer/345635195/issuals/927488?couponCodeCase=LOWER' \\\n--header 'Authorization: Basic dGlsbGF1dG9fMTIzOjI3NDFlNjJiZTZiZTYyNGY2N2IwMGQxZDZhNWQ2MWJm'",
+              "name": "couponCodeCase = LOWER"
+            }
+          ],
+          "samples-languages": [
+            "curl"
+          ]
+        }
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "key": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  },
+  "x-readme-fauxas": true
+}
+```
