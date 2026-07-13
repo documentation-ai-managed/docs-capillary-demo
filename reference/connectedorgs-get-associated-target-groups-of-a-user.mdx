@@ -4,7 +4,7 @@ title: Get Associated Target Groups of a User
 
 This API allows you to retrieve the details of all the associated target groups, including the user's milestones and streaks information.
 
-# Example request
+## Example request
 
 <CodeGroup show-lines="true" tabs={["Sample request with targetGroupId", "Sample request with targetId"]}>
 
@@ -20,12 +20,12 @@ This API allows you to retrieve the details of all the associated target groups,
 
 </CodeGroup>
 
-# Prerequisites
+## Prerequisites
 
 - [ ] Authentication; Basic or OAuth authentication details
 - [ ] Access group resource - NA
 
-# Resource information
+## Resource information
 
 | URI                   | /api_gateway/intouch-api-v3/v3.1/users/347286146/targetGroups?includeInactive=true |
 | :-------------------- | :---------------------------------------------------------------------------------- |
@@ -34,20 +34,20 @@ This API allows you to retrieve the details of all the associated target groups,
 | Rate limit            | NA                                                                                  |
 | Batch support         | NA                                                                                  |
 
-# Headers
+## Headers
 
 | Header           | Description                                                                                                                                                                                                                                                                                                                                                                                                              |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `DATA-SCOPE-ORG` | List of Organization IDs.                                                                                                                                                                                                                                                                                                                                                                                                |
 | `DATA-SCOPE`     | Scopes define what data can be accessed using the API. You can use scopes to control access to data from a parent or child organization. Defining a scope ensures that the response contains only data from the respective organization. Supported headers: `SELF`, `OTHER`, and `ALL`. Refer to connected orgs [data scopes](https://docs.capillarytech.com/reference/connected-orgs-data-scopes) for more information. |
 
-# Request path parameters
+## Request path parameters
 
 | (Parameters marked with \* are mandatory) | Type | Description                                                                                                                         |
 | ----------------------------------------- | ---- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | UserID\*                                  | Long | The userId represents the unique identifier of a user. It allows you to retrieve the target groups associated with a specific user. |
 
-# Request query parameters
+## Request query parameters
 
 | Parameter (Parameters marked with \* are mandatory) | Type    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | --------------------------------------------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -55,7 +55,7 @@ This API allows you to retrieve the details of all the associated target groups,
 | `targetRuleId`                                      | Long    | Rule ID of the target. It can be either `targetId` or `targetGroupId` Use this to fetch information about a particular target in the API response.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | `includeInactiveTargets`                            | Boolean | The `includeInactiveTargets` parameter determines whether the API response includes information about all milestones or only the active ones. <br/> <br/> **False**: The API response will include information on all active milestones. For example: If there are four milestones (M1, M2, M3, M4) and milestone M1 is deactivated, then setting `includeInactiveTargets` to `false` will return information only about milestones M2, M3, and M4. <br/> <br/> **True**: The API response for milestones will include information about ALL the milestones present in the organization.                                                                                                                                                                                                                  |
 
-# Example response
+## Example response
 
 <CodeGroup show-lines="true" tabs={["Sample response with targetGroupId", "Sample response with targetId"]}>
 
@@ -252,7 +252,7 @@ This API allows you to retrieve the details of all the associated target groups,
 
 <br />
 
-# Response parameters
+## Response parameters
 
 | Parameter                                  | Data Type        | Description                                                                                                                                                                                                                                                                                                |
 | :----------------------------------------- | :--------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

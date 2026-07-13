@@ -13,7 +13,7 @@ This API allows you to retrieve audit logs for specific entities. The API provid
 
 </Callout>
 
-# Prerequisites
+## Prerequisites
 
 - [ ] Basic or OAuth credentials
 - [ ] For custom and extended fields, make sure that the audit log trial for the entity is enabled. For more information, refer to the documentation on [Setting up Entities and Fields](https://docs.capillarytech.com/docs/data-fields).
@@ -22,17 +22,17 @@ This API allows you to retrieve audit logs for specific entities. The API provid
 > [!NOTE]
 > Audit logs for custom field changes are only generated when updates are performed using the V2 API. Updates made via the V1.1 API do not generate audit log entries for custom fields, regardless of audit log configuration.
 
-# API features
+## API features
 
 | Feature    | Availability/Info |
 | :--------- | :---------------- |
 | Pagination | Yes               |
 
-# API endpoint example
+## API endpoint example
 
 `https://eu.api.capillarytech.com/api_gateway/v2/audits?entityType=CUSTOMER&entityId=98662653&source=INSTORE`
 
-# Request query parameters
+## Request query parameters
 
 | Parameter (Parameters marked with * are mandatory) | Type | Description |
 | --- | --- | --- |
@@ -49,7 +49,7 @@ This API allows you to retrieve audit logs for specific entities. The API provid
 | referenceValue | String | Value for the selected reference type. |
 | includeUserContext | Boolean | Enter `true` to retrieve [user context details](https://docs.capillarytech.com/reference/add-customer#/adding-user-context-details), such as entity type, entity ID, entity source, and entity source ID. These context details are added when an entity is created or updated ( customer addition and update), providing information about the user who made the changes. The user context header information is supported in the following APIs: [V1](https://docs.capillarytech.com/reference/add-customer) and [V2](https://docs.capillarytech.com/reference/v2-add-customer) Customer Add APIs and [V1](https://docs.capillarytech.com/reference/update-customer-detail) and [V2](https://docs.capillarytech.com/update/reference/update-customer-detail) Customer Update APIs. |
 
-# Response parameters
+## Response parameters
 
 <CodeGroup show-lines="true" tabs={["entityType=CUSTOMER", "entityType=CARD", "includeUserContext=true", "entityType=CUSTOMER&referenceType=StandardField", "entityType=CUSTOMER&referenceType=CustomerStatus", "entityType=CUSTOMER&pageNo=1&limit=10", "entityType=CUSTOMER&startDate=2023-12-05&endDate=2023-12-06", "with victim and survivor details"]}>
 

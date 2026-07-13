@@ -33,6 +33,21 @@ Run from repo root: `/home/javeed/Documents/CAPILLARY`
    note it and move on).
 4. If no source can be found anywhere, mark the page `NO-SOURCE` (do not guess).
 
+## Heading levels — STRICT exact-match rule
+
+Every heading in the converted `.mdx` MUST use the **exact same level** as the same
+heading in the source ReadMe. If the source heading is `#`, the converted heading must
+be `#`; if source is `##`, converted must be `##`. **No shifting or normalization.**
+
+- The ONLY source heading allowed to disappear is the page-title `# <Title>` H1 — it
+  moves into the frontmatter `title:` field, not the body.
+- A common defect: the converter shifted every body heading one level deeper
+  (source `#` → converted `##`, nested `##` → `###`, `#####` → `######`). Flag every
+  such heading.
+- When comparing, match headings by their text (case/whitespace-insensitive) and compare
+  the `#`-count. Ignore fenced code blocks. Verdict for any level difference:
+  `HEADING-LEVEL-MISMATCH` (list each heading as `'<text>' src=H<n> conv=H<m>`).
+
 ## What counts as a discrepancy
 
 The playground (from the `.yaml`) already renders the endpoint **description, request

@@ -4,12 +4,12 @@ title: Upload Coupons (Batch)
 
 This API helps to upload a batch of coupons to a coupon series. It provides the status of the upload process, organization ID, coupon series ID, job status, timestamps for creation and updates, and file information related to the upload.
 
-# Prerequisites
+## Prerequisites
 
 - [ ] Authentication: OAuth authentication details
 - [ ] Access group: Write access to coupon group resource
 
-# Resource information
+## Resource information
 
 | URI           | coupon/api/v1/upload/file/`{couponSeriedId}` |
 | :------------ | :------------------------------------------- |
@@ -18,7 +18,7 @@ This API helps to upload a batch of coupons to a coupon series. It provides the 
 | Rate limit    | NA                                           |
 | Batch support | Yes                                          |
 
-# API endpoint example
+## API endpoint example
 
 ```bash
 curl --location 'https://eu.intouch.capillarytech.com/coupon/api/v1/upload/file/541854' \
@@ -32,13 +32,13 @@ curl --location 'https://eu.intouch.capillarytech.com/coupon/api/v1/upload/file/
 
 <br />
 
-# Path parameter
+## Path parameter
 
 | Parameter        | Description                                                          |
 | :--------------- | :------------------------------------------------------------------- |
 | couponSeriedId\* | Unique ID of the coupon series for which you need to upload coupons. |
 
-# Body parameter
+## Body parameter
 
 | Parameter | Description |
 | --- | --- |
@@ -46,14 +46,14 @@ curl --location 'https://eu.intouch.capillarytech.com/coupon/api/v1/upload/file/
 | customerIdentifier\* | Customer identifier type used in the CSV file. Customer identifier type used in the CSV file. Supported values, MOBILE, EXTENAL_ID, and EMAIL. Use NOT_TAGGED as the identifier to upload only coupon codes. |
 | customerIdentifierColumn | Column ID of the customer identifier in the uploaded CSV file. |
 
-# Header Required
+## Header Required
 
 | Header                  | Description                    |
 | ----------------------- | ------------------------------ |
 | Content-Type\*          | multipart/form-data            |
 | x-cap-api-oauth-token\* | Generated authentication token |
 
-# Response parameter
+## Response parameter
 
 | Parameter                                       | Data Type        | Description                                                  |
 | ----------------------------------------------- | ---------------- | ------------------------------------------------------------ |

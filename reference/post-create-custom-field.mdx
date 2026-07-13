@@ -19,7 +19,7 @@ Capillary's custom reward fields let brands personalize loyalty programs with cu
 
 </Callout>
 
-# Example request
+## Example request
 
 ```bash Sample request
 curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/customfield' \
@@ -43,12 +43,12 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/br
 }
 ```
 
-# Prerequisites
+## Prerequisites
 
 - [ ] Authentication: Basic or OAuth authentication
 - [ ] Default access group
 
-# Resource information
+## Resource information
 
 | URI                    | /api_gateway/rewards/core/v1/brand/customfield |
 | :--------------------- | :---------------------------------------------- |
@@ -57,7 +57,7 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/br
 | Batch support          | No                                              |
 | Rate limit information | None                                            |
 
-# Request body parameters
+## Request body parameters
 
 | Parameter Name | Data Type | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | -------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -71,7 +71,7 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/br
 | dataType\*     | Enum      | Type of data for the custom field. Supported values:<br />`BOOLEAN`, `ENUM`, `DATE`, `STRING`, `INTEGER`.<br />255 is the character limit for the datatype `STRING`.<br /><br />Use `ENUM` as the `dataType` to define a set of pre-defined values, ensuring error-free management of reward metadata. For example, as a reward manager, you can create a custom field called "Reward Category" and define possible values such as "Discount," "Free Gift," and "Cashback." When creating or updating a reward, you can select one of these predefined values for the "Reward Category" custom field. |
 | enumValues     | Object    | Object containing the enum values. This parameter is required if `dataType` is `ENUM`.<br />**Note**:<br /><br />- Define enum values using double quotes in a comma-separated list.<br />- You can provide a maximum of 30 enum values per custom field.<br />- When creating a reward, you can provide only one enum value per custom field in the `customFields` object.<br />- Each enum value must not exceed 80 characters.<br />- Allowed special characters: `[]()-_ `.<br />- Values must be unique within the custom field.<br />- `defaultValue` must be provided if `dataType` is `ENUM`. |
 
-# Example response
+## Example response
 
 <CodeGroup show-lines="true" tabs={["Sample response", "Scope : REWARD", "Scope : CATALOGUE_PROMOTION", "Scope: ISSUE_REWARD", "dataType: ENUM"]}>
 
@@ -264,7 +264,7 @@ Response parameters
 
 <br />
 
-# API-specific error codes
+## API-specific error codes
 
 | Error code | Description                                                                    | Reason                                                               |
 | :--------- | :----------------------------------------------------------------------------- | :------------------------------------------------------------------- |

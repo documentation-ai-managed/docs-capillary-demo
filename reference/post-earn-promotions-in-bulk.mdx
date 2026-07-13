@@ -9,7 +9,7 @@ This API grants multiple cart promotions to a customer in a single request.
 - You can specify different earn counts for each promotion in the `earnedPromotions` array to control how many times each promotion is granted.
 - To earn a single promotion for a customer, use the [Earn Cart Promotion API](/reference/earn-promotion) instead.
 
-# Example request
+## Example request
 
 ```bash
 curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/earn/bulk' \
@@ -44,12 +44,12 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/earn
 '
 ```
 
-# Prerequisites
+## Prerequisites
 
 - Authentication: Basic or OAuth authentication.
 - Default access group
 
-# Body parameters
+## Body parameters
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
@@ -66,7 +66,7 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/earn
 | .earnCount | Integer | Yes | Specifies the number of times this specific cart promotion should be earned. Must be 1 or greater. |
 | .earnedFromId | String | Yes | Indicates a unique identifier for this specific earning within the bulk operation. |
 
-# Example response
+## Example response
 
 ```json
 {
@@ -122,7 +122,7 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/earn
 }
 ```
 
-# Response parameters
+## Response parameters
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -147,7 +147,7 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/earn
 | ....validTillISO | String | Specifies the expiry timestamp in UTC in ISO 8601 format, returned in the server time zone. EU server example 2026-02-04T09:09:30Z → 04 February 2026, 09:09:30 (UTC) India server example 2026-02-04T14:39:30+05:30 → 04 February 2026, 14:39:30 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
 | errors | Array | Defines an array for errors encountered. |
 
-# Error codes
+## Error codes
 
 | Code | Description                                                                                                                    |
 | ---- | ------------------------------------------------------------------------------------------------------------------------------ |

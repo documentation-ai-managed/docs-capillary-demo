@@ -4,7 +4,7 @@ title: Generate MFA OTP
 
 This API generates a one-time password (OTP) that the customer uses for multi-factor authentication (MFA). The API uses the session ID created by `/mfa/token/generate`.
 
-## OTP rate limiting
+### OTP rate limiting
 
 The number of OTPs that can be generated per mobile number is controlled by organization-level configuration settings:
 
@@ -15,13 +15,13 @@ If both configurations are set, the API enforces the limit. If either configurat
 
 If the rate limit is reached, further OTP generation requests for that mobile number are blocked until the time window resets.
 
-# Prerequisites
+## Prerequisites
 
 - [ ] **Access group resource:** Write access to customer group resource. For more information on access control, see the [access group documentation](https://docs.capillarytech.com/docs/access-group).
 
 - [ ] **Authentication:** Basic or OAuth authentication details. For more information on authentication, see the [Authentication documentation](https://docs.capillarytech.com/docs/api-client).
 
-# Example request
+## Example request
 
 ```bash
 curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/otp/generate' \
@@ -37,7 +37,7 @@ curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/otp/generate' \
 
 <br />
 
-# Resource information
+## Resource information
 
 | URI                   | /auth/v1/mfa/otp/generate                                                    |
 | :-------------------- | :--------------------------------------------------------------------------- |
@@ -46,7 +46,7 @@ curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/otp/generate' \
 | Rate limit            | Controlled by organization-level configuration (see OTP rate limiting above) |
 | Batch support         | NA                                                                           |
 
-# Request body parameters
+## Request body parameters
 
 <br />
 
@@ -58,7 +58,7 @@ curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/otp/generate' \
 | **`brand`**\*                                       | String    | Name of the brand or organisation that needs verification.                                                                                                                                                                                                                                                                                                                                                             |
 | **`sessionId`**\*                                   | String    | Unique session ID created from `/mfa/token/generate` API.                                                                                                                                                                                                                                                                                                                                                              |
 
-# Response parameters
+## Response parameters
 
 | Parameter | Data Type | Description |
 | --- | --- | --- |

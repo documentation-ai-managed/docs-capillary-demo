@@ -4,7 +4,7 @@ title: Earn Cart Promotion
 
 The Earn Cart Promotion API enables the immediate granting of cart promotions to specific customers. This direct earning capability means cart promotions can be associated with a customer's cart and made available for redemption subject to defined conditions directly through a transaction or other activity. This allows redemption without the need for prior evaluation, which streamlines the cart promotion awarding process.
 
-# Example request
+## Example request
 
 ```json
 curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/68f869d94a314550c4b46047/earn' \
@@ -32,24 +32,24 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/68f8
 }'
 ```
 
-# Prerequisites
+## Prerequisites
 
 - Authentication: Basic or OAuth authentication.
 - Default access group
 
-# Resource information
+## Resource information
 
 | Pagination    | No |
 | :------------ | :- |
 | Batch support | No |
 
-# Path parameters
+## Path parameters
 
 | Field       | Type   | Required | Description                                                       |
 | :---------- | :----- | :------- | :---------------------------------------------------------------- |
 | promotionId | string | Yes      | Defines the unique identifier of the cart promotion being earned. |
 
-# Body parameters
+## Body parameters
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
@@ -67,7 +67,7 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/68f8
 | .type | String | Yes | Specifies the type of event that triggered the earning. Possible values: `TransactionAdd`, `CustomerRegistration`, `CustomerUpdate`. |
 | .eventPayload | Object | Optional | Defines additional context about the triggering event in key-value format. Include relevant details from the event, such as `storeId`, `amount`, or `billNumber` for transactions. See [eventPayload examples](#eventpayload-examples) below. |
 
-## `eventPayload` examples
+### `eventPayload` examples
 
 The `eventPayload` object stores additional context about the triggering event. The structure depends on the event type.
 
@@ -109,7 +109,7 @@ The `eventPayload` object stores additional context about the triggering event. 
 }
 ```
 
-# Example response
+## Example response
 
 ```json
 {
@@ -135,7 +135,7 @@ The `eventPayload` object stores additional context about the triggering event. 
 }
 ```
 
-# Response parameters
+## Response parameters
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -152,7 +152,7 @@ The `eventPayload` object stores additional context about the triggering event. 
 | .validTillISO | String | Specifies the expiry timestamp in UTC in ISO 8601 format, returned in the server time zone. EU server example 2026-02-04T09:18:12Z → 04 February 2026, 09:18:12 (UTC) India server example 2026-02-04T14:48:12+05:30 → 04 February 2026, 14:48:12 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
 | errors | Array | Defines an array of error objects. |
 
-# Error codes
+## Error codes
 
 | Code | Description                                                                                                      |
 | :--- | :--------------------------------------------------------------------------------------------------------------- |

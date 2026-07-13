@@ -1,0 +1,185 @@
+=== HEADING-LEVEL AUDIT: source ReadMe vs converted DocumentationAI ===
+Total converted pages: 200
+{
+  "MATCH": 142,
+  "MISMATCH": 12,
+  "NO-COMMON-HEADINGS": 1,
+  "NO-SOURCE": 45
+}
+
+=== MISMATCHES (converted heading level != source heading level) ===
+
+create-a-loyalty-promotion  (src: INFO/backfill/raw/create-a-loyalty-promotion.md)
+    'Example request': source H1  ->  converted H2
+    'API Quick Reference': source H1  ->  converted H2
+    'Prerequisites': source H1  ->  converted H2
+    'Request body parameters': source H1  ->  converted H2
+    'Example response': source H1  ->  converted H2
+    'Response parameters': source H1  ->  converted H2
+    'Error codes': source H1  ->  converted H2
+    'Example Overview': source H1  ->  converted H2
+    'delegateActionClass Values': source H1  ->  converted H2
+    'Detailed Examples': source H1  ->  converted H2
+    'Applying the metadata object to configure a promotion (StyleSavvy Boutique) : \[metadata Object]': source H2  ->  converted H3
+    '**Requirement:** StyleSavvy Boutique has configured a promotion named "StyleSavvy VIP Early Access-lock," active from November 10th to November 15th, 2025. This promotion is tagged internally as "Access: VIP" and "Event: EarlyBird". The condition is: if any customer makes a transaction during this period, the system will automatically apply this promotion. The promotion itself cannot be stacked or combined with other offers. The primary action triggered is the awarding of points. Still, these points will not count towards the customer's tier ranking, and they will follow the standard earning rules (meaning they cannot be redeemed immediately).': source H5  ->  converted H6
+    'Applying the metadata object to configure a promotion (Generic Promo + ISSUE\_AND\_EARN) : \[metadata Object]': source H2  ->  converted H3
+    '**Requirement:** Generic Promo + ISSUE\_AND\_EARN: Adventure Quest Outfitters has set up a promotion called the "Gear Up Challenge," running from December 1st to December 31st. This promotion is configured as a "Generic" type, meaning its reward might be something other than standard loyalty points, like a digital badge. The key condition is how rewards are given: when a customer qualifies, the reward is first issued (like receiving a pending notification or item), but it isn't fully earned or usable until potentially later, perhaps after meeting another condition or after a delay. This promotion follows standard interaction rules, meaning it won't automatically combine with other offers or block them unless specifically configured elsewhere. The main action triggered is the awarding of a badge.': source H5  ->  converted H6
+    'Applying the customerEnrolment object to configure a promotion (Wellness Week) :\[customerEnrolment Object]': source H2  ->  converted H3
+    '**Requirement:** Healthy Habits Cafe is running a "Wellness Week Opt-In" promotion from November 17th to 23rd, but only for a specific group of pre-selected customers. To participate, these customers must first "opt-in" by making any purchase during that week. After they have opted-in, the reward is earning 100 points on their future purchases. The promotion has several limits, such as capping the total number of customers who can opt-in at 500 and limiting the points earned from a single activity to 200.': source H5  ->  converted H6
+    'Applying the customerEnrolment object to configure a promotion (Beta Tester) : \[customerEnrolment Object]': source H2  ->  converted H3
+    '**Requirement:** Gadget Galaxy is running a "Beta Tester Program" for the first quarter of the year. A specific list of customers is manually enrolled into this program. Additionally, any customer who joins the "PreOrder List" (a specific audience group) is automatically enrolled as well. Once enrolled, these members can earn a reward: when they perform the "FeedbackSubmitted" action, they will receive 100 points. This promotion has several restrictions, such as limiting automatic enrollment to 1,000 customers total and capping the points earned from a single activity at 500.': source H5  ->  converted H6
+    'Creating a promotion with an opt-in window : \[workflowMetadata Object]': source H2  ->  converted H3
+    '**Requirement:** WellnessFirst is running a "Spring Health Challenge" during March 2026. To control participation, the opt-in window opens on February 15th — customers must opt in via an external API call before the promotion ends on March 31st. After opting in, they earn points on qualifying purchases throughout March. This requires the `CONF_ENROLLMENT_OPTIN_DURATION_ENABLED` feature flag to be enabled for the org.': source H5  ->  converted H6
+    'Applying the activities object to configure a promotion (Workout Warrior) : \[activities Object]': source H2  ->  converted H3
+    '**Requirement:** FitNation Gym is running a "Workout Warrior" challenge for all of November, but it only counts visits at their Location 101 gym. The system will count every check-in event at that specific location, tracking progress week by week. A leaderboard will be active so members can compete and see who is checking in the most. The main goal for customers is to complete 15 separate check-ins at Location 101 before the end of the month. As soon as a member hits their 15th visit, they win the challenge and are automatically upgraded to Tier 2 in the gym's loyalty program.': source H5  ->  converted H6
+    'Applying the activities object to configure a promotion (Dinner Special) :\[activities Object]': source H2  ->  converted H3
+    '**Requirement:** Gourmet Galaxy Foods has a "Dinner Special" promotion that awards points, but it's only active during specific dinner hours. To get the points, a customer must meet one of two conditions: they can either just buy a 'Premium Steak', OR they must buy an 'Organic Salad', an 'Artisan Bread', and have their total transaction be over $30, all in the same purchase. The system uses special internal rules (rulesets) to validate this bundle and to apply the reward only during the specified dinner-hour cycle.': source H5  ->  converted H6
+    'Applying the limits object to configure a promotion (Fresh Juice Bar) :\[limits Object]': source H2  ->  converted H3
+    '**Requirement:** Fresh Juice Bar has configured a promotion for their B5G1\_JUICE coupon. To manage its distribution, they have set a rule limiting how many coupons a single customer can earn: each customer is limited to receiving a maximum of 2 coupons. This limit resets every calendar week, which the brand has defined as starting on a Sunday.': source H5  ->  converted H6
+    'Applying the limits object to configure a promotion (Global Gadgets) : \[limits Object]': source H2  ->  converted H3
+    '**Requirement:** Global Gadgets runs a loyalty promotion awarding points on every purchase from February to April 2026. To protect total liability, the promotion caps the total points awarded across all customers at 1,000,000 in any rolling 30-day window.': source H5  ->  converted H6
+    'FIXED\_CALENDAR\_WINDOW - every 5 days from reference date : \[period Object]': source H2  ->  converted H3
+    '**Requirement:** TechRetail runs a year-long loyalty promotion awarding points on every purchase. To prevent over-earning, each customer is capped at 100 points per 5-day period, with periods anchored from January 1, 2025.': source H5  ->  converted H6
+    'FIXED\_CALENDAR\_WINDOW - every week starting Monday : \[period Object]': source H2  ->  converted H3
+    '**Requirement:** FashionHub runs a year-long promotion issuing free shipping coupons on every purchase. To control distribution, each customer is limited to 3 coupon redemptions per week, with each week starting on Monday.': source H5  ->  converted H6
+    'FIXED\_CALENDAR\_WINDOW - every calendar month : \[period Object]': source H2  ->  converted H3
+    '**Requirement:** GroceryMart runs a year-long loyalty promotion awarding points on every purchase. To manage monthly earning potential, each customer is capped at 500 points per calendar month.': source H5  ->  converted H6
+    'Applying the liabilityOwnerSplitInfo object to configure a promotion (DocDemo split) : \[liabilityOwnerSplitInfo Object]': source H2  ->  converted H3
+    '**Requirement:** The brand has set up a promotion where the cost (liability) associated with the points awarded needs to be shared. The condition is: for any points given out by this promotion, the cost will be split equally (50/50) between two internal loyalty programs, specifically the "DocDemoDefaultProgram" and the "DocTransferPoints" program. This cost-sharing rule is active.': source H5  ->  converted H6
+    'Applying the liabilityOwnerSplitInfo object to configure a promotion (Digital Hub standard) : \[liabilityOwnerSplitInfo Object]': source H2  ->  converted H3
+    '**Requirement:** Digital Hub has set up a standard promotion linked to their main loyalty program (Org 100737, Prog 2607). For any rewards issued by this promotion, the configuration explicitly states: the full 100% of the cost (liability) is assigned solely to the main loyalty program (ID 2607). This setup confirms the default scenario where the program itself covers all expenses for the rewards given.': source H5  ->  converted H6
+    'Broadcast promotion — Immediate, Once (Award Currency)': source H2  ->  converted H3
+    'Broadcast promotion — Specific date, Daily (Award Badge)': source H2  ->  converted H3
+
+enrol-loyalty-promotion  (src: INFO/backfill/raw/enrol-loyalty-promotion.md)
+    'Example request': source H1  ->  converted H2
+    'API Quick Reference': source H1  ->  converted H2
+    'Prerequisites': source H1  ->  converted H2
+    'Body parameters': source H1  ->  converted H2
+    'Example response': source H1  ->  converted H2
+    'Response parameters': source H1  ->  converted H2
+    'Warning messages': source H1  ->  converted H2
+    'Error codes': source H1  ->  converted H2
+
+get-customer-promotion-details  (src: INFO/backfill/raw/get-customer-promotion-details.md)
+    'Prerequisites': source H1  ->  converted H2
+    'Resource information': source H1  ->  converted H2
+    'Example request': source H1  ->  converted H2
+    'Path parameters': source H1  ->  converted H2
+    'Query parameters': source H1  ->  converted H2
+    'API Quick Reference': source H1  ->  converted H2
+    'Example response': source H1  ->  converted H2
+    'Response parameters': source H1  ->  converted H2
+    'Error and warning codes': source H1  ->  converted H2
+
+get-loyalty-promotion-all  (src: INFO/backfill/raw/get-loyalty-promotion-all.md)
+    'Example request': source H1  ->  converted H2
+    'Prerequisites': source H1  ->  converted H2
+    'Resource information': source H1  ->  converted H2
+    'Query parameters': source H1  ->  converted H2
+    'Example response': source H1  ->  converted H2
+    'Response parameters': source H1  ->  converted H2
+    'Warning messages': source H1  ->  converted H2
+    'Error codes': source H1  ->  converted H2
+
+get-loyalty-promotion-id  (src: INFO/backfill/raw/get-loyalty-promotion-id.md)
+    'Example request': source H1  ->  converted H2
+    'Prerequisites': source H1  ->  converted H2
+    'Path parameters': source H1  ->  converted H2
+    'Query parameters': source H1  ->  converted H2
+    'Example response': source H1  ->  converted H2
+    'Response parameters': source H1  ->  converted H2
+    'Warning messages': source H1  ->  converted H2
+    'Error codes': source H1  ->  converted H2
+
+list-member-promotions-explode  (src: INFO/backfill/raw/list-member-promotions-explode.md)
+    'Example request': source H1  ->  converted H2
+    'Prerequisites': source H1  ->  converted H2
+    'Resource information': source H1  ->  converted H2
+    'Path parameters': source H1  ->  converted H2
+    'Query parameters': source H1  ->  converted H2
+    'API Quick Reference': source H1  ->  converted H2
+    'Example response': source H1  ->  converted H2
+    'Response parameters': source H1  ->  converted H2
+    'Error and warning codes': source H1  ->  converted H2
+
+list-member-promotions  (src: INFO/backfill/raw/list-member-promotions.md)
+    'Example request': source H1  ->  converted H2
+    'Prerequisites': source H1  ->  converted H2
+    'Resource information': source H1  ->  converted H2
+    'Path parameters': source H1  ->  converted H2
+    'Query parameters': source H1  ->  converted H2
+    'API Quick Reference': source H1  ->  converted H2
+    'Example response': source H1  ->  converted H2
+    'Response parameters': source H1  ->  converted H2
+    'Error and warning codes': source H1  ->  converted H2
+
+loyalty-promotions  (src: INFO/backfill/raw/loyalty-promotions.md)
+    'What you can do': source H3  ->  converted H2
+    'Search behaviour': source H3  ->  converted H2
+    'Promotion Structure': source H3  ->  converted H2
+    'Enrolment Models': source H3  ->  converted H2
+    'Limits and Liability': source H3  ->  converted H2
+    'Terminologies': source H1  ->  converted H2
+
+review-loyalty-promotion  (src: INFO/backfill/raw/review-loyalty-promotion.md)
+    'Example request': source H1  ->  converted H2
+    'Prerequisites': source H1  ->  converted H2
+    'Path Parameters': source H1  ->  converted H2
+    'Body parameters': source H1  ->  converted H2
+    'Example response': source H1  ->  converted H2
+    'Response parameters': source H1  ->  converted H2
+    'Warning Messages': source H1  ->  converted H2
+    'Error Codes': source H1  ->  converted H2
+
+revoke-a-loyalty-promotion  (src: INFO/backfill/raw/revoke-a-loyalty-promotion.md)
+    'Example request': source H2  ->  converted H3
+    'Prerequisites': source H2  ->  converted H3
+    'Header information': source H2  ->  converted H3
+    'Query parameters': source H2  ->  converted H3
+    'Body parameters': source H2  ->  converted H3
+    'API Quick Reference': source H2  ->  converted H3
+    'Example response': source H2  ->  converted H3
+    'Response parameters': source H2  ->  converted H3
+    'Error and warning codes': source H2  ->  converted H3
+
+submit-promotion-for-approval  (src: INFO/backfill/raw/submit-promotion-for-approval.md)
+    'Supported transitions': source H1  ->  converted H2
+    'Example requests': source H1  ->  converted H2
+    'Prerequisites': source H1  ->  converted H2
+    'Path parameters': source H1  ->  converted H2
+    'Query parameters': source H1  ->  converted H2
+    'Request body parameters': source H1  ->  converted H2
+    'Response': source H1  ->  converted H2
+    'Error codes': source H1  ->  converted H2
+
+update-loyalty-promotion  (src: INFO/backfill/raw/update-loyalty-promotion.md)
+    'Example request': source H1  ->  converted H2
+    'API Quick Reference': source H1  ->  converted H2
+    'Prerequisites': source H1  ->  converted H2
+    'Body parameters': source H1  ->  converted H2
+    'Metadata object table': source H1  ->  converted H2
+    'promotionMetadata object': source H2  ->  converted H3
+    'Example use case 1: applying the metadata object to update a promotion': source H2  ->  converted H3
+    'Example use case 2: applying the metadata object to update a promotion': source H2  ->  converted H3
+    'Member enrolment and workflows object table': source H1  ->  converted H2
+    'customerEnrolment object table': source H2  ->  converted H3
+    'workflowMetadata object': source H2  ->  converted H3
+    '`enrolment` and `optin` object': source H3  ->  converted H4
+    'Editing the opt-in window': source H3  ->  converted H4
+    '`restrictions` object': source H3  ->  converted H4
+    'Example use case 1: applying the customerEnrolment object to update a promotion': source H2  ->  converted H3
+    'Example use case 2: applying the customerEnrolment object to update a promotion': source H2  ->  converted H3
+    'Example use case 1: applying the activities object to update a promotion': source H2  ->  converted H3
+    'Example use case 2: applying the activities object to update a promotion': source H2  ->  converted H3
+    'Limits object': source H1  ->  converted H2
+    '`period` object': source H2  ->  converted H3
+    'Example use case 1: applying the limits object to update a promotion': source H2  ->  converted H3
+    'Example use case 2: applying the limits object to update a promotion': source H2  ->  converted H3
+    'liabilityOwnerSplitInfo object': source H1  ->  converted H2
+    'Example use case 1: applying the liabilityOwnerSplitInfo object to update a promotion': source H2  ->  converted H3
+    'Example use case 2: applying the liabilityOwnerSplitInfo object to update a promotion': source H2  ->  converted H3
+    'Example response': source H1  ->  converted H2
+    'Response body parameters': source H1  ->  converted H2
+    'Warning messages': source H1  ->  converted H2
+    'Error codes': source H1  ->  converted H2

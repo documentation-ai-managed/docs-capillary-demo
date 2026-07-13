@@ -13,11 +13,11 @@ title: Perform Search (Cortex API)
 
 This API is used when you want only matching customer or transaction ID values in the results for a given search. Further, if you want to add additional information to the search result, use the [Datafield API](/reference/create-data-field) to enrich the search result.
 
-# API endpoint
+## API endpoint
 
 `{host}//api_gateway/cortex/v1/search`
 
-# Body parameters
+## Body parameters
 
 | Parameter          | Type    | Description                                                                                                                                                                                                                | Required |
 | ------------------ | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
@@ -29,7 +29,7 @@ This API is used when you want only matching customer or transaction ID values i
 | `operator`         | Enum    | The comparison operator. Supported values EQUALS, STARTS_WITH, and RANGE (for date or date time fields). You cannot apply RANGE on multiple fields.                                                                       | Optional |
 | `values`           | Array   | Values to search against the field name (`fieldId`). For billDate, the date should be provided in epoch format.                                                                                                            | Yes      |
 
-# Response parameters
+## Response parameters
 
 | Parameter                              | Type   | Description                                                                                                                                  |
 | -------------------------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -39,7 +39,7 @@ This API is used when you want only matching customer or transaction ID values i
 | `warnings`                             | Array  | List of warning messages, if any.                                                                                                            |
 | `errors`                               | Array  | List of error messages, if any.                                                                                                              |
 
-# Error Codes
+## Error Codes
 
 | Error Code | Description                                                  |
 | :--------- | :----------------------------------------------------------- |

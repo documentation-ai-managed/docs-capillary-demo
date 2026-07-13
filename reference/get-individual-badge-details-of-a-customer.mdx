@@ -12,7 +12,7 @@ For example: A User has completed 1000 steps and has earned a badge for achievin
 
 </Callout>
 
-# Example request
+## Example request
 
 ```bash Sample request
 curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/management/919999999994/badge/693696bdcebb9648d89735b3?includeStatistics=true' \
@@ -20,12 +20,12 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/manageme
 --header 'Cookie: _cfuvid=LbgLgMATQVG7rxgU6obNtuTjuntKzGkHg15XluHdUPI-1768984490920-0.0.1.1-604800000'
 ```
 
-# Prerequisites
+## Prerequisites
 
 - [ ] Authentication: Basic or OAuth authentication
 - [ ] Default access group
 
-# Resource information
+## Resource information
 
 | URI                    | api_gateway/v1/badges/management/`{customerId}`/badge/`{badgeId}` |
 | :--------------------- | :----------------------------------------------------------------- |
@@ -34,7 +34,7 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/manageme
 | Batch support          | No                                                                 |
 | Rate limit information | None                                                               |
 
-# Headers
+## Headers
 
 To retrieve customers based on their email ID, mobile number, external ID or card number pass the `X-CAP-CUSTOMER-IDENTIFIER`.\
 The supported values are:
@@ -46,26 +46,26 @@ The supported values are:
 
 Example: `X-CAP-CUSTOMER-IDENTIFIER: email`
 
-# API endpoint example
+## API endpoint example
 
 Endpoint: `https://eucrm.cc.capillarytech.com/api_gateway/v1/badges/management/381921157/badge/65ae47103c2f9e39583095a4`
 
 Endpoint using the `X-CAP-CUSTOMER-IDENTIFIER: email` header: `https://eucrm.cc.capillarytech.com/api_gateway/v1/badges/management/tom.sawyer@capillarytech.com/badge/6656aa8846bd1129b0ae1241?includeStatistics=true`
 
-# Request path parameters
+## Request path parameters
 
 | Parameter Name | Data Type | Description                |
 | :------------- | :-------- | :------------------------- |
 | customerId\*   | String    | Unique ID of the customer. |
 | badgeId\*      | String    | Unique ID of the badge.    |
 
-# Request query parameter
+## Request query parameter
 
 | Parameter Name    | Data type | Description                                                                            |
 | :---------------- | :-------- | :------------------------------------------------------------------------------------- |
 | includeStatistics | Boolean   | Set true to retrieve customer and badge constraints, and earn and issue badge details. |
 
-# Example response
+## Example response
 
 <CodeGroup show-lines="true" tabs={["Sample response", "Rolling window with includeStatistics=true", "Fixed window with includeStatistics=true", "Fixed window with includeStatistics=false", "Rolling window with includeStatistics=false", "Filter by Group ID", "With issueId and includeStatistics=true"]}>
 
@@ -719,7 +719,7 @@ Endpoint using the `X-CAP-CUSTOMER-IDENTIFIER: email` header: `https://eucrm.cc.
 
 </CodeGroup>
 
-# Response parameters
+## Response parameters
 
 | Parameter | Data Type | Description |
 | --- | --- | --- |

@@ -15,7 +15,7 @@ For detailed information about the APIs and for hands-on testing, refer to the [
 
 </Callout>
 
-# Example request
+## Example request
 
 <CodeGroup show-lines="true" tabs={["Issue to single customer", "Issue to bulk customers"]}>
 
@@ -40,32 +40,32 @@ For detailed information about the APIs and for hands-on testing, refer to the [
 
 </CodeGroup>
 
-# Prerequisites
+## Prerequisites
 
 - [ ] Authentication - Basic or OAuth authentication
 - [ ] Access group resource - Write access to customer group resource
 - [ ] Cart promotionId and customerId
 
-# Resource Information
+## Resource Information
 
 | URI           | promotions/\{promotionId\}/issueBulk |
 | :------------ | :---------------------------------- |
 | Rate Limit    | NA                                  |
 | Batch support | Yes                                 |
 
-# Path Parameter
+## Path Parameter
 
 | Parameter (Parameters marked as \* are required) | Data Type | Description                                                                                                                                                                                                                               |
 | :----------------------------------------------- | :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | promotionId\*                                    | String    | ID of cart promotion that is generated when creating a cart promotion. Use the [get promotions for a customer API](/reference/get-promotions-for-a-customer) to get the promotionId for the Cart Promotion. |
 
-# Query Parameter
+## Query Parameter
 
 | Parameter (Parameters marked as \* are required) | Data Type | Description                                                                                 |
 | :----------------------------------------------- | :-------- | :------------------------------------------------------------------------------------------ |
 | contextId\*                                      | String    | Unique identifier of the issued promotion. It is used to identify the particular promotion. |
 
-# Request Body
+## Request Body
 
 ```
 [
@@ -73,13 +73,13 @@ For detailed information about the APIs and for hands-on testing, refer to the [
 ]
 ```
 
-# Request Body Parameters
+## Request Body Parameters
 
 | Parameter Name | Data Type | Description                        |
 | :------------- | :-------- | :--------------------------------- |
 | customerId     | Long      | Unique identifier of the customer. |
 
-# Response Body
+## Response Body
 
 ```json
 {
@@ -96,7 +96,7 @@ For detailed information about the APIs and for hands-on testing, refer to the [
 }
 ```
 
-# Response Body Parameters
+## Response Body Parameters
 
 | Parameter       | Data Type | Description                                                                                  |
 | :-------------- | :-------- | :------------------------------------------------------------------------------------------- |
@@ -108,7 +108,7 @@ For detailed information about the APIs and for hands-on testing, refer to the [
 | -- eventTime    | Long      | The timestamp (in milliseconds) when the promotion was issued.                               |
 | -- validTill    | Long      | The timestamp (in milliseconds) until which the issued promotion is valid.                   |
 
-# Error codes
+## Error codes
 
 | Code | Description                                                                                                                                                                    |
 | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |

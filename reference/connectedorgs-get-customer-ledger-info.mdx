@@ -14,30 +14,30 @@ For detailed information about our APIs and for hands-on testing, refer to the d
 
 </Callout>
 
-# Prerequisites
+## Prerequisites
 
 - [ ] Authentication: Basic or OAuth credentials
 - [ ] Access to the Points Access group. For more information, see [access group documentation](https://docs.capillarytech.com/docs/access-group).
 
-# API Specification
+## API Specification
 
 | HTTP Method   | GET |
 | :------------ | :-- |
 | Pagination    | Yes |
 | Batch support | No  |
 
-# API endpoint example
+## API endpoint example
 
 `'https://eucrm.cc.capillarytech.com/v2.1/pointsLedger/getCustomerLedgerInfo?identifierName=mobile&identifierValue=917406401004&source=INSTORE'`
 
-# Headers
+## Headers
 
 | Header         | Description                                                                                                                                                                                                                                                                                                                                                                                                      |
 | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | DATA-SCOPE-ORG | List of Organization IDs                                                                                                                                                                                                                                                                                                                                                                                         |
 | DATA-SCOPE     | Scopes define what data can be accessed using the API. You can use scopes to control access to data from a parent or child organization. Defining a scope ensures that the response contains only data from the respective organization. Supported headers: `SELF` and `OTHER`. Refer to connected orgs [data scopes](https://docs.capillarytech.com/reference/connected-orgs-data-scopes) for more information. |
 
-# Query parameter (Customer)
+## Query parameter (Customer)
 
 You can use the below query parameters and retrieve points ledger entries of a customer.
 
@@ -61,7 +61,7 @@ You can use the below query parameters and retrieve points ledger entries of a c
 | includeAlternateCurrencies                               | Set `includeAlternateCurrencies` to `true` to retrieve all alternate currencies available with the customer.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | alternateCurrencyNames                                   | Filter alternate currencies for the customer based on the name. You can also pass a list of comma-separated alternate currency names. Set the parameter `includeAlternateCurrencies` to `false` when using this. If the value is `true`, `includeAlternateCurrencies` lists all the available currencies.                                                                                                                                                                                                                                                                                                                                                                        |
 
-# Query parameter (User group)
+## Query parameter (User group)
 
 You can use the below query parameters and retrieve points ledger entries of a usergroup.
 
@@ -255,7 +255,7 @@ You can use the below query parameters and retrieve points ledger entries of a u
 
 <br />
 
-# Response parameter (Customer)
+## Response parameter (Customer)
 
 | Parameter            | Description                                                                                                                                                                                                                   |
 | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -291,7 +291,7 @@ You can use the below query parameters and retrieve points ledger entries of a u
 | sourceProgramName    | The name of the source program associated with the entry.                                                                                                                                                                     |
 | orgID                | Unique ID of the organization.                                                                                                                                                                                                |
 
-# Response parameter (User group)
+## Response parameter (User group)
 
 | Parameter             | Description                                                                                                                                                                                           |
 | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -325,7 +325,7 @@ You can use the below query parameters and retrieve points ledger entries of a u
 | sourceProgramName     | The name of the source program associated with the entry.                                                                                                                                             |
 | warnings              | An array containing any warning messages.                                                                                                                                                             |
 
-# API specific error codes
+## API specific error codes
 
 | Error      | Description                                                                                                    |
 | ---------- | -------------------------------------------------------------------------------------------------------------- |
