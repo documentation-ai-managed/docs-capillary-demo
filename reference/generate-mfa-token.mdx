@@ -1,12 +1,11 @@
 ---
 title: Generate MFA token
 ---
-
 This API generates the MFA token using the device ID, customer identifier type, value, and the token generated from OTP validation in the primary flow. See [Validate OTP in First factor flow](/reference/validate-otp-api).
 
 ## Example cURL request
 
-```bash Sample request
+```bash "Sample request"
 curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/token/generate' \
 --header 'Content-Type: application/json' \
 --header 'Cookie: _cfuvid=TQelvcvKiKe5DWhd.tGG6g.Hq0IJI4FnRacxB4UYCyI-1716799831120-0.0.1.1-604800000' \
@@ -19,12 +18,10 @@ curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/token/generate' \
 }'
 ```
 
-<br />
-
 ## Prerequisites
 
-- [ ] Your organisation has enabled MFA.
-- [ ] Validation of OTP from the primary or First factor flow.
+- Your organisation has enabled MFA.
+- Validation of OTP from the primary or First factor flow.
 
 ## Resource information
 
@@ -37,8 +34,6 @@ curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/token/generate' \
 
 ## Request body parameters
 
-<br />
-
 | Parameter (Parameters marked with \* are mandatory) | Data Type | Description                                                                                    |
 | :-------------------------------------------------- | :-------- | :--------------------------------------------------------------------------------------------- |
 | `identifierType`\*                                  | Enum      | Identifier used for MFA token generation. Values: `MOBILE`, `EMAIL`, `USERNAME`, `EXTERNALID`. |
@@ -49,22 +44,20 @@ curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/token/generate' \
 
 ## Response parameters
 
-| Parameter | Data Type | Description |
-| --- | --- | --- |
-| status | object | Object containing status information. |
-| • success | boolean | Boolean indicating the status of the request. |
-| • code | integer | HTTP status code indicating the result. Example: 200 indicates success. |
-| • message | string | Message describing the status of the request. |
-| auth | object | Object containing authentication details. |
-| • token | string | String representing the authentication token. By default, the token is valid for 15 minutes. |
-| • key | string | String representing the authentication key. |
-| user | object | Object containing user details. |
-| • appRegistered | boolean | Indicates if the user is registered in the app. |
-| • sessionId | string | Current session ID for MFA flow. The session ID is valid for 15 minutes by default. |
-| • role | string | Indicates the user's role. Example: VIEW, USER. |
-| • userRegisteredForPassword | boolean | Indicates if the user is registered for a password. |
-
-<br />
+| Parameter                   | Data Type | Description                                                                                  |
+| --------------------------- | --------- | -------------------------------------------------------------------------------------------- |
+| status                      | object    | Object containing status information.                                                        |
+| • success                   | boolean   | Boolean indicating the status of the request.                                                |
+| • code                      | integer   | HTTP status code indicating the result. Example: 200 indicates success.                      |
+| • message                   | string    | Message describing the status of the request.                                                |
+| auth                        | object    | Object containing authentication details.                                                    |
+| • token                     | string    | String representing the authentication token. By default, the token is valid for 15 minutes. |
+| • key                       | string    | String representing the authentication key.                                                  |
+| user                        | object    | Object containing user details.                                                              |
+| • appRegistered             | boolean   | Indicates if the user is registered in the app.                                              |
+| • sessionId                 | string    | Current session ID for MFA flow. The session ID is valid for 15 minutes by default.          |
+| • role                      | string    | Indicates the user's role. Example: VIEW, USER.                                              |
+| • userRegisteredForPassword | boolean   | Indicates if the user is registered for a password.                                          |
 
 ```json
 {
@@ -85,3 +78,4 @@ curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/token/generate' \
     }
 }
 ```
+
