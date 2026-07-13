@@ -1,8 +1,7 @@
 ---
 title: Validate OTP
 ---
-
-# Resource Information
+## Resource Information
 
 | URI for Mobile App | `auth/v1/otp/validate`     |
 | ------------------ | -------------------------- |
@@ -12,7 +11,7 @@ title: Validate OTP
 | HTTP Method        | POST                       |
 | Batch Support      | Yes                        |
 
-# Request URL
+## Request URL
 
 For mobile application:
 
@@ -22,9 +21,8 @@ For web application:
 
 `http:{ae-host}/auth/v1/web/otp/validate`
 
-<CodeGroup show-lines="true" tabs={["Sample request using mobile application", "Sample request using web application"]}>
-
-  ```bash Sample request using mobile application
+<CodeGroup show-lines="true" tabs={["Sample request using mobile application","Sample request using web application"]}>
+  ```bash "Sample request using mobile application"
   curl --location 'https://eu.api.capillarytech.com/auth/v1/otp/validate' \
   --header 'Accept: application/json' \
   --header 'Content-Type: application/json' \
@@ -40,7 +38,7 @@ For web application:
   }'
   ```
 
-  ```bash Sample request using web application
+  ```bash "Sample request using web application"
   curl --location 'https://eu.api.capillarytech.com/auth/v1/web/otp/validate' \
   --header 'Accept: application/json' \
   --header 'Content-Type: application/json' \
@@ -53,10 +51,9 @@ For web application:
       "otp": "999999"
   }'
   ```
-
 </CodeGroup>
 
-# Request Body Parameters
+## Request Body Parameters
 
 | Parameter           | Datatype | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | :------------------ | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -71,11 +68,10 @@ Parameters marked with \* are mandatory for both web and mobile applications.
 
 Parameter marked with \*\* is mandatory for the mobile application and not required for web application.
 
-# Sample response
+## Sample response
 
-<CodeGroup show-lines="true" tabs={["Sample response using mobile application", "Sample response using web application"]}>
-
-  ```json Sample response using mobile application
+<CodeGroup show-lines="true" tabs={["Sample response using mobile application","Sample response using web application"]}>
+  ```json "Sample response using mobile application"
   {
       "status": {
           "success": true,
@@ -95,7 +91,7 @@ Parameter marked with \*\* is mandatory for the mobile application and not requi
   }
   ```
 
-  ```json Sample response using web application
+  ```json "Sample response using web application"
   {
     "status": {
       "success": true,
@@ -109,22 +105,22 @@ Parameter marked with \*\* is mandatory for the mobile application and not requi
     "user": null
   }
   ```
-
 </CodeGroup>
 
-# Response parameters
+## Response parameters
 
-| Parameter | Description |
-| --- | --- |
-| status | Object containing status information |
-| • success | Boolean indicating the success status |
-| • code | Number indicating the status code (e.g., 200 for success) |
-| • message | String providing a message related to the status |
-| auth | Object containing authentication information |
-| • token | String representing the authentication token. By default, the token is valid for 15 minutes. |
-| • key | String representing the authentication key. This key has no validity and can be used to regenerate the authentication token. It is recommended to set an expiry of the key to avoid unauthorized usage. For more information, refer to the section [Configuring validity for the key](https://docs.capillarytech.com/reference/authentication-configurations#configuring-validity-for-the-key). |
-| user | Object containing user information |
-| • appRegistered | Boolean indicating if the user is registered in the app |
-| • sessionId | Value representing the user's session ID |
-| • role | String indicating the user's role (e.g., "USER") |
-| • userRegisteredForPassword | Boolean indicating if the user is registered for a password |
+| Parameter                    | Description                                                                                                                                                                                                                                                                                                                                                                                     |
+| ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| status                       | Object containing status information                                                                                                                                                                                                                                                                                                                                                            |
+| \* success                   | Boolean indicating the success status                                                                                                                                                                                                                                                                                                                                                           |
+| \* code                      | Number indicating the status code (e.g., 200 for success)                                                                                                                                                                                                                                                                                                                                       |
+| \* message                   | String providing a message related to the status                                                                                                                                                                                                                                                                                                                                                |
+| auth                         | Object containing authentication information                                                                                                                                                                                                                                                                                                                                                    |
+| \* token                     | String representing the authentication token. By default, the token is valid for 15 minutes.                                                                                                                                                                                                                                                                                                    |
+| \* key                       | String representing the authentication key. This key has no validity and can be used to regenerate the authentication token. It is recommended to set an expiry of the key to avoid unauthorized usage. For more information, refer to the section [Configuring validity for the key](https://docs.capillarytech.com/reference/authentication-configurations#configuring-validity-for-the-key). |
+| user                         | Object containing user information                                                                                                                                                                                                                                                                                                                                                              |
+| \* appRegistered             | Boolean indicating if the user is registered in the app                                                                                                                                                                                                                                                                                                                                         |
+| \* sessionId                 | Value representing the user's session ID                                                                                                                                                                                                                                                                                                                                                        |
+| \* role                      | String indicating the user's role (e.g., "USER")                                                                                                                                                                                                                                                                                                                                                |
+| \* userRegisteredForPassword | Boolean indicating if the user is registered for a password                                                                                                                                                                                                                                                                                                                                     |
+
