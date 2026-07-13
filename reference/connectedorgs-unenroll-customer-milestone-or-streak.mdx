@@ -75,7 +75,7 @@ For detailed information about our APIs and for hands-on testing, refer to the d
 | errors    | Array     | Errors during the API call, if any.    |
 | warnings  | Array     | Warnings during the API call, if any.  |
 
-<CodeGroup show-lines="true" tabs={["Self and Other", "`json ALL", "`"]}>
+<CodeGroup show-lines="true" tabs={["Self and Other", "ALL"]}>
 
   ```json
   {
@@ -86,7 +86,7 @@ For detailed information about our APIs and for hands-on testing, refer to the d
 
   ```
 
-  ```text
+  ```json
   {
       "data": null,
       "errors": [
@@ -99,195 +99,193 @@ For detailed information about our APIs and for hands-on testing, refer to the d
   }
   ```
 
-```text title="`text"
+</CodeGroup>
 
-  # API-specific errors
+## API-specific errors
 
-  | Error code | Description                                                                                                                                                                            |
-  | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-  | 310119     | User already enrolled for the target.                                                                                                                                                  |
-  | 310011     | Invalid userId. Check if the customerId is valid.                                                                                                                                      |
-  | 310019     | Target period not found. Check the target period ID to troubleshoot this error.                                                                                                        |
-  | 310017     | Target group not found or deactivated. Check the target group ID to troubleshoot this error.                                                                                           |
-  | 310018     | Target rule not found. Check the target rule ID to troubleshoot this error.                                                                                                            |
-  | 300004     | Invalid input.                                                                                                                                                                         |
-  | 310141     | Datascope 'ALL' is not supported for this 'API'                                                                                                                                        |
-  | 310144     | Connected Orgs not set properly in Headers. Check whether the target organisation is a connected organisation.                                                 Check the API endpoint. |
+| Error code | Description                                                                                                                                                                            |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 310119     | User already enrolled for the target.                                                                                                                                                  |
+| 310011     | Invalid userId. Check if the customerId is valid.                                                                                                                                      |
+| 310019     | Target period not found. Check the target period ID to troubleshoot this error.                                                                                                        |
+| 310017     | Target group not found or deactivated. Check the target group ID to troubleshoot this error.                                                                                           |
+| 310018     | Target rule not found. Check the target rule ID to troubleshoot this error.                                                                                                            |
+| 300004     | Invalid input.                                                                                                                                                                         |
+| 310141     | Datascope 'ALL' is not supported for this 'API'                                                                                                                                        |
+| 310144     | Connected Orgs not set properly in Headers. Check whether the target organisation is a connected organisation.                                                 Check the API endpoint. |
 
-  &#x20;
+&#x20;
 
-  # OpenAPI definition
+## OpenAPI definition
 
-  ```json
-  {
-    "openapi": "3.1.0",
-    "info": {
-      "title": "v1",
-      "version": "1.0"
-    },
-    "servers": [
-      {
-        "url": "https://{host}",
-        "variables": {
-          "host": {
-            "default": "host"
-          }
+```json
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "v1",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://{host}",
+      "variables": {
+        "host": {
+          "default": "host"
         }
       }
-    ],
-    "components": {
-      "securitySchemes": {
-        "sec0": {
-          "type": "http",
-          "scheme": "basic"
-        }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "http",
+        "scheme": "basic"
       }
-    },
-    "security": [
-      {
-        "sec0": []
-      }
-    ],
-    "paths": {
-      "/api_gateway/intouch-api-v3/v3.1/targetGroups/{targetGroupId}/targets/{targetId}/unEnroll": {
-        "post": {
-          "summary": "Unenroll a Customer to from Milestone or Streak",
-          "description": "",
-          "operationId": "connectedorgs-unenroll-customer-milestone-or-streak",
-          "parameters": [
-            {
-              "name": "targetGroupId",
-              "in": "path",
-              "description": "The ID of the target group associated with the item.",
-              "schema": {
-                "type": "integer",
-                "format": "int32"
-              },
-              "required": true
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/api_gateway/intouch-api-v3/v3.1/targetGroups/{targetGroupId}/targets/{targetId}/unEnroll": {
+      "post": {
+        "summary": "Unenroll a Customer to from Milestone or Streak",
+        "description": "",
+        "operationId": "connectedorgs-unenroll-customer-milestone-or-streak",
+        "parameters": [
+          {
+            "name": "targetGroupId",
+            "in": "path",
+            "description": "The ID of the target group associated with the item.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
             },
-            {
-              "name": "targetId",
-              "in": "path",
-              "description": "The ID of the target associated.",
+            "required": true
+          },
+          {
+            "name": "targetId",
+            "in": "path",
+            "description": "The ID of the target associated.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
               "schema": {
-                "type": "integer",
-                "format": "int32"
-              },
-              "required": true
+                "type": "object",
+                "required": [
+                  "customerId"
+                ],
+                "properties": {
+                  "customerId": {
+                    "type": "string",
+                    "description": "Unique ID of the customer."
+                  }
+                }
+              }
             }
-          ],
-          "requestBody": {
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
             "content": {
               "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n    \"data\": 345651201,\n    \"errors\": null,\n    \"warnings\": null\n}"
+                  }
+                },
                 "schema": {
                   "type": "object",
-                  "required": [
-                    "customerId"
-                  ],
                   "properties": {
-                    "customerId": {
-                      "type": "string",
-                      "description": "Unique ID of the customer."
-                    }
+                    "data": {
+                      "type": "integer",
+                      "example": 345651201,
+                      "default": 0
+                    },
+                    "errors": {},
+                    "warnings": {}
                   }
                 }
               }
             }
           },
-          "responses": {
-            "200": {
-              "description": "200",
-              "content": {
-                "application/json": {
-                  "examples": {
-                    "Result": {
-                      "value": "{\n    \"data\": 345651201,\n    \"errors\": null,\n    \"warnings\": null\n}"
-                    }
-                  },
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "data": {
-                        "type": "integer",
-                        "example": 345651201,
-                        "default": 0
-                      },
-                      "errors": {},
-                      "warnings": {}
-                    }
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n    \"data\": null,\n    \"errors\": [\n        {\n            \"code\": 310017,\n            \"message\": \"Target group not found or deactivated\"\n        },\n        {\n            \"code\": 310018,\n            \"message\": \"Target rule not found\"\n        }\n    ],\n    \"warnings\": null\n}"
                   }
-                }
-              }
-            },
-            "400": {
-              "description": "400",
-              "content": {
-                "application/json": {
-                  "examples": {
-                    "Result": {
-                      "value": "{\n    \"data\": null,\n    \"errors\": [\n        {\n            \"code\": 310017,\n            \"message\": \"Target group not found or deactivated\"\n        },\n        {\n            \"code\": 310018,\n            \"message\": \"Target rule not found\"\n        }\n    ],\n    \"warnings\": null\n}"
-                    }
-                  },
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "data": {},
-                      "errors": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "code": {
-                              "type": "integer",
-                              "example": 310017,
-                              "default": 0
-                            },
-                            "message": {
-                              "type": "string",
-                              "example": "Target group not found or deactivated"
-                            }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {},
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "code": {
+                            "type": "integer",
+                            "example": 310017,
+                            "default": 0
+                          },
+                          "message": {
+                            "type": "string",
+                            "example": "Target group not found or deactivated"
                           }
                         }
-                      },
-                      "warnings": {}
-                    }
+                      }
+                    },
+                    "warnings": {}
                   }
                 }
               }
             }
-          },
-          "deprecated": false,
-          "x-readme": {
-            "code-samples": [
-              {
-                "language": "curl",
-                "code": "curl --location 'host/api_gateway/intouch-api-v3/v3.1/targetGroups/58378/targets/124370/unEnroll' \\\n--header 'Content-Type: application/json' \\\n--header 'DATA-SCOPE: SELF' \\\n--header 'CONNECTED-ORGS: 1252' \\\n--data '[\n    {\n        \"customerId\":17294712\n    }\n]'",
-                "name": "cURL"
-              }
-            ],
-            "samples-languages": [
-              "curl"
-            ]
           }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl --location 'host/api_gateway/intouch-api-v3/v3.1/targetGroups/58378/targets/124370/unEnroll' \\\n--header 'Content-Type: application/json' \\\n--header 'DATA-SCOPE: SELF' \\\n--header 'CONNECTED-ORGS: 1252' \\\n--data '[\n    {\n        \"customerId\":17294712\n    }\n]'",
+              "name": "cURL"
+            }
+          ],
+          "samples-languages": [
+            "curl"
+          ]
         }
       }
-    },
-    "x-readme": {
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/json"
-        },
-        {
-          "key": "Accept",
-          "value": "application/json"
-        }
-      ],
-      "explorer-enabled": true,
-      "proxy-enabled": true
-    },
-    "x-readme-fauxas": true
-  }
-````
-
-</CodeGroup>
+    }
+  },
+  "x-readme": {
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "key": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  },
+  "x-readme-fauxas": true
+}
+```
