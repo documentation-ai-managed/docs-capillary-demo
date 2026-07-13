@@ -13,12 +13,12 @@ To create a new loyalty promotion, use the [Create a Loyalty Promotion](/referen
 
 This API is used to create a loyalty promotion. A loyalty promotion rewards customers for achieving a target.
 
-## Prerequisites
+# Prerequisites
 
 - [ ] Authentication: Basic/OAuth authentication
 - [ ] Default access group
 
-## Resource information
+# Resource information
 
 | URI           | v1/programs`{programId}`/createPromotion`{promotionType}` |
 | :------------ | :------------------------------------------------------------ |
@@ -26,18 +26,18 @@ This API is used to create a loyalty promotion. A loyalty promotion rewards cust
 | Pagination    | NA                                                            |
 | Batch support | NA                                                            |
 
-## API endpoint example
+# API endpoint example
 
 `https://eu.api.capillarytech.com/api_gateway/loyalty/v1/programs/699/createPromotion/simple`
 
-## Request path parameters
+# Request path parameters
 
 | Parameter       | Data Type | Description                                                        |
 | :-------------- | :-------- | :----------------------------------------------------------------- |
 | `programID`     | Integer   | Unique ID of the loyalty program.                                  |
 | `promotionType` | String    | Type of promotion. Supported values: `SIMPLE`, `RANGE`, `KEYWORD`. |
 
-## Sample request body
+# Sample request body
 
 ```json
 {
@@ -184,27 +184,27 @@ This API is used to create a loyalty promotion. A loyalty promotion rewards cust
 }
 ```
 
-## Request Parameters
+# Request Parameters
 
 | Parameter (Parameters marked as * are required) | Data Type | Description |
 | --- | --- | --- |
 | `promotion` | Object | Root object containing all promotion details. |
-| * `id`* | Integer | Unique ID of the promotion. Set this value to -1 while creating a new promotion. |
-| * `name`* | String | Unique name of the loyalty promotion. \The character limit for the name is 255 characters. |
-| * `programId`* | Integer | Unique ID of the loyalty program to associate with the promotion. You can create multiple promotions under a single loyalty program. |
-| * `startDate`* | String | Start date of the promotion in ISO 8601 `yyyy-mm-ddThh:mm:ss.s+z` format. |
-| * `endDate`* | String | End date of the promotion in ISO 8601 `yyyy-mm-ddThh:mm:ss.s+z` format. |
-| * `allocatePointsOn` | Enum | Category for point allocation. Supported values: `BILL`, `LINEITEM`, `CUSTOMER`. |
-| * `identifier`* | String | Unique identifier for the promotion. This is an external identifier that can be used to identify the promotion. \The character limit for the identifier is 255 characters. |
-| * `eventName`* | Enum | Name of the event to associate with the promotion. Supported values: `TRANSACTIONADD`, `CUSTOMERUPDATE`, `CUSTOMERREGISTRATION`, `TARGETCOMPLETED`. |
-| * `pointsOfferType` | Enum | Type of loyalty promotion. Supported values: `LOYALTY` and `LOYALTY_EARNING`. Refer to the documentation on [loyalty promotions](https://docs.capillarytech.com/docs/advanced-loyalty-promotions) for more information. |
-| * `promotionType` | Enum | Type of promotion. Supported values: `BILL`, `LINEITEM`, `CUSTOMER`. |
-| * `promotionSourceType` | Enum | Source from where the promotion is created. Supported values: `PROMOTION_API`, `CAMPAIGN`, `BADGES`, `USER_CREATED`. \\Pass the value as `USER_CREATED` for creating a UCC promotion. |
-| * `limits` | Object | Promotion limits configuration. |
+| • `id`* | Integer | Unique ID of the promotion. Set this value to -1 while creating a new promotion. |
+| • `name`* | String | Unique name of the loyalty promotion. \The character limit for the name is 255 characters. |
+| • `programId`* | Integer | Unique ID of the loyalty program to associate with the promotion. You can create multiple promotions under a single loyalty program. |
+| • `startDate`* | String | Start date of the promotion in ISO 8601 `yyyy-mm-ddThh:mm:ss.s+z` format. |
+| • `endDate`* | String | End date of the promotion in ISO 8601 `yyyy-mm-ddThh:mm:ss.s+z` format. |
+| • `allocatePointsOn` | Enum | Category for point allocation. Supported values: `BILL`, `LINEITEM`, `CUSTOMER`. |
+| • `identifier`* | String | Unique identifier for the promotion. This is an external identifier that can be used to identify the promotion. \The character limit for the identifier is 255 characters. |
+| • `eventName`* | Enum | Name of the event to associate with the promotion. Supported values: `TRANSACTIONADD`, `CUSTOMERUPDATE`, `CUSTOMERREGISTRATION`, `TARGETCOMPLETED`. |
+| • `pointsOfferType` | Enum | Type of loyalty promotion. Supported values: `LOYALTY` and `LOYALTY_EARNING`. Refer to the documentation on [loyalty promotions](https://docs.capillarytech.com/docs/advanced-loyalty-promotions) for more information. |
+| • `promotionType` | Enum | Type of promotion. Supported values: `BILL`, `LINEITEM`, `CUSTOMER`. |
+| • `promotionSourceType` | Enum | Source from where the promotion is created. Supported values: `PROMOTION_API`, `CAMPAIGN`, `BADGES`, `USER_CREATED`. \\Pass the value as `USER_CREATED` for creating a UCC promotion. |
+| • `limits` | Object | Promotion limits configuration. |
 | -- `pointsPerCustomer` | Integer | Maximum points that can be issued per customer (set to `-1` for no limit). |
 | -- `numberOfTimesPerCustomer` | Integer | Maximum number of times points can be issued to a customer (set to `-1` for no limit). |
 | -- `totalPointsInPromotion` | Integer | Total points that can be generated during the promotion (set to `-1` for no limit). |
-| * `promotionRestrictions` | Integer | Restriction settings for the promotion. |
+| • `promotionRestrictions` | Integer | Restriction settings for the promotion. |
 | -- `loyaltyEarningType` | Enum | Type of earning. Supported values: `ISSUE_AND_EARN` and `DIRECT_EARN`. \Refer to the documentation on [loyalty promotions](https://docs.capillarytech.com/docs/advanced-loyalty-promotions) for more information. |
 | -- `isStackable` | Boolean | Indicate if the promotion is stackable. A stackable promotion refers to the application of multiple promotions within a single transaction. \\Refer to the documentation on [promotion stacking strategies](https://docs.capillarytech.com/docs/loyalty-promotion-priority-order-stacking-strategy#promotion-stacking) for more information. |
 | -- `isExclusive` | Boolean | Indicate if the promotion is exclusive. Exclusive promotions are evaluated individually and do not stack with any other promotion. \For creating a UCC promotion, set this value to `false`. \\Refer to the documentation on [promotion stacking strategies](https://docs.capillarytech.com/docs/loyalty-promotion-priority-order-stacking-strategy#functionality-when-stacking-strategy-is-on) for more information. |
@@ -229,7 +229,7 @@ This API is used to create a loyalty promotion. A loyalty promotion rewards cust
 | ---- `name`* | Enum | Action that is expiring. Supported values: `ISSUAL_PROMOTION_EXPIRY_BASED_ON`: Expiration of the promotion issue. `EARN_PROMOTION_EXPIRY_BASED_ON`: Expiration of the promotion earn. |
 | ---- `value`* | Integer | Number of days the loyalty promotion expires from the date of issual. |
 | ---- `type`* | Enum | Type of expiration. Supported values: `PROMOTION`: The loyalty promotion expires on the date defined in `endDate`. `CUSTOM`: Define the number of days when the loyalty promotion expires from the date of issual. |
-| * `rulesetInfos`* | Object | Information about the ruleset associated with the promotion. |
+| • `rulesetInfos`* | Object | Information about the ruleset associated with the promotion. |
 | -- `id` | Integer | Unique ID of the ruleset. Set to `-1` for creating a new UCC promotion. |
 | -- `contextID`* | Integer | Unique ID of the program. |
 | -- `orgID`* | Integer | Unique ID of the organization. |
@@ -256,7 +256,7 @@ This API is used to create a loyalty promotion. A loyalty promotion rewards cust
 
 <br />
 
-## Sample response
+# Sample response
 
 ```json
 {
@@ -348,7 +348,7 @@ This API is used to create a loyalty promotion. A loyalty promotion rewards cust
 }
 ```
 
-## Response parameters
+# Response parameters
 
 | Parameter | Data type | Description |
 | --- | --- | --- |
@@ -357,17 +357,17 @@ This API is used to create a loyalty promotion. A loyalty promotion rewards cust
 | -message | String | Status message (e.g., "success"). |
 | validationErrors | Object | Contains validation errors, if any. Null indicates no errors. |
 | data | Array | Contains data related to the promotion. |
-| * id | Integer | Unique identifier for the promotion. |
-| * name | String | Name of the promotion. |
+| • id | Integer | Unique identifier for the promotion. |
+| • name | String | Name of the promotion. |
 | -promotionStatus | String | Current status of the promotion (e.g., “LIVE”, "COMPLETED"). |
-| * programId | Integer | ID of the associated [loyalty program.](https://docs.capillarytech.com/docs/create-a-multi-loyalty-program) |
-| * startDate | String | Start date of the promotion in ISO 8601 format. |
-| * endDate | String | End date of the promotion in ISO 8601 format. |
-| * identifier | String | Unique identifier for the promotion. |
+| • programId | Integer | ID of the associated [loyalty program.](https://docs.capillarytech.com/docs/create-a-multi-loyalty-program) |
+| • startDate | String | Start date of the promotion in ISO 8601 format. |
+| • endDate | String | End date of the promotion in ISO 8601 format. |
+| • identifier | String | Unique identifier for the promotion. |
 | -isActive | Boolean | Indicates if the promotion is active. |
-| * eventName | String | Event that triggers the promotion. An event refers to a specific action for example a store visit or transaction. |
-| * allocatePointsOn | String | Where points are allocated (e.g., "BILL"). |
-| * limits | Object | Promotion limits. |
+| • eventName | String | Event that triggers the promotion. An event refers to a specific action for example a store visit or transaction. |
+| • allocatePointsOn | String | Where points are allocated (e.g., "BILL"). |
+| • limits | Object | Promotion limits. |
 | -- pointsPerCustomer | Integer | Maximum points a customer can earn. |
 | (-1 indicates no limit). |  |  |
 | -- numberOfTimesPerCustomer | Integer | Number of times a customer can participate. |
@@ -376,9 +376,9 @@ This API is used to create a loyalty promotion. A loyalty promotion rewards cust
 | (-1 indicates no limit). |  |  |
 | -- totalPointsPerEventLimit | Integer | Total points limit per event. |
 | (-1 indicates no limit). |  |  |
-| * pointsOfferType | String | Type of points offered (e.g., "LOYALTY"). A points offer refers to loyalty points issued to customers |
+| • pointsOfferType | String | Type of points offered (e.g., "LOYALTY"). A points offer refers to loyalty points issued to customers |
 | promotionRestrictions | Object | Contains the restrictions applicable to the promotion. Restrictions can be configured while setting up the loyalty promotion. |
-| * restrictions | Object | Contains various restriction types. |
+| • restrictions | Object | Contains various restriction types. |
 | -- redemptionRestrictions | Array | Redemption-related restrictions. These are advanced settings for redemption. |
 | --- name | String | Name of the redemption restriction |
 | --- value | Integer | Maximum allowed times per customer. |
@@ -395,17 +395,17 @@ This API is used to create a loyalty promotion. A loyalty promotion rewards cust
 | --- name | String | Name of the expiry restriction |
 | --- value | Integer | Expiry value. |
 | --- type | String | Expiry type (e.g., "PROMOTION"). |
-| * scope | Object | Scope of the promotion (if applicable). |
-| * isStackable | Boolean | Indicates if the promotion can be combined with other promotions. |
-| * isConsideredForRanking | Boolean | Indicates if the promotion is considered for ranking. |
-| * loyaltyEarningType | String | Type of loyalty earning. |
-| * expiryReminder | Object | Expiry reminder, if any. Null indicates no reminder. |
-| * isExclusive | Boolean | Indicates if the promotion is exclusive. |
-| * isAlwaysApply | Boolean | Indicates if the promotion always applies. |
-| * targetGroupIds | Integer | List of target group IDs. |
-| * targetRuleIds | Integer | List of target rule IDs. |
+| • scope | Object | Scope of the promotion (if applicable). |
+| • isStackable | Boolean | Indicates if the promotion can be combined with other promotions. |
+| • isConsideredForRanking | Boolean | Indicates if the promotion is considered for ranking. |
+| • loyaltyEarningType | String | Type of loyalty earning. |
+| • expiryReminder | Object | Expiry reminder, if any. Null indicates no reminder. |
+| • isExclusive | Boolean | Indicates if the promotion is exclusive. |
+| • isAlwaysApply | Boolean | Indicates if the promotion always applies. |
+| • targetGroupIds | Integer | List of target group IDs. |
+| • targetRuleIds | Integer | List of target rule IDs. |
 
-## API error codes
+# API error codes
 
 | Code | Description                                                                                                     | Solution                                                                                 |
 | :--- | :-------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------- |

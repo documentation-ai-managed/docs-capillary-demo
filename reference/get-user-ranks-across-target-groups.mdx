@@ -10,7 +10,7 @@ For detailed information about our APIs and for hands-on testing, refer document
 
 </Callout>
 
-## Prerequisites
+# Prerequisites
 
 - [ ] Authentication: Basic/OAuth authentication
 - [ ] Default access group
@@ -18,7 +18,7 @@ For detailed information about our APIs and for hands-on testing, refer document
 - [ ] Create a target milestone or streak.
 - [ ] Enable leaderboards for the milestone or streak
 
-## Resource Information
+# Resource Information
 
 | URI                    | api_gateway/intouch-api-v3/v3.1/leaderboards/user`{userId}` |
 | :--------------------- | :------------------------------------------------------------- |
@@ -26,24 +26,24 @@ For detailed information about our APIs and for hands-on testing, refer document
 | Pagination             | No                                                             |
 | Rate limit information | NA                                                             |
 
-## API Endpoint Example
+# API Endpoint Example
 
 `https://eu.api.capillarytech.com/api_gateway/intouch-api-v3/v3.1/leaderboards/user/381329847`
 
-## Headers
+# Headers
 
 | Header         | Description                                                                                                                                                                                                                                                                                                                                                                                                        |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | DATA-SCOPE-ORG | List of Organisation IDs                                                                                                                                                                                                                                                                                                                                                                                           |
 | DATA-SCOPE     | Scopes define what data can be accessed using the API. You can use scopes to control access to data from a parent or child organisation. Defining a scope ensures that the response contains only data from the respective organisation. Supported headers: SELF, OTHER and ALL.  Refer to connected orgs [data scopes](https://docs.capillarytech.com/reference/connected-orgs-data-scopes) for more information. |
 
-## Request query parameters
+# Request query parameters
 
 | Parameters (Parameters marked with \* sign are mandatory) | Type | Description                    |
 | --------------------------------------------------------- | ---- | ------------------------------ |
 | userID                                                    | Int  | The unique ID of the customer. |
 
-## Request body
+# Request body
 
 ```json
 [
@@ -62,7 +62,7 @@ For detailed information about our APIs and for hands-on testing, refer document
 ]
 ```
 
-## Request body parameters
+# Request body parameters
 
 | Parameters (Parameters marked with \* sign are mandatory) | Type | Description                                           |
 | --------------------------------------------------------- | ---- | ----------------------------------------------------- |
@@ -72,7 +72,7 @@ For detailed information about our APIs and for hands-on testing, refer document
 | Maximum of 25 rule IDs supported.                         |      |                                                       |
 | periodId                                                  | Long | Identifier of period for which result will be fetched |
 
-## Response body
+# Response body
 
 ```json
 {
@@ -105,7 +105,7 @@ For detailed information about our APIs and for hands-on testing, refer document
 }
 ```
 
-## Response parameters
+# Response parameters
 
 | Parameters | Data Type | Description |
 | --- | --- | --- |
@@ -127,15 +127,15 @@ For detailed information about our APIs and for hands-on testing, refer document
 | errors | Object | Errors encountered while fetching the object. |
 | warnings | Object | Warnings encountered while fetching object. |
 
-## API-specific warnings and errors
+# API-specific warnings and errors
 
 | Error Code | Description | Reason |
 | --- | --- | --- |
-| * | Maximum number of target rules allowed is 25, only first 25 target rules will be considered | More than 25 target rules are passed in the request body |
-| * | Target group id 999 not found or deactivated | The target group ID is invalid or not found. |
-| * | Leaderboard is not enabled for the target group id 43879 | Leaderboard is not enabled for the requested target group. |
-| * | Target rule id 999 does not belong to target group id 232 | The target rule ID passed does not belong to the target group passed or is invalid. |
-| * | Target period id 999 not found for the target id 366 | The target period ID passed does not belong to the target group passed or is invalid. |
-| * | No active target period found for the target id 366 | The current target period does not exist. |
+| • | Maximum number of target rules allowed is 25, only first 25 target rules will be considered | More than 25 target rules are passed in the request body |
+| • | Target group id 999 not found or deactivated | The target group ID is invalid or not found. |
+| • | Leaderboard is not enabled for the target group id 43879 | Leaderboard is not enabled for the requested target group. |
+| • | Target rule id 999 does not belong to target group id 232 | The target rule ID passed does not belong to the target group passed or is invalid. |
+| • | Target period id 999 not found for the target id 366 | The target period ID passed does not belong to the target group passed or is invalid. |
+| • | No active target period found for the target id 366 | The current target period does not exist. |
 | 51512 | The following orgs are not part of the hierarchy | One or more of the organisations passed is not part of the connected organisation hierarchy. |
 | 310133 | Leaderboards are not enabled for the following orgs | Leaderboards are not enabled for the organisation. |

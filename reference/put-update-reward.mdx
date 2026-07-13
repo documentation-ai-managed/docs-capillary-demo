@@ -4,7 +4,7 @@ title: Update Reward
 
 This API is used to update a particular reward.
 
-### Reward Field Editability by State
+## Reward Field Editability by State
 
 | Field                                                                | Upcoming | Live |       Ended       |
 | :------------------------------------------------------------------- | :------: | :--: | :---------------: |
@@ -59,12 +59,12 @@ This API is used to update a particular reward.
 
 <Image src="https://files.readme.io/7aad76be70909a1af79f0d7a6a5c25cd4481d38419cedef537fe7f3860f08027-Screenshot_2024-09-13_174313.png" width="1920" height="1080" alt="" />
 
-## Prerequisites
+# Prerequisites
 
 - [ ] Authentication: Basic or OAuth authentication
 - [ ] Default access group
 
-## Resource information
+# Resource information
 
 | URI                    | /api_gateway/rewards/core/v1/reward/`{reward ID}<code>/brand/</code>{brand ID}` |
 | :--------------------- | :------------------------------------------------------------------------------- |
@@ -73,7 +73,7 @@ This API is used to update a particular reward.
 | Batch support          | No                                                                               |
 | Rate limit information | None                                                                             |
 
-## Example request
+# Example request
 
 ```bash Sample update request
 curl -L -X PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/458081/brand/61' \
@@ -185,14 +185,14 @@ curl -L -X PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/rew
 
 <br />
 
-## Request path parameters
+# Request path parameters
 
 | Parameter Name | Data Type | Description                                                                                                                           |
 | :------------- | :-------- | :------------------------------------------------------------------------------------------------------------------------------------ |
 | brandId\*      | Long      | Brand ID. You can use the [API ](/reference/retrieve-brand-id) and retrieve the brand ID of your brand. |
 | rewardId\*     | String    | Unique reward identidier.                                                                                                             |
 
-## Request Body Parameters
+# Request Body Parameters
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
@@ -266,7 +266,7 @@ curl -L -X PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/rew
 | createdBy | Integer | yes | Specifies the ID of the user who created the reward. |
 | lastUpdatedBy | Integer | yes | Specifies the ID of the user who last updated the reward. |
 
-## Response body
+# Response body
 
 <CodeGroup show-lines="true" tabs={["With rank", "With image support", "With multi lingual custom field", "With revenue metadata", "With payment mode info", "With segment information", "With group name and rank", "With REDEMPTION_VALUE", "With cards", "With labels", "With KPI as Quantity", "With KPI as Redemption value", "With 'altText' for images and videos"]}>
 
@@ -1103,7 +1103,7 @@ curl -L -X PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/rew
 
 </CodeGroup>
 
-## Response parameters
+# Response parameters
 
 | Parameter Name | Data Type | Description                                             |
 | -------------- | --------- | ------------------------------------------------------- |
@@ -1114,7 +1114,7 @@ curl -L -X PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/rew
 | reward         | Object    | Contains details about the reward                       |
 | id             | Integer   | Unique identifier for the updated reward, 90819         |
 
-## Example response
+# Example response
 
 <CodeGroup show-lines="true" tabs={["Sample update response", "400-CONV RATIO with other payment mode", "400-Redemption cannot be changed once the reward has been started", "400- Invalid Card Series ID", "400- Invalid Label ID", "Code", "Code (2)", "Code (3)"]}>
 
@@ -1187,7 +1187,7 @@ curl -L -X PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/rew
 
 </CodeGroup>
 
-## API-specific error codes
+# API-specific error codes
 
 | Error code | Description                                                                |
 | :--------- | :------------------------------------------------------------------------- |

@@ -27,14 +27,14 @@ When the token expires, you can regenerate it using `token/regenerate`.
       1. Generate a session using a token generate API. You will get VIEW token and sessionId (valid for 15 minutes).
       2. Validate the password (password/validate) using the sessionId generated.
 
-## Prerequisites
+# Prerequisites
 
 - OTP must be enabled for the organization.
 - Daily OTP limit must be configured.
 - If using a password, password-based authentication must be enabled for the organization.
 - For mobile app logins, the device ID must be provided.
 
-## Resource Information
+# Resource Information
 
 | URI for Mobile App | /auth/v1/token/generate                                                                                             |
 | :----------------- | :------------------------------------------------------------------------------------------------------------------ |
@@ -44,15 +44,15 @@ When the token expires, you can regenerate it using `token/regenerate`.
 | HTTP Method        | POST                                                                                                                |
 | Batch Support      | Yes                                                                                                                 |
 
-## Request URL for mobile application
+# Request URL for mobile application
 
 `http://``{ae-host}``/auth/v1/token/generate`
 
-## Request URL for web application
+# Request URL for web application
 
 `http://``{ae-host}``/auth/v1/web/token/generate`
 
-## Example request
+# Example request
 
 <CodeGroup show-lines="true" tabs={["Sample request for existing user", "For first time user when password authentication is enabled", "For existing user using web app", "First time user when password is enabled using web app"]}>
 
@@ -120,7 +120,7 @@ When the token expires, you can regenerate it using `token/regenerate`.
 
 </CodeGroup>
 
-## Body parameters
+# Body parameters
 
 | Parameter           | Datatype | Description                                                                                                                              |
 | ------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
@@ -135,7 +135,7 @@ When the token expires, you can regenerate it using `token/regenerate`.
 
 Parameters marked with *are mandatory, and parameters with* \* indicate that either mobile or email is required for authentication with a username.
 
-## Example response
+# Example response
 
 <CodeGroup show-lines="true" tabs={["Sample response for existing user", "Sample response for first time user when password is enabled", "For existing user using web app", "First time user when password is enabled and using web app"]}>
 
@@ -221,7 +221,7 @@ Parameters marked with *are mandatory, and parameters with* \* indicate that eit
 
 </CodeGroup>
 
-## Response parameters
+# Response parameters
 
 | Parameter | Type | Description |
 | --- | --- | --- |
@@ -238,7 +238,7 @@ Parameters marked with *are mandatory, and parameters with* \* indicate that eit
 | .role | String | User's current role/permission level. Example: VIEW |
 | .userRegisteredForPassword | Boolean | Indicates whether the user has registered for password-based authentication |
 
-## Error code
+# Error code
 
 | Code | Description       |
 | :--- | :---------------- |

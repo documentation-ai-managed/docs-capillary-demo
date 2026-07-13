@@ -8,16 +8,16 @@ A customer points ledger is essentially a record that tracks the points earned, 
 
 For more information, refer to the documentation on [Points Ledgers](https://docs.capillarytech.com/reference/points-ledger).
 
-## API endpoint example
+# API endpoint example
 
 `(https://eucrm.cc.capillarytech.com/v2.1/pointsLedger/getLedgerExplodeInfo?identifierName=mobile&identifierValue=917406401004&source=INSTORE&eventIds=18608683`
 
-## Prerequisites
+# Prerequisites
 
 - [ ] Authentication: Basic or OAuth credentials
 - [ ] Access points group resource: Read access to customer points group resource
 
-## Resource information
+# Resource information
 
 | URI                    | v2.1/pointsLedger/getLedgerExplodeInfo |
 | :--------------------- | :------------------------------------- |
@@ -26,14 +26,14 @@ For more information, refer to the documentation on [Points Ledgers](https://doc
 | Batch support          | No                                     |
 | Rate limit information | NA                                     |
 
-## Headers
+# Headers
 
 | Header             | Description                                                                                                                                                                                                                                                                                                                                                                                                      |
 | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **DATA-SCOPE-ORG** | List of Organization IDs                                                                                                                                                                                                                                                                                                                                                                                         |
 | **DATA-SCOPE**     | Scopes define what data can be accessed using the API. You can use scopes to control access to data from a parent or child organization. Defining a scope ensures that the response contains only data from the respective organization. Supported headers: `SELF` and `OTHER`. Refer to connected orgs [data scopes](https://docs.capillarytech.com/reference/connected-orgs-data-scopes) for more information. |
 
-## Query parameters
+# Query parameters
 
 | Parameter Name | Data Type | Description |
 | --- | --- | --- |
@@ -55,7 +55,7 @@ For more information, refer to the documentation on [Points Ledgers](https://doc
 | eventName | String | Name of the event (GenericEvent, TransactionAdd, ReturnBill). An event refers to any activity performed by a customer, whether in an online store or a physical store. **GenericEvent**: A [generic event](https://docs.capillarytech.com/docs/behavioral-loyalty#behavioral-attributes-as-tags-in-the-communication) refers to a customizable behavioral event where specific attributes like Customer ID or Product SKU are used to track events.\\ **TransactionAdd**: A [transaction add](https://docs.capillarytech.com/reference/addreturn-transaction-bulk) refers to the addition of a new transaction to the system. |
 | eventReferenceIds | Integer | A reference ID is a unique identifier that links to an event.\ For TransactionAdd and ReturnBill, the reference ID is the billId of the transaction. For GenericEvent, the reference ID is the unique request ID for the event. You can add up to **ten** reference IDs for the specified `eventName` separated by commas. Refer to the documentation on [getting transaction details](https://docs.capillarytech.com/reference/get_transaction_detailsv1) and [getting event details](https://docs.capillarytech.com/reference/search-events) for more information. |
 
-## Response parameters
+# Response parameters
 
 | Parameter        | Data Type | Description                                                 |
 | ---------------- | --------- | ----------------------------------------------------------- |
@@ -67,7 +67,7 @@ For more information, refer to the documentation on [Points Ledgers](https://doc
 | eventReferenceId | String    | Reference ID associated with the event.                     |
 | orgId            | Integer   | Unique ID of the associated organization.                   |
 
-## Sample Response
+# Sample Response
 
 <CodeGroup show-lines="true" tabs={["SELF", "OTHER", "Ledger Explode information with events"]}>
 
@@ -146,7 +146,7 @@ For more information, refer to the documentation on [Points Ledgers](https://doc
 
 </CodeGroup>
 
-## API specific error codes
+# API specific error codes
 
 | Error  | Description                                                                                                    |
 | ------ | -------------------------------------------------------------------------------------------------------------- |

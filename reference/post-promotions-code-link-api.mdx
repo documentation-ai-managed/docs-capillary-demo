@@ -9,7 +9,7 @@ This API links a cart promotion code to a specific customer.
 - You can only link a code to one customer at a time. To link codes to multiple customers, make separate API calls for each customer.
 - Both `DISCOUNT` and `PAYMENT_VOUCHER` modes are supported for code linking.
 
-## Example request
+# Example request
 
 ```json
 curl --location 'https://{Host}/api_gateway/v1/promotions/code/link' \
@@ -23,18 +23,18 @@ curl --location 'https://{Host}/api_gateway/v1/promotions/code/link' \
 }'
 ```
 
-## Prerequisites
+# Prerequisites
 
 - Authentication: Basic or OAuth authentication.
 - Default access group
 
-## Resource information
+# Resource information
 
 | Pagination    | No |
 | :------------ | :- |
 | Batch support | No |
 
-## Body parameters
+# Body parameters
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
@@ -42,7 +42,7 @@ curl --location 'https://{Host}/api_gateway/v1/promotions/code/link' \
 | code | String | Yes | Specifies the cart promotion code to be linked. This can be discount code or the gift voucher code. |
 | mode | Enum | Yes | Specifies the cart promotion mode. Supported values: DISCOUNT, PAYMENT_VOUCHER. DISCOUNT - Use this for code-linked promotions. PAYMENT-VOUCHER - Use this for gift voucher-linked cart promotions. |
 
-## Example response
+# Example response
 
 ```json
 {
@@ -65,7 +65,7 @@ curl --location 'https://{Host}/api_gateway/v1/promotions/code/link' \
 }
 ```
 
-## Response parameters
+# Response parameters
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -86,7 +86,7 @@ curl --location 'https://{Host}/api_gateway/v1/promotions/code/link' \
 | ..redeemableFrom | Number | Indicates the timestamp in UTC from when the code can be first used. Time format: epoch milliseconds |
 | ..redeemableFromISO | String | Specifies the timestamp in UTC from when the code is redeemable in ISO 8601 format, returned in the server time zone. EU server example 2026-02-04T08:54:07Z → 04 February 2026, 08:54:07 (UTC) India server example 2026-02-04T14:24:07+05:30 → 04 February 2026, 14:24:07 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
 
-## Error codes
+# Error codes
 
 | Code | Description                                                                                                                   |
 | ---- | ----------------------------------------------------------------------------------------------------------------------------- |

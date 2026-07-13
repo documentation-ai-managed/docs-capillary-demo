@@ -12,12 +12,12 @@ For detailed information about our APIs and for hands-on testing, refer document
 
 </Callout>
 
-## Prerequisites
+# Prerequisites
 
 - [ ] Authentication: Basic or OAuth authentication
 - [ ] Default access group
 
-## Resource information
+# Resource information
 
 | URI                  | /api_gateway/v1/badges/customer/`{customerId}` |
 | :------------------- | :---------------------------------------------- |
@@ -26,7 +26,7 @@ For detailed information about our APIs and for hands-on testing, refer document
 | Rate limit           | NA                                              |
 | Batch support        | NA                                              |
 
-## Headers
+# Headers
 
 To retrieve customers based on their email ID, mobile number, external ID or card number pass the `X-CAP-CUSTOMER-IDENTIFIER`.\
 The supported values are:
@@ -38,13 +38,13 @@ The supported values are:
 
 Example: `X-CAP-CUSTOMER-IDENTIFIER: email`
 
-## API endpoint example
+# API endpoint example
 
 Endpoint: `https://eucrm.cc.capillarytech.com/api_gateway/v1/badges/customer{customerId}`
 
 Endpoint using the `X-CAP-CUSTOMER-IDENTIFIER: email` header: `https://eucrm.cc.capillarytech.com/api_gateway/v1/badges/customer{email ID}`
 
-## Example request
+# Example request
 
 <CodeGroup show-lines="true" tabs={["curl", "Request using the header", "Sample request with group ID filter"]}>
 
@@ -72,13 +72,13 @@ Endpoint using the `X-CAP-CUSTOMER-IDENTIFIER: email` header: `https://eucrm.cc.
 
 </CodeGroup>
 
-## Request path parameters
+# Request path parameters
 
 | Parameter    | Data Type | Description                        |
 | :----------- | :-------- | :--------------------------------- |
 | customerId\* | String    | Unique identifier of the customer. |
 
-## Request query parameters
+# Request query parameters
 
 | Parameter      | Data Type | Description                                                                                                                                                                                                                                                                         |
 | -------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -88,7 +88,7 @@ Endpoint using the `X-CAP-CUSTOMER-IDENTIFIER: email` header: `https://eucrm.cc.
 | Limit          | Integer   | Number of results. For example, number 10 retrieves the first 10 rows of the query results. Default value: 10.                                                                                                                                                                      |
 | groupId        | string    | Badge group ID the badge belongs to. Retrieves only the badges belonging to the specified badge group ID.                                                                                                                                                                           |
 
-## Response parameters
+# Response parameters
 
 | Parameter | Data Type | Description |
 | --- | --- | --- |
@@ -568,7 +568,7 @@ Sorting logic in getCall:
 - Within the group, preference will be given to the badges for which badge rank is defined, the rest of the badges with no badge rank will be sorted in default descending order of expired date
 - If badges with no group are defined, they will be sorted in order of badge rank (if defined), followed by default descending order of expired date
 
-## API-specific error codes
+# API-specific error codes
 
 | Error code | Description                                  |
 | :--------- | :------------------------------------------- |

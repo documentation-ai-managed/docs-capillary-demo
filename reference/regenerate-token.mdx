@@ -6,7 +6,7 @@ This API regenerates the token after successfully logging into the system using 
 
 Using this API, you can regenerate the token without going through the primary flow.
 
-## Example cURL request
+# Example cURL request
 
 ```bash
 curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/token/regenerate' \
@@ -22,11 +22,11 @@ curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/token/regenerate' 
 
 <br />
 
-## Prerequisites
+# Prerequisites
 
 - [ ] Validate the OTP or password in the MFA flow.
 
-## Resource information
+# Resource information
 
 | URI                   | auth/v1/mfa/token/regenerate |
 | :-------------------- | :--------------------------- |
@@ -35,7 +35,7 @@ curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/token/regenerate' 
 | Rate limit            | NA                           |
 | Batch support         | NA                           |
 
-## Request body parameters
+# Request body parameters
 
 | (Parameters marked with \* are mandatory) | Data Type | Description                                                                              |
 | ----------------------------------------- | --------- | ---------------------------------------------------------------------------------------- |
@@ -45,22 +45,22 @@ curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/token/regenerate' 
 | identifierType\*                          | String    | Type of identifier to identify the customer. Values: MOBILE, EMAIL, USERNAME, EXTERNALID |
 | identifierValue\*                         | String    | Value of the identifier.                                                                 |
 
-## Response parameters
+# Response parameters
 
 | Parameter | Datatype | Description |
 | --- | --- | --- |
 | status | object | Object containing status information. |
-| * success | boolean | Boolean indicating the status of the request. |
-| * code | integer | HTTP status code indicating the result. Example: 200 indicates success. |
-| * message | string | Message describing the status of the request. |
+| • success | boolean | Boolean indicating the status of the request. |
+| • code | integer | HTTP status code indicating the result. Example: 200 indicates success. |
+| • message | string | Message describing the status of the request. |
 | auth | object | Object containing authentication details. |
-| * token | string | String representing the authentication token. By default, the token is valid for 15 minutes. |
-| * key | string | String representing the authentication key. |
+| • token | string | String representing the authentication token. By default, the token is valid for 15 minutes. |
+| • key | string | String representing the authentication key. |
 | user | object | Object containing user details. |
-| * appRegistered | boolean | Indicates if the user is registered in the app. |
-| * sessionId | string | Session ID for MFA flow. The session ID is valid for 15 minutes by default. |
-| * role | string | Indicates the user's role. Example: VIEW, USER. |
-| * userRegisteredForPassword | boolean | Indicates if the user is registered for a password. |
+| • appRegistered | boolean | Indicates if the user is registered in the app. |
+| • sessionId | string | Session ID for MFA flow. The session ID is valid for 15 minutes by default. |
+| • role | string | Indicates the user's role. Example: VIEW, USER. |
+| • userRegisteredForPassword | boolean | Indicates if the user is registered for a password. |
 
 ```json
 {

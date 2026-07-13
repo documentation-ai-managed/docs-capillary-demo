@@ -10,12 +10,12 @@ For detailed API documentation and interactive testing, see [API overview](https
 
 </Callout>
 
-### Prerequisites
+## Prerequisites
 
 - **Authentication:** Basic or OAuth
 - **Access:** Default access group
 
-### Resource information
+## Resource information
 
 | Property       | Value                               |
 | -------------- | ----------------------------------- |
@@ -25,13 +25,13 @@ For detailed API documentation and interactive testing, see [API overview](https
 | **Rate limit** | Default                             |
 | **Batch**      | N/A                                 |
 
-### API endpoint example
+## API endpoint example
 
 ```http
 POST https://eu.api.capillarytech.com/api_gateway/cortex/v1/neo-config
 ```
 
-### Request body
+## Request body
 
 <CodeGroup show-lines="true" tabs={["Transaction", "Customer"]}>
 
@@ -57,7 +57,7 @@ POST https://eu.api.capillarytech.com/api_gateway/cortex/v1/neo-config
 
 <br />
 
-### Request body parameters
+## Request body parameters
 
 | Parameter               | Type    | Description                                                                                                               |
 | :---------------------- | :------ | :------------------------------------------------------------------------------------------------------------------------ |
@@ -66,7 +66,7 @@ POST https://eu.api.capillarytech.com/api_gateway/cortex/v1/neo-config
 | **transformEndpoint**\* | string  | Path of the NEO service endpoint for transformations (e.g., `/transform/transaction/custom`).                             |
 | active                  | boolean | Whether this configuration is active. Use `false` to deactivate an existing config by re-submitting with `active: false`. |
 
-### Response body example
+## Response body example
 
 ```json
 {
@@ -86,7 +86,7 @@ POST https://eu.api.capillarytech.com/api_gateway/cortex/v1/neo-config
 }
 ```
 
-### Response parameters
+## Response parameters
 
 | Parameter                 | Type    | Description                                      |
 | :------------------------ | :------ | :----------------------------------------------- |
@@ -100,11 +100,11 @@ POST https://eu.api.capillarytech.com/api_gateway/cortex/v1/neo-config
 | `auditInfo.lastUpdatedBy` | long    | User ID who last updated the config.             |
 | `errors`                  | array   | List of errors, if any (empty on success).       |
 
-### API error codes
+## API error codes
 
 | **Error code** | **Description** |
 | --- | --- |
-| **`400 BAD_REQUEST`** | * The request body is invalid JSON\- Required fields are missing\- The request body fails validation\- Constraint violations occur |
-| **`401 UNAUTHORIZED`** | * Authentication is missing or invalid\- The auth token is not provided |
-| **`403 FORBIDDEN`** | * The authenticated user doesn't have permission to create configurations |
-| **`500 INTERNAL_SERVER_ERROR`** | * Unexpected server errors occur\- Database operations fail\- Other runtime exceptions occur |
+| **`400 BAD_REQUEST`** | • The request body is invalid JSON\- Required fields are missing\- The request body fails validation\- Constraint violations occur |
+| **`401 UNAUTHORIZED`** | • Authentication is missing or invalid\- The auth token is not provided |
+| **`403 FORBIDDEN`** | • The authenticated user doesn't have permission to create configurations |
+| **`500 INTERNAL_SERVER_ERROR`** | • Unexpected server errors occur\- Database operations fail\- Other runtime exceptions occur |

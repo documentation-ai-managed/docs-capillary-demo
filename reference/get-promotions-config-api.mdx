@@ -9,7 +9,7 @@ This API retrieves the configuration details of cart promotions using their prom
 - You can retrieve configurations for multiple promotions in a single request by passing comma-separated promotion IDs.
 - Set `includeExpired` or `includeInactive` to `true` if you need to include promotions that have ended or been deactivated.
 
-## Example request
+# Example request
 
 ```bash
 curl --location 'https://{Host}/api_gateway/v1/promotions/config?promotionIds=68e7966845de881062349048&includeExpired=true&includeInactive=true' \
@@ -18,19 +18,19 @@ curl --location 'https://{Host}/api_gateway/v1/promotions/config?promotionIds=68
 --data ''
 ```
 
-## Prerequisites
+# Prerequisites
 
 - Authentication: Basic or OAuth authentication.
 
 - Default access group
 
-## Resource information
+# Resource information
 
 | Pagination    | No |
 | :------------ | :- |
 | Batch support | No |
 
-## Query parameters
+# Query parameters
 
 | Field           | Type    | Required | Description                                                                                         |
 | :-------------- | :------ | :------- | :-------------------------------------------------------------------------------------------------- |
@@ -38,7 +38,7 @@ curl --location 'https://{Host}/api_gateway/v1/promotions/config?promotionIds=68
 | includeExpired  | Boolean | Optional | If set as `true`, includes expired cart promotions in the response.                                 |
 | includeInactive | Boolean | Optional | If set as `true`, includes inactive cart promotions in the response.                                |
 
-## Example response
+# Example response
 
 ```json
 {
@@ -62,7 +62,7 @@ curl --location 'https://{Host}/api_gateway/v1/promotions/config?promotionIds=68
 }
 ```
 
-## Response parameters
+# Response parameters
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -95,7 +95,7 @@ curl --location 'https://{Host}/api_gateway/v1/promotions/config?promotionIds=68
 | .....cycleReferenceDate | Long | Epoch timestamp in milliseconds. The anchor date from which N_DAY cycles are calculated. Interpreted in the org's configured timezone. Defaults to the promotion's `startDate` if omitted. |
 | errors | Array | Specifies the errors messages. |
 
-## Error codes
+# Error codes
 
 | Code | Description                                                                                                            |
 | ---- | ---------------------------------------------------------------------------------------------------------------------- |

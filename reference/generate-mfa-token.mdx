@@ -4,7 +4,7 @@ title: Generate MFA token
 
 This API generates the MFA token using the device ID, customer identifier type, value, and the token generated from OTP validation in the primary flow. See [Validate OTP in First factor flow](/reference/validate-otp-api).
 
-## Example cURL request
+# Example cURL request
 
 ```bash Sample request
 curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/token/generate' \
@@ -21,12 +21,12 @@ curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/token/generate' \
 
 <br />
 
-## Prerequisites
+# Prerequisites
 
 - [ ] Your organisation has enabled MFA.
 - [ ] Validation of OTP from the primary or First factor flow.
 
-## Resource information
+# Resource information
 
 | URI                   | auth/v1/mfa/token/generate |
 | :-------------------- | :------------------------- |
@@ -35,7 +35,7 @@ curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/token/generate' \
 | Rate limit            | NA                         |
 | Batch support         | NA                         |
 
-## Request body parameters
+# Request body parameters
 
 <br />
 
@@ -47,22 +47,22 @@ curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/token/generate' \
 | `brand`\*                                           | String    | Name of the brand or organization that needs verification.                                     |
 | `authorizedToken`\*                                 | String    | Authentication token from `/otp/validate` of First factor.                                     |
 
-## Response parameters
+# Response parameters
 
 | Parameter | Data Type | Description |
 | --- | --- | --- |
 | status | object | Object containing status information. |
-| * success | boolean | Boolean indicating the status of the request. |
-| * code | integer | HTTP status code indicating the result. Example: 200 indicates success. |
-| * message | string | Message describing the status of the request. |
+| • success | boolean | Boolean indicating the status of the request. |
+| • code | integer | HTTP status code indicating the result. Example: 200 indicates success. |
+| • message | string | Message describing the status of the request. |
 | auth | object | Object containing authentication details. |
-| * token | string | String representing the authentication token. By default, the token is valid for 15 minutes. |
-| * key | string | String representing the authentication key. |
+| • token | string | String representing the authentication token. By default, the token is valid for 15 minutes. |
+| • key | string | String representing the authentication key. |
 | user | object | Object containing user details. |
-| * appRegistered | boolean | Indicates if the user is registered in the app. |
-| * sessionId | string | Current session ID for MFA flow. The session ID is valid for 15 minutes by default. |
-| * role | string | Indicates the user's role. Example: VIEW, USER. |
-| * userRegisteredForPassword | boolean | Indicates if the user is registered for a password. |
+| • appRegistered | boolean | Indicates if the user is registered in the app. |
+| • sessionId | string | Current session ID for MFA flow. The session ID is valid for 15 minutes by default. |
+| • role | string | Indicates the user's role. Example: VIEW, USER. |
+| • userRegisteredForPassword | boolean | Indicates if the user is registered for a password. |
 
 <br />
 

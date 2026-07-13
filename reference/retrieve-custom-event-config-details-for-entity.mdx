@@ -10,12 +10,12 @@ For detailed information about our APIs and for hands-on testing, refer document
 
 </Callout>
 
-## Prerequisites
+# Prerequisites
 
 - [ ] Authentication: Basic/OAuth authentication
 - [ ] Default access group
 
-## Resource Information
+# Resource Information
 
 | URI           | /api_gateway/cortex/v1/neo-config/entity/`{entityType}` |
 | :------------ | :------------------------------------------------------- |
@@ -24,7 +24,7 @@ For detailed information about our APIs and for hands-on testing, refer document
 | Rate limit    | Default                                                  |
 | Batch support | NA                                                       |
 
-## API cURL example
+# API cURL example
 
 ```bash
 curl --location --request GET 'eu.api.capillarytech.com/api_gateway/cortex/v1/neo-config/entity/TRANSACTION' \
@@ -39,13 +39,13 @@ curl --location --request GET 'eu.api.capillarytech.com/api_gateway/cortex/v1/ne
 }'
 ```
 
-## Path Parameter
+# Path Parameter
 
 | Parameter  | Description                                          |
 | :--------- | :--------------------------------------------------- |
 | entitytype | Entity type. Supported values: Transaction, Customer |
 
-## Response Body
+# Response Body
 
 ```json
 {
@@ -65,7 +65,7 @@ curl --location --request GET 'eu.api.capillarytech.com/api_gateway/cortex/v1/ne
 }
 ```
 
-## Response Parameter
+# Response Parameter
 
 | **Parameter**                  | **Type** | **Description**                                                         |
 | ------------------------------ | -------- | ----------------------------------------------------------------------- |
@@ -79,11 +79,11 @@ curl --location --request GET 'eu.api.capillarytech.com/api_gateway/cortex/v1/ne
 | `data.auditInfo.lastUpdatedBy` | long     | User ID of the person who last updated the configuration.               |
 | `errors`                       | Array    | List of errors encountered (empty array if no errors).                  |
 
-## Error Codes
+# Error Codes
 
 | **Error code** | **Description** |
 | --- | --- |
-| 400 BAD_REQUEST | * The request body is invalid JSON- Required fields are missing- The request body fails validation - Constraint violations occur |
-| 401 UNAUTHORIZED | * Authentication is missing or invalid- The auth token is not provided |
-| 403 FORBIDDEN | * The authenticated user doesn't have permission to create configurations |
-| 500 INTERNAL_SERVER_ERROR | * Unexpected server errors occur- Database operations fail- Other runtime exceptions occur |
+| 400 BAD_REQUEST | • The request body is invalid JSON- Required fields are missing- The request body fails validation - Constraint violations occur |
+| 401 UNAUTHORIZED | • Authentication is missing or invalid- The auth token is not provided |
+| 403 FORBIDDEN | • The authenticated user doesn't have permission to create configurations |
+| 500 INTERNAL_SERVER_ERROR | • Unexpected server errors occur- Database operations fail- Other runtime exceptions occur |

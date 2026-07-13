@@ -4,7 +4,7 @@ title: Create reward
 
 This API creates a new reward in Capillary. You can define various attributes for the reward, such as type, priority, category, redemption type, and vendor details. The API supports adding custom fields, rich-text content, and mapping the reward to specific loyalty programs, tiers, segments, or supplementary programs for catalog personalization.
 
-## Example request
+# Example request
 
 <CodeGroup show-lines="true" tabs={["Sample request", "With rank", "With image support", "With multi lingual custom field", "With revenue metadata", "With payment mode info", "With segment information", "With linking reward to multiple group", "With multiple payment mode info", "With Payment mode as \"POINTS\"", "With Payment mode as \"CASH\"", "With Payment mode as \"POINTS_CASH\"", "With Payment mode as \"CONV_RATIO\"", "With Payment mode as \"FREE\"", "With REDEMPTION_VALUE", "With Labels", "With Cards", "with group and label (advanced filtering - old UI)", "With KPI as Quantity", "With KPI as Redemption Value", "With frequency restriction"]}>
 
@@ -1476,12 +1476,12 @@ This API creates a new reward in Capillary. You can define various attributes fo
 
 </CodeGroup>
 
-## Prerequisites
+# Prerequisites
 
 - Authentication: Basic or OAuth authentication.
 - Default access group
 
-## Body parameters
+# Body parameters
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
@@ -1576,7 +1576,7 @@ This API creates a new reward in Capillary. You can define various attributes fo
 | ...limit | integer | Optional | Defines the maximum number of times a single customer can receive or redeem the reward within a fixed cycle. \* If `windowType` is `FIXED`, the limit applies to each fixed cycle. For example, a customer could receive this reward a maximum of 3 times per week or per month. \* If `windowType` is `ROLLING`, the limit applies over a sliding time window. For example, a customer could receive this reward a maximum of 5 times over the past 30 days. \* If `repeatFrequencyType` is `NO_LIMIT`, the limit is applied for the entire lifetime of the reward for that individual customer. |
 | ...interval | integer | Optional | Defines the interval for the frequency type, indicating how often the reward can be issued within the specified frequency. |
 
-### Example response
+## Example response
 
 <CodeGroup show-lines="true" tabs={["Sample response", "400", "400 Conversion ratio with unsupported redemptiontypes", "400-CONV RATIO with other payment mode", "Invalid segment ID", "400-Vendor Reward is required", "400- Reward Term & Conditions can't be null", "400- Label ID is incorrect", "400- Card Series not found"]}>
 
@@ -1679,7 +1679,7 @@ This API creates a new reward in Capillary. You can define various attributes fo
 
 </CodeGroup>
 
-### Response parameters
+## Response parameters
 
 | Field     | Type    | Description                                       |
 | :-------- | :------ | :------------------------------------------------ |
@@ -1690,7 +1690,7 @@ This API creates a new reward in Capillary. You can define various attributes fo
 | .reward   | Object  | Contains details about the reward created.        |
 | ..id      | integer | Unique identifier for the created reward.         |
 
-### Error codes
+## Error codes
 
 | Code     | Description                                                                                                   |
 | :------- | :------------------------------------------------------------------------------------------------------------ |
@@ -1704,7 +1704,7 @@ This API creates a new reward in Capillary. You can define various attributes fo
 | **400**  | Reward Term &amp; Conditions can't be null or empty.                                                              |
 | **400**  | Reward startTime and endTime can't be null or empty.                                                          |
 
-### **Additional notes**
+## **Additional notes**
 
 - Reward Linking – A reward can be linked to one entity type at a time: card, label, segment, tier, or loyalty program. You can link the same reward to multiple entries within the same type (e.g., multiple labels or card series).
   *Example: Link to both "Gold Card Series" and "Platinum Card Series", but not to a card and a label together.*

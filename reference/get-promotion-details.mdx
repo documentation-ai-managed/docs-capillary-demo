@@ -21,7 +21,7 @@ This API fetches results for loyalty promotions created on the [old UI](https://
 
 </Callout>
 
-### Types of promotions
+## Types of promotions
 
 There are three different types of promotions:
 
@@ -31,11 +31,11 @@ There are three different types of promotions:
 
 The field `pointsOfferType `in the response provides information on the type of promotion.
 
-### Limits and restrictions
+## Limits and restrictions
 
 If the [Types of promotions](https://docs.capillarytech.com/docs/advanced-loyalty-promotions) is enabled for your organisation, then the information regarding the limits and restrictions on issual, earning, or redemption is available in the object  *promotionRestriction*. This information is also replicated in the  *limits* and *customerUsage* objects.
 
-## API endpoint example
+# API endpoint example
 
 ```bash Sample cURL
 curl --location 'https://eu.api.capillarytech.com/api_gateway/loyalty/v1/programs/promotions/list?limit=10&offset=0' \
@@ -46,12 +46,12 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/loyalty/v1/program
 --header 'Cookie: _cfuvid=oCx4C8KazrLVe76IdGzzaE5SAVi3XBrgSQL3V8eaXIQ-1758619160515-0.0.1.1-604800000'
 ```
 
-## Prerequisites
+# Prerequisites
 
 - [ ] Authentication: Basic or OAuth authentication
 - [ ] Access group resource: Read access to customer group resource
 
-## Resource information
+# Resource information
 
 | URI                   | /api_gateway/loyalty/v1/programs/promotions/list |
 | :-------------------- | :------------------------------------------------ |
@@ -59,7 +59,7 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/loyalty/v1/program
 | Pagination supported? | Yes                                               |
 | Batch support         | No                                                |
 
-## Query Parameters
+# Query Parameters
 
 | (Parameters marked with * are mandatory) | Data Type | Description |
 | --- | --- | --- |
@@ -74,7 +74,7 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/loyalty/v1/program
 
 **Note**: startDate and endDate must appear in pairs.
 
-## Response Parameters
+# Response Parameters
 
 | Parameter | Data Type | Description |
 | --- | --- | --- |
@@ -99,7 +99,7 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/loyalty/v1/program
 | isActive | Boolean | Indicates if the promotion is currently active. |
 | eventName | String | The name of the event associated with the promotion. |
 | pointsOfferType | String | The type of promotion. The types of promotion are GENERIC, LOYALTY, and LOYALTY_EARNING. |
-| * promotionRestrictions | Object | Restrictions and settings for the promotion. Issual restrictions - Provides info on the restrictions on the enrolment of the customers. earnRestrictions provides information on the restrictions on the promotion issual. expiryRestrictions provide info on the enrol and issue expiry. Redemption restrictions provides information on the maximum redemptions of points per issue of promotion |
+| • promotionRestrictions | Object | Restrictions and settings for the promotion. Issual restrictions - Provides info on the restrictions on the enrolment of the customers. earnRestrictions provides information on the restrictions on the promotion issual. expiryRestrictions provide info on the enrol and issue expiry. Redemption restrictions provides information on the maximum redemptions of points per issue of promotion |
 | -- redemptionRestrictions | Object | Contains information on the redemption limits for a promotion. |
 | --- name | Enum | Type of redemption restriction. Possible values: `MAX_ALLOWED_POINTS_PER_EVENT`: The maximum points that can be earned for a single activity (make a transaction, redeem points etc.) done by a customer. `MAX_ALLOWED_TIMES_PER_CUSTOMER`: The maximum number of activities (make a transaction, redeem points etc.) a customer can do to earn points. `MAX_ALLOWED_POINTS_PER_CUSTOMER`:The maximum number of points a customer can earn from a promotion. `MAX_ALLOWED_TIMES_PER_PROMOTION`: The maximum number of activities (make a transaction, redeem points etc.) allowed across all customers in the brand for the promotion. `MAX_ALLOWED_POINTS_PER_PROMOTION`:The maximum number of points available across all customers in the brand for the promotion. `MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER`:The maximum number of times a customer can redeem a promotion after earning |
 | --- value | Integer | Number of units corresponding to the `name`. Specify `-1` for no limit (max limit: 100). |
@@ -729,7 +729,7 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/loyalty/v1/program
 }
 ```
 
-## API-specific error codes
+# API-specific error codes
 
 | Error code | Description                                        |
 | :--------- | :------------------------------------------------- |

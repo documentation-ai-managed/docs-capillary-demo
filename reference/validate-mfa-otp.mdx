@@ -4,13 +4,13 @@ title: Validate MFA OTP
 
 Use this API to validate the OTP in the MFA flow. The `/mfa/otp/generate` API generates the OTP.
 
-## Prerequisites
+# Prerequisites
 
 - [ ] **Access group resource:** Write access to customer group resource. For more information on access control, see the [access group documentation](https://docs.capillarytech.com/docs/access-group).
 
 - [ ] **Authentication:** Basic or OAuth authentication details. For more information on authentication, see the [Authentication documentation](https://docs.capillarytech.com/docs/api-client).
 
-## Example request
+# Example request
 
 ```bash
 curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/otp/validate' \
@@ -27,7 +27,7 @@ curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/otp/validate' \
 
 <br />
 
-## Resource information
+# Resource information
 
 | URI                   | auth/v1/mfa/otp/validate |
 | :-------------------- | :----------------------- |
@@ -36,7 +36,7 @@ curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/otp/validate' \
 | Rate limit            | NA                       |
 | Batch support         | NA                       |
 
-## Request body parameters
+# Request body parameters
 
 <br />
 
@@ -49,22 +49,22 @@ curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/otp/validate' \
 | **`sessionId`**\*                                   | String    | Unique session ID created from `/mfa/token/generate` API.                                                                                                                                                                                                                                                                                                        |
 | **`otp`**\*                                         | String    | OTP that needs validation.                                                                                                                                                                                                                                                                                                                                       |
 
-## Response parameters
+# Response parameters
 
 | Parameter | Data Type | Description |
 | --- | --- | --- |
 | status | object | Object containing status information. |
-| * success | boolean | Boolean indicating the status of the request. |
-| * code | integer | HTTP status code indicating the result. Example: 200 indicates success. |
-| * message | string | Message describing the status of the request. |
+| • success | boolean | Boolean indicating the status of the request. |
+| • code | integer | HTTP status code indicating the result. Example: 200 indicates success. |
+| • message | string | Message describing the status of the request. |
 | auth | object | Object containing authentication details. |
-| * token | string | String representing the authentication token. By default, the token is valid for 15 minutes. |
-| * key | string | String representing the authentication key. |
+| • token | string | String representing the authentication token. By default, the token is valid for 15 minutes. |
+| • key | string | String representing the authentication key. |
 | user | object | Object containing user details. |
-| * appRegistered | boolean | Indicates if the user is registered in the app. |
-| * sessionId | string | Current session ID for MFA flow. The session ID is valid for 15 minutes by default. |
-| * role | string | Indicates the user's role. Example: VIEW, USER. |
-| * userRegisteredForPassword | boolean | Indicates if the user is registered for a password. |
+| • appRegistered | boolean | Indicates if the user is registered in the app. |
+| • sessionId | string | Current session ID for MFA flow. The session ID is valid for 15 minutes by default. |
+| • role | string | Indicates the user's role. Example: VIEW, USER. |
+| • userRegisteredForPassword | boolean | Indicates if the user is registered for a password. |
 
 <br />
 
@@ -88,7 +88,7 @@ curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/otp/validate' \
 }
 ```
 
-## Error codes
+# Error codes
 
 <br />
 
