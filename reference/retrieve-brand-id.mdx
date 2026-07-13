@@ -16,13 +16,12 @@ For detailed information about our APIs and for hands-on testing, refer document
 
 ## Prerequisites
 
-* [ ] Authentication: Basic or OAuth authentication
+- [ ] Authentication: Basic or OAuth authentication
 
-* [ ] Default Access group
+- [ ] Default Access group
 
 ## Resource Information
 
-|                       |                                            |
 | :-------------------- | :----------------------------------------- |
 | URI                   | /api_gateway/rewards/core/v1/brand/getAll |
 | HTTP method           | POST                                       |
@@ -34,7 +33,7 @@ For detailed information about our APIs and for hands-on testing, refer document
 
 | Parameter Name | Type | Description           |
 | -------------- | ---- | --------------------- |
-| orgIds*       | int  | Unique ID of the org. |
+| orgIds\*       | int  | Unique ID of the org. |
 
 ```json
 {
@@ -73,168 +72,5 @@ For detailed information about our APIs and for hands-on testing, refer document
             "orgId": 100458
         }
     ]
-}
-```
-
-## OpenAPI definition
-
-```json
-{
-  "openapi": "3.1.0",
-  "info": {
-    "title": "v1",
-    "version": "1.0"
-  },
-  "servers": [
-    {
-      "url": "https://{host}",
-      "variables": {
-        "host": {
-          "default": "host"
-        }
-      }
-    }
-  ],
-  "components": {
-    "securitySchemes": {
-      "sec0": {
-        "type": "http",
-        "scheme": "basic"
-      }
-    }
-  },
-  "security": [
-    {
-      "sec0": []
-    }
-  ],
-  "paths": {
-    "/api_gateway/rewards/core/v1/brand/getAll": {
-      "post": {
-        "summary": "Retrieve Brand ID",
-        "description": "",
-        "operationId": "retrieve-brand-id",
-        "parameters": [
-          {
-            "name": "orgIds",
-            "in": "query",
-            "description": "Unique ID of the org.",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "200",
-            "content": {
-              "application/json": {
-                "examples": {
-                  "Result": {
-                    "value": "{\n    \"status\": {\n        \"success\": true,\n        \"code\": 3001,\n        \"message\": \"Brand fetched successfully\"\n    },\n    \"brandList\": [\n        {\n            \"id\": 1,\n            \"brand\": \"BUKL\",\n            \"enabled\": true,\n            \"orgId\": 100458\n        }\n    ]\n}"
-                  }
-                },
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "object",
-                      "properties": {
-                        "success": {
-                          "type": "boolean",
-                          "example": true,
-                          "default": true
-                        },
-                        "code": {
-                          "type": "integer",
-                          "example": 3001,
-                          "default": 0
-                        },
-                        "message": {
-                          "type": "string",
-                          "example": "Brand fetched successfully"
-                        }
-                      }
-                    },
-                    "brandList": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "integer",
-                            "example": 1,
-                            "default": 0
-                          },
-                          "brand": {
-                            "type": "string",
-                            "example": "BUKL"
-                          },
-                          "enabled": {
-                            "type": "boolean",
-                            "example": true,
-                            "default": true
-                          },
-                          "orgId": {
-                            "type": "integer",
-                            "example": 100458,
-                            "default": 0
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "400",
-            "content": {
-              "application/json": {
-                "examples": {
-                  "Result": {
-                    "value": "{}"
-                  }
-                },
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              }
-            }
-          }
-        },
-        "deprecated": false,
-        "x-readme": {
-          "code-samples": [
-            {
-              "language": "curl",
-              "code": "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/getAll' \\\n--header 'X-CAP-API-AUTH-ENTITY-ID: BUKL' \\\n--header 'Content-Type: application/json' \\\n--header 'Cookie: _cfuvid=Uup95TfipU6aomfbkE8Ys.uC4PcYuCgvKMCLGHDuczs-1720521666347-0.0.1.1-604800000; _cfuvid=hTqg09La7O.wR1rfoREWEhoTlgLn6GFj60inWTEC33M-1720528841982-0.0.1.1-604800000' \\\n--header 'Authorization: Basic aWFtc2hpdmFhfnkdsjnfsjNDA1MDk0nfjksvnaI3YjJlODM4ZjhlMzRkNWI1YTI5MWY=' \\\n--data '{\n    \"orgIds\": [\n        100458\n    ]\n}'"
-            }
-          ],
-          "samples-languages": [
-            "curl"
-          ]
-        }
-      }
-    }
-  },
-  "x-readme": {
-    "headers": [
-      {
-        "key": "Content-Type",
-        "value": "application/json"
-      },
-      {
-        "key": "Accept",
-        "value": "application/json"
-      }
-    ],
-    "explorer-enabled": true,
-    "proxy-enabled": true
-  },
-  "x-readme-fauxas": true
 }
 ```

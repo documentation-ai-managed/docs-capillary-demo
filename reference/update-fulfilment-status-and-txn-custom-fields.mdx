@@ -6,18 +6,17 @@ This API is used to update fulfilment status and transaction custom fields for i
 
 <Callout kind="tip" title="Note">
 
-* For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
+- For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
 
 </Callout>
 
 ## Prerequisites
 
-* [ ] Authentication: Basic or OAuth authentication
-* [ ] Default access group
+- [ ] Authentication: Basic or OAuth authentication
+- [ ] Default access group
 
 ## Resource information
 
-|                        |                                                                             |
 | :--------------------- | :-------------------------------------------------------------------------- |
 | URI                    | /api_gateway/rewards/core/v1/management/transactions?skip_validation=true |
 | HTTP Method            | PUT                                                                         |
@@ -107,195 +106,5 @@ This API is used to update fulfilment status and transaction custom fields for i
             }
         }
     ]
-}
-```
-
-## OpenAPI definition
-
-```json
-{
-  "openapi": "3.1.0",
-  "info": {
-    "title": "v1",
-    "version": "1.0"
-  },
-  "servers": [
-    {
-      "url": "https://{host}",
-      "variables": {
-        "host": {
-          "default": "host"
-        }
-      }
-    }
-  ],
-  "components": {
-    "securitySchemes": {
-      "sec0": {
-        "type": "http",
-        "scheme": "basic"
-      }
-    }
-  },
-  "security": [
-    {
-      "sec0": []
-    }
-  ],
-  "paths": {
-    "/api_gateway/rewards/core/v1/management/transactions?skip_validation=true": {
-      "put": {
-        "summary": "Update fulfillment status and transaction custom fields for issued rewards",
-        "description": "",
-        "operationId": "update-fulfilment-status-and-txn-custom-fields",
-        "parameters": [
-          {
-            "name": "skip_validation",
-            "in": "query",
-            "description": "A validation code is used to redeem points for the transaction. skip_validation is set to true as brands configured in Marvel bypass validation code.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "200",
-            "content": {
-              "application/json": {
-                "examples": {
-                  "Result": {
-                    "value": "{\n    \"transactions\": [\n        {\n            \"transactionId\": 3482445,\n            \"rewardId\": 177657,\n            \"customerId\": 85076836,\n            \"fulfillmentDetails\": {\n                \"id\": 9,\n                \"status\": \"Confirmed\"\n            },\n            \"transactionCustomFields\": {\n                \"Partner_Order_Id\": \"6565454987656\",\n                \"Date\": \"10/09/2024\",\n                \"Time\": \"evening\",\n                \"Seat_Section\": \"Orchestra\",\n                \"Seat_Row\": \"Q\",\n                \"Seat_Number\": \"205\",\n                \"Paypal_Order_Id\": \"45678\",\n                \"Paypal_amout\": \"30$\"\n            }\n        }\n    ]\n}"
-                  }
-                },
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "transactions": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "transactionId": {
-                            "type": "integer",
-                            "example": 3482445,
-                            "default": 0
-                          },
-                          "rewardId": {
-                            "type": "integer",
-                            "example": 177657,
-                            "default": 0
-                          },
-                          "customerId": {
-                            "type": "integer",
-                            "example": 85076836,
-                            "default": 0
-                          },
-                          "fulfillmentDetails": {
-                            "type": "object",
-                            "properties": {
-                              "id": {
-                                "type": "integer",
-                                "example": 9,
-                                "default": 0
-                              },
-                              "status": {
-                                "type": "string",
-                                "example": "Confirmed"
-                              }
-                            }
-                          },
-                          "transactionCustomFields": {
-                            "type": "object",
-                            "properties": {
-                              "Partner_Order_Id": {
-                                "type": "string",
-                                "example": "6565454987656"
-                              },
-                              "Date": {
-                                "type": "string",
-                                "example": "10/09/2024"
-                              },
-                              "Time": {
-                                "type": "string",
-                                "example": "evening"
-                              },
-                              "Seat_Section": {
-                                "type": "string",
-                                "example": "Orchestra"
-                              },
-                              "Seat_Row": {
-                                "type": "string",
-                                "example": "Q"
-                              },
-                              "Seat_Number": {
-                                "type": "string",
-                                "example": "205"
-                              },
-                              "Paypal_Order_Id": {
-                                "type": "string",
-                                "example": "45678"
-                              },
-                              "Paypal_amout": {
-                                "type": "string",
-                                "example": "30$"
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "400",
-            "content": {
-              "application/json": {
-                "examples": {
-                  "Result": {
-                    "value": "{}"
-                  }
-                },
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              }
-            }
-          }
-        },
-        "deprecated": false,
-        "x-readme": {
-          "code-samples": [
-            {
-              "language": "curl",
-              "code": "curl --location --request PUT 'https://uscrm.cc.capillarytech.com/api_gateway/rewards/core/v1/management/transactions?skip_validation=true&skip_validation=true' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic DljMQ==' \\\n--data '{\n    \"transactions\": [\n        {\n            \"transactionId\": 3482445,\n            \"customerId\": 85076836,\n            \"rewardId\": 177657,\n            \"transactionCustomFields\": {\n                \"Partner_Order_Id\" : \"6565454987656\",\n                \"Date\" : \"10/09/2024\",\n                \"Time\" : \"evening\",\n                \"Seat_Section\" : \"Orchestra\",\n                \"Seat_Row\" : \"Q\",\n                \"Seat_Number\" : \"205\",\n                \"Paypal_Order_Id\" : \"45678\",\n                \"Paypal_amout\" : \"30$\"\n            },\n            \"fulfillmentDetails\": {\n                \"status\": \"Confirmed\"\n            }\n        }\n    ]\n}\n'"
-            }
-          ],
-          "samples-languages": [
-            "curl"
-          ]
-        }
-      }
-    }
-  },
-  "x-readme": {
-    "headers": [
-      {
-        "key": "Content-Type",
-        "value": "application/json"
-      },
-      {
-        "key": "Accept",
-        "value": "application/json"
-      }
-    ],
-    "explorer-enabled": true,
-    "proxy-enabled": true
-  },
-  "x-readme-fauxas": true
 }
 ```

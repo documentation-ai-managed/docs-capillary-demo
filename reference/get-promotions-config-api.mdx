@@ -6,10 +6,10 @@ This API can be used fetch the configurations of the cart promotions via promoti
 
 This API retrieves the configuration details of cart promotions using their promotion IDs.
 
-* When you call this API, the system returns a simplified view of the promotion configuration, including the promotion name, type, expiry date, description, reward summary, and current status.
-* Use this API when you need a quick summary of promotion configurations without the full rule definitions, such as displaying promotion information to customers or store associates.
-* You can retrieve configurations for multiple promotions in a single request by passing comma-separated promotion IDs.
-* Set `includeExpired` or `includeInactive` to `true` if you need to include promotions that have ended or been deactivated.
+- When you call this API, the system returns a simplified view of the promotion configuration, including the promotion name, type, expiry date, description, reward summary, and current status.
+- Use this API when you need a quick summary of promotion configurations without the full rule definitions, such as displaying promotion information to customers or store associates.
+- You can retrieve configurations for multiple promotions in a single request by passing comma-separated promotion IDs.
+- Set `includeExpired` or `includeInactive` to `true` if you need to include promotions that have ended or been deactivated.
 
 ## Example request
 
@@ -22,13 +22,12 @@ curl --location 'https://{Host}/api_gateway/v1/promotions/config?promotionIds=68
 
 ## Prerequisites
 
-* Authentication: Basic or OAuth authentication.
+- Authentication: Basic or OAuth authentication.
 
-* Default access group
+- Default access group
 
 ## Resource information
 
-|               |    |
 | :------------ | :- |
 | Pagination    | No |
 | Batch support | No |
@@ -109,122 +108,3 @@ curl --location 'https://{Host}/api_gateway/v1/promotions/config?promotionIds=68
 | 707  | The passed promotion type is not supported. Change the promotion type to one supported by the system.                  |
 
 <br />
-
-## OpenAPI definition
-
-```json
-{
-  "openapi": "3.1.0",
-  "info": {
-    "title": "v1",
-    "version": "1.0"
-  },
-  "servers": [
-    {
-      "url": "https://{host}",
-      "variables": {
-        "host": {
-          "default": "host"
-        }
-      }
-    }
-  ],
-  "components": {
-    "securitySchemes": {
-      "sec0": {
-        "type": "http",
-        "scheme": "basic"
-      }
-    }
-  },
-  "security": [
-    {
-      "sec0": []
-    }
-  ],
-  "paths": {
-    "/api_gateway/v1/promotions/config": {
-      "get": {
-        "summary": "Get Cart Promotions Config API",
-        "description": "This API can be used fetch the configurations of the cart promotions via promotion ids",
-        "operationId": "get-promotions-config-api",
-        "parameters": [
-          {
-            "name": "includeExpired",
-            "in": "query",
-            "description": "includes expired promotions or not",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "includeInactive",
-            "in": "query",
-            "description": "includes active/inactive promotions",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "promotionIds",
-            "in": "query",
-            "description": "Unique id assigned to any promotion created",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "200",
-            "content": {
-              "application/json": {
-                "examples": {
-                  "Result": {
-                    "value": "{\n  \"data\": [\n    {\n      \"promotionId\": \"string\",\t\t //Unique id assigned to any promotion \n      \"promotionName\": \"string\"\t\t  \t  //Name of the promotion \n      \"promotionType\": \"POS\",\t\t\t        //Type of  promotion \n      \"milestoneId\": 0,\n      \"groupId\": 0,\n      \"ruleId\": 0,\n      \"expiry\": 0,      \t\t    //Period after which the promotion will expire\n      \"description\": \"string\",      //Custom description added for the promotion\n      \"storeCriteria\": {\n        \"type\": \"STORE\",            //List of stores where promotion is applicable\n        \"values\": [\n          0\n        ],\n        \"operator\": \"IN\"\n      },\n      \"supplementaryCriteria\": {\n        \"loyaltyProgramId\": 0,\n        \"programType\": \"TIER\",\n        \"partnerProgramId\": 0\n      },\n      \"reward\": \"string\",\n      \"maxEarningPerCustomer\": 0,\n      \"isActive\": true,\n      \"customFieldValues\": {\n        \"additionalProp1\": \"string\",\n        \"additionalProp2\": \"string\",\n        \"additionalProp3\": \"string\"\n      },\n      \"promotionRestrictions\": {\n        \"additionalProp1\": [\n          {\n            \"kpi\": \"TRANSACTION\",\n            \"frequency\": \"DAYS\",\n            \"minTimeBetweenRepeat\": 0,\n            \"limit\": 0\n          }\n        ],\n        \"additionalProp2\": [\n          {\n            \"kpi\": \"TRANSACTION\",\n            \"frequency\": \"DAYS\",\n            \"minTimeBetweenRepeat\": 0,\n            \"limit\": 0\n          }\n        ],\n        \"additionalProp3\": [\n          {\n            \"kpi\": \"TRANSACTION\",\n            \"frequency\": \"DAYS\",\n            \"minTimeBetweenRepeat\": 0,\n            \"limit\": 0\n          }\n        ]\n      }\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": 0,\n      \"message\": \"string\"\n    }\n  ]\n"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "400",
-            "content": {
-              "application/json": {
-                "examples": {
-                  "Result": {
-                    "value": "{}"
-                  }
-                },
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              }
-            }
-          }
-        },
-        "deprecated": false
-      }
-    }
-  },
-  "x-readme": {
-    "headers": [
-      {
-        "key": "Content-Type",
-        "value": "application/json"
-      },
-      {
-        "key": "Accept",
-        "value": "application/json"
-      }
-    ],
-    "explorer-enabled": true,
-    "proxy-enabled": true
-  },
-  "x-readme-fauxas": true
-}
-```

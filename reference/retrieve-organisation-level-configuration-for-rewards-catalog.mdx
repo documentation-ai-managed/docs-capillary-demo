@@ -6,18 +6,17 @@ This API allows you to retrieve the organisation level configuration for rewards
 
 <Callout kind="tip" title="Note">
 
-* For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
+- For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
 
 </Callout>
 
 ## Prerequisites
 
-* [ ] Authentication: Basic or OAuth authentication
-* [ ] Default access group
+- [ ] Authentication: Basic or OAuth authentication
+- [ ] Default access group
 
 ## Resource information
 
-|                        |                                                       |
 | :--------------------- | :---------------------------------------------------- |
 | URI                    | /api_gateway/rewards/core/v1/brand`{id}`/getConfig |
 | HTTP Method            | GET                                                   |
@@ -96,161 +95,3 @@ This API allows you to retrieve the organisation level configuration for rewards
 | :--------- | :---------------------------------------------- |
 | 3004       | Brand not found. Pass a valid brand identifier. |
 | 3011       | Brand or config key is incorrect                |
-
-## OpenAPI definition
-
-```json
-{
-  "openapi": "3.1.0",
-  "info": {
-    "title": "v1",
-    "version": "1.0"
-  },
-  "servers": [
-    {
-      "url": "https://{host}",
-      "variables": {
-        "host": {
-          "default": "host"
-        }
-      }
-    }
-  ],
-  "components": {
-    "securitySchemes": {
-      "sec0": {
-        "type": "http",
-        "scheme": "basic"
-      }
-    }
-  },
-  "security": [
-    {
-      "sec0": []
-    }
-  ],
-  "paths": {
-    "/api_gateway/rewards/core/v1/brand/{id}/getConfig": {
-      "get": {
-        "summary": "Get Organisation Level Configuration",
-        "description": "",
-        "operationId": "retrieve-organisation-level-configuration-for-rewards-catalog",
-        "parameters": [
-          {
-            "name": "brandId",
-            "in": "path",
-            "description": "Unique identifier of the brand.",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            },
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "200",
-            "content": {
-              "application/json": {
-                "examples": {
-                  "Result": {
-                    "value": "{\n    \"status\": {\n        \"success\": true,\n        \"code\": 3012,\n        \"message\": \"Org configs fetched successfully\"\n    },\n    \"configList\": [\n        {\n            \"configKeyName\": \"CONF_EXT_POINTS_VENDOR\",\n            \"configKeyValue\": \"false\",\n            \"brandId\": null,\n            \"label\": \"Enable third party vendor for points redemption\"\n        },\n        {\n            \"configKeyName\": \"CONF_ENABLE_FEATURE_CATALOG_PROMOTION\",\n            \"configKeyValue\": \"FALSE\",\n            \"brandId\": null,\n            \"label\": \"Enable catalog promotion feature for a brand or organization.\"\n        },\n        {\n            \"configKeyName\": \"CONF_CATALOG_PROMOTION_BUFFER_END_TIME_MINUTES\",\n            \"configKeyValue\": \"5\",\n            \"brandId\": null,\n            \"label\": \"Add buffer time in minutes to expiry date of a catalog promotion while issuing a reward.\"\n        },\n        {\n            \"configKeyName\": \"CONF_START_OF_THE_WEEK_FOR_ORG_RESTRICTION\",\n            \"configKeyValue\": \"MONDAY\",\n            \"brandId\": null,\n            \"label\": \"Add the start of the week for the org level restrictions, this will be applied to all org level restrictions with Week configurations\"\n        },\n        {\n            \"configKeyName\": \"CONF_SEND_REWARD_EXPIRY_NOTIFICATION_ENABLED\",\n            \"configKeyValue\": \"true\",\n            \"brandId\": null,\n            \"label\": \"Key to enable or disable the expiry notification for rewards. If enabled, the system will send expiry notification for rewards after setting the NUMBER_OF_DAYS_BEFORE_EXPIRY.\"\n        },\n        {\n            \"configKeyName\": \"CONF_SEND_EXPIRY_NOTIFICATION_FOR_REWARD_TIME\",\n            \"configKeyValue\": \"16:00\",\n            \"brandId\": null,\n            \"label\": \"Key to set the time of the day to send the expiry notification for rewards.\"\n        }\n    ]\n}"
-                  }
-                },
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "object",
-                      "properties": {
-                        "success": {
-                          "type": "boolean",
-                          "example": true,
-                          "default": true
-                        },
-                        "code": {
-                          "type": "integer",
-                          "example": 3012,
-                          "default": 0
-                        },
-                        "message": {
-                          "type": "string",
-                          "example": "Org configs fetched successfully"
-                        }
-                      }
-                    },
-                    "configList": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "configKeyName": {
-                            "type": "string",
-                            "example": "CONF_EXT_POINTS_VENDOR"
-                          },
-                          "configKeyValue": {
-                            "type": "string",
-                            "example": "false"
-                          },
-                          "brandId": {},
-                          "label": {
-                            "type": "string",
-                            "example": "Enable third party vendor for points redemption"
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "400",
-            "content": {
-              "application/json": {
-                "examples": {
-                  "Result": {
-                    "value": "{}"
-                  }
-                },
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              }
-            }
-          }
-        },
-        "deprecated": false,
-        "x-readme": {
-          "code-samples": [
-            {
-              "language": "curl",
-              "code": "curl --location 'http://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/1/getConfig' \\\n--header 'Authorization: Basic Y20uMToyMDJjYjk2MmFjNTkwNzViOTY0YjA3MTUyZDIzNGI3MA=='"
-            }
-          ],
-          "samples-languages": [
-            "curl"
-          ]
-        }
-      }
-    }
-  },
-  "x-readme": {
-    "headers": [
-      {
-        "key": "Content-Type",
-        "value": "application/json"
-      },
-      {
-        "key": "Accept",
-        "value": "application/json"
-      }
-    ],
-    "explorer-enabled": true,
-    "proxy-enabled": true
-  },
-  "x-readme-fauxas": true
-}
-```

@@ -6,12 +6,11 @@ This API helps to upload a batch of coupons to a coupon series. It provides the 
 
 ## Prerequisites
 
-* [ ] Authentication: OAuth authentication details
-* [ ] Access group: Write access to coupon group resource
+- [ ] Authentication: OAuth authentication details
+- [ ] Access group: Write access to coupon group resource
 
 ## Resource information
 
-|               |                                              |
 | :------------ | :------------------------------------------- |
 | URI           | coupon/api/v1/upload/file/`{couponSeriedId}` |
 | HTTP method   | POST                                         |
@@ -25,7 +24,7 @@ This API helps to upload a batch of coupons to a coupon series. It provides the 
 curl --location 'https://eu.intouch.capillarytech.com/coupon/api/v1/upload/file/541854' \
 --header 'Postman-Token: 3056825f-5e0d-411e-a83d-e6ce0e6da3d2' \
 --header 'cache-control: no-cache' \
---header 'X-CAP-API-OAUTH-TOKEN: YOUR_JWT_TOKEN' \
+--header 'X-CAP-API-OAUTH-TOKEN: eyJraWQiOiJrMSIsImFsZyI6IlJTMjU2In0.eyJpc3MiOiJDYXBpbGxhcnkiLCJleHAiOjE3MTc2NTE4OTcsImp0aSI6InAxUFZRa0ZFdDJ2RUlrVlZvcHRWRnciLCJpYXQiOjE3MTc2NTEyOTcsInN1YiI6IkFiaWppdGggUCIsImNsaWVudaXRrM05rR213WFp3QzVPbzBON21TbyIsImRlZmF1bHRfdGlsbCI6NzUxMjE4MjEsInNjb3BlcyI6IltdIn0.pkcgBFZqRZbPBg1vEDM0lTf4Mz5up_Xip5tZHOsnxd_EydmuvNSCfJHvBDA-4o6kxGVdxTVkYPDGF_eOi8PpjXDKmPHN_dmf-L7NeS3kxBLxuRvaukCsSF9eP1Ao8VTpGW-sjwroEzKqgVDk4NGuEaAgGZc-edGToCrSnmX7KMl3IYMW6mTNj1Gd-CCuP9zR1ohCXsY5nmGfs65rHH9jC56GCda1baRKMOibYokVgyUzP8buPyOabpjt-qZMAMwxFXAZ7nEYAcPaLACGGXkGTOu_qwGwvHAQzGub2pVtztsTL0a58OAO-vcs-4eNijyOzMB4CXMqE8LQhWM3pPiPyg' \
 --form 'file=@"/C:/Users/abijhit.p/Downloads/couponbatchupload.csv"' \
 --form 'customerIdentifier="MOBILE"' \
 --form 'customerIdentifierColumn="0"'
@@ -37,22 +36,22 @@ curl --location 'https://eu.intouch.capillarytech.com/coupon/api/v1/upload/file/
 
 | Parameter        | Description                                                          |
 | :--------------- | :------------------------------------------------------------------- |
-| couponSeriedId* | Unique ID of the coupon series for which you need to upload coupons. |
+| couponSeriedId\* | Unique ID of the coupon series for which you need to upload coupons. |
 
 ## Body parameter
 
 | Parameter | Description |
 | --- | --- |
-| file* | Name of the CSV file containing customer and coupon details. There is no limit to the number of coupon codes—including externally managed coupons—that you can add in a file, but it is recommended to keep each batch to a maximum of 500,000 entries. |
-| customerIdentifier* | Customer identifier type used in the CSV file. Customer identifier type used in the CSV file. Supported values, MOBILE, EXTENAL_ID, and EMAIL. Use NOT_TAGGED as the identifier to upload only coupon codes. |
+| file\* | Name of the CSV file containing customer and coupon details. There is no limit to the number of coupon codes—including externally managed coupons—that you can add in a file, but it is recommended to keep each batch to a maximum of 500,000 entries. |
+| customerIdentifier\* | Customer identifier type used in the CSV file. Customer identifier type used in the CSV file. Supported values, MOBILE, EXTENAL_ID, and EMAIL. Use NOT_TAGGED as the identifier to upload only coupon codes. |
 | customerIdentifierColumn | Column ID of the customer identifier in the uploaded CSV file. |
 
 ## Header Required
 
 | Header                  | Description                    |
 | ----------------------- | ------------------------------ |
-| Content-Type*          | multipart/form-data            |
-| x-cap-api-oauth-token* | Generated authentication token |
+| Content-Type\*          | multipart/form-data            |
+| x-cap-api-oauth-token\* | Generated authentication token |
 
 ## Response parameter
 
@@ -107,216 +106,5 @@ curl --location 'https://eu.intouch.capillarytech.com/coupon/api/v1/upload/file/
         ],
         "fileName": "couponbatchupload_1717651325326_541854.csv"
     }
-}
-```
-
-## OpenAPI definition
-
-```json
-{
-  "openapi": "3.1.0",
-  "info": {
-    "title": "v1",
-    "version": "1.0"
-  },
-  "servers": [
-    {
-      "url": "https://{host}",
-      "variables": {
-        "host": {
-          "default": "host"
-        }
-      }
-    }
-  ],
-  "components": {
-    "securitySchemes": {
-      "sec0": {
-        "type": "http",
-        "scheme": "basic"
-      }
-    }
-  },
-  "security": [
-    {
-      "sec0": []
-    }
-  ],
-  "paths": {
-    "/coupon/api/v1/upload/file/{couponSeriedId}": {
-      "post": {
-        "summary": "Upload Coupons (Batch)",
-        "description": "",
-        "operationId": "upload-coupons-batch",
-        "parameters": [
-          {
-            "name": "couponSeriedId*",
-            "in": "path",
-            "description": "Unique ID of the coupon series for which you need to upload coupons.",
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            },
-            "required": true
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "RAW_BODY": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "200",
-            "content": {
-              "application/json": {
-                "examples": {
-                  "Sample Response": {
-                    "value": "{\n    \"success\": true,\n    \"status\": 200,\n    \"result\": {\n        \"orgId\": 100458,\n        \"couponSeriesId\": 541854,\n        \"uploadJobStatuses\": [\n            {\n                \"jobId\": 222696,\n                \"uploadStatus\": \"STARTED\",\n                \"createdOn\": \"1717651325445\",\n                \"updatedOn\": \"1717651325445\",\n                \"errorFileUrl\": null,\n                \"successFileUrl\": null,\n                \"uploadedFileUrl\": \"couponbatchupload_1717651325326_541854.csv\",\n                \"totalUploadedCount\": 0,\n                \"actualRowCount\": 0,\n                \"errorCount\": 0,\n                \"uploadTableName\": null,\n                \"uploadedFileName\": \"couponbatchupload.csv\",\n                \"audienceGroupId\": 0,\n                \"audienceGroupVersionId\": 0\n            }\n        ],\n        \"fileName\": \"couponbatchupload_1717651325326_541854.csv\"\n    }\n}"
-                  }
-                },
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "example": true,
-                      "default": true
-                    },
-                    "status": {
-                      "type": "integer",
-                      "example": 200,
-                      "default": 0
-                    },
-                    "result": {
-                      "type": "object",
-                      "properties": {
-                        "orgId": {
-                          "type": "integer",
-                          "example": 100458,
-                          "default": 0
-                        },
-                        "couponSeriesId": {
-                          "type": "integer",
-                          "example": 541854,
-                          "default": 0
-                        },
-                        "uploadJobStatuses": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "jobId": {
-                                "type": "integer",
-                                "example": 222696,
-                                "default": 0
-                              },
-                              "uploadStatus": {
-                                "type": "string",
-                                "example": "STARTED"
-                              },
-                              "createdOn": {
-                                "type": "string",
-                                "example": "1717651325445"
-                              },
-                              "updatedOn": {
-                                "type": "string",
-                                "example": "1717651325445"
-                              },
-                              "errorFileUrl": {},
-                              "successFileUrl": {},
-                              "uploadedFileUrl": {
-                                "type": "string",
-                                "example": "couponbatchupload_1717651325326_541854.csv"
-                              },
-                              "totalUploadedCount": {
-                                "type": "integer",
-                                "example": 0,
-                                "default": 0
-                              },
-                              "actualRowCount": {
-                                "type": "integer",
-                                "example": 0,
-                                "default": 0
-                              },
-                              "errorCount": {
-                                "type": "integer",
-                                "example": 0,
-                                "default": 0
-                              },
-                              "uploadTableName": {},
-                              "uploadedFileName": {
-                                "type": "string",
-                                "example": "couponbatchupload.csv"
-                              },
-                              "audienceGroupId": {
-                                "type": "integer",
-                                "example": 0,
-                                "default": 0
-                              },
-                              "audienceGroupVersionId": {
-                                "type": "integer",
-                                "example": 0,
-                                "default": 0
-                              }
-                            }
-                          }
-                        },
-                        "fileName": {
-                          "type": "string",
-                          "example": "couponbatchupload_1717651325326_541854.csv"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "400",
-            "content": {
-              "application/json": {
-                "examples": {
-                  "Result": {
-                    "value": "{}"
-                  }
-                },
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              }
-            }
-          }
-        },
-        "deprecated": false
-      }
-    }
-  },
-  "x-readme": {
-    "headers": [
-      {
-        "key": "Content-Type",
-        "value": "application/json"
-      },
-      {
-        "key": "Accept",
-        "value": "application/json"
-      }
-    ],
-    "explorer-enabled": true,
-    "proxy-enabled": true
-  },
-  "x-readme-fauxas": true
 }
 ```

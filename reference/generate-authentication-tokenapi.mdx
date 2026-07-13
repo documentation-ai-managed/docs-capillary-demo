@@ -24,21 +24,20 @@ When the token expires, you can regenerate it using `token/regenerate`.
    4. Use the token generated for validating the OTP to regenerate the token.
 
 3. Steps to generate token for password-based authentication:
-   1. For the first time user: * Use the steps mentioned above according to the type of application - mobile app or web app.
+   1. For the first time user: \* Use the steps mentioned above according to the type of application - mobile app or web app.
    2. From second time:
       1. Generate a session using a token generate API. You will get VIEW token and sessionId (valid for 15 minutes).
       2. Validate the password (password/validate) using the sessionId generated.
 
 ## Prerequisites
 
-* OTP must be enabled for the organization.
-* Daily OTP limit must be configured.
-* If using a password, password-based authentication must be enabled for the organization.
-* For mobile app logins, the device ID must be provided.
+- OTP must be enabled for the organization.
+- Daily OTP limit must be configured.
+- If using a password, password-based authentication must be enabled for the organization.
+- For mobile app logins, the device ID must be provided.
 
 ## Resource Information
 
-|                    |                                                                                                                     |
 | :----------------- | :------------------------------------------------------------------------------------------------------------------ |
 | URI for Mobile App | /auth/v1/token/generate                                                                                             |
 | URI for Web App    | /auth/v1/web/token/generate                                                                                         |
@@ -127,16 +126,16 @@ When the token expires, you can regenerate it using `token/regenerate`.
 
 | Parameter           | Datatype | Description                                                                                                                              |
 | ------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| identifierType*    | enum     | Identifier used for token generation. Values: MOBILE, EMAIL, USERNAME.                                                                   |
-| identifierValue*   | string   | Value of the specified identifierType.                                                                                                   |
-| deviceId*          | string   | Unique ID of the device from which the customer has generated the token.                                                                 |
-| brand*             | string   | Name of the brand or org for which authentication needs to be verified.                                                                  |
-| mobile**          | string   | Mobile number of the customer. Either the mobile number or email ID is required to authenticate with a username.                         |
-| email**           | string   | Email ID of the customer. Either the mobile number or email ID is required to authenticate with a username.                              |
-| password**        | string   | Password to log in to the app. Currently, there is no minimum or maximum character limit, and using special characters is not mandatory. |
-| confirmPassword** | string   | Reenter the password.                                                                                                                    |
+| identifierType\*    | enum     | Identifier used for token generation. Values: MOBILE, EMAIL, USERNAME.                                                                   |
+| identifierValue\*   | string   | Value of the specified identifierType.                                                                                                   |
+| deviceId\*          | string   | Unique ID of the device from which the customer has generated the token.                                                                 |
+| brand\*             | string   | Name of the brand or org for which authentication needs to be verified.                                                                  |
+| mobile\*\*          | string   | Mobile number of the customer. Either the mobile number or email ID is required to authenticate with a username.                         |
+| email\*\*           | string   | Email ID of the customer. Either the mobile number or email ID is required to authenticate with a username.                              |
+| password\*\*        | string   | Password to log in to the app. Currently, there is no minimum or maximum character limit, and using special characters is not mandatory. |
+| confirmPassword\*\* | string   | Reenter the password.                                                                                                                    |
 
-Parameters marked with *are mandatory, and parameters with* * indicate that either mobile or email is required for authentication with a username.
+Parameters marked with *are mandatory, and parameters with* \* indicate that either mobile or email is required for authentication with a username.
 
 ## Example response
 
@@ -150,7 +149,7 @@ Parameters marked with *are mandatory, and parameters with* * indicate that eith
       "message": "SUCCESS"
     },
     "auth": {
-      "token": "YOUR_JWT_TOKEN",
+      "token": "eyJpZHYiOlsiTU9CSUxFfDkxOTk5OTk5OTk5MyJdLCJkZXYiOiIxMjM0NTY3ODUiLCJvcmciOiJET0NERU1PIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwib2djIjpbIjEwMDczN3xuZWVyYWouZG9jIl0sImV4cCI6MTc1OTgzOTMzNSwiaWF0IjoxNzU5ODM1NzM1LCJyb2wiOiJWSUVXIn0.8gRfA0CdBjYuSLtNJwREvmYqaAtk9C0Zm-b_-gUqPNQ",
       "key": null
     },
     "user": {
@@ -170,7 +169,7 @@ Parameters marked with *are mandatory, and parameters with* * indicate that eith
       "message": "SUCCESS"
     },
     "auth": {
-      "token": "YOUR_JWT_TOKEN",
+      "token": "eyJpZHYiOlsiTU9CSUxFfDkxOTk5OTk5OTk5MSJdLCJkZXYiOiIxMjM0NTY3ODUiLCJvcmciOiJET0NERU1PIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwib2djIjpbIjEwMDczN3xuZWVyYWouZG9jIl0sImV4cCI6MTc1OTg0MTQxOSwiaWF0IjoxNzU5ODM3ODE5LCJyb2wiOiJWSUVXIn0.e1bltp_Tl7v4lBe0wRDH75NEPqmBcJBfZmFMdX9K-5s",
       "key": null
     },
     "user": {
@@ -190,7 +189,7 @@ Parameters marked with *are mandatory, and parameters with* * indicate that eith
       "message": "SUCCESS"
     },
     "auth": {
-      "token": "YOUR_JWT_TOKEN",
+      "token": "eyJpZHYiOlsiRU1BSUx8Y2FwdGVzdEBnbWFpbC5jb20iXSwiZGV2IjpudWxsLCJvcmciOiJET0NERU1PIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwib2djIjpbIjEwMDczN3xuZWVyYWouZG9jIl0sImV4cCI6MTc1OTgzODgyNSwiaWF0IjoxNzU5ODM4NzM1LCJyb2wiOiJWSUVXIn0.2r1IueohKRA5dUmcWL23Ue1dCbcRDCrTKmaZGdPKABU",
       "key": null
     },
     "user": {
@@ -210,7 +209,7 @@ Parameters marked with *are mandatory, and parameters with* * indicate that eith
       "message": "SUCCESS"
     },
     "auth": {
-      "token": "YOUR_JWT_TOKEN",
+      "token": "eyJpZHYiOlsiRU1BSUx8Y2FwX3Rlc3R0b2tlbmdlbkBnbWFpbC5jb20iXSwiZGV2IjpudWxsLCJvcmciOiJET0NERU1PIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwib2djIjpbIjEwMDczN3xuZWVyYWouZG9jIl0sImV4cCI6MTc1OTgzOTM5MywiaWF0IjoxNzU5ODM5MzAzLCJyb2wiOiJWSUVXIn0.t38TrWnszJrlEo2E4Amq91O54VOe7CED-OOQkNjK80w",
       "key": null
     },
     "user": {
@@ -246,328 +245,3 @@ Parameters marked with *are mandatory, and parameters with* * indicate that eith
 | Code | Description       |
 | :--- | :---------------- |
 | 1504 | Unsupported brand |
-
-## OpenAPI definition
-
-```json
-{
-  "openapi": "3.1.0",
-  "info": {
-    "title": "v1",
-    "version": "1.0"
-  },
-  "servers": [
-    {
-      "url": "https://{host}",
-      "variables": {
-        "host": {
-          "default": "host"
-        }
-      }
-    }
-  ],
-  "components": {
-    "securitySchemes": {
-      "sec0": {
-        "type": "http",
-        "scheme": "basic"
-      }
-    }
-  },
-  "security": [
-    {
-      "sec0": []
-    }
-  ],
-  "paths": {
-    "/auth/v1/web/token/generate": {
-      "post": {
-        "summary": "Generate Authentication Token",
-        "description": "Generate authentication for web application.",
-        "operationId": "generate-authentication-tokenapi",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "identifierType",
-                  "password",
-                  "confirmPassword",
-                  "brand",
-                  "deviceId",
-                  "identifierValue"
-                ],
-                "properties": {
-                  "identifierType": {
-                    "type": "string",
-                    "description": "Identifier used for token generation",
-                    "enum": [
-                      "MOBILE",
-                      "EMAIL",
-                      "USERNAME."
-                    ]
-                  },
-                  "mobile": {
-                    "type": "string",
-                    "description": "Mobile number of the customer. Either mobile number or email ID is required to authenticate with username."
-                  },
-                  "email": {
-                    "type": "string",
-                    "description": "Email ID of the customer. Either mobile number or email ID is required to authenticate with username."
-                  },
-                  "password": {
-                    "type": "string",
-                    "description": "Password to login to the app."
-                  },
-                  "confirmPassword": {
-                    "type": "string",
-                    "description": "Reenter the password."
-                  },
-                  "brand": {
-                    "type": "string",
-                    "description": "Name of the brand/org for which authentication needs to be verified."
-                  },
-                  "deviceId": {
-                    "type": "string",
-                    "description": "Unique ID of the device from which the customer has generated the token."
-                  },
-                  "identifierValue": {
-                    "type": "string",
-                    "description": "Identifier value"
-                  }
-                }
-              },
-              "examples": {
-                "Authenticate with mobile/email": {
-                  "value": {
-                    "identifierType": "MOBILE",
-                    "identifierValue": "0495678923",
-                    "deviceId": "deviceid1",
-                    "brand": "STANDARDAPP"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "200",
-            "content": {
-              "application/json": {
-                "examples": {
-                  "Result": {
-                    "value": "{\n    \"status\": {\n        \"success\": true,\n        \"code\": 200,\n        \"message\": \"SUCCESS\"\n    },\n    \"auth\": {\n        \"token\": \"YOUR_JWT_TOKEN\",\n        \"key\": null\n    },\n    \"user\": {\n        \"appRegistered\": false,\n        \"sessionId\": \"D-12c177af-dac7-4383-a0fb-6c09e148af8e\",\n        \"role\": \"VIEW\",\n        \"userRegisteredForPassword\": false\n    }\n}"
-                  },
-                  "Sample response for existing user": {
-                    "summary": "Sample response for existing user",
-                    "value": {
-                      "status": {
-                        "success": true,
-                        "code": 200,
-                        "message": "SUCCESS"
-                      },
-                      "auth": {
-                        "token": "YOUR_JWT_TOKEN",
-                        "key": null
-                      },
-                      "user": {
-                        "appRegistered": false,
-                        "sessionId": "P-6ec5fcc9-2bca-4778-9672-4ee5097d8313",
-                        "role": "VIEW",
-                        "userRegisteredForPassword": true
-                      }
-                    }
-                  },
-                  "Sample response for first time user when password is enabled": {
-                    "summary": "Sample response for first time user when password is enabled",
-                    "value": {
-                      "status": {
-                        "success": true,
-                        "code": 200,
-                        "message": "SUCCESS"
-                      },
-                      "auth": {
-                        "token": "YOUR_JWT_TOKEN",
-                        "key": null
-                      },
-                      "user": {
-                        "appRegistered": false,
-                        "sessionId": "P-4b9437d5-38fe-4252-9628-9960f9b221f8",
-                        "role": "VIEW",
-                        "userRegisteredForPassword": false
-                      }
-                    }
-                  },
-                  "For existing user using web app": {
-                    "summary": "For existing user using web app",
-                    "value": {
-                      "status": {
-                        "success": true,
-                        "code": 200,
-                        "message": "SUCCESS"
-                      },
-                      "auth": {
-                        "token": "YOUR_JWT_TOKEN",
-                        "key": null
-                      },
-                      "user": {
-                        "appRegistered": false,
-                        "sessionId": "P-a7f12cf8-8f64-4d74-87c1-644fdf67ef58",
-                        "role": "VIEW",
-                        "userRegisteredForPassword": true
-                      }
-                    }
-                  },
-                  "First time user when password is enabled and using web app": {
-                    "summary": "First time user when password is enabled and using web app",
-                    "value": {
-                      "status": {
-                        "success": true,
-                        "code": 200,
-                        "message": "SUCCESS"
-                      },
-                      "auth": {
-                        "token": "YOUR_JWT_TOKEN",
-                        "key": null
-                      },
-                      "user": {
-                        "appRegistered": false,
-                        "sessionId": "P-99bfa3b8-10bf-4f39-a705-333bd1ca10d1",
-                        "role": "VIEW",
-                        "userRegisteredForPassword": false
-                      }
-                    }
-                  }
-                },
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "object",
-                      "properties": {
-                        "success": {
-                          "type": "boolean",
-                          "example": true,
-                          "default": true
-                        },
-                        "code": {
-                          "type": "integer",
-                          "example": 200,
-                          "default": 0
-                        },
-                        "message": {
-                          "type": "string",
-                          "example": "SUCCESS"
-                        }
-                      }
-                    },
-                    "auth": {
-                      "type": "object",
-                      "properties": {
-                        "token": {
-                          "type": "string",
-                          "example": "YOUR_JWT_TOKEN"
-                        },
-                        "key": {}
-                      }
-                    },
-                    "user": {
-                      "type": "object",
-                      "properties": {
-                        "appRegistered": {
-                          "type": "boolean",
-                          "example": false,
-                          "default": true
-                        },
-                        "sessionId": {
-                          "type": "string",
-                          "example": "D-12c177af-dac7-4383-a0fb-6c09e148af8e"
-                        },
-                        "role": {
-                          "type": "string",
-                          "example": "VIEW"
-                        },
-                        "userRegisteredForPassword": {
-                          "type": "boolean",
-                          "example": false,
-                          "default": true
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "400",
-            "content": {
-              "application/json": {
-                "examples": {
-                  "Result": {
-                    "value": "{}"
-                  }
-                },
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              }
-            }
-          }
-        },
-        "deprecated": false,
-        "x-readme": {
-          "code-samples": [
-            {
-              "language": "shell",
-              "code": "{\n   \"identifierType\":\"USERNAME\",\n   \"identifierValue\":\"9945560224\",\n   \"mobile\":\"9988221100\",\n   \"email\": \"\",\n    \"deviceId\": \"deviceid1\",\n    \"brand\": \"STANDARDAPP\",\n    \"password\":\"password\",\n    \"confirmPassword\":\"password\"\n}",
-              "name": "Authenticate with username"
-            },
-            {
-              "code": "curl --location 'https://eu.api.capillarytech.com/auth/v1/token/generate' \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--header 'accept: application/json' \\\n--header 'Cookie: _cfuvid=r0qUeHW4DtOxdgIN8.dJs77Xj15OkoCeaHRiplR4Qxs-1759834804501-0.0.1.1-604800000' \\\n--data '{\n    \"identifierType\": \"MOBILE\",\n    \"identifierValue\": \"919999999993\",\n    \"brand\": \"DocDemo\",\n    \"deviceId\": \"123456785\"\n}'",
-              "language": "shell",
-              "name": "For existing user - Mobile app"
-            },
-            {
-              "code": "curl --location 'https://eu.api.capillarytech.com/auth/v1/token/generate' \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--header 'accept: application/json' \\\n--header 'Cookie: _cfuvid=r0qUeHW4DtOxdgIN8.dJs77Xj15OkoCeaHRiplR4Qxs-1759834804501-0.0.1.1-604800000' \\\n--data '{\n    \"identifierType\": \"MOBILE\",\n    \"identifierValue\": \"919999999991\",\n    \"brand\": \"DocDemo\",\n    \"deviceId\": \"123456785\",\n    \"password\" : \"abc123\",\n    \"confirmPassword\" : \"abc123\"\n}'",
-              "language": "shell",
-              "name": "For first time user when password authentication is enabled"
-            },
-            {
-              "code": "curl --location 'https://eu.api.capillarytech.com/auth/v1/web/token/generate' \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--header 'accept: application/json' \\\n--header 'Cookie: _cfuvid=dx9m0omOPswla2ni.yXNOV.9_4qHLCcfMI_vqjitSvU-1759835382650-0.0.1.1-604800000; _cfuvid=r0qUeHW4DtOxdgIN8.dJs77Xj15OkoCeaHRiplR4Qxs-1759834804501-0.0.1.1-604800000' \\\n--data-raw '\n{\n  \"identifierType\": \"EMAIL\",\n   \"identifierValue\": \"captest@gmail.com\",\n    \"brand\": \"DocDemo\"\n}\n'",
-              "language": "shell",
-              "name": "For existing user using web app"
-            },
-            {
-              "code": "curl --location 'https://eu.api.capillarytech.com/auth/v1/web/token/generate' \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--header 'accept: application/json' \\\n--header 'Cookie: _cfuvid=dx9m0omOPswla2ni.yXNOV.9_4qHLCcfMI_vqjitSvU-1759835382650-0.0.1.1-604800000; _cfuvid=r0qUeHW4DtOxdgIN8.dJs77Xj15OkoCeaHRiplR4Qxs-1759834804501-0.0.1.1-604800000' \\\n--data-raw '\n{\n  \"identifierType\": \"EMAIL\",\n   \"identifierValue\": \"cap_testtokengen@gmail.com\",\n    \"brand\": \"DocDemo\",\n    \"password\" : \"abc123\",\n    \"confirmPassword\" : \"abc123\"\n}\n'",
-              "language": "shell",
-              "name": "First time user when password is enabled and using web app"
-            }
-          ],
-          "samples-languages": [
-            "shell"
-          ]
-        }
-      }
-    }
-  },
-  "x-readme": {
-    "headers": [
-      {
-        "key": "Content-Type",
-        "value": "application/json"
-      },
-      {
-        "key": "Accept",
-        "value": "application/json"
-      }
-    ],
-    "explorer-enabled": true,
-    "proxy-enabled": true
-  },
-  "x-readme-fauxas": true
-}
-```

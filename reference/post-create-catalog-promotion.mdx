@@ -8,9 +8,9 @@ This API is used to create catalog promotions and link it to a reward.
 
   Notes
 
-* By default, the reward catalog promotion is not enabled for the organization. Create a ticket to the Capillary Product Support team.
-* A reward can be linked to only one active- running or scheduled promotion.
-* Promotion can be disabled but cannot be re-enabled.
+- By default, the reward catalog promotion is not enabled for the organization. Create a ticket to the Capillary Product Support team.
+- A reward can be linked to only one active- running or scheduled promotion.
+- Promotion can be disabled but cannot be re-enabled.
 
 </Callout>
 
@@ -18,8 +18,8 @@ This API is used to create catalog promotions and link it to a reward.
 
   Notes
 
-* For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
-* Start time and end time are in UTC zone.
+- For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
+- Start time and end time are in UTC zone.
 
 </Callout>
 
@@ -56,12 +56,11 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/pr
 
 ## Prerequisites
 
-* [ ] Authentication: Basic or OAuth authentication
-* [ ] Default access group
+- [ ] Authentication: Basic or OAuth authentication
+- [ ] Default access group
 
 ## Resource information
 
-|                        |                                                |
 | :--------------------- | :--------------------------------------------- |
 | URI                    | /api_gateway/rewards/core/v1/promotion/create |
 | HTTP Method            | POST                                           |
@@ -73,17 +72,17 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/pr
 
 | Parameter              | Data Type         | Description                                                                                                                                     |
 | ---------------------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| startTime*            | String            | Start date and time of the catalog promotion. Ex: 2024-05-04T20:58:49.000Z (Start time is in UTC zone.)                                         |
-| endTime*              | String            | End date and time of the catalog promotion. Ex: 2025-10-25T05:46Z (End time is in UTC zone.)                                                    |
-| discountType*         | Enum              | Type of discount being applied. Supported values: ABSOLUTE, PERCENTAGE, FIXED                                                                   |
-| discountValue*        | Integer           | Value of the discount. Ex: 1                                                                                                                    |
-| brandId*              | String            | You can use the [API](https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/getAll) and retrieve the brand ID of your brand. Ex: 1 |
-| languageSpecificInfo* | Array             | Array containing language-specific information                                                                                                  |
-| .languageCode*        | String            | Language code                                                                                                                                   |
-| .name*                | String            | Name in the specified language                                                                                                                  |
-| .description*         | String            | Description in the specified language                                                                                                           |
-| .enabled*             | Boolean           | Indicates if the language entry is enabled                                                                                                      |
-| rewardIds*            | Array of Integers | Reward IDs on which catalog promotion will be applied. Ex: 112295                                                                               |
+| startTime\*            | String            | Start date and time of the catalog promotion. Ex: 2024-05-04T20:58:49.000Z (Start time is in UTC zone.)                                         |
+| endTime\*              | String            | End date and time of the catalog promotion. Ex: 2025-10-25T05:46Z (End time is in UTC zone.)                                                    |
+| discountType\*         | Enum              | Type of discount being applied. Supported values: ABSOLUTE, PERCENTAGE, FIXED                                                                   |
+| discountValue\*        | Integer           | Value of the discount. Ex: 1                                                                                                                    |
+| brandId\*              | String            | You can use the [API](https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/getAll) and retrieve the brand ID of your brand. Ex: 1 |
+| languageSpecificInfo\* | Array             | Array containing language-specific information                                                                                                  |
+| .languageCode\*        | String            | Language code                                                                                                                                   |
+| .name\*                | String            | Name in the specified language                                                                                                                  |
+| .description\*         | String            | Description in the specified language                                                                                                           |
+| .enabled\*             | Boolean           | Indicates if the language entry is enabled                                                                                                      |
+| rewardIds\*            | Array of Integers | Reward IDs on which catalog promotion will be applied. Ex: 112295                                                                               |
 
 ## Example response
 
@@ -119,352 +118,3 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/pr
 | :--------- | :---------------------------------------------------------------------- |
 | 11015      | Reward expired or disabled or free. Cannot apply for catalog promotion. |
 | 11004      | Reward already linked to active catalog promotion.                      |
-
-## OpenAPI definition
-
-```json
-{
-  "openapi": "3.1.0",
-  "info": {
-    "title": "v1",
-    "version": "1.0"
-  },
-  "servers": [
-    {
-      "url": "https://{host}",
-      "variables": {
-        "host": {
-          "default": "host"
-        }
-      }
-    }
-  ],
-  "components": {
-    "securitySchemes": {
-      "sec0": {
-        "type": "http",
-        "scheme": "basic"
-      }
-    }
-  },
-  "security": [
-    {
-      "sec0": []
-    }
-  ],
-  "paths": {
-    "/api_gateway/rewards/core/v1/promotion/create": {
-      "post": {
-        "summary": "Create catalog promotion",
-        "description": "",
-        "operationId": "post-create-catalog-promotion",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "RAW_BODY": {
-                    "type": "string",
-                    "description": "Sample request body",
-                    "default": "{     \"startTime\": \"2024-05-04T20:58:49.000Z\",     \"endTime\": \"2025-10-25T05:46Z\",     \"discountType\": \"ABSOLUTE\",     \"discountValue\": 1,     \"brandId\": \"1\",     \"enabled\": true,     \"languageSpecificInfo\":     [         {             \"languageCode\": \"en\",             \"name\": \"test1\",             \"description\": \"description\",             \"enabled\": true         }     ],     \"rewardIds\":     [         112295     ] }",
-                    "format": "json"
-                  }
-                }
-              },
-              "examples": {
-                "Request Body": {
-                  "value": {
-                    "startTime": "2024-05-04T20:58:49.000Z",
-                    "endTime": "2025-10-25T05:46Z",
-                    "discountType": "ABSOLUTE",
-                    "discountValue": 1,
-                    "brandId": "1",
-                    "enabled": true,
-                    "languageSpecificInfo": [
-                      {
-                        "languageCode": "en",
-                        "name": "test1",
-                        "description": "description",
-                        "enabled": true
-                      }
-                    ],
-                    "rewardIds": [
-                      112295
-                    ]
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "200",
-            "content": {
-              "application/json": {
-                "examples": {
-                  "Sample response": {
-                    "value": {
-                      "status": {
-                        "success": true,
-                        "code": 11002,
-                        "message": "Catalog promotion created successfully."
-                      },
-                      "catalogPromotion": {
-                        "id": 14862
-                      },
-                      "failedRewards": []
-                    },
-                    "summary": "Sample response"
-                  }
-                },
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "object",
-                      "properties": {
-                        "success": {
-                          "type": "boolean",
-                          "example": true,
-                          "default": true
-                        },
-                        "code": {
-                          "type": "integer",
-                          "example": 11002,
-                          "default": 0
-                        },
-                        "message": {
-                          "type": "string",
-                          "example": "Catalog promotion created successfully."
-                        }
-                      }
-                    },
-                    "catalogPromotion": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "integer",
-                          "example": 8,
-                          "default": 0
-                        }
-                      }
-                    },
-                    "failedRewards": {
-                      "type": "array"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "400",
-            "content": {
-              "application/json": {
-                "examples": {
-                  "11004": {
-                    "value": "{\n   \"status\": {\n       \"success\": false,\n       \"code\": 11004,\n       \"message\": \"Reward already linked to active catalog promotion.\"\n   },\n   \"catalogPromotion\": null,\n   \"failedRewards\": [\n       {\n           \"id\": 49827,\n           \"name\": \"20% off on women's wear\",\n           \"startTime\": \"2023-04-18 13:03:00\",\n           \"endTime\": \"2023-10-29 04:59:30\",\n           \"type\": \"VOUCHER\",\n           \"priority\": 1,\n           \"enabled\": true,\n           \"intouchPoints\": 100,\n           \"redemptionType\": \"INTOUCH_REWARD\",\n           \"customFields\": {}\n       }\n   ]\n}\n\n"
-                  },
-                  "11015": {
-                    "value": "{\n   \"status\": {\n       \"success\": false,\n       \"code\": 11015,\n       \"message\": \"Reward expired or disabled or free. Cannot apply  catalog promotion.\"\n   },\n   \"catalogPromotion\": null,\n   \"failedRewards\": [\n       {\n           \"id\": 49499,\n           \"name\": \"20 off on 2000\",\n           \"startTime\": \"2023-04-17 09:17:08\",\n           \"endTime\": \"2023-12-29 02:17:08\",\n           \"type\": \"VOUCHER\",\n           \"priority\": 1,\n           \"enabled\": false,\n           \"intouchPoints\": 150,\n           \"redemptionType\": \"INTOUCH_REWARD\",\n           \"customFields\": {}\n       }\n   ]\n}\n\n"
-                  }
-                },
-                "schema": {
-                  "oneOf": [
-                    {
-                      "title": "11015",
-                      "type": "object",
-                      "properties": {
-                        "status": {
-                          "type": "object",
-                          "properties": {
-                            "success": {
-                              "type": "boolean",
-                              "example": false,
-                              "default": true
-                            },
-                            "code": {
-                              "type": "integer",
-                              "example": 11015,
-                              "default": 0
-                            },
-                            "message": {
-                              "type": "string",
-                              "example": "Reward expired or disabled or free. Cannot apply  catalog promotion."
-                            }
-                          }
-                        },
-                        "catalogPromotion": {},
-                        "failedRewards": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "id": {
-                                "type": "integer",
-                                "example": 49499,
-                                "default": 0
-                              },
-                              "name": {
-                                "type": "string",
-                                "example": "20 off on 2000"
-                              },
-                              "startTime": {
-                                "type": "string",
-                                "example": "2023-04-17 09:17:08"
-                              },
-                              "endTime": {
-                                "type": "string",
-                                "example": "2023-12-29 02:17:08"
-                              },
-                              "type": {
-                                "type": "string",
-                                "example": "VOUCHER"
-                              },
-                              "priority": {
-                                "type": "integer",
-                                "example": 1,
-                                "default": 0
-                              },
-                              "enabled": {
-                                "type": "boolean",
-                                "example": false,
-                                "default": true
-                              },
-                              "intouchPoints": {
-                                "type": "integer",
-                                "example": 150,
-                                "default": 0
-                              },
-                              "redemptionType": {
-                                "type": "string",
-                                "example": "INTOUCH_REWARD"
-                              },
-                              "customFields": {
-                                "type": "object",
-                                "properties": {}
-                              }
-                            }
-                          }
-                        }
-                      }
-                    },
-                    {
-                      "title": "11004",
-                      "type": "object",
-                      "properties": {
-                        "status": {
-                          "type": "object",
-                          "properties": {
-                            "success": {
-                              "type": "boolean",
-                              "example": false,
-                              "default": true
-                            },
-                            "code": {
-                              "type": "integer",
-                              "example": 11004,
-                              "default": 0
-                            },
-                            "message": {
-                              "type": "string",
-                              "example": "Reward already linked to active catalog promotion."
-                            }
-                          }
-                        },
-                        "catalogPromotion": {},
-                        "failedRewards": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "id": {
-                                "type": "integer",
-                                "example": 49827,
-                                "default": 0
-                              },
-                              "name": {
-                                "type": "string",
-                                "example": "20% off on women's wear"
-                              },
-                              "startTime": {
-                                "type": "string",
-                                "example": "2023-04-18 13:03:00"
-                              },
-                              "endTime": {
-                                "type": "string",
-                                "example": "2023-10-29 04:59:30"
-                              },
-                              "type": {
-                                "type": "string",
-                                "example": "VOUCHER"
-                              },
-                              "priority": {
-                                "type": "integer",
-                                "example": 1,
-                                "default": 0
-                              },
-                              "enabled": {
-                                "type": "boolean",
-                                "example": true,
-                                "default": true
-                              },
-                              "intouchPoints": {
-                                "type": "integer",
-                                "example": 100,
-                                "default": 0
-                              },
-                              "redemptionType": {
-                                "type": "string",
-                                "example": "INTOUCH_REWARD"
-                              },
-                              "customFields": {
-                                "type": "object",
-                                "properties": {}
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "deprecated": false,
-        "x-readme": {
-          "code-samples": [
-            {
-              "code": "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/promotion/create' \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--header 'accept: application/json' \\\n--header 'Authorization: Basic bWFkaHVf3MjU2YQ==' \\\n--header 'Cookie: _cfuvid=qrR26fiL9O7hSaVDD64eltEicRcuyxTkMuk2MPS2moc-1764581884487-0.0.1.1-604800000' \\\n--data '\n{\n  \"startTime\": \"2025-12-04T10:08:00.000Z\",\n  \"endTime\": \"2025-12-14T06:10:00.000Z\",\n  \"discountType\": \"PERCENTAGE\",\n  \"discountValue\": 20,\n  \"brandId\": \"61\",\n  \"languageSpecificInfo\": [\n    {\n      \"languageCode\": \"en\",\n      \"name\": \"UAT Catalog Promotion \",\n      \"description\": \"Catalog Promotion for UAT team\",\n      \"enabled\": true\n    }\n  ],\n  \"rewardIds\": [\n    496584\n  ]\n}\n'",
-              "language": "shell",
-              "name": "Sample request"
-            }
-          ],
-          "samples-languages": [
-            "shell"
-          ]
-        }
-      }
-    }
-  },
-  "x-readme": {
-    "headers": [
-      {
-        "key": "Content-Type",
-        "value": "application/json"
-      },
-      {
-        "key": "Accept",
-        "value": "application/json"
-      }
-    ],
-    "explorer-enabled": true,
-    "proxy-enabled": true
-  },
-  "x-readme-fauxas": true
-}
-```

@@ -8,14 +8,13 @@ Issues OTP to the customer’s mobile number/email ID using the sessionId genera
 
 OTP rate limits are enforced per mobile number based on your organisation's configuration. The following parameters control the rate limit:
 
-* **otpMaxCount**: The maximum number of OTPs that can be generated per mobile number within a specified time window.
-* **otpTimeOut**: The time window (in minutes) during which the maximum OTP count applies.
+- **otpMaxCount**: The maximum number of OTPs that can be generated per mobile number within a specified time window.
+- **otpTimeOut**: The time window (in minutes) during which the maximum OTP count applies.
 
 If these parameters are not set (null), there is no rate limit and OTP generation is unrestricted. Contact your administrator to change these limits.
 
 ## Resource Information
 
-|                    |                             |
 | ------------------ | --------------------------- |
 | URI for Mobile App | `/auth/v1/otp/generate`     |
 | URI for Web App    | `/auth/v1/web/otp/generate` |
@@ -70,217 +69,17 @@ For web application:
 
 | Parameter         | Datatype | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | ----------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| identifierType*  | enum     | Identifier used for authentication. Values: MOBILE, EMAIL, USERNAME.                                                                                                                                                                                                                                                                                                                                                                                            |
-| identifierValue* | string   | Value of the specified identifierType. For example, if identifierType is MOBILE, the identifierValue is mobile number. If you want to send the OTP to WhatsApp or Zalo, you need to raise a JIRA ticket to the sustenance team to [define the related configurations](https://docs.capillarytech.com/reference/authentication-configurations#integrating-whatsapp-and-zalo-for-otp-communication) and configure the templates.                                  |
-| deviceId**      | string   | Unique ID of the device from which the customer has generated the token. Required for mobile app.                                                                                                                                                                                                                                                                                                                                                               |
-| brand*           | string   | Name of the brand or org for which authentication needs to be verified.                                                                                                                                                                                                                                                                                                                                                                                         |
-| sessionId*       | string   | Session ID generated through the v1/token/generate API.                                                                                                                                                                                                                                                                                                                                                                                                         |
+| identifierType\*  | enum     | Identifier used for authentication. Values: MOBILE, EMAIL, USERNAME.                                                                                                                                                                                                                                                                                                                                                                                            |
+| identifierValue\* | string   | Value of the specified identifierType. For example, if identifierType is MOBILE, the identifierValue is mobile number. If you want to send the OTP to WhatsApp or Zalo, you need to raise a JIRA ticket to the sustenance team to [define the related configurations](https://docs.capillarytech.com/reference/authentication-configurations#integrating-whatsapp-and-zalo-for-otp-communication) and configure the templates.                                  |
+| deviceId\*\*      | string   | Unique ID of the device from which the customer has generated the token. Required for mobile app.                                                                                                                                                                                                                                                                                                                                                               |
+| brand\*           | string   | Name of the brand or org for which authentication needs to be verified.                                                                                                                                                                                                                                                                                                                                                                                         |
+| sessionId\*       | string   | Session ID generated through the v1/token/generate API.                                                                                                                                                                                                                                                                                                                                                                                                         |
 | hash              | string   | Hash value generated by the mobile application to encrypt the payload. The server-side validation is performed by matching this hash value. For information, refer to [Enable API encryption](https://docs.capillarytech.com/reference/authentication-configurations#enable-api-encryption). **Note:** This parameter is mandatory if the API payload encryption configurations are enabled and is not applicable if the API payload encryption is not enabled. |
 
-Parameters marked with *are mandatory, and the parameter with* * is required for the mobile app.
+Parameters marked with *are mandatory, and the parameter with* \* is required for the mobile app.
 
 ### Error
 
 | Error                    | Solution                                                                           |
 | :----------------------- | :--------------------------------------------------------------------------------- |
 | 5004 - Response tampered | Payload encryption is enabled, and the defined time for the hash value is expired. |
-
-## OpenAPI definition
-
-```json
-{
-  "openapi": "3.1.0",
-  "info": {
-    "title": "v1",
-    "version": "1.0"
-  },
-  "servers": [
-    {
-      "url": "https://{host}",
-      "variables": {
-        "host": {
-          "default": "host"
-        }
-      }
-    }
-  ],
-  "components": {
-    "securitySchemes": {
-      "sec0": {
-        "type": "http",
-        "scheme": "basic"
-      }
-    }
-  },
-  "security": [
-    {
-      "sec0": []
-    }
-  ],
-  "paths": {
-    "/auth/v1/web/otp/generate": {
-      "post": {
-        "summary": "Generate OTP",
-        "description": "This page provides you with information on Generate OTP API.",
-        "operationId": "generate-otp-api",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "identifierType",
-                  "brand",
-                  "deviceId",
-                  "sessionId"
-                ],
-                "properties": {
-                  "identifierType": {
-                    "type": "string",
-                    "description": "Identifier used for token generation. Values: MOBILE, EMAIL, USERNAME."
-                  },
-                  "mobile": {
-                    "type": "string",
-                    "description": "Mobile number of the customer. Either mobile number or email ID is required to authenticate with username."
-                  },
-                  "email": {
-                    "type": "string",
-                    "description": "Email ID of the customer. Either mobile number or email ID is required to authenticate with username."
-                  },
-                  "brand": {
-                    "type": "string",
-                    "description": "Name of the brand/org for which authentication needs to be verified."
-                  },
-                  "deviceId": {
-                    "type": "string",
-                    "description": "Unique ID of the device from which the customer has generated the token."
-                  },
-                  "sessionId": {
-                    "type": "string",
-                    "description": "Session ID generated through the `v1/token/generate` API."
-                  }
-                }
-              },
-              "examples": {
-                "Sample POST Body": {
-                  "value": {
-                    "identifierType": "MOBILE",
-                    "identifierValue": "9988221100",
-                    "deviceId": "32rtsdered",
-                    "brand": "STANDARDAPP",
-                    "sessionId": "D-502259d3-d4d6-4458-bc5f-b89d3d8e4c7b"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "200",
-            "content": {
-              "application/json": {
-                "examples": {
-                  "Sample response using web application": {
-                    "value": {
-                      "status": {
-                        "success": true,
-                        "code": 200,
-                        "message": "SUCCESS"
-                      }
-                    },
-                    "summary": "Sample response using web application"
-                  },
-                  "Sample response using mobile application": {
-                    "value": {
-                      "status": {
-                        "success": true,
-                        "code": 200,
-                        "message": "SUCCESS"
-                      }
-                    },
-                    "summary": "Sample response using mobile application"
-                  }
-                },
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "object",
-                      "properties": {
-                        "success": {
-                          "type": "boolean",
-                          "example": true,
-                          "default": true
-                        },
-                        "code": {
-                          "type": "integer",
-                          "example": 200,
-                          "default": 0
-                        },
-                        "message": {
-                          "type": "string",
-                          "example": "SUCCESS"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "400",
-            "content": {
-              "application/json": {
-                "examples": {
-                  "Result": {
-                    "value": "{}"
-                  }
-                },
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              }
-            }
-          }
-        },
-        "deprecated": false,
-        "x-readme": {
-          "code-samples": [
-            {
-              "code": "curl --location 'https://eu.api.capillarytech.com/auth/v1/otp/generate' \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--header 'accept: application/json' \\\n--header 'Cookie: _cfuvid=omyxxTL4JKRyz4yJ6akXXwAQb4MsROzdNed9SczptHs-1760004859086-0.0.1.1-604800000' \\\n--data '{\n    \"identifierType\": \"MOBILE\",\n    \"identifierValue\": \"919999999993\",\n    \"brand\": \"DocDemo\",\n    \"deviceId\": \"123456785\",\n    \"sessionId\": \"P-7df5e433-17bb-4f02-9ce0-7420ba69c7b4\"\n}'",
-              "language": "shell",
-              "name": "Sample request using mobile application"
-            },
-            {
-              "code": "curl --location 'https://eu.api.capillarytech.com/auth/v1/web/otp/generate' \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--header 'accept: application/json' \\\n--header 'Cookie: _cfuvid=omyxxTL4JKRyz4yJ6akXXwAQb4MsROzdNed9SczptHs-1760004859086-0.0.1.1-604800000' \\\n--data-raw '{\n    \"identifierType\": \"EMAIL\",\n    \"identifierValue\": \"captest@gmail.com\",\n    \"brand\": \"DocDemo\",\n    \n    \"sessionId\": \"P-e766af2a-f676-489e-9b24-8571f7af057b\"\n}'",
-              "language": "shell",
-              "name": "Sample request using web application"
-            }
-          ],
-          "samples-languages": [
-            "shell"
-          ]
-        }
-      }
-    }
-  },
-  "x-readme": {
-    "headers": [
-      {
-        "key": "Content-Type",
-        "value": "application/json"
-      },
-      {
-        "key": "Accept",
-        "value": "application/json"
-      }
-    ],
-    "explorer-enabled": true,
-    "proxy-enabled": true
-  },
-  "x-readme-fauxas": true
-}
-```

@@ -27,12 +27,11 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/customer
 
 ## Prerequisites
 
-* [ ] Authentication: Basic or OAuth authentication
-* [ ] Default access group
+- [ ] Authentication: Basic or OAuth authentication
+- [ ] Default access group
 
 ## Resource information
 
-|               |                                             |
 | :------------ | :------------------------------------------ |
 | URI           | /api_gateway/v1/badges/customer/revokeEarn |
 | HTTP method   | POST                                        |
@@ -55,9 +54,9 @@ Example: `X-CAP-CUSTOMER-IDENTIFIER: email`
 
 | Parameter       | Data Type | Description                                                         |
 | --------------- | --------- | ------------------------------------------------------------------- |
-| badgeMetaId*   | String    | Unique identifier ("id") generated during the creation of the badge |
-| customerId*    | String    | Unique identifier of the customer.                                  |
-| earnedBadgeId* | String    | Earned Badge ID generated during the badge issue.                   |
+| badgeMetaId\*   | String    | Unique identifier ("id") generated during the creation of the badge |
+| customerId\*    | String    | Unique identifier of the customer.                                  |
+| earnedBadgeId\* | String    | Earned Badge ID generated during the badge issue.                   |
 
 <CodeGroup show-lines="true" tabs={["json", "using X-CAP-CUSTOMER-IDENTIFIER header"]}>
 
@@ -112,207 +111,3 @@ Example: `X-CAP-CUSTOMER-IDENTIFIER: email`
 | 715        | Badge meta id is mandatory.          |
 
 <br />
-
-## OpenAPI definition
-
-```json
-{
-  "openapi": "3.1.0",
-  "info": {
-    "title": "v1",
-    "version": "1.0"
-  },
-  "servers": [
-    {
-      "url": "https://{host}",
-      "variables": {
-        "host": {
-          "default": "host"
-        }
-      }
-    }
-  ],
-  "components": {
-    "securitySchemes": {
-      "sec0": {
-        "type": "http",
-        "scheme": "basic"
-      }
-    }
-  },
-  "security": [
-    {
-      "sec0": []
-    }
-  ],
-  "paths": {
-    "/badges/customer/revokeEarn": {
-      "post": {
-        "summary": "Revoke issued badge",
-        "description": "",
-        "operationId": "revoke-issual-of-a-badge",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "badgeMetaId",
-                  "customerId",
-                  "earnedBadgeId"
-                ],
-                "properties": {
-                  "badgeMetaId": {
-                    "type": "string",
-                    "description": "Unique identifier for the badge metadata."
-                  },
-                  "customerId": {
-                    "type": "string",
-                    "description": "Unique identifier for the customer."
-                  },
-                  "earnedBadgeId": {
-                    "type": "string",
-                    "description": "Unique identifier for the earned badge."
-                  }
-                }
-              },
-              "examples": {
-                "Request Example": {
-                  "value": {
-                    "badgeMetaId": "698dae82d30c4f6b3da9dc06",
-                    "customerId": 566135941,
-                    "earnedBadgeId": "698daf848644c157e72d83f3"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "200",
-            "content": {
-              "application/json": {
-                "examples": {
-                  "Sample response": {
-                    "value": {
-                      "data": {
-                        "badgeMetaId": "698dae82d30c4f6b3da9dc06",
-                        "customerId": 566135941,
-                        "earnedBadgeId": "698daf848644c157e72d83f3",
-                        "isActive": false
-                      },
-                      "errors": [],
-                      "warnings": []
-                    },
-                    "summary": "Sample response"
-                  }
-                },
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "badgeMetaId": {
-                          "type": "string",
-                          "example": "653ddb33b3cda7078c7c68e9"
-                        },
-                        "customerId": {
-                          "type": "integer",
-                          "example": 62090013,
-                          "default": 0
-                        },
-                        "earnedBadgeId": {
-                          "type": "string",
-                          "example": "654cbea06bccde1274b6d3a2"
-                        },
-                        "isActive": {
-                          "type": "boolean",
-                          "example": false,
-                          "default": true
-                        }
-                      }
-                    },
-                    "errors": {
-                      "type": "array"
-                    },
-                    "warnings": {
-                      "type": "array"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "409",
-            "content": {
-              "application/json": {
-                "examples": {
-                  "Result": {
-                    "value": "{\n    \"data\": null,\n    \"errors\": [\n        {\n            \"code\": 814,\n            \"message\": \"Active earn instance is not present.\",\n            \"reference\": null\n        }\n    ],\n    \"warnings\": null\n}"
-                  }
-                },
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {},
-                    "errors": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "code": {
-                            "type": "integer",
-                            "example": 814,
-                            "default": 0
-                          },
-                          "message": {
-                            "type": "string",
-                            "example": "Active earn instance is not present."
-                          },
-                          "reference": {}
-                        }
-                      }
-                    },
-                    "warnings": {}
-                  }
-                }
-              }
-            }
-          }
-        },
-        "deprecated": false,
-        "x-readme": {
-          "code-samples": [
-            {
-              "code": "curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/customer/revokeEarn' \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic bWFkaHVfcjU2YQ==' \\\n--header 'Cookie: _cfuvid=fP0aLOEla8j8_wyp4v_8igbGmHaxQoYMP6R5y8I8XNo-1770892930272-0.0.1.1-604800000' \\\n--data '{\n    \"badgeMetaId\": \"698dae82d30c4f6b3da9dc06\",\n    \"customerId\": 566135941,\n    \"earnedBadgeId\": \"698daf848644c157e72d83f3\"\n}'",
-              "language": "shell",
-              "name": "Sample request"
-            }
-          ],
-          "samples-languages": [
-            "shell"
-          ]
-        }
-      }
-    }
-  },
-  "x-readme": {
-    "headers": [
-      {
-        "key": "Content-Type",
-        "value": "application/json"
-      },
-      {
-        "key": "Accept",
-        "value": "application/json"
-      }
-    ],
-    "explorer-enabled": true,
-    "proxy-enabled": true
-  },
-  "x-readme-fauxas": true
-}
-```

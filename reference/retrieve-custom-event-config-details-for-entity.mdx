@@ -12,12 +12,11 @@ For detailed information about our APIs and for hands-on testing, refer document
 
 ## Prerequisites
 
-* [ ] Authentication: Basic/OAuth authentication
-* [ ] Default access group
+- [ ] Authentication: Basic/OAuth authentication
+- [ ] Default access group
 
 ## Resource Information
 
-|               |                                                          |
 | :------------ | :------------------------------------------------------- |
 | URI           | /api_gateway/cortex/v1/neo-config/entity/`{entityType}` |
 | HTTP method   | GET                                                      |
@@ -88,129 +87,3 @@ curl --location --request GET 'eu.api.capillarytech.com/api_gateway/cortex/v1/ne
 | 401 UNAUTHORIZED | * Authentication is missing or invalid- The auth token is not provided |
 | 403 FORBIDDEN | * The authenticated user doesn't have permission to create configurations |
 | 500 INTERNAL_SERVER_ERROR | * Unexpected server errors occur- Database operations fail- Other runtime exceptions occur |
-
-## OpenAPI definition
-
-```json
-{
-  "openapi": "3.1.0",
-  "info": {
-    "title": "v1",
-    "version": "1.0"
-  },
-  "servers": [
-    {
-      "url": "https://{host}",
-      "variables": {
-        "host": {
-          "default": "host"
-        }
-      }
-    }
-  ],
-  "components": {
-    "securitySchemes": {
-      "sec0": {
-        "type": "http",
-        "scheme": "basic"
-      }
-    }
-  },
-  "security": [
-    {
-      "sec0": []
-    }
-  ],
-  "paths": {
-    "/api_gateway/cortex/v1/neo-config/entity/{entityType}": {
-      "get": {
-        "summary": "Retrieve Custom Event Config Details for an Entity",
-        "description": "",
-        "operationId": "retrieve-custom-event-config-details-for-entity",
-        "parameters": [
-          {
-            "name": "entitytype",
-            "in": "path",
-            "description": "TRANSACTION, CUSTOMER",
-            "schema": {
-              "type": "string"
-            },
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "200",
-            "content": {
-              "application/json": {
-                "examples": {
-                  "Result": {
-                    "value": {
-                      "data": {
-                        "orgId": 100737,
-                        "entityType": "TRANSACTION",
-                        "transformEndpoint": "/transform/transaction/custom",
-                        "active": true,
-                        "auditInfo": {
-                          "createdOn": "2025-04-23T06:59:56.411+00:00",
-                          "createdBy": 75155282,
-                          "lastUpdatedOn": "2025-04-23T07:06:33.947+00:00",
-                          "lastUpdatedBy": 75155282
-                        }
-                      },
-                      "errors": []
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "400",
-            "content": {
-              "application/json": {
-                "examples": {
-                  "Result": {
-                    "value": "{}"
-                  }
-                },
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              }
-            }
-          }
-        },
-        "deprecated": false,
-        "x-readme": {
-          "code-samples": [
-            {
-              "language": "curl",
-              "code": "curl --location --request GET 'eu.api.capillarytech.com/api_gateway/cortex/v1/neo-config/entity/TRANSACTION' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic bmlcmFqLmRvYzpiNGFmODA0MDA5Y2IwMzZhNGNjZGMzMzQzMWVmOWFjOQ==' \\\n--header 'Cookie: _cfuvid=dfGNwl01cEi2PH5VITS.zzfnmaVvZHqjsz8uMcy6KNA-1745384630231-0.0.1.1-604800000' \\\n--data '{\n  \"orgId\": 100737,\n  \"entityType\": \"TRANSACTION\",\n  \"transformEndpoint\": \"/transform/transaction/custom\",\n  \"active\": true\n}'"
-            }
-          ],
-          "samples-languages": [
-            "curl"
-          ]
-        }
-      }
-    }
-  },
-  "x-readme": {
-    "headers": [
-      {
-        "key": "Content-Type",
-        "value": "application/json"
-      },
-      {
-        "key": "Accept",
-        "value": "application/json"
-      }
-    ],
-    "explorer-enabled": true,
-    "proxy-enabled": true
-  },
-  "x-readme-fauxas": true
-}
-```
