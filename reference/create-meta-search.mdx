@@ -1,22 +1,18 @@
 ---
 title: Create search criteria
 ---
-
-<Callout kind="tip" title="Notes">
-
-- Make sure that you have appropriate access control configured. For more information, see [access group documentation](https://docs.capillarytech.com/docs/access-group).
-- The maximum number of PREFIX criteria you can create for a Customer entity per organization is two.
-- The maximum number of COMBINATION crtieria for an entiry per organization is five.
-
+<Callout kind="tip" collapsed="false">
+  - Make sure that you have appropriate access control configured. For more information, see [access group documentation](https://docs.capillarytech.com/docs/access-group).
+  - The maximum number of PREFIX criteria you can create for a Customer entity per organization is two.
+  - The maximum number of COMBINATION crtieria for an entiry per organization is five.
 </Callout>
 
-This API allows you to create a search filter/criteria. After the search filter is created, you need to [make a bulk trigger API request]([/reference/enable-bulk-trigger](/reference/enable-bulk-trigger)) to activate this.
+This API allows you to create a search filter/criteria. After the search filter is created, you need to [make a bulk trigger API request](\[/reference/enable-bulk-trigger]\(/reference/enable-bulk-trigger\)) to activate this.
 
 ## Example request
 
-<CodeGroup show-lines="true" tabs={["Create Transaction Search Criteria", "Create Customer Search Criteria"]}>
-
-  ```json Create Transaction Search Criteria
+<CodeGroup show-lines="true" tabs={["Create Transaction Search Criteria","Create Customer Search Criteria"]}>
+  ```bash "Create Transaction Search Criteria"
   curl --location 'https://eu.api.capillarytech.com/api_gateway/cortex/v1/criteria' \
   --header 'X-CAP-API-AUTH-ORG-ID: 100737' \
   --header 'Content-Type: application/json' \
@@ -48,7 +44,7 @@ This API allows you to create a search filter/criteria. After the search filter 
   }'
   ```
 
-  ```bash Create Customer Search Criteria
+  ```bash "Create Customer Search Criteria"
   curl --location 'https://eu.api.capillarytech.com/api_gateway/cortex/v1/criteria' \
   --header 'X-CAP-API-AUTH-ORG-ID: 100737' \
   --header 'Content-Type: application/json' \
@@ -88,29 +84,28 @@ This API allows you to create a search filter/criteria. After the search filter 
       }
   }'
   ```
-
 </CodeGroup>
 
 ## Request body parameter
 
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| name | String | Yes | Name of the search entity. |
-| entityType | enum | Yes | Type of entity being searched (`TRANSACTION`, `CUSTOMER`). |
-| searchStrategyType | String | Optional | Defines the search strategy type. `COMBINATION`: Matches records based on a combination of multiple defined fields. `PREFIX`: Matches records where field values start with the specified prefix. |
-| fieldDefinitions | Array | Optional | List of field definitions used in the search. |
-| .fieldId | String | Yes | The field to search on. For the Customer entity, the supported fields are: `firstName`, `lastName`, `email`, `mobile`, `externalId`, `fullName`, `cardnumber` and `cardExternalId`. For the Transaction entity, the supported fields are: `outlierStatus`, `billDate`, `billNumber`, and `storecode` (additional field). |
-| .fieldAlias | String | Optional | A user-friendly display name for a field. It pairs with the technical parameter name (`fieldId`) when defining search criteria. The alias can be used by clients or UI layers to render meaningful labels. For example, if the `fieldId` is `dob`, the `fieldAlias` can be set as **Date of Birth**, which the client/UI page displays instead of the raw key. |
-| .fieldType | enum | Yes | Type of field. For `COMBINATION` search strategy: **`INDEXED`**: Required to fetch results. At least one indexed field must always be provided. - **`FILTERABLE`**: Optional. Used to refine results when combined with indexed fields. **Examples** If fields **A** and **B** are indexed, both must be included in the search request. If **A** is indexed and **B** is filterable, you can search with **A** alone or with **A + B** for more specific results. **Limits** - Up to **5 filterable fields** are allowed. - Up to **6 indexed fields** are allowed. For `PREFIX`, all the fields should be defined as `INDEXED`. |
-| .dataSourceDetails | Object | Optional | Contains details about the field source. |
-| ..fieldReference | String | Yes | Applicable in **`COMBINATION`** criteria when you include custom, extended, or additional fields. **Examples** `extendedFields.ship_email` - lets you search customers by their shipping email. `customFields.age` → lets you search customers by a custom age field. `additionalFields.storecode` → *(transaction only)*, lets you search transactions by store code. |
-| ..dataType | String | Yes | Data type of the field (e.g., `STRING`). |
-| .numberOfCards | String | Conditional | Specifies the number of card identifiers (`cardNumber` or `cardExternalId`) indexed for each customer profile. Applicable for `cardNumber`, `cardExternalId`. This defines the maximum number of cards you can use to search for a customer. **Behaviour:** * If a customer has more cards linked than the configured limit, only the most recently linked cards (up to the limit) are indexed. * The same value should be set for both `cardNumber` and `cardExternalId` to avoid inconsistency. Supported values: Minimum 1, maximum 5 |
-| searchDataPolicy | Object | Optional | Defines the data retention policy and expiration details for the search data. |
-| .dataRetentionPolicy | Object | Optional | Defines how long the search data is retained. |
-| ..unit | String | Optional | Time unit for data retention. Only `DAYS` is supported. |
-| ..value | Integer | Optional | Number of days of historical data to fetch, counted backwards from when the search criteria is created. **Default**: 180 days **Maximum**: 365 days (transaction), 1826 days (customer) |
-| . expireDataFrom | String | Optional | Specifies the action (such as creating or updating a search criteria) from which the search data gets indexed. Currently, only **`CREATE`** is supported. |
+| Field                | Type    | Required    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| -------------------- | ------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name                 | String  | Yes         | Name of the search entity.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| entityType           | enum    | Yes         | Type of entity being searched (`TRANSACTION`, `CUSTOMER`).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| searchStrategyType   | String  | Optional    | Defines the search strategy type. `COMBINATION`: Matches records based on a combination of multiple defined fields. `PREFIX`: Matches records where field values start with the specified prefix.                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| fieldDefinitions     | Array   | Optional    | List of field definitions used in the search.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| .fieldId             | String  | Yes         | The field to search on. For the Customer entity, the supported fields are: `firstName`, `lastName`, `email`, `mobile`, `externalId`, `fullName`, `cardnumber` and `cardExternalId`. For the Transaction entity, the supported fields are: `outlierStatus`, `billDate`, `billNumber`, and `storecode` (additional field).                                                                                                                                                                                                                                                                                                          |
+| .fieldAlias          | String  | Optional    | A user-friendly display name for a field. It pairs with the technical parameter name (`fieldId`) when defining search criteria. The alias can be used by clients or UI layers to render meaningful labels. For example, if the `fieldId` is `dob`, the `fieldAlias` can be set as **Date of Birth**, which the client/UI page displays instead of the raw key.                                                                                                                                                                                                                                                                    |
+| .fieldType           | enum    | Yes         | Type of field. For `COMBINATION` search strategy: **`INDEXED`**: Required to fetch results. At least one indexed field must always be provided. - **`FILTERABLE`**: Optional. Used to refine results when combined with indexed fields. **Examples** If fields **A** and **B** are indexed, both must be included in the search request. If **A** is indexed and **B** is filterable, you can search with **A** alone or with **A + B** for more specific results. **Limits** - Up to **5 filterable fields** are allowed. - Up to **6 indexed fields** are allowed. For `PREFIX`, all the fields should be defined as `INDEXED`. |
+| .dataSourceDetails   | Object  | Optional    | Contains details about the field source.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ..fieldReference     | String  | Yes         | Applicable in **`COMBINATION`** criteria when you include custom, extended, or additional fields. **Examples** `extendedFields.ship_email` - lets you search customers by their shipping email. `customFields.age` → lets you search customers by a custom age field. `additionalFields.storecode` → _(transaction only)_, lets you search transactions by store code.                                                                                                                                                                                                                                                            |
+| ..dataType           | String  | Yes         | Data type of the field (e.g., `STRING`).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| .numberOfCards       | String  | Conditional | Specifies the number of card identifiers (`cardNumber` or `cardExternalId`) indexed for each customer profile. Applicable for `cardNumber`, `cardExternalId`. This defines the maximum number of cards you can use to search for a customer. **Behaviour:** \* If a customer has more cards linked than the configured limit, only the most recently linked cards (up to the limit) are indexed. \* The same value should be set for both `cardNumber` and `cardExternalId` to avoid inconsistency. Supported values: Minimum 1, maximum 5                                                                                        |
+| searchDataPolicy     | Object  | Optional    | Defines the data retention policy and expiration details for the search data.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| .dataRetentionPolicy | Object  | Optional    | Defines how long the search data is retained.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| ..unit               | String  | Optional    | Time unit for data retention. Only `DAYS` is supported.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| ..value              | Integer | Optional    | Number of days of historical data to fetch, counted backwards from when the search criteria is created. **Default**: 180 days **Maximum**: 365 days (transaction), 1826 days (customer)                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| . expireDataFrom     | String  | Optional    | Specifies the action (such as creating or updating a search criteria) from which the search data gets indexed. Currently, only **`CREATE`** is supported.                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 
 ## Response parameters
 
@@ -140,8 +135,7 @@ This API allows you to create a search filter/criteria. After the search filter 
 | errors                  | Array   | List of errors encountered during processing (if any).                              |
 
 <CodeGroup show-lines="true" tabs={["JSON"]}>
-
-  ```json "JSON"
+  ```json JSON
   {
       "data": {
           "id": "67c091299e22382d75d405bc",
@@ -202,5 +196,5 @@ This API allows you to create a search filter/criteria. After the search filter 
   }
 
   ```
-
 </CodeGroup>
+
