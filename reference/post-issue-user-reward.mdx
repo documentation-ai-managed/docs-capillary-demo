@@ -38,8 +38,8 @@ If you want to issue a reward created for a specific customer segment, the user 
 
 ## Resource information
 
-| :--------------------- | :------------------------------------------------------------------------------------------- |
 | URI                    | /api_gateway/rewards/core/v1/user/rewards/issue?username=`{store}`\&amp;skip_validation=true |
+| :--------------------- | :------------------------------------------------------------------------------------------- |
 | HTTP Method            | POST                                                                                         |
 | Pagination             | No                                                                                           |
 | Batch support          | No                                                                                           |
@@ -164,7 +164,7 @@ If you want to issue a reward created for a specific customer segment, the user 
   }
   ```
 
-  ```json
+  ```json With payment config
   {
     "mobile": "919886022338",
     "brand": "marvel_automation",
@@ -182,7 +182,7 @@ If you want to issue a reward created for a specific customer segment, the user 
   }
   ```
 
-  ```json
+  ```json With fullfilment status and custom field
   {
       "brand": "lekhanaBrand",
       "transactionNumber": "123456789",
@@ -202,7 +202,7 @@ If you want to issue a reward created for a specific customer segment, the user 
   }
   ```
 
-  ```json
+  ```json With user_group2_primary_user_id
   {
       "mobile": "11223569865",
       "brand": "BUKL",
@@ -220,7 +220,7 @@ If you want to issue a reward created for a specific customer segment, the user 
   }
   ```
 
-  ```json
+  ```json With params in Reward Level
   {
       "mobile": "162651476021",
       "brand": "BUKL",
@@ -244,7 +244,7 @@ If you want to issue a reward created for a specific customer segment, the user 
   }
   ```
 
-  ```json
+  ```json With params in Request Level
   {
       "mobile": "9988776655",
       "brand": "BUKL",
@@ -266,7 +266,7 @@ If you want to issue a reward created for a specific customer segment, the user 
   }
   ```
 
-  ```json
+  ```json With redemptionValue
   {
       "mobile": "9988776655",
       "brand": "BUKL",
@@ -290,7 +290,7 @@ If you want to issue a reward created for a specific customer segment, the user 
   }
   ```
 
-  ```json
+  ```json With event log ID and request ID
   {
       "mobile": "919825752814",
       "brand": "testOrg_marvel_20230822_147",
@@ -312,7 +312,7 @@ If you want to issue a reward created for a specific customer segment, the user 
   }
   ```
 
-  ```json
+  ```json Issuing a reward by defining  Quantity and Redemption Value
   {
       "mobile": "11223569865",
       "brand": "BUKL",
@@ -327,7 +327,7 @@ If you want to issue a reward created for a specific customer segment, the user 
       }
   ```
 
-  ```json
+  ```json Issuing a reward with only quantity
   {
       "mobile": "11223569865",
       "brand": "BUKL",
@@ -382,7 +382,7 @@ If you want to issue a reward created for a specific customer segment, the user 
 
 <CodeGroup show-lines="true" tabs={["200 OK", "Reward issued partially", "Invalid payment mode", "Payment config ID mandatory", "User don't belong to group", "Non-Redeemable points", "Invalid ID is passed", "Invalid Request ID", "Duplicate Request ID", "User not associated with the card series linked to reward"]}>
 
-  ```json
+  ```json 200 OK
   {
       "status": {
           "success": false,
@@ -472,7 +472,7 @@ If you want to issue a reward created for a specific customer segment, the user 
   }
   ```
 
-  ```json
+  ```json Reward issued partially
   {
       "status": {
           "success": false,
@@ -543,7 +543,7 @@ If you want to issue a reward created for a specific customer segment, the user 
   }
   ```
 
-  ```json
+  ```json Invalid payment mode
   {
       "status": {
           "success": false,
@@ -559,7 +559,7 @@ If you want to issue a reward created for a specific customer segment, the user 
   }
   ```
 
-  ```text
+  ```text Payment config ID mandatory
   {
       "status": {
           "success": false,
@@ -569,7 +569,7 @@ If you want to issue a reward created for a specific customer segment, the user 
   }
   ```
 
-  ```json
+  ```json User don't belong to group
   {
       "status": {
           "success": false,
@@ -589,7 +589,7 @@ If you want to issue a reward created for a specific customer segment, the user 
   }
   ```
 
-  ```json
+  ```json Non-Redeemable points
   {
       "status": {
           "success": false,
@@ -610,7 +610,7 @@ If you want to issue a reward created for a specific customer segment, the user 
   }
   ```
 
-  ```json
+  ```json Invalid ID is passed
   {
       "status": {
           "success": false,
@@ -631,7 +631,7 @@ If you want to issue a reward created for a specific customer segment, the user 
   }
   ```
 
-  ```json
+  ```json Invalid Request ID
   {
       "status": {
           "success": false,
@@ -641,7 +641,7 @@ If you want to issue a reward created for a specific customer segment, the user 
   }
   ```
 
-  ```json
+  ```json Duplicate Request ID
   {
       "status": {
           "success": false,
@@ -651,7 +651,7 @@ If you want to issue a reward created for a specific customer segment, the user 
   }
   ```
 
-  ```json
+  ```json User not associated with the card series linked to reward
   {
       "status": {
           "success": false,
@@ -775,7 +775,7 @@ The system interprets the quantity as the redemption value and reward quantity a
 
 <CodeGroup show-lines="true" tabs={["200 OK", "Reward issued partially", "Invalid payment mode", "Payment config ID mandatory", "User don't belong to group", "Non-Redeemable points", "Invalid ID is passed", "Invalid Request ID", "Duplicate Request ID", "User not associated with the card series linked to reward"]}>
 
-  ```json
+  ```json 200 OK
   {
       "status": {
           "success": false,
@@ -865,7 +865,7 @@ The system interprets the quantity as the redemption value and reward quantity a
   }
   ```
 
-  ```json
+  ```json Reward issued partially
   {
       "status": {
           "success": false,
@@ -936,7 +936,7 @@ The system interprets the quantity as the redemption value and reward quantity a
   }
   ```
 
-  ```json
+  ```json Invalid payment mode
   {
       "status": {
           "success": false,
@@ -952,7 +952,7 @@ The system interprets the quantity as the redemption value and reward quantity a
   }
   ```
 
-  ```text
+  ```text Payment config ID mandatory
   {
       "status": {
           "success": false,
@@ -962,7 +962,7 @@ The system interprets the quantity as the redemption value and reward quantity a
   }
   ```
 
-  ```json
+  ```json User don't belong to group
   {
       "status": {
           "success": false,
@@ -982,7 +982,7 @@ The system interprets the quantity as the redemption value and reward quantity a
   }
   ```
 
-  ```json
+  ```json Non-Redeemable points
   {
       "status": {
           "success": false,
@@ -1003,7 +1003,7 @@ The system interprets the quantity as the redemption value and reward quantity a
   }
   ```
 
-  ```json
+  ```json Invalid ID is passed
   {
       "status": {
           "success": false,
@@ -1024,7 +1024,7 @@ The system interprets the quantity as the redemption value and reward quantity a
   }
   ```
 
-  ```json
+  ```json Invalid Request ID
   {
       "status": {
           "success": false,
@@ -1034,7 +1034,7 @@ The system interprets the quantity as the redemption value and reward quantity a
   }
   ```
 
-  ```json
+  ```json Duplicate Request ID
   {
       "status": {
           "success": false,
@@ -1044,7 +1044,7 @@ The system interprets the quantity as the redemption value and reward quantity a
   }
   ```
 
-  ```json
+  ```json User not associated with the card series linked to reward
   {
       "status": {
           "success": false,

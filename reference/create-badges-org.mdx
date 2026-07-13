@@ -25,8 +25,8 @@ Badge name should be unique and is case sensitive.
 
 ## Resource information
 
-| :------------ | :-------------------------------- |
 | URI           | /api_gateway/v1/badges/badgeMeta |
+| :------------ | :-------------------------------- |
 | HTTP method   | PUT                               |
 | Pagination    | NA                                |
 | Batch support | NA                                |
@@ -35,7 +35,7 @@ Badge name should be unique and is case sensitive.
 
 <CodeGroup show-lines="true" tabs={["Sample request for earn type- ISSUE_EARN", "Sample request for expiry type- ABSOLUTE"]}>
 
-  ```bash
+  ```bash Sample request for earn type- ISSUE_EARN
   curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta' \
   --data '{
       "name": "Badge Issue ",
@@ -116,7 +116,7 @@ Badge name should be unique and is case sensitive.
   }'
   ```
 
-  ```bash
+  ```bash Sample request for expiry type- ABSOLUTE
   curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta' \
   --header 'Content-Type: application/json' \
   --header 'Authorization: Basic bWFkaH2YQ==' \
@@ -241,7 +241,7 @@ Badge name should be unique and is case sensitive.
 
 <CodeGroup show-lines="true" tabs={["Request body", "Request - Fixed window", "Request - with badge expiry"]}>
 
-  ```json
+  ```json Request body
    {
           "id": "8",
           "orgId": 100606,
@@ -318,7 +318,7 @@ Badge name should be unique and is case sensitive.
       }
   ```
 
-  ```json
+  ```json Request - Fixed window
   {
       "id": "661e11563753c37878a8b2c7",
       "orgId": 100606,
@@ -407,7 +407,7 @@ Badge name should be unique and is case sensitive.
   }
   ```
 
-  ```json
+  ```json Request - with badge expiry
   {
       "id" : "66decf4459a5c872324b9577",
       "name": "Badge Issue earn40",
@@ -444,7 +444,7 @@ Badge name should be unique and is case sensitive.
 
 <CodeGroup show-lines="true" tabs={["Sample response for earn type- ISSUE_EARN", "Sample response for expiry type- ABSOLUTE"]}>
 
-  ```json
+  ```json Sample response for earn type- ISSUE_EARN
   {
       "data": {
           "id": "696df3810772ad476ecf6a07",
@@ -535,7 +535,7 @@ Badge name should be unique and is case sensitive.
   }
   ```
 
-  ```json
+  ```json Sample response for expiry type- ABSOLUTE
   {
       "data": {
           "id": "696df21c0772ad476ecf69d4",
@@ -660,7 +660,7 @@ Badge name should be unique and is case sensitive.
 
 <CodeGroup show-lines="true" tabs={["200", "Response-Fixed window", "Response: With badge Expiry", "Failure: Start date cannot change after badge is live", "Failure: Start Date should be before End Date", "Failure: Expiry date cannot be past date", "Failure: Interchanging of fixed window to rolling window and vice versa is not allowed."]}>
 
-  ```json
+  ```json 200
   {
       "data": {
           "id": "692d2b942814b4096ebb9aa1",
@@ -763,7 +763,7 @@ Badge name should be unique and is case sensitive.
   }
   ```
 
-  ```json
+  ```json Response-Fixed window
   {
       "data": {
           "id": "661e11563753c37878a8b2c7",
@@ -839,7 +839,7 @@ Badge name should be unique and is case sensitive.
   }
   ```
 
-  ```json
+  ```json Response: With badge Expiry
   {
       "data": {
           "id": "66decf4459a5c872324b9577",
@@ -887,7 +887,7 @@ Badge name should be unique and is case sensitive.
   }
   ```
 
-  ```json
+  ```json Failure: Start date cannot change after badge is live
       "errors": [
           {
               "code": 723,
@@ -896,7 +896,7 @@ Badge name should be unique and is case sensitive.
           },
   ```
 
-  ```json
+  ```json Failure: Start Date should be before End Date
       "errors": [
           {
               "code": 720,
@@ -905,7 +905,7 @@ Badge name should be unique and is case sensitive.
           }
   ```
 
-  ```json
+  ```json Failure: Expiry date cannot be past date
       "errors": [
           {
               "code": 724,
@@ -914,7 +914,7 @@ Badge name should be unique and is case sensitive.
           }
   ```
 
-  ```json
+  ```json Failure: Interchanging of fixed window to rolling window and vice versa is not allowed.
       "errors": [
           {
               "code": 826,

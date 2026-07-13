@@ -20,7 +20,7 @@ Badge name should be unique and is case sensitive.
 
 ## Example request
 
-```bash title="Sample request"
+```bash Sample request
 curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Basic bWFkaMjU2YQ==' \
@@ -79,8 +79,8 @@ curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/v1/b
 
 ## Resource information
 
-| :------------ | :-------------------------------- |
 | URI           | /api_gateway/v1/badges/badgeMeta |
+| :------------ | :-------------------------------- |
 | HTTP method   | PUT                               |
 | Pagination    | NA                                |
 | Batch support | NA                                |
@@ -144,7 +144,7 @@ curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/v1/b
 
 <CodeGroup show-lines="true" tabs={["Request body", "Request - Fixed window", "Request - with badge expiry"]}>
 
-  ```json
+  ```json Request body
    {
           "id": "8",
           "orgId": 100606,
@@ -221,7 +221,7 @@ curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/v1/b
       }
   ```
 
-  ```json
+  ```json Request - Fixed window
   {
       "id": "661e11563753c37878a8b2c7",
       "orgId": 100606,
@@ -310,7 +310,7 @@ curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/v1/b
   }
   ```
 
-  ```json
+  ```json Request - with badge expiry
   {
       "id" : "66decf4459a5c872324b9577",
       "name": "Badge Issue earn40",
@@ -347,7 +347,7 @@ curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/v1/b
 
 <CodeGroup show-lines="true" tabs={["Sample response", "Response-Fixed window", "Response: With badge Expiry", "Failure: Start date cannot change after badge is live", "Failure: Start Date should be before End Date", "Failure: Expiry date cannot be past date", "Failure: Interchanging of fixed window to rolling window and vice versa is not allowed."]}>
 
-  ```json
+  ```json Sample response
   {
       "data": {
           "id": "68da6e72480b423e5c687597",
@@ -412,7 +412,7 @@ curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/v1/b
   }
   ```
 
-  ```json
+  ```json Response-Fixed window
   {
       "data": {
           "id": "661e11563753c37878a8b2c7",
@@ -488,7 +488,7 @@ curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/v1/b
   }
   ```
 
-  ```json
+  ```json Response: With badge Expiry
   {
       "data": {
           "id": "66decf4459a5c872324b9577",
@@ -536,7 +536,7 @@ curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/v1/b
   }
   ```
 
-  ```json
+  ```json Failure: Start date cannot change after badge is live
       "errors": [
           {
               "code": 723,
@@ -545,7 +545,7 @@ curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/v1/b
           },
   ```
 
-  ```json
+  ```json Failure: Start Date should be before End Date
       "errors": [
           {
               "code": 720,
@@ -554,7 +554,7 @@ curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/v1/b
           }
   ```
 
-  ```json
+  ```json Failure: Expiry date cannot be past date
       "errors": [
           {
               "code": 724,
@@ -563,7 +563,7 @@ curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/v1/b
           }
   ```
 
-  ```json
+  ```json Failure: Interchanging of fixed window to rolling window and vice versa is not allowed.
       "errors": [
           {
               "code": 826,
@@ -619,7 +619,7 @@ curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/v1/b
 
 <CodeGroup show-lines="true" tabs={["200", "Response-Fixed window", "Response: With badge Expiry", "Failure: Start date cannot change after badge is live", "Failure: Start Date should be before End Date", "Failure: Expiry date cannot be past date", "Failure: Interchanging of fixed window to rolling window and vice versa is not allowed."]}>
 
-  ```json
+  ```json 200
   {
       "data": {
           "id": "6968bf01eba595729384fc5e",
@@ -722,7 +722,7 @@ curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/v1/b
   }
   ```
 
-  ```json
+  ```json Response-Fixed window
   {
       "data": {
           "id": "661e11563753c37878a8b2c7",
@@ -798,7 +798,7 @@ curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/v1/b
   }
   ```
 
-  ```json
+  ```json Response: With badge Expiry
   {
       "data": {
           "id": "66decf4459a5c872324b9577",
@@ -846,7 +846,7 @@ curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/v1/b
   }
   ```
 
-  ```json
+  ```json Failure: Start date cannot change after badge is live
       "errors": [
           {
               "code": 723,
@@ -855,7 +855,7 @@ curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/v1/b
           },
   ```
 
-  ```json
+  ```json Failure: Start Date should be before End Date
       "errors": [
           {
               "code": 720,
@@ -864,7 +864,7 @@ curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/v1/b
           }
   ```
 
-  ```json
+  ```json Failure: Expiry date cannot be past date
       "errors": [
           {
               "code": 724,
@@ -873,7 +873,7 @@ curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/v1/b
           }
   ```
 
-  ```json
+  ```json Failure: Interchanging of fixed window to rolling window and vice versa is not allowed.
       "errors": [
           {
               "code": 826,

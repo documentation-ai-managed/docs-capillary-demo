@@ -18,8 +18,8 @@ For detailed information about our APIs and for hands-on testing, refer document
 
 ## Resource information
 
-| :------------ | :-------------------------------------------------------------------- |
 | URL           | /api_gateway/rewards/core/v1/metadata/categories/brand/`{brandId}` |
+| :------------ | :-------------------------------------------------------------------- |
 | HTTP method   | GET                                                                   |
 | Pagination    | Yes                                                                   |
 | Rate limit    | NA                                                                    |
@@ -53,13 +53,13 @@ With Brand Name:
 
 <CodeGroup show-lines="true" tabs={["Sample Request", "With sortBy=lastUpdatedOn"]}>
 
-  ```bash
+  ```bash Sample Request
   curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/metadata/categories/brand/55' \
   --header 'Accept: */*' \
   --header 'Authorization: Basic Ymxpc3MJmNGRjNzU5MWI1NzY='
   ```
 
-  ```text
+  ```text With sortBy=lastUpdatedOn
   curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/metadata/categories/brand/55?orderBy=ASC&sortBy=lastUpdatedOn' \
   --header 'Accept: */*' \
   --header 'Authorization: Basic Z2VvcmdlLmpvaG5zb246OTg4OTU2NWI4ODVhMmY4ZWE1MTk1MjA2NWEwYTEzNzg=' \
@@ -85,7 +85,7 @@ With Brand Name:
 
 <CodeGroup show-lines="true" tabs={["Sample Response", "Invalid brandId", "With sortBy=lastUpdatedOn"]}>
 
-  ```json
+  ```json Sample Response
   {
       "status": {
           "success": true,
@@ -107,7 +107,7 @@ With Brand Name:
   }
   ```
 
-  ```json
+  ```json Invalid brandId
   {
       "status": {
           "success": false,
@@ -118,7 +118,7 @@ With Brand Name:
   }
   ```
 
-  ```text
+  ```text With sortBy=lastUpdatedOn
   {
       "status": {
           "success": true,

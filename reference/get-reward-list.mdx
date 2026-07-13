@@ -18,8 +18,8 @@ This API is used to retrieve list of rewards owned by brands based on filters.
 
 ## Resource information
 
-| :--------------------- | :---------------------------------------------------------- |
 | URI                    | api_gateway/rewards/core/v1/reward/list/brand`{BrandID}` |
+| :--------------------- | :---------------------------------------------------------- |
 | HTTP Method            | GET                                                         |
 | Pagination             | Yes Default - 100                                           |
 | Batch support          | No                                                          |
@@ -53,7 +53,7 @@ This API is used to retrieve list of rewards owned by brands based on filters.
 | **`language`**       | Enum      | Filters the response based on the reward language. Use this parameter to retrieve rewards in a specific language. For example, to display rewards in English, set the parameter to `en`.                                                                                                                                                                                                                      |
 | **`groupName`**      | String    | Filters rewards that are categorized under a specific group, for example: `'Seasonal Specials'`.                                                                                                                                                                                                                                                                                                              |
 
-```http title="API Endpoint"
+```http API Endpoint
 https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/list/brand/1?page=0&size=20&startDate=1727254620000&endDate=1752244980000&rewardType=CHARITY&rewardStatus=LIVE
 ```
 
@@ -107,7 +107,7 @@ https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/list/brand/1
 
 <CodeGroup show-lines="true" tabs={["200- Response", "200- With Owner type", "Failure: Invalid Brand ID", "Failure: Both startDate and endDate is mandatory"]}>
 
-  ```json
+  ```json 200- Response
   {
       "status": {
           "success": true,
@@ -205,7 +205,7 @@ https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/list/brand/1
   }
   ```
 
-  ```json
+  ```json 200- With Owner type
   {
       "status": {
           "success": true,
@@ -339,7 +339,7 @@ https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/list/brand/1
   }
   ```
 
-  ```json
+  ```json Failure: Invalid Brand ID
   {
       "status": {
           "success": false,
@@ -349,7 +349,7 @@ https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/list/brand/1
   }
   ```
 
-  ```json
+  ```json Failure: Both startDate and endDate is mandatory
   {
       "status": {
           "success": false,
