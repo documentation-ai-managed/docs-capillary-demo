@@ -1,34 +1,29 @@
 ---
 title: Get all available rewards for user in connected orgs
 ---
-
 This API gives all the details for the reward purchased such as Reward ID, Metadata, Intouch points, Programs/tiers, Reward restrictions/limits, and Catalog promotions applied. Org level restriction will also be specified in connected orgs.
 
-<Callout kind="tip" title="Note">
-
-For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
-
+<Callout kind="tip" collapsed="false">
+  For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
 </Callout>
 
-<Callout kind="alert" title="**Warning**">
-
-Use this API exclusively for connected orgs. For other orgs, use this [API](https://docs.capillarytech.com/reference/get-rewards-for-user) instead.
-
+<Callout kind="alert" collapsed="false">
+  Use this API exclusively for connected orgs. For other orgs, use this [API](https://docs.capillarytech.com/reference/get-rewards-for-user) instead.
 </Callout>
 
 ## Prerequisites
 
-- [ ] Authentication: Basic or OAuth authentication
-- [ ] Default access group
+- Authentication: Basic or OAuth authentication
+- Default access group
 
 ## Resource information
 
-| URI                    | /api_gateway/rewards/core/v1.1/user/rewards?userId=`{customerId}` |
-| :--------------------- | :------------------------------------------------------------------- |
-| HTTP Method            | GET                                                                  |
-| Pagination             | Yes                                                                  |
-| Batch support          | No                                                                   |
-| Rate limit information | None                                                                 |
+| URI                    | /api\_gateway/rewards/core/v1.1/user/rewards?userId=`{customerId}` |
+| :--------------------- | :----------------------------------------------------------------- |
+| HTTP Method            | GET                                                                |
+| Pagination             | Yes                                                                |
+| Batch support          | No                                                                 |
+| Rate limit information | None                                                               |
 
 ## API endpoint example
 
@@ -36,40 +31,38 @@ Use this API exclusively for connected orgs. For other orgs, use this [API](http
 
 ## Headers
 
-| Header | Description |
-| --- | --- |
-| DATA-SCOPE-ORG | List of Organization IDs |
-| DATA-SCOPE | Scopes define what data can be accessed using the API. You can use scopes to control access to data from a parent or child organization. Defining a scope ensures that the response contains only data from the respective organization. Supported headers: `SELF`, `OTHER` and `ALL`. Refer to connected orgs [data scopes](https://docs.capillarytech.com/reference/connected-orgs-data-scopes) for more information. \| |
+| Header         | Description                                                                                                                                                                                                                                                                                                                                                                                                                |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DATA-SCOPE-ORG | List of Organization IDs                                                                                                                                                                                                                                                                                                                                                                                                   |
+| DATA-SCOPE     | Scopes define what data can be accessed using the API. You can use scopes to control access to data from a parent or child organization. Defining a scope ensures that the response contains only data from the respective organization. Supported headers: `SELF`, `OTHER` and `ALL`. Refer to connected orgs [data scopes](https://docs.capillarytech.com/reference/connected-orgs-data-scopes) for more information. \| |
 
 ## Request query parameters
 
-| Parameter | Data Type | Description |
-| --- | --- | --- |
-| **`UserId*`** | Long | Unique identifier for the customer. |
-| `includeExpired` | Boolean | Set to true to retrieve details of expired rewards. |
-| `groupName` | String | Name of the group for which to fetch all associated rewards. |
-| `sortOnGroups` | Boolean | Set to true to sort rewards by groups. |
-| `language` | String | Filters rewards based on the specified language. For Example: "en" for English, "fr" for French. |
-| `area` | String | Filters rewards based on the specific area or locality. |
-| `city` | String | Filters rewards based on the specified city. |
-| `country` | String | Filters rewards based on the specified country. |
-| `category` | String | Filters rewards based on the category they belong to. |
-| `label` | String | Filters rewards based on the specific label assigned to them. |
-| `group` | String | Filters rewards based on the specific group they are part of. |
-| `type` | String | Filters rewards based on their type. |
-| `tier` | String | Filters rewards based on the tier level. |
-| `sortBy` | String | Sorts the reward based on `startDate` and `endDate`. **NOTE:** If `sortBy` param is not passed, sorting will happen on reward creation date in DESC order. |
-| `orderBy` | String | Specifies the order in which results should be sorted. Supported values: "`ASC`" for ascending, "`DESC`" for descending. |
-| `filterBy` | String | Filters the rewards based on specific attributes or properties, such as language or reward type. For Example: "`language:en`" to filter rewards in English. |
-| `page` | Integer | Specify the page. |
-| `size` | Integer | Specify the size of pages. |
+| Parameter        | Data Type | Description                                                                                                                                                 |
+| ---------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`UserId*`**    | Long      | Unique identifier for the customer.                                                                                                                         |
+| `includeExpired` | Boolean   | Set to true to retrieve details of expired rewards.                                                                                                         |
+| `groupName`      | String    | Name of the group for which to fetch all associated rewards.                                                                                                |
+| `sortOnGroups`   | Boolean   | Set to true to sort rewards by groups.                                                                                                                      |
+| `language`       | String    | Filters rewards based on the specified language. For Example: "en" for English, "fr" for French.                                                            |
+| `area`           | String    | Filters rewards based on the specific area or locality.                                                                                                     |
+| `city`           | String    | Filters rewards based on the specified city.                                                                                                                |
+| `country`        | String    | Filters rewards based on the specified country.                                                                                                             |
+| `category`       | String    | Filters rewards based on the category they belong to.                                                                                                       |
+| `label`          | String    | Filters rewards based on the specific label assigned to them.                                                                                               |
+| `group`          | String    | Filters rewards based on the specific group they are part of.                                                                                               |
+| `type`           | String    | Filters rewards based on their type.                                                                                                                        |
+| `tier`           | String    | Filters rewards based on the tier level.                                                                                                                    |
+| `sortBy`         | String    | Sorts the reward based on `startDate` and `endDate`. **NOTE:** If `sortBy` param is not passed, sorting will happen on reward creation date in DESC order.  |
+| `orderBy`        | String    | Specifies the order in which results should be sorted. Supported values: "`ASC`" for ascending, "`DESC`" for descending.                                    |
+| `filterBy`       | String    | Filters the rewards based on specific attributes or properties, such as language or reward type. For Example: "`language:en`" to filter rewards in English. |
+| `page`           | Integer   | Specify the page.                                                                                                                                           |
+| `size`           | Integer   | Specify the size of pages.                                                                                                                                  |
 
 <CodeGroup show-lines="true" tabs={["cURL"]}>
-
-  ```bash "cURL"
+  ```bash cURL
   http://eu.api.capillarytech.com/api_gateway/rewards/core/v1.1/user/rewards?userId=373718067
   ```
-
 </CodeGroup>
 
 ## Response parameters
@@ -119,7 +112,7 @@ Use this API exclusively for connected orgs. For other orgs, use this [API](http
 | url                      | URL of the video.                                                                                                                                                                                                                                                                                                                                                                                  |
 | isExternal               | Indicates if the video is hosted on an external server.                                                                                                                                                                                                                                                                                                                                            |
 | paymentConfigs           | The paymentConfigs object includes the type of payment mode used to purchase the reward. The ID is the unique identifier for the payment mode configuration used.                                                                                                                                                                                                                                  |
-| paymentMode              | The type of payment mode supported to redeem the reward. Supported values: POINTS, FREE, CASH, POINTS_CASH, CONV_RATIO.                                                                                                                                                                                                                                                                          |
+| paymentMode              | The type of payment mode supported to redeem the reward. Supported values: POINTS, FREE, CASH, POINTS\_CASH, CONV\_RATIO.                                                                                                                                                                                                                                                                          |
 | rewardRevenueDetails     | The list containing the comission percentages for each participant                                                                                                                                                                                                                                                                                                                                 |
 | brandCommission          | Commission percentage the brand receives.                                                                                                                                                                                                                                                                                                                                                          |
 | cardSeries               | A list of card codes associated with the reward.                                                                                                                                                                                                                                                                                                                                                   |
@@ -130,8 +123,7 @@ Use this API exclusively for connected orgs. For other orgs, use this [API](http
 | id                       | Unique identifier for the payment configurations                                                                                                                                                                                                                                                                                                                                                   |
 | orgLevelRestrictions     | orgLevelRestrictions refers to a set of conditions that determine whether a reward or action is valid or accessible for specific organizations. This restriction is usually applied at the organization level to control which organizations can view, access, or redeem the rewards based on certain validation criteria. It will specify the connected orgs in which the restriction is applied. |
 
-<CodeGroup show-lines="true" tabs={["Response: With DATA-SCOPE as ALL", "Response: With DATA-SCOPE as OTHER", "Response: With DATA-SCOPE as SELF", "With 'altText' for images and videos"]}>
-
+<CodeGroup show-lines="true" tabs={["Response: With DATA-SCOPE as ALL","Response: With DATA-SCOPE as OTHER","Response: With DATA-SCOPE as SELF","With 'altText' for images and videos"]}>
   ```json "Response: With DATA-SCOPE as ALL"
   {
       "status": {
@@ -2916,58 +2908,5 @@ Use this API exclusively for connected orgs. For other orgs, use this [API](http
       ]
   }
   ```
-
 </CodeGroup>
 
-`<style>`
-.InputGroupe2EvBGz2cnqy \{
-    display: flex;
-    gap: 2px;
-    position: relative;
-\}
-
-.Button.APIRequest-example-button1DGMsfaOTVNW \{
-    /* Core working text behavior - don't change these */
-    position: relative;
-    width: 140px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    padding: 6px 12px;
-    text-align: left;
-    transition: width 0.2s ease-out;
-    z-index: 1;
-    display: block;
-    direction: ltr;
-    unicode-bidi: embed;
-    padding-right: 20px;
-    
-    /* Only minimal visual updates */
-    background: #1e2329;
-    border: none;
-    border-radius: 6px;
-    color: #94a3b8;
-    font-size: 13px;
-\}
-
-/* Keep original text handling */
-.Button.APIRequest-example-button1DGMsfaOTVNW span,
-.Button.APIRequest-example-button1DGMsfaOTVNW div \{
-    text-align: left;
-    direction: ltr;
-\}
-
-/* Keep original hover behavior */
-.Button.APIRequest-example-button1DGMsfaOTVNW:hover \{
-    width: auto;
-    z-index: 10;
-    background: #262b33;
-\}
-
-/* Simple active state */
-.Button.APIRequest-example-button1DGMsfaOTVNW.APIRequest-example-button_activeXJeukHyaHZXB \{
-    z-index: 20;
-    background: #2c333d;
-    color: #ffffff;
-\}
-`</style>`
