@@ -1,32 +1,28 @@
 ---
 title: Update Data Field
 ---
-
-<Callout kind="tip" title="Note:">
-
-For detailed information about the APIs and for hands-on testing, refer to the [API overview documentation ](https://docs.capillarytech.com/reference/apioverview)and the step-by-step guide on [making your first API call.](https://docs.capillarytech.com/reference/make-your-first-api-call)
-
+<Callout kind="tip" collapsed="false">
+  For detailed information about the APIs and for hands-on testing, refer to the [API overview documentation ](https://docs.capillarytech.com/reference/apioverview)and the step-by-step guide on [making your first API call.](https://docs.capillarytech.com/reference/make-your-first-api-call)
 </Callout>
 
 ## Prerequisites
 
-- [ ] Authentication: Basic/OAuth authentication
-- [ ] Default access group
+- Authentication: Basic/OAuth authentication
+- Default access group
 
 ## Resource Information
 
-| URI           | /api_gateway/cortex/v1/dataFields`{id}` |
-| :------------ | :----------------------------------------- |
-| HTTP method   | PUT                                        |
-| Pagination    | NA                                         |
-| Rate limit    | Default                                    |
-| Batch support | NA                                         |
+| URI           | /api\_gateway/cortex/v1/dataFields`{id}` |
+| :------------ | :--------------------------------------- |
+| HTTP method   | PUT                                      |
+| Pagination    | NA                                       |
+| Rate limit    | Default                                  |
+| Batch support | NA                                       |
 
 ## API cURL
 
 <CodeGroup show-lines="true" tabs={["cURL"]}>
-
-  ```bash "cURL"
+  ```bash cURL
   curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/cortex/v1/dataFields/67c13be980eaa45a46519efa' \
   --header 'Content-Type: application/json' \
   --header 'Authorization: Basic cHJlcmFuYV9zaW5naDoyZmFhZmZjNZDRjMTc5Y2NlMzNhYzc5OTBjMTQ1Ng==' \
@@ -84,7 +80,6 @@ For detailed information about the APIs and for hands-on testing, refer to the [
   	]
   }'
   ```
-
 </CodeGroup>
 
 ## Query Parameter
@@ -95,20 +90,19 @@ For detailed information about the APIs and for hands-on testing, refer to the [
 
 ## Request Parameters
 
-| Parameters | Data type | Description |
-| --- | --- | --- |
-| `searchStrategyType`\* | String | Defines the search strategy type (`COMBINATION`, `PREFIX`). |
-| `entityType`\* | Enum | Type of entity being searched (`TRANSACTION`, `CUSTOMER`). |
-| `dataFieldDefinitions`\* | Array | List of field definitions used in the search. |
-| • `fieldId`\* | String | The field to search on. For **Customer**, the supported standard fields are: `firstName`, `lastName`, `email`, `mobile`, `externalId`, and `fullName`. For **Transaction**, the supported fields are: `outlierStatus`, `billDate`, `billNumber`, and `storecode` (additional field). |
-| • `fieldAlias` | String | The alias or display name of the field. |
-| • `fieldType` | Enum | Type of field. Use the value `DATA`. |
-| • `dataSourceDetails` | Object | Contains details about the data source. |
-| \-- `fieldReference` | String | Applicable when using custom fields or extended fields. For example: `extendedFields.ship_email`, `customFields.age`. If you're using store code to search, use `additionalFields.storecode` (applicable for transactions). |
-| • `dataType` | String | Data type of the field (`STRING`, `NUMBER`, `DECIMAL`, or `DATE`). |
+| Parameters               | Data type | Description                                                                                                                                                                                                                                                                          |
+| ------------------------ | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `searchStrategyType`\*   | String    | Defines the search strategy type (`COMBINATION`, `PREFIX`).                                                                                                                                                                                                                          |
+| `entityType`\*           | Enum      | Type of entity being searched (`TRANSACTION`, `CUSTOMER`).                                                                                                                                                                                                                           |
+| `dataFieldDefinitions`\* | Array     | List of field definitions used in the search.                                                                                                                                                                                                                                        |
+|    • `fieldId`\*         | String    | The field to search on. For **Customer**, the supported standard fields are: `firstName`, `lastName`, `email`, `mobile`, `externalId`, and `fullName`. For **Transaction**, the supported fields are: `outlierStatus`, `billDate`, `billNumber`, and `storecode` (additional field). |
+|    • `fieldAlias`        | String    | The alias or display name of the field.                                                                                                                                                                                                                                              |
+| • `fieldType`            | Enum      | Type of field. Use the value `DATA`.                                                                                                                                                                                                                                                 |
+| • `dataSourceDetails`    | Object    | Contains details about the data source.                                                                                                                                                                                                                                              |
+| -- `fieldReference`      | String    | Applicable when using custom fields or extended fields. For example: `extendedFields.ship_email`, `customFields.age`. If you're using store code to search, use `additionalFields.storecode` (applicable for transactions).                                                          |
+| • `dataType`             | String    | Data type of the field (`STRING`, `NUMBER`, `DECIMAL`, or `DATE`).                                                                                                                                                                                                                   |
 
-<CodeGroup show-lines="true" tabs={["Customer", "Transaction"]}>
-
+<CodeGroup show-lines="true" tabs={["Customer","Transaction"]}>
   ```json Customer
   {
     "searchStrategyType": "PREFIX",
@@ -209,32 +203,30 @@ For detailed information about the APIs and for hands-on testing, refer to the [
   	]
   }
   ```
-
 </CodeGroup>
 
 ## Response Body Parameters
 
-| Parameter | Data Type | Description |
-| --- | --- | --- |
-| id | String | Unique Identifier of the data |
-| orgId | Integer | The ID of the organization associated with the criteria |
-| searchStrategyType | Enum | Defines the search strategy type (`\`COMBINATION`, `PREFIX` ) |
-| entityType | Enum | Type of entity being searched (`TRANSACTION` , `CUSTOMER`) |
-| dataFieldDefinitions | Array | List of field definitions used in the search. |
-| • fieldId | String | Unique identifier for the field. |
-| • fieldAlias | String | The alias or display name of the search field. |
-| • fieldType | Enum | Type of field (e.g., `INDEXED`, `FILTERABLE`). |
-| • dataSourceDetails | Object | Contains details about the data source. |
-| \-- fieldReference | String | The reference to the search field in the data source. |
-| • dataType | String | Data type of the field (e.g., `STRING`, `DATE`). |
-| auditInfo | Object | An object containing audit information about the criteria. |
-| • createdOn | String | The timestamp indicating when the criteria was created. |
-| • createdBy | Integer | The ID of the user who created the criteria. |
-| • lastUpdatedOn | String | The timestamp indicating when the search criteria was last updated. |
-| • lastUpdatedBy | Integer | The ID of the user who last updated the criteria. |
+| Parameter            | Data Type | Description                                                         |
+| -------------------- | --------- | ------------------------------------------------------------------- |
+| id                   | String    | Unique Identifier of the data                                       |
+| orgId                | Integer   | The ID of the organization associated with the criteria             |
+| searchStrategyType   | Enum      | Defines the search strategy type (`\`COMBINATION`, `PREFIX\` )      |
+| entityType           | Enum      | Type of entity being searched (`TRANSACTION` , `CUSTOMER`)          |
+| dataFieldDefinitions | Array     | List of field definitions used in the search.                       |
+| • fieldId            | String    | Unique identifier for the field.                                    |
+| • fieldAlias         | String    | The alias or display name of the search field.                      |
+| • fieldType          | Enum      | Type of field (e.g., `INDEXED`, `FILTERABLE`).                      |
+| • dataSourceDetails  | Object    | Contains details about the data source.                             |
+| -- fieldReference    | String    | The reference to the search field in the data source.               |
+| • dataType           | String    | Data type of the field (e.g., `STRING`, `DATE`).                    |
+| auditInfo            | Object    | An object containing audit information about the criteria.          |
+| • createdOn          | String    | The timestamp indicating when the criteria was created.             |
+| • createdBy          | Integer   | The ID of the user who created the criteria.                        |
+| • lastUpdatedOn      | String    | The timestamp indicating when the search criteria was last updated. |
+| • lastUpdatedBy      | Integer   | The ID of the user who last updated the criteria.                   |
 
-<CodeGroup show-lines="true" tabs={["Customer", "Transaction"]}>
-
+<CodeGroup show-lines="true" tabs={["Customer","Transaction"]}>
   ```json Customer
   {
     "searchStrategyType" : "PREFIX",
@@ -345,5 +337,5 @@ For detailed information about the APIs and for hands-on testing, refer to the [
       "errors": []
   }
   ```
-
 </CodeGroup>
+
