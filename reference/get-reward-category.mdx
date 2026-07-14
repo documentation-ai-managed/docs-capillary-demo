@@ -1,29 +1,26 @@
 ---
 title: Get Reward Category
 ---
-
 This API allows you to retrieve the details of the reward categories for a particular brand. A Reward Category is a metadata attribute used to classify rewards into predefined groups based on their nature or purpose. For example, categories can include fashion, electronics, or groceries.
 
-<Callout kind="tip" title="Note">
-
-For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
-
+<Callout kind="tip" collapsed="false">
+  For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
 </Callout>
 
 ## Prerequisites
 
-- [ ] Authentication - Basic or OAuth authentication details
-- [ ] Default access group
-- [ ] Brand ID or Brand Name
+- Authentication - Basic or OAuth authentication details
+- Default access group
+- Brand ID or Brand Name
 
 ## Resource information
 
-| URL           | /api_gateway/rewards/core/v1/metadata/categories/brand/`{brandId}` |
-| :------------ | :-------------------------------------------------------------------- |
-| HTTP method   | GET                                                                   |
-| Pagination    | Yes                                                                   |
-| Rate limit    | NA                                                                    |
-| Batch support | NA                                                                    |
+| URL           | /api\_gateway/rewards/core/v1/metadata/categories/brand/`{brandId}` |
+| :------------ | :------------------------------------------------------------------ |
+| HTTP method   | GET                                                                 |
+| Pagination    | Yes                                                                 |
+| Rate limit    | NA                                                                  |
+| Batch support | NA                                                                  |
 
 ## API endpoint example
 
@@ -37,33 +34,31 @@ With Brand Name:
 
 ## Request path parameters
 
-| (Parameters marked with \* are mandatory) | Data Type | Description                                                                                                                                                                                                                                                        |
-| ----------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| brandId\*                                 | Long      | Unique identifier for the brand under which the reward category is associated. To retrieve brandId, refer to the [Retrieve Brand ID API](/reference/retrieve-brand-id).<br /><br />Either `brandId` or `brandName` must be provided. |
-| brandName\*                               | String    | Name of the brand under which the reward category is associated. The brand name is case-insensitive.<br /><br />Either `brandId` or `brandName` must be provided.                                                                                                  |
+| (Parameters marked with \* are mandatory) | Data Type | Description                                                                                                                                                                                                              |
+| ----------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| brandId\*                                 | Long      | Unique identifier for the brand under which the reward category is associated. To retrieve brandId, refer to the [Retrieve Brand ID API](/reference/retrieve-brand-id).Either `brandId` or `brandName` must be provided. |
+| brandName\*                               | String    | Name of the brand under which the reward category is associated. The brand name is case-insensitive.Either `brandId` or `brandName` must be provided.                                                                    |
 
 ## Request query parameters
 
-| Parameter Name | Data Type | Description                                                                                                                                                            |
-| -------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| sortBy         | Enum      | Sorts the returned reward category list.<br /><br />Supported values: `lastUpdatedOn`                                                                                  |
-| orderBy        | Enum      | Specifies the order in which results should be sorted.<br /><br />Supported values: `"ASC"` for ascending, `"DESC"` for descending.<br /><br />Default value is "DESC" |
+| Parameter Name | Data Type | Description                                                                                                                                    |
+| -------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| sortBy         | Enum      | Sorts the returned reward category list.Supported values: `lastUpdatedOn`                                                                      |
+| orderBy        | Enum      | Specifies the order in which results should be sorted.Supported values: `"ASC"` for ascending, `"DESC"` for descending.Default value is "DESC" |
 
-<CodeGroup show-lines="true" tabs={["Sample Request", "With sortBy=lastUpdatedOn"]}>
-
-  ```bash Sample Request
+<CodeGroup show-lines="true" tabs={["Sample Request"]}>
+  ```bash wrap="true" "Sample Request"
   curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/metadata/categories/brand/55' \
   --header 'Accept: */*' \
   --header 'Authorization: Basic Ymxpc3MJmNGRjNzU5MWI1NzY='
   ```
 
-  ```text With sortBy=lastUpdatedOn
+  ```text wrap="true"
   curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/metadata/categories/brand/55?orderBy=ASC&sortBy=lastUpdatedOn' \
   --header 'Accept: */*' \
   --header 'Authorization: Basic Z2VvcmdlLmpvaG5zb246OTg4OTU2NWI4ODVhMmY4ZWE1MTk1MjA2NWEwYTEzNzg=' \
   --header 'Cookie: _cfuvid=fUmBd935rmGsApqf1rYLG1M2QWI_fYSTy7P0wHTVZIs-1747377050702-0.0.1.1-604800000'
   ```
-
 </CodeGroup>
 
 ## Response parameters
@@ -79,9 +74,8 @@ With Brand Name:
 | -name        | String    | Name of the reward category.                                                                                                                       |
 | -enabled     | Boolean   | Current active status of the reward category. If true, the reward category is currently active, else it is inactive.**Values:** `true` or `false`. |
 
-<CodeGroup show-lines="true" tabs={["Sample Response", "Invalid brandId", "With sortBy=lastUpdatedOn"]}>
-
-  ```json Sample Response
+<CodeGroup show-lines="true" tabs={["Sample Response","Invalid brandId"]}>
+  ```json "Sample Response"
   {
       "status": {
           "success": true,
@@ -103,7 +97,7 @@ With Brand Name:
   }
   ```
 
-  ```json Invalid brandId
+  ```json "Invalid brandId"
   {
       "status": {
           "success": false,
@@ -114,7 +108,7 @@ With Brand Name:
   }
   ```
 
-  ```text With sortBy=lastUpdatedOn
+  ```text
   {
       "status": {
           "success": true,
@@ -158,7 +152,6 @@ With Brand Name:
       ]
   }
   ```
-
 </CodeGroup>
 
 ## API Error Codes
@@ -166,3 +159,4 @@ With Brand Name:
 | Error code | Message         | Description                                  |
 | :--------- | :-------------- | :------------------------------------------- |
 | 3004       | Brand not found | Invalid brandName or brandId in the request. |
+

@@ -1,28 +1,25 @@
 ---
 title: Get Reward Transaction Details using Reward Transaction ID
 ---
-
 This API retrieves detailed information of an issued reward using the reward transaction ID.
 
-<Callout kind="tip" title="Note">
-
-For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
-
+<Callout kind="tip" collapsed="false">
+  For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
 </Callout>
 
 ## Prerequisites
 
-- [ ] Authentication: Basic or OAuth authentication
-- [ ] Default access group
+- Authentication: Basic or OAuth authentication
+- Default access group
 
 ## Resource information
 
-| URI                    | api_gateway/rewards/core/v1/reward-transactions`{rewardTransactionId}` |
-| :--------------------- | :------------------------------------------------------------------------ |
-| HTTP Method            | GET                                                                       |
-| Pagination             | No                                                                        |
-| Batch support          | No                                                                        |
-| Rate limit information | None                                                                      |
+| URI                    | api\_gateway/rewards/core/v1/reward-transactions`{rewardTransactionId}` |
+| :--------------------- | :---------------------------------------------------------------------- |
+| HTTP Method            | GET                                                                     |
+| Pagination             | No                                                                      |
+| Batch support          | No                                                                      |
+| Rate limit information | None                                                                    |
 
 ## API endpoint example
 
@@ -41,29 +38,27 @@ For detailed information about our APIs and for hands-on testing, refer document
 | :-------------------- | :-------- | :------------------------------------------------------------------------------------------------------------------------------------ |
 | rewardTransactionId\* | String    | Unique identifier of the reward transaction. The reward transaction is generated during the issual of the reward. **Example**: 327847 |
 
-<CodeGroup show-lines="true" tabs={["curl", "With couponCodeCase filter"]}>
-
-  ```bash
+<CodeGroup show-lines="true" tabs={["With couponCodeCase filter"]}>
+  ```bash wrap="true"
   /curl --location 'http://crm-nightly-new.cc.capillarytech.com/api_gateway/rewards/core/v1.1/reward-transactions/<rewardTransactionId>' \
   e--header 'DATA-SCOPE: OTHER' \
   x--header 'DATA-SCOPE-ORG: 50672' \
   --header 'Authorization: Basic a2FyXzE6MzE1MmQyMzRiNzA='
   ```
 
-  ```text With couponCodeCase filter
+  ```text wrap="true" "With couponCodeCase filter"
   curl --location 'https://crm-staging-new.cc.capillarytech.com/api_gateway/rewards/core/v1.1/reward-transactions/927488?couponCodeCase=AS_IT_IS' \
   --header 'Accept: application/json' \
   --header 'Content-Type: application/json' \
   --header 'DATA-SCOPE: ALL' \
   --header 'Authorization: Basic dGlsbGF1dG9fMTIzOjI3NDFlNjJiZTZiZTYyNGY2N2IwMGQxZDZhNWQ2MWJm'
   ```
-
 </CodeGroup>
 
 ## Request Query Parameter
 
-| Parameter | Type | Description |
-| --- | --- | --- |
+| Parameter            | Type | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| -------------------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **`couponCodeCase`** | Enum | This parameter helps retrieve the coupon code in the desired letter cases. By default, the system automatically converts the coupon code to uppercase. Supported values are: `LOWER`, `UPPER`, and `AS_IT_IS`. **`LOWER`**: Converts the coupon code to lowercase. Example: "ABCD1234" → "abcd1234" **`UPPER`**: Converts the coupon code to uppercase. Example: "abcd1234" → "ABCD1234" **`AS_IT_IS`**: Returns the coupon code exactly as it was created. Example: "abAB123" → "abAB123" |
 
 ## Response Parameters
@@ -112,7 +107,7 @@ For detailed information about our APIs and for hands-on testing, refer document
 | `isExternal`                  | boolean   | Indicates if the video is hosted on an external server.                                                                                                                                                                                                                                                                                 |
 | **`pointsRedemption`**        | object    | Contains details of the points redemption process.                                                                                                                                                                                                                                                                                      |
 | `redeemedPoints`              | int       | Number of points redeemed.                                                                                                                                                                                                                                                                                                              |
-| `redeemedPointsInDecimal`     | decimal   | Number of points redeemed, expressed as a decimal value rounded to 3 decimal places. Rounding follows the HALF_UP method, where if the fourth decimal digit is 5 or more, the third decimal rounds up. For example, 21.4555 becomes 21.456, and 21.4554 becomes 21.455. This field will have values only for conversion ratio rewards. |
+| `redeemedPointsInDecimal`     | decimal   | Number of points redeemed, expressed as a decimal value rounded to 3 decimal places. Rounding follows the HALF\_UP method, where if the fourth decimal digit is 5 or more, the third decimal rounds up. For example, 21.4555 becomes 21.456, and 21.4554 becomes 21.455. This field will have values only for conversion ratio rewards. |
 | `pointsRedemptionRefId`       | string    | Unique identifier generated each time rewards are issued. This field stores a list of these identifiers, allowing you to track multiple points redemption transactions.                                                                                                                                                                 |
 | **`status`**                  | object    | Status details of the points redemption.                                                                                                                                                                                                                                                                                                |
 | `success`                     | boolean   | Indicates whether the points redemption was successful.                                                                                                                                                                                                                                                                                 |
@@ -142,9 +137,8 @@ For detailed information about our APIs and for hands-on testing, refer document
 | `redemptionValue`             | double    | Value of the redemption associated with the voucher.                                                                                                                                                                                                                                                                                    |
 | **`richContentRO`**           | object    | Contains rich content details.                                                                                                                                                                                                                                                                                                          |
 
-<CodeGroup show-lines="true" tabs={["Sample response", "With couponCodeCase filter"]}>
-
-  ```text Sample response
+<CodeGroup show-lines="true" tabs={["Sample response","With couponCodeCase filter"]}>
+  ```text wrap="true" "Sample response"
   {
       "status": [
           {
@@ -217,7 +211,7 @@ For detailed information about our APIs and for hands-on testing, refer document
   }
   ```
 
-  ```json With couponCodeCase filter
+  ```json wrap="true" "With couponCodeCase filter"
   {
       "status": [
           {
@@ -296,58 +290,11 @@ For detailed information about our APIs and for hands-on testing, refer document
       }
   }
   ```
-
 </CodeGroup>
 
 ## Error code
 
 | Code  | Description                                                                           |
 | :---- | :------------------------------------------------------------------------------------ |
-| 10007 | Transaction missing or inaccessible: TRANSACTION_NOT_FOUND - Transaction not found. |
+| 10007 | Transaction missing or inaccessible: TRANSACTION\_NOT\_FOUND - Transaction not found. |
 
-`<style>`
-  .InputGroupe2EvBGz2cnqy \{
-   display: flex;
-   gap: 2px;
-   position: relative;
-\}
-
-.Button.APIRequest-example-button1DGMsfaOTVNW \{
-   position: relative;
-   width: 140px;
-   white-space: nowrap;
-   overflow: hidden;
-   text-overflow: ellipsis;
-   padding: 6px 12px;
-   text-align: left;
-   transition: width 0.2s ease-out;
-   z-index: 1;
-   display: block;
-   direction: ltr;
-   unicode-bidi: embed;
-   padding-right: 20px;
-   background: #1e2329;
-   border: none;
-   border-radius: 6px;
-   color: #94a3b8;
-   font-size: 13px;
-\}
-
-.Button.APIRequest-example-button1DGMsfaOTVNW span,
-.Button.APIRequest-example-button1DGMsfaOTVNW div \{
-   text-align: left;
-   direction: ltr;
-\}
-
-.Button.APIRequest-example-button1DGMsfaOTVNW:hover \{
-   width: auto;
-   z-index: 10;
-   background: #262b33;
-\}
-
-.Button.APIRequest-example-button1DGMsfaOTVNW.APIRequest-example-button_activeXJeukHyaHZXB \{
-   z-index: 20;
-   background: #2c333d;
-   color: #ffffff;
-\}
-`</style>`

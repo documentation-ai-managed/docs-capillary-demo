@@ -1,7 +1,6 @@
 ---
 title: Get Purchased Rewards for User (New API)
 ---
-
 This API is used to get the rewards purchased by the user, without any aggregation on reward ID, and gives a unified view of the rewards purchased in order of the last purchased date.
 
 **Example**
@@ -13,33 +12,31 @@ Consider the below scenario:
 
 The API retrieves the details of the last 5 vouchers issued to the customer.
 
-If you use the **[Get rewards for user](https://docs.capillarytech.com/reference/get-rewards-for-user)** API, the API retrieves the information on the total rewards received by the customer (22 rewards).
+If you use the [**Get rewards for user**](https://docs.capillarytech.com/reference/get-rewards-for-user) API, the API retrieves the information on the total rewards received by the customer (22 rewards).
 
-*Let’s say below is the structure of the table and for the same customer, we have issued 10 coupons but they belong to 3 rewards*
+_Let’s say below is the structure of the table and for the same customer, we have issued 10 coupons but they belong to 3 rewards_
 
-<Image src="https://files.readme.io/35d9678-Screenshot_2023-09-04_at_4.41.07_PM.png" width="1920" height="1080" alt="500px" />
+<Image src="https://files.readme.io/35d9678-Screenshot_2023-09-04_at_4.41.07_PM.png" width="1920" height="1080" alt="" />
 
-*With the new response if pagination is 5, then only below 5 records will be returned*
+_With the new response if pagination is 5, then only below 5 records will be returned_
 
-<Image src="https://files.readme.io/c21ba7a-Screenshot_2023-09-04_at_4.41.12_PM.png" width="1920" height="1080" alt="500px" />
+<Image src="https://files.readme.io/c21ba7a-Screenshot_2023-09-04_at_4.41.12_PM.png" width="1920" height="1080" alt="" />
 
-<Callout kind="tip" title="Note">
-
-- For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
-- For the list of items in query param list, rewards will be returned if expected value found. Meaning if vendor param has 3 values passed but rewards only exist for 2 of the three vendors. The rewards for the 2 vendors will be returned .
-- When *[*Dual Eligibility*]()* feature enabled, a reward can be issued to multiple users registered with the same secondary identifiers, as long as they have unique primary identifiers.
-- The[ "Get all reward transactions for a user"](https://docs.capillarytech.com/reference/get-all-reward-transactions-for-a-user#/) API lists all reward issuance attempts, including failures, while the "Get Purchased Rewards for user" API shows only the rewards successfully received by the user.
-
+<Callout kind="tip" collapsed="false">
+  - For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
+  - For the list of items in query param list, rewards will be returned if expected value found. Meaning if vendor param has 3 values passed but rewards only exist for 2 of the three vendors. The rewards for the 2 vendors will be returned .
+  - When [_Dual Eligibility_]() feature enabled, a reward can be issued to multiple users registered with the same secondary identifiers, as long as they have unique primary identifiers.
+  - The[ "Get all reward transactions for a user"](https://docs.capillarytech.com/reference/get-all-reward-transactions-for-a-user#/) API lists all reward issuance attempts, including failures, while the "Get Purchased Rewards for user" API shows only the rewards successfully received by the user.
 </Callout>
 
 ## Prerequisites
 
-- [ ] Authentication: Basic or OAuth authentication
-- [ ] Default access group
+- Authentication: Basic or OAuth authentication
+- Default access group
 
 ## Resource information
 
-| URL                    | /api_gateway/rewards/core/v1/user/userReward/brand/`{BrandName}` |
+| URL                    | /api\_gateway/rewards/core/v1/user/userReward/brand/`{BrandName}` |
 | :--------------------- | :---------------------------------------------------------------- |
 | Pagination             | Yes                                                               |
 | Batch support          | No                                                                |
@@ -57,35 +54,33 @@ If you use the **[Get rewards for user](https://docs.capillarytech.com/reference
 
 ## Request query parameters
 
-| Fields                    | Type    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| :------------------------ | :------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| mobile/email/externalId\* | String  | The mobile number, email, or external ID of the customer for whom to fetch rewards. Example: 9988776654                                                                                                                                                                                                                                                                                                                                                                                          |
-| username\*                | String  | The Till ID used in the authorization of the request. Example: swati                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| language                  | String  | Filters the response based on the reward language. Use this parameter to retrieve rewards in a specific language. For example, to display rewards in English, set the parameter to en.                                                                                                                                                                                                                                                                                                           |
-| orderBy                   | String  | Specify asc to order the results in ascending order of sortBy value, or desc to order in descending order.                                                                                                                                                                                                                                                                                                                                                                                       |
-| sortBy                    | String  | Sort the results by a specific parameter. Supported values: INTOUCH_VOUCHER, INTOUCH_VOUCHER_EXPIRY, PURCHASE_DATE. Default: PURCHASE_DATE                                                                                                                                                                                                                                                                                                                                                  |
-| page                      | Integer | Retrieves details of a specific page. Pass 0 to disable pagination. For example, page=2\&amp;size=10 shows 10 results on page 2.                                                                                                                                                                                                                                                                                                                                                                     |
-| size                      | Integer | The number of results to show per page. Default: 100                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| category                  | String  | Filters rewards based on reward category IDs. Multiple category IDs can be passed in the query parameter, with no limit on the number of category IDs that can be provided.                                                                                                                                                                                                                                                                                                                      |
-| groupName                 | String  | Filters details based on group names. Multiple group names can be passed in the query parameter, with no limit on the number of group names that can be provided.                                                                                                                                                                                                                                                                                                                                |
-| vendorId                  | Integer | Filters rewards by vendor IDs. Multiple vendor IDs can be passed in the query parameter, with no limit on the number of vendor IDs that can be provided.                                                                                                                                                                                                                                                                                                                                         |
-| typeOfReward              | String  | Filters rewards based on specific types. Supported values are INTOUCH_REWARD, VENDOR_INTOUCH_REWARD, VENDOR_ONLY_REWARD, CART_PROMOTION, SWEEPSTAKES, and GAMES. Multiple typeOfReward values can be passed, and the filter is case-sensitive.                                                                                                                                                                                                                                             |
-| fromPurchaseDate          | Long    | Filters rewards by purchase date in epoch format. This filter works only if both fromPurchaseDate and toPurchaseDate are provided.                                                                                                                                                                                                                                                                                                                                                               |
-| toPurchaseDate            | Long    | Filters rewards by purchase date in epoch format. This filter works only if both fromPurchaseDate and toPurchaseDate are provided.                                                                                                                                                                                                                                                                                                                                                               |
-| rewardId                  | Long    | Use this parameter to filter and return specific reward details.                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| status                    | String  | Filters rewards by their current state. Supported values: `ISSUED`, `REDEEMED`, `CANCELLED`. Case-insensitive. Defaults to `ISSUED`.                                                                                                                                                                                                                                                                                                                                                             |
-| couponCodeCase            | String  | This parameter helps retrieve the coupon code in the desired letter cases. By default, the system automatically converts the coupon code to uppercase. Supported values are: LOWER, UPPER, and AS_IT_IS. <br/> <br/> LOWER: Converts the coupon code to lowercase. Example: "ABCD1234" → "abcd1234" <br/>- UPPER: Converts the coupon code to uppercase. Example: "abcd1234" → "ABCD1234" <br/>- AS_IT_IS: Returns the coupon code exactly as it was created. Example: "abAB123" → "abAB123" |
-| fromEventDate             | Long    | Filters purchased rewards starting from a specified event date. For example, this allows you to filter all rewards earned by a customer between May 1st and 22nd based on the exact event date.Must be used along with the toEventDate query parameter. Time format is Unix timestamp.                                                                                                                                                                                                           |
-| toEventDate               | Long    | Filters purchased rewards up to a specified event date. Must be used along with the fromEventDate query parameter. Time format is Unix timestamp.                                                                                                                                                                                                                                                                                                                                                |
-| fromExpiryDate            | Long    | Filters purchased rewards starting from a specified expiry date in epoch time format.For example, this allows you to filter all rewards earned by the customer expiring between October 25th and 31st, based on their exact expiry date. Must be used along with the `toExpiryDate` query parameter.                                                                                                                                                                                             |
-| toExpiryDate              | Long    | Filters purchased rewards up to a specified  expiry date in epoch time format. Must be used along with the `fromExpiryDate` query parameter.                                                                                                                                                                                                                                                                                                                                                     |
+| Fields                    | Type    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| :------------------------ | :------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| mobile/email/externalId\* | String  | The mobile number, email, or external ID of the customer for whom to fetch rewards. Example: 9988776654                                                                                                                                                                                                                                                                                                                                                                      |
+| username\*                | String  | The Till ID used in the authorization of the request. Example: swati                                                                                                                                                                                                                                                                                                                                                                                                         |
+| language                  | String  | Filters the response based on the reward language. Use this parameter to retrieve rewards in a specific language. For example, to display rewards in English, set the parameter to en.                                                                                                                                                                                                                                                                                       |
+| orderBy                   | String  | Specify asc to order the results in ascending order of sortBy value, or desc to order in descending order.                                                                                                                                                                                                                                                                                                                                                                   |
+| sortBy                    | String  | Sort the results by a specific parameter. Supported values: INTOUCH\_VOUCHER, INTOUCH\_VOUCHER\_EXPIRY, PURCHASE\_DATE. Default: PURCHASE\_DATE                                                                                                                                                                                                                                                                                                                              |
+| page                      | Integer | Retrieves details of a specific page. Pass 0 to disable pagination. For example, page=2\&amp;size=10 shows 10 results on page 2.                                                                                                                                                                                                                                                                                                                                             |
+| size                      | Integer | The number of results to show per page. Default: 100                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| category                  | String  | Filters rewards based on reward category IDs. Multiple category IDs can be passed in the query parameter, with no limit on the number of category IDs that can be provided.                                                                                                                                                                                                                                                                                                  |
+| groupName                 | String  | Filters details based on group names. Multiple group names can be passed in the query parameter, with no limit on the number of group names that can be provided.                                                                                                                                                                                                                                                                                                            |
+| vendorId                  | Integer | Filters rewards by vendor IDs. Multiple vendor IDs can be passed in the query parameter, with no limit on the number of vendor IDs that can be provided.                                                                                                                                                                                                                                                                                                                     |
+| typeOfReward              | String  | Filters rewards based on specific types. Supported values are INTOUCH\_REWARD, VENDOR\_INTOUCH\_REWARD, VENDOR\_ONLY\_REWARD, CART\_PROMOTION, SWEEPSTAKES, and GAMES. Multiple typeOfReward values can be passed, and the filter is case-sensitive.                                                                                                                                                                                                                         |
+| fromPurchaseDate          | Long    | Filters rewards by purchase date in epoch format. This filter works only if both fromPurchaseDate and toPurchaseDate are provided.                                                                                                                                                                                                                                                                                                                                           |
+| toPurchaseDate            | Long    | Filters rewards by purchase date in epoch format. This filter works only if both fromPurchaseDate and toPurchaseDate are provided.                                                                                                                                                                                                                                                                                                                                           |
+| rewardId                  | Long    | Use this parameter to filter and return specific reward details.                                                                                                                                                                                                                                                                                                                                                                                                             |
+| status                    | String  | Filters rewards by their current state. Supported values: `ISSUED`, `REDEEMED`, `CANCELLED`. Case-insensitive. Defaults to `ISSUED`.                                                                                                                                                                                                                                                                                                                                         |
+| couponCodeCase            | String  | This parameter helps retrieve the coupon code in the desired letter cases. By default, the system automatically converts the coupon code to uppercase. Supported values are: LOWER, UPPER, and AS\_IT\_IS.   LOWER: Converts the coupon code to lowercase. Example: "ABCD1234" → "abcd1234" - UPPER: Converts the coupon code to uppercase. Example: "abcd1234" → "ABCD1234" - AS\_IT\_IS: Returns the coupon code exactly as it was created. Example: "abAB123" → "abAB123" |
+| fromEventDate             | Long    | Filters purchased rewards starting from a specified event date. For example, this allows you to filter all rewards earned by a customer between May 1st and 22nd based on the exact event date.Must be used along with the toEventDate query parameter. Time format is Unix timestamp.                                                                                                                                                                                       |
+| toEventDate               | Long    | Filters purchased rewards up to a specified event date. Must be used along with the fromEventDate query parameter. Time format is Unix timestamp.                                                                                                                                                                                                                                                                                                                            |
+| fromExpiryDate            | Long    | Filters purchased rewards starting from a specified expiry date in epoch time format.For example, this allows you to filter all rewards earned by the customer expiring between October 25th and 31st, based on their exact expiry date. Must be used along with the `toExpiryDate` query parameter.                                                                                                                                                                         |
+| toExpiryDate              | Long    | Filters purchased rewards up to a specified  expiry date in epoch time format. Must be used along with the `fromExpiryDate` query parameter.                                                                                                                                                                                                                                                                                                                                 |
 
 <CodeGroup show-lines="true" tabs={["HTTP"]}>
-
-  ```http "HTTP"
+  ```http HTTP
   https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/user/reward/brand/BUKL
   ```
-
 </CodeGroup>
 
 ## Response Parameters
@@ -99,7 +94,7 @@ If you use the **[Get rewards for user](https://docs.capillarytech.com/reference
 | rewards                    | Array   | Defines an array of objects, where each object contains details about a reward issued to the user.                                                                                                                                                                                                                                          |
 | . typeOfReward             | String  | Specifies the type of reward.                                                                                                                                                                                                                                                                                                               |
 | . pointsRedeemed           | Integer | Indicates the number of points redeemed by the user for this reward.                                                                                                                                                                                                                                                                        |
-| . pointsRedeemedInDecimal  | Decimal | The number of points redeemed, expressed as a decimal value rounded to 3 decimal places. Rounding follows the HALF_UP method, where if the fourth decimal digit is 5 or more, the third decimal rounds up. For example, 21.4555 becomes 21.456, and 21.4554 becomes 21.455. This field will have values only for conversion ratio rewards. |
+| . pointsRedeemedInDecimal  | Decimal | The number of points redeemed, expressed as a decimal value rounded to 3 decimal places. Rounding follows the HALF\_UP method, where if the fourth decimal digit is 5 or more, the third decimal rounds up. For example, 21.4555 becomes 21.456, and 21.4554 becomes 21.455. This field will have values only for conversion ratio rewards. |
 | . rewardId                 | Long    | Defines a unique identifier for the reward.This field will return NULL if the voucher or coupon was issued via a campaign.                                                                                                                                                                                                                  |
 | . transactionId            | Long    | Defines the unique identifier for the transaction associated with this reward.                                                                                                                                                                                                                                                              |
 | . issueRewardRefId         | String  | Defines a reference ID for the reward issuance, used for tracking.                                                                                                                                                                                                                                                                          |
@@ -177,53 +172,53 @@ If you use the **[Get rewards for user](https://docs.capillarytech.com/reference
 
 `<style>`
 .InputGroupe2EvBGz2cnqy \{
-    display: flex;
-    gap: 2px;
-    position: relative;
-\}
+display: flex;
+gap: 2px;
+position: relative;
+}
 
 .Button.APIRequest-example-button1DGMsfaOTVNW \{
-    /* Core working text behavior - don't change these *
-    position: relative;
-    width: 140px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    padding: 6px 12px;
-    text-align: left;
-    transition: width 0.2s ease-out;
-    z-index: 1;
-    display: block;
-    direction: ltr;
-    unicode-bidi: embed;
-    padding-right: 20px;
-    
-    /* Only minimal visual updates *
-    background: #1e2329;
-    border: none;
-    border-radius: 6px;
-    color: #94a3b8;
-    font-size: 13px;
-\}
+/\* Core working text behavior - don't change these \*
+position: relative;
+width: 140px;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+padding: 6px 12px;
+text-align: left;
+transition: width 0.2s ease-out;
+z-index: 1;
+display: block;
+direction: ltr;
+unicode-bidi: embed;
+padding-right: 20px;
 
-/* Keep original text handling *
+/\* Only minimal visual updates \*
+background: #1e2329;
+border: none;
+border-radius: 6px;
+color: #94a3b8;
+font-size: 13px;
+}
+
+/\* Keep original text handling \*
 .Button.APIRequest-example-button1DGMsfaOTVNW span,
 .Button.APIRequest-example-button1DGMsfaOTVNW div \{
-    text-align: left;
-    direction: ltr;
-\}
+text-align: left;
+direction: ltr;
+}
 
-/* Keep original hover behavior *
+/\* Keep original hover behavior \*
 .Button.APIRequest-example-button1DGMsfaOTVNW:hover \{
-    width: auto;
-    z-index: 10;
-    background: #262b33;
-\}
+width: auto;
+z-index: 10;
+background: #262b33;
+}
 
-/* Simple active state *
-.Button.APIRequest-example-button1DGMsfaOTVNW.APIRequest-example-button_activeXJeukHyaHZXB \{
-    z-index: 20;
-    background: #2c333d;
-    color: #ffffff;
-\}
+/\* Simple active state \*
+.Button.APIRequest-example-button1DGMsfaOTVNW\.APIRequest-example-button\_activeXJeukHyaHZXB \{
+z-index: 20;
+background: #2c333d;
+color: #ffffff;
+}
 `</style>`
