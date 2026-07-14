@@ -35,12 +35,12 @@ This API lets you specify which data fields should be included when performing a
 | `searchStrategyType`\* | String | Defines the search strategy type (`COMBINATION`, `PREFIX`). |
 | `entityType`\* | Enum | Type of entity being searched (`TRANSACTION`, `CUSTOMER`). |
 | `dataFieldDefinitions`\* | Array | List of field definitions used in the search. |
-| `- fieldId`\* | String | The field to search on. For Customer, the supported standard fields are: `firstName`, `lastName`, `email`, `mobile`, `externalId`, and `fullName`. For Transaction, the supported fields are: `outlierStatus`, `billDate`, `billNumber`, and `storecode (additional field)`. |
-| -`fieldAlias` | String | The alias or display name of the field. |
-| -`fieldType` | Enum | Type of field. Use the field type `DATA`. |
-| dataSourceDetails` | Object | Contains details about the data source. |
-| \-- `fieldReference` | String | Applicable when using custom fields or extended fields. Ex: `extendedFields.ship_email`, `customFields.age`. If you are using store code to search, use `additionalFields.storecode` (applicable for transaction). |
-| • `dataType` | String | Data type of the field (`STRING`, `NUMBER`, `DECIMAL`, or `DATE`). |
+|   • `fieldId`\* | String | The field to search on. For Customer, the supported standard fields are: `firstName`, `lastName`, `email`, `mobile`, `externalId`, and `fullName`. For Transaction, the supported fields are: `outlierStatus`, `billDate`, `billNumber`, and `storecode (additional field)`. |
+|   • `fieldAlias` | String | The alias or display name of the field. |
+|   • `fieldType` | Enum | Type of field. Use the field type `DATA`. |
+|   • `dataSourceDetails` | Object | Contains details about the data source. |
+|     ◦ `fieldReference` | String | Applicable when using custom fields or extended fields. Ex: `extendedFields.ship_email`, `customFields.age`. If you are using store code to search, use `additionalFields.storecode` (applicable for transaction). |
+|   • `dataType` | String | Data type of the field (`STRING`, `NUMBER`, `DECIMAL`, or `DATE`). |
 
 ## Response Parameters
 
@@ -51,17 +51,17 @@ This API lets you specify which data fields should be included when performing a
 | searchStrategyType | Enum | Defines the search strategy type (`\`COMBINATION`, `PREFIX` ) |
 | entityType | Enum | Type of entity being searched (`TRANSACTION` , `CUSTOMER`) |
 | dataFieldDefinitions | Array | List of field definitions used in the search. |
-| • fieldId | String | Unique identifier for the field. |
-| • fieldAlias | String | The alias or display name of the search field. |
-| • fieldType | Enum | Type of field (e.g., `INDEXED`, `FILTERABLE`). |
-| • dataSourceDetails | Object | Contains details about the data source. |
-| \-- fieldReference | String | The reference to the search field in the data source. |
-| • dataType | String | Data type of the field (e.g., `STRING`, `DATE`). |
+|   • fieldId | String | Unique identifier for the field. |
+|   • fieldAlias | String | The alias or display name of the search field. |
+|   • fieldType | Enum | Type of field (e.g., `INDEXED`, `FILTERABLE`). |
+|   • dataSourceDetails | Object | Contains details about the data source. |
+|     ◦ fieldReference | String | The reference to the search field in the data source. |
+|   • dataType | String | Data type of the field (e.g., `STRING`, `DATE`). |
 | auditInfo | Object | An object containing audit information about the criteria. |
-| • createdOn | String | The timestamp indicating when the criteria was created. |
-| • createdBy | Integer | The ID of the user who created the criteria. |
-| • lastUpdatedOn | String | The timestamp indicating when the search criteria was last updated. |
-| • lastUpdatedBy | Integer | The ID of the user who last updated the criteria. |
+|   • createdOn | String | The timestamp indicating when the criteria was created. |
+|   • createdBy | Integer | The ID of the user who created the criteria. |
+|   • lastUpdatedOn | String | The timestamp indicating when the search criteria was last updated. |
+|   • lastUpdatedBy | Integer | The ID of the user who last updated the criteria. |
 
 ## Example requests and responses
 

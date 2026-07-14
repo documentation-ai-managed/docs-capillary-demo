@@ -1,0 +1,34 @@
+/* ─── GFM Task Lists (remark-gfm output) ──────────────────────────────
+   Goal: hide the default list bullet ONLY for checkbox (task) list items,
+   so each row shows just the checkbox + text — never affecting normal
+   bullet lists.
+
+   Why this is safe / scoped:
+   remark-gfm emits task lists as:
+       <ul class="contains-task-list">
+         <li class="task-list-item"><input type="checkbox"> …</li>
+       </ul>
+   The classes `contains-task-list` and `task-list-item` are emitted for
+   NOTHING except checkbox lists. A normal bullet list renders as plain
+   <ul><li> with no such class, so the rules below cannot match it and its
+   dot is preserved. No ancestor/container prefix is used, so the fix
+   applies wherever a task list appears (any page) and never anywhere else.
+   -------------------------------------------------------------------- */
+
+ul.contains-task-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+li.task-list-item {
+  list-style: none;
+}
+
+li.task-list-item::marker {
+  content: "";
+}
+
+li.task-list-item input[type="checkbox"] {
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}

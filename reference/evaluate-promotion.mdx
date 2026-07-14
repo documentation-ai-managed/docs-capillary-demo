@@ -1,3 +1,199 @@
 ---
 title: Evaluate Promotion
 ---
+
+The Evaluate Promotions API returns the list of promotions applicable to a transaction by evaluating the current cart and customer data. To understand how cart promotion evaluates discounts, refer [here](https://docs.capillarytech.com/docs/core-concepts-1#how-discount-is-calculated-during-evaluation)
+
+The API determines which till to use for promotion evaluation based on the following rules:
+
+1. If you provide the `X-CAP-API-ATTRIBUTION-TILL-CODE` header, the API uses the specified till for evaluation.
+2. If you do not provide this header, the API defaults to the till mapped to your OAuth credentials.
+3. The API does not use `X-CAP-API-ATTRIBUTION-ENTITY-TYPE` or `X-CAP-API-ATTRIBUTION-ENTITY-CODE` to select the till.
+
+This ensures that promotions are evaluated using the correct till context for your transaction.
+
+<Callout kind="info" title="Note">
+
+- When there are multiple items with the same SKU, each item is evaluated individually, and the discount is split based on quantity or value. **For example:** If you add two Coke bottles to the cart twice(two SKU's), and there's an offer of ₹10 off on a combo of two bottles, the discount remains ₹10. It is split equally —  ₹5 for each combo.
+- Cart locking functionality during cart evaluation, which temporarily reserves the applied promotion exclusively for the customer, is disabled by default. To enable it, you must raise a support ticket with capillary to activate the `isLockingEnabled` configuration for the particular org.
+- If multiple cart evaluation requests are made at the same time for a customer or cart, subsequent requests will be rejected with an error indicating that the resource is locked. This is to ensure pricing and promotion calculation consistency.
+- For promotions with payment mode conditions, the `cartTenders` array must be included in the request. If `cartTenders` is not passed, any promotion with a payment mode condition will not qualify.
+- For `CART_BASED` promotions, the discount is applied to the overall cart total and is not reflected in `cartItems[].discount`. The discount amount is returned in `appliedPromotions[].discount`.
+- If a customer has partially consumed a promotion's discount limit in a previous transaction, the API returns only the remaining eligible discount in `appliedPromotions[].discount`.
+- When a percentage-based promotion has a maximum discount value configured, cart promotions calculates the total discount across all qualifying items. If the total exceeds the maximum discount value, the maximum discount value is applied instead and distributed across qualifying items in proportion to their line item amounts. For example: a 10% discount on a Rs 200 cart gives Rs 20. With a maximum discount value of Rs 12, cart promotions applies Rs 12 — allocating Rs 3 to an item worth Rs 50 (25% share) and Rs 9 to an item worth Rs 150 (75% share). The last qualifying item always receives the remainder to prevent rounding discrepancies. The per-item discount amounts are returned in `cartItems[].discount`.
+
+</Callout>
+
+# Example request
+
+```bash
+curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/evaluate' \
+--header 'Content-Type: application/json' \
+--header 'X-CAP-API-AUTH-ORG-ID: 1007373' \
+--header 'Authorization: Basic bmFtYW5fZG9jOmYjgyMzA3MWJmYjM5OGM5ZmM2YjZlY2I2MmEy' \
+--header 'Cookie: _cfuvid=e_HL.m0dlBkoVzuS7spjZIGUb_7oNlVY2NBLi_LRMkg-1743071078145-0.0.1.1-604800000; _cfuvid=FJOLk_InVldNoSbYZk.nP2jNZssRgKvrDSafX7f9Nrc-1743426884062-0.0.1.1-604800000' \
+--data '{
+    "amount": "2000.00",
+    "customerId": 98662653,
+    "cartItems": [
+        {
+            "sku": "Sku#Fuel",
+            "amount": "1000.00",
+            "qty": "1.000000",
+            "discount": null,
+            "categoryList": [
+                "Fuel",
+                "Premium"
+            ],
+            "brandList": [
+                "MaxFuel",
+                "FuelCo"
+            ]
+        },
+        {
+            "sku": "Sku#food",
+            "amount": "1000.00",
+            "qty": "1.00",
+            "discount": null
+        }
+    ],
+    "promoCodes": null,
+    "paymentVouchers": null,
+    "cartTenders": [
+        {
+            "identifier": "CreditCard",
+            "amount": "500.00"
+        }
+    ],
+    "categoryHierarchySentInPayload": true
+}'
+```
+
+# Headers
+
+| **Header Name**                   | **Type** | **Description**                                                                                                                                                                                                                                                                                                                         |
+| --------------------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-CAP-API-ATTRIBUTION-TILL-CODE` | `string` | Use this header to specify the till for promotion evaluation. If you provide this header, the API uses the specified till. If you do not provide it, the API defaults to the till mapped to your OAuth credentials. The API does not use `X-CAP-API-ATTRIBUTION-ENTITY-TYPE` or `X-CAP-API-ATTRIBUTION-ENTITY-CODE` for till selection. |
+
+# Request Body
+
+| Field         | Type       | Required | Description                                                                                                                                                                                                                                                                                      |
+| :------------ | :--------- | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| amount        | BigDecimal | Yes      | Total value of the products in the cart.                                                                                                                                                                                                                                                         |
+| customerId    | Long       | Yes      | Unique ID of the customer.                                                                                                                                                                                                                                                                       |
+| cartItems     | Array      | Yes      | List of objects containing details of the products in the cart.                                                                                                                                                                                                                                  |
+| .sku          | String     | Yes      | Unique identifier (SKU) for the product.                                                                                                                                                                                                                                                         |
+| .amount       | BigDecimal | Yes      | Price of the product.                                                                                                                                                                                                                                                                            |
+| .qty          | BigDecimal | Yes      | Total quantity of the product.                                                                                                                                                                                                                                                                   |
+| .discount     | BigDecimal | Optional | Discount applied to the item, if any.                                                                                                                                                                                                                                                            |
+| .categoryList | Array      | Optional | Categories the product belongs to. For example, `["Fuel", "Premium"]`.                                                                                                                                                                                                                           |
+| .brandList    | Array      | Optional | Brands associated with the product. For example, `["MaxFuel", "FuelCo"]`.                                                                                                                                                                                                                        |
+| cartTenders   | Array      | Optional | List of objects containing details of the payment method used for purchase. Required for promotions with payment mode conditions—if not passed, those promotions will not qualify.                                                                                                               |
+| .identifier   | String     | Yes      | Identifier of the payment method used for the purchase.                                                                                                                                                                                                                                          |
+| .amount       | BigDecimal | Yes      | Total amount paid using the payment method.                                                                                                                                                                                                                                                      |
+| promoCodes    | Array      | Optional | List of promotion codes to apply to the cart. Required only for unlinked codes — codes that have not been linked to a specific customer. If a code has been linked to the customer identified by `customerId`, cart promotions includes it automatically and it does not need to be passed here. |
+
+# Example response
+
+```json
+{
+    "data": {
+        "amount": "2000.000000",
+        "customerId": 98662653,
+        "cartItems": [
+            {
+                "referenceId": "f297716f-c3ee-4936-b88e-a5e0ed91d262",
+                "sku": "Sku#food",
+                "amount": "1000.000000",
+                "qty": "1.000000",
+                "discount": "0",
+                "appliedPromotions": []
+            },
+            {
+                "referenceId": "20f142ec-9a10-49f6-a326-abc48f58d904",
+                "sku": "Sku#Fuel",
+                "amount": "1000.000000",
+                "qty": "1.000000",
+                "discount": "0",
+                "appliedPromotions": []
+            }
+        ],
+        "evaluationId": "67ea9543e1c34e7d8e936839",
+        "appliedPromotions": [
+            {
+                "promotionId": "67dd2a7cef21a64211227d02",
+                "name": "promotion-cart",
+                "messageLabel": "test!!",
+                "promotionMode": "DISCOUNT",
+                "redemptionCount": 1,
+                "discount": "100.000000",
+                "identifier": "eyJwcm9tb3Rpb25JZCI6IjY3ZGQyYTdjZWYyMWE2NDIxMTIyN2QwMiIsImRpc2NvdW50IjoiMTAwLjAwMDAwMCIsImFtb3VudCI6IjIwMDAuMDAwMDAwIiwicmVkZW1wdGlvbkNvdW50IjoxLCJ2ZXJzaW9uIjoidjEifQ=="
+            }
+        ],
+        "appliedPaymentVouchers": [],
+        "promoCodeEvaluationLogs": [],
+        "paymentVoucherEvaluationLogs": [],
+        "cartTenders": [
+            {
+                "identifier": "CreditCard",
+                "amount": "500.00",
+                "referenceId": "67ea9543e1c34e7d8e936831",
+                "adjustedAmount": "500.00"
+            },
+            {
+                "identifier": "CASH",
+                "amount": "1400.000000",
+                "referenceId": "67ea9543e1c34e7d8e936836",
+                "adjustedAmount": "1400.000000"
+            }
+        ],
+        "categoryHierarchySentInPayload": false
+    }
+}
+```
+
+# Response parameters
+
+| Field | Description |
+| --- | --- |
+| amount | Total value of the products in the cart. |
+| customerId | Unique ID of the customer. |
+| evaluationId | Unique identifier generated for this specific evaluation of the cart. Pass this value as `promotionEvaluationId` in the `POST /v2/transactions` request to redeem the evaluated promotions. |
+| .cartItems | Object containing details of the products in the cart |
+| ..referenceId | Unique identifier for the cart item. |
+| ..sku | Unique identifier (SKU) for the product. |
+| ..amount | Price of the product. |
+| ..qty | Total quantity of the product |
+| ..discount | Discount applied to the individual cart item. For `CART_BASED` promotions, this field returns `0` — the discount is applied to the overall cart total and reflected in `appliedPromotions[].discount` instead. |
+| appliedPromotions | Object containing details of cart promotions applied to this cart. |
+| ..promotionId | Unique ID of the cart promotion. |
+| ..name | Unique name of the cart promotion. |
+| ..messageLabel | Unique message is displayed to the end user to describe the promotion. |
+| ..promotionMode | Type of cart promotion. Possible values: `DISCOUNT`: Promotion is a standard discount promotion. `PAYMENT_VOUCHER`: Promotion includes a payment voucher promotion. |
+| ..redemptionCount | Total number of times the cart promotion is redeemed. |
+| ..discount | Total discount applied to the cart by this promotion. If the customer has partially consumed a redemption limit in a previous transaction, only the remaining eligible discount is returned. |
+| ..identifier | Base64 encoded details of the applied cart promotion. Pass each value from this array as an entry in `appliedPromotionIdentifiers` in the `POST /v2/transactions` request to redeem the promotion. |
+| appliedPaymentVouchers | Payment vouchers applied, if any. |
+| .cartTenders | Object contains details of the payment methods used for the purchase. |
+| ..identifier | Identifier of the payment method used for the purchase. |
+| ..amount | Total amount paid using the payment method. |
+| ..referenceId | Unique ID for the cart tender. |
+| ..adjustedAmount | Total amount paid using the payment method. |
+| categoryHierarchySentInPayload | Indicates whether the product category hierarchy was included in the request. |
+
+# Error codes
+
+| Code | Description                                                                                                                                                                  |
+| ---- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 400  | Invalid request. Check required parameters. Ensure all required parameters are provided and valid.                                                                           |
+| 404  | Promotion or customer not found. Use valid and existing promotion and customer identifiers.                                                                                  |
+| 701  | Error while calling segmentation engine. Check segmentation engine service connectivity and logs.                                                                            |
+| 702  | Error while getting org entities. Confirm org entities and service health.                                                                                                   |
+| 703  | Org timezone fetch failed. Verify org timezone configuration and service availability.                                                                                       |
+| 704  | Invalid reward type passed. Provide a valid reward type as per API specification.                                                                                            |
+| 707  | The passed promotion type is not supported. Change the promotion type to one supported by the system.                                                                        |
+| 1006 | Invalid customer identifier. Provide a valid customer identifier.                                                                                                            |
+| 1007 | Error while fetching customer identifier. Retry after checking the customer details and service status.                                                                      |
+| 500  | Internal server error. Retry the request after a short delay, and contact support if the error persists.                                                                     |
+| 1010 | Lock acquisition failed. Another promotion evaluation request is already in progress for this customer or cart. Wait for the current evaluation to complete before retrying. |
+
