@@ -1,7 +1,6 @@
 ---
 title: Get Cart Promotion Redemptions
 ---
-
 This API retrieves redemption history for cart promotion codes, including transaction details, discount amounts, and whether the redemption was applied at the cart level or line-item level.
 
 - When you call this API with the `codes` parameter, the system returns redemption records for the specified promotion codes.
@@ -11,19 +10,17 @@ This API retrieves redemption history for cart promotion codes, including transa
 
 **Note:** To get the list of available promotion codes for a code-linked cart promotion, download the code list from the "Manage Promo Codes" settings on the cart promotions listing page in the UI.
 
-<Image src="https://files.readme.io/a629aefecb53b9347aa41b49279e517266c1b80a775517a559c3809396f1ac05-Screenshot_2025-11-06_at_11.31.16_AM.png" width="70%" height="1080" alt="Screenshot of the Manage Promo Codes settings for downloading the cart promotion code list" />
+<Image src="https://files.readme.io/a629aefecb53b9347aa41b49279e517266c1b80a775517a559c3809396f1ac05-Screenshot_2025-11-06_at_11.31.16_AM.png" width="500px" alt="Screenshot of the Manage Promo Codes settings for downloading the cart promotion code list" />
 
 ## Example request
 
 <CodeGroup show-lines="true" tabs={["cURL"]}>
-
-  ```bash "cURL"
+  ```bash cURL
   curl --location 'https://{Host}/api_gateway/v1/promotions/redemptions?codes=UQ38T&mode=DISCOUNT&includeRedemptions=true' \
   --header 'Accept: application/json' \
   --header 'Content-Type: application/json' \
   --header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86NhMDgzYjk1MWY5MGY1NxYmJiY2U='
   ```
-
 </CodeGroup>
 
 ## Prerequisites
@@ -48,8 +45,7 @@ This API retrieves redemption history for cart promotion codes, including transa
 ## Example response
 
 <CodeGroup show-lines="true" tabs={["JSON"]}>
-
-  ```json "JSON"
+  ```json JSON
   {
       "data": [
           {
@@ -98,7 +94,6 @@ This API retrieves redemption history for cart promotion codes, including transa
       "errors": []
   }
   ```
-
 </CodeGroup>
 
 ## Response parameters
@@ -139,3 +134,4 @@ This API retrieves redemption history for cart promotion codes, including transa
 | 404  | Promotion or redemption not found. Verify the promotion code exists and has redemption records.          |
 | 405  | Organization not enabled for this operation. Contact Capillary support to enable this feature.           |
 | 500  | Internal server error. Retry the request after a short delay, and contact support if the error persists. |
+
