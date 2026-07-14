@@ -1,65 +1,60 @@
 ---
 title: Get all custom fields
 ---
-
 This API is used to retrieve the details of the reward custom field metadata created for the org.
 
-<Callout kind="tip" title="Note">
-
-- For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
-- Start time and end time are in UTC time zone
-
+<Callout kind="tip" collapsed="false">
+  - For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
+  - Start time and end time are in UTC time zone
 </Callout>
 
 ## Example request
 
-<CodeGroup show-lines="true" tabs={["Sample request with sortBy=lastUpdatedOn&orderBy=DESC&scope=CATALOGUE_PROMOTION", "Sample request with sortBy-lastUpdatedOn", "Sample request With scope=REWARD", "Sample request With scope=ISSUE_REWARD", "Sample request With scope=CATALOGUE_PROMOTION"]}>
-
-  ```bash Sample request with sortBy=lastUpdatedOn&orderBy=DESC&scope=CATALOGUE_PROMOTION
+<CodeGroup show-lines="true" tabs={["Sample request with sortBy-lastUpdatedOn"]}>
+  ```bash wrap="true"
   curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/customfield?sortBy=lastUpdatedOn&orderBy=DESC&scope=CATALOGUE_PROMOTION' \
   --header 'accept: application/json' \
   --header 'Authorization: Basic bWFkaHVMjU2YQ==' \
   --header 'Cookie: _cfuvid=BNKMdc2rm4I7MYA3KIlxZDn.nhxE7URS3m2d4Ipaduo-1764062400363-0.0.1.1-604800000'
   ```
 
-  ```bash Sample request with sortBy-lastUpdatedOn
+  ```bash wrap="true" "Sample request with sortBy-lastUpdatedOn"
   curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/customfield?sortBy=lastUpdatedOn' \
   --header 'accept: application/json' \
   --header 'Authorization: Basic bWFkaHVU2YQ==' \
   --header 'Cookie: _cfuvid=BNKMdc2rm4I7MYA3KIlxZDn.nhxE7URS3m2d4Ipaduo-1764062400363-0.0.1.1-604800000'
   ```
 
-  ```bash Sample request With scope=REWARD
+  ```bash wrap="true"
   curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/customfield?scope=REWARD' \
   --header 'accept: application/json' \
   --header 'Authorization: Basic bWFkaHV3MjU2YQ==' \
   --header 'Cookie: _cfuvid=BNKMdc2rm4I7MYA3KIlxZDn.nhxE7URS3m2d4Ipaduo-1764062400363-0.0.1.1-604800000'
   ```
 
-  ```bash Sample request With scope=ISSUE_REWARD
+  ```bash wrap="true"
   curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/customfield?scope=ISSUE_REWARD' \
   --header 'accept: application/json' \
   --header 'Authorization: Basic bWFkaI3MjU2YQ==' \
   --header 'Cookie: _cfuvid=BNKMdc2rm4I7MYA3KIlxZDn.nhxE7URS3m2d4Ipaduo-1764062400363-0.0.1.1-604800000'
   ```
 
-  ```bash Sample request With scope=CATALOGUE_PROMOTION
+  ```bash
   curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/customfield?scope=CATALOGUE_PROMOTION' \
   --header 'accept: application/json' \
   --header 'Authorization: Basic bWFkaH2YQ==' \
   --header 'Cookie: _cfuvid=E9yUQiV1LNM8VWLgR6M1zGUxOIRX1pcceHtnyTeQ0LY-1764094406964-0.0.1.1-604800000'
   ```
-
 </CodeGroup>
 
 ## Prerequisites
 
-- [ ] Authentication: Basic or OAuth authentication
-- [ ] Default access group
+- Authentication: Basic or OAuth authentication
+- Default access group
 
 ## Resource information
 
-| URI                    | /api_gateway/rewards/core/v1/brand/customfield |
+| URI                    | /api\_gateway/rewards/core/v1/brand/customfield |
 | :--------------------- | :---------------------------------------------- |
 | HTTP Method            | GET                                             |
 | Pagination             | Yes                                             |
@@ -68,17 +63,16 @@ This API is used to retrieve the details of the reward custom field metadata cre
 
 ## Request Query Parameters
 
-| Parameter Name | Data Type | Description |
-| --- | --- | --- |
-| **`scope`** | String | Defines where the custom fields will be applicable: * **`REWARD`**: While creating or updating a reward. * **`CATALOGUE_PROMOTION`**: While creating or updating a promotion. * **`ISSUE_REWARD`**: While issuing a reward. |
-| **`sortBy`** | Enum | Sorts the returned custom fields list. Supported values: `lastUpdatedOn` |
-| **`orderBy`** | Enum | Specifies the order in which results should be sorted. Supported values: `"ASC"` for ascending, `"DESC"` for descending. Default value is `"DESC"`. |
+| Parameter Name | Data Type | Description                                                                                                                                                                                                                    |
+| -------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **`scope`**    | String    | Defines where the custom fields will be applicable: \* **`REWARD`**: While creating or updating a reward. \* **`CATALOGUE_PROMOTION`**: While creating or updating a promotion. \* **`ISSUE_REWARD`**: While issuing a reward. |
+| **`sortBy`**   | Enum      | Sorts the returned custom fields list. Supported values: `lastUpdatedOn`                                                                                                                                                       |
+| **`orderBy`**  | Enum      | Specifies the order in which results should be sorted. Supported values: `"ASC"` for ascending, `"DESC"` for descending. Default value is `"DESC"`.                                                                            |
 
 ## Example response
 
-<CodeGroup show-lines="true" tabs={["Sample response With sortBy=lastUpdatedOn&orderBy=DESC&scope=CATALOGUE_PROMOTION", "Sample response With scope=ISSUE_REWARD", "Sample response With scope=REWARD", "Sample response With scope= CATALOG_PROMOTION", "Sample response With sortBy=lastUpdatedOn"]}>
-
-  ```json Sample response With sortBy=lastUpdatedOn&orderBy=DESC&scope=CATALOGUE_PROMOTION
+<CodeGroup show-lines="true">
+  ```json
   [
       {
           "id": 32546,
@@ -155,7 +149,7 @@ This API is used to retrieve the details of the reward custom field metadata cre
   ]
   ```
 
-  ```json Sample response With scope=ISSUE_REWARD
+  ```json
   [
       {
           "id": 21682,
@@ -196,7 +190,7 @@ This API is used to retrieve the details of the reward custom field metadata cre
   ]
   ```
 
-  ```json Sample response With scope=REWARD
+  ```json
   [
       {
           "id": 18833,
@@ -456,7 +450,7 @@ This API is used to retrieve the details of the reward custom field metadata cre
   ]
   ```
 
-  ```json Sample response With scope= CATALOG_PROMOTION
+  ```json
   [
       {
           "id": 28655,
@@ -533,7 +527,7 @@ This API is used to retrieve the details of the reward custom field metadata cre
   ]
   ```
 
-  ```json Sample response With sortBy=lastUpdatedOn
+  ```json
   [
       {
           "id": 32546,
@@ -900,7 +894,6 @@ This API is used to retrieve the details of the reward custom field metadata cre
       }
   ]
   ```
-
 </CodeGroup>
 
 ## Response parameters
@@ -923,3 +916,4 @@ This API is used to retrieve the details of the reward custom field metadata cre
 | **`lastUpdatedOn`**         | Date      | The last updated date and time of the field in Epoch time format.                                                                                                                                                                  |
 | **`enumValues`**            | Object    | An object containing the enum values.                                                                                                                                                                                              |
 | **`lastUpdatedOnDateTime`** | String    | The last updated date and time of the field in ISO 8601 format (YYYY-MM-DDTHH:MM:SSZ).                                                                                                                                             |
+

@@ -1,30 +1,25 @@
 ---
 title: Disable Catalog promotion
 ---
-
 This API is used to disable a catalog promotion for a particular brand.
 
-<Callout kind="info" title="\**Note*">
-
-- To disable a promotion, set status=false in the URL.
-- Disabled Promotion cannot be enabled again.
-
+<Callout kind="info" collapsed="false">
+  - To disable a promotion, set status=false in the URL.
+  - Disabled Promotion cannot be enabled again.
 </Callout>
 
-<Callout kind="tip" title="Note">
-
-For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
-
+<Callout kind="tip" collapsed="false">
+  For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
 </Callout>
 
 ## Prerequisites
 
-- [ ] Authentication: Basic or OAuth authentication
-- [ ] Default access group
+- Authentication: Basic or OAuth authentication
+- Default access group
 
 ## Resource information
 
-| URI                    | /api_gateway/rewards/core/v1/promotion`{promotion Id}`/status/false/brand`{brand Id}` |
+| URI                    | /api\_gateway/rewards/core/v1/promotion`{promotion Id}`/status/false/brand`{brand Id}` |
 | :--------------------- | :------------------------------------------------------------------------------------- |
 | HTTP Method            | PUT                                                                                    |
 | Pagination             | No                                                                                     |
@@ -43,11 +38,9 @@ For detailed information about our APIs and for hands-on testing, refer document
 | Brand ID\*     | Integer   | Unique identifier for the brand. Ex: 1     |
 
 <CodeGroup show-lines="true" tabs={["cURL"]}>
-
-  ```bash "cURL"
+  ```bash cURL
   https://eucrm.cc.capillarytech.com/api_gateway/rewards/core/v1/promotion/2/status/false/brand/1
   ```
-
 </CodeGroup>
 
 ## Response parameters
@@ -60,7 +53,6 @@ For detailed information about our APIs and for hands-on testing, refer document
 | message        | String    | The message describing the status.              |
 
 <CodeGroup show-lines="true" tabs={["200 OK"]}>
-
   ```json "200 OK"
   {
      "status": {
@@ -70,7 +62,6 @@ For detailed information about our APIs and for hands-on testing, refer document
      }
   }
   ```
-
 </CodeGroup>
 
 ## API-specific error code
@@ -78,3 +69,4 @@ For detailed information about our APIs and for hands-on testing, refer document
 | Error codes | Description                    |
 | :---------- | :----------------------------- |
 | 11013       | Catalog promotion is disabled. |
+

@@ -1,15 +1,15 @@
 ---
 title: Update catalog promotion
 ---
-
 This API is used to update catalog promotion and link/de-link to a reward(s)
 
 **Expired**: Do not allow any of the fields to be edited.
 
 **Running**:
 
-1. Cannot change: start date, discount_type, discount_value.
-2. Can change (impacts rewards discounted points)
+&#x20;       1\. Cannot change: start date, discount\_type, discount\_value.
+
+&#x20;       2\. Can change (impacts rewards discounted points) . &#x20;
 
 end date: end date >= now and end date >= start date.
 
@@ -19,23 +19,20 @@ Linking a reward - update the link table accordingly.
 
 Unlinking a reward - Set isActive = false in the link table.
 
-3. Can change other details of the promotion (name, desc….etc)
+&#x20;      3\. Can change other details of the promotion (name, desc….etc)
 
-**Scheduled**: Similar to running but start_date, discount_type, discount_value fields also can be updated.
+**Scheduled**: Similar to running but start\_date, discount\_type, discount\_value fields also can be updated.
 
 **Cannot delete a promotion similar to a reward.**
 
-<Callout kind="tip" title="Note">
-
-For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
-
+<Callout kind="tip" collapsed="false">
+  For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
 </Callout>
 
 ## Example request
 
 <CodeGroup show-lines="true" tabs={["Sample request"]}>
-
-  ```bash "Sample request"
+  ```bash wrap="true" "Sample request"
   curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/promotion/14862/brand/61' \
   --header 'Accept: application/json' \
   --header 'Content-Type: application/json' \
@@ -63,17 +60,16 @@ For detailed information about our APIs and for hands-on testing, refer document
   }
   '
   ```
-
 </CodeGroup>
 
 ## Prerequisites
 
-- [ ] Authentication: Basic or OAuth authentication
-- [ ] Default access group
+- Authentication: Basic or OAuth authentication
+- Default access group
 
 ## Resource information
 
-| URI                    | /api_gateway/rewards/core/v1/promotion/`{promotionId}`/brand/`{brand Id}` |
+| URI                    | /api\_gateway/rewards/core/v1/promotion/`{promotionId}`/brand/`{brand Id}` |
 | :--------------------- | :------------------------------------------------------------------------- |
 | HTTP Method            | PUT                                                                        |
 | Pagination             | No                                                                         |
@@ -105,7 +101,6 @@ For detailed information about our APIs and for hands-on testing, refer document
 ## Example response
 
 <CodeGroup show-lines="true" tabs={["Sample response"]}>
-
   ```json "Sample response"
   {
       "status": {
@@ -119,7 +114,6 @@ For detailed information about our APIs and for hands-on testing, refer document
       "failedRewards": []
   }
   ```
-
 </CodeGroup>
 
 ## Response parameters
@@ -135,8 +129,7 @@ For detailed information about our APIs and for hands-on testing, refer document
 | failedRewards    | Array (Empty in this case) | Array containing any failed rewards information |
 
 <CodeGroup show-lines="true" tabs={["JSON"]}>
-
-  ```json "JSON"
+  ```json JSON
   {
      "status": {
          "success": true,
@@ -149,7 +142,6 @@ For detailed information about our APIs and for hands-on testing, refer document
      "failedRewards": []
   }
   ```
-
 </CodeGroup>
 
 ## Error codes
@@ -167,3 +159,4 @@ For detailed information about our APIs and for hands-on testing, refer document
 | 11024      | Failed to update expired catalog promotion.                                                              |
 | 11025      | Invalid discount value. This error occurs when the `discountValue` parameter is missing.                 |
 | 500        | Internal server error.                                                                                   |
+
