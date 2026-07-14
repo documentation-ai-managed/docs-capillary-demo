@@ -1,20 +1,16 @@
 ---
 title: Get customer reward transactions
 ---
-
 This API is used to retrieve list of rewards owned by them based on filters.
 
-<Callout kind="tip" title="Note">
-
-- For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
-- The "Get all reward transactions for a user" API lists all reward issuance attempts, including failures, while the ["Get Purchased Rewards for user"](/reference/get-rewards-for-user-new-api#/) API shows only the rewards successfully received by the user.
-
+<Callout kind="tip" collapsed="false">
+  - For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
+  - The "Get all reward transactions for a user" API lists all reward issuance attempts, including failures, while the ["Get Purchased Rewards for user"](/reference/get-rewards-for-user-new-api#/) API shows only the rewards successfully received by the user.
 </Callout>
 
 # Example request
 
-<CodeGroup show-lines="true" tabs={["curl", "with rewardId", "With pointsRefIds", "With redemptionType", "With ownerType and ownerId"]}>
-
+<CodeGroup show-lines="true" tabs={["with rewardId","With pointsRefIds","With redemptionType","With ownerType and ownerId"]}>
   ```bash
   curl -L 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/management/customer/566135941/issuals?page=0&size=3' \
   -H 'Accept: application/json' \
@@ -49,22 +45,21 @@ This API is used to retrieve list of rewards owned by them based on filters.
   --header 'Authorization: Basic aWFtc2blahblahjJlODM4ZjhlMzRkNWI1YTI5MWY=' \
   --header 'Cookie: _cfuvid=79wEuUbCVDJ7OujN3BMnNzQASUKFLMRObQTCp7TZv9Y-1734519029257-0.0.1.1-604800000; _cfuvid=wyOhPjyopEethoQrBBNm9fzccPfMP6H1FD60qRHEwJU-1737534439107-0.0.1.1-604800000; _cfuvid=wyOhPjyopEethoQrBBNm9fzccPfMP6H1FD60qRHEwJU-1737534439107-0.0.1.1-604800000'
   ```
-
 </CodeGroup>
 
 # Prerequisites
 
-- [ ] Authentication: Basic or OAuth authentication
-- [ ] Default access group
+- Authentication: Basic or OAuth authentication
+- Default access group
 
 # Resource information
 
-| URI                    | /api_gateway/rewards/core/v1/management/customer`{customerId}`/issuals |
-| :--------------------- | :------------------------------------------------------------------------ |
-| HTTP Method            | GET                                                                       |
-| Pagination             | Yes                                                                       |
-| Batch support          | No                                                                        |
-| Rate limit information | None                                                                      |
+| URI                    | /api\_gateway/rewards/core/v1/management/customer`{customerId}`/issuals |
+| :--------------------- | :---------------------------------------------------------------------- |
+| HTTP Method            | GET                                                                     |
+| Pagination             | Yes                                                                     |
+| Batch support          | No                                                                      |
+| Rate limit information | None                                                                    |
 
 # API endpoint example
 
@@ -131,9 +126,7 @@ This API is used to retrieve list of rewards owned by them based on filters.
 | size                   | Number of elements per page.                                                                                                                                                                                                                                                           |
 | number                 | The current page number.                                                                                                                                                                                                                                                               |
 
-
-<CodeGroup show-lines="true" tabs={["200 OK", "Filter using pointsRefIds", "Filter using redemptionType", "Filter using groupName", "With rewardId filter"]}>
-
+<CodeGroup show-lines="true" tabs={["200 OK","Filter using pointsRefIds","Filter using redemptionType","Filter using groupName","With rewardId filter"]}>
   ```json "200 OK"
   {
       "status": {
@@ -688,59 +681,4 @@ This API is used to retrieve list of rewards owned by them based on filters.
       }
   }
   ```
-
 </CodeGroup>
-
-
-`<style>`
-.InputGroupe2EvBGz2cnqy \{
-    display: flex;
-    gap: 2px;
-    position: relative;
-\}
-
-.Button.APIRequest-example-button1DGMsfaOTVNW \{
-- Core working text behavior - don't change these *
-    position: relative;
-    width: 140px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    padding: 6px 12px;
-    text-align: left;
-    transition: width 0.2s ease-out;
-    z-index: 1;
-    display: block;
-    direction: ltr;
-    unicode-bidi: embed;
-    padding-right: 20px;
-    
-- Only minimal visual updates *
-    background: #1e2329;
-    border: none;
-    border-radius: 6px;
-    color: #94a3b8;
-    font-size: 13px;
-\}
-
-- Keep original text handling *
-.Button.APIRequest-example-button1DGMsfaOTVNW span,
-.Button.APIRequest-example-button1DGMsfaOTVNW div \{
-    text-align: left;
-    direction: ltr;
-\}
-
-- Keep original hover behavior *
-.Button.APIRequest-example-button1DGMsfaOTVNW:hover \{
-    width: auto;
-    z-index: 10;
-    background: #262b33;
-\}
-
-- Simple active state *
-.Button.APIRequest-example-button1DGMsfaOTVNW.APIRequest-example-button_activeXJeukHyaHZXB \{
-    z-index: 20;
-    background: #2c333d;
-    color: #ffffff;
-\}
-`</style>`
