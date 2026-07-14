@@ -1,19 +1,15 @@
 ---
 title: Groups - Get all rewards group
 ---
-
 This API allows you to retrieve details of all the reward groups available in the org.
 
 <Callout kind="tip" title="Note">
-
-For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
-
+  For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
 </Callout>
 
 ## Example request
 
-<CodeGroup show-lines="true" tabs={["Sample request with orderBy=DESC&active=true", "Sample request with sortOn=LAST_UPDATED_ON", "Sample request with orderBy=DESC"]}>
-
+<CodeGroup show-lines="true" tabs={["Sample request with orderBy=DESC&active=true","Sample request with sortOn=LAST_UPDATED_ON","Sample request with orderBy=DESC"]}>
   ```bash "Sample request with orderBy=DESC&active=true"
   curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/group?orderBy=DESC&active=true' \
   --header 'Authorization: Basic bWFkaHVfI3MjU2YQ==' \
@@ -31,17 +27,16 @@ For detailed information about our APIs and for hands-on testing, refer document
   --header 'Authorization: Basic bWFkaU2YQ==' \
   --header 'Cookie: _cfuvid=_XMq7vU15Ra4rfJ4eowUt3bE5nF5uk07Qq9cb7Xe63c-1747204203136-0.0.1.1-604800000; _cfuvid=El2ONa7JBmn4UnjvblnKJwSnhlmaMBuHaHYXGqQywws-1764062260400-0.0.1.1-604800000'
   ```
-
 </CodeGroup>
 
 ## Prerequisites
 
-- [ ] Authentication: Basic or OAuth authentication
-- [ ] Default access group
+- Authentication: Basic or OAuth authentication
+- Default access group
 
 ## Resource information
 
-| URI           | /api_gateway/core/v1/group |
+| URI           | /api\_gateway/core/v1/group |
 | :------------ | :-------------------------- |
 | HTTP method   | GET                         |
 | Pagination    | Yes                         |
@@ -62,8 +57,7 @@ For detailed information about our APIs and for hands-on testing, refer document
 
 ## Example response
 
-<CodeGroup show-lines="true" tabs={["Sample response with orderBy=DESC&active=true", "with sortOn=LAST_UPDATED_ON", "orderBy=DESC"]}>
-
+<CodeGroup show-lines="true" tabs={["Sample response with orderBy=DESC&active=true","with sortOn=LAST_UPDATED_ON","orderBy=DESC"]}>
   ```json "Sample response with orderBy=DESC&active=true"
   {
       "status": {
@@ -366,7 +360,7 @@ For detailed information about our APIs and for hands-on testing, refer document
   }
   ```
 
-  ```json "orderBy=DESC"
+  ```json orderBy=DESC
   {
       "status": {
           "success": true,
@@ -516,7 +510,6 @@ For detailed information about our APIs and for hands-on testing, refer document
       }
   }
   ```
-
 </CodeGroup>
 
 ## Response parameters
@@ -544,8 +537,7 @@ For detailed information about our APIs and for hands-on testing, refer document
 | message               | String    | A message describing the operation outcome.                                       |
 | success               | Boolean   | Indicates if the operation was successful.                                        |
 
-<CodeGroup show-lines="true" tabs={["json", "with sortOn=LAST_UPDATED_ON", "orderBy=DESC"]}>
-
+<CodeGroup show-lines="true" tabs={["json","with sortOn=LAST_UPDATED_ON","orderBy=DESC"]}>
   ```json
   {
       "status": {
@@ -692,7 +684,7 @@ For detailed information about our APIs and for hands-on testing, refer document
   }
   ```
 
-  ```text "orderBy=DESC"
+  ```text orderBy=DESC
   {
       "status": {
           "success": true,
@@ -777,60 +769,4 @@ For detailed information about our APIs and for hands-on testing, refer document
       }
   }
   ```
-
 </CodeGroup>
-
-`<style>`
-- Container: Flex layout for button group *
-.InputGroupe2EvBGz2cnqy \{
-   display: flex;
-   gap: 2px;* Small gap between buttons *
-   position: relative;* Required for button z-index behavior *
-\}
-
-- Button base styling *
-.Button.APIRequest-example-button1DGMsfaOTVNW \{
-- Text truncation and expansion behavior *
-   position: relative;
-   width: 140px;* Default collapsed width *
-   white-space: nowrap;
-   overflow: hidden;
-   text-overflow: ellipsis;* Shows "..." for truncated text *
-   padding: 6px 12px;
-   text-align: left;
-   transition: width 0.2s ease-out;* Smooth width animation *
-   z-index: 1;
-   display: block;
-   direction: ltr;
-   unicode-bidi: embed;* Ensures proper text direction *
-   padding-right: 20px;* Extra space for ellipsis *
-   
-- Visual styling *
-   background: #1e2329;
-   border: none;
-   border-radius: 6px;
-   color: #94a3b8;
-   font-size: 13px;
-\}
-
-- Ensures proper text alignment for nested elements *
-.Button.APIRequest-example-button1DGMsfaOTVNW span,
-.Button.APIRequest-example-button1DGMsfaOTVNW div \{
-   text-align: left;
-   direction: ltr;
-\}
-
-- Hover state: Expands button and shows full text *
-.Button.APIRequest-example-button1DGMsfaOTVNW:hover \{
-   width: auto;* Expands to fit content *
-   z-index: 10;* Ensures hover state shows above other buttons *
-   background: #262b33;
-\}
-
-- Active state: Currently selected button *
-.Button.APIRequest-example-button1DGMsfaOTVNW.APIRequest-example-button_activeXJeukHyaHZXB \{
-   z-index: 20;* Highest z-index to stay on top *
-   background: #2c333d;
-   color: #ffffff;* White text for better contrast *
-\}
-`</style>`
