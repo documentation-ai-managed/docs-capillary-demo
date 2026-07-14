@@ -1,23 +1,20 @@
 ---
 title: Vendor List for Specific Brand
 ---
-
 This API is used to retrieve details of Vendor List of a specific brand using Brand ID.
 
-<Callout kind="tip" title="Note">
-
-For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
-
+<Callout kind="tip" collapsed="false">
+  For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
 </Callout>
 
 ## Prerequisites
 
-- [ ] Authentication: Basic or OAuth authentication
-- [ ] Default access group
+- Authentication: Basic or OAuth authentication
+- Default access group
 
 ## API Specification
 
-| URI                    | /api_gateway/rewards/core/v1/vendor/brand/1 |
+| URI                    | /api\_gateway/rewards/core/v1/vendor/brand/1 |
 | :--------------------- | :------------------------------------------- |
 | HTTP Method            | GET                                          |
 | Pagination             | Yes                                          |
@@ -30,26 +27,24 @@ For detailed information about our APIs and for hands-on testing, refer document
 
 ## Request path parameters
 
-| Parameter Name | Data Type | Description                                                                                                                           |
-| -------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Parameter Name | Data Type | Description                                                                                             |
+| -------------- | --------- | ------------------------------------------------------------------------------------------------------- |
 | brandId\*      | Integer   | Unique identifier of the brand. You can get the brand ID from this [API](/reference/retrieve-brand-id). |
 
 ## Request query parameters
 
-| Parameter Name | Data Type | Description |
-| --- | --- | --- |
-| `enabled` | Boolean | Filters the vendor list to show only those that are enabled. Supported values: `true` or `false`. |
-| `sortBy` | Enum | Sorts the returned vendor list. Supported values: `lastUpdatedOn`. |
-| `orderBy` | Enum | Specifies the order in which results should be sorted. Supported values: `"ASC"` for ascending, `"DESC"` for descending. Default value is `"DESC"`. |
-| `code` | String | Filters the vendor list based on the specified vendor code. |
-| `type` | String | Filters the vendor list based on the specific vendor type. Supported values : `POINTS` and `REWARDS`. Note: The default value is REWARDS, even if the query parameter `type` is not set. |
+| Parameter Name | Data Type | Description                                                                                                                                                                              |
+| -------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `enabled`      | Boolean   | Filters the vendor list to show only those that are enabled. Supported values: `true` or `false`.                                                                                        |
+| `sortBy`       | Enum      | Sorts the returned vendor list. Supported values: `lastUpdatedOn`.                                                                                                                       |
+| `orderBy`      | Enum      | Specifies the order in which results should be sorted. Supported values: `"ASC"` for ascending, `"DESC"` for descending. Default value is `"DESC"`.                                      |
+| `code`         | String    | Filters the vendor list based on the specified vendor code.                                                                                                                              |
+| `type`         | String    | Filters the vendor list based on the specific vendor type. Supported values : `POINTS` and `REWARDS`. Note: The default value is REWARDS, even if the query parameter `type` is not set. |
 
 <CodeGroup show-lines="true" tabs={["HTTP"]}>
-
-  ```http "HTTP"
+  ```http HTTP
   https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/vendor/brand/1?enabled=false
   ```
-
 </CodeGroup>
 
 ## Response Parameters
@@ -90,8 +85,7 @@ For detailed information about our APIs and for hands-on testing, refer document
 | `createdOn`             | Indicates the timestamp when the vendor redemption was created. The timestamp is in Epoch time format.                                                                                                                                                                                                 |
 | `createdOnDateTime`     | Indicates the date and time when the vendor redemption was created, formatted in ISO 8601.                                                                                                                                                                                                             |
 
-<CodeGroup show-lines="true" tabs={["When enabled=false", "When enabled=true", "Failure: Invalid Brand ID", "With sortBy=lastUpdatedOn", "Generic", "With Vendor code Filter"]}>
-
+<CodeGroup show-lines="true" tabs={["When enabled=false","When enabled=true","Failure: Invalid Brand ID","With sortBy=lastUpdatedOn","Generic","With Vendor code Filter"]}>
   ```json "When enabled=false"
   {
       "status": {
@@ -1211,7 +1205,7 @@ For detailed information about our APIs and for hands-on testing, refer document
   }
   ```
 
-  ```text "Generic"
+  ```text Generic
   {
       "status": {
           "success": true,
@@ -1961,7 +1955,6 @@ For detailed information about our APIs and for hands-on testing, refer document
       ]
   }
   ```
-
 </CodeGroup>
 
 ## API-specific error codes
@@ -1971,48 +1964,48 @@ For detailed information about our APIs and for hands-on testing, refer document
 | 3004       | Invalid Brand ID |
 
 `<style>`
-  .InputGroupe2EvBGz2cnqy \{
-   display: flex;
-   gap: 2px;
-   position: relative;
-\}
+.InputGroupe2EvBGz2cnqy \{
+display: flex;
+gap: 2px;
+position: relative;
+}
 
 .Button.APIRequest-example-button1DGMsfaOTVNW \{
-   position: relative;
-   width: 140px;
-   white-space: nowrap;
-   overflow: hidden;
-   text-overflow: ellipsis;
-   padding: 6px 12px;
-   text-align: left;
-   transition: width 0.2s ease-out;
-   z-index: 1;
-   display: block;
-   direction: ltr;
-   unicode-bidi: embed;
-   padding-right: 20px;
-   background: #1e2329;
-   border: none;
-   border-radius: 6px;
-   color: #94a3b8;
-   font-size: 13px;
-\}
+position: relative;
+width: 140px;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+padding: 6px 12px;
+text-align: left;
+transition: width 0.2s ease-out;
+z-index: 1;
+display: block;
+direction: ltr;
+unicode-bidi: embed;
+padding-right: 20px;
+background: #1e2329;
+border: none;
+border-radius: 6px;
+color: #94a3b8;
+font-size: 13px;
+}
 
 .Button.APIRequest-example-button1DGMsfaOTVNW span,
 .Button.APIRequest-example-button1DGMsfaOTVNW div \{
-   text-align: left;
-   direction: ltr;
-\}
+text-align: left;
+direction: ltr;
+}
 
 .Button.APIRequest-example-button1DGMsfaOTVNW:hover \{
-   width: auto;
-   z-index: 10;
-   background: #262b33;
-\}
+width: auto;
+z-index: 10;
+background: #262b33;
+}
 
-.Button.APIRequest-example-button1DGMsfaOTVNW.APIRequest-example-button_activeXJeukHyaHZXB \{
-   z-index: 20;
-   background: #2c333d;
-   color: #ffffff;
-\}
+.Button.APIRequest-example-button1DGMsfaOTVNW\.APIRequest-example-button\_activeXJeukHyaHZXB \{
+z-index: 20;
+background: #2c333d;
+color: #ffffff;
+}
 `</style>`
