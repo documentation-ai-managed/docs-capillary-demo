@@ -1,13 +1,12 @@
 ---
 title: Upload Coupons (Batch)
 ---
-
 This API helps to upload a batch of coupons to a coupon series. It provides the status of the upload process, organization ID, coupon series ID, job status, timestamps for creation and updates, and file information related to the upload.
 
 ## Prerequisites
 
-- [ ] Authentication: OAuth authentication details
-- [ ] Access group: Write access to coupon group resource
+- Authentication: OAuth authentication details
+- Access group: Write access to coupon group resource
 
 ## Resource information
 
@@ -21,8 +20,7 @@ This API helps to upload a batch of coupons to a coupon series. It provides the 
 ## API endpoint example
 
 <CodeGroup show-lines="true" tabs={["cURL"]}>
-
-  ```bash "cURL"
+  ```bash cURL
   curl --location 'https://eu.intouch.capillarytech.com/coupon/api/v1/upload/file/541854' \
   --header 'Postman-Token: 3056825f-5e0d-411e-a83d-e6ce0e6da3d2' \
   --header 'cache-control: no-cache' \
@@ -31,7 +29,6 @@ This API helps to upload a batch of coupons to a coupon series. It provides the 
   --form 'customerIdentifier="MOBILE"' \
   --form 'customerIdentifierColumn="0"'
   ```
-
 </CodeGroup>
 
 ## Path parameter
@@ -42,11 +39,11 @@ This API helps to upload a batch of coupons to a coupon series. It provides the 
 
 ## Body parameter
 
-| Parameter | Description |
-| --- | --- |
-| file\* | Name of the CSV file containing customer and coupon details. There is no limit to the number of coupon codes—including externally managed coupons—that you can add in a file, but it is recommended to keep each batch to a maximum of 500,000 entries. |
-| customerIdentifier\* | Customer identifier type used in the CSV file. Customer identifier type used in the CSV file. Supported values, MOBILE, EXTENAL_ID, and EMAIL. Use NOT_TAGGED as the identifier to upload only coupon codes. |
-| customerIdentifierColumn | Column ID of the customer identifier in the uploaded CSV file. |
+| Parameter                | Description                                                                                                                                                                                                                                             |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| file\*                   | Name of the CSV file containing customer and coupon details. There is no limit to the number of coupon codes—including externally managed coupons—that you can add in a file, but it is recommended to keep each batch to a maximum of 500,000 entries. |
+| customerIdentifier\*     | Customer identifier type used in the CSV file. Customer identifier type used in the CSV file. Supported values, MOBILE, EXTENAL\_ID, and EMAIL. Use NOT\_TAGGED as the identifier to upload only coupon codes.                                          |
+| customerIdentifierColumn | Column ID of the customer identifier in the uploaded CSV file.                                                                                                                                                                                          |
 
 ## Header Required
 
@@ -82,7 +79,6 @@ This API helps to upload a batch of coupons to a coupon series. It provides the 
 | result.fileName                                 | String           | Name of the file associated with the result.                 |
 
 <CodeGroup show-lines="true" tabs={["200 OK"]}>
-
   ```json "200 OK"
   {
       "success": true,
@@ -112,5 +108,4 @@ This API helps to upload a batch of coupons to a coupon series. It provides the 
       }
   }
   ```
-
 </CodeGroup>
