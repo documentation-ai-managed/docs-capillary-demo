@@ -356,58 +356,58 @@ This API is used to create a loyalty promotion. A loyalty promotion rewards cust
 
 | Parameter | Data type | Description |
 | --- | --- | --- |
-| status | Object | Contains the response status. |
-| -code | Integer | Status code of the response (e.g., 200 for success). |
-| -message | String | Status message (e.g., "success"). |
-| validationErrors | Object | Contains validation errors, if any. Null indicates no errors. |
-| data | Array | Contains data related to the promotion. |
-|   • id | Integer | Unique identifier for the promotion. |
-|   • name | String | Name of the promotion. |
-| -promotionStatus | String | Current status of the promotion (e.g., “LIVE”, "COMPLETED"). |
-|   • programId | Integer | ID of the associated [loyalty program.](https://docs.capillarytech.com/docs/create-a-multi-loyalty-program) |
-|   • startDate | String | Start date of the promotion in ISO 8601 format. |
-|   • endDate | String | End date of the promotion in ISO 8601 format. |
-|   • identifier | String | Unique identifier for the promotion. |
-| -isActive | Boolean | Indicates if the promotion is active. |
-|   • eventName | String | Event that triggers the promotion. An event refers to a specific action for example a store visit or transaction. |
-|   • allocatePointsOn | String | Where points are allocated (e.g., "BILL"). |
-|   • limits | Object | Promotion limits. |
-|     -- pointsPerCustomer | Integer | Maximum points a customer can earn. |
+| `status` | Object | Contains the response status. |
+| -`code` | Integer | Status code of the response (e.g., 200 for success). |
+| -`message` | String | Status message (e.g., "success"). |
+| `validationErrors` | Object | Contains validation errors, if any. Null indicates no errors. |
+| `data` | Array | Contains data related to the promotion. |
+|   • `id` | Integer | Unique identifier for the promotion. |
+|   • `name` | String | Name of the promotion. |
+| -`promotionStatus` | String | Current status of the promotion (e.g., “LIVE”, "COMPLETED"). |
+|   • `programId` | Integer | ID of the associated [loyalty program.](https://docs.capillarytech.com/docs/create-a-multi-loyalty-program) |
+|   • `startDate` | String | Start date of the promotion in ISO 8601 format. |
+|   • `endDate` | String | End date of the promotion in ISO 8601 format. |
+|   • `identifier` | String | Unique identifier for the promotion. |
+| -`isActive` | Boolean | Indicates if the promotion is active. |
+|   • `eventName` | String | Event that triggers the promotion. An event refers to a specific action for example a store visit or transaction. |
+|   • `allocatePointsOn` | String | Where points are allocated (e.g., "BILL"). |
+|   • `limits` | Object | Promotion limits. |
+|     -- `pointsPerCustomer` | Integer | Maximum points a customer can earn. |
 | (-1 indicates no limit). |  |  |
-|     -- numberOfTimesPerCustomer | Integer | Number of times a customer can participate. |
+|     -- `numberOfTimesPerCustomer` | Integer | Number of times a customer can participate. |
 | (-1 indicates no limit). |  |  |
-|     -- totalPointsInPromotion | Integer | Total points available in the promotion. |
+|     -- `totalPointsInPromotion` | Integer | Total points available in the promotion. |
 | (-1 indicates no limit). |  |  |
-|     -- totalPointsPerEventLimit | Integer | Total points limit per event. |
+|     -- `totalPointsPerEventLimit` | Integer | Total points limit per event. |
 | (-1 indicates no limit). |  |  |
-|   • pointsOfferType | String | Type of points offered (e.g., "LOYALTY"). A points offer refers to loyalty points issued to customers |
-| promotionRestrictions | Object | Contains the restrictions applicable to the promotion. Restrictions can be configured while setting up the loyalty promotion. |
-|   • restrictions | Object | Contains various restriction types. |
-|     -- redemptionRestrictions | Array | Redemption-related restrictions. These are advanced settings for redemption. |
-|       --- name | String | Name of the redemption restriction |
-|       --- value | Integer | Maximum allowed times per customer. |
-|       --- type | String | Restriction type (e.g., "PERIOD_BASED"). |
-|       --- periodType | String | Period type for restriction (e.g., "MOVING_WINDOW", FIXED_WINDOW). |
-|       --- periodUnit | Array | Period unit for restriction (e.g., "WEEKLY", “MONTHLY”). |
-|     -- issualRestrictions | Array | [Issual ](https://docs.capillarytech.com/docs/enrol-issue-loyalty-promotion#defining-limits-for-enrolment)related restrictions. An [“issual](https://docs.capillarytech.com/docs/advanced-loyalty-promotions)” refers to the issuance of a specific promotion to customers based on their behavioral events or transactions. |
-|       --- name | Array | Name of the issuance restriction |
-|       --- value | Integer | Maximum issuances per customer. |
-|     -- earnRestrictions | Array | [Earn](https://docs.capillarytech.com/docs/enrol-issue-loyalty-promotion#defining-limits-for-enrolment)related restrictions. “Earn" refers to the process where a customer completes the necessary activities to qualify for a promotion. |
-|       --- name | String | Name of the earning restriction |
-|       --- value | Integer | Maximum earnings per customer. |
-|     -- expiryRestrictions | Array | Expiry-related restrictions. |
-|       --- name | String | Name of the expiry restriction |
-|       --- value | Integer | Expiry value. |
-|       --- type | String | Expiry type (e.g., "PROMOTION"). |
-|   • scope | Object | Scope of the promotion (if applicable). |
-|   • isStackable | Boolean | Indicates if the promotion can be combined with other promotions. |
-|   • isConsideredForRanking | Boolean | Indicates if the promotion is considered for ranking. |
-|   • loyaltyEarningType | String | Type of loyalty earning. |
-|   • expiryReminder | Object | Expiry reminder, if any. Null indicates no reminder. |
-|   • isExclusive | Boolean | Indicates if the promotion is exclusive. |
-|   • isAlwaysApply | Boolean | Indicates if the promotion always applies. |
-|   • targetGroupIds | Integer | List of target group IDs. |
-|   • targetRuleIds | Integer | List of target rule IDs. |
+|   • `pointsOfferType` | String | Type of points offered (e.g., "LOYALTY"). A points offer refers to loyalty points issued to customers |
+| `promotionRestrictions` | Object | Contains the restrictions applicable to the promotion. Restrictions can be configured while setting up the loyalty promotion. |
+|   • `restrictions` | Object | Contains various restriction types. |
+|     -- `redemptionRestrictions` | Array | Redemption-related restrictions. These are advanced settings for redemption. |
+|       --- `name` | String | Name of the redemption restriction |
+|       --- `value` | Integer | Maximum allowed times per customer. |
+|       --- `type` | String | Restriction type (e.g., "PERIOD_BASED"). |
+|       --- `periodType` | String | Period type for restriction (e.g., "MOVING_WINDOW", FIXED_WINDOW). |
+|       --- `periodUnit` | Array | Period unit for restriction (e.g., "WEEKLY", “MONTHLY”). |
+|     -- `issualRestrictions` | Array | [Issual ](https://docs.capillarytech.com/docs/enrol-issue-loyalty-promotion#defining-limits-for-enrolment)related restrictions. An [“issual](https://docs.capillarytech.com/docs/advanced-loyalty-promotions)” refers to the issuance of a specific promotion to customers based on their behavioral events or transactions. |
+|       --- `name` | Array | Name of the issuance restriction |
+|       --- `value` | Integer | Maximum issuances per customer. |
+|     -- `earnRestrictions` | Array | [Earn](https://docs.capillarytech.com/docs/enrol-issue-loyalty-promotion#defining-limits-for-enrolment)related restrictions. “Earn" refers to the process where a customer completes the necessary activities to qualify for a promotion. |
+|       --- `name` | String | Name of the earning restriction |
+|       --- `value` | Integer | Maximum earnings per customer. |
+|     -- `expiryRestrictions` | Array | Expiry-related restrictions. |
+|       --- `name` | String | Name of the expiry restriction |
+|       --- `value` | Integer | Expiry value. |
+|       --- `type` | String | Expiry type (e.g., "PROMOTION"). |
+|   • `scope` | Object | Scope of the promotion (if applicable). |
+|   • `isStackable` | Boolean | Indicates if the promotion can be combined with other promotions. |
+|   • `isConsideredForRanking` | Boolean | Indicates if the promotion is considered for ranking. |
+|   • `loyaltyEarningType` | String | Type of loyalty earning. |
+|   • `expiryReminder` | Object | Expiry reminder, if any. Null indicates no reminder. |
+|   • `isExclusive` | Boolean | Indicates if the promotion is exclusive. |
+|   • `isAlwaysApply` | Boolean | Indicates if the promotion always applies. |
+|   • `targetGroupIds` | Integer | List of target group IDs. |
+|   • `targetRuleIds` | Integer | List of target rule IDs. |
 
 ## API error codes
 

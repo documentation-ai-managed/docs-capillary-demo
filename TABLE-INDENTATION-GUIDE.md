@@ -112,6 +112,15 @@ get stripped from table cells), and gives a clean subtle indent like ReadMe.
 > Why not CSS? Per-page CSS can't select a table row by its `--`/`•` marker
 > text, so the indent must live in the cell content.
 
+### Gotcha: bullet rows need a back-ticked field name
+
+A `•` row whose field name is **bare** (`| • id |`) renders with the name
+dropped onto its own line on the platform. Wrapping the name in backticks
+(`| • \`id\` |`) keeps it inline. So every field name in these tables is
+back-ticked — matching the Request table, which already did this. (`--`/`---`
+rows and no-marker rows tolerate bare names, but back-tick them too for a
+consistent table.)
+
 ### Source of truth for depth
 
 Do not guess the nesting — read the original ReadMe markup:
