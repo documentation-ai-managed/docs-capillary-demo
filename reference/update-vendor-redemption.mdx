@@ -10,42 +10,46 @@ For detailed information about our APIs and for hands-on testing, refer document
 
 ## Example request
 
-```bash Sample request
-curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/vendor/redemption/34443/brand/61' \
---header 'Content-Type: application/json' \
---header 'Accept: application/json' \
---header 'Authorization: Basic bWFkaHVU2YQ==' \
---header 'Cookie: _cfuvid=n5.Z39H9xIs0DR219d1iOxrl73PaXk1ymkn3rClOfZ4-1764151707509-0.0.1.1-604800000' \
---data '{
-    "name": "UAT Vendor Redemption 6 update 1",
-    "redemptionType": "MILES",
-    "actions": [
-        {
-            "apiUrl": "https://eucrm.cc.capillarytech.com/v1.1/coupon/issue",
-            "apiBodyField": "{\"root\": {\"coupon\": [{\"customer\": {\"mobile\": \"${mobile}\"}, \"series_id\": 716308}]}}",
-            "apiBody": "{\"root\": {\"coupon\": [{\"customer\": {\"mobile\": \"${mobile}\"}, \"series_id\": 716308}]}}",
-            "name": "test12345",
-            "execOrder": 1,
-            "apiType": "POST",
-            "retryAction": false,
-            "actionId": 20811,
-            "enabled": true,
-            "apiHeaders": {
-                "Authorization": "Basic Ymxpc3M6MWY5OTRhMjQ1M2M0MWM3YzVjZTJmNGRjNzU5MWI1NzY=",
-                "Content-Type": "application/json"
-            },
-            "contextKeys": {
-                "voucher": "response.coupon.code"
-            }
-        }
-    ],
-    "responseKeys": [
-        "voucher"
-    ],
-    "vendorId": "430",
-    "enabled": true
-}'
-```
+<CodeGroup show-lines="true" tabs={["Sample request"]}>
+
+  ```bash "Sample request"
+  curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/vendor/redemption/34443/brand/61' \
+  --header 'Content-Type: application/json' \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Basic bWFkaHVU2YQ==' \
+  --header 'Cookie: _cfuvid=n5.Z39H9xIs0DR219d1iOxrl73PaXk1ymkn3rClOfZ4-1764151707509-0.0.1.1-604800000' \
+  --data '{
+      "name": "UAT Vendor Redemption 6 update 1",
+      "redemptionType": "MILES",
+      "actions": [
+          {
+              "apiUrl": "https://eucrm.cc.capillarytech.com/v1.1/coupon/issue",
+              "apiBodyField": "{\"root\": {\"coupon\": [{\"customer\": {\"mobile\": \"${mobile}\"}, \"series_id\": 716308}]}}",
+              "apiBody": "{\"root\": {\"coupon\": [{\"customer\": {\"mobile\": \"${mobile}\"}, \"series_id\": 716308}]}}",
+              "name": "test12345",
+              "execOrder": 1,
+              "apiType": "POST",
+              "retryAction": false,
+              "actionId": 20811,
+              "enabled": true,
+              "apiHeaders": {
+                  "Authorization": "Basic Ymxpc3M6MWY5OTRhMjQ1M2M0MWM3YzVjZTJmNGRjNzU5MWI1NzY=",
+                  "Content-Type": "application/json"
+              },
+              "contextKeys": {
+                  "voucher": "response.coupon.code"
+              }
+          }
+      ],
+      "responseKeys": [
+          "voucher"
+      ],
+      "vendorId": "430",
+      "enabled": true
+  }'
+  ```
+
+</CodeGroup>
 
 ## Prerequisites
 
@@ -99,28 +103,32 @@ Note: Parameters marked with `(*)` are mandatory.
 
 ## Example response
 
-```json Sample response
-{
-    "status": {
-        "success": true,
-        "code": 5016,
-        "message": "Vendor redemption updated successfully"
-    },
-    "redemption": {
-        "id": 34443,
-        "name": "UAT Vendor Redemption 6 update 1",
-        "redemptionType": "MILES",
-        "enabled": true,
-        "lastUpdatedOn": 1764157003000,
-        "lastUpdatedOnDateTime": "2025-11-26T11:36:43Z",
-        "actionCount": 77,
-        "createdBy": 75155297,
-        "lastUpdatedBy": 75197372,
-        "createdOn": 1759749421000,
-        "createdOnDateTime": "2025-10-06T11:17:01Z"
-    }
-}
-```
+<CodeGroup show-lines="true" tabs={["Sample response"]}>
+
+  ```json "Sample response"
+  {
+      "status": {
+          "success": true,
+          "code": 5016,
+          "message": "Vendor redemption updated successfully"
+      },
+      "redemption": {
+          "id": 34443,
+          "name": "UAT Vendor Redemption 6 update 1",
+          "redemptionType": "MILES",
+          "enabled": true,
+          "lastUpdatedOn": 1764157003000,
+          "lastUpdatedOnDateTime": "2025-11-26T11:36:43Z",
+          "actionCount": 77,
+          "createdBy": 75155297,
+          "lastUpdatedBy": 75197372,
+          "createdOn": 1759749421000,
+          "createdOnDateTime": "2025-10-06T11:17:01Z"
+      }
+  }
+  ```
+
+</CodeGroup>
 
 ## Response Parameters
 
@@ -137,5 +145,3 @@ Note: Parameters marked with `(*)` are mandatory.
 | **`lastUpdatedBy`**  | Long      | The till ID of the user who last updated the vendor redemption record.      |
 | **`createdBy`**      | String    | The till ID of the user who created the vendor redemption.                  |
 | **`createdOn`**      | String    | The timestamp when the vendor redemption was created, in Epoch time format. |
-
-<br />

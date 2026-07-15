@@ -1,27 +1,22 @@
 ---
 title: Get Allocated Points Details with Expiry in Specified Date Range
 ---
-
-<Callout kind="danger">
-
+<Callout kind="danger" collapsed="false">
   This is a private API. Private APIs are deprecated and hence this page is hidden.
-
 </Callout>
 
 The API retrieves information about points allocated to customers that are set to expire within a specified date range.
 
-<Callout kind="alert" title="Note">
-
-This API is a private API that has been exposed through [Neo ](https://docs.capillarytech.com/docs/neo-quick-start)and made public.
-
+<Callout kind="alert" collapsed="false">
+  This API is a private API that has been exposed through [Neo ](https://docs.capillarytech.com/docs/neo-quick-start)and made public.
 </Callout>
 
 ## Prerequisites
 
-- [ ] [Access to Neo](https://docs.capillarytech.com/docs/access-management-neo)
-- [ ] Basic or OAuth authentication details
-- [ ] Access group resource - NA
-- [ ] Header` x-cap-neo-dag-scope` set to a valid scope value (e.g. global)
+- [Access to Neo](https://docs.capillarytech.com/docs/access-management-neo)
+- Basic or OAuth authentication details
+- Access group resource - NA
+- Header` x-cap-neo-dag-scope` set to a valid scope value (e.g. global)
 
 ## Resource information
 
@@ -38,95 +33,97 @@ This API is a private API that has been exposed through [Neo ](https://docs.capi
 
 ## Request query parameters
 
-```
-| Parameter(Parameters marked with * are mandatory) | Data Type | Description |
-| --- | --- | --- |
-| program_id* | Integer | Unique identifier of the loyalty program. |
-| point_category_id* | Integer | Unique identifier for a Point Category in the loyalty points system. |
-| expiry_date_start* | Date | Start date of the expiry range.Format: YYYY-MM-DD.Example: 2025-06-01 |
-| expiry_date_end* | Date | End date of the expiry range.Format: YYYY-MM-DD.Example: 2025-06-30 |
-| entity_id* | Long | Customer ID of the customer for whom the points allocation ID is retrieved. |
-| page | Integer | Retrieve details of a specific page. Page count starts from 1.Example: page=2 retrieves data on page 2. |
-| count | Integer | Number of results to display per page. The default value is 10. The maximum supported value is 100. |
-```
+| Parameter(Parameters marked with \* are mandatory) | Data Type | Description                                                                                             |
+| -------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------- |
+| program\_id\*                                      | Integer   | Unique identifier of the loyalty program.                                                               |
+| point\_category\_id\*                              | Integer   | Unique identifier for a Point Category in the loyalty points system.                                    |
+| expiry\_date\_start\*                              | Date      | Start date of the expiry range.Format: YYYY-MM-DD.Example: 2025-06-01                                   |
+| expiry\_date\_end\*                                | Date      | End date of the expiry range.Format: YYYY-MM-DD.Example: 2025-06-30                                     |
+| entity\_id\*                                       | Long      | Customer ID of the customer for whom the points allocation ID is retrieved.                             |
+| page                                               | Integer   | Retrieve details of a specific page. Page count starts from 1.Example: page=2 retrieves data on page 2. |
+| count                                              | Integer   | Number of results to display per page. The default value is 10. The maximum supported value is 100.     |
 
 ## Sample request
 
-```json Sample request
-curl --location 'https://nightly.api.capillarytech.com/x/neo/pointsAllocation/dateRange?expiry_date_start=2025-06-01&expiry_date_end=2027-06-01&point_category_id=17383&program_id=2282&entity_id=383474113' \
---header 'Content-Type: application/json' \
---header 'x-cap-neo-dag-scope: global' \
---header 'Authorization: Basic OTA3NWI5NjRiMDcxNTJkMjM0Yjcw' \
---header 'Cookie: _cfuvid=GGHmRJB3vR2afrZYKGGEonxyUpRW_cRsEMKHeQJEB9U-1749653959367-0.0.1.1-604800000; _cfuvid=3jRFTwrAkfN7jtZ9QZJxunCfld0NnS2Yp5yjoouddLA-1749725683120-0.0.1.1-604800000'
-```
+<CodeGroup show-lines="true" tabs={["Sample request"]}>
+  ```json "Sample request"
+  curl --location 'https://nightly.api.capillarytech.com/x/neo/pointsAllocation/dateRange?expiry_date_start=2025-06-01&expiry_date_end=2027-06-01&point_category_id=17383&program_id=2282&entity_id=383474113' \
+  --header 'Content-Type: application/json' \
+  --header 'x-cap-neo-dag-scope: global' \
+  --header 'Authorization: Basic OTA3NWI5NjRiMDcxNTJkMjM0Yjcw' \
+  --header 'Cookie: _cfuvid=GGHmRJB3vR2afrZYKGGEonxyUpRW_cRsEMKHeQJEB9U-1749653959367-0.0.1.1-604800000; _cfuvid=3jRFTwrAkfN7jtZ9QZJxunCfld0NnS2Yp5yjoouddLA-1749725683120-0.0.1.1-604800000'
+  ```
+</CodeGroup>
 
 ## Response parameters
 
 | Parameter                  | Data Type | Description                                                 |
 | -------------------------- | --------- | ----------------------------------------------------------- |
-| till_id                   | Integer   | Identifier of the store/till where the transaction occurred |
-| point_category_id        | Integer   | ID of the category under which the points fall              |
-| program_id                | Integer   | ID of the loyalty program                                   |
-| event_log_id             | Integer   | ID of the event log that recorded the transaction           |
-| event_type_id            | Integer   | ID indicating the type of event                             |
-| points_source_type_id   | Integer   | ID of the source type from which points were earned         |
-| original_points           | Integer   | Number of points initially awarded                          |
-| awarded_date              | Long      | Timestamp when the points were awarded (in milliseconds)    |
-| returned_exclusive_value | Integer   | Exclusive value of points returned                          |
-| points_source_id         | Integer   | ID of the source entity awarding the points                 |
+| till\_id                   | Integer   | Identifier of the store/till where the transaction occurred |
+| point\_category\_id        | Integer   | ID of the category under which the points fall              |
+| program\_id                | Integer   | ID of the loyalty program                                   |
+| event\_log\_id             | Integer   | ID of the event log that recorded the transaction           |
+| event\_type\_id            | Integer   | ID indicating the type of event                             |
+| points\_source\_type\_id   | Integer   | ID of the source type from which points were earned         |
+| original\_points           | Integer   | Number of points initially awarded                          |
+| awarded\_date              | Long      | Timestamp when the points were awarded (in milliseconds)    |
+| returned\_exclusive\_value | Integer   | Exclusive value of points returned                          |
+| points\_source\_id         | Integer   | ID of the source entity awarding the points                 |
 | id                         | Integer   | Unique ID of the point allocation entry                     |
-| cps_id                    | Integer   | ID of the customer program state                            |
-| original_customer_id     | Integer   | ID of the customer before merge or update                   |
-| expiry_strategy_id       | Integer   | ID of the strategy used to determine point expiry           |
-| returned_value            | Integer   | Total value of returned points                              |
-| redeemed_exclusive_value | Integer   | Exclusive value of redeemed points                          |
-| expiry_date               | Long      | Expiry timestamp of the awarded points (in milliseconds)    |
-| auto_update_time         | Long      | Timestamp of the last auto-update to the entry              |
-| redeemed_value            | Integer   | Value of points redeemed                                    |
-| expired_exclusive_value  | Integer   | Exclusive value of points that expired                      |
-| allocation_strategy_id   | Integer   | ID of the strategy used to allocate points                  |
-| points_value              | Integer   | Total value of the points awarded                           |
-| org_id                    | Integer   | Organization ID                                             |
-| expired_value             | Integer   | Value of points that expired                                |
-| customer_id               | Integer   | ID of the customer to whom the points are allocated         |
-| points_exclusive          | Integer   | Exclusive points that are available                         |
+| cps\_id                    | Integer   | ID of the customer program state                            |
+| original\_customer\_id     | Integer   | ID of the customer before merge or update                   |
+| expiry\_strategy\_id       | Integer   | ID of the strategy used to determine point expiry           |
+| returned\_value            | Integer   | Total value of returned points                              |
+| redeemed\_exclusive\_value | Integer   | Exclusive value of redeemed points                          |
+| expiry\_date               | Long      | Expiry timestamp of the awarded points (in milliseconds)    |
+| auto\_update\_time         | Long      | Timestamp of the last auto-update to the entry              |
+| redeemed\_value            | Integer   | Value of points redeemed                                    |
+| expired\_exclusive\_value  | Integer   | Exclusive value of points that expired                      |
+| allocation\_strategy\_id   | Integer   | ID of the strategy used to allocate points                  |
+| points\_value              | Integer   | Total value of the points awarded                           |
+| org\_id                    | Integer   | Organization ID                                             |
+| expired\_value             | Integer   | Value of points that expired                                |
+| customer\_id               | Integer   | ID of the customer to whom the points are allocated         |
+| points\_exclusive          | Integer   | Exclusive points that are available                         |
 | status                     | String    | Current status of the point entry                           |
 
 ## Sample response
 
-```json Sample Response
-[
-    {
-        "till_id": 50140377,
-        "point_category_id": 17383,
-        "program_id": 2282,
-        "event_log_id": 33822621,
-        "event_type_id": 15,
-        "points_source_type_id": 1,
-        "original_points": 0,
-        "awarded_date": 1735309787000,
-        "returned_exclusive_value": 50,
-        "points_source_id": 2151585684,
-        "id": 38855229,
-        "cps_id": 80537188,
-        "original_customer_id": 383474113,
-        "expiry_strategy_id": 105462,
-        "returned_value": 0,
-        "redeemed_exclusive_value": 0,
-        "expiry_date": 1766687399000,
-        "auto_update_time": 1735309788000,
-        "redeemed_value": 0,
-        "expired_exclusive_value": 0,
-        "allocation_strategy_id": 105594,
-        "points_value": 0,
-        "org_id": 50914,
-        "expired_value": 0,
-        "customer_id": 383474113,
-        "points_exclusive": 100,
-        "status": "AVAILABLE"
-    }
-]
-```
+<CodeGroup show-lines="true" tabs={["Sample Response"]}>
+  ```json "Sample Response"
+  [
+      {
+          "till_id": 50140377,
+          "point_category_id": 17383,
+          "program_id": 2282,
+          "event_log_id": 33822621,
+          "event_type_id": 15,
+          "points_source_type_id": 1,
+          "original_points": 0,
+          "awarded_date": 1735309787000,
+          "returned_exclusive_value": 50,
+          "points_source_id": 2151585684,
+          "id": 38855229,
+          "cps_id": 80537188,
+          "original_customer_id": 383474113,
+          "expiry_strategy_id": 105462,
+          "returned_value": 0,
+          "redeemed_exclusive_value": 0,
+          "expiry_date": 1766687399000,
+          "auto_update_time": 1735309788000,
+          "redeemed_value": 0,
+          "expired_exclusive_value": 0,
+          "allocation_strategy_id": 105594,
+          "points_value": 0,
+          "org_id": 50914,
+          "expired_value": 0,
+          "customer_id": 383474113,
+          "points_exclusive": 100,
+          "status": "AVAILABLE"
+      }
+  ]
+  ```
+</CodeGroup>
 
 ## Error Codes
 

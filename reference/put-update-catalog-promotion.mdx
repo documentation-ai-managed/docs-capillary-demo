@@ -1,15 +1,15 @@
 ---
 title: Update catalog promotion
 ---
-
 This API is used to update catalog promotion and link/de-link to a reward(s)
 
 **Expired**: Do not allow any of the fields to be edited.
 
 **Running**:
 
-1. Cannot change: start date, discount_type, discount_value.
-2. Can change (impacts rewards discounted points)
+&#x20;       1\. Cannot change: start date, discount\_type, discount\_value.
+
+&#x20;       2\. Can change (impacts rewards discounted points) . &#x20;
 
 end date: end date >= now and end date >= start date.
 
@@ -19,57 +19,57 @@ Linking a reward - update the link table accordingly.
 
 Unlinking a reward - Set isActive = false in the link table.
 
-3. Can change other details of the promotion (name, desc….etc)
+&#x20;      3\. Can change other details of the promotion (name, desc….etc)
 
-**Scheduled**: Similar to running but start_date, discount_type, discount_value fields also can be updated.
+**Scheduled**: Similar to running but start\_date, discount\_type, discount\_value fields also can be updated.
 
 **Cannot delete a promotion similar to a reward.**
 
-<Callout kind="tip" title="Note">
-
-For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
-
+<Callout kind="tip" collapsed="false">
+  For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
 </Callout>
 
 ## Example request
 
-```bash Sample request
-curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/promotion/14862/brand/61' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
---header 'accept: application/json' \
---header 'Authorization: Basic bWFkaHV2YQ==' \
---header 'Cookie: _cfuvid=qrR26fiL9O7hSaVDD64eltEicRcuyxTkMuk2MPS2moc-1764581884487-0.0.1.1-604800000' \
---data '
-{
-  "startTime": "2025-12-04T10:08:00.000Z",
-  "endTime": "2025-12-14T06:10:00.000Z",
-  "discountType": "PERCENTAGE",
-  "discountValue": 20,
-  "brandId": "61",
-  "languageSpecificInfo": [
-    {
-      "languageCode": "en",
-      "name": 72738382,
-      "description": 7273838,
-      "enabled": true
-    }  
-  ],
-  "rewardIds": [
-    496584
-  ]
-}
-'
-```
+<CodeGroup show-lines="true" tabs={["Sample request"]}>
+  ```bash wrap="true" "Sample request"
+  curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/promotion/14862/brand/61' \
+  --header 'Accept: application/json' \
+  --header 'Content-Type: application/json' \
+  --header 'accept: application/json' \
+  --header 'Authorization: Basic bWFkaHV2YQ==' \
+  --header 'Cookie: _cfuvid=qrR26fiL9O7hSaVDD64eltEicRcuyxTkMuk2MPS2moc-1764581884487-0.0.1.1-604800000' \
+  --data '
+  {
+    "startTime": "2025-12-04T10:08:00.000Z",
+    "endTime": "2025-12-14T06:10:00.000Z",
+    "discountType": "PERCENTAGE",
+    "discountValue": 20,
+    "brandId": "61",
+    "languageSpecificInfo": [
+      {
+        "languageCode": "en",
+        "name": 72738382,
+        "description": 7273838,
+        "enabled": true
+      }  
+    ],
+    "rewardIds": [
+      496584
+    ]
+  }
+  '
+  ```
+</CodeGroup>
 
 ## Prerequisites
 
-- [ ] Authentication: Basic or OAuth authentication
-- [ ] Default access group
+- Authentication: Basic or OAuth authentication
+- Default access group
 
 ## Resource information
 
-| URI                    | /api_gateway/rewards/core/v1/promotion/`{promotionId}`/brand/`{brand Id}` |
+| URI                    | /api\_gateway/rewards/core/v1/promotion/`{promotionId}`/brand/`{brand Id}` |
 | :--------------------- | :------------------------------------------------------------------------- |
 | HTTP Method            | PUT                                                                        |
 | Pagination             | No                                                                         |
@@ -100,19 +100,21 @@ curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/rewa
 
 ## Example response
 
-```json Sample response
-{
-    "status": {
-        "success": true,
-        "code": 11021,
-        "message": "Catalog promotion updated successfully."
-    },
-    "catalogPromotion": {
-        "id": 14862
-    },
-    "failedRewards": []
-}
-```
+<CodeGroup show-lines="true" tabs={["Sample response"]}>
+  ```json "Sample response"
+  {
+      "status": {
+          "success": true,
+          "code": 11021,
+          "message": "Catalog promotion updated successfully."
+      },
+      "catalogPromotion": {
+          "id": 14862
+      },
+      "failedRewards": []
+  }
+  ```
+</CodeGroup>
 
 ## Response parameters
 
@@ -126,19 +128,21 @@ curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/rewa
 | id               | Integer                    | Unique identifier of the catalog promotion      |
 | failedRewards    | Array (Empty in this case) | Array containing any failed rewards information |
 
-```json
-{
-   "status": {
-       "success": true,
-       "code": 11021,
-       "message": "Catalog promotion updated successfully."
-   },
-   "catalogPromotion": {
-       "id": 8
-   },
-   "failedRewards": []
-}
-```
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+  ```json "JSON"
+  {
+     "status": {
+         "success": true,
+         "code": 11021,
+         "message": "Catalog promotion updated successfully."
+     },
+     "catalogPromotion": {
+         "id": 8
+     },
+     "failedRewards": []
+  }
+  ```
+</CodeGroup>
 
 ## Error codes
 
@@ -155,3 +159,4 @@ curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/rewa
 | 11024      | Failed to update expired catalog promotion.                                                              |
 | 11025      | Invalid discount value. This error occurs when the `discountValue` parameter is missing.                 |
 | 500        | Internal server error.                                                                                   |
+

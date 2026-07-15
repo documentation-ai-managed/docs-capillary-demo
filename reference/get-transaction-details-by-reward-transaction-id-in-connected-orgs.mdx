@@ -1,47 +1,42 @@
 ---
 title: Get Transaction Details by Reward Transaction ID in Connected orgs
 ---
-
 This API retrieves the detailed information of a specific reward transaction using the reward transaction ID.
 
-<Callout kind="tip" title="Note">
-
-For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
-
+<Callout kind="tip" collapsed="false">
+  For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
 </Callout>
 
-<Callout kind="alert" title="**Warning**">
+<Callout kind="alert" collapsed="false">
+  **Warning**
 
-**Warning**
-
-Use this API exclusively for connected orgs. For other orgs, use this [API](/reference/get-reward-issue-transaction-details) instead.
-
+  Use this API exclusively for connected orgs. For other orgs, use this [API](/reference/get-reward-issue-transaction-details) instead.
 </Callout>
 
 ## Prerequisites
 
-- [ ] Authentication: Basic or OAuth authentication
-- [ ] Default access group
+- Authentication: Basic or OAuth authentication
+- Default access group
 
 ## Resource information
 
-| URL                    | /api_gateway/rewards/core/v1.1/reward-transactions`{rewardTransactionId}` |
-| :--------------------- | :--------------------------------------------------------------------------- |
-| HTTP Method            | GET                                                                          |
-| Pagination             | Yes                                                                          |
-| Batch support          | No                                                                           |
-| Rate limit information | None                                                                         |
+| URL                    | /api\_gateway/rewards/core/v1.1/reward-transactions`{rewardTransactionId}` |
+| :--------------------- | :------------------------------------------------------------------------- |
+| HTTP Method            | GET                                                                        |
+| Pagination             | Yes                                                                        |
+| Batch support          | No                                                                         |
+| Rate limit information | None                                                                       |
 
 ## API endpoint example
 
-&lt;[https://eu.api.capillarytech.com/api_gateway/rewards/core/v1.1/reward-transactions/32787](https://eu.api.capillarytech.com/api_gateway/rewards/core/v1.1/reward-transactions/32787)>
+\<[https://eu.api.capillarytech.com/api\_gateway/rewards/core/v1.1/reward-transactions/32787](https://eu.api.capillarytech.com/api_gateway/rewards/core/v1.1/reward-transactions/32787)>
 
 ## Headers
 
-| Header | Description |
-| --- | --- |
-| DATA-SCOPE-ORG | List of Organization IDs |
-| DATA-SCOPE | Scopes define what data can be accessed using the API. You can use scopes to control access to data from a parent or child organization. Defining a scope ensures that the response contains only data from the respective organization. Supported headers: `SELF`, `OTHER` and `ALL`. Refer to connected orgs [data scopes](https://docs.capillarytech.com/reference/connected-orgs-data-scopes) for more information. |
+| Header         | Description                                                                                                                                                                                                                                                                                                                                                                                                             |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DATA-SCOPE-ORG | List of Organization IDs                                                                                                                                                                                                                                                                                                                                                                                                |
+| DATA-SCOPE     | Scopes define what data can be accessed using the API. You can use scopes to control access to data from a parent or child organization. Defining a scope ensures that the response contains only data from the respective organization. Supported headers: `SELF`, `OTHER` and `ALL`. Refer to connected orgs [data scopes](https://docs.capillarytech.com/reference/connected-orgs-data-scopes) for more information. |
 
 ## Request path parameters
 
@@ -49,10 +44,7 @@ Use this API exclusively for connected orgs. For other orgs, use this [API](/ref
 | :-------------------- | :-------- | :------------------------------------------------------------------------------------------------------------------------------------ |
 | rewardTransactionId\* | String    | Unique identifier of the reward transaction. The reward transaction is generated during the issual of the reward. **Example**: 327847 |
 
-<br />
-
-<CodeGroup show-lines="true" tabs={["curl", "With couponCodeCase filter"]}>
-
+<CodeGroup show-lines="true" tabs={["With couponCodeCase filter"]}>
   ```bash
   /curl --location 'http://crm-nightly-new.cc.capillarytech.com/api_gateway/rewards/core/v1.1/reward-transactions/<rewardTransactionId>' \
   e--header 'DATA-SCOPE: OTHER' \
@@ -60,21 +52,20 @@ Use this API exclusively for connected orgs. For other orgs, use this [API](/ref
   --header 'Authorization: Basic a2FyXzE6MzE1MmQyMzRiNzA='
   ```
 
-  ```text With couponCodeCase filter
+  ```text "With couponCodeCase filter"
   curl --location 'https://crm-staging-new.cc.capillarytech.com/api_gateway/rewards/core/v1.1/reward-transactions/927488?couponCodeCase=AS_IT_IS' \
   --header 'Accept: application/json' \
   --header 'Content-Type: application/json' \
   --header 'DATA-SCOPE: ALL' \
   --header 'Authorization: Basic dGlsbGF1dG9fMTIzOjI3NDFlNjJiZTZiZTYyNGY2N2IwMGQxZDZhNWQ2MWJm'
   ```
-
 </CodeGroup>
 
 ## Request query parameter
 
-| Parameter | Type | Description |
-| --- | --- | --- |
-| `couponCodeCase` | Enum | This parameter helps retrieve the coupon code in the desired letter cases. By default, the system automatically converts the coupon code to uppercase. Supported Values: `LOWER`, `UPPER`, `AS_IT_IS` `LOWER` - Converts the coupon code to lowercase. Example: `"ABCD1234"` → `"abcd1234"` `UPPER` - Converts the coupon code to uppercase. Example: `"abcd1234"` → `"ABCD1234" `AS_IT_IS` - Returns the coupon code exactly as it was created. Example: `"abAB123"` → `"abAB123"` |
+| Parameter        | Type | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| ---------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `couponCodeCase` | Enum | This parameter helps retrieve the coupon code in the desired letter cases. By default, the system automatically converts the coupon code to uppercase. Supported Values: `LOWER`, `UPPER`, `AS_IT_IS` `LOWER` - Converts the coupon code to lowercase. Example: `"ABCD1234"` → `"abcd1234"` `UPPER` - Converts the coupon code to uppercase. Example: `"abcd1234"` → `"ABCD1234" `AS\_IT\_IS`- Returns the coupon code exactly as it was created. Example:`"abAB123"`→`"abAB123"\` |
 
 ## Response parameters
 
@@ -122,7 +113,7 @@ Use this API exclusively for connected orgs. For other orgs, use this [API](/ref
 | `--isExternal`                | Indicates if the video is hosted on an external server.                                                                                                                                                                                                                                                                                 |
 | `-pointsRedemption`           | Contains details of the points redemption process.                                                                                                                                                                                                                                                                                      |
 | `--redeemedPoints`            | Number of points redeemed.                                                                                                                                                                                                                                                                                                              |
-| `--redeemedPointsInDecimal`   | Number of points redeemed, expressed as a decimal value rounded to 3 decimal places. Rounding follows the HALF_UP method, where if the fourth decimal digit is 5 or more, the third decimal rounds up. For example, 21.4555 becomes 21.456, and 21.4554 becomes 21.455. This field will have values only for conversion ratio rewards. |
+| `--redeemedPointsInDecimal`   | Number of points redeemed, expressed as a decimal value rounded to 3 decimal places. Rounding follows the HALF\_UP method, where if the fourth decimal digit is 5 or more, the third decimal rounds up. For example, 21.4555 becomes 21.456, and 21.4554 becomes 21.455. This field will have values only for conversion ratio rewards. |
 | `--pointsRedemptionRefId`     | Unique identifier generated each time rewards are issued. This field stores a list of these identifiers, allowing you to track multiple points redemption transactions.                                                                                                                                                                 |
 | `--status`                    | Status details of the points redemption.                                                                                                                                                                                                                                                                                                |
 | `---success`                  | Indicates whether the points redemption was successful.                                                                                                                                                                                                                                                                                 |
@@ -141,11 +132,8 @@ Use this API exclusively for connected orgs. For other orgs, use this [API](/ref
 | `-transactionCustomFields`    | Custom fields associated with the transaction.                                                                                                                                                                                                                                                                                          |
 | `-ownerId`                    | Unique identifier of the owner. **Example**: `123`.                                                                                                                                                                                                                                                                                     |
 
-<br />
-
-<CodeGroup show-lines="true" tabs={["Sample response", "With couponCodeCase filter"]}>
-
-  ```json Sample response
+<CodeGroup show-lines="true" tabs={["Sample response","With couponCodeCase filter"]}>
+  ```json "Sample response"
   {
       "status": [
           {
@@ -218,7 +206,7 @@ Use this API exclusively for connected orgs. For other orgs, use this [API](/ref
   }
   ```
 
-  ```text With couponCodeCase filter
+  ```text "With couponCodeCase filter"
   {
       "status": [
           {
@@ -297,54 +285,5 @@ Use this API exclusively for connected orgs. For other orgs, use this [API](/ref
       }
   }
   ```
-
 </CodeGroup>
 
-<br />
-
-`<style>`
-  .InputGroupe2EvBGz2cnqy \{
-   display: flex;
-   gap: 2px;
-   position: relative;
-\}
-
-.Button.APIRequest-example-button1DGMsfaOTVNW \{
-   position: relative;
-   width: 140px;
-   white-space: nowrap;
-   overflow: hidden;
-   text-overflow: ellipsis;
-   padding: 6px 12px;
-   text-align: left;
-   transition: width 0.2s ease-out;
-   z-index: 1;
-   display: block;
-   direction: ltr;
-   unicode-bidi: embed;
-   padding-right: 20px;
-   background: #1e2329;
-   border: none;
-   border-radius: 6px;
-   color: #94a3b8;
-   font-size: 13px;
-\}
-
-.Button.APIRequest-example-button1DGMsfaOTVNW span,
-.Button.APIRequest-example-button1DGMsfaOTVNW div \{
-   text-align: left;
-   direction: ltr;
-\}
-
-.Button.APIRequest-example-button1DGMsfaOTVNW:hover \{
-   width: auto;
-   z-index: 10;
-   background: #262b33;
-\}
-
-.Button.APIRequest-example-button1DGMsfaOTVNW.APIRequest-example-button_activeXJeukHyaHZXB \{
-   z-index: 20;
-   background: #2c333d;
-   color: #ffffff;
-\}
-`</style>`

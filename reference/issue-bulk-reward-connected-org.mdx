@@ -95,30 +95,32 @@ Use this API exclusively for connected orgs. For other orgs, use this [API](http
 | `orgLevelDetails` | Array | Contains a list of organization IDs related to the rewards. All fields like `orgId`, `params`, `notes`, `userGroup2PrimaryUserId`, and `userGroup2Id` need to be passed in `orgLevelDetails`. |
 | `orgId` | List | The organization ID of the reward from which it was created. |
 
-<br />
+<CodeGroup show-lines="true" tabs={["Request Body"]}>
 
-```json Request Body
-{
-    "brand": "O2Brand",
-    "transactionNumber": "123456789",
-    "orgLevelDetails": [
-        {
-            "orgId": 4000876
-        }
-    ],
-    "rewards": [
-        {
-            "rewardId": 350,
-            "quantity": 1,
-            "orgId": 4000876,
-            "paymentConfig": {
-                "redemptionValue": 1
-            }
-        }
-    ],
-    "externalId": "ext_id98543198"
-}
-```
+  ```json "Request Body"
+  {
+      "brand": "O2Brand",
+      "transactionNumber": "123456789",
+      "orgLevelDetails": [
+          {
+              "orgId": 4000876
+          }
+      ],
+      "rewards": [
+          {
+              "rewardId": 350,
+              "quantity": 1,
+              "orgId": 4000876,
+              "paymentConfig": {
+                  "redemptionValue": 1
+              }
+          }
+      ],
+      "externalId": "ext_id98543198"
+  }
+  ```
+
+</CodeGroup>
 
 ## Response parameters
 
@@ -157,11 +159,9 @@ Use this API exclusively for connected orgs. For other orgs, use this [API](http
 | redemptionType          | Specifies the category of reward redemption available, that indicate how users can redeem the reward.                                                                                                                                                                                                                                       |
 | redemptionValue         | Redemption Value is the value of a reward, showing how much is needed to claim it.                                                                                                                                                                                                                                                          |
 
-<br />
-
 <CodeGroup show-lines="true" tabs={["With DATA-SCOPE as SELF", "With DATA-SCOPE as OTHER"]}>
 
-  ```json With DATA-SCOPE as SELF
+  ```json "With DATA-SCOPE as SELF"
   {
       "status": {
           "success": true,
@@ -214,7 +214,7 @@ Use this API exclusively for connected orgs. For other orgs, use this [API](http
   }
   ```
 
-  ```json With DATA-SCOPE as OTHER
+  ```json "With DATA-SCOPE as OTHER"
   {
       "status": {
           "success": true,

@@ -1,30 +1,31 @@
 ---
 title: Generate MFA token
 ---
-
 This API generates the MFA token using the device ID, customer identifier type, value, and the token generated from OTP validation in the primary flow. See [Validate OTP in First factor flow](/reference/validate-otp-api).
 
 ## Example cURL request
 
-```bash Sample request
-curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/token/generate' \
---header 'Content-Type: application/json' \
---header 'Cookie: _cfuvid=TQelvcvKiKe5DWhd.tGG6g.Hq0IJI4FnRacxB4UYCyI-1716799831120-0.0.1.1-604800000' \
---data '{
-   "identifierType":"MOBILE",
-   "identifierValue":"18795774754",
-    "deviceId": "1234",
-    "brand": "Bukl",
-    "authorizedToken":"eyJpZHYiOlsiTU9CSUxFfDE4Nzk1Nzc0NzU0Il0sImRldiI6IjEyMzQiLCJvcmciOiJCVUtMIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOiIxNzc2NDI4IiwiaXNzIjoiQ0FQSUxMQVJZIFRFQ0hOT0xPR0dJRVMiLCJpc2MiOiJmYWxzZSIsIm9nYyI6WyIxMDA0NTh8YnVrbC5pbmQuc29sdXRpb24iXSwiZXhwIjoxNzE2ODkzNDc3LCJpYXQiOjE3MTY4ODk4NzcsInJvbCI6IlVTRVIifQ.yGDKE9uFYx_UdCfQNG8lDHVqr1VBjcIzZa1vxdsO97o"
-}'
-```
+<CodeGroup show-lines="true" tabs={["Sample request"]}>
 
-<br />
+  ```bash "Sample request"
+  curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/token/generate' \
+  --header 'Content-Type: application/json' \
+  --header 'Cookie: _cfuvid=TQelvcvKiKe5DWhd.tGG6g.Hq0IJI4FnRacxB4UYCyI-1716799831120-0.0.1.1-604800000' \
+  --data '{
+     "identifierType":"MOBILE",
+     "identifierValue":"18795774754",
+      "deviceId": "1234",
+      "brand": "Bukl",
+      "authorizedToken":"eyJpZHYiOlsiTU9CSUxFfDE4Nzk1Nzc0NzU0Il0sImRldiI6IjEyMzQiLCJvcmciOiJCVUtMIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOiIxNzc2NDI4IiwiaXNzIjoiQ0FQSUxMQVJZIFRFQ0hOT0xPR0dJRVMiLCJpc2MiOiJmYWxzZSIsIm9nYyI6WyIxMDA0NTh8YnVrbC5pbmQuc29sdXRpb24iXSwiZXhwIjoxNzE2ODkzNDc3LCJpYXQiOjE3MTY4ODk4NzcsInJvbCI6IlVTRVIifQ.yGDKE9uFYx_UdCfQNG8lDHVqr1VBjcIzZa1vxdsO97o"
+  }'
+  ```
+
+</CodeGroup>
 
 ## Prerequisites
 
-- [ ] Your organisation has enabled MFA.
-- [ ] Validation of OTP from the primary or First factor flow.
+- Your organisation has enabled MFA.
+- Validation of OTP from the primary or First factor flow.
 
 ## Resource information
 
@@ -37,8 +38,6 @@ curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/token/generate' \
 
 ## Request body parameters
 
-<br />
-
 | Parameter (Parameters marked with \* are mandatory) | Data Type | Description                                                                                    |
 | :-------------------------------------------------- | :-------- | :--------------------------------------------------------------------------------------------- |
 | `identifierType`\*                                  | Enum      | Identifier used for MFA token generation. Values: `MOBILE`, `EMAIL`, `USERNAME`, `EXTERNALID`. |
@@ -49,39 +48,41 @@ curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/token/generate' \
 
 ## Response parameters
 
-| Parameter | Data Type | Description |
-| --- | --- | --- |
-| status | object | Object containing status information. |
-| • success | boolean | Boolean indicating the status of the request. |
-| • code | integer | HTTP status code indicating the result. Example: 200 indicates success. |
-| • message | string | Message describing the status of the request. |
-| auth | object | Object containing authentication details. |
-| • token | string | String representing the authentication token. By default, the token is valid for 15 minutes. |
-| • key | string | String representing the authentication key. |
-| user | object | Object containing user details. |
-| • appRegistered | boolean | Indicates if the user is registered in the app. |
-| • sessionId | string | Current session ID for MFA flow. The session ID is valid for 15 minutes by default. |
-| • role | string | Indicates the user's role. Example: VIEW, USER. |
-| • userRegisteredForPassword | boolean | Indicates if the user is registered for a password. |
+| Parameter                   | Data Type | Description                                                                                  |
+| --------------------------- | --------- | -------------------------------------------------------------------------------------------- |
+| status                      | object    | Object containing status information.                                                        |
+| • success                   | boolean   | Boolean indicating the status of the request.                                                |
+| • code                      | integer   | HTTP status code indicating the result. Example: 200 indicates success.                      |
+| • message                   | string    | Message describing the status of the request.                                                |
+| auth                        | object    | Object containing authentication details.                                                    |
+| • token                     | string    | String representing the authentication token. By default, the token is valid for 15 minutes. |
+| • key                       | string    | String representing the authentication key.                                                  |
+| user                        | object    | Object containing user details.                                                              |
+| • appRegistered             | boolean   | Indicates if the user is registered in the app.                                              |
+| • sessionId                 | string    | Current session ID for MFA flow. The session ID is valid for 15 minutes by default.          |
+| • role                      | string    | Indicates the user's role. Example: VIEW, USER.                                              |
+| • userRegisteredForPassword | boolean   | Indicates if the user is registered for a password.                                          |
 
-<br />
+<CodeGroup show-lines="true" tabs={["JSON"]}>
 
-```json
-{
-    "status": {
-        "success": true,
-        "code": 200,
-        "message": "SUCCESS"
-    },
-    "auth": {
-        "token": "eyJpZHYiOlsiTU9CSUxFfDE4Nzk1Nzc0NzU0Il0sImRldiI6IjEyMzQiLCJvcmciOiJCVUtMIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9PR0lFUyIsIm9nYyI6WyIxMDA0NTh8YnVrbC5pbmQuc29sdXRpb24iXSwiZXhwIjoxNzE2ODkwODIyLCJpYXQiOjE3MTY4ODk5MjIsInJvbCI6IlZJRVcifQ.nL6iCjXIrfEb02uDnnJTyj0uPi8teQjAgnQPVU0_aqQ",
-        "key": null
-    },
-    "user": {
-        "appRegistered": false,
-        "sessionId": "P-a2996f83-a72d-405c-aa23-0eed7a7dba1e",
-        "role": "VIEW",
-        "userRegisteredForPassword": false
-    }
-}
-```
+  ```json "JSON"
+  {
+      "status": {
+          "success": true,
+          "code": 200,
+          "message": "SUCCESS"
+      },
+      "auth": {
+          "token": "eyJpZHYiOlsiTU9CSUxFfDE4Nzk1Nzc0NzU0Il0sImRldiI6IjEyMzQiLCJvcmciOiJCVUtMIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9PR0lFUyIsIm9nYyI6WyIxMDA0NTh8YnVrbC5pbmQuc29sdXRpb24iXSwiZXhwIjoxNzE2ODkwODIyLCJpYXQiOjE3MTY4ODk5MjIsInJvbCI6IlZJRVcifQ.nL6iCjXIrfEb02uDnnJTyj0uPi8teQjAgnQPVU0_aqQ",
+          "key": null
+      },
+      "user": {
+          "appRegistered": false,
+          "sessionId": "P-a2996f83-a72d-405c-aa23-0eed7a7dba1e",
+          "role": "VIEW",
+          "userRegisteredForPassword": false
+      }
+  }
+  ```
+
+</CodeGroup>

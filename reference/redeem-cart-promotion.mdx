@@ -6,43 +6,47 @@ This API defines the endpoint for saving or applying a cart promotion that a cus
 
 ## Example request
 
-```bash
-curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/redemptions' \
---header 'Content-Type: application/json' \
---header 'X-CAP-API-AUTH-ORG-ID: 4000004' \
---header 'Authorization: Basic bmFtYW5fZG9jgyMzA3MWJmYjM5OGM5ZmM2YjZlY2I2MmEy' \
---header 'Cookie: _cfuvid=uvNcgoyanbmZMCVkA64njE4pSA_tJw1wkWo-1762160764633-0.0.1.1-604800000' \
---data '{
-  "customerIdentifierValue" : "1234512345", 
-  "customerIdentifierType" : "mobile",
-  "customerId" : "566881933",
-  "transactionIdentifier" : "txn-50",
-  "transactionNumber" : "txn-50",
-   "transactionDate":1743521508000, 
-   "amount":1000,
-   "lineItems" : [
-    {
-        "sku":"Sku#Fuel", 
-        "promotionId":"67e3c1073919452f135e2da0",  
-        "earnedPromotionId":"67e63559e1c34e7d8e9348aa", 
-        "redemptionCount":1,
-        "discount":500,
-        "discountAppliedOnQuantity":1,
-        "promotionAppliedOnQuantity":1
-     }
-   ],
-   "redemptions" : [
+<CodeGroup show-lines="true" tabs={["cURL"]}>
+
+  ```bash "cURL"
+  curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/redemptions' \
+  --header 'Content-Type: application/json' \
+  --header 'X-CAP-API-AUTH-ORG-ID: 4000004' \
+  --header 'Authorization: Basic bmFtYW5fZG9jgyMzA3MWJmYjM5OGM5ZmM2YjZlY2I2MmEy' \
+  --header 'Cookie: _cfuvid=uvNcgoyanbmZMCVkA64njE4pSA_tJw1wkWo-1762160764633-0.0.1.1-604800000' \
+  --data '{
+    "customerIdentifierValue" : "1234512345", 
+    "customerIdentifierType" : "mobile",
+    "customerId" : "566881933",
+    "transactionIdentifier" : "txn-50",
+    "transactionNumber" : "txn-50",
+     "transactionDate":1743521508000, 
+     "amount":1000,
+     "lineItems" : [
       {
-        "sku":"Sku#Fuel", 
-        "promotionId":"67e3c1073919452f135e2da0",  
-        "redemptionCount":1,
-        "discount":500,
-        "discountAppliedOnQuantity":1,
-        "promotionAppliedOnQuantity":1
-     }
-   ]
-}'
-```
+          "sku":"Sku#Fuel", 
+          "promotionId":"67e3c1073919452f135e2da0",  
+          "earnedPromotionId":"67e63559e1c34e7d8e9348aa", 
+          "redemptionCount":1,
+          "discount":500,
+          "discountAppliedOnQuantity":1,
+          "promotionAppliedOnQuantity":1
+       }
+     ],
+     "redemptions" : [
+        {
+          "sku":"Sku#Fuel", 
+          "promotionId":"67e3c1073919452f135e2da0",  
+          "redemptionCount":1,
+          "discount":500,
+          "discountAppliedOnQuantity":1,
+          "promotionAppliedOnQuantity":1
+       }
+     ]
+  }'
+  ```
+
+</CodeGroup>
 
 ## Prerequisites
 
@@ -79,41 +83,45 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/rede
 
 ## Example response
 
-```json
-{
-    "data": {
-        "orgId": 100737,
-        "customerIdentifierValue": "1234512345",
-        "customerIdentifierType": "mobile",
-        "customerId": 566881933,
-        "transactionIdentifier": "txn-50",
-        "transactionNumber": "txn-50",
-        "transactionDate": 1743521508000,
-        "transactionDateISO": "2025-04-01T15:31:48Z",
-        "amount": 1000.0,
-        "redemptions": [
-            {
-                "promotionId": "67e3c1073919452f135e2da0",
-                "redemptionCount": 1,
-                "discount": "500.000000",
-                "discountAppliedOnQuantity": "1.000000",
-                "promotionAppliedOnQuantity": "1.000000"
-            }
-        ],
-        "lineItems": [
-            {
-                "sku": "Sku#Fuel",
-                "promotionId": "67e3c1073919452f135e2da0",
-                "earnedPromotionId": "67e63559e1c34e7d8e9348aa",
-                "redemptionCount": 1,
-                "discount": "500.000000",
-                "discountAppliedOnQuantity": "1.000000",
-                "promotionAppliedOnQuantity": "1.000000"
-            }
-        ]
-    }
-}
-```
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  {
+      "data": {
+          "orgId": 100737,
+          "customerIdentifierValue": "1234512345",
+          "customerIdentifierType": "mobile",
+          "customerId": 566881933,
+          "transactionIdentifier": "txn-50",
+          "transactionNumber": "txn-50",
+          "transactionDate": 1743521508000,
+          "transactionDateISO": "2025-04-01T15:31:48Z",
+          "amount": 1000.0,
+          "redemptions": [
+              {
+                  "promotionId": "67e3c1073919452f135e2da0",
+                  "redemptionCount": 1,
+                  "discount": "500.000000",
+                  "discountAppliedOnQuantity": "1.000000",
+                  "promotionAppliedOnQuantity": "1.000000"
+              }
+          ],
+          "lineItems": [
+              {
+                  "sku": "Sku#Fuel",
+                  "promotionId": "67e3c1073919452f135e2da0",
+                  "earnedPromotionId": "67e63559e1c34e7d8e9348aa",
+                  "redemptionCount": 1,
+                  "discount": "500.000000",
+                  "discountAppliedOnQuantity": "1.000000",
+                  "promotionAppliedOnQuantity": "1.000000"
+              }
+          ]
+      }
+  }
+  ```
+
+</CodeGroup>
 
 ## Response parameters
 
@@ -153,5 +161,3 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/rede
 | 406  | Web engage account Id is not valid for this org. Verify and update your web engage account ID for this org.                 |
 | 500  | Internal server error. Retry the request after a short delay, and contact support if the error persists.                    |
 | 521  | Could not acquire the lock on the resource. Retry after some time or resolve resource contention.                           |
-
-<br />

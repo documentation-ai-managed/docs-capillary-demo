@@ -1,22 +1,23 @@
 ---
 title: Get Cart Promotions code API
 ---
-
 This API can be used to fetch the Cart promotion details using the cart promotion code and the cart promotion mode.
 
 **Note:** At present, the API to fetch cart promotion codes for existing code linked cart promotions is not available; you can download the generated code list via the "Manage Promo Codes" settings on the cart promotions listing page in the UI.
 
-<Image src="https://files.readme.io/a629aefecb53b9347aa41b49279e517266c1b80a775517a559c3809396f1ac05-Screenshot_2025-11-06_at_11.31.16_AM.png" width="70%" height="1080" alt="" />
+<Image src="https://files.readme.io/a629aefecb53b9347aa41b49279e517266c1b80a775517a559c3809396f1ac05-Screenshot_2025-11-06_at_11.31.16_AM.png" width="70%" height="1080" alt="" style="width: NaNpx; height: auto; cursor: pointer; margin: 0 auto;" />
 
 ## Example request
 
-```json
-curl --location 'https://{Host}/api_gateway/v1/promotions/code?codes=DQCV73&mode=DISCOUNT' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
---header 'accept: application/json' \
---data ''
-```
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+  ```bash JSON
+  curl --location 'https://{Host}/api_gateway/v1/promotions/code?codes=DQCV73&mode=DISCOUNT' \
+  --header 'Accept: application/json' \
+  --header 'Content-Type: application/json' \
+  --header 'accept: application/json' \
+  --data ''
+  ```
+</CodeGroup>
 
 ## Prerequisites
 
@@ -31,56 +32,58 @@ curl --location 'https://{Host}/api_gateway/v1/promotions/code?codes=DQCV73&mode
 
 ## Query parameters
 
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| codes | String | Yes | Defines the cart promotion code using which you want to retrieve the cart promotion details. |
-| mode | String | Yes | Defines the mode of cart promotion applied Supported values: `DISCOUNT`, `PAYMENT_VOUCHER`. |
-| includeRedemptions | Boolean | Optional | If true, includes redemption details for the codes. |
+| Field              | Type    | Required | Description                                                                                  |
+| ------------------ | ------- | -------- | -------------------------------------------------------------------------------------------- |
+| codes              | String  | Yes      | Defines the cart promotion code using which you want to retrieve the cart promotion details. |
+| mode               | String  | Yes      | Defines the mode of cart promotion applied Supported values: `DISCOUNT`, `PAYMENT_VOUCHER`.  |
+| includeRedemptions | Boolean | Optional | If true, includes redemption details for the codes.                                          |
 
 ## Example response
 
-```json
-{
-    "data": [
-        {
-            "id": "68fb18d331d91c625a8d9e52",
-            "orgId": 100458,
-            "promotionId": "68fb18a431d91c625a8d9e51",
-            "promotionName": "eratg",
-            "code": "DQCV73",
-            "customerId": 566881933,
-            "active": true,
-            "createdOn": 1761286355257,
-            "createdOnISO": "2025-10-24T06:12:35Z",
-            "validTill": 1763787599999,
-            "validTillISO": "2025-11-22T04:59:59Z",
-            "mode": "DISCOUNT",
-            "redeemableFrom": 1761286355257,
-            "redeemableFromISO": "2025-10-24T06:12:35Z"
-        }
-    ]
-}
-```
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+  ```json JSON
+  {
+      "data": [
+          {
+              "id": "68fb18d331d91c625a8d9e52",
+              "orgId": 100458,
+              "promotionId": "68fb18a431d91c625a8d9e51",
+              "promotionName": "eratg",
+              "code": "DQCV73",
+              "customerId": 566881933,
+              "active": true,
+              "createdOn": 1761286355257,
+              "createdOnISO": "2025-10-24T06:12:35Z",
+              "validTill": 1763787599999,
+              "validTillISO": "2025-11-22T04:59:59Z",
+              "mode": "DISCOUNT",
+              "redeemableFrom": 1761286355257,
+              "redeemableFromISO": "2025-10-24T06:12:35Z"
+          }
+      ]
+  }
+  ```
+</CodeGroup>
 
 ## Response parameters
 
-| Field | Type | Description |
-| --- | --- | --- |
-| data | Array | Defines a list of cart promotion code objects. |
-| ..id | String | Specifies the unique identifier for the cart promotion code record. |
-| ..orgId | Number | Specifies the Organization ID. |
-| ..promotionId | String | Specifies the ID of the cart promotion meta this code belongs to. |
-| ..promotionName | String | Specifies the name of the cart promotion. |
-| ..code | String | Specifies the cart promotion code itself. |
-| ..customerId | Number | Specifies the customer ID this code is linked to. |
-| ..active | Boolean | Indicates whether the code is currently active. |
-| ..createdOn | Number | Indicates the timestamp when the code was created in UTC. Time format: Epoch milliseconds |
-| ..createdOnISO | String | Specifies the ISO 8601 timestamp of when the code was created in UTC, returned in the server time zone. EU server example 2026-02-04T08:40:15Z → 04 February 2026, 08:40:15 (UTC) India server example 2026-02-04T14:10:15+05:30 → 04 February 2026, 14:10:15 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
-| ..validTill | Number | Indicates the timestamp of when the code expires in UTC. Time format : Epoch milliseconds |
-| ..validTillISO | String | Specifies the ISO 8601 timestamp of when the code was created in UTC, returned in the server time zone. EU server example 2026-02-04T08:40:15Z → 04 February 2026, 08:40:15 (UTC) India server example 2026-02-04T14:10:15+05:30 → 04 February 2026, 14:10:15 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
-| ..mode | String | Specifies the cart promotion mode. |
-| ..redeemableFrom | Number | Indicates the timestamp from when the code is redeemable. Time format: Epoch milliseconds |
-| ..redeemableFromISO | String | Specifies the ISO 8601 timestamp of when the code was created in UTC, returned in the server time zone. EU server example 2026-02-04T08:40:15Z → 04 February 2026, 08:40:15 (UTC) India server example 2026-02-04T14:10:15+05:30 → 04 February 2026, 14:10:15 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
+| Field               | Type    | Description                                                                                                                                                                                                                                                                                                                                                                              |
+| ------------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| data                | Array   | Defines a list of cart promotion code objects.                                                                                                                                                                                                                                                                                                                                           |
+| ..id                | String  | Specifies the unique identifier for the cart promotion code record.                                                                                                                                                                                                                                                                                                                      |
+| ..orgId             | Number  | Specifies the Organization ID.                                                                                                                                                                                                                                                                                                                                                           |
+| ..promotionId       | String  | Specifies the ID of the cart promotion meta this code belongs to.                                                                                                                                                                                                                                                                                                                        |
+| ..promotionName     | String  | Specifies the name of the cart promotion.                                                                                                                                                                                                                                                                                                                                                |
+| ..code              | String  | Specifies the cart promotion code itself.                                                                                                                                                                                                                                                                                                                                                |
+| ..customerId        | Number  | Specifies the customer ID this code is linked to.                                                                                                                                                                                                                                                                                                                                        |
+| ..active            | Boolean | Indicates whether the code is currently active.                                                                                                                                                                                                                                                                                                                                          |
+| ..createdOn         | Number  | Indicates the timestamp when the code was created in UTC. Time format: Epoch milliseconds                                                                                                                                                                                                                                                                                                |
+| ..createdOnISO      | String  | Specifies the ISO 8601 timestamp of when the code was created in UTC, returned in the server time zone. EU server example 2026-02-04T08:40:15Z → 04 February 2026, 08:40:15 (UTC) India server example 2026-02-04T14:10:15+05:30 → 04 February 2026, 14:10:15 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
+| ..validTill         | Number  | Indicates the timestamp of when the code expires in UTC. Time format : Epoch milliseconds                                                                                                                                                                                                                                                                                                |
+| ..validTillISO      | String  | Specifies the ISO 8601 timestamp of when the code was created in UTC, returned in the server time zone. EU server example 2026-02-04T08:40:15Z → 04 February 2026, 08:40:15 (UTC) India server example 2026-02-04T14:10:15+05:30 → 04 February 2026, 14:10:15 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
+| ..mode              | String  | Specifies the cart promotion mode.                                                                                                                                                                                                                                                                                                                                                       |
+| ..redeemableFrom    | Number  | Indicates the timestamp from when the code is redeemable. Time format: Epoch milliseconds                                                                                                                                                                                                                                                                                                |
+| ..redeemableFromISO | String  | Specifies the ISO 8601 timestamp of when the code was created in UTC, returned in the server time zone. EU server example 2026-02-04T08:40:15Z → 04 February 2026, 08:40:15 (UTC) India server example 2026-02-04T14:10:15+05:30 → 04 February 2026, 14:10:15 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
 
 ## Error codes
 
@@ -101,4 +104,3 @@ curl --location 'https://{Host}/api_gateway/v1/promotions/code?codes=DQCV73&mode
 | 1009 | Validation failure for redemption without cart evaluation. Check your request for all needed validation compliance. |
 | 500  | Internal server error. Retry after a short delay, and contact support if the error persists.                        |
 
-<br />

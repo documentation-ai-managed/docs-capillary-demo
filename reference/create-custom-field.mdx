@@ -20,22 +20,26 @@ Custom field name should be unique and is case sensitive.
 
 ## Example request
 
-```bash Sample request
-curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/customField' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
---header 'accept: application/json' \
---header 'Authorization: Basic bWFkaHYQ==' \
---header 'Cookie: _cfuvid=2wODcKsHz5O4nH9if.oAaM9mGGlxP9toYWBAik.SBbc-1773312258300-0.0.1.1-604800000' \
---data '
-{
-  "name": "CF20 dates",
-  "isMandatory": false,
-  "defaultValue": "0",
-  "dataType": "STRING"
-}
-'
-```
+<CodeGroup show-lines="true" tabs={["Sample request"]}>
+
+  ```bash "Sample request"
+  curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/customField' \
+  --header 'Accept: application/json' \
+  --header 'Content-Type: application/json' \
+  --header 'accept: application/json' \
+  --header 'Authorization: Basic bWFkaHYQ==' \
+  --header 'Cookie: _cfuvid=2wODcKsHz5O4nH9if.oAaM9mGGlxP9toYWBAik.SBbc-1773312258300-0.0.1.1-604800000' \
+  --data '
+  {
+    "name": "CF20 dates",
+    "isMandatory": false,
+    "defaultValue": "0",
+    "dataType": "STRING"
+  }
+  '
+  ```
+
+</CodeGroup>
 
 ## Prerequisites
 
@@ -60,38 +64,46 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/customFi
 | defaultValue | String | The default value of the custom field. |
 | dataType* | Enum | The data type of the custom field's value. Supported values: INTEGER, BOOLEAN, DATE, STRING. |
 
-```json
-{
-    "name": "CF20 dates",
-    "isMandatory": false,
-    "defaultValue": "0",
-    "dataType": "STRING"
-}
-```
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  {
+      "name": "CF20 dates",
+      "isMandatory": false,
+      "defaultValue": "0",
+      "dataType": "STRING"
+  }
+  ```
+
+</CodeGroup>
 
 ## Example response
 
-```json Sample response
-{
-    "data": {
-        "id": "69c0e1c823ba8848e5979a67",
-        "orgId": 100737,
-        "name": "CF20 dates",
-        "isMandatory": false,
-        "defaultValue": "0",
-        "isActive": true,
-        "dataType": "STRING",
-        "createdOn": 1774248392.637564000,
-        "createdOnISO": "2026-03-23T06:46:32Z",
-        "createdBy": 75197372,
-        "lastUpdatedOn": 1774248392.637564000,
-        "lastUpdatedOnISO": "2026-03-23T06:46:32Z",
-        "lastUpdatedBy": 75197372
-    },
-    "errors": [],
-    "warnings": []
-}
-```
+<CodeGroup show-lines="true" tabs={["Sample response"]}>
+
+  ```json "Sample response"
+  {
+      "data": {
+          "id": "69c0e1c823ba8848e5979a67",
+          "orgId": 100737,
+          "name": "CF20 dates",
+          "isMandatory": false,
+          "defaultValue": "0",
+          "isActive": true,
+          "dataType": "STRING",
+          "createdOn": 1774248392.637564000,
+          "createdOnISO": "2026-03-23T06:46:32Z",
+          "createdBy": 75197372,
+          "lastUpdatedOn": 1774248392.637564000,
+          "lastUpdatedOnISO": "2026-03-23T06:46:32Z",
+          "lastUpdatedBy": 75197372
+      },
+      "errors": [],
+      "warnings": []
+  }
+  ```
+
+</CodeGroup>
 
 ## Response parameters
 
@@ -121,5 +133,3 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/customFi
 | 741         | Custom field Data Type is mandatory.              |
 | 744         | Custom field default value should be a number.    |
 | 742         | Mandatory custom field should have default Value. |
-
-<br />

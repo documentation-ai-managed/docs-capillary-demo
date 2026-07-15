@@ -1,34 +1,29 @@
 ---
 title: Get reward details by ID in connected orgs
 ---
-
 This API retrieves the details of rewards using reward ID.
 
 <Callout kind="tip" title="Note">
-
-For detailed information about our APIs and for hands-on testing, refer to the documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on [making your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
-
+  For detailed information about our APIs and for hands-on testing, refer to the documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on [making your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
 </Callout>
 
 <Callout kind="alert" title="**Warning**">
-
-Use this API exclusively for connected orgs. For other orgs, use this [API](https://docs.capillarytech.com/reference/get-rewards-for-user) instead.
-
+  Use this API exclusively for connected orgs. For other orgs, use this [API](https://docs.capillarytech.com/reference/get-rewards-for-user) instead.
 </Callout>
 
 ## Prerequisites
 
-- [ ] Authentication: Basic or OAuth authentication
-- [ ] Default access group
+- Authentication: Basic or OAuth authentication
+- Default access group
 
 ## Resource information
 
 | URI                    | /v1.1/user/rewards`{rewardId}` |
-| :--------------------- | :------------------------------- |
-| HTTP Method            | GET                              |
-| Pagination             | No                               |
-| Batch support          | No                               |
-| Rate limit information | None                             |
+| :--------------------- | :----------------------------- |
+| HTTP Method            | GET                            |
+| Pagination             | No                             |
+| Batch support          | No                             |
+| Rate limit information | None                           |
 
 ## API Endpoint Example
 
@@ -36,10 +31,10 @@ Use this API exclusively for connected orgs. For other orgs, use this [API](http
 
 ## Headers
 
-| Header | Description |
-| --- | --- |
-| DATA-SCOPE-ORG | List of Organization IDs |
-| DATA-SCOPE | Scopes define what data can be accessed using the API. You can use scopes to control access to data from a parent or child organization. Defining a scope ensures that the response contains only data from the respective organization. Supported headers: `SELF`, `ALL` and `OTHER`. Refer to connected orgs [data scopes](https://docs.capillarytech.com/reference/connected-orgs-data-scopes) for more information. |
+| Header         | Description                                                                                                                                                                                                                                                                                                                                                                                                             |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DATA-SCOPE-ORG | List of Organization IDs                                                                                                                                                                                                                                                                                                                                                                                                |
+| DATA-SCOPE     | Scopes define what data can be accessed using the API. You can use scopes to control access to data from a parent or child organization. Defining a scope ensures that the response contains only data from the respective organization. Supported headers: `SELF`, `ALL` and `OTHER`. Refer to connected orgs [data scopes](https://docs.capillarytech.com/reference/connected-orgs-data-scopes) for more information. |
 
 ## Request Path Parameters
 
@@ -55,7 +50,7 @@ Use this API exclusively for connected orgs. For other orgs, use this [API](http
 | `code`                 | Integer  | Status code associated with the response.                                                                                                                                                                                                                                                                                                                                                            |
 | `message`              | String   | Descriptive message about the response status.                                                                                                                                                                                                                                                                                                                                                       |
 | `id`                   | Integer  | Unique identifier for the reward.                                                                                                                                                                                                                                                                                                                                                                    |
-| `type`                 | Enum     | Type of the reward. <br/>Supported values: `POINTS`, `VOUCHER`, `PHYSICAL_VOUCHER`, `FREE_VOUCHER`.                                                                                                                                                                                                                                                                                                  |
+| `type`                 | Enum     | Type of the reward. Supported values: `POINTS`, `VOUCHER`, `PHYSICAL_VOUCHER`, `FREE_VOUCHER`.                                                                                                                                                                                                                                                                                                       |
 | `startDate`            | String   | Start date and time of the reward's validity.                                                                                                                                                                                                                                                                                                                                                        |
 | `endDate`              | String   | End date and time of the reward's validity.                                                                                                                                                                                                                                                                                                                                                          |
 | `enabled`              | Boolean  | Indicates if the reward is currently enabled.                                                                                                                                                                                                                                                                                                                                                        |
@@ -63,7 +58,7 @@ Use this API exclusively for connected orgs. For other orgs, use this [API](http
 | `intouchPoints`        | Integer  | The number of points customers need to burn to purchase the reward.                                                                                                                                                                                                                                                                                                                                  |
 | `intouchSeriesId`      | String   | Coupon series ID or cart promotion ID when intouch reward is selected.                                                                                                                                                                                                                                                                                                                               |
 | `tier`                 | String   | Tier classification of the reward, e.g., SILVER.                                                                                                                                                                                                                                                                                                                                                     |
-| `redemptionType`       | Enum     | Type of intouch reward or vendor reward. <br/>Supported values: `INTOUCH_REWARD`, `VENDOR_INTOUCH_REWARD`, `VENDOR_ONLY_REWARD`, `CART_PROMOTION`.                                                                                                                                                                                                                                                   |
+| `redemptionType`       | Enum     | Type of intouch reward or vendor reward. Supported values: `INTOUCH_REWARD`, `VENDOR_INTOUCH_REWARD`, `VENDOR_ONLY_REWARD`, `CART_PROMOTION`.                                                                                                                                                                                                                                                        |
 | `vendorId`             | Integer  | Identifier for the vendor associated with the reward.                                                                                                                                                                                                                                                                                                                                                |
 | `vendorRedemption`     | Integer  | Redemption value or code at the vendor.                                                                                                                                                                                                                                                                                                                                                              |
 | `languageSpecificInfo` | Array    | Array of objects containing language-specific details.                                                                                                                                                                                                                                                                                                                                               |
@@ -90,18 +85,15 @@ Use this API exclusively for connected orgs. For other orgs, use this [API](http
 | `isExternal`           | Boolean  | Indicates if the video is hosted on an external server.                                                                                                                                                                                                                                                                                                                                              |
 | `customFields`         | Object   | Object containing key-value pairs for custom fields specific to the reward.                                                                                                                                                                                                                                                                                                                          |
 | `paymentConfigs`       | Object   | The `paymentConfigs` object includes the type of payment mode used to purchase the reward. The `ID` is the unique identifier for the payment mode configuration used.                                                                                                                                                                                                                                |
-| `paymentMode`          | Enum     | The type of payment mode used to redeem the reward. <br/>For example: `POINTS`, `FREE`, `CASH`, `POINTS_CASH`, `CONV_RATIO`.                                                                                                                                                                                                                                                                         |
+| `paymentMode`          | Enum     | The type of payment mode used to redeem the reward. For example: `POINTS`, `FREE`, `CASH`, `POINTS_CASH`, `CONV_RATIO`.                                                                                                                                                                                                                                                                              |
 | `id`                   | Integer  | Unique identifier for the payment configuration.                                                                                                                                                                                                                                                                                                                                                     |
 | `segment`              | Object   | Customer Segmentation is a logical grouping of audiences based on shared characteristics. Segments are used to tailor the marketing efforts of brands effectively. For more information on segments, refer [here](https://docs.capillarytech.com/docs/introduction-to-customer-segmentation).                                                                                                        |
 | `segmentId`            | Integer  | Segment ID is a unique identifier used to retrieve specific segment information.                                                                                                                                                                                                                                                                                                                     |
 | `partitionId`          | Integer  | The Partition ID is a unique identifier used to retrieve information. You can pass one or more Partition IDs to access the desired data.                                                                                                                                                                                                                                                             |
 | `orgLevelRestrictions` | Array    | `orgLevelRestrictions` refers to a set of conditions that determine whether a reward or action is valid or accessible for specific organizations. This restriction is usually applied at the organization level to control which organizations can view, access, or redeem the rewards based on certain validation criteria. It will specify the connected orgs in which the restriction is applied. |
 
-<br />
-
-<CodeGroup show-lines="true" tabs={["Response: With OTHER as DATA-SCOPE", "Response: With SELF as DATA-SCOPE", "Failure: With ALL as a scope", "With 'altText' for images and videos"]}>
-
-  ```json Response: With OTHER as DATA-SCOPE
+<CodeGroup show-lines="true" tabs={["Response: With OTHER as DATA-SCOPE","Response: With SELF as DATA-SCOPE","Failure: With ALL as a scope","With 'altText' for images and videos"]}>
+  ```json wrap="true" "Response: With OTHER as DATA-SCOPE"
   {
       "status": {
           "success": true,
@@ -183,7 +175,7 @@ Use this API exclusively for connected orgs. For other orgs, use this [API](http
   }
   ```
 
-  ```json Response: With SELF as DATA-SCOPE
+  ```json wrap="true" "Response: With SELF as DATA-SCOPE"
   {
       "status": {
           "success": true,
@@ -261,20 +253,20 @@ Use this API exclusively for connected orgs. For other orgs, use this [API](http
   }
   ```
 
-  ```json Failure: With ALL as a scope
+  ```json wrap="true" "Failure: With ALL as a scope"
   {
       "data": null,
       "errors": [
-        {
-          "code": 310141,
-          "message": 'Datascope 'ALL' is not supported for this 'API'
-        }
-        ],
+          {
+              "code": 310141,
+              "message": "Datascope 'ALL' is not supported for this API"
+          }
+      ],
       "warnings": null
   }
   ```
 
-  ```json With 'altText' for images and videos
+  ```json wrap="true" "With 'altText' for images and videos"
   {
       "status": {
           "success": true,
@@ -371,5 +363,4 @@ Use this API exclusively for connected orgs. For other orgs, use this [API](http
       }
   }
   ```
-
 </CodeGroup>

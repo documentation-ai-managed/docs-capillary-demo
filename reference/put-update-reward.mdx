@@ -57,7 +57,7 @@ This API is used to update a particular reward.
 
 </Callout>
 
-<Image src="https://files.readme.io/7aad76be70909a1af79f0d7a6a5c25cd4481d38419cedef537fe7f3860f08027-Screenshot_2024-09-13_174313.png" width="1920" height="1080" alt="" />
+<Image src="https://files.readme.io/7aad76be70909a1af79f0d7a6a5c25cd4481d38419cedef537fe7f3860f08027-Screenshot_2024-09-13_174313.png" width="1920" height="1080" alt="Screenshot of the Update Reward payment configuration settings" />
 
 ## Prerequisites
 
@@ -75,115 +75,117 @@ This API is used to update a particular reward.
 
 ## Example request
 
-```bash Sample update request
-curl -L -X PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/458081/brand/61' \
--H 'Content-Type: application/json' \
--H 'Authorization: Basic bmFtYW5fZG9jOmEzYjRjYjgyMzA3MWJmYjM5OGM5ZmM2YjZlY2I2MmEy' \
--H 'Cookie: _cfuvid=PZ2Qs9Lv6_ngy2fSsa2ZHebqE7qq7WrhJNpax_n8cXA-1759145375283-0.0.1.1-604800000' \
--d '{
-    /******** Mandatory parameters ********/
-    // "startTime": "2025-08-31T06:00:00Z",
-    "endTime": "2025-09-30T11:59:30Z",
-    "type": "VOUCHER",
-    "brandId": "61",
-    "redemptionType": "INTOUCH_REWARD",
-    /******** Non mandatory parameters ********/
-    "priority": 1,
-    "enabled": true,
-    "intouchSeriesId": "849480",
-    // "intouchPoints": 500,
-    // "geography": [
-    //     {
-    //         "countryId": 1
-    //     }
-    // ],
-    "categories": [
-        486
-    ],
-    "languageSpecificInfo": [
-        {
-            "languageCode": "en",
-            "name": "UAT Reward 10",
-            "description": "Test Reward for UAT Team",
-            "enabled": true,
-            "richContentRO": {
-                "UAT_RCT_1": {
-                    "content": "Rich Content Text for UAT",
-                    "isEnabled": true
-                }
-            }
-        }
-    ],
-    "paymentConfigs": [
-       {
-            "paymentMode": "POINTS",
-            // "conversionRatio":0.33,
-            "points": 100
-        }
-    ],
-    // "rewardRank":"1",
-    // "intouchSeriesId": "301233",
-    // "vendorRedemption": null,
-    // "communications": [
-    //     "1"
-    // ],
-    // "restrictions": {
-    //     "customerLevel": [
-    //         {
-    //             "kpi": "QUANTITY",
-    //             "limit": 10,
-    //             "repeatFrequencyType": "DAYS",
-    //             "interval": "30"
-    //         },
-    //         {
-    //             "kpi": "QUANTITY",
-    //             "limit": 50,
-    //             "repeatFrequencyType": "MONTHS",
-    //             "interval": "12"
-    //         }
-    //     ],
-    //     "rewardLevel": [
-    //         {
-    //             "kpi": "QUANTITY",
-    //             "limit": 10000,
-    //             "repeatFrequencyType": "NO_LIMIT"
-    //         }
-    //     ]
-    // },
-    // "supplementaryCriteriaRO": [
-    //     {
-    //         "loyaltyProgramId": 469,
-    //         "tierIds": null,
-    //         "partnerProgramIds": [
-    //             48
-    //         ]
-    //     },
-    //     {
-    //         "loyaltyProgramId": 690,
-    //         "tierIds": null,
-    //         "partnerProgramIds": null
-    //     }
-    // ],
-    // "customFields": {
-    //     "CF1": "Custom field 1"
-    // },
-    // "languageSpecificInfo": [
-    //     {
-    //         "languageCode": "en",
-    //         "name": "testreward1",
-    //         "description": "testreward1",
-    //         "imageId": "bef4d522-2cf8-4fea-8087-376c449d5c85",
-    //         "termNConditions": "t&c",
-    //         "thumbnailId": "c886f064-2b3f-4c19-9e86-7f7e5ab5ae04",
-    //         "termNConditionsId": "820a3d7f-2601-405b-9f56-4a3ba8e9df73",
-    //         "enabled": true
-    //     }
-    // ],
-    "isactive" : true
-}'
-```
+<CodeGroup show-lines="true" tabs={["Sample update request"]}>
 
-<br />
+  ```bash "Sample update request"
+  curl -L -X PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/458081/brand/61' \
+  -H 'Content-Type: application/json' \
+  -H 'Authorization: Basic bmFtYW5fZG9jOmEzYjRjYjgyMzA3MWJmYjM5OGM5ZmM2YjZlY2I2MmEy' \
+  -H 'Cookie: _cfuvid=PZ2Qs9Lv6_ngy2fSsa2ZHebqE7qq7WrhJNpax_n8cXA-1759145375283-0.0.1.1-604800000' \
+  -d '{
+      /******** Mandatory parameters ********/
+      // "startTime": "2025-08-31T06:00:00Z",
+      "endTime": "2025-09-30T11:59:30Z",
+      "type": "VOUCHER",
+      "brandId": "61",
+      "redemptionType": "INTOUCH_REWARD",
+      /******** Non mandatory parameters ********/
+      "priority": 1,
+      "enabled": true,
+      "intouchSeriesId": "849480",
+      // "intouchPoints": 500,
+      // "geography": [
+      //     {
+      //         "countryId": 1
+      //     }
+      // ],
+      "categories": [
+          486
+      ],
+      "languageSpecificInfo": [
+          {
+              "languageCode": "en",
+              "name": "UAT Reward 10",
+              "description": "Test Reward for UAT Team",
+              "enabled": true,
+              "richContentRO": {
+                  "UAT_RCT_1": {
+                      "content": "Rich Content Text for UAT",
+                      "isEnabled": true
+                  }
+              }
+          }
+      ],
+      "paymentConfigs": [
+         {
+              "paymentMode": "POINTS",
+              // "conversionRatio":0.33,
+              "points": 100
+          }
+      ],
+      // "rewardRank":"1",
+      // "intouchSeriesId": "301233",
+      // "vendorRedemption": null,
+      // "communications": [
+      //     "1"
+      // ],
+      // "restrictions": {
+      //     "customerLevel": [
+      //         {
+      //             "kpi": "QUANTITY",
+      //             "limit": 10,
+      //             "repeatFrequencyType": "DAYS",
+      //             "interval": "30"
+      //         },
+      //         {
+      //             "kpi": "QUANTITY",
+      //             "limit": 50,
+      //             "repeatFrequencyType": "MONTHS",
+      //             "interval": "12"
+      //         }
+      //     ],
+      //     "rewardLevel": [
+      //         {
+      //             "kpi": "QUANTITY",
+      //             "limit": 10000,
+      //             "repeatFrequencyType": "NO_LIMIT"
+      //         }
+      //     ]
+      // },
+      // "supplementaryCriteriaRO": [
+      //     {
+      //         "loyaltyProgramId": 469,
+      //         "tierIds": null,
+      //         "partnerProgramIds": [
+      //             48
+      //         ]
+      //     },
+      //     {
+      //         "loyaltyProgramId": 690,
+      //         "tierIds": null,
+      //         "partnerProgramIds": null
+      //     }
+      // ],
+      // "customFields": {
+      //     "CF1": "Custom field 1"
+      // },
+      // "languageSpecificInfo": [
+      //     {
+      //         "languageCode": "en",
+      //         "name": "testreward1",
+      //         "description": "testreward1",
+      //         "imageId": "bef4d522-2cf8-4fea-8087-376c449d5c85",
+      //         "termNConditions": "t&c",
+      //         "thumbnailId": "c886f064-2b3f-4c19-9e86-7f7e5ab5ae04",
+      //         "termNConditionsId": "820a3d7f-2601-405b-9f56-4a3ba8e9df73",
+      //         "enabled": true
+      //     }
+      // ],
+      "isactive" : true
+  }'
+  ```
+
+</CodeGroup>
 
 ## Request path parameters
 
@@ -270,7 +272,7 @@ curl -L -X PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/rew
 
 <CodeGroup show-lines="true" tabs={["With rank", "With image support", "With multi lingual custom field", "With revenue metadata", "With payment mode info", "With segment information", "With group name and rank", "With REDEMPTION_VALUE", "With cards", "With labels", "With KPI as Quantity", "With KPI as Redemption value", "With 'altText' for images and videos"]}>
 
-  ```json With rank
+  ```json "With rank"
   {
       "startTime": "2025-09-26T20:00:00Z",
       "endTime": "2026-10-31T11:59:30Z",
@@ -350,7 +352,7 @@ curl -L -X PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/rew
   }
   ```
 
-  ```json With image support
+  ```json "With image support"
   {
     	"name":"ABCD",
     	"description":"Reward",
@@ -420,7 +422,7 @@ curl -L -X PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/rew
   }
   ```
 
-  ```json With multi lingual custom field
+  ```json "With multi lingual custom field"
   {
       "startTime": "2024-03-07T08:53:49.00Z",
       "endTime": "2024-03-14T05:39:49.00Z",
@@ -482,7 +484,7 @@ curl -L -X PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/rew
   }
   ```
 
-  ```json With revenue metadata
+  ```json "With revenue metadata"
 
   {
       "startTime": "2024-10-07T17:04:30.00Z",
@@ -549,7 +551,7 @@ curl -L -X PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/rew
   }
   ```
 
-  ```json With payment mode info
+  ```json "With payment mode info"
   {
       "name": "testreward1poitu",
       "description": "testreward11",
@@ -638,7 +640,7 @@ curl -L -X PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/rew
   }
   ```
 
-  ```json With segment information
+  ```json "With segment information"
   {
       "startTime": "2027-10-03T07:47:33Z",
       "endTime": "2030-07-10T09:48:34Z",
@@ -684,7 +686,7 @@ curl -L -X PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/rew
   }
   ```
 
-  ```json With group name and rank
+  ```json "With group name and rank"
   {
       "id": 201374,
       "name": "testname",
@@ -772,7 +774,7 @@ curl -L -X PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/rew
   }
   ```
 
-  ```json With REDEMPTION_VALUE
+  ```json "With REDEMPTION_VALUE"
   {
       "id": 272383,
       "name": "REWARD",
@@ -851,7 +853,7 @@ curl -L -X PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/rew
   }
   ```
 
-  ```json With cards
+  ```json "With cards"
   {
       "id": 256354,
     	"name": "RewardName",
@@ -880,7 +882,7 @@ curl -L -X PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/rew
   }
   ```
 
-  ```json With labels
+  ```json "With labels"
   {
       "id": 256354,
     	"name": "RewardName",
@@ -909,7 +911,7 @@ curl -L -X PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/rew
   }
   ```
 
-  ```bash With KPI as Quantity
+  ```bash "With KPI as Quantity"
   {
       "name": "testcreate1",
       "description": "testcreate1",
@@ -968,7 +970,7 @@ curl -L -X PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/rew
   }
   ```
 
-  ```bash With KPI as Redemption value
+  ```bash "With KPI as Redemption value"
   {
       "name": "testcreate2",
       "description": "testcreate2",
@@ -1058,7 +1060,7 @@ curl -L -X PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/rew
   }
   ```
 
-  ```bash With 'altText' for images and videos
+  ```bash "With 'altText' for images and videos"
   {
       "startTime": "2025-02-12T05:59:00.000Z",
       "endTime": "2025-12-30T12:50:20.000Z",
@@ -1118,7 +1120,7 @@ curl -L -X PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/rew
 
 <CodeGroup show-lines="true" tabs={["Sample update response", "400-CONV RATIO with other payment mode", "400-Redemption cannot be changed once the reward has been started", "400- Invalid Card Series ID", "400- Invalid Label ID", "Code", "Code (2)", "Code (3)"]}>
 
-  ```json Sample update response
+  ```json "Sample update response"
   {
       "status": {
           "success": true,
@@ -1131,7 +1133,7 @@ curl -L -X PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/rew
   }
   ```
 
-  ```text 400-CONV RATIO with other payment mode
+  ```text "400-CONV RATIO with other payment mode"
   {
       "status": {
           "success": false,
@@ -1141,7 +1143,7 @@ curl -L -X PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/rew
   }
   ```
 
-  ```text 400-Redemption cannot be changed once the reward has been started
+  ```text "400-Redemption cannot be changed once the reward has been started"
   {
       "status": {
           "success": false,
@@ -1151,7 +1153,7 @@ curl -L -X PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/rew
   }
   ```
 
-  ```text 400- Invalid Card Series ID
+  ```text "400- Invalid Card Series ID"
   {
       "status": {
           "success": false,
@@ -1162,7 +1164,7 @@ curl -L -X PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/rew
   }
   ```
 
-  ```text 400- Invalid Label ID
+  ```text "400- Invalid Label ID"
   {
       "status": {
           "success": false,
@@ -1173,15 +1175,15 @@ curl -L -X PUT 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/rew
   }
   ```
 
-  ```text Code
+  ```text "Code"
 
   ```
 
-  ```text Code (2)
+  ```text "Code (2)"
 
   ```
 
-  ```text Code (3)
+  ```text "Code (3)"
 
   ```
 

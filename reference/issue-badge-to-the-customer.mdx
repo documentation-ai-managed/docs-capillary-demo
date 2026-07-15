@@ -13,25 +13,29 @@ This API allows you to issue badges to the customer (the customer earns the badg
 
 ## Example request
 
-```bash Sample request
-curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/customer/earn' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
---header 'Authorization: Basic bWFkaHV2YQ==' \
---header 'Cookie: _cfuvid=G55QZbUnuqcGlxvEVrDIeQAXNoTvA58qzY6ItL2dY2A-1768823991734-0.0.1.1-604800000' \
---data '
-{
-  "badgeMetaId": "692e7e739b3ca00e4bbf7c06",
-  "earnEventDate": "2025-12-02T11:30:00.192Z",
-  "customerId": "23423",
-  "requestId": 23432,
-  "triggeredBy": {
-   "ownerType": "Loyalty",
-    "referenceId": "123"
+<CodeGroup show-lines="true" tabs={["Sample request"]}>
+
+  ```bash "Sample request"
+  curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/customer/earn' \
+  --header 'Accept: application/json' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Basic bWFkaHV2YQ==' \
+  --header 'Cookie: _cfuvid=G55QZbUnuqcGlxvEVrDIeQAXNoTvA58qzY6ItL2dY2A-1768823991734-0.0.1.1-604800000' \
+  --data '
+  {
+    "badgeMetaId": "692e7e739b3ca00e4bbf7c06",
+    "earnEventDate": "2025-12-02T11:30:00.192Z",
+    "customerId": "23423",
+    "requestId": 23432,
+    "triggeredBy": {
+     "ownerType": "Loyalty",
+      "referenceId": "123"
+    }
   }
-}
-'
-```
+  '
+  ```
+
+</CodeGroup>
 
 ## Prerequisites
 
@@ -61,21 +65,25 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/customer
 
 ## Example response
 
-```json Sample response
-{
-    "data": {
-        "badgeMetaId": "692e7e739b3ca00e4bbf7c06",
-        "customerId": 23423,
-        "earnedBadgeId": "696e2234eba5957293853195",
-        "expiresOn": 1770034996.715319000,
-        "expiresOnISO": "2026-02-02T12:23:16Z",
-        "requestId": "23432",
-        "issuedId": null
-    },
-    "errors": [],
-    "warnings": []
-}
-```
+<CodeGroup show-lines="true" tabs={["Sample response"]}>
+
+  ```json "Sample response"
+  {
+      "data": {
+          "badgeMetaId": "692e7e739b3ca00e4bbf7c06",
+          "customerId": 23423,
+          "earnedBadgeId": "696e2234eba5957293853195",
+          "expiresOn": 1770034996.715319000,
+          "expiresOnISO": "2026-02-02T12:23:16Z",
+          "requestId": "23432",
+          "issuedId": null
+      },
+      "errors": [],
+      "warnings": []
+  }
+  ```
+
+</CodeGroup>
 
 ## Response parameters
 

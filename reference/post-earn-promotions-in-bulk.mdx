@@ -11,38 +11,42 @@ This API grants multiple cart promotions to a customer in a single request.
 
 ## Example request
 
-```bash
-curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/earn/bulk' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
---header 'accept: application/json' \
---header 'Authorization: Basic Z2Vvcmd2RlbW81OTNhMjI2MTk1OGE2NWI5ZjAxMzU5NGIwNDllZTk=' \
---header 'Cookie: _cfuvid=GAReJgp167bbzDQ8s5vEdbLfhfncjBmtRbikkGl8-1762840589756-0.0.1.1-604800000' \
---data '{
-  "orgId": 100737,
-  "customerId": 566881933,
-  "eventTime": 1761750000000,
-  "earnedFromType": "BULK_ISSUE",
-  "eventDetails": {
-    "id": "6911e951f57b486147effa6c",
-    "type": "BULK_ISSUE"
-  },
-  "earnedPromotions": [
-    {
-      "promotionId":"6912ced9d39e256f754a83f8",
-      "earnCount": 1,
-      "earnedFromId": "68fb1c9731d91c625a8d9e80"
-    },
-    {
-      "promotionId":"6912cfff6629ee07040e15ef",
-      "earnCount": 1,
-      "earnedFromId": "68fb1c9731d91c625a8d9e80"
-    }
-  ]
+<CodeGroup show-lines="true" tabs={["cURL"]}>
 
-}
-'
-```
+  ```bash "cURL"
+  curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/earn/bulk' \
+  --header 'Accept: application/json' \
+  --header 'Content-Type: application/json' \
+  --header 'accept: application/json' \
+  --header 'Authorization: Basic Z2Vvcmd2RlbW81OTNhMjI2MTk1OGE2NWI5ZjAxMzU5NGIwNDllZTk=' \
+  --header 'Cookie: _cfuvid=GAReJgp167bbzDQ8s5vEdbLfhfncjBmtRbikkGl8-1762840589756-0.0.1.1-604800000' \
+  --data '{
+    "orgId": 100737,
+    "customerId": 566881933,
+    "eventTime": 1761750000000,
+    "earnedFromType": "BULK_ISSUE",
+    "eventDetails": {
+      "id": "6911e951f57b486147effa6c",
+      "type": "BULK_ISSUE"
+    },
+    "earnedPromotions": [
+      {
+        "promotionId":"6912ced9d39e256f754a83f8",
+        "earnCount": 1,
+        "earnedFromId": "68fb1c9731d91c625a8d9e80"
+      },
+      {
+        "promotionId":"6912cfff6629ee07040e15ef",
+        "earnCount": 1,
+        "earnedFromId": "68fb1c9731d91c625a8d9e80"
+      }
+    ]
+
+  }
+  '
+  ```
+
+</CodeGroup>
 
 ## Prerequisites
 
@@ -68,59 +72,63 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/earn
 
 ## Example response
 
-```json
-{
-    "data": [
-        {
-            "earnedFromId": "68fb1c9731d91c625a8d9e80",
-            "promotionId": "6912cfff6629ee07040e15ef",
-            "successfulEarnCount": 1,
-            "failedEarnCount": 0,
-            "customerEarnedPromotions": [
-                {
-                    "id": "6912d0256629ee07040e15f2",
-                    "customerId": 566881933,
-                    "promotionId": "6912cfff6629ee07040e15ef",
-                    "earnedFromType": "BULK_ISSUE",
-                    "earnedFromId": "68fb1c9731d91c625a8d9e80",
-                    "eventTime": 1761750000000,
-                    "eventTimeISO": "2025-10-29T15:00:00Z",
-                    "eventDetails": {
-                        "id": "6911e951f57b486147effa6c",
-                        "type": "BULK_ISSUE"
-                    },
-                    "validTill": 1767205799999,
-                    "validTillISO": "2025-12-31T18:29:59Z"
-                }
-            ]
-        },
-        {
-            "earnedFromId": "68fb1c9731d91c625a8d9e80",
-            "promotionId": "6912ced9d39e256f754a83f8",
-            "successfulEarnCount": 1,
-            "failedEarnCount": 0,
-            "customerEarnedPromotions": [
-                {
-                    "id": "6912d0256629ee07040e15f1",
-                    "customerId": 566881933,
-                    "promotionId": "6912ced9d39e256f754a83f8",
-                    "earnedFromType": "BULK_ISSUE",
-                    "earnedFromId": "68fb1c9731d91c625a8d9e80",
-                    "eventTime": 1761750000000,
-                    "eventTimeISO": "2025-10-29T15:00:00Z",
-                    "eventDetails": {
-                        "id": "6911e951f57b486147effa6c",
-                        "type": "BULK_ISSUE"
-                    },
-                    "validTill": 1767205799999,
-                    "validTillISO": "2025-12-31T18:29:59Z"
-                }
-            ]
-        }
-    ],
-    "errors": []
-}
-```
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  {
+      "data": [
+          {
+              "earnedFromId": "68fb1c9731d91c625a8d9e80",
+              "promotionId": "6912cfff6629ee07040e15ef",
+              "successfulEarnCount": 1,
+              "failedEarnCount": 0,
+              "customerEarnedPromotions": [
+                  {
+                      "id": "6912d0256629ee07040e15f2",
+                      "customerId": 566881933,
+                      "promotionId": "6912cfff6629ee07040e15ef",
+                      "earnedFromType": "BULK_ISSUE",
+                      "earnedFromId": "68fb1c9731d91c625a8d9e80",
+                      "eventTime": 1761750000000,
+                      "eventTimeISO": "2025-10-29T15:00:00Z",
+                      "eventDetails": {
+                          "id": "6911e951f57b486147effa6c",
+                          "type": "BULK_ISSUE"
+                      },
+                      "validTill": 1767205799999,
+                      "validTillISO": "2025-12-31T18:29:59Z"
+                  }
+              ]
+          },
+          {
+              "earnedFromId": "68fb1c9731d91c625a8d9e80",
+              "promotionId": "6912ced9d39e256f754a83f8",
+              "successfulEarnCount": 1,
+              "failedEarnCount": 0,
+              "customerEarnedPromotions": [
+                  {
+                      "id": "6912d0256629ee07040e15f1",
+                      "customerId": 566881933,
+                      "promotionId": "6912ced9d39e256f754a83f8",
+                      "earnedFromType": "BULK_ISSUE",
+                      "earnedFromId": "68fb1c9731d91c625a8d9e80",
+                      "eventTime": 1761750000000,
+                      "eventTimeISO": "2025-10-29T15:00:00Z",
+                      "eventDetails": {
+                          "id": "6911e951f57b486147effa6c",
+                          "type": "BULK_ISSUE"
+                      },
+                      "validTill": 1767205799999,
+                      "validTillISO": "2025-12-31T18:29:59Z"
+                  }
+              ]
+          }
+      ],
+      "errors": []
+  }
+  ```
+
+</CodeGroup>
 
 ## Response parameters
 
@@ -161,5 +169,3 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/earn
 | 1006 | Invalid customer identifier. Provide a valid customer identifier for every request in the bulk call.                           |
 | 1007 | Error while fetching customer identifier. Retry and validate all customer data in your bulk payload.                           |
 | 500  | Internal server error. Retry the request after a short delay, and contact support if the error persists.                       |
-
-<br />

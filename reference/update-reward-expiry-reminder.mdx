@@ -42,13 +42,17 @@ This API is used to update the Reward expiry reminder to remind the user that th
 | duration\*     | Integer   | The duration specifies how many days in advance the reward expiry reminder will be sent before the reward expires. This does not have any default value set and is mandatory.                                                                                                         |
 | timing         | timestamp | This defines the specific time when the reminder will be sent. The time should be provided in 24-hour format (HH:MM) and represents the the org's cluster (server) time. If no time is specified, the reminder will automatically be set for 16:00 server time for the org's cluster. |
 
-```json Request
-{
-    "isActive":true,
-    "duration": 15,
-    "timing": "12:00"
-}
-```
+<CodeGroup show-lines="true" tabs={["Request"]}>
+
+  ```json "Request"
+  {
+      "isActive":true,
+      "duration": 15,
+      "timing": "12:00"
+  }
+  ```
+
+</CodeGroup>
 
 ## Response parameters
 
@@ -73,7 +77,7 @@ This API is used to update the Reward expiry reminder to remind the user that th
 
 <CodeGroup show-lines="true" tabs={["200- Response", "400- No duration is passed.", "400- Invalid Reward Expiry Reminder ID"]}>
 
-  ```json 200- Response
+  ```json "200- Response"
   {
       "status": {
           "success": true,
@@ -98,7 +102,7 @@ This API is used to update the Reward expiry reminder to remind the user that th
   }
   ```
 
-  ```json 400- No duration is passed.
+  ```json "400- No duration is passed."
   {
       "status": {
           "success": false,
@@ -108,7 +112,7 @@ This API is used to update the Reward expiry reminder to remind the user that th
   }
   ```
 
-  ```json 400- Invalid Reward Expiry Reminder ID
+  ```json "400- Invalid Reward Expiry Reminder ID"
   {
       "status": {
           "success": false,

@@ -1,0 +1,33 @@
+/* ─── GFM Task Lists (remark-gfm output) ──────────────────────────────
+   Remove the default list bullet from GFM task-list items so only the
+   checkbox shows (fixes the "dot + checkbox" double marker).
+
+   Scoped strictly to .contains-task-list / .task-list-item, so ordinary
+   bullet lists (`- item` without the [ ] / [x] brackets) keep their dots.
+
+   Both containers are targeted:
+     .dai-article    → published Documentation.AI site (MDX container)
+     .mdx-container  → in-editor preview
+   -------------------------------------------------------------------- */
+
+.dai-article ul.contains-task-list,
+.mdx-container ul.contains-task-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.dai-article li.task-list-item,
+.mdx-container li.task-list-item {
+  list-style: none;
+}
+
+.dai-article li.task-list-item::marker,
+.mdx-container li.task-list-item::marker {
+  content: "";
+}
+
+.dai-article li.task-list-item input[type="checkbox"],
+.mdx-container li.task-list-item input[type="checkbox"] {
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}

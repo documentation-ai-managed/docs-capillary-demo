@@ -12,44 +12,48 @@ For detailed information about our APIs and for hands-on testing, refer document
 
 ## Example request
 
-```bash Sample request
-curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/vendor/create' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
---header 'Authorization: Basic bWFkazMjU2YQ==' \
---header 'Cookie: _cfuvid=Py8WqEd9NprkMUBFFM4pQWQmNSGjgEDnhOp1DoQoMYw-1739777165991-0.0.1.1-604800000; _cfuvid=hGW.4aR53plH6yD91V3qiTbpaQWs45tjwDu8W8WQ7Vk-1741007297422-0.0.1.1-604800000; _cfuvid=S.PxCyUf9ekxOmHL60DVO0Ymatc.u9ycHzTlvzKnNWU-1749708111484-0.0.1.1-604800000; _cfuvid=stmchZP5cYeASZ3aC8978_EVFvzLYHohP0B8gh_FBvM-1764149511799-0.0.1.1-604800000' \
---data-raw '{
-    **** Mandatory Parameters ****
-    "name": "UAT Vendor 21",
-    "brandId": 61,
-    "type": "REWARDS",
-    ***** Non Mandatory Parameters *****
-     "code": "uatVendor21",
-     "isEncryptionRequired": false,
-     "vendorDetails": {
-         "key": "client",
-         "value": "tomswayer@capillarytech.com"
-     },
-     "images": [
-         {
-             "name": "imageName001",
-             "altText": null,
-             "url": "https://picsum.photos/seed/picsum/200/300",
-             "isExternal": true
-         }
-     ],
-     "videos": [
-         {
-             "name": "videoName001",
-             "altText": null,
-             "url": "https://www.pexels.com/download/video/5538262/",
-             "isExternal": true
-         }
-     ],
-     "rank": 6,
-     "description": "6 Vendor for UAT"
-}'
-```
+<CodeGroup show-lines="true" tabs={["Sample request"]}>
+
+  ```bash "Sample request"
+  curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/vendor/create' \
+  --header 'Accept: application/json' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Basic bWFkazMjU2YQ==' \
+  --header 'Cookie: _cfuvid=Py8WqEd9NprkMUBFFM4pQWQmNSGjgEDnhOp1DoQoMYw-1739777165991-0.0.1.1-604800000; _cfuvid=hGW.4aR53plH6yD91V3qiTbpaQWs45tjwDu8W8WQ7Vk-1741007297422-0.0.1.1-604800000; _cfuvid=S.PxCyUf9ekxOmHL60DVO0Ymatc.u9ycHzTlvzKnNWU-1749708111484-0.0.1.1-604800000; _cfuvid=stmchZP5cYeASZ3aC8978_EVFvzLYHohP0B8gh_FBvM-1764149511799-0.0.1.1-604800000' \
+  --data-raw '{
+      **** Mandatory Parameters ****
+      "name": "UAT Vendor 21",
+      "brandId": 61,
+      "type": "REWARDS",
+      ***** Non Mandatory Parameters *****
+       "code": "uatVendor21",
+       "isEncryptionRequired": false,
+       "vendorDetails": {
+           "key": "client",
+           "value": "tomswayer@capillarytech.com"
+       },
+       "images": [
+           {
+               "name": "imageName001",
+               "altText": null,
+               "url": "https://picsum.photos/seed/picsum/200/300",
+               "isExternal": true
+           }
+       ],
+       "videos": [
+           {
+               "name": "videoName001",
+               "altText": null,
+               "url": "https://www.pexels.com/download/video/5538262/",
+               "isExternal": true
+           }
+       ],
+       "rank": 6,
+       "description": "6 Vendor for UAT"
+  }'
+  ```
+
+</CodeGroup>
 
 ## Prerequisites
 
@@ -69,7 +73,7 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/ve
 
 <CodeGroup show-lines="true" tabs={["Create a vendor", "Create a vendor with internal image / video", "Create a vendor with external image / video"]}>
 
-  ```json Create a vendor
+  ```json "Create a vendor"
   {
    "name": "vendor002",
    "code": "vendor002",
@@ -86,7 +90,7 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/ve
   }
   ```
 
-  ```json Create a vendor with internal image / video
+  ```json "Create a vendor with internal image / video"
   {
       "name": "DocVendor2",
       "code": "Doc002",
@@ -113,7 +117,7 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/ve
   }
   ```
 
-  ```json Create a vendor with external image / video
+  ```json "Create a vendor with external image / video"
   {
       "name": "DocVendor3",
       "code": "Doc003",
@@ -172,7 +176,7 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/ve
 
 <CodeGroup show-lines="true" tabs={["Sample response", "Wrong type value", "Rank value is 0", "Invalid brandId", "Vendor already exists"]}>
 
-  ```json Sample response
+  ```json "Sample response"
   {
       "status": {
           "success": true,
@@ -223,7 +227,7 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/ve
   }
   ```
 
-  ```json Wrong type value
+  ```json "Wrong type value"
   {
     "status": {
       "success": false,
@@ -233,7 +237,7 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/ve
   }
   ```
 
-  ```json Rank value is 0
+  ```json "Rank value is 0"
   {
     "status": {
       "success": false,
@@ -243,7 +247,7 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/ve
   }
   ```
 
-  ```json Invalid brandId
+  ```json "Invalid brandId"
   {
       "status": {
           "success": false,
@@ -253,7 +257,7 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/ve
   }
   ```
 
-  ```json Vendor already exists
+  ```json "Vendor already exists"
   {
       "status": {
           "success": false,

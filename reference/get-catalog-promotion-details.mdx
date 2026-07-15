@@ -35,9 +35,13 @@ For detailed information about our APIs and for hands-on testing, refer document
 | promotionId\* | String    | Unique ID of promotion. Ex: 2                                                                                                             |
 | brandId\*     | Long      | You can use the [API](https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/getAll) and retrieve the brand ID of your brand. |
 
-```bash
-https://eucrm.cc.capillarytech.com/api_gateway/rewards/core/v1/promotion/2/brand/1
-```
+<CodeGroup show-lines="true" tabs={["cURL"]}>
+
+  ```bash "cURL"
+  https://eucrm.cc.capillarytech.com/api_gateway/rewards/core/v1/promotion/2/brand/1
+  ```
+
+</CodeGroup>
 
 ## Response parameters
 
@@ -82,70 +86,74 @@ https://eucrm.cc.capillarytech.com/api_gateway/rewards/core/v1/promotion/2/brand
 | intouchPointsPostDiscount          | Integer           | Points post discount                                                                                                                                                                                                                                                                                                              |
 | intouchPointsPostDiscountInDecimal | Decimal           | Points post discount expressed as a decimal value rounded to 3 decimal places. Rounding follows the HALF_UP method, where if the fourth decimal digit is 5 or more, the third decimal rounds up. For example, 21.4555 becomes 21.456, and 21.4554 becomes 21.455. This field will have values only for conversion ratio rewards. |
 
-```json 200 OK
-{
-    "status": {
-        "success": true,
-        "code": 11008,
-        "message": "Catalog promotion fetched successfully."
-    },
-    "catalogPromotion": {
-        "id": 8800,
-        "name": "test1",
-        "orgId": 100458,
-        "isEnabled": true,
-        "startTime": "2025-03-14 20:58:49",
-        "startDateTime": "2025-03-14T20:58:49Z",
-        "endTime": "2025-10-25 05:46:00",
-        "endDateTime": "2025-10-25T05:46:00Z",
-        "discountType": "ABSOLUTE",
-        "discountValue": 1.00,
-        "lastUpdatedOn": "2025-03-13 09:48:42",
-        "lastUpdatedOnDateTime": "2025-03-13T09:48:42Z",
-        "createdOn": "2025-03-13 09:48:42",
-        "createdOnDateTime": "2025-03-13T09:48:42Z",
-        "lastUpdatedBy": 75140757,
-        "createdBy": 75140757,
-        "languageSpecificInfo": [
-            {
-                "languageCode": "en",
-                "name": "test1",
-                "description": "description",
-                "enabled": true,
-                "createdBy": 75140757,
-                "createdOn": "2025-03-13 09:48:42",
-                "createdOnDateTime": "2025-03-13T09:48:42Z",
-                "lastUpdatedBy": 75140757,
-                "lastUpdateOn": "2025-03-13 09:48:42",
-                "lastUpdateOnDateTime": "2025-03-13T09:48:42Z"
-            }
-        ],
-        "customFields": {
-            "A": "1",
-            "CF1233": "1",
-            "EnumCF2": "r1",
-            "EnumCF1": "white"
-        },
-        "rewards": [
-            {
-                "id": 8799,
-                "rewardId": 308795,
-                "promotionId": 8800,
-                "startTime": "2025-03-14 20:58:49",
-                "startDateTime": "2025-03-14T20:58:49Z",
-                "endTime": "2025-10-25 05:46:00",
-                "endDateTime": "2025-10-25T05:46:00Z",
-                "expired": false,
-                "started": false,
-                "intouchPointsPostDiscount": 99,
-                "intouchPointsPostDiscountInDecimal": 99.000,
-                "configId": 3914
-            }
-        ]
-    }
-}
+<CodeGroup show-lines="true" tabs={["200 OK"]}>
+
+  ```json "200 OK"
+  {
+      "status": {
+          "success": true,
+          "code": 11008,
+          "message": "Catalog promotion fetched successfully."
+      },
+      "catalogPromotion": {
+          "id": 8800,
+          "name": "test1",
+          "orgId": 100458,
+          "isEnabled": true,
+          "startTime": "2025-03-14 20:58:49",
+          "startDateTime": "2025-03-14T20:58:49Z",
+          "endTime": "2025-10-25 05:46:00",
+          "endDateTime": "2025-10-25T05:46:00Z",
+          "discountType": "ABSOLUTE",
+          "discountValue": 1.00,
+          "lastUpdatedOn": "2025-03-13 09:48:42",
+          "lastUpdatedOnDateTime": "2025-03-13T09:48:42Z",
+          "createdOn": "2025-03-13 09:48:42",
+          "createdOnDateTime": "2025-03-13T09:48:42Z",
+          "lastUpdatedBy": 75140757,
+          "createdBy": 75140757,
+          "languageSpecificInfo": [
+              {
+                  "languageCode": "en",
+                  "name": "test1",
+                  "description": "description",
+                  "enabled": true,
+                  "createdBy": 75140757,
+                  "createdOn": "2025-03-13 09:48:42",
+                  "createdOnDateTime": "2025-03-13T09:48:42Z",
+                  "lastUpdatedBy": 75140757,
+                  "lastUpdateOn": "2025-03-13 09:48:42",
+                  "lastUpdateOnDateTime": "2025-03-13T09:48:42Z"
+              }
+          ],
+          "customFields": {
+              "A": "1",
+              "CF1233": "1",
+              "EnumCF2": "r1",
+              "EnumCF1": "white"
+          },
+          "rewards": [
+              {
+                  "id": 8799,
+                  "rewardId": 308795,
+                  "promotionId": 8800,
+                  "startTime": "2025-03-14 20:58:49",
+                  "startDateTime": "2025-03-14T20:58:49Z",
+                  "endTime": "2025-10-25 05:46:00",
+                  "endDateTime": "2025-10-25T05:46:00Z",
+                  "expired": false,
+                  "started": false,
+                  "intouchPointsPostDiscount": 99,
+                  "intouchPointsPostDiscountInDecimal": 99.000,
+                  "configId": 3914
+              }
+          ]
+      }
+  }
     
-```
+  ```
+
+</CodeGroup>
 
 ## API-specific error codes
 

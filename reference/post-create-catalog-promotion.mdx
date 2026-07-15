@@ -25,34 +25,38 @@ This API is used to create catalog promotions and link it to a reward.
 
 ## Example request
 
-```bash Sample request
-curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/promotion/create' \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
---header 'accept: application/json' \
---header 'Authorization: Basic bWFkaHVjU2YQ==' \
---header 'Cookie: _cfuvid=qrR26fiL9O7hSaVDD64eltEicRcuyxTkMuk2MPS2moc-1764581884487-0.0.1.1-604800000' \
---data '
-{
-  "startTime": "2025-12-04T10:08:00.000Z",
-  "endTime": "2025-12-14T06:10:00.000Z",
-  "discountType": "PERCENTAGE",
-  "discountValue": 20,
-  "brandId": "61",
-  "languageSpecificInfo": [
-    {
-      "languageCode": "en",
-      "name": "UAT Catalog Promotion ",
-      "description": "Catalog Promotion for UAT team",
-      "enabled": true
-    }
-  ],
-  "rewardIds": [
-    496584
-  ]
-}
-'
-```
+<CodeGroup show-lines="true" tabs={["Sample request"]}>
+
+  ```bash "Sample request"
+  curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/promotion/create' \
+  --header 'Accept: application/json' \
+  --header 'Content-Type: application/json' \
+  --header 'accept: application/json' \
+  --header 'Authorization: Basic bWFkaHVjU2YQ==' \
+  --header 'Cookie: _cfuvid=qrR26fiL9O7hSaVDD64eltEicRcuyxTkMuk2MPS2moc-1764581884487-0.0.1.1-604800000' \
+  --data '
+  {
+    "startTime": "2025-12-04T10:08:00.000Z",
+    "endTime": "2025-12-14T06:10:00.000Z",
+    "discountType": "PERCENTAGE",
+    "discountValue": 20,
+    "brandId": "61",
+    "languageSpecificInfo": [
+      {
+        "languageCode": "en",
+        "name": "UAT Catalog Promotion ",
+        "description": "Catalog Promotion for UAT team",
+        "enabled": true
+      }
+    ],
+    "rewardIds": [
+      496584
+    ]
+  }
+  '
+  ```
+
+</CodeGroup>
 
 ## Prerequisites
 
@@ -86,19 +90,23 @@ curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/pr
 
 ## Example response
 
-```json Sample response
-{
-    "status": {
-        "success": true,
-        "code": 11002,
-        "message": "Catalog promotion created successfully."
-    },
-    "catalogPromotion": {
-        "id": 14862
-    },
-    "failedRewards": []
-}
-```
+<CodeGroup show-lines="true" tabs={["Sample response"]}>
+
+  ```json "Sample response"
+  {
+      "status": {
+          "success": true,
+          "code": 11002,
+          "message": "Catalog promotion created successfully."
+      },
+      "catalogPromotion": {
+          "id": 14862
+      },
+      "failedRewards": []
+  }
+  ```
+
+</CodeGroup>
 
 ## Response parameters
 

@@ -1,45 +1,40 @@
 ---
 title: Get all reward transactions for a user in connected orgs
 ---
-
 This API is used to get details of all the issue reward transactions for a user.
 
-<Callout kind="tip" title="Note">
-
-For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
-
+<Callout kind="tip" collapsed="false">
+  For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
 </Callout>
 
-<Callout kind="alert" title="**Warning**">
-
-Use this API exclusively for connected orgs. For other orgs, use this [API](https://docs.capillarytech.com/reference/get-all-reward-transactions-for-a-user) instead.
-
+<Callout kind="alert" collapsed="false">
+  Use this API exclusively for connected orgs. For other orgs, use this [API](https://docs.capillarytech.com/reference/get-all-reward-transactions-for-a-user) instead.
 </Callout>
 
 ## Prerequisites
 
-- [ ] Authentication: Basic or OAuth authentication
-- [ ] Default access group
+- Authentication: Basic or OAuth authentication
+- Default access group
 
 ## Resource information
 
-| URL                    | /api_gateway/rewards/core/v1.1/reward-transactions?customerId=`{customerId}` |
-| :--------------------- | :------------------------------------------------------------------------------ |
-| HTTP Method            | GET                                                                             |
-| Pagination             | Yes                                                                             |
-| Batch support          | No                                                                              |
-| Rate limit information | None                                                                            |
+| URL                    | /api\_gateway/rewards/core/v1.1/reward-transactions?customerId=`{customerId}` |
+| :--------------------- | :---------------------------------------------------------------------------- |
+| HTTP Method            | GET                                                                           |
+| Pagination             | Yes                                                                           |
+| Batch support          | No                                                                            |
+| Rate limit information | None                                                                          |
 
 ## API endpoint example
 
-&lt;[https://eu.api.capillarytech.com/api_gateway/rewards/core/v1.1/reward-transactions?customerId=564488660&amp;redemptionType=INTOUCH_REWARD%2C%20PHYSICAL_REWARD](https://eu.api.capillarytech.com/api_gateway/rewards/core/v1.1/reward-transactions?customerId=564488660&redemptionType=INTOUCH_REWARD%2C%20PHYSICAL_REWARD)>
+\<[https://eu.api.capillarytech.com/api\_gateway/rewards/core/v1.1/reward-transactions?customerId=564488660\&redemptionType=INTOUCH\_REWARD%2C%20PHYSICAL\_REWARD](https://eu.api.capillarytech.com/api_gateway/rewards/core/v1.1/reward-transactions?customerId=564488660\&redemptionType=INTOUCH_REWARD%2C%20PHYSICAL_REWARD)>
 
 ## Headers
 
-| Header | Description |
-| --- | --- |
-| DATA-SCOPE-ORG | List of Organization IDs |
-| DATA-SCOPE | Scopes define what data can be accessed using the API. You can use scopes to control access to data from a parent or child organization. Defining a scope ensures that the response contains only data from the respective organization. Supported headers: `SELF`, `OTHER` and `ALL`. Refer to connected orgs [data scopes](https://docs.capillarytech.com/reference/connected-orgs-data-scopes) for more information. |
+| Header         | Description                                                                                                                                                                                                                                                                                                                                                                                                             |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DATA-SCOPE-ORG | List of Organization IDs                                                                                                                                                                                                                                                                                                                                                                                                |
+| DATA-SCOPE     | Scopes define what data can be accessed using the API. You can use scopes to control access to data from a parent or child organization. Defining a scope ensures that the response contains only data from the respective organization. Supported headers: `SELF`, `OTHER` and `ALL`. Refer to connected orgs [data scopes](https://docs.capillarytech.com/reference/connected-orgs-data-scopes) for more information. |
 
 ## Request query parameters
 
@@ -54,18 +49,15 @@ Use this API exclusively for connected orgs. For other orgs, use this [API](http
 | `groupName`      | String    | Retrieves rewards associated with a specific group name.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | `rewardId`       | Integer   | Use the `rewardId` parameter to filter and return specific reward details.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 
-<br />
-
-<CodeGroup show-lines="true" tabs={["curl", "With rewardId"]}>
-
-  ```bash
+<CodeGroup show-lines="true" tabs={["With rewardId"]}>
+  ```bash wrap="true"
   curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1.1/reward-transactions?customerId=564488660&redemptionType=INTOUCH_REWARD%2C%20PHYSICAL_REWARD' \
   --header 'Authorization: Basic cHJhYzOGEwMTQ3ZjRlMg==' \
   --header 'DATA-SCOPE: ALL' \
   --header 'Cookie: _cfuvid=pmSuDaHvCdKa7QSC237W8OuowKHVWkxCo-1737524754414-0.0.1.1-604800000'
   ```
 
-  ```text With rewardId
+  ```text wrap="true" "With rewardId"
   curl --location 'https://devenv-crm.cc.capillarytech.com/api_gateway/rewards/core/v1.1/reward-transactions?customerId=423789294&size=10&page=0&rewardId=38774' \
   --header 'Accept: application/json' \
   --header 'Content-Type: application/json' \
@@ -73,65 +65,61 @@ Use this API exclusively for connected orgs. For other orgs, use this [API](http
   --header 'Authorization: Basic YXV0b3N0b3JlMS50aWxsMS0xNjgwMTY5MjIxOjIwMmNiOTYyYWM1OTA3NWI5NjRiMDcxNTJkMjM0Yjcw' \
   --data ''
   ```
-
 </CodeGroup>
 
 ## Response parameters
 
-| Parameter Name | Data Type | Description |
-| --- | --- | --- |
-| `status` | Object | Contains the details of the operation. |
-| `- success` | Boolean | Indicates if the operation was successful. |
-| `- code` | Integer | HTTP status code of the operation. |
-| `- message` | String | Message about the operation's outcome. |
-| `rewardIssueTransactions` | Object | Contains the details of the issue reward transactions. |
-| `- rewardTransactionId` | String | Unique identifier for the reward transaction. |
-| `- rewardIssueRefId` | String | Reference ID for the reward issuance. |
-| `- rewardTransactionDate` | Long | Date and time of the reward transaction in milliseconds since epoch. |
-| `- status` | Object | Contains the status of the reward issue. |
-| `-- success` | Boolean | Indicates if the reward was issued successfully, true for successful reward issuance and false for failed reward issuance. |
-| `-- code` | Integer | Status code for the reward issue transaction. |
-| `-- message` | String | Status message for the reward issue transaction, indicating if the reward issuance was successful. |
-| `- rewardDetails` | Object | Contains details of the issued reward. |
-| `-- rewardId` | Long | Unique identifier of the reward. |
-| `-- languageCode` | String | Language code of the reward details. Example: en for English. |
-| `-- name` | String | Name of the reward. |
-| `-- description` | String | Description of the reward. |
-| `-- termNConditionsId` | String | Unique identifier for the terms and conditions of the reward. |
-| `-- termNConditionsUrl` | String | URL to the terms and conditions of the reward. |
-| `-- imageId` | String | Unique identifier for the image associated with the reward. |
-| `-- imageUrl` | String | URL to the image associated with the reward. |
-| `-- thumbnailId` | String | Unique identifier for the thumbnail image associated with the reward. |
-| `-- thumbnailUrl` | String | URL to the thumbnail image associated with the reward. |
-| `-- enabled` | Boolean | Indicates whether the reward is enabled. |
-| `-- groups` | Set | Specifies the group associated with the reward. |
-| `-- rewardRank` | Integer | Rank or position of the reward within its category or list. |
-| `- ownerType` | String | Module for which the reward was created. Supported values: Loyalty program, Milestones, Campaigns, Journeys, Goodwill. |
-| `- ownerId` | String | Unique identifier of the owner. Example: 123. |
-| `- pointsRedemptionRefIds` | List | Unique identifier generated each time rewards are issued. This field stores a list of these identifiers, allowing you to track multiple points redemption transactions. You have to pass the pointsRefId as a query param to populate the data of Points Redemption Reference IDs. |
-| `- fulfillmentStatus` | String | Gives the fulfillment status of the reward. Example: SHIPPED, ON THE WAY, DELIVERED. |
-| `- orgId` | Long | Unique identifier of the org. |
-| `- redemptionType` | String | Gives the redemption type of the reward. Example: INTOUCH_REWARD. |
-| `pagingDto` | Object | Contains the paging details. |
-| `- last` | Boolean | Indicates if the current page is the last page. |
-| `- totalElements` | Long | Total number of elements across all pages. |
-| `- totalPages` | Integer | Total number of pages. |
-| `- numberOfElements` | Integer | Number of elements in the current page. |
-| `- first` | Boolean | Indicates if the current page is the first page. |
-| `- size` | Integer | Number of elements per page. |
-| `- number` | Integer | The current page number. |
-| `vendorId` | Long | Retrieves the rewards associated with a specific vendor. |
-| `redemptionType` | String | Retrieves rewards based on their redemption type. **Possible values:** `GAMES, AUCTION, CART_PROMOTION, CASH_WALLET, VENDOR_ONLY_REWARD, VOUCHER, CASH_BACK, INTOUCH_REWARD, PHYSICAL_REWARD, CHARITY, MILES, GIFT_CARD, SWEEPSTAKES, VENDOR_INTOUCH_REWARD, CARD_DISC`. Multiple `redemptionType` values can be filtered using a comma (,). |
+| Parameter Name             | Data Type | Description                                                                                                                                                                                                                                                                                                                                  |
+| -------------------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `status`                   | Object    | Contains the details of the operation.                                                                                                                                                                                                                                                                                                       |
+| `- success`                | Boolean   | Indicates if the operation was successful.                                                                                                                                                                                                                                                                                                   |
+| `- code`                   | Integer   | HTTP status code of the operation.                                                                                                                                                                                                                                                                                                           |
+| `- message`                | String    | Message about the operation's outcome.                                                                                                                                                                                                                                                                                                       |
+| `rewardIssueTransactions`  | Object    | Contains the details of the issue reward transactions.                                                                                                                                                                                                                                                                                       |
+| `- rewardTransactionId`    | String    | Unique identifier for the reward transaction.                                                                                                                                                                                                                                                                                                |
+| `- rewardIssueRefId`       | String    | Reference ID for the reward issuance.                                                                                                                                                                                                                                                                                                        |
+| `- rewardTransactionDate`  | Long      | Date and time of the reward transaction in milliseconds since epoch.                                                                                                                                                                                                                                                                         |
+| `- status`                 | Object    | Contains the status of the reward issue.                                                                                                                                                                                                                                                                                                     |
+| `-- success`               | Boolean   | Indicates if the reward was issued successfully, true for successful reward issuance and false for failed reward issuance.                                                                                                                                                                                                                   |
+| `-- code`                  | Integer   | Status code for the reward issue transaction.                                                                                                                                                                                                                                                                                                |
+| `-- message`               | String    | Status message for the reward issue transaction, indicating if the reward issuance was successful.                                                                                                                                                                                                                                           |
+| `- rewardDetails`          | Object    | Contains details of the issued reward.                                                                                                                                                                                                                                                                                                       |
+| `-- rewardId`              | Long      | Unique identifier of the reward.                                                                                                                                                                                                                                                                                                             |
+| `-- languageCode`          | String    | Language code of the reward details. Example: en for English.                                                                                                                                                                                                                                                                                |
+| `-- name`                  | String    | Name of the reward.                                                                                                                                                                                                                                                                                                                          |
+| `-- description`           | String    | Description of the reward.                                                                                                                                                                                                                                                                                                                   |
+| `-- termNConditionsId`     | String    | Unique identifier for the terms and conditions of the reward.                                                                                                                                                                                                                                                                                |
+| `-- termNConditionsUrl`    | String    | URL to the terms and conditions of the reward.                                                                                                                                                                                                                                                                                               |
+| `-- imageId`               | String    | Unique identifier for the image associated with the reward.                                                                                                                                                                                                                                                                                  |
+| `-- imageUrl`              | String    | URL to the image associated with the reward.                                                                                                                                                                                                                                                                                                 |
+| `-- thumbnailId`           | String    | Unique identifier for the thumbnail image associated with the reward.                                                                                                                                                                                                                                                                        |
+| `-- thumbnailUrl`          | String    | URL to the thumbnail image associated with the reward.                                                                                                                                                                                                                                                                                       |
+| `-- enabled`               | Boolean   | Indicates whether the reward is enabled.                                                                                                                                                                                                                                                                                                     |
+| `-- groups`                | Set       | Specifies the group associated with the reward.                                                                                                                                                                                                                                                                                              |
+| `-- rewardRank`            | Integer   | Rank or position of the reward within its category or list.                                                                                                                                                                                                                                                                                  |
+| `- ownerType`              | String    | Module for which the reward was created. Supported values: Loyalty program, Milestones, Campaigns, Journeys, Goodwill.                                                                                                                                                                                                                       |
+| `- ownerId`                | String    | Unique identifier of the owner. Example: 123.                                                                                                                                                                                                                                                                                                |
+| `- pointsRedemptionRefIds` | List      | Unique identifier generated each time rewards are issued. This field stores a list of these identifiers, allowing you to track multiple points redemption transactions. You have to pass the pointsRefId as a query param to populate the data of Points Redemption Reference IDs.                                                           |
+| `- fulfillmentStatus`      | String    | Gives the fulfillment status of the reward. Example: SHIPPED, ON THE WAY, DELIVERED.                                                                                                                                                                                                                                                         |
+| `- orgId`                  | Long      | Unique identifier of the org.                                                                                                                                                                                                                                                                                                                |
+| `- redemptionType`         | String    | Gives the redemption type of the reward. Example: INTOUCH\_REWARD.                                                                                                                                                                                                                                                                           |
+| `pagingDto`                | Object    | Contains the paging details.                                                                                                                                                                                                                                                                                                                 |
+| `- last`                   | Boolean   | Indicates if the current page is the last page.                                                                                                                                                                                                                                                                                              |
+| `- totalElements`          | Long      | Total number of elements across all pages.                                                                                                                                                                                                                                                                                                   |
+| `- totalPages`             | Integer   | Total number of pages.                                                                                                                                                                                                                                                                                                                       |
+| `- numberOfElements`       | Integer   | Number of elements in the current page.                                                                                                                                                                                                                                                                                                      |
+| `- first`                  | Boolean   | Indicates if the current page is the first page.                                                                                                                                                                                                                                                                                             |
+| `- size`                   | Integer   | Number of elements per page.                                                                                                                                                                                                                                                                                                                 |
+| `- number`                 | Integer   | The current page number.                                                                                                                                                                                                                                                                                                                     |
+| `vendorId`                 | Long      | Retrieves the rewards associated with a specific vendor.                                                                                                                                                                                                                                                                                     |
+| `redemptionType`           | String    | Retrieves rewards based on their redemption type. **Possible values:** `GAMES, AUCTION, CART_PROMOTION, CASH_WALLET, VENDOR_ONLY_REWARD, VOUCHER, CASH_BACK, INTOUCH_REWARD, PHYSICAL_REWARD, CHARITY, MILES, GIFT_CARD, SWEEPSTAKES, VENDOR_INTOUCH_REWARD, CARD_DISC`. Multiple `redemptionType` values can be filtered using a comma (,). |
 
-<br />
-
-<CodeGroup show-lines="true" tabs={["Sample response with redemptionType filter", "With rewardId", "Generic"]}>
-
-  ```json Sample response with redemptionType filter
+<CodeGroup show-lines="true" tabs={["Sample response with redemptionType filter","With rewardId","Generic"]}>
+  ```json wrap="true" "Sample response with redemptionType filter"
   {"status":{"success":true,"code":200,"message":"Reward issue transactions fetched successfully"},"rewardIssueTransactions":[{"rewardTransactionId":"321583","rewardIssueRefId":"transactionNumber","rewardTransactionDate":1736755804000,"status":{"success":false,"code":8004,"message":"fail to issue reward as  points are not redeemable"},"rewardDetails":{"rewardId":299166,"languageCode":"en","name":"PointsRewardTest","description":"test","termNConditionsId":null,"termNConditionsUrl":null,"imageId":null,"imageUrl":null,"thumbnailId":null,"thumbnailUrl":null,"enabled":true,"groups":[],"rewardRank":null},"ownerType":null,"ownerId":"","pointsRedemptionRefIds":null,"fulfillmentStatus":null,"orgId":100737,"redemptionType":"INTOUCH_REWARD"},{"rewardTransactionId":"321532","rewardIssueRefId":"transactionNumber","rewardTransactionDate":1736750647000,"status":{"success":true,"code":200,"message":"Reward issued successfully"},"rewardDetails":{"rewardId":297001,"languageCode":"en","name":" INTOUCH Enabled","description":"Description","termNConditionsId":"EXDR12987R","termNConditionsUrl":null,"imageId":"EXDR12987U","imageUrl":null,"thumbnailId":"EXDR12987T","thumbnailUrl":null,"enabled":true,"groups":[],"rewardRank":null},"ownerType":null,"ownerId":"","pointsRedemptionRefIds":null,"fulfillmentStatus":null,"orgId":100737,"redemptionType":"PHYSICAL_REWARD"},{"rewardTransactionId":"321531","rewardIssueRefId":"transactionNumber","rewardTransactionDate":1736750220000,"status":{"success":false,"code":8004,"message":"fail to issue reward as  Coupon Series ID is invalid"},"rewardDetails":{"rewardId":299141,"languageCode":"en","name":"Testreward2","description":"test","termNConditionsId":null,"termNConditionsUrl":null,"imageId":null,"imageUrl":null,"thumbnailId":null,"thumbnailUrl":null,"enabled":true,"groups":[],"rewardRank":null},"ownerType":null,"ownerId":"","pointsRedemptionRefIds":null,"fulfillmentStatus":null,"orgId":100737,"redemptionType":"INTOUCH_REWARD"},{"rewardTransactionId":"321530","rewardIssueRefId":"transactionNumber","rewardTransactionDate":1736750106000,"status":{"success":false,"code":8004,"message":"fail to issue reward as  Coupon Series ID is invalid"},"rewardDetails":{"rewardId":299141,"languageCode":"en","name":"Testreward2","description":"test","termNConditionsId":null,"termNConditionsUrl":null,"imageId":null,"imageUrl":null,"thumbnailId":null,"thumbnailUrl":null,"enabled":true,"groups":[],"rewardRank":null},"ownerType":null,"ownerId":"","pointsRedemptionRefIds":null,"fulfillmentStatus":null,"orgId":100737,"redemptionType":"INTOUCH_REWARD"},{"rewardTransactionId":"321529","rewardIssueRefId":"transactionNumber","rewardTransactionDate":1736750105000,"status":{"success":false,"code":8004,"message":"fail to issue reward as  Coupon Series ID is invalid"},"rewardDetails":{"rewardId":299141,"languageCode":"en","name":"Testreward2","description":"test","termNConditionsId":null,"termNConditionsUrl":null,"imageId":null,"imageUrl":null,"thumbnailId":null,"thumbnailUrl":null,"enabled":true,"groups":[],"rewardRank":null},"ownerType":null,"ownerId":"","pointsRedemptionRefIds":null,"fulfillmentStatus":null,"orgId":100737,"redemptionType":"INTOUCH_REWARD"},{"rewardTransactionId":"321528","rewardIssueRefId":"transactionNumber","rewardTransactionDate":1736750084000,"status":{"success":false,"code":8004,"message":"fail to issue reward as  Coupon Series ID is invalid"},"rewardDetails":{"rewardId":299141,"languageCode":"en","name":"Testreward2","description":"test","termNConditionsId":null,"termNConditionsUrl":null,"imageId":null,"imageUrl":null,"thumbnailId":null,"thumbnailUrl":null,"enabled":true,"groups":[],"rewardRank":null},"ownerType":null,"ownerId":"","pointsRedemptionRefIds":null,"fulfillmentStatus":null,"orgId":100737,"redemptionType":"INTOUCH_REWARD"},{"rewardTransactionId":"321527","rewardIssueRefId":"transactionNumber","rewardTransactionDate":1736750040000,"status":{"success":false,"code":8004,"message":"fail to issue reward as  Coupon Series ID is invalid"},"rewardDetails":{"rewardId":299141,"languageCode":"en","name":"Testreward2","description":"test","termNConditionsId":null,"termNConditionsUrl":null,"imageId":null,"imageUrl":null,"thumbnailId":null,"thumbnailUrl":null,"enabled":true,"groups":[],"rewardRank":null},"ownerType":null,"ownerId":"","pointsRedemptionRefIds":null,"fulfillmentStatus":null,"orgId":100737,"redemptionType":"INTOUCH_REWARD"},{"rewardTransactionId":"321526","rewardIssueRefId":"transactionNumber","rewardTransactionDate":1736749995000,"status":{"success":false,"code":8004,"message":"fail to issue reward as  Coupon Series ID is invalid"},"rewardDetails":{"rewardId":299141,"languageCode":"en","name":"Testreward2","description":"test","termNConditionsId":null,"termNConditionsUrl":null,"imageId":null,"imageUrl":null,"thumbnailId":null,"thumbnailUrl":null,"enabled":true,"groups":[],"rewardRank":null},"ownerType":null,"ownerId":"","pointsRedemptionRefIds":null,"fulfillmentStatus":null,"orgId":100737,"redemptionType":"INTOUCH_REWARD"},{"rewardTransactionId":"321524","rewardIssueRefId":"transactionNumber","rewardTransactionDate":1736748983000,"status":{"success":false,"code":8004,"message":"fail to issue reward as  Coupon Series ID is invalid"},"rewardDetails":{"rewardId":299141,"languageCode":"en","name":"Testreward2","description":"test","termNConditionsId":null,"termNConditionsUrl":null,"imageId":null,"imageUrl":null,"thumbnailId":null,"thumbnailUrl":null,"enabled":true,"groups":[],"rewardRank":null},"ownerType":null,"ownerId":"","pointsRedemptionRefIds":null,"fulfillmentStatus":null,"orgId":100737,"redemptionType":"INTOUCH_REWARD"}],"pagingDto":{"last":true,"totalElements":9,"totalPages":1,"numberOfElements":9,"first":true,"size":10,"number":0}}
   ```
 
-  ```json With rewardId
+  ```json "With rewardId"
   {
       "status": {
           "success": true,
@@ -3245,60 +3233,5 @@ Use this API exclusively for connected orgs. For other orgs, use this [API](http
       }
   }
   ```
-
 </CodeGroup>
 
-<br />
-
-`<style>`
-.InputGroupe2EvBGz2cnqy \{
-    display: flex;
-    gap: 2px;
-    position: relative;
-\}
-
-.Button.APIRequest-example-button1DGMsfaOTVNW \{
-- Core working text behavior - don't change these *
-    position: relative;
-    width: 140px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    padding: 6px 12px;
-    text-align: left;
-    transition: width 0.2s ease-out;
-    z-index: 1;
-    display: block;
-    direction: ltr;
-    unicode-bidi: embed;
-    padding-right: 20px;
-
-- Only minimal visual updates *
-    background: #1e2329;
-    border: none;
-    border-radius: 6px;
-    color: #94a3b8;
-    font-size: 13px;
-\}
-
-- Keep original text handling *
-.Button.APIRequest-example-button1DGMsfaOTVNW span,
-.Button.APIRequest-example-button1DGMsfaOTVNW div \{
-    text-align: left;
-    direction: ltr;
-\}
-
-- Keep original hover behavior *
-.Button.APIRequest-example-button1DGMsfaOTVNW:hover \{
-    width: auto;
-    z-index: 10;
-    background: #262b33;
-\}
-
-- Simple active state *
-.Button.APIRequest-example-button1DGMsfaOTVNW.APIRequest-example-button_activeXJeukHyaHZXB \{
-    z-index: 20;
-    background: #2c333d;
-    color: #ffffff;
-\}
-`</style>`

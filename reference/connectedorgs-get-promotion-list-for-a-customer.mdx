@@ -1,14 +1,9 @@
 ---
 title: Get Loyalty Promotion List of a Customer (Connected Org)
 ---
-
-<Callout kind="danger">
-
-️ This API is being phased out and will no longer be available for viewing loyalty promotions.
-To view loyalty promotions, use the [Get Details of all Loyalty Promotions](/reference/get-loyalty-promotion-all) API
-
-<br />
-
+<Callout kind="danger" collapsed="false">
+  ️ This API is being phased out and will no longer be available for viewing loyalty promotions.
+  To view loyalty promotions, use the [Get Details of all Loyalty Promotions](/reference/get-loyalty-promotion-all) API
 </Callout>
 
 A loyalty promotion is a strategy used to reward customers for their engagement and transactions with a brand.
@@ -17,10 +12,8 @@ This API retrieves promotion list for a specific customer who is part of a conne
 
 By default, types of promotions are not available for all organisations. This feature must be enabled separately. For more details on types of promotions, refer to [types of promotions](https://docs.capillarytech.com/docs/advanced-loyalty-promotions).
 
-<Callout kind="info" title="Note">
-
-This API fetches results for loyalty promotions created on the [old UI](https://docs.capillarytech.com/docs/loyalty-promotions-basic-and-advanced#/) and the new UI.
-
+<Callout kind="info" collapsed="false">
+  This API fetches results for loyalty promotions created on the [old UI](https://docs.capillarytech.com/docs/loyalty-promotions-basic-and-advanced#/) and the new UI.
 </Callout>
 
 ### Types of promotions
@@ -29,7 +22,7 @@ There are three different types of promotions:
 
 - GENERIC (UI term - Available without issue)
 - LOYALTY (UI term - Direct issue)
-- LOYALTY_EARNING (UI term - Enroll &amp; Issue)
+- LOYALTY\_EARNING (UI term - Enroll & Issue)
 
 The field `pointsOfferType `in the response provides information on the type of promotion.
 
@@ -39,8 +32,8 @@ The field `pointsOfferType `in the response provides information on the type of 
 
 ## Prerequisites
 
-- [ ] Authentication: Basic or OAuth credentials
-- [ ] Access group resource: Read access to customer group resource
+- Authentication: Basic or OAuth credentials
+- Access group resource: Read access to customer group resource
 
 ## Resource information
 
@@ -52,89 +45,80 @@ The field `pointsOfferType `in the response provides information on the type of 
 
 ## Headers
 
-```
-| Header | Description |
-| --- | --- |
-| DATA-SCOPE-ORG | List of Organisation IDs |
-| DATA-SCOPE | Scopes define what data can be accessed using the API. You can use scopes to control access to data from a parent or child organisation. Defining a scope ensures that the response contains only data from the respective organisation. Supported headers: SELF, OTHER and ALL. Refer to connected orgs data scopes for more information. |
-```
-
-<br />
+| Header         | Description                                                                                                                                                                                                                                                                                                                                |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| DATA-SCOPE-ORG | List of Organisation IDs                                                                                                                                                                                                                                                                                                                   |
+| DATA-SCOPE     | Scopes define what data can be accessed using the API. You can use scopes to control access to data from a parent or child organisation. Defining a scope ensures that the response contains only data from the respective organisation. Supported headers: SELF, OTHER and ALL. Refer to connected orgs data scopes for more information. |
 
 ## Query parameters
 
-```
-| Parameter Name | Data Type | Description |
-| --- | --- | --- |
-| identifierName* | String | Identifier of the customer. Supported values mobile , id, email and externalid |
-| identifierValue* | Integer | Value for the identifier. For example, the mobile number or customer ID. |
-| source* | String | Source in which the identifier is available. For example, INSTORE, MARTJACK, WECHAT, FACEBOOK, WEB_ENGAGE, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, ALL |
-| promotionStatusForCustomer | String | Provides information about customer enrollment and issuances in the promotion. Supported values are:-AVAILABLE_TO_ENROL:- Promotions of the &quot;Enrol &amp; Issue&quot; type that customers can still enroll in.AVAILABLE_TO_EARN:- Promotions the customer is eligible to earn, including &quot;Direct Issue&quot; promotions and &quot;Enrol &amp; Issue&quot; promotions where the customer is already enrolled.AVAILABLE_TO_REDEEM:- Active promotions that the customer can currently redeem (get benefits) across all types of promotionns including &quot;Enrol &amp; Issue&quot;, &quot;Direct Issue&quot; and &quot;Available to Issue&quot;EXPIRED:- Promotions that have expired, i.e. promotion&#39;s end date is in past. |
-| includeAlternateCurrencyUsage | Boolean | With the parameter, the backend includes alternate currency usage in the same response fields used for points. By default, the value is false. |
-| limit | String | Number of results that need to be displayed. The values from zero to a maximum of 100 are supported. |
-| offset | String | Start index for data retrieval. This value should not be negative. |
-```
+| Parameter Name                | Data Type | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| ----------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| identifierName\*              | String    | Identifier of the customer. Supported values mobile , id, email and externalid                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| identifierValue\*             | Integer   | Value for the identifier. For example, the mobile number or customer ID.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| source\*                      | String    | Source in which the identifier is available. For example, INSTORE, MARTJACK, WECHAT, FACEBOOK, WEB\_ENGAGE, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, ALL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| promotionStatusForCustomer    | String    | Provides information about customer enrollment and issuances in the promotion. Supported values are:-AVAILABLE\_TO\_ENROL:- Promotions of the "Enrol & Issue" type that customers can still enroll in.AVAILABLE\_TO\_EARN:- Promotions the customer is eligible to earn, including "Direct Issue" promotions and "Enrol & Issue" promotions where the customer is already enrolled.AVAILABLE\_TO\_REDEEM:- Active promotions that the customer can currently redeem (get benefits) across all types of promotionns including "Enrol & Issue", "Direct Issue" and "Available to Issue"EXPIRED:- Promotions that have expired, i.e. promotion's end date is in past. |
+| includeAlternateCurrencyUsage | Boolean   | With the parameter, the backend includes alternate currency usage in the same response fields used for points. By default, the value is false.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| limit                         | String    | Number of results that need to be displayed. The values from zero to a maximum of 100 are supported.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| offset                        | String    | Start index for data retrieval. This value should not be negative.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 
 ## Response parameters
 
-```
-| Parameter | Data Type | Description |
-| --- | --- | --- |
-| pageDetails | Object | Object containing pagination details. |
-| - pageNumber | Integer | Page number of the current result set. |
-| - pageSize | Integer | Number of entries per page. |
-| - totalEntries | Integer | Total number of entries in the result set. |
-| - pageCount | Integer | Total number of pages in the result set. |
-| customerId | Integer | Identifier of the customer. |
-| promotions | Object | An object containing details of promotions. |
-| - promotionId | Integer | Unique identifier for the promotion issued to the customer. |
-| - promotionName | String | Name of the promotion. |
-| - programId | Integer | Identifier of the loyalty program associated with the promotion. |
-| - startDate | String | Start date of the promotion. ISO 8601 Date Format |
-| - endDate | String | End date of the promotion. ISO 8601 Date Format |
-| - identifier | String | Universally Unique Identifier for the promotion. |
-| - description | String | Description of the promotion. |
-| - active | Boolean | Indicates if the promotion is active. |
-| - eventName | String | Event triggering the promotion. |
-| - promotionMetadata | Object | Array containing metadata for the promotion. |
-| - - key | String | Key of the metadata. |
-| - - value | String | Value of the metadata. |
-| - - brandDefined | Boolean | Indicates if the metadata is brand-defined. |
-| - limits | Object | Object containing limits set for the promotion. |
-| - - maxPointsPerEvent | Integer | Maximum number of points offered per event. |
-| - - pointsPerCustomer | Integer | Maximum points a customer can earn. |
-| - - numberOFTimesPerCustomer | Integer | The maximum number of activities per customer that can allocate points. |
-| - - totalPointsInPromotion | Integer | The maximum points permitted across customers within the promotion duration. |
-| - customerUsage | Object | Object containing customer usage details. |
-| - - currentPointsPerCustomer | String | The current points accrued by the customer. |
-| - - currentNumberOfTimesPerCustomer | Integer | The number of activities through which the customer has received the points. |
-| - - currentTotalPointsInPromotion | String | The points received by all customers within the promotion duration. |
-| - pointsOfferType | String | Type of promotion. The types of promotion are GENERIC, LOYALTY, and LOYALTY_EARNING. |
-| - promotionRestriction | Object | Object containing promotion restriction details. You can set limits on how many times a promotion can be issued and redeemed. Information in this field is replicated if Advanced loyalty Promotion is available for your organisation. |
-| - - issualRestrictions | Object | Array containing issual restriction details. |
-| - - - kpi | String | Key performance indicator for the restriction. The KPI values are MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER and MAX_POINTS_PER_ISSUAL_PER_CUSTOMER. |
-| - - - maxLimit | String | Maximum times a customer can be enrolled in a promotion. |
-| - - - currentCustomerUsage | String | The present count of a customer&#39;s enrolment in a promotion. |
-| - - - limitOn | String | Specifies what the limit applies to. The values are EVENT, CUSTOMER, or PROMOTION. |
-| - - earnRestrictions | Object | Array containing earn restriction details. |
-| - - - kpi | String | Key performance indicator for the restriction. The KPI values are MAX_NUMBER_OF_EARNS_PER_CUSTOMER and MAX_POINTS_PER_EARN_PER_CUSTOMER. |
-| - - - maxLimit | String | Maximum times a promotion can be issued to a customer. |
-| - - - currentCustomerUsage | String | The present number of instances a promotion is issued to the customer. |
-| - - - limitOn | String | Specifies what the limit applies to. The values are EVENT, CUSTOMER, or PROMOTION. |
-| - - redemptionRestrictions | Object | Array containing redemption restriction details. |
-| - - - kpi | String | Key performance indicator for the restriction. The KPI values are:MAX_ALLOWED_TIMES_PER_CARTMAX_ALLOWED_POINTS_PER_CARTMAX_ALLOWED_TIMES_PER_CUSTOMERMAX_ALLOWED_EVENTS_PER_CUSTOMERMAX_ALLOWED_POINTS_PER_CUSTOMERMAX_ALLOWED_TIMES_PER_CUSTOMERMAX_ALLOWED_EVENTS_PER_PROMOTIONMAX_ALLOWED_POINTS_PER_PROMOTION |
-| - - - maxLimit | String | Maximum number of times the points can be availed. |
-| - - - currentCustomerUsage | String | The present number of points availed by the customer. |
-| - - - limitOn | String | Specifies what the limit applies to. The values are EVENT, CUSTOMER, or PROMOTION. |
-| - - - type | String | Type of restrictions. The values are NON_PERIOD_BASED or PERIOD_BASED. |
-| orgID | Integer | Unique ID of the associated organisation. |
-| warnings | Object | An array containing any warnings. |
-```
+| Parameter                           | Data Type | Description                                                                                                                                                                                                                                                                                                                                       |
+| ----------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| pageDetails                         | Object    | Object containing pagination details.                                                                                                                                                                                                                                                                                                             |
+| - pageNumber                        | Integer   | Page number of the current result set.                                                                                                                                                                                                                                                                                                            |
+| - pageSize                          | Integer   | Number of entries per page.                                                                                                                                                                                                                                                                                                                       |
+| - totalEntries                      | Integer   | Total number of entries in the result set.                                                                                                                                                                                                                                                                                                        |
+| - pageCount                         | Integer   | Total number of pages in the result set.                                                                                                                                                                                                                                                                                                          |
+| customerId                          | Integer   | Identifier of the customer.                                                                                                                                                                                                                                                                                                                       |
+| promotions                          | Object    | An object containing details of promotions.                                                                                                                                                                                                                                                                                                       |
+| - promotionId                       | Integer   | Unique identifier for the promotion issued to the customer.                                                                                                                                                                                                                                                                                       |
+| - promotionName                     | String    | Name of the promotion.                                                                                                                                                                                                                                                                                                                            |
+| - programId                         | Integer   | Identifier of the loyalty program associated with the promotion.                                                                                                                                                                                                                                                                                  |
+| - startDate                         | String    | Start date of the promotion. ISO 8601 Date Format                                                                                                                                                                                                                                                                                                 |
+| - endDate                           | String    | End date of the promotion. ISO 8601 Date Format                                                                                                                                                                                                                                                                                                   |
+| - identifier                        | String    | Universally Unique Identifier for the promotion.                                                                                                                                                                                                                                                                                                  |
+| - description                       | String    | Description of the promotion.                                                                                                                                                                                                                                                                                                                     |
+| - active                            | Boolean   | Indicates if the promotion is active.                                                                                                                                                                                                                                                                                                             |
+| - eventName                         | String    | Event triggering the promotion.                                                                                                                                                                                                                                                                                                                   |
+| - promotionMetadata                 | Object    | Array containing metadata for the promotion.                                                                                                                                                                                                                                                                                                      |
+| - - key                             | String    | Key of the metadata.                                                                                                                                                                                                                                                                                                                              |
+| - - value                           | String    | Value of the metadata.                                                                                                                                                                                                                                                                                                                            |
+| - - brandDefined                    | Boolean   | Indicates if the metadata is brand-defined.                                                                                                                                                                                                                                                                                                       |
+| - limits                            | Object    | Object containing limits set for the promotion.                                                                                                                                                                                                                                                                                                   |
+| - - maxPointsPerEvent               | Integer   | Maximum number of points offered per event.                                                                                                                                                                                                                                                                                                       |
+| - - pointsPerCustomer               | Integer   | Maximum points a customer can earn.                                                                                                                                                                                                                                                                                                               |
+| - - numberOFTimesPerCustomer        | Integer   | The maximum number of activities per customer that can allocate points.                                                                                                                                                                                                                                                                           |
+| - - totalPointsInPromotion          | Integer   | The maximum points permitted across customers within the promotion duration.                                                                                                                                                                                                                                                                      |
+| - customerUsage                     | Object    | Object containing customer usage details.                                                                                                                                                                                                                                                                                                         |
+| - - currentPointsPerCustomer        | String    | The current points accrued by the customer.                                                                                                                                                                                                                                                                                                       |
+| - - currentNumberOfTimesPerCustomer | Integer   | The number of activities through which the customer has received the points.                                                                                                                                                                                                                                                                      |
+| - - currentTotalPointsInPromotion   | String    | The points received by all customers within the promotion duration.                                                                                                                                                                                                                                                                               |
+| - pointsOfferType                   | String    | Type of promotion. The types of promotion are GENERIC, LOYALTY, and LOYALTY\_EARNING.                                                                                                                                                                                                                                                             |
+| - promotionRestriction              | Object    | Object containing promotion restriction details. You can set limits on how many times a promotion can be issued and redeemed. Information in this field is replicated if Advanced loyalty Promotion is available for your organisation.                                                                                                           |
+| - - issualRestrictions              | Object    | Array containing issual restriction details.                                                                                                                                                                                                                                                                                                      |
+| - - - kpi                           | String    | Key performance indicator for the restriction. The KPI values are MAX\_NUMBER\_OF\_ISSUALS\_PER\_CUSTOMER and MAX\_POINTS\_PER\_ISSUAL\_PER\_CUSTOMER.                                                                                                                                                                                            |
+| - - - maxLimit                      | String    | Maximum times a customer can be enrolled in a promotion.                                                                                                                                                                                                                                                                                          |
+| - - - currentCustomerUsage          | String    | The present count of a customer's enrolment in a promotion.                                                                                                                                                                                                                                                                                       |
+| - - - limitOn                       | String    | Specifies what the limit applies to. The values are EVENT, CUSTOMER, or PROMOTION.                                                                                                                                                                                                                                                                |
+| - - earnRestrictions                | Object    | Array containing earn restriction details.                                                                                                                                                                                                                                                                                                        |
+| - - - kpi                           | String    | Key performance indicator for the restriction. The KPI values are MAX\_NUMBER\_OF\_EARNS\_PER\_CUSTOMER and MAX\_POINTS\_PER\_EARN\_PER\_CUSTOMER.                                                                                                                                                                                                |
+| - - - maxLimit                      | String    | Maximum times a promotion can be issued to a customer.                                                                                                                                                                                                                                                                                            |
+| - - - currentCustomerUsage          | String    | The present number of instances a promotion is issued to the customer.                                                                                                                                                                                                                                                                            |
+| - - - limitOn                       | String    | Specifies what the limit applies to. The values are EVENT, CUSTOMER, or PROMOTION.                                                                                                                                                                                                                                                                |
+| - - redemptionRestrictions          | Object    | Array containing redemption restriction details.                                                                                                                                                                                                                                                                                                  |
+| - - - kpi                           | String    | Key performance indicator for the restriction. The KPI values are:MAX\_ALLOWED\_TIMES\_PER\_CARTMAX\_ALLOWED\_POINTS\_PER\_CARTMAX\_ALLOWED\_TIMES\_PER\_CUSTOMERMAX\_ALLOWED\_EVENTS\_PER\_CUSTOMERMAX\_ALLOWED\_POINTS\_PER\_CUSTOMERMAX\_ALLOWED\_TIMES\_PER\_CUSTOMERMAX\_ALLOWED\_EVENTS\_PER\_PROMOTIONMAX\_ALLOWED\_POINTS\_PER\_PROMOTION |
+| - - - maxLimit                      | String    | Maximum number of times the points can be availed.                                                                                                                                                                                                                                                                                                |
+| - - - currentCustomerUsage          | String    | The present number of points availed by the customer.                                                                                                                                                                                                                                                                                             |
+| - - - limitOn                       | String    | Specifies what the limit applies to. The values are EVENT, CUSTOMER, or PROMOTION.                                                                                                                                                                                                                                                                |
+| - - - type                          | String    | Type of restrictions. The values are NON\_PERIOD\_BASED or PERIOD\_BASED.                                                                                                                                                                                                                                                                         |
+| orgID                               | Integer   | Unique ID of the associated organisation.                                                                                                                                                                                                                                                                                                         |
+| warnings                            | Object    | An array containing any warnings.                                                                                                                                                                                                                                                                                                                 |
 
 ## Sample Response
 
-<CodeGroup show-lines="true" tabs={["SELF", "OTHER", "ALL"]}>
-
+<CodeGroup show-lines="true" tabs={["SELF","OTHER","ALL"]}>
   ```json SELF
   {
       "pageDetails": {
@@ -295,16 +279,13 @@ The field `pointsOfferType `in the response provides information on the type of 
       "warnings": []
   }
   ```
-
 </CodeGroup>
 
 ## API specific error codes
 
-```
-| Error | Description |
-| --- | --- |
-| 8013 | Identifier name missing or incorrect. |
-| 8015 | Identifier value missing or incorrect. |
-| 8003 | Source is missing or incorrect. |
+| Error  | Description                                                                                                   |
+| ------ | ------------------------------------------------------------------------------------------------------------- |
+| 8013   | Identifier name missing or incorrect.                                                                         |
+| 8015   | Identifier value missing or incorrect.                                                                        |
+| 8003   | Source is missing or incorrect.                                                                               |
 | 310144 | Connected Orgs not set properly in Headers.Check whether the target organisation is a connected organisation. |
-```

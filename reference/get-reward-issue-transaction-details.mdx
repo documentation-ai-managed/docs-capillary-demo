@@ -8,8 +8,6 @@ title: Get Transaction Details by Customer ID and Reward Transaction ID
 
 </Callout>
 
-<br />
-
 This API retrieves the detailed information of a specific issued reward using the reward transaction ID.
 
 <Callout kind="tip" title="Note">
@@ -56,7 +54,7 @@ For detailed information about our APIs and for hands-on testing, refer document
   --header 'Authorization: Basic dGlsbGF1dG9fMTIzOjI3NDFlNjJiZTZiZTYyNGY2N2IwMGQxZDZhNWQ2MWJm'
   ```
 
-  ```bash With couponCodeCase filter
+  ```bash "With couponCodeCase filter"
   curl --location 'https://crm-staging-new.cc.capillarytech.com/api_gateway/rewards/core/v1/management/customer/345635195/issuals/927488?couponCodeCase=AS_IT_IS' \
   --header 'Authorization: Basic dGlsbGF1dG9fMTIzOjI3NDFlNjJiZTZiZTYyNGY2N2IwMGQxZDZhNWQ2MWJm'
   ```
@@ -138,11 +136,9 @@ For detailed information about our APIs and for hands-on testing, refer document
 | vendorId                           | Integer   | Retrieves the rewards associated with a specific vendor.                                                                                                                                                                                                                                                                                      |
 | redemptionType                     | Integer   | Retrieves rewards based on their redemption type. <br />**Possible values:**`GAMES, AUCTION, CART_PROMOTION, CASH_WALLET, VENDOR_ONLY_REWARD, VOUCHER, CASH_BACK, INTOUCH_REWARD, PHYSICAL_REWARD, CHARITY, MILES, GIFT_CARD, SWEEPSTAKES, VENDOR_INTOUCH_REWARD, CARD_DISC`. Multiple redemptionType values can be filtered using comma (,). |
 
-<br />
-
 <CodeGroup show-lines="true" tabs={["200 OK", "With revenue metadata", "With 'altText' for images and videos", "With couponCodeCase Filter"]}>
 
-  ```json 200 OK
+  ```json "200 OK"
   {
       "status": [
   {
@@ -241,7 +237,7 @@ For detailed information about our APIs and for hands-on testing, refer document
   }
   ```
 
-  ```json With revenue metadata
+  ```json "With revenue metadata"
   {
       "status": [
   {
@@ -325,7 +321,7 @@ For detailed information about our APIs and for hands-on testing, refer document
   }
   ```
 
-  ```json With 'altText' for images and videos
+  ```json "With 'altText' for images and videos"
   {
       "status": [
   {
@@ -405,7 +401,7 @@ For detailed information about our APIs and for hands-on testing, refer document
   }
   ```
 
-  ```text With couponCodeCase Filter
+  ```text "With couponCodeCase Filter"
   {
       "status": [
   {

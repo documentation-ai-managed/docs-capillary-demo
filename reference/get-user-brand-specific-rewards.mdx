@@ -1,32 +1,28 @@
 ---
 title: Get available reward details for user by id
 ---
-
 This API is used to retrieve details of an active reward for a particular brand.
 
 For example: A brand configures a reward for their customer to earn. Through this API, the brands can check the active rewards configured for their customers.
 
-<Callout kind="tip" title="Note">
-
-- For detailed information about our APIs and for hands-on testing, refer to the documentation in [API Overview](https://docs.capillarytech.com/reference/apioverview) and follow the step-by-step guide on making your first API call in [Make Your First API Call](https://docs.capillarytech.com/reference/make-your-first-api-call).
-
-- When **[Dual Eligibility](https://docs.capillarytech.com/docs/customer_entity#dual-eligibility)** is enabled, a reward can be issued to multiple users registered with the same secondary identifiers, as long as they have unique primary identifiers.
-
+<Callout kind="tip" collapsed="false">
+  - For detailed information about our APIs and for hands-on testing, refer to the documentation in [API Overview](https://docs.capillarytech.com/reference/apioverview) and follow the step-by-step guide on making your first API call in [Make Your First API Call](https://docs.capillarytech.com/reference/make-your-first-api-call).
+  - When [**Dual Eligibility**](https://docs.capillarytech.com/docs/customer_entity#dual-eligibility) is enabled, a reward can be issued to multiple users registered with the same secondary identifiers, as long as they have unique primary identifiers.
 </Callout>
 
 ## Prerequisites
 
-- [ ] Authentication: Basic or OAuth authentication
-- [ ] Default access group
+- Authentication: Basic or OAuth authentication
+- Default access group
 
 ## API Specification
 
-| URI                    | /api_gateway/rewards/core/v1/user/reward`{reward Id}`/brand`{brand name}`?userId=`{id}` |
-| :--------------------- | :----------------------------------------------------------------------------------------- |
-| HTTP Method            | GET                                                                                        |
-| Pagination             | No                                                                                         |
-| Batch support          | No                                                                                         |
-| Rate limit information | None                                                                                       |
+| URI                    | /api\_gateway/rewards/core/v1/user/reward`{reward Id}`/brand`{brand name}`?userId=`{id}` |
+| :--------------------- | :--------------------------------------------------------------------------------------- |
+| HTTP Method            | GET                                                                                      |
+| Pagination             | No                                                                                       |
+| Batch support          | No                                                                                       |
+| Rate limit information | None                                                                                     |
 
 ## API endpoint example
 
@@ -49,18 +45,14 @@ For example: A brand configures a reward for their customer to earn. Through thi
 | groupName      | String    | Enter the group name to fetch all the rewards associated with the group.                                                                                                                    |
 | label          | String    | Enter the label name to fetch all the rewards associated with the label.                                                                                                                    |
 
-<br />
+<CodeGroup show-lines="true" tabs={["cURL"]}>
+  ```bash "cURL"
+  https://eucrm.cc.capillarytech.com/api_gateway/rewards/core/v1/user/reward/177056/brand/SUPERMARKETDEMO?userId=62090013
+  ```
+</CodeGroup>
 
-```bash
-https://eucrm.cc.capillarytech.com/api_gateway/rewards/core/v1/user/reward/177056/brand/SUPERMARKETDEMO?userId=62090013
-```
-
-<br />
-
-<Callout kind="info" title="Note">
-
-If rewards are created for a customer segment, they are displayed to the user only if the user is part of the segment or partition mapping associated with the reward.
-
+<Callout kind="info" collapsed="false">
+  If rewards are created for a customer segment, they are displayed to the user only if the user is part of the segment or partition mapping associated with the reward.
 </Callout>
 
 ## Response parameters
@@ -143,11 +135,8 @@ If rewards are created for a customer segment, they are displayed to the user on
 | ...lastUpdatedOnDateTime      | Object           | Indicates the last updated date and time.                                                                              |
 | ...redemptionType             | String           | Specifies the redemption type associated with the constraint.                                                          |
 
-<br />
-
-<CodeGroup show-lines="true" tabs={["With userId", "With category=accessories", "With groupName=Most Preferred Rewards", "With sortOnGroups=true", "With 'altText' for images and videos"]}>
-
-  ```json With userId
+<CodeGroup default-tab="3" show-lines="true" tabs={["With userId","With category=accessories","With groupName=Most Preferred Rewards","With sortOnGroups=true","With 'altText' for images and videos"]}>
+  ```json wrap="true" "With userId"
   {
       "status": {
           "success": true,
@@ -304,7 +293,7 @@ If rewards are created for a customer segment, they are displayed to the user on
   }
   ```
 
-  ```json With category=accessories
+  ```json wrap="true" "With category=accessories"
   {
       "status": {
           "success": true,
@@ -640,7 +629,7 @@ If rewards are created for a customer segment, they are displayed to the user on
   }
   ```
 
-  ```json With groupName=Most Preferred Rewards
+  ```json wrap="true" "With groupName=Most Preferred Rewards"
   {
       "status": {
           "success": true,
@@ -730,7 +719,7 @@ If rewards are created for a customer segment, they are displayed to the user on
   }
   ```
 
-  ```json With sortOnGroups=true
+  ```json wrap="true" "With sortOnGroups=true"
   {
       "status": {
           "success": true,
@@ -4168,7 +4157,7 @@ If rewards are created for a customer segment, they are displayed to the user on
   }
   ```
 
-  ```json With 'altText' for images and videos
+  ```json wrap="true" "With 'altText' for images and videos"
   {
       "status": {
           "success": true,
@@ -4227,10 +4216,7 @@ If rewards are created for a customer segment, they are displayed to the user on
       }
   }
   ```
-
 </CodeGroup>
-
-<br />
 
 ## API-specific error codes
 
@@ -4240,3 +4226,4 @@ If rewards are created for a customer segment, they are displayed to the user on
 | 15006      | The request is missing the primary identifier.                |
 | 1014       | The provided identifier does not match any existing customer. |
 | 404        | The specified customer was not found in the organization.     |
+

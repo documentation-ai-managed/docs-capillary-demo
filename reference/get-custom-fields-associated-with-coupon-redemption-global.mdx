@@ -1,27 +1,22 @@
 ---
 title: Get Custom Fields Associated with Coupon Redemption
 ---
-
-<Callout kind="danger">
-
+<Callout kind="danger" collapsed="false">
   This is a private API. Private APIs are deprecated and hence this page is hidden.
-
 </Callout>
 
 The API retrieves the custom fields and their associated values for coupon redemption.
 
-<Callout kind="alert" title="Note">
-
-This API is a private API that has been exposed through [Neo](https://docs.capillarytech.com/docs/neo-quick-start) and made public.
-
+<Callout kind="alert" collapsed="false">
+  This API is a private API that has been exposed through [Neo](https://docs.capillarytech.com/docs/neo-quick-start) and made public.
 </Callout>
 
 ## Prerequisites
 
-- [ ] [Access to Neo](https://docs.capillarytech.com/docs/access-management-neo#enabling-neo-extension-access--user-roles)
-- [ ] Authentication - Basic or OAuth authentication details
-- [ ] Access group resource - NA
-- [ ] Header `x-cap-neo-dag-scope` set to a valid scope value (e.g. global)
+- [Access to Neo](https://docs.capillarytech.com/docs/access-management-neo#enabling-neo-extension-access--user-roles)
+- Authentication - Basic or OAuth authentication details
+- Access group resource - NA
+- Header `x-cap-neo-dag-scope` set to a valid scope value (e.g. global)
 
 ## Resource information
 
@@ -34,27 +29,27 @@ This API is a private API that has been exposed through [Neo](https://docs.capil
 
 ## API endpoint example
 
-[https://nightly.api.capillarytech.com/x/neo/couponRedemption/customFields?redemption_ids=1046094,1046095,1046096&amp;page=1&amp;count=15](https://nightly.api.capillarytech.com/x/neo/couponRedemption/customFields?redemption_ids=1046094,1046095,1046096&page=1&count=15)
+[https://nightly.api.capillarytech.com/x/neo/couponRedemption/customFields?redemption\_ids=1046094,1046095,1046096\&page=1\&count=15](https://nightly.api.capillarytech.com/x/neo/couponRedemption/customFields?redemption_ids=1046094,1046095,1046096\&page=1\&count=15)
 
 ## Request query parameters
 
-```
-| Parameter(Parameters marked with * are mandatory) | Data Type | Description |
-| --- | --- | --- |
-| redemption_ids* | Long | A unique identifier for the redemption instance. It is the ID generated when a coupon is redeemed. You can provide multiple redemption IDs, separated by commas. |
-| page | Integer | Retrieve details of a specific page. Page count starts from 1.Example: page=2 retrieves data on page 2. |
-| count | Integer | Number of results to display per page. The default value is 10. The maximum supported value is 100. |
-```
+| Parameter(Parameters marked with \* are mandatory) | Data Type | Description                                                                                                                                                      |
+| -------------------------------------------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| redemption\_ids\*                                  | Long      | A unique identifier for the redemption instance. It is the ID generated when a coupon is redeemed. You can provide multiple redemption IDs, separated by commas. |
+| page                                               | Integer   | Retrieve details of a specific page. Page count starts from 1.Example: page=2 retrieves data on page 2.                                                          |
+| count                                              | Integer   | Number of results to display per page. The default value is 10. The maximum supported value is 100.                                                              |
 
 ## Sample request
 
-```json Sample request
-curl --location 'https://nightly.api.capillarytech.com/x/neo/couponRedemption/customFields?redemption_ids=1046094%2C1046095%2C1046096&page=1&count=15' \
---header 'Content-Type: application/json' \
---header 'x-cap-neo-dag-scope: global' \
---header 'Authorization: Basic bMDcxNTJkMjM0Yjcw' \
---header 'Cookie: _cfuvid=bDzuqORMDePiD7OSqoaM5Wf.LRjcYN1SoBJGzi0aLo4-1749727061901-0.0.1.1-604800000'
-```
+<CodeGroup show-lines="true" tabs={["Sample request"]}>
+  ```bash "Sample request"
+  curl --location 'https://nightly.api.capillarytech.com/x/neo/couponRedemption/customFields?redemption_ids=1046094%2C1046095%2C1046096&page=1&count=15' \
+  --header 'Content-Type: application/json' \
+  --header 'x-cap-neo-dag-scope: global' \
+  --header 'Authorization: Basic bMDcxNTJkMjM0Yjcw' \
+  --header 'Cookie: _cfuvid=bDzuqORMDePiD7OSqoaM5Wf.LRjcYN1SoBJGzi0aLo4-1749727061901-0.0.1.1-604800000'
+  ```
+</CodeGroup>
 
 ## Response parameters
 
@@ -67,45 +62,47 @@ curl --location 'https://nightly.api.capillarytech.com/x/neo/couponRedemption/cu
 
 ## Sample response
 
-```json Sample Response
-[
-    {
-        "redemptionId": 1046094,
-        "redemptionCustomFields": [
-            {
-                "name": "age",
-                "value": "12"
-            },
-            {
-                "name": "redem_gender",
-                "value": "Female1"
-            }
-        ]
-    },
-    {
-        "redemptionId": 1046095,
-        "redemptionCustomFields": [
-            {
-                "name": "age",
-                "value": "10"
-            }
-        ]
-    },
-    {
-        "redemptionId": 1046096,
-        "redemptionCustomFields": [
-            {
-                "name": "age",
-                "value": "12"
-            },
-            {
-                "name": "redem_gender",
-                "value": "Female2"
-            }
-        ]
-    }
-]
-```
+<CodeGroup show-lines="true" tabs={["Sample Response"]}>
+  ```json "Sample Response"
+  [
+      {
+          "redemptionId": 1046094,
+          "redemptionCustomFields": [
+              {
+                  "name": "age",
+                  "value": "12"
+              },
+              {
+                  "name": "redem_gender",
+                  "value": "Female1"
+              }
+          ]
+      },
+      {
+          "redemptionId": 1046095,
+          "redemptionCustomFields": [
+              {
+                  "name": "age",
+                  "value": "10"
+              }
+          ]
+      },
+      {
+          "redemptionId": 1046096,
+          "redemptionCustomFields": [
+              {
+                  "name": "age",
+                  "value": "12"
+              },
+              {
+                  "name": "redem_gender",
+                  "value": "Female2"
+              }
+          ]
+      }
+  ]
+  ```
+</CodeGroup>
 
 ## Error Codes
 
@@ -114,3 +111,4 @@ curl --location 'https://nightly.api.capillarytech.com/x/neo/couponRedemption/cu
 | 400        | Bad Request           |
 | 404        | Not Found             |
 | 500        | Internal Server Error |
+

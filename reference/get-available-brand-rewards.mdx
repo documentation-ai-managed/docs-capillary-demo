@@ -42,11 +42,13 @@ For detailed information about our APIs and for hands-on testing, refer document
 | endDate\*      | DateTime  | the end date of the reward. Format for the endDate should be `YYYY-MM-DDTHH:MMZ`.                                                                                                         |
 | language       | Enum      | Filters the response based on the reward language. Use this parameter to retrieve rewards in a specific language. For example, to display rewards in English, set the parameter to `en` . |
 
-<br />
+<CodeGroup show-lines="true" tabs={["cURL"]}>
 
-```bash
-https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/brand/1/available?startDate=2022-04-20T08:55Z&endDate=2022-11-30T08:55Z
-```
+  ```bash "cURL"
+  https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/brand/1/available?startDate=2022-04-20T08:55Z&endDate=2022-11-30T08:55Z
+  ```
+
+</CodeGroup>
 
 ## Response parameters
 
@@ -77,11 +79,9 @@ https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/brand/1/avai
 | id             | A unique identifier for the payment configuration.                                                    |
 | points         | The number of points required for redemption in the `POINTS` payment mode.                            |
 
-<br />
-
 <CodeGroup show-lines="true" tabs={["200 OK", "400 Error: Incorrect format  of startDate or endDate"]}>
 
-  ```json 200 OK
+  ```json "200 OK"
   {
       "status": {
           "success": true,
@@ -275,7 +275,7 @@ https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/brand/1/avai
   }
   ```
 
-  ```json 400 Error: Incorrect format  of startDate or endDate
+  ```json "400 Error: Incorrect format  of startDate or endDate"
   {
       "status": {
           "success": false,

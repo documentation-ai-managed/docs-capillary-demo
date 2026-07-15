@@ -19,7 +19,7 @@ For detailed information about the APIs and for hands-on testing, refer to the [
 
 <CodeGroup show-lines="true" tabs={["Issue to single customer", "Issue to bulk customers"]}>
 
-  ```text Issue to single customer
+  ```text "Issue to single customer"
   curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/69117663b1cfc114606fd7fb/issueBulk?contextId=68fb1c9731d91c625a8d9e80' \
   --header 'Content-Type: application/json' \6NzYzNDkxOGFmNDI3MGQ3YzI4ZjU4ZjY3MmNhZjY1ZmY=' \
   --header 'Cookie: _cfuvid=IBM60ka7X5Aybk9Gp8JKVHig14rVuwA5XcyAUA-1747041228297-0.0.1.1-604800000; _cfuvid=fVY1aFlJcxMfPAsl7lBGJQG55iNNKmYw08.WciBy9eY-1747126931365-0.0.1.1-604800000; _cfuvid=.SKkqn5X9vb1GQsCWsMQPXos7ah5dTOcOGwZsXgVL14-1762781673638-0.0.1.1-604800000' \
@@ -28,7 +28,7 @@ For detailed information about the APIs and for hands-on testing, refer to the [
   ]'
   ```
 
-  ```text Issue to bulk customers
+  ```text "Issue to bulk customers"
   curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/69117663b1cfc114606fd7fb/issueBulk?contextId=68fb1c9731d91c625a8d9e80' \
   --header 'Content-Type: application/json' \
   --header 'Authorization: Basic Z2VvcmdlLmJ1a2OGFmNDI3MGQ3YzI4ZjU4ZjY3MmNhZjY1ZmY=' \
@@ -81,20 +81,24 @@ For detailed information about the APIs and for hands-on testing, refer to the [
 
 ## Response Body
 
-```json
-{
-    "data": {
-        "564332013": {
-            "id": "68230a3af1ebc84977d9ea2c",
-            "customerId": 564332013,
-            "promotionId": "67f3832ab206f929966adf81",
-            "earnedFromId": "2 items in cart",
-            "eventTime": 1747126842954,
-            "validTill": 1748716199999
-        }
-    }
-}
-```
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+
+  ```json "JSON"
+  {
+      "data": {
+          "564332013": {
+              "id": "68230a3af1ebc84977d9ea2c",
+              "customerId": 564332013,
+              "promotionId": "67f3832ab206f929966adf81",
+              "earnedFromId": "2 items in cart",
+              "eventTime": 1747126842954,
+              "validTill": 1748716199999
+          }
+      }
+  }
+  ```
+
+</CodeGroup>
 
 ## Response Body Parameters
 
@@ -122,5 +126,3 @@ For detailed information about the APIs and for hands-on testing, refer to the [
 | 1006 | Invalid customer identifier. The customer IDs array is empty, contains null values, or includes invalid identifiers. Provide a valid, non-empty array of customer identifiers. |
 | 1007 | Error while fetching customer identifier. Retry and validate all customer data in your bulk payload.                                                                           |
 | 500  | Internal server error. Retry the request after a short delay, and contact support if the error persists.                                                                       |
-
-<br />

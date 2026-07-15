@@ -35,127 +35,12 @@ This API lets you specify which data fields should be included when performing a
 | `searchStrategyType`\* | String | Defines the search strategy type (`COMBINATION`, `PREFIX`). |
 | `entityType`\* | Enum | Type of entity being searched (`TRANSACTION`, `CUSTOMER`). |
 | `dataFieldDefinitions`\* | Array | List of field definitions used in the search. |
-| `- fieldId`\* | String | The field to search on. For Customer, the supported standard fields are: `firstName`, `lastName`, `email`, `mobile`, `externalId`, and `fullName`. For Transaction, the supported fields are: `outlierStatus`, `billDate`, `billNumber`, and `storecode (additional field)`. |
-| -`fieldAlias` | String | The alias or display name of the field. |
-| -`fieldType` | Enum | Type of field. Use the field type `DATA`. |
-| dataSourceDetails` | Object | Contains details about the data source. |
-| \-- `fieldReference` | String | Applicable when using custom fields or extended fields. Ex: `extendedFields.ship_email`, `customFields.age`. If you are using store code to search, use `additionalFields.storecode` (applicable for transaction). |
-| • `dataType` | String | Data type of the field (`STRING`, `NUMBER`, `DECIMAL`, or `DATE`). |
-
-```bash
-curl --location 'eu.api.capillarytech.com/api_gateway/cortex/v1/dataFields' \
---header 'Authorization: Basic bmVlcmFqLmRvNGFmDA0MDA5Y2IwMzZhNGNjZGMzMzQzMWVmOWFjOQ==' \
---header 'Content-Type: application/json' \
---header 'Cookie: _cfuvid=NIG4hPIouTlCOXgwODX50uFuouza2nwDNThbawZibQM-1743137683215-0.0.1.1-604800000' \
---data '{
-  "searchStrategyType" : "PREFIX",
-  "entityType" : "CUSTOMER",
-  "dataFieldDefinitions" : [
-		{
-			"fieldId" : "firstName",
-			"fieldAlias" : "firstName",
-			"fieldType" : "DATA",
-			"dataSourceDetails" : {
-				"fieldReference" : "firstName"
-			},
-			"dataType" : "STRING"
-		},
-		{
-			"fieldId" : "lastName",
-			"fieldAlias" : "lastName",
-			"fieldType" : "DATA",
-			"dataSourceDetails" : {
-				"fieldReference" : "lastName"
-			},
-			"dataType" : "STRING"
-		},
-		{
-			"fieldId" : "mobile",
-			"fieldAlias" : "mobile",
-			"fieldType" : "DATA",
-			"dataSourceDetails" : {
-				"fieldReference" : "mobile"
-			},
-			"dataType" : "STRING"
-		},
-		{
-			"fieldId" : "email",
-			"fieldAlias" : "email",
-			"fieldType" : "DATA",
-			"dataSourceDetails" : {
-				"fieldReference" : "email"
-			},
-			"dataType" : "STRING"
-		},
-    {
-			"fieldId" : "externalId",
-			"fieldAlias" : "externalId",
-			"fieldType" : "DATA",
-			"dataSourceDetails" : {
-				"fieldReference" : "externalId"
-			},
-			"dataType" : "STRING"
-		}
-
-	]
-}'
-``<code>bash
-
-</code>``bash
-curl --location 'eu.api.capillarytech.com/api_gateway/cortex/v1/dataFields' \
---header 'Authorization: Basic bmVlcmFqLmRvYzpiNGFmODDA5Y2IwMzZhNGNjZGMzMzQzMWVmOWFjOQ==' \
---header 'Content-Type: application/json' \
---header 'Cookie: _cfuvid=NIG4hPIouTlCOXgwODX50uFuouza2nwDNThbawZibQM-1743137683215-0.0.1.1-604800000' \
---data '{
-"searchStrategyType" : "COMBINATION",
-	"entityType" : "TRANSACTION",
-  "dataFieldDefinitions" :
-   [
-		{
-			"fieldId" : "billNumber",
-			"fieldAlias" : "billNumber",
-			"fieldType" : "DATA",
-			"dataSourceDetails" : 
-            {
-				"fieldReference" : "billNumber"
-			},
-			"dataType" : "STRING"
-		},
-    {
-			"fieldId" : "billDate",
-			"fieldAlias" : "billDate",
-			"fieldType" : "DATA",
-			"dataSourceDetails" : {
-				"fieldReference" : "billDate"
-			},
-			"dataType" : "DATE"
-		},
-    {
-      "fieldId" : "storename",
-      "fieldAlias" : "storename",
-      "fieldType" : "DATA",
-      "dataSourceDetails" : {
-        "fieldReference" : "additionalFields.storename"
-      },
-      "dataType" : "STRING"
-    },
-    {
-      "fieldId" : "storecode",
-      "fieldAlias" : "storecode",
-      "fieldType" : "DATA",
-      "dataSourceDetails" : {
-        "fieldReference" : "additionalFields.storecode"
-      },
-      "dataType" : "STRING"
-    }
-
-	]
-
-}'
-
-```
-
-<br />
+|   • `fieldId`\* | String | The field to search on. For Customer, the supported standard fields are: `firstName`, `lastName`, `email`, `mobile`, `externalId`, and `fullName`. For Transaction, the supported fields are: `outlierStatus`, `billDate`, `billNumber`, and `storecode (additional field)`. |
+|   • `fieldAlias` | String | The alias or display name of the field. |
+|   • `fieldType` | Enum | Type of field. Use the field type `DATA`. |
+|   • `dataSourceDetails` | Object | Contains details about the data source. |
+|     ◦ `fieldReference` | String | Applicable when using custom fields or extended fields. Ex: `extendedFields.ship_email`, `customFields.age`. If you are using store code to search, use `additionalFields.storecode` (applicable for transaction). |
+|   • `dataType` | String | Data type of the field (`STRING`, `NUMBER`, `DECIMAL`, or `DATE`). |
 
 ## Response Parameters
 
@@ -166,141 +51,270 @@ curl --location 'eu.api.capillarytech.com/api_gateway/cortex/v1/dataFields' \
 | searchStrategyType | Enum | Defines the search strategy type (`\`COMBINATION`, `PREFIX` ) |
 | entityType | Enum | Type of entity being searched (`TRANSACTION` , `CUSTOMER`) |
 | dataFieldDefinitions | Array | List of field definitions used in the search. |
-| • fieldId | String | Unique identifier for the field. |
-| • fieldAlias | String | The alias or display name of the search field. |
-| • fieldType | Enum | Type of field (e.g., `INDEXED`, `FILTERABLE`). |
-| • dataSourceDetails | Object | Contains details about the data source. |
-| \-- fieldReference | String | The reference to the search field in the data source. |
-| • dataType | String | Data type of the field (e.g., `STRING`, `DATE`). |
+|   • fieldId | String | Unique identifier for the field. |
+|   • fieldAlias | String | The alias or display name of the search field. |
+|   • fieldType | Enum | Type of field (e.g., `INDEXED`, `FILTERABLE`). |
+|   • dataSourceDetails | Object | Contains details about the data source. |
+|     ◦ fieldReference | String | The reference to the search field in the data source. |
+|   • dataType | String | Data type of the field (e.g., `STRING`, `DATE`). |
 | auditInfo | Object | An object containing audit information about the criteria. |
-| • createdOn | String | The timestamp indicating when the criteria was created. |
-| • createdBy | Integer | The ID of the user who created the criteria. |
-| • lastUpdatedOn | String | The timestamp indicating when the search criteria was last updated. |
-| • lastUpdatedBy | Integer | The ID of the user who last updated the criteria. |
+|   • createdOn | String | The timestamp indicating when the criteria was created. |
+|   • createdBy | Integer | The ID of the user who created the criteria. |
+|   • lastUpdatedOn | String | The timestamp indicating when the search criteria was last updated. |
+|   • lastUpdatedBy | Integer | The ID of the user who last updated the criteria. |
 
-```json
-{
-    "data": {
-        "id": "67e6a8bfdd6a186b5555ba98",
-        "orgId": 100737,
-        "searchStrategyType": "PREFIX",
-        "entityType": "CUSTOMER",
-        "dataFieldDefinitions": [
-            {
-                "fieldId": "firstName",
-                "fieldAlias": "firstName",
-                "fieldType": "DATA",
-                "dataSourceDetails": {
-                    "fieldReference": "firstName"
+## Example requests and responses
+
+<Tabs>
+  <Tab title="Customer">
+
+    **Request**
+
+    ```bash
+    curl --location 'eu.api.capillarytech.com/api_gateway/cortex/v1/dataFields' \
+    --header 'Authorization: Basic bmVlcmFqLmRvNGFmDA0MDA5Y2IwMzZhNGNjZGMzMzQzMWVmOWFjOQ==' \
+    --header 'Content-Type: application/json' \
+    --header 'Cookie: _cfuvid=NIG4hPIouTlCOXgwODX50uFuouza2nwDNThbawZibQM-1743137683215-0.0.1.1-604800000' \
+    --data '{
+      "searchStrategyType" : "PREFIX",
+      "entityType" : "CUSTOMER",
+      "dataFieldDefinitions" : [
+    		{
+    			"fieldId" : "firstName",
+    			"fieldAlias" : "firstName",
+    			"fieldType" : "DATA",
+    			"dataSourceDetails" : {
+    				"fieldReference" : "firstName"
+    			},
+    			"dataType" : "STRING"
+    		},
+    		{
+    			"fieldId" : "lastName",
+    			"fieldAlias" : "lastName",
+    			"fieldType" : "DATA",
+    			"dataSourceDetails" : {
+    				"fieldReference" : "lastName"
+    			},
+    			"dataType" : "STRING"
+    		},
+    		{
+    			"fieldId" : "mobile",
+    			"fieldAlias" : "mobile",
+    			"fieldType" : "DATA",
+    			"dataSourceDetails" : {
+    				"fieldReference" : "mobile"
+    			},
+    			"dataType" : "STRING"
+    		},
+    		{
+    			"fieldId" : "email",
+    			"fieldAlias" : "email",
+    			"fieldType" : "DATA",
+    			"dataSourceDetails" : {
+    				"fieldReference" : "email"
+    			},
+    			"dataType" : "STRING"
+    		},
+        {
+    			"fieldId" : "externalId",
+    			"fieldAlias" : "externalId",
+    			"fieldType" : "DATA",
+    			"dataSourceDetails" : {
+    				"fieldReference" : "externalId"
+    			},
+    			"dataType" : "STRING"
+    		}
+
+    	]
+    }'
+    ```
+
+    **Response**
+
+    ```json
+    {
+        "data": {
+            "id": "67e6a8bfdd6a186b5555ba98",
+            "orgId": 100737,
+            "searchStrategyType": "PREFIX",
+            "entityType": "CUSTOMER",
+            "dataFieldDefinitions": [
+                {
+                    "fieldId": "firstName",
+                    "fieldAlias": "firstName",
+                    "fieldType": "DATA",
+                    "dataSourceDetails": {
+                        "fieldReference": "firstName"
+                    },
+                    "dataType": "STRING"
                 },
-                "dataType": "STRING"
-            },
-            {
-                "fieldId": "lastName",
-                "fieldAlias": "lastName",
-                "fieldType": "DATA",
-                "dataSourceDetails": {
-                    "fieldReference": "lastName"
+                {
+                    "fieldId": "lastName",
+                    "fieldAlias": "lastName",
+                    "fieldType": "DATA",
+                    "dataSourceDetails": {
+                        "fieldReference": "lastName"
+                    },
+                    "dataType": "STRING"
                 },
-                "dataType": "STRING"
-            },
-            {
-                "fieldId": "mobile",
-                "fieldAlias": "mobile",
-                "fieldType": "DATA",
-                "dataSourceDetails": {
-                    "fieldReference": "mobile"
+                {
+                    "fieldId": "mobile",
+                    "fieldAlias": "mobile",
+                    "fieldType": "DATA",
+                    "dataSourceDetails": {
+                        "fieldReference": "mobile"
+                    },
+                    "dataType": "STRING"
                 },
-                "dataType": "STRING"
-            },
-            {
-                "fieldId": "email",
-                "fieldAlias": "email",
-                "fieldType": "DATA",
-                "dataSourceDetails": {
-                    "fieldReference": "email"
+                {
+                    "fieldId": "email",
+                    "fieldAlias": "email",
+                    "fieldType": "DATA",
+                    "dataSourceDetails": {
+                        "fieldReference": "email"
+                    },
+                    "dataType": "STRING"
                 },
-                "dataType": "STRING"
-            },
-            {
-                "fieldId": "externalId",
-                "fieldAlias": "externalId",
-                "fieldType": "DATA",
-                "dataSourceDetails": {
-                    "fieldReference": "externalId"
-                },
-                "dataType": "STRING"
+                {
+                    "fieldId": "externalId",
+                    "fieldAlias": "externalId",
+                    "fieldType": "DATA",
+                    "dataSourceDetails": {
+                        "fieldReference": "externalId"
+                    },
+                    "dataType": "STRING"
+                }
+            ],
+            "auditInfo": {
+                "createdOn": "2025-03-28T13:48:47.665+00:00",
+                "createdBy": 75155282,
+                "lastUpdatedOn": "2025-03-28T13:48:47.665+00:00",
+                "lastUpdatedBy": 75155282
             }
-        ],
-        "auditInfo": {
-            "createdOn": "2025-03-28T13:48:47.665+00:00",
-            "createdBy": 75155282,
-            "lastUpdatedOn": "2025-03-28T13:48:47.665+00:00",
-            "lastUpdatedBy": 75155282
-        }
-    },
-    "errors": []
-}
-``<code>json
+        },
+        "errors": []
+    }
+    ```
 
-</code>``json
-{
-    "data": {
-        "id": "67ebcbe9730aa850fc504145",
-        "orgId": 100737,
-        "searchStrategyType": "COMBINATION",
-        "entityType": "TRANSACTION",
-        "dataFieldDefinitions": [
-            {
-                "fieldId": "billNumber",
-                "fieldAlias": "billNumber",
-                "fieldType": "DATA",
-                "dataSourceDetails": {
-                    "fieldReference": "billNumber"
+  </Tab>
+
+  <Tab title="Transaction">
+
+    **Request**
+
+    ```bash
+    curl --location 'eu.api.capillarytech.com/api_gateway/cortex/v1/dataFields' \
+    --header 'Authorization: Basic bmVlcmFqLmRvYzpiNGFmODDA5Y2IwMzZhNGNjZGMzMzQzMWVmOWFjOQ==' \
+    --header 'Content-Type: application/json' \
+    --header 'Cookie: _cfuvid=NIG4hPIouTlCOXgwODX50uFuouza2nwDNThbawZibQM-1743137683215-0.0.1.1-604800000' \
+    --data '{
+    "searchStrategyType" : "COMBINATION",
+    	"entityType" : "TRANSACTION",
+      "dataFieldDefinitions" :
+       [
+    		{
+    			"fieldId" : "billNumber",
+    			"fieldAlias" : "billNumber",
+    			"fieldType" : "DATA",
+    			"dataSourceDetails" : 
+                {
+    				"fieldReference" : "billNumber"
+    			},
+    			"dataType" : "STRING"
+    		},
+        {
+    			"fieldId" : "billDate",
+    			"fieldAlias" : "billDate",
+    			"fieldType" : "DATA",
+    			"dataSourceDetails" : {
+    				"fieldReference" : "billDate"
+    			},
+    			"dataType" : "DATE"
+    		},
+        {
+          "fieldId" : "storename",
+          "fieldAlias" : "storename",
+          "fieldType" : "DATA",
+          "dataSourceDetails" : {
+            "fieldReference" : "additionalFields.storename"
+          },
+          "dataType" : "STRING"
+        },
+        {
+          "fieldId" : "storecode",
+          "fieldAlias" : "storecode",
+          "fieldType" : "DATA",
+          "dataSourceDetails" : {
+            "fieldReference" : "additionalFields.storecode"
+          },
+          "dataType" : "STRING"
+        }
+
+    	]
+
+    }'
+    ```
+
+    **Response**
+
+    ```json
+    {
+        "data": {
+            "id": "67ebcbe9730aa850fc504145",
+            "orgId": 100737,
+            "searchStrategyType": "COMBINATION",
+            "entityType": "TRANSACTION",
+            "dataFieldDefinitions": [
+                {
+                    "fieldId": "billNumber",
+                    "fieldAlias": "billNumber",
+                    "fieldType": "DATA",
+                    "dataSourceDetails": {
+                        "fieldReference": "billNumber"
+                    },
+                    "dataType": "STRING"
                 },
-                "dataType": "STRING"
-            },
-            {
-                "fieldId": "billDate",
-                "fieldAlias": "billDate",
-                "fieldType": "DATA",
-                "dataSourceDetails": {
-                    "fieldReference": "billDate"
+                {
+                    "fieldId": "billDate",
+                    "fieldAlias": "billDate",
+                    "fieldType": "DATA",
+                    "dataSourceDetails": {
+                        "fieldReference": "billDate"
+                    },
+                    "dataType": "DATE"
                 },
-                "dataType": "DATE"
-            },
-            {
-                "fieldId": "storename",
-                "fieldAlias": "storename",
-                "fieldType": "DATA",
-                "dataSourceDetails": {
-                    "fieldReference": "additionalFields.storename"
+                {
+                    "fieldId": "storename",
+                    "fieldAlias": "storename",
+                    "fieldType": "DATA",
+                    "dataSourceDetails": {
+                        "fieldReference": "additionalFields.storename"
+                    },
+                    "dataType": "STRING"
                 },
-                "dataType": "STRING"
-            },
-            {
-                "fieldId": "storecode",
-                "fieldAlias": "storecode",
-                "fieldType": "DATA",
-                "dataSourceDetails": {
-                    "fieldReference": "additionalFields.storecode"
-                },
-                "dataType": "STRING"
+                {
+                    "fieldId": "storecode",
+                    "fieldAlias": "storecode",
+                    "fieldType": "DATA",
+                    "dataSourceDetails": {
+                        "fieldReference": "additionalFields.storecode"
+                    },
+                    "dataType": "STRING"
+                }
+            ],
+            "auditInfo": {
+                "createdOn": "2025-04-01T11:20:09.793+00:00",
+                "createdBy": 75155282,
+                "lastUpdatedOn": "2025-04-01T11:20:09.793+00:00",
+                "lastUpdatedBy": 75155282
             }
-        ],
-        "auditInfo": {
-            "createdOn": "2025-04-01T11:20:09.793+00:00",
-            "createdBy": 75155282,
-            "lastUpdatedOn": "2025-04-01T11:20:09.793+00:00",
-            "lastUpdatedBy": 75155282
-        }
-    },
-    "errors": []
-}
+        },
+        "errors": []
+    }
+    ```
 
-```
-
-<br />
+  </Tab>
+</Tabs>
 
 ## Error Responses
 

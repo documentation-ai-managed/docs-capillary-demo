@@ -16,6 +16,112 @@ paths:
       description: This API allows you to define specific data fields that you want to include in the
         entity search at organisation level.
       operationId: create-data-field
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - searchStrategyType
+              - entityType
+              - dataFieldDefinitions
+              properties:
+                searchStrategyType:
+                  type: string
+                  example: PREFIX
+                entityType:
+                  type: string
+                  example: CUSTOMER
+                dataFieldDefinitions:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      fieldId:
+                        type: string
+                        example: firstName
+                      fieldAlias:
+                        type: string
+                        example: firstName
+                      fieldType:
+                        type: string
+                        example: DATA
+                      dataSourceDetails:
+                        type: object
+                        properties:
+                          fieldReference:
+                            type: string
+                            example: firstName
+                      dataType:
+                        type: string
+                        example: STRING
+            examples:
+              Customer:
+                summary: Customer
+                value:
+                  searchStrategyType: PREFIX
+                  entityType: CUSTOMER
+                  dataFieldDefinitions:
+                  - fieldId: firstName
+                    fieldAlias: firstName
+                    fieldType: DATA
+                    dataSourceDetails:
+                      fieldReference: firstName
+                    dataType: STRING
+                  - fieldId: lastName
+                    fieldAlias: lastName
+                    fieldType: DATA
+                    dataSourceDetails:
+                      fieldReference: lastName
+                    dataType: STRING
+                  - fieldId: mobile
+                    fieldAlias: mobile
+                    fieldType: DATA
+                    dataSourceDetails:
+                      fieldReference: mobile
+                    dataType: STRING
+                  - fieldId: email
+                    fieldAlias: email
+                    fieldType: DATA
+                    dataSourceDetails:
+                      fieldReference: email
+                    dataType: STRING
+                  - fieldId: externalId
+                    fieldAlias: externalId
+                    fieldType: DATA
+                    dataSourceDetails:
+                      fieldReference: externalId
+                    dataType: STRING
+              Transaction:
+                summary: Transaction
+                value:
+                  searchStrategyType: COMBINATION
+                  entityType: TRANSACTION
+                  dataFieldDefinitions:
+                  - fieldId: billNumber
+                    fieldAlias: billNumber
+                    fieldType: DATA
+                    dataSourceDetails:
+                      fieldReference: billNumber
+                    dataType: STRING
+                  - fieldId: billDate
+                    fieldAlias: billDate
+                    fieldType: DATA
+                    dataSourceDetails:
+                      fieldReference: billDate
+                    dataType: DATE
+                  - fieldId: storename
+                    fieldAlias: storename
+                    fieldType: DATA
+                    dataSourceDetails:
+                      fieldReference: additionalFields.storename
+                    dataType: STRING
+                  - fieldId: storecode
+                    fieldAlias: storecode
+                    fieldType: DATA
+                    dataSourceDetails:
+                      fieldReference: additionalFields.storecode
+                    dataType: STRING
       responses:
         '200':
           description: '200'
