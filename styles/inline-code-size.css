@@ -1,0 +1,26 @@
+/*
+  Increase inline code font size to 15px, scoped to specific pages only.
+
+  Each `:root:has(.dai-sidebar-page-active[href$="/<slug>"])` block matches only
+  while that page is the active route in the sidebar, so no other page (e.g. the
+  UCC promotion page) is affected. The ends-with match ($=) keeps it exact, so
+  it will not leak onto similar slugs such as update-custom-field-badge or
+  post-earn-promotions-in-bulk.
+
+  `.dai-article :not(pre) > code` targets inline code (e.g. `id`, `orgId`,
+  `isMandatory`) in the article body only, leaving JSON code blocks untouched.
+
+  To add another page, copy a block and change the slug in the href.
+*/
+
+/* Update reward custom field — /reference/update-custom-field */
+:root:has(.dai-sidebar-page-active[href$="/update-custom-field"])
+  .dai-article :not(pre) > code {
+  font-size: 15px !important;
+}
+
+/* Earn promotion — /reference/earn-promotion */
+:root:has(.dai-sidebar-page-active[href$="/earn-promotion"])
+  .dai-article :not(pre) > code {
+  font-size: 15px !important;
+}
