@@ -82,31 +82,35 @@ levels deep. For these, **mirror the source ReadMe exactly**: ReadMe uses `•`
 for level 1 and repeated hyphens for deeper levels, and it places **every marker
 at the same left position** — depth is shown by the *marker*, not by whitespace.
 
-**Do NOT add em-space indentation here.** Em-spaces (`U+2003`) are full-width, so
-progressive indenting (2/4/6/8) pushes the `---`/`----` markers far right and
-wraps the parameter name onto a second line — it looks broken. Keep the marker
-flush at the cell start, exactly like ReadMe.
+**Indent with normal-width non-breaking spaces (`U+00A0` / nbsp), NOT em-spaces.**
+Em-spaces (`U+2003`) are full-width (~1em each), so progressive indenting pushes
+the `---`/`----` markers far right and wraps the parameter name onto a second
+line — it looks broken. nbsp is ~4× narrower, survives Markdown (ordinary spaces
+get stripped from table cells), and gives a clean subtle indent like ReadMe.
 
-| Level | Marker (at cell start, no indent) |
-| --- | --- |
-| 1 | `•` |
-| 2 | `--` |
-| 3 | `---` |
-| 4 | `----` |
+| Level | Marker | Indent (nbsp `U+00A0`) |
+| --- | --- | --- |
+| 1 | `•` | 2 |
+| 2 | `--` | 4 |
+| 3 | `---` | 6 |
+| 4 | `----` | 8 |
 
 ```markdown
 | `promotion` | Object | Root object. |
-| • `limits` | Object | Promotion limits. |
-| -- `pointsPerCustomer` | Integer | Max points per customer. |
-| • `promotionRestrictions` | Object | Restriction settings. |
-| -- `restrictions` | Object | Various restrictions. |
-| --- `redemptionRestrictions` | Object | Redemption limits. |
-| ---- `name` | Enum | Type of redemption restriction. |
+|   • `limits` | Object | Promotion limits. |
+|     -- `pointsPerCustomer` | Integer | Max points per customer. |
+|   • `promotionRestrictions` | Object | Restriction settings. |
+|     -- `restrictions` | Object | Various restrictions. |
+|       --- `redemptionRestrictions` | Object | Redemption limits. |
+|         ---- `name` | Enum | Type of redemption restriction. |
 ```
 
-> No leading spaces at all — the marker follows `| ` directly, matching ReadMe.
-> (The em-space technique above is only for shallow 2-level tables like the
-> data-field pages, where a single small indent reads well.)
+> The leading spaces before each marker above are **nbsp** (`U+00A0`), not the
+> spacebar and not em-spaces. Single-dash rows like `-isActive` (no space after
+> the `-`) are ReadMe artifacts that stay flush-left, matching ReadMe.
+>
+> Why not CSS? Per-page CSS can't select a table row by its `--`/`•` marker
+> text, so the indent must live in the cell content.
 
 ### Source of truth for depth
 
@@ -188,14 +192,19 @@ grep -m1 '◦ `fieldReference`' put-data-field-api.mdx | head -c 20 | xxd
 
 ### `create-promotion-for-ucc.mdx` and `get-promotion-details.mdx`
 
-- **Style:** mirror ReadMe markers (`•` / `--` / `---` / `----`) with progressive
-  em-space indentation (2 / 4 / 6 / 8), per the "Deeply-nested tables" section.
+- **Style:** mirror ReadMe markers (`•` / `--` / `---` / `----`) **flush at the
+  cell start, no whitespace indentation** — depth shown by the marker only.
 - **Rows updated:** 104 (create-promotion-for-ucc, Request Parameters) and 17
   (get-promotion-details, `promotionRestrictions` subtree of Response Parameters).
 - **Depth source:** `INFO/backfill/raw/*.md` and the `docs.capillarytech.com/...md`
   raw pages.
-- **Note:** an earlier pass wrongly (a) swapped the markers to `•`/`◦` and
-  (b) used ordinary spaces instead of em-spaces; both were corrected.
+- **Content parity checked:** Request 65/65 and Response 52/52 rows present, no
+  missing/extra fields; only 15 Request descriptions differ (pre-existing
+  `<br/>`/backslash migration artifacts, unrelated to markers).
+- **Iterations that were corrected:** (a) markers were briefly swapped to `•`/`◦`
+  — restored to ReadMe's `•`/`--`/`---`/`----`; (b) progressive em-space indent
+  was added — **removed**, because full-width em-spaces wrapped the deeper rows
+  and did not match ReadMe.
 - **Verified:** both compile cleanly with `@mdx-js/mdx`.
 
 ## Open items
