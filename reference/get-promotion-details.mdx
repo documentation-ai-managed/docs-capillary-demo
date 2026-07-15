@@ -101,23 +101,23 @@ If the [Types of promotions](https://docs.capillarytech.com/docs/advanced-loyalt
 | isActive | Boolean | Indicates if the promotion is currently active. |
 | eventName | String | The name of the event associated with the promotion. |
 | pointsOfferType | String | The type of promotion. The types of promotion are GENERIC, LOYALTY, and LOYALTY_EARNING. |
-|   • promotionRestrictions | Object | Restrictions and settings for the promotion. Issual restrictions - Provides info on the restrictions on the enrolment of the customers. earnRestrictions provides information on the restrictions on the promotion issual. expiryRestrictions provide info on the enrol and issue expiry. Redemption restrictions provides information on the maximum redemptions of points per issue of promotion |
-|     -- redemptionRestrictions | Object | Contains information on the redemption limits for a promotion. |
-|       --- name | Enum | Type of redemption restriction. Possible values: `MAX_ALLOWED_POINTS_PER_EVENT`: The maximum points that can be earned for a single activity (make a transaction, redeem points etc.) done by a customer. `MAX_ALLOWED_TIMES_PER_CUSTOMER`: The maximum number of activities (make a transaction, redeem points etc.) a customer can do to earn points. `MAX_ALLOWED_POINTS_PER_CUSTOMER`:The maximum number of points a customer can earn from a promotion. `MAX_ALLOWED_TIMES_PER_PROMOTION`: The maximum number of activities (make a transaction, redeem points etc.) allowed across all customers in the brand for the promotion. `MAX_ALLOWED_POINTS_PER_PROMOTION`:The maximum number of points available across all customers in the brand for the promotion. `MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER`:The maximum number of times a customer can redeem a promotion after earning |
-|       --- value | Integer | Number of units corresponding to the `name`. Specify `-1` for no limit (max limit: 100). |
-|       --- type | Enum | Type of period for restriction. Possible values: `PERIOD_BASED`, `NON_PERIOD_BASED`. |
-|       --- periodType | Enum | Type of period. Supported value: `MOVING_WINDOW`. |
-|       --- periodUnit | Enum | Frequency of the period. Possible values: `DAILY`, `WEEKLY`, `MONTHLY`. |
-|     -- issualRestrictions | Object | Contains information on the issual limits for a promotion. |
-|       --- name | Enum | Type of issual restriction. Possible values: `MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER`: Maximum number of times a promotion can be issued to a customer. |
-|       --- value | Integer | Number of units corresponding to the `name`. Specify `-1` for no limit (max limit: 100). |
-|     -- earnRestrictions | Object | Contains information on the earn limits for a promotion (specific to enrol-and-issue promotions). |
-|       --- name | Enum | Type of earn restriction. Possible values: `MAX_NUMBER_OF_EARNS_PER_CUSTOMER`: The maximum number of times a loyalty promotion can be issued to a customer. `MAX_NUMBER_OF_EARNS_PER_PROMOTION`: The maximum number of times a loyalty promotion can be issued across customers. `MAX_POINTS_PER_EARN_PER_CUSTOMER`: The maximum number of points a customer can earn in a single event from a promotion. |
-|       --- value | Integer | Number of units corresponding to the `name`. Specify `-1` for no limit (max limit: 100). |
-|     -- expiryRestrictions | Object | Contains information on the expiry for a promotion (mandatory for all promotion types). |
-|       --- name | Enum | Action that is expiring. Possible values: `ISSUAL_PROMOTION_EXPIRY_BASED_ON`: The time period within which the customer must complete the activity required to issue the loyalty promotion. Once this lapses, the customer cannot earn the loyalty promotion. `EARN_PROMOTION_EXPIRY_BASED_ON`: The time period within which the customer must complete the activity required to receive the loyalty promotion benefits. Once this lapses, the customer cannot earn the benefits. |
-|       --- type | Enum | Type of expiration. Possible values: `PROMOTION`, `CUSTOM`. |
-|       --- value | Integer | Number of days the loyalty promotion expires from the date of issual. |
+| • promotionRestrictions | Object | Restrictions and settings for the promotion. Issual restrictions - Provides info on the restrictions on the enrolment of the customers. earnRestrictions provides information on the restrictions on the promotion issual. expiryRestrictions provide info on the enrol and issue expiry. Redemption restrictions provides information on the maximum redemptions of points per issue of promotion |
+| -- redemptionRestrictions | Object | Contains information on the redemption limits for a promotion. |
+| --- name | Enum | Type of redemption restriction. Possible values: `MAX_ALLOWED_POINTS_PER_EVENT`: The maximum points that can be earned for a single activity (make a transaction, redeem points etc.) done by a customer. `MAX_ALLOWED_TIMES_PER_CUSTOMER`: The maximum number of activities (make a transaction, redeem points etc.) a customer can do to earn points. `MAX_ALLOWED_POINTS_PER_CUSTOMER`:The maximum number of points a customer can earn from a promotion. `MAX_ALLOWED_TIMES_PER_PROMOTION`: The maximum number of activities (make a transaction, redeem points etc.) allowed across all customers in the brand for the promotion. `MAX_ALLOWED_POINTS_PER_PROMOTION`:The maximum number of points available across all customers in the brand for the promotion. `MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER`:The maximum number of times a customer can redeem a promotion after earning |
+| --- value | Integer | Number of units corresponding to the `name`. Specify `-1` for no limit (max limit: 100). |
+| --- type | Enum | Type of period for restriction. Possible values: `PERIOD_BASED`, `NON_PERIOD_BASED`. |
+| --- periodType | Enum | Type of period. Supported value: `MOVING_WINDOW`. |
+| --- periodUnit | Enum | Frequency of the period. Possible values: `DAILY`, `WEEKLY`, `MONTHLY`. |
+| -- issualRestrictions | Object | Contains information on the issual limits for a promotion. |
+| --- name | Enum | Type of issual restriction. Possible values: `MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER`: Maximum number of times a promotion can be issued to a customer. |
+| --- value | Integer | Number of units corresponding to the `name`. Specify `-1` for no limit (max limit: 100). |
+| -- earnRestrictions | Object | Contains information on the earn limits for a promotion (specific to enrol-and-issue promotions). |
+| --- name | Enum | Type of earn restriction. Possible values: `MAX_NUMBER_OF_EARNS_PER_CUSTOMER`: The maximum number of times a loyalty promotion can be issued to a customer. `MAX_NUMBER_OF_EARNS_PER_PROMOTION`: The maximum number of times a loyalty promotion can be issued across customers. `MAX_POINTS_PER_EARN_PER_CUSTOMER`: The maximum number of points a customer can earn in a single event from a promotion. |
+| --- value | Integer | Number of units corresponding to the `name`. Specify `-1` for no limit (max limit: 100). |
+| -- expiryRestrictions | Object | Contains information on the expiry for a promotion (mandatory for all promotion types). |
+| --- name | Enum | Action that is expiring. Possible values: `ISSUAL_PROMOTION_EXPIRY_BASED_ON`: The time period within which the customer must complete the activity required to issue the loyalty promotion. Once this lapses, the customer cannot earn the loyalty promotion. `EARN_PROMOTION_EXPIRY_BASED_ON`: The time period within which the customer must complete the activity required to receive the loyalty promotion benefits. Once this lapses, the customer cannot earn the benefits. |
+| --- type | Enum | Type of expiration. Possible values: `PROMOTION`, `CUSTOM`. |
+| --- value | Integer | Number of days the loyalty promotion expires from the date of issual. |
 | isAlwaysApply | Boolean | Indicates whether the promotion is always applied. |
 | isStackable | Boolean | Indicates whether the promotion is stackable. |
 | isConsideredForRanking | Boolean | Indicates whether the promotion is considered for ranking. |

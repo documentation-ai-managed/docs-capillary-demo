@@ -78,29 +78,35 @@ name, e.g. `` `searchStrategyType`\* ``. The `\` keeps Markdown from reading the
 ## Deeply-nested tables (3–4 levels) — mirror ReadMe's markers
 
 Some pages (e.g. `create-promotion-for-ucc`, `get-promotion-details`) nest 3–4
-levels deep. For these, **the marker content must match the source ReadMe
-exactly** — ReadMe uses `•` for level 1 and repeated hyphens for deeper levels.
-Do **not** swap them for `◦`; keep ReadMe's characters and only *add* em-space
-indentation on top.
+levels deep. For these, **mirror the source ReadMe exactly**: ReadMe uses `•`
+for level 1 and repeated hyphens for deeper levels, and it places **every marker
+at the same left position** — depth is shown by the *marker*, not by whitespace.
 
-| Level | Marker (keep exactly) | Indent (em-spaces) |
-| --- | --- | --- |
-| 1 | `•` | 2 |
-| 2 | `--` | 4 |
-| 3 | `---` | 6 |
-| 4 | `----` | 8 |
+**Do NOT add em-space indentation here.** Em-spaces (`U+2003`) are full-width, so
+progressive indenting (2/4/6/8) pushes the `---`/`----` markers far right and
+wraps the parameter name onto a second line — it looks broken. Keep the marker
+flush at the cell start, exactly like ReadMe.
+
+| Level | Marker (at cell start, no indent) |
+| --- | --- |
+| 1 | `•` |
+| 2 | `--` |
+| 3 | `---` |
+| 4 | `----` |
 
 ```markdown
 | `promotion` | Object | Root object. |
-|   • `limits` | Object | Promotion limits. |
-|     -- `pointsPerCustomer` | Integer | Max points per customer. |
-|   • `promotionRestrictions` | Object | Restriction settings. |
-|     -- `restrictions` | Object | Various restrictions. |
-|       --- `redemptionRestrictions` | Object | Redemption limits. |
-|         ---- `name` | Enum | Type of redemption restriction. |
+| • `limits` | Object | Promotion limits. |
+| -- `pointsPerCustomer` | Integer | Max points per customer. |
+| • `promotionRestrictions` | Object | Restriction settings. |
+| -- `restrictions` | Object | Various restrictions. |
+| --- `redemptionRestrictions` | Object | Redemption limits. |
+| ---- `name` | Enum | Type of redemption restriction. |
 ```
 
-> Again: the leading spaces before every marker are em-spaces (`U+2003`).
+> No leading spaces at all — the marker follows `| ` directly, matching ReadMe.
+> (The em-space technique above is only for shallow 2-level tables like the
+> data-field pages, where a single small indent reads well.)
 
 ### Source of truth for depth
 
