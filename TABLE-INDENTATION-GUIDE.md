@@ -75,6 +75,45 @@ name, e.g. `` `searchStrategyType`\* ``. The `\` keeps Markdown from reading the
 
 ---
 
+## Deeply-nested tables (3–4 levels) — mirror ReadMe's markers
+
+Some pages (e.g. `create-promotion-for-ucc`, `get-promotion-details`) nest 3–4
+levels deep. For these, **the marker content must match the source ReadMe
+exactly** — ReadMe uses `•` for level 1 and repeated hyphens for deeper levels.
+Do **not** swap them for `◦`; keep ReadMe's characters and only *add* em-space
+indentation on top.
+
+| Level | Marker (keep exactly) | Indent (em-spaces) |
+| --- | --- | --- |
+| 1 | `•` | 2 |
+| 2 | `--` | 4 |
+| 3 | `---` | 6 |
+| 4 | `----` | 8 |
+
+```markdown
+| `promotion` | Object | Root object. |
+|   • `limits` | Object | Promotion limits. |
+|     -- `pointsPerCustomer` | Integer | Max points per customer. |
+|   • `promotionRestrictions` | Object | Restriction settings. |
+|     -- `restrictions` | Object | Various restrictions. |
+|       --- `redemptionRestrictions` | Object | Redemption limits. |
+|         ---- `name` | Enum | Type of redemption restriction. |
+```
+
+> Again: the leading spaces before every marker are em-spaces (`U+2003`).
+
+### Source of truth for depth
+
+Do not guess the nesting — read the original ReadMe markup:
+
+- **Stored raw files:** `/home/javeed/Documents/CAPILLARY/INFO/backfill/raw/<slug>.md`
+  (ReadMe uses HTML `<table>` blocks; the first `<td>` of each row holds the
+  literal marker, e.g. `-- pointsPerCustomer`).
+- **Or fetch live:** append `.md` to the page URL, e.g.
+  `https://docs.capillarytech.com/reference/create-promotion-for-ucc.md`.
+
+---
+
 ## How to apply it safely
 
 Because em-spaces are invisible and look exactly like ordinary spaces, **do not
@@ -140,6 +179,18 @@ grep -m1 '◦ `fieldReference`' put-data-field-api.mdx | head -c 20 | xxd
   `` (`\`COMBINATION`, `PREFIX\` ) `` → `` (`COMBINATION`, `PREFIX`) `` and a
   stray space in `` (`TRANSACTION` , `CUSTOMER`) `` → `` (`TRANSACTION`, `CUSTOMER`) ``.
 - **Verified:** file compiles cleanly with `@mdx-js/mdx` 3.1.1.
+
+### `create-promotion-for-ucc.mdx` and `get-promotion-details.mdx`
+
+- **Style:** mirror ReadMe markers (`•` / `--` / `---` / `----`) with progressive
+  em-space indentation (2 / 4 / 6 / 8), per the "Deeply-nested tables" section.
+- **Rows updated:** 104 (create-promotion-for-ucc, Request Parameters) and 17
+  (get-promotion-details, `promotionRestrictions` subtree of Response Parameters).
+- **Depth source:** `INFO/backfill/raw/*.md` and the `docs.capillarytech.com/...md`
+  raw pages.
+- **Note:** an earlier pass wrongly (a) swapped the markers to `•`/`◦` and
+  (b) used ordinary spaces instead of em-spaces; both were corrected.
+- **Verified:** both compile cleanly with `@mdx-js/mdx`.
 
 ## Open items
 
