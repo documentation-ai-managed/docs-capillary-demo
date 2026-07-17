@@ -29,7 +29,7 @@ This API allows you to update badges.
 ## Example request
 
 <CodeGroup show-lines="true" tabs={["Sample request for earn type- ISSUE_EARN","Sample request for expiry type- ABSOLUTE"]}>
-  ```bash "Sample request for earn type- ISSUE_EARN"
+  ```bash wrap="true" "Sample request for earn type- ISSUE_EARN"
   curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta' \
   --data '{
       "name": "Badge Issue ",
@@ -110,7 +110,7 @@ This API allows you to update badges.
   }'
   ```
 
-  ```bash "Sample request for expiry type- ABSOLUTE"
+  ```bash wrap="true" "Sample request for expiry type- ABSOLUTE"
   curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta' \
   --header 'Content-Type: application/json' \
   --header 'Authorization: Basic bWFkaH2YQ==' \
@@ -642,7 +642,7 @@ This API allows you to update badges.
 | warnings                       | Contains details of any warning.                                                                                                                                                                                                                                                                                                                                                        |
 
 <CodeGroup show-lines="true" tabs={["200","Response-Fixed window","Response: With badge Expiry","Failure: Start date cannot change after badge is live","Failure: Start Date should be before End Date","Failure: Expiry date cannot be past date","Failure: Interchanging of fixed window to rolling window and vice versa is not allowed."]}>
-  ```json "200"
+  ```json 200
   {
       "data": {
           "id": "692d2b942814b4096ebb9aa1",
@@ -916,3 +916,4 @@ This API allows you to update badges.
 | 724        | Expiry Date cannot be past date                                                              |
 | 826        | Change from rolling window or fixed constraint to fixed window or vice versa is not allowed. |
 | 705        | Expiry date is mandatory.                                                                    |
+

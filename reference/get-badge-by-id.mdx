@@ -1,31 +1,26 @@
 ---
 title: Get badge by ID
 ---
-
 This API is used to retrieve badge details using badge ID.
 
-<Callout kind="tip" title="Note">
-
-For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
-
+<Callout kind="tip" collapsed="false">
+  For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
 </Callout>
 
 ## Example request
 
 <CodeGroup show-lines="true" tabs={["Sample request"]}>
-
-  ```bash "Sample request"
+  ```bash wrap="true" "Sample request"
   curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta/692e7e739b3ca00e4bbf7c06' \
   --header 'Authorization: Basic bWFkaI3MjU2YQ==' \
   --header 'Cookie: _cfuvid=nKq1OmGgF8JDdQmuHn27NBzA2WUbPnTTBX5655HaG2Q-1769073063328-0.0.1.1-604800000'
   ```
-
 </CodeGroup>
 
 ## Prerequisites
 
-- [ ] Authentication: Basic or OAuth authentication
-- [ ] Default access group
+- Authentication: Basic or OAuth authentication
+- Default access group
 
 ## Resource information
 
@@ -52,17 +47,14 @@ For detailed information about our APIs and for hands-on testing, refer document
 | includeStatistics | Boolean   | Set true to retrieve earn and issue badge details.                                                             |
 
 <CodeGroup show-lines="true" tabs={["Example"]}>
-
-  ```bash "Example"
+  ```bash Example
   https://eucrm.cc.capillarytech.com/api_gateway/v1/badges/badgeMeta/6543688e66a87827bb61e62a
   ```
-
 </CodeGroup>
 
 ## Example response
 
-<CodeGroup show-lines="true" tabs={["Sample response", "Fixed window, includeStatistics=true", "Moving window, includeStatistics=true", "Moving window, includeStatistics=False", "Fixed window, includeStatistics=False"]}>
-
+<CodeGroup show-lines="true" tabs={["Sample response","Fixed window, includeStatistics=true","Moving window, includeStatistics=true","Moving window, includeStatistics=False","Fixed window, includeStatistics=False"]}>
   ```json "Sample response"
   {
       "data": {
@@ -459,64 +451,64 @@ For detailed information about our APIs and for hands-on testing, refer document
     "warnings": null
   }
   ```
-
 </CodeGroup>
 
 ## Response parameter
 
-| Parameter | Data Type | Description |
-| --- | --- | --- |
-| id | String | Unique identifier for the badge. |
-| orgId | Integer | Organization ID associated with the badge. |
-| name | String | Name of the badge. |
-| description | String | Description of the badge. |
-| startOn | Float/Double | The timestamp for when the badge is live, in epoch milliseconds timestamp format. |
-| startOnISO | String | The timestamp for when the badge is live, in ISO 8601 time format in UTC. |
-| expiresOn | Float/Double | The timestamp for when the badge expires, in epoch milliseconds timestamp format. |
-| expiresOnISO | String | The timestamp for when the badge expires, in ISO 8601 time format in UTC. |
-| earnedBadgeExpiry | Object | Details of earned badge expiry. |
-| badgeNumericId | Long | A unique numeric identifier for a badge meta, generated when a badge is created. It serves as a numeric reference alongside the string id and is used as the sourceId when creating promotions. If a badge is updated and badgeNumericId is null, it gets auto-generated. |
-| expiryType | Enum | Type of expiry, e.g., "RELATIVE","ABSOLUTE","NEVER". Relative expiry is based on when the badge was issued. Absolute expiry is based on the fixed date from the badge issue. Never means, the badges will never expire after the issue. |
-| relativeExpirytype | Enum | Type of relative expiry. Supported values: DAYS/WEEKS/MONTHS. Relative expiry is based on when the badge was issued. |
-| value | Integer | The value indicating the duration of expiry. |
-| issuedBadgeExpiry | Object | Details of issued badge expiry. |
-| images | ArrayList | List of images associated with the badge. |
-| ownership | Object | The module for which the badge is being created. |
-| restrictedToOwners | Enum | Lists owner categories that are allowed to claim the badge. Supported values: LOYALTY/REFERRAL_CAMPAIGNS/JOURNEYS/AUDIENCE_CAMPAIGNS/REWARDS_CATALOG/GOODWILL_MODULE/MILESTONES/LOYALTY_PROMOTIONS |
-| claims | ArrayList | List of claims associated with the badge. |
-| customerConstraints | Object | Limit on how many badges can be issued to a particular customer. |
-| duration | Enum | The duration of the constraint. Supported values: DAILY, WEEKLY, MONTHLY |
-| refreshRate | Integer | The number of cycles of the duration. |
-| maxEarnLimit | Integer | Maximum limit the badge can be earned. |
-| startDate | Date | Start date of the cycle, epoch milliseconds timestamp. |
-| startDateISO | String | Start date of the cycle, in ISO time format. |
-| endDate | Date | End date of the cycle, in epoch milliseconds timestamp. |
-| endDateISO | String | Start date of the cycle, in ISO time format. |
-| badgeConstraints | Object | Limit on how many quantities of a reward can be given to customers. |
-| duration | Enum | The duration of the constraint. Supported values: DAILY, WEEKLY, MONTHLY |
-| refreshRate | Integer | The number of cycles of the duration. |
-| maxEarnLimit | Integer | Maximum limit the badge can be earned. |
-| startDate | Date | Start date of the cycle. |
-| endDate | Date | End date of the cycle. |
-| defaultTillId | Null | Default till ID. |
-| tags | Array | Provides the details of the tags that are attached to the badges during creation of the badge. Tags are used to store additional information about the badge which can help to identify or categorize the badge. |
-| earnType | String | The method the brand can issue the badge. Supported values: EARN, ISSUE EARN. Earn: The selected customers are enrolled for the badge and upon fulfillment of the earn condition, the badge is issued. Issue Earn: The Badges are issued directly to the customer who fulfills the earn condition. |
-| status | String | The badge can have three statuses upon creation. Supported values: LIVE, UPCOMING, ENDED/EXPIRED. LIVE: The badges are in live state and can be earned. UPCOMING: The badges which are upcoming on a further date. EXPIRED/ENDED: The badges which have expired and cannot be earned. |
-| createdOn | Float/Double | Timestamp for when the badge was created, in epoch milliseconds timestamp format. |
-| createdOnISO | String | Timestamp for when the badge was created, in ISO 8601 format, returned in the server time zone. EU server example: 2025-12-16T14:30:45Z → 16 December 2025, 14:30:45 (UTC) India server example: 2025-12-16T14:30:45+05:30 → 16 December 2025, 14:30:45 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
-| createdBy | Integer | Identifier of the user who created the badge. |
-| lastUpdatedOn | Float/Double | Timestamp for the last update made to the badge, in epoch milliseconds timestamp format. |
-| lastUpdatedOnISO | String | Timestamp for the last update made to the badge, in ISO 8601 format, returned in the server time zone. EU server example 2025-12-16T14:30:45Z → 16 December 2025, 14:30:45 (UTC) India server example 2025-12-16T14:30:45+05:30 → 16 December 2025, 14:30:45 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
-| lastUpdatedBy | Integer | ID of the user who last updated the badge. |
-| customFields | Object | List of custom fields. |
-| customFieldName | String | Name of the custom field. |
-| customFieldValue | String | Value of the custom field. |
-| active | Boolean | Indicates whether the badge is active or not. |
-| errors | Null | Container for any errors. |
-| warnings | Null | Container for any warnings. |
+| Parameter           | Data Type    | Description                                                                                                                                                                                                                                                                                                                                                                             |
+| ------------------- | ------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id                  | String       | Unique identifier for the badge.                                                                                                                                                                                                                                                                                                                                                        |
+| orgId               | Integer      | Organization ID associated with the badge.                                                                                                                                                                                                                                                                                                                                              |
+| name                | String       | Name of the badge.                                                                                                                                                                                                                                                                                                                                                                      |
+| description         | String       | Description of the badge.                                                                                                                                                                                                                                                                                                                                                               |
+| startOn             | Float/Double | The timestamp for when the badge is live, in epoch milliseconds timestamp format.                                                                                                                                                                                                                                                                                                       |
+| startOnISO          | String       | The timestamp for when the badge is live, in ISO 8601 time format in UTC.                                                                                                                                                                                                                                                                                                               |
+| expiresOn           | Float/Double | The timestamp for when the badge expires, in epoch milliseconds timestamp format.                                                                                                                                                                                                                                                                                                       |
+| expiresOnISO        | String       | The timestamp for when the badge expires, in ISO 8601 time format in UTC.                                                                                                                                                                                                                                                                                                               |
+| earnedBadgeExpiry   | Object       | Details of earned badge expiry.                                                                                                                                                                                                                                                                                                                                                         |
+| badgeNumericId      | Long         | A unique numeric identifier for a badge meta, generated when a badge is created. It serves as a numeric reference alongside the string id and is used as the sourceId when creating promotions. If a badge is updated and badgeNumericId is null, it gets auto-generated.                                                                                                               |
+| expiryType          | Enum         | Type of expiry, e.g., "RELATIVE","ABSOLUTE","NEVER". Relative expiry is based on when the badge was issued. Absolute expiry is based on the fixed date from the badge issue. Never means, the badges will never expire after the issue.                                                                                                                                                 |
+| relativeExpirytype  | Enum         | Type of relative expiry. Supported values: DAYS/WEEKS/MONTHS. Relative expiry is based on when the badge was issued.                                                                                                                                                                                                                                                                    |
+| value               | Integer      | The value indicating the duration of expiry.                                                                                                                                                                                                                                                                                                                                            |
+| issuedBadgeExpiry   | Object       | Details of issued badge expiry.                                                                                                                                                                                                                                                                                                                                                         |
+| images              | ArrayList    | List of images associated with the badge.                                                                                                                                                                                                                                                                                                                                               |
+| ownership           | Object       | The module for which the badge is being created.                                                                                                                                                                                                                                                                                                                                        |
+| restrictedToOwners  | Enum         | Lists owner categories that are allowed to claim the badge. Supported values: LOYALTY/REFERRAL\_CAMPAIGNS/JOURNEYS/AUDIENCE\_CAMPAIGNS/REWARDS\_CATALOG/GOODWILL\_MODULE/MILESTONES/LOYALTY\_PROMOTIONS                                                                                                                                                                                 |
+| claims              | ArrayList    | List of claims associated with the badge.                                                                                                                                                                                                                                                                                                                                               |
+| customerConstraints | Object       | Limit on how many badges can be issued to a particular customer.                                                                                                                                                                                                                                                                                                                        |
+| duration            | Enum         | The duration of the constraint. Supported values: DAILY, WEEKLY, MONTHLY                                                                                                                                                                                                                                                                                                                |
+| refreshRate         | Integer      | The number of cycles of the duration.                                                                                                                                                                                                                                                                                                                                                   |
+| maxEarnLimit        | Integer      | Maximum limit the badge can be earned.                                                                                                                                                                                                                                                                                                                                                  |
+| startDate           | Date         | Start date of the cycle, epoch milliseconds timestamp.                                                                                                                                                                                                                                                                                                                                  |
+| startDateISO        | String       | Start date of the cycle, in ISO time format.                                                                                                                                                                                                                                                                                                                                            |
+| endDate             | Date         | End date of the cycle, in epoch milliseconds timestamp.                                                                                                                                                                                                                                                                                                                                 |
+| endDateISO          | String       | Start date of the cycle, in ISO time format.                                                                                                                                                                                                                                                                                                                                            |
+| badgeConstraints    | Object       | Limit on how many quantities of a reward can be given to customers.                                                                                                                                                                                                                                                                                                                     |
+| duration            | Enum         | The duration of the constraint. Supported values: DAILY, WEEKLY, MONTHLY                                                                                                                                                                                                                                                                                                                |
+| refreshRate         | Integer      | The number of cycles of the duration.                                                                                                                                                                                                                                                                                                                                                   |
+| maxEarnLimit        | Integer      | Maximum limit the badge can be earned.                                                                                                                                                                                                                                                                                                                                                  |
+| startDate           | Date         | Start date of the cycle.                                                                                                                                                                                                                                                                                                                                                                |
+| endDate             | Date         | End date of the cycle.                                                                                                                                                                                                                                                                                                                                                                  |
+| defaultTillId       | Null         | Default till ID.                                                                                                                                                                                                                                                                                                                                                                        |
+| tags                | Array        | Provides the details of the tags that are attached to the badges during creation of the badge. Tags are used to store additional information about the badge which can help to identify or categorize the badge.                                                                                                                                                                        |
+| earnType            | String       | The method the brand can issue the badge. Supported values: EARN, ISSUE EARN. Earn: The selected customers are enrolled for the badge and upon fulfillment of the earn condition, the badge is issued. Issue Earn: The Badges are issued directly to the customer who fulfills the earn condition.                                                                                      |
+| status              | String       | The badge can have three statuses upon creation. Supported values: LIVE, UPCOMING, ENDED/EXPIRED. LIVE: The badges are in live state and can be earned. UPCOMING: The badges which are upcoming on a further date. EXPIRED/ENDED: The badges which have expired and cannot be earned.                                                                                                   |
+| createdOn           | Float/Double | Timestamp for when the badge was created, in epoch milliseconds timestamp format.                                                                                                                                                                                                                                                                                                       |
+| createdOnISO        | String       | Timestamp for when the badge was created, in ISO 8601 format, returned in the server time zone. EU server example: 2025-12-16T14:30:45Z → 16 December 2025, 14:30:45 (UTC) India server example: 2025-12-16T14:30:45+05:30 → 16 December 2025, 14:30:45 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request.      |
+| createdBy           | Integer      | Identifier of the user who created the badge.                                                                                                                                                                                                                                                                                                                                           |
+| lastUpdatedOn       | Float/Double | Timestamp for the last update made to the badge, in epoch milliseconds timestamp format.                                                                                                                                                                                                                                                                                                |
+| lastUpdatedOnISO    | String       | Timestamp for the last update made to the badge, in ISO 8601 format, returned in the server time zone. EU server example 2025-12-16T14:30:45Z → 16 December 2025, 14:30:45 (UTC) India server example 2025-12-16T14:30:45+05:30 → 16 December 2025, 14:30:45 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
+| lastUpdatedBy       | Integer      | ID of the user who last updated the badge.                                                                                                                                                                                                                                                                                                                                              |
+| customFields        | Object       | List of custom fields.                                                                                                                                                                                                                                                                                                                                                                  |
+| customFieldName     | String       | Name of the custom field.                                                                                                                                                                                                                                                                                                                                                               |
+| customFieldValue    | String       | Value of the custom field.                                                                                                                                                                                                                                                                                                                                                              |
+| active              | Boolean      | Indicates whether the badge is active or not.                                                                                                                                                                                                                                                                                                                                           |
+| errors              | Null         | Container for any errors.                                                                                                                                                                                                                                                                                                                                                               |
+| warnings            | Null         | Container for any warnings.                                                                                                                                                                                                                                                                                                                                                             |
 
 ## API-specific error codes
 
 | Error code | Description               |
 | :--------- | :------------------------ |
 | 404        | Passed badge is not found |
+

@@ -1,25 +1,20 @@
 ---
 title: Enable search index of older data
 ---
-
 By default, the search data is indexed starting from the time of creating the search criteria. If you need to index older data, you can utilize this API and enable the indexing of historical data.
 
-<Callout kind="alert" title="Note">
-
-Make sure that you have appropriate access control configured. For more information, see [access group documentation](https://docs.capillarytech.com/docs/access-group).
-
+<Callout kind="alert" collapsed="false">
+  Make sure that you have appropriate access control configured. For more information, see [access group documentation](https://docs.capillarytech.com/docs/access-group).
 </Callout>
 
 ## Example request
 
 <CodeGroup show-lines="true" tabs={["cURL"]}>
-
-  ```bash "cURL"
+  ```bash wrap="true" cURL
   curl --location --request POST 'https://{Host}/api_gateway/cortex/v1/bulk/trigger/{id}\
   --header 'Authorization: Basic bmFtYW5fZG9jOmEzYjZlY2I2MmEy' \
   --header 'Cookie: _cfuvid=Wdgq1ujivvS6IjuUIiHHRfmrcDwsEdosv2fbZbj1_wk-1758197322967-0.0.1.1-604800000'
   ```
-
 </CodeGroup>
 
 ## Response parameters
@@ -28,3 +23,4 @@ Make sure that you have appropriate access control configured. For more informat
 | --------- | --------------------------------------------------- |
 | data      | Indicates the status of the operation (true/false). |
 | errors    | An array containing any error messages.             |
+
