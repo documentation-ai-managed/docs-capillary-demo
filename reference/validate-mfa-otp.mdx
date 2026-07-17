@@ -11,8 +11,7 @@ Use this API to validate the OTP in the MFA flow. The `/mfa/otp/generate` API ge
 ## Example request
 
 <CodeGroup show-lines="true" tabs={["cURL"]}>
-
-  ```bash "cURL"
+  ```bash cURL
   curl --location 'https://eu.api.capillarytech.com/auth/v1/mfa/otp/validate' \
   --header 'Content-Type: application/json' \
   --data '{
@@ -24,7 +23,6 @@ Use this API to validate the OTP in the MFA flow. The `/mfa/otp/generate` API ge
      "otp": 999999
   }'
   ```
-
 </CodeGroup>
 
 ## Resource information
@@ -40,12 +38,12 @@ Use this API to validate the OTP in the MFA flow. The `/mfa/otp/generate` API ge
 
 | Parameter (Parameters marked with \* are mandatory) | Data Type | Description                                                                                                                                                                                                                                                                                       |
 | :-------------------------------------------------- | :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **`identifierType`**\*                              | Enum      | Customer identifier used for MFA token generation. Values: `MOBILE`, `EMAIL`, `USERNAME`, `EXTERNALID`. If you want to use external ID, [external ID login](https://docs.capillarytech.com/docs/setup_customer#customer-registration-configuration) must be enabled in the organisation settings. |
-| **`identifierValue`**\*                             | String    | Value of the identifier.                                                                                                                                                                                                                                                                          |
-| **`deviceId`**\*                                    | String    | Unique ID of the device where OTP is validated.                                                                                                                                                                                                                                                   |
-| **`brand`**\*                                       | String    | Name of the brand or organisation that needs verification.                                                                                                                                                                                                                                        |
-| **`sessionId`**\*                                   | String    | Unique session ID created from `/mfa/token/generate` API.                                                                                                                                                                                                                                         |
-| **`otp`**\*                                         | String    | OTP that needs validation.                                                                                                                                                                                                                                                                        |
+| ``\*                                                | Enum      | Customer identifier used for MFA token generation. Values: `MOBILE`, `EMAIL`, `USERNAME`, `EXTERNALID`. If you want to use external ID, [external ID login](https://docs.capillarytech.com/docs/setup_customer#customer-registration-configuration) must be enabled in the organisation settings. |
+| ``\*                                                | String    | Value of the identifier.                                                                                                                                                                                                                                                                          |
+| ``\*                                                | String    | Unique ID of the device where OTP is validated.                                                                                                                                                                                                                                                   |
+| ``\*                                                | String    | Name of the brand or organisation that needs verification.                                                                                                                                                                                                                                        |
+| ``\*                                                | String    | Unique session ID created from `/mfa/token/generate` API.                                                                                                                                                                                                                                         |
+| ``\*                                                | String    | OTP that needs validation.                                                                                                                                                                                                                                                                        |
 
 ## Response parameters
 
@@ -65,8 +63,7 @@ Use this API to validate the OTP in the MFA flow. The `/mfa/otp/generate` API ge
 | • userRegisteredForPassword | boolean   | Indicates if the user is registered for a password.                                          |
 
 <CodeGroup show-lines="true" tabs={["JSON"]}>
-
-  ```json "JSON"
+  ```json JSON
   {
       "status": {
           "success": true,
@@ -85,7 +82,6 @@ Use this API to validate the OTP in the MFA flow. The `/mfa/otp/generate` API ge
       }
   }
   ```
-
 </CodeGroup>
 
 ## Error codes
