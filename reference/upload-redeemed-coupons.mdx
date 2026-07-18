@@ -1,18 +1,65 @@
 ---
 title: Upload Redeemed Coupons
 ---
+
 Lets you upload coupons that are redeemed for a coupon series in bulk.
 
 You can also import coupons (Capillary CRM) that are redeemed externally using an endpoint.
 
 ### Request Body Parameters
 
-| Parameter            | Datatype | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| -------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| customerIdentifier\* | enum     | Unique identifier of the customer to update redeemed coupons. Values: MOBILE, EXTERNAL\_ID, EMAIL, USER\_ID.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| couponIdentifier\*   | enum     | Coupon identifier used. Value: COUPON\_ID, COUPON\_CODE.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| file\*               | file     | The CSV file that contains information of redeemed coupons. Each row in CSV file can contain following fields(columns marked with \* are mandatory).\* Customer identifier\* : Field used to identify the customer, it can be userId, mobile, email or externalId. (userId will have more preference over the other customer identifiers, in case of multiple values)\* Coupon identifier\* : Field used to identify the redeemed coupon, It can be couponId, couponCode. (couponId has more preference over couponCode in case of multiple values)\* Redeemed date in milliseconds\* : Coupon redeemed time in Epoch\* Redeemed at\* : Coupon redeemed till’s Id\* Bill Id : Transaction Id\* Bill Number : Transaction Number Details.Sample file content:\* File content sample 1:    redeemed date in millis, redeemed at, user id, coupon id, bill id, bill number, details 1603128622000,50015497,23599838,23456,1603128596000    luci\_auto\_15039.\* File content sample 2:    redeemed date in millis, redeemed at, mobile, coupon code ,bill id, bill number, details 1603128622000,50015497,9988776655,ABCDEF1,1603128596000    luci\_auto\_15039 |
-| uploadHeaders\*      | int      | The sequence (starts from 0) of the columns in the attached csv file. This field accepts stringified JSON.Key name for the columns are as follows:\* **Customer identifier**\* : Key name for this field varies according to the customerIdentifier param.    \* MOBILE : mobile    \* EXTERNAL\_ID: externalId    \* EMAIL: email    \* USER\_ID: userId\* **Coupon identifier**\* :  Key name for this field varies according to the couponIdentifier param.    \* COUPON\_ID: couponId    \* COUPON\_CODE: couponCode\* **Redeemed date in milliseconds**\* : redeemedDateInMillis\* **Redeemed at**\* : redeemedAt\* **Bill Id** : billId\* **Bill Number** : billNumber\* **Details** : detailsFor the above file samples, the uploadHeaders will be:\* _Sample 1_ - `{"redeemedDateInMillis": 0, "redeemedAt": 1, "billNumber": 5, "couponId": 3, "userId": 2, "billId": 4, "details": 6}`\* _Sample 2_ - `{"redeemedDateInMillis": 0, "redeemedAt": 1, "billNumber": 5, "couponCode": 3, "mobile": 2, "billId": 4, "details": 6}`                                                                                                                     |
-| Details              | string   | Any additional details or notes to capture for redeemed coupon upload.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Parameter | Datatype | Description |
+| --- | --- | --- |
+| `customerIdentifier`\* | Enum | Unique identifier of the customer to update redeemed coupons. Values: MOBILE, EXTERNAL_ID, EMAIL, USER_ID. |
+| `couponIdentifier`\* | Enum | Coupon identifier used. Value: COUPON_ID, COUPON_CODE. |
+| `file`\* | File | The CSV file that contains information of redeemed coupons. Each row in CSV file can contain following fields (columns marked with \* are mandatory). See Sample file content below. |
+|   • `customer identifier`\* | String | Field used to identify the customer, it can be userId, mobile, email or externalId. (userId will have more preference over the other customer identifiers, in case of multiple values) |
+|   • `coupon identifier`\* | String | Field used to identify the redeemed coupon, It can be couponId, couponCode. (couponId has more preference over couponCode in case of multiple values) |
+|   • `redeemed date in milliseconds`\* | Long | Coupon redeemed time in Epoch. |
+|   • `redeemed at`\* | Integer | Coupon redeemed till’s Id. |
+|   • `bill id` | String | Transaction Id. |
+|   • `bill number` | String | Transaction Number Details. |
+| `uploadHeaders`\* | String | The sequence (starts from 0) of the columns in the attached csv file. This field accepts stringified JSON. Key names for the columns are listed below. See Upload headers example below. |
+|   • `customer identifier`\* | Integer | Key name for this field varies according to the customerIdentifier param. Values: MOBILE: mobile, EXTERNAL_ID: externalId, EMAIL: email, USER_ID: userId. |
+|   • `coupon identifier`\* | Integer | Key name for this field varies according to the couponIdentifier param. Values: COUPON_ID: couponId, COUPON_CODE: couponCode. |
+|   • `redeemedDateInMillis`\* | Integer | Redeemed date in milliseconds. |
+|   • `redeemedAt`\* | Integer | Redeemed at. |
+|   • `billId` | Integer | Bill Id. |
+|   • `billNumber` | Integer | Bill Number. |
+|   • `details` | Integer | Details. |
+| `Details` | String | Any additional details or notes to capture for redeemed coupon upload. |
 
 All parameters marked with \* are mandatory.
+
+### Sample file content
+
+File content sample 1:
+
+```csv
+redeemed date in millis, redeemed at, user id, coupon id, bill id, bill number, details
+1603128622000,50015497,23599838,23456,1603128596000 luci_auto_15039.
+```
+
+File content sample 2:
+
+```csv
+redeemed date in millis, redeemed at, mobile, coupon code ,bill id, bill number, details
+1603128622000,50015497,9988776655,ABCDEF1,1603128596000 luci_auto_15039
+```
+
+### Upload headers
+
+For the above file samples, the uploadHeaders will be:
+
+Sample 1:
+
+```json
+{"redeemedDateInMillis": 0, "redeemedAt": 1, "billNumber": 5, "couponId": 3, "userId": 2, "billId": 4, "details": 6}
+```
+
+Sample 2:
+
+```json
+{"redeemedDateInMillis": 0, "redeemedAt": 1, "billNumber": 5, "couponCode": 3, "mobile": 2, "billId": 4, "details": 6}
+```
+

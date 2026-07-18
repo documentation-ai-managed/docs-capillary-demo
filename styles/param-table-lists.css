@@ -1,0 +1,56 @@
+/* ─── Parameter tables: lists inside cells ───────────────────────────
+   GFM makes table cells inline-only, so `* item` never becomes a list.
+   Inline JSX IS parsed in MDX, so nested params are authored as real
+   <ul>/<li> inside the cell. This file styles that DOM.
+
+   Two problems this fixes:
+     1. editor.css:147 caps every td at max-width: 250px, which squeezes
+        long Description cells into a narrow ribbon.
+     2. Bare <ul> in a cell inherits no list styling from the article.
+
+   Scoped to pages that have a "Request Body Parameters" heading, and
+   further to tables that actually contain a list — ordinary tables and
+   ordinary prose lists are untouched.
+
+   Containers, matching the house pattern in task-lists.css:
+     .dai-article   → published site
+     .mdx-container → in-editor preview
+   -------------------------------------------------------------------- */
+
+:root:has(#request-body-parameters) {
+
+  /* ─── Let the Description column breathe (overrides the 250px cap) ─── */
+  .dai-article [data-component="Table"] td:has(ul),
+  .mdx-container [data-component="Table"] td:has(ul) {
+    max-width: 640px;
+    min-width: 320px;
+  }
+
+  /* ─── Keep every cell top-aligned so tall cells don't centre ─── */
+  .dai-article [data-component="Table"] td,
+  .mdx-container [data-component="Table"] td {
+    vertical-align: top;
+    line-height: 1.6;
+  }
+
+  /* ─── Real bullets + hanging indent inside cells ─── */
+  .dai-article [data-component="Table"] td ul,
+  .mdx-container [data-component="Table"] td ul {
+    list-style: disc outside;
+    margin: 0.5em 0;
+    padding-left: 1.25em;
+  }
+
+  .dai-article [data-component="Table"] td li,
+  .mdx-container [data-component="Table"] td li {
+    display: list-item;
+    margin: 0.35em 0;
+  }
+
+  /* ─── Second level: hollow bullet, indented under its parent ─── */
+  .dai-article [data-component="Table"] td li > ul,
+  .mdx-container [data-component="Table"] td li > ul {
+    list-style: circle outside;
+    margin: 0.25em 0 0.25em 0;
+  }
+}
