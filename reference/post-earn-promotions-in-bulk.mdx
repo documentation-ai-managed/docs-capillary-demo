@@ -2,6 +2,9 @@
 title: Post Earn Cart Promotions in Bulk
 ---
 
+### param-table-linebreaks
+
+
 This API grants multiple cart promotions to a customer in a single request.
 
 - When you call this API, the system immediately adds all specified promotions to the customer's wallet, making them available for redemption.
@@ -59,12 +62,12 @@ This API grants multiple cart promotions to a customer in a single request.
 | --- | --- | --- | --- |
 | orgId | Integer | Optional | Specifies the organization ID. |
 | customerId | Long | Yes | Specifies the unique identifier of the customer earning the cart promotions. |
-| eventTime | Long | Conditional | Specifies the timestamp when the bulk earning event occurred in UTC. * The promotion uses this timestamp to determine whether the earnings are valid. * A past timestamp can be provided if the earning is being recorded after the event occurred, as long as it falls within the promotion's active earning period. Time format : epoch timestamp in milliseconds Note: This field will be deprecated in the future and is being replaced by `eventTimeISO`. |
-| eventTimeISO | String | Conditional | Defines the timestamp when the bulk earning event occurred in ISO 8601 format, including the region offset. * The promotion uses this timestamp to determine whether the earnings are valid. * A past timestamp can be provided if the earning is being recorded after the event occurred, as long as it falls within the promotion's active earning period. For example, the bulk earning event occurred at 14:30:45 on December 16, 2025, in India. Format for the request parameter: 2025-12-16T14:30:45+05:30. |
+| eventTime | Long | Conditional | Specifies the timestamp when the bulk earning event occurred in UTC.&#10;  • The promotion uses this timestamp to determine whether the earnings are valid.&#10;  • A past timestamp can be provided if the earning is being recorded after the event occurred, as long as it falls within the promotion's active earning period. Time format : epoch timestamp in milliseconds Note: This field will be deprecated in the future and is being replaced by `eventTimeISO`. |
+| eventTimeISO | String | Conditional | Defines the timestamp when the bulk earning event occurred in ISO 8601 format, including the region offset.&#10;  • The promotion uses this timestamp to determine whether the earnings are valid.&#10;  • A past timestamp can be provided if the earning is being recorded after the event occurred, as long as it falls within the promotion's active earning period. For example, the bulk earning event occurred at 14:30:45 on December 16, 2025, in India. Format for the request parameter: 2025-12-16T14:30:45+05:30. |
 | earnedFromType | Enum | Yes | Specifies how the cart promotion was earned. Supported values: `BULK_ISSUE`: Cart promotion granted via a bulk operation. `ACTIVITY:` Triggered by a specific customer event. `MILESTONE`: Triggered by achieving a predefined milestone. `REWARD`: Granted as a reward. |
 | eventDetails | Object | Yes | Defines contextual details about the triggering event for this bulk operation. Example: "eventDetails": `{ "id": "6911e951f57b486147effa6c", "type": "BULK_ISSUE" }` |
 | .id | String | Yes | Specifies the unique ID of the event or bulk operation reference. |
-| .type | String | Yes | Specifies the type of event. Consistent with earnedFromType. Supported values: • BULK_ISSUE: Cart promotion granted via a bulk operation. •ACTIVITY: Triggered by a specific customer event. • MILESTONE: Triggered by achieving a predefined milestone. • REWARD: Granted as a reward. |
+| .type | String | Yes | Specifies the type of event. Consistent with earnedFromType. Supported values:&#10;  • BULK_ISSUE: Cart promotion granted via a bulk operation. •ACTIVITY: Triggered by a specific customer event.&#10;  • MILESTONE: Triggered by achieving a predefined milestone.&#10;  • REWARD: Granted as a reward. |
 | earnedPromotions | Object | Yes | Defines a list of cart promotions to be earned by the customer in this request. Min items: 1. |
 | .promotionId | String | Yes | Specifies the unique identifier of the specific cart promotion being earned. |
 | .earnCount | Integer | Yes | Specifies the number of times this specific cart promotion should be earned. Must be 1 or greater. |

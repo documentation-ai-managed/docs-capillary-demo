@@ -2,6 +2,9 @@
 title: Issue badge to multiple customers
 ---
 
+### param-table-linebreaks
+
+
 This API allows you to issue badges to the customer (the customer earns the badge).
 
 <Callout kind="tip" title="Note">
@@ -62,8 +65,8 @@ This API allows you to issue badges to the customer (the customer earns the badg
 | badgeMetaId* | String | Unique identifier ("id") generated during the creation of the badge. |
 | customerId* | Number | Unique identifier for the customer. |
 | requestId* | String | Enter a unique identifier to identify the request. |
-| earnEventDate | Date | Defines the date on which the customer performed the activity. This date can be set up to 24 hours in the future from the current time, which allows badges to be earned based on when the customer's action occurred, not just when the system processes it. * The earn event date has to be between the badge start date and end date if it is a direct earn type of badge. * The earn event date has to be set between the badge issual start date and end date if it is an issue &amp; earn type of badge. * You can enter a past date to issue a badge against an older transaction. * This field will be deprecated in the future and is being replaced by `earnEventDateISO`. |
-| earnEventDateISO | String | Defines the date on which the customer performed the activity in ISO 8601 format in UTC and is independent of the user’s local time zone. For example: The activity was performed at 11:20:00 on March 15, 2026. Format for the request parameter: 2026-03-15T11:20:00Z Notes: * This date can be set up to 24 hours in the future from the current time. * For direct earn badges, the date must be between the badge start and end date. * For issue &amp; earn badges, the date must be between the badge issue's start and end date. * A past date can be entered to issue a badge against an older transaction. * Only if `earnEventDateISO` is null, `earnEventDate` parameter will be used. Time format: ISO 8601 time format eg. "2025-09-10T15:00:00+05:30 |
+| earnEventDate | Date | Defines the date on which the customer performed the activity. This date can be set up to 24 hours in the future from the current time, which allows badges to be earned based on when the customer's action occurred, not just when the system processes it.&#10;  • The earn event date has to be between the badge start date and end date if it is a direct earn type of badge.&#10;  • The earn event date has to be set between the badge issual start date and end date if it is an issue &amp; earn type of badge.&#10;  • You can enter a past date to issue a badge against an older transaction.&#10;  • This field will be deprecated in the future and is being replaced by `earnEventDateISO`. |
+| earnEventDateISO | String | Defines the date on which the customer performed the activity in ISO 8601 format in UTC and is independent of the user’s local time zone. For example: The activity was performed at 11:20:00 on March 15, 2026. Format for the request parameter: 2026-03-15T11:20:00Z Notes:&#10;  • This date can be set up to 24 hours in the future from the current time.&#10;  • For direct earn badges, the date must be between the badge start and end date.&#10;  • For issue &amp; earn badges, the date must be between the badge issue's start and end date.&#10;  • A past date can be entered to issue a badge against an older transaction.&#10;  • Only if `earnEventDateISO` is null, `earnEventDate` parameter will be used. Time format: ISO 8601 time format eg. "2025-09-10T15:00:00+05:30 |
 | triggeredBy | Object | The object containing information about what triggered the action. |
 | ownerType* | Enum | The module for which the badge is being issued. Supported values: Loyalty, Loyalty_Promotion, Referral_Campaigns, Journeys, Audience_Campaigns, Rewards_Catalog, Goodwill_Module, Milestones, Historical_Import |
 | referenceId* | String | Enter a unique identifier to identify the owner (ownerType). The referenceId passed here should be the same as the referenceId in the [claim badge API](/reference/claim-badge). |

@@ -2,6 +2,9 @@
 title: Points Restrictions - Create points restriction
 ---
 
+### param-table-linebreaks
+
+
 This API allows the brand to restrict the customer to the number of points they burn/redeem in the rewards catalog.
 
 This helps brands control the customer’s activity on the rewards catalog and instead use these points while making transactions, eventually bringing more business to the brands.
@@ -230,7 +233,7 @@ For detailed information about our APIs and for hands-on testing, refer document
 | Parameter | Data Type | Description |
 | --- | --- | --- |
 | **`kpi*`** | String | The Key Performance Indicator (KPI) on which the restriction is applied. Supported value: `POINTS`. |
-| **`constraintLevel*`** | Enum | The level at which restrictions are defined by the organization and applied. Supported values: * `CUSTOMER_SEGMENT`: Apply restrictions on a customer segment by passing `segmentId` and `partitionId`. (Note: These IDs are not currently available in the Insights+ UI; you'll need to create a Jira ticket to obtain them.) * `CUSTOMER_TIER`: Apply restrictions based on customer tier by passing the `tierId`. * `CUSTOMER_LOYALTY_PROGRAM`: Apply restrictions to a specific loyalty program by passing the `programId`. * `CUSTOMER_REDEMPTION_TYPE`: Apply restrictions to redeemable vouchers by passing the `redemptionType`. * `CUSTOMER_SUPPL_PROGRAM`: Apply restrictions to a supplementary program by passing the `supplementaryProgramId`. * `CUSTOMER_LABEL`: Apply restrictions based on a customer `Label`. * `CUSTOMER`: Use `CUSTOMER` to apply a restriction at the individual customer level. * Only one combination of `Constraint_Level` and `KPI` is allowed with `DAILY`, `WEEKLY`, or `MONTHLY` `frequencyType`. |
+| **`constraintLevel*`** | Enum | The level at which restrictions are defined by the organization and applied. Supported values:&#10;  • `CUSTOMER_SEGMENT`: Apply restrictions on a customer segment by passing `segmentId` and `partitionId`. (Note: These IDs are not currently available in the Insights+ UI; you'll need to create a Jira ticket to obtain them.)&#10;  • `CUSTOMER_TIER`: Apply restrictions based on customer tier by passing the `tierId`.&#10;  • `CUSTOMER_LOYALTY_PROGRAM`: Apply restrictions to a specific loyalty program by passing the `programId`.&#10;  • `CUSTOMER_REDEMPTION_TYPE`: Apply restrictions to redeemable vouchers by passing the `redemptionType`.&#10;  • `CUSTOMER_SUPPL_PROGRAM`: Apply restrictions to a supplementary program by passing the `supplementaryProgramId`.&#10;  • `CUSTOMER_LABEL`: Apply restrictions based on a customer `Label`.&#10;  • `CUSTOMER`: Use `CUSTOMER` to apply a restriction at the individual customer level.&#10;  • Only one combination of `Constraint_Level` and `KPI` is allowed with `DAILY`, `WEEKLY`, or `MONTHLY` `frequencyType`. |
 | `tierId` | String | Unique identifier for the tier . It is mandatory to provide a valid `tierId` when `CUSTOMER_TIER` is used as the `constraintLevel`. |
 | `programId` | String | Unique identifier for the program . It is mandatory to provide a valid `programId` when `CUSTOMER_LOYALTY_PROGRAM` is used as the `constraintLevel` |
 | **`frequencyType*`** | Enum | The frequency at which the constraint is applied. Supported values: `DAILY`, `WEEKLY`, `MONTHLY`. Points redemption is only applicable to fixed window restrictions. |

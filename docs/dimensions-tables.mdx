@@ -1,6 +1,9 @@
 ---
 title: Dimension tables
 ---
+
+### param-table-linebreaks
+
 Dimension tables contain descriptive attributes or characteristics of the data in the fact table. These attributes provide context for analysing the data in the fact table. In the current example, For example, a dimension table in a sales environment might contain details about products (product ID, product name, category, brand) or customers (customer ID, name, address).
 
 ### Points Promotion
@@ -1440,14 +1443,14 @@ This table captures the type of coupon that has been issued.
 | Column Name | Data Type | Description                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | ----------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | id          | Integer   | Coupon series ID which is issued.                                                                                                                                                                                                                                                                                                                                                                                                   |
-| value       | String    | Indicates the status of the issued coupons. Possible values: \* `true`:The coupon was successfully issued and is active. \* `false`: The coupon issuance related to this event is inactive. \* `NOT-APPLICABLE`: The event does not involve coupon issuance e.g, a points deduction event. \* `INVALID`: The value sent in the API request is an invalid enum value. \* `NOT-CAPTURED`: The API request sent a NULL or empty value. |
+| value       | String    | Indicates the status of the issued coupons. Possible values:&#10;  • `true`:The coupon was successfully issued and is active.&#10;  • `false`: The coupon issuance related to this event is inactive.&#10;  • `NOT-APPLICABLE`: The event does not involve coupon issuance e.g, a points deduction event.&#10;  • `INVALID`: The value sent in the API request is an invalid enum value.&#10;  • `NOT-CAPTURED`: The API request sent a NULL or empty value. |
 
 ### Coupon redemption status (is\_coupon\_redemptions\_active)
 
 | Column Name | Data Type | Description                                                                                                                                                                                                                                                                                                                                                                                                    |
 | ----------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | id          | Integer   | Coupon series ID which is issued.                                                                                                                                                                                                                                                                                                                                                                              |
-| value       | String    | Indicates if the coupon is redeemable. Possible values: \* `true`: The coupon redemption is active/allowed. \* `false`: The coupon redemption is inactive/not allowed. \* `NOT-APPLICABLE`: The event does not involve coupon redemption e.g. a points awarded event. \* `INVALID`: The value sent in the API request is an invalid enum value. \* `NOT-CAPTURED`: The API request sent a NULL or empty value. |
+| value       | String    | Indicates if the coupon is redeemable. Possible values:&#10;  • `true`: The coupon redemption is active/allowed.&#10;  • `false`: The coupon redemption is inactive/not allowed.&#10;  • `NOT-APPLICABLE`: The event does not involve coupon redemption e.g. a points awarded event.&#10;  • `INVALID`: The value sent in the API request is an invalid enum value.&#10;  • `NOT-CAPTURED`: The API request sent a NULL or empty value. |
 
 ### Entry type (entry\_type)
 

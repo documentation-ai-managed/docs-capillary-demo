@@ -2,6 +2,9 @@
 title: Update badges
 ---
 
+### param-table-linebreaks
+
+
 This API allows you to update badges.
 
 <Callout kind="tip" title="Note">
@@ -97,9 +100,9 @@ Badge name should be unique and is case sensitive.
 | name | String | Yes | Name of the badge (e.g., "10% off on watches"). Badge name should be unique and is case sensitive. |
 | description | String | Optional | Brief description of the badge (e.g., "Purchase 2 watches get a $100 voucher"). |
 | startOn | Date Time | Conditional | Timestamp indicating when a badge starts in epoch seconds. Cannot be set more than 100 years in the past. Cannot be changed for live or expired badges. Upcoming badges allow updating the startOn date, even to a past date. Note: This field will be deprecated in the future and is being replaced by `startOnISO` |
-| startOnISO | String | Optional | Defines the badge's start date in ISO 8601 format, including the region offset.For example: The start date is at 14:30:45 on December 16, 2025, in India. Format for the request parameter: 2025-12-16T14:30:45+05:30. Notes: * This parameter overrides the value set in the startOn parameter. * The date cannot be set more than 100 years in the past. |
+| startOnISO | String | Optional | Defines the badge's start date in ISO 8601 format, including the region offset.For example: The start date is at 14:30:45 on December 16, 2025, in India. Format for the request parameter: 2025-12-16T14:30:45+05:30. Notes:&#10;  • This parameter overrides the value set in the startOn parameter.&#10;  • The date cannot be set more than 100 years in the past. |
 | expiresOn | Date Time | Conditional | Timestamp indicating when the badge ends in epoch seconds. `expiresOn` or `expiresOnISO` is required when expiry type is `FIXED_DATE`. Note: This field will be deprecated in the future and is being replaced by `expiresOnISO` |
-| expiresOnISO | String | Conditional | Defines the badge's expiration date in ISO 8601 format, including the region offset. For example, the expiration date is at 14:30:45 on December 16, 2025, in India. Format for the request parameter: 2025-12-16T14:30:45+05:30. Notes: * This parameter overrides the value set in the expiresOn parameter. * If expiresOnISO is provided, the system ignores expiresOn. expiresOn is only used if expiresOnISO is null. * This parameter is mandatory when the expiry type is set to FIXED_DATE (either expiresOn or expiresOnISO must be provided). |
+| expiresOnISO | String | Conditional | Defines the badge's expiration date in ISO 8601 format, including the region offset. For example, the expiration date is at 14:30:45 on December 16, 2025, in India. Format for the request parameter: 2025-12-16T14:30:45+05:30. Notes:&#10;  • This parameter overrides the value set in the expiresOn parameter.&#10;  • If expiresOnISO is provided, the system ignores expiresOn. expiresOn is only used if expiresOnISO is null.&#10;  • This parameter is mandatory when the expiry type is set to FIXED_DATE (either expiresOn or expiresOnISO must be provided). |
 | .earnedBadgeExpiry | Object | Yes | Object containing details about the expiry of earned badges. |
 | ...expiryType | Enum | Yes | Type of badge expiry. Supported values: "RELATIVE", "ABSOLUTE", "NEVER". `RELATIVE`: Based on when the badge was issued. `ABSOLUTE`: Based on the fixed date from the badge issual. `NEVER`: The badges will never expire after issual. |
 | ..type | Enum | Yes | Type refers to the badge expiration method. Supported values: "WITH_BADGE_META", "FIXED_DATE". WITH_BADGE_META: The expiry is based on the mandatory expiresOn parameter. FIXED_DATE: The expiry is based on the expiry date of the incentives associated with the badge. |

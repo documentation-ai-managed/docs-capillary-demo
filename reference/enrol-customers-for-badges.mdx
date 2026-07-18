@@ -2,6 +2,9 @@
 title: Enrol customers for badges
 ---
 
+### param-table-linebreaks
+
+
 This API allows you to enroll customers for badges. The badges are issued based on the fulfillment criteria.
 
 <Callout kind="tip" title="Note">
@@ -78,7 +81,7 @@ This API allows you to enroll customers for badges. The badges are issued based 
 | customers | No | Array | Array of customer identifiers associated with the badge. |
 | requestId | Yes | String | Enter a unique identifier to identify the request. |
 | issueEventDate | No | String | The date on which the customer was enrolled in the badge. Issue event date has to be between the badge start date and end date, in epoch milliseconds format.Note: This field will be deprecated in the future and is being replaced by `issueEventDateISO` |
-| issueEventDateISO | No | String | Defines the date on which the customer was enrolled in the badge in ISO 8601 format, including the region offset. For example: The enrollment date is at 09:15:30.500 on January 20, 2026, in UTC. Format for the request parameter: 2026-01-20T09:15:30.500Z. Notes: * This parameter overrides the value set in the issueEventDate parameter. * The issueEventDate parameter is only used if issueEventDateISO is null. * The issue event date must fall between the badge's start date and end date. * Ensure the format follows the standard: YYYY-MM-DDTHH:MM:SS.SSSZ. |
+| issueEventDateISO | No | String | Defines the date on which the customer was enrolled in the badge in ISO 8601 format, including the region offset. For example: The enrollment date is at 09:15:30.500 on January 20, 2026, in UTC. Format for the request parameter: 2026-01-20T09:15:30.500Z. Notes:&#10;  • This parameter overrides the value set in the issueEventDate parameter.&#10;  • The issueEventDate parameter is only used if issueEventDateISO is null.&#10;  • The issue event date must fall between the badge's start date and end date.&#10;  • Ensure the format follows the standard: YYYY-MM-DDTHH:MM:SS.SSSZ. |
 | triggeredBy | Yes | Object | Object containing information about what triggered the action. |
 | ownerType | Yes | Enum | The module for which the badge has been created. Supported values: Loyalty, Loyalty_Promotion, Referral_Campaigns, Journeys, Audience_Campaigns, Rewards_Catalog, Goodwill_Module, Milestones, Historical_Import. Note: Customers can be enrolled to a badge using an `ownerType` that is not listed at the time of badge creation. If a supported `ownerType` is passed during enrollment, the system allows the enrollment. |
 | referenceId | No | String | Enter a unique identifier to identify the owner (ownerType). |
