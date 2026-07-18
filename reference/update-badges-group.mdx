@@ -1,26 +1,20 @@
 ---
 title: Update badges group
 ---
-
 This API allows you to create a group for the badges.
 
-<Callout kind="tip" title="Note">
-
-For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call)
-
+<Callout kind="tip" collapsed="false">
+  For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call)
 </Callout>
 
-<Callout kind="alert" title="**Warning**">
-
-Badge group name should be unique and is case sensitive.
-
+<Callout kind="alert" collapsed="false">
+  Badge group name should be unique and is case sensitive.
 </Callout>
 
 ## Example request
 
 <CodeGroup show-lines="true" tabs={["Sample request"]}>
-
-  ```bash "Sample request"
+  ```bash wrap="true" "Sample request"
   curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/v1/badges/group/69708faa0772ad476ecf8511' \
   --header 'Accept: application/json' \
   --header 'Content-Type: application/json' \
@@ -34,17 +28,16 @@ Badge group name should be unique and is case sensitive.
   }
   '
   ```
-
 </CodeGroup>
 
 ## Prerequisites
 
-- [ ] Authentication: Basic or OAuth authentication
-- [ ] Access group resource: WRITE access to target loyalty access group resource
+- Authentication: Basic or OAuth authentication
+- Access group resource: WRITE access to target loyalty access group resource
 
 ## Resource information
 
-| URI           | api_gateway/v1/badges/group/`group_id` |
+| URI           | api\_gateway/v1/badges/group/`group_id` |
 | :------------ | :-------------------------------------- |
 | HTTP method   | POST                                    |
 | Rate limit    | NA                                      |
@@ -56,26 +49,23 @@ Badge group name should be unique and is case sensitive.
 
 ## Request body parameters
 
-| Parameters | Datatype | Description |
-| --- | --- | --- |
-| Name* | String | Name of the badge group. Ex: GROUP_RANK_2 |
-| Rank* | Integer | The rank of the group is used to create an order among different groups. The brand assigns the rank, and groups with higher rank are prioritized over other groups. Ex: To encourage customers as they progress through course modules, you can organize badges into three groups corresponding to three-course modules. After completing each module, customers earn a badge. Upon achieving a set of badges, they are associated with a group such as Expert, Intermediate, or Beginner. |
+| Parameters | Datatype | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ---------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Name\*     | String   | Name of the badge group. Ex: GROUP\_RANK\_2                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Rank\*     | Integer  | The rank of the group is used to create an order among different groups. The brand assigns the rank, and groups with higher rank are prioritized over other groups. Ex: To encourage customers as they progress through course modules, you can organize badges into three groups corresponding to three-course modules. After completing each module, customers earn a badge. Upon achieving a set of badges, they are associated with a group such as Expert, Intermediate, or Beginner. |
 
 <CodeGroup show-lines="true" tabs={["JSON"]}>
-
-  ```json "JSON"
+  ```json JSON
   {
       "name": "GROUP_RANK_59",
       "rank": 1
   }
   ```
-
 </CodeGroup>
 
 ## Example response
 
 <CodeGroup show-lines="true" tabs={["Sample response"]}>
-
   ```json "Sample response"
   {
       "data": {
@@ -95,28 +85,26 @@ Badge group name should be unique and is case sensitive.
       "warnings": []
   }
   ```
-
 </CodeGroup>
 
 ## Response parameters
 
-| Parameter | Datatype | Description |
-| --- | --- | --- |
-| id | String | Unique ID of the group. |
-| orgId | Integer | Unique iD of the org. |
-| name | String | Name of the group |
-| rank | Integer | The rank of the group assigned by the user. |
-| createdBy | Integer | User ID who created the group. |
-| createdOn | Float | Timestamp indicating when the group was created |
-| createdOnISO | String | Timestamp indicating when the group was created, in ISO 8601 format, returned in the server time zone. EU server example 2025-12-16T14:30:45Z → 16 December 2025, 14:30:45 (UTC) India server example 2025-12-16T14:30:45+05:30 → 16 December 2025, 14:30:45 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
-| lastUpdatedBy | Integer | User ID who last updated the group. |
-| lastUpdatedOn | Float | Timestamp indicating when the group was last updated |
-| lastUpdatedOn |  | Timestamp indicating when the group was last updated, in ISO 8601 format, returned in the server time zone. EU server example 2025-12-16T14:30:45Z → 16 December 2025, 14:30:45 (UTC) India server example 2025-12-16T14:30:45+05:30 → 16 December 2025, 14:30:45 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
-| isActive | Boolean | Indicates whether the group is currently active or not. |
+| Parameter     | Datatype | Description                                                                                                                                                                                                                                                                                                                                                                                  |
+| ------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id            | String   | Unique ID of the group.                                                                                                                                                                                                                                                                                                                                                                      |
+| orgId         | Integer  | Unique iD of the org.                                                                                                                                                                                                                                                                                                                                                                        |
+| name          | String   | Name of the group                                                                                                                                                                                                                                                                                                                                                                            |
+| rank          | Integer  | The rank of the group assigned by the user.                                                                                                                                                                                                                                                                                                                                                  |
+| createdBy     | Integer  | User ID who created the group.                                                                                                                                                                                                                                                                                                                                                               |
+| createdOn     | Float    | Timestamp indicating when the group was created                                                                                                                                                                                                                                                                                                                                              |
+| createdOnISO  | String   | Timestamp indicating when the group was created, in ISO 8601 format, returned in the server time zone. EU server example 2025-12-16T14:30:45Z → 16 December 2025, 14:30:45 (UTC) India server example 2025-12-16T14:30:45+05:30 → 16 December 2025, 14:30:45 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request.      |
+| lastUpdatedBy | Integer  | User ID who last updated the group.                                                                                                                                                                                                                                                                                                                                                          |
+| lastUpdatedOn | Float    | Timestamp indicating when the group was last updated                                                                                                                                                                                                                                                                                                                                         |
+| lastUpdatedOn |          | Timestamp indicating when the group was last updated, in ISO 8601 format, returned in the server time zone. EU server example 2025-12-16T14:30:45Z → 16 December 2025, 14:30:45 (UTC) India server example 2025-12-16T14:30:45+05:30 → 16 December 2025, 14:30:45 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
+| isActive      | Boolean  | Indicates whether the group is currently active or not.                                                                                                                                                                                                                                                                                                                                      |
 
 <CodeGroup show-lines="true" tabs={["JSON"]}>
-
-  ```json "JSON"
+  ```json JSON
   {
       "data": {
           "id": "6968c1330772ad476ecf33b0",
@@ -135,7 +123,6 @@ Badge group name should be unique and is case sensitive.
       "warnings": []
   }
   ```
-
 </CodeGroup>
 
 ## API-specific error codes
@@ -144,3 +131,4 @@ Badge group name should be unique and is case sensitive.
 | :--------- | :--------------------------- |
 | 733        | Group Name should be Unique. |
 | 732        | Group Rank is Mandatory.     |
+

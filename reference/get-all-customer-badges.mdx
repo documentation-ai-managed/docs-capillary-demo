@@ -1,21 +1,17 @@
 ---
 title: Get all customer badges
 ---
-
 This API allows you to retrieve lists of badges available for enrollment, available for issual, earned, and expired badges for a particular customer.
 
-<Callout kind="tip" title="Note">
-
-- For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
-- Start time and end time are in UTC zone
-
+<Callout kind="tip" collapsed="false">
+  - For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
+  - Start time and end time are in UTC zone
 </Callout>
 
 ## Example request
 
 <CodeGroup show-lines="true" tabs={["Sample request"]}>
-
-  ```bash "Sample request"
+  ```bash wrap="true" "Sample request"
   curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/management/566881933' \
   --header 'Accept: application/json' \
   --header 'Content-Type: application/json' \
@@ -23,17 +19,16 @@ This API allows you to retrieve lists of badges available for enrollment, availa
   --header 'Authorization: Basic Z2VvcmdlLEwYTEzNzg=' \
   --header 'Cookie: _cfuvid=rHwzSJOniFI97PucMl_02NXhwhPtbRZOYtNRTbJ8qj0-1745210859098-0.0.1.1-604800000'
   ```
-
 </CodeGroup>
 
 ## Prerequisites
 
-- [ ] Authentication: Basic or OAuth authentication
-- [ ] Default access group
+- Authentication: Basic or OAuth authentication
+- Default access group
 
 ## Resource information
 
-| URI                    | api_gateway/v1/badges/management`{customerId}` |
+| URI                    | api\_gateway/v1/badges/management`{customerId}` |
 | :--------------------- | :---------------------------------------------- |
 | HTTP Method            | GET                                             |
 | Pagination             | Yes                                             |
@@ -60,40 +55,37 @@ Example: X-CAP-CUSTOMER-IDENTIFIER: email
 
 ## Request query parameters
 
-| Parameter Name | Data Type | Description |
-| --- | --- | --- |
-| page | Integer | Specifies the index of the page to retrieve when fetching the customer badges list. For example: 0 → First page 1 → Second page 2 → Third page Default value: 0. |
-| size | Integer | Size of the page. Default: 10 |
-| sortOn | Enum | `EXPIRES_ON` [Default]: Sorts customer badges by their expiration date. `LAST_MODIFIED_DATE`: Sorts customer badges by the last date they were modified. `LAST_ISSUED_DATE`: Sorts customer badges by the last date they were issued. `LAST_EXPIRED_BADGE`: Sorts customer badges by the last date they expired. `LAST_EARNED_EVENT_DATE`: Sorts customer badges by the last event date when they were earned. `LAST_EARNED_ON_DATE`: Sorts customer badges by the last date they were earned. |
-| order | Enum | Sort the rewards based on order of rewards. Supported Values: `DESC` [Default], `ASC` |
-| name | String | Name of badge |
-| badgeType | Enum | The type of badge to display. Supported Values: `AVAILABLE_TO_ISSUE`: Filters the badges of the type Enrol and Issue. This is the default filter. `AVAILABLE`: Filters the badges of the type Direct Issue that are available to be earned directly by the customer. `EARNED`: Filters the badges that are issued by the customer and are active in the customer's profile. `EXPIRED`: Filters the badges that are expired. |
-| action | Enum | Indicates if the badge is active. Supported values: `ACTIVATED`, `DEACTIVATED` |
-| badgeStatus | Enum | Status of badge. Supported values: `UPCOMING`, `LIVE`, `EXPIRED` |
-| owner | Enum | Type of owner the badge is associated with. Supported values: `Loyalty`, `Loyalty_Promotion`, `Referral_Campaigns`, `Journeys`, `Audience_Campaigns`, `Rewards_Catalog`, `Goodwill_Module`, `Milestones`, `Historical_Import` |
-| claimedBy | Enum | The badge claimed by the module. Supported values: `Loyalty`, `Loyalty_Promotion`, `Referral_Campaigns`, `Journeys`, `Audience_Campaigns`, `Rewards_Catalog`, `Goodwill_Module`, `Milestones`, `Historical_Import` |
-| startOn | Date | Start date of the badge. Timestamp in the ISO 8601 standard format `YYYY-MM-DDTHH:MM:SS.SSSZ`. |
-| expiresOn | Date | The expiry date of the badge. Timestamp in the ISO 8601 standard format `YYYY-MM-DDTHH:MM:SS.SSSZ`. |
-| startOnOperator | Enum | startOn of badge w.r.t to passed startOn. Supported values: `LESS_THAN`, `GREATER_THAN` |
-| expiresOnOperator | Enum | expiresOn of badge w.r.t to passed expiresOn. Supported values: `LESS_THAN`, `GREATER_THAN` |
-| groupId | String | Badge group ID to which the badge belongs. Retrieves only the badges belonging to the specified badge group ID. |
+| Parameter Name    | Data Type | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| ----------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| page              | Integer   | Specifies the index of the page to retrieve when fetching the customer badges list. For example: 0 → First page 1 → Second page 2 → Third page Default value: 0.                                                                                                                                                                                                                                                                                                                                |
+| size              | Integer   | Size of the page. Default: 10                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| sortOn            | Enum      | `EXPIRES_ON` \[Default]: Sorts customer badges by their expiration date. `LAST_MODIFIED_DATE`: Sorts customer badges by the last date they were modified. `LAST_ISSUED_DATE`: Sorts customer badges by the last date they were issued. `LAST_EXPIRED_BADGE`: Sorts customer badges by the last date they expired. `LAST_EARNED_EVENT_DATE`: Sorts customer badges by the last event date when they were earned. `LAST_EARNED_ON_DATE`: Sorts customer badges by the last date they were earned. |
+| order             | Enum      | Sort the rewards based on order of rewards. Supported Values: `DESC` \[Default], `ASC`                                                                                                                                                                                                                                                                                                                                                                                                          |
+| name              | String    | Name of badge                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| badgeType         | Enum      | The type of badge to display. Supported Values: `AVAILABLE_TO_ISSUE`: Filters the badges of the type Enrol and Issue. This is the default filter. `AVAILABLE`: Filters the badges of the type Direct Issue that are available to be earned directly by the customer. `EARNED`: Filters the badges that are issued by the customer and are active in the customer's profile. `EXPIRED`: Filters the badges that are expired.                                                                     |
+| action            | Enum      | Indicates if the badge is active. Supported values: `ACTIVATED`, `DEACTIVATED`                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| badgeStatus       | Enum      | Status of badge. Supported values: `UPCOMING`, `LIVE`, `EXPIRED`                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| owner             | Enum      | Type of owner the badge is associated with. Supported values: `Loyalty`, `Loyalty_Promotion`, `Referral_Campaigns`, `Journeys`, `Audience_Campaigns`, `Rewards_Catalog`, `Goodwill_Module`, `Milestones`, `Historical_Import`                                                                                                                                                                                                                                                                   |
+| claimedBy         | Enum      | The badge claimed by the module. Supported values: `Loyalty`, `Loyalty_Promotion`, `Referral_Campaigns`, `Journeys`, `Audience_Campaigns`, `Rewards_Catalog`, `Goodwill_Module`, `Milestones`, `Historical_Import`                                                                                                                                                                                                                                                                              |
+| startOn           | Date      | Start date of the badge. Timestamp in the ISO 8601 standard format `YYYY-MM-DDTHH:MM:SS.SSSZ`.                                                                                                                                                                                                                                                                                                                                                                                                  |
+| expiresOn         | Date      | The expiry date of the badge. Timestamp in the ISO 8601 standard format `YYYY-MM-DDTHH:MM:SS.SSSZ`.                                                                                                                                                                                                                                                                                                                                                                                             |
+| startOnOperator   | Enum      | startOn of badge w\.r.t to passed startOn. Supported values: `LESS_THAN`, `GREATER_THAN`                                                                                                                                                                                                                                                                                                                                                                                                        |
+| expiresOnOperator | Enum      | expiresOn of badge w\.r.t to passed expiresOn. Supported values: `LESS_THAN`, `GREATER_THAN`                                                                                                                                                                                                                                                                                                                                                                                                    |
+| groupId           | String    | Badge group ID to which the badge belongs. Retrieves only the badges belonging to the specified badge group ID.                                                                                                                                                                                                                                                                                                                                                                                 |
 
-<CodeGroup show-lines="true" tabs={["URL", "Request URL using the header"]}>
-
-  ```text "URL"
+<CodeGroup show-lines="true" tabs={["URL","Request URL using the header"]}>
+  ```text URL
   https://eucrm.cc.capillarytech.com/api_gateway/v1/badges/management/tom.sawyer@capillarytech.com
   ```
 
   ```text "Request URL using the header"
   https://eucrm.cc.capillarytech.com/api_gateway/v1/badges/management/swati.jain@capillarytech.com
   ```
-
 </CodeGroup>
 
 ## Example response
 
 <CodeGroup show-lines="true" tabs={["Sample response"]}>
-
   ```json "Sample response"
   {
       "data": {
@@ -559,49 +551,47 @@ Example: X-CAP-CUSTOMER-IDENTIFIER: email
       "warnings": []
   }
   ```
-
 </CodeGroup>
 
 ## Response parameters
 
-| Parameter | Data Type | Description |
-| --- | --- | --- |
-| name | String | The name of the badge. |
-| description | String | A brief description of the badge. |
-| badgeMetaId | String | The unique identifier for the badge metadata. |
-| badgeType | String | The type of badge. |
-| createdOn | Float | The Unix timestamp marking when the badge was created. |
-| lastUpdatedOn | Float | The timestamp with the most recent update to the badge. |
-| images | Object | A collection of image objects associated with the badge. |
-| badgeStatus | String | The status of the badge. |
-| lastEarnedOn | Float | The timestamp marking when the badge was last earned. |
-| lastEarnedOnISO | String | The timestamp marking when the badge was last earned in ISO 8601 format, returned in the server time zone. EU server example 2026-02-04T06:38:47Z → 04 February 2026, 06:38:47 (UTC) India server example 2026-02-04T12:08:47+05:30 → 04 February 2026, 12:08:47 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
-| startsOn | Float | The timestamp marking the start date/time for the badge's validity. |
-| startsOnISO | String | The timestamp marking the start date/time for the badge's validity in ISO 8601 format, returned in the server time zone. EU server example 2026-02-04T06:39:48Z → 04 February 2026, 06:39:48 (UTC) India server example 2026-02-04T12:09:48+05:30 → 04 February 2026, 12:09:48 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
-| expiresOn | Float | The timestamp marking the expiration date/time for the badge. |
-| expiresOnISO |  | The timestamp marking the start date/time for the badge's validity in ISO 8601 format, returned in the server time zone. EU server example 2026-02-04T06:39:48Z → 04 February 2026, 06:39:48 (UTC) India server example 2026-02-04T12:09:48+05:30 → 04 February 2026, 12:09:48 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
-| earnCount | Integer | The number of times the badge has been earned. |
-| issueStatus | String | The status of the badge issue. |
-| active | Boolean | Indicates whether the badge is currently active. |
-| page | Integer | The current page number of the pagination. |
-| size | Integer | The number of items per page in the pagination. |
-| total | Integer | The total number of items available across all pages. |
-| totalPages | Integer | The total number of pages available. |
-| errors | Array | A collection of any errors that occurred during the request. Typically empty if no errors occurred. |
-| warnings | Array | A collection of warnings that arose during the request. Typically empty if no warnings occurred. |
-| badgeGroupId | String | Unique group ID associated with the badge. |
-| badgeRank | Integer | Badge rank is the rank of a badge within a group. |
-| badgeGroupName | Integer | Name of the badge group. |
-| ownership | Object | The module for which the badge is being created. |
-| ownership.restrictedToOwners | Array | Specifies the owner categories that are allowed to claim the badge. |
-| ownership.claims | Array | Specifies the owner by which the badge has been claimed. |
-| lastEarnEventDate | Float | Date and time when a triggering event (transactional or behavioural) occurred, initiating the badge earning. Time format: Epoch format (UNIX timestamp in milliseconds). |
-| lastEarnEventDateISO | string | Specifies the date and time when a triggering event (transactional or behavioral) occurred, initiating the badge earning, in UTC and is independent of the user’s local time zone. |
-| lastEarnedOnDate | Float | Date and time when the badge was awarded to the customer. Time format: Epoch format (UNIX timestamp in milliseconds). |
-| lastEarnedOnDateISO | String | Specifies the date and time when the badge was awarded to the customer in UTC and is independent of the user’s local time zone. |
+| Parameter                    | Data Type | Description                                                                                                                                                                                                                                                                                                                                                                                               |
+| ---------------------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name                         | String    | The name of the badge.                                                                                                                                                                                                                                                                                                                                                                                    |
+| description                  | String    | A brief description of the badge.                                                                                                                                                                                                                                                                                                                                                                         |
+| badgeMetaId                  | String    | The unique identifier for the badge metadata.                                                                                                                                                                                                                                                                                                                                                             |
+| badgeType                    | String    | The type of badge.                                                                                                                                                                                                                                                                                                                                                                                        |
+| createdOn                    | Float     | The Unix timestamp marking when the badge was created.                                                                                                                                                                                                                                                                                                                                                    |
+| lastUpdatedOn                | Float     | The timestamp with the most recent update to the badge.                                                                                                                                                                                                                                                                                                                                                   |
+| images                       | Object    | A collection of image objects associated with the badge.                                                                                                                                                                                                                                                                                                                                                  |
+| badgeStatus                  | String    | The status of the badge.                                                                                                                                                                                                                                                                                                                                                                                  |
+| lastEarnedOn                 | Float     | The timestamp marking when the badge was last earned.                                                                                                                                                                                                                                                                                                                                                     |
+| lastEarnedOnISO              | String    | The timestamp marking when the badge was last earned in ISO 8601 format, returned in the server time zone. EU server example 2026-02-04T06:38:47Z → 04 February 2026, 06:38:47 (UTC) India server example 2026-02-04T12:08:47+05:30 → 04 February 2026, 12:08:47 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request.               |
+| startsOn                     | Float     | The timestamp marking the start date/time for the badge's validity.                                                                                                                                                                                                                                                                                                                                       |
+| startsOnISO                  | String    | The timestamp marking the start date/time for the badge's validity in ISO 8601 format, returned in the server time zone. EU server example 2026-02-04T06:39:48Z → 04 February 2026, 06:39:48 (UTC) India server example 2026-02-04T12:09:48+05:30 → 04 February 2026, 12:09:48 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
+| expiresOn                    | Float     | The timestamp marking the expiration date/time for the badge.                                                                                                                                                                                                                                                                                                                                             |
+| expiresOnISO                 |           | The timestamp marking the start date/time for the badge's validity in ISO 8601 format, returned in the server time zone. EU server example 2026-02-04T06:39:48Z → 04 February 2026, 06:39:48 (UTC) India server example 2026-02-04T12:09:48+05:30 → 04 February 2026, 12:09:48 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
+| earnCount                    | Integer   | The number of times the badge has been earned.                                                                                                                                                                                                                                                                                                                                                            |
+| issueStatus                  | String    | The status of the badge issue.                                                                                                                                                                                                                                                                                                                                                                            |
+| active                       | Boolean   | Indicates whether the badge is currently active.                                                                                                                                                                                                                                                                                                                                                          |
+| page                         | Integer   | The current page number of the pagination.                                                                                                                                                                                                                                                                                                                                                                |
+| size                         | Integer   | The number of items per page in the pagination.                                                                                                                                                                                                                                                                                                                                                           |
+| total                        | Integer   | The total number of items available across all pages.                                                                                                                                                                                                                                                                                                                                                     |
+| totalPages                   | Integer   | The total number of pages available.                                                                                                                                                                                                                                                                                                                                                                      |
+| errors                       | Array     | A collection of any errors that occurred during the request. Typically empty if no errors occurred.                                                                                                                                                                                                                                                                                                       |
+| warnings                     | Array     | A collection of warnings that arose during the request. Typically empty if no warnings occurred.                                                                                                                                                                                                                                                                                                          |
+| badgeGroupId                 | String    | Unique group ID associated with the badge.                                                                                                                                                                                                                                                                                                                                                                |
+| badgeRank                    | Integer   | Badge rank is the rank of a badge within a group.                                                                                                                                                                                                                                                                                                                                                         |
+| badgeGroupName               | Integer   | Name of the badge group.                                                                                                                                                                                                                                                                                                                                                                                  |
+| ownership                    | Object    | The module for which the badge is being created.                                                                                                                                                                                                                                                                                                                                                          |
+| ownership.restrictedToOwners | Array     | Specifies the owner categories that are allowed to claim the badge.                                                                                                                                                                                                                                                                                                                                       |
+| ownership.claims             | Array     | Specifies the owner by which the badge has been claimed.                                                                                                                                                                                                                                                                                                                                                  |
+| lastEarnEventDate            | Float     | Date and time when a triggering event (transactional or behavioural) occurred, initiating the badge earning. Time format: Epoch format (UNIX timestamp in milliseconds).                                                                                                                                                                                                                                  |
+| lastEarnEventDateISO         | string    | Specifies the date and time when a triggering event (transactional or behavioral) occurred, initiating the badge earning, in UTC and is independent of the user’s local time zone.                                                                                                                                                                                                                        |
+| lastEarnedOnDate             | Float     | Date and time when the badge was awarded to the customer. Time format: Epoch format (UNIX timestamp in milliseconds).                                                                                                                                                                                                                                                                                     |
+| lastEarnedOnDateISO          | String    | Specifies the date and time when the badge was awarded to the customer in UTC and is independent of the user’s local time zone.                                                                                                                                                                                                                                                                           |
 
-<CodeGroup show-lines="true" tabs={["json", "when badgeType=EARNED", "When badgeType=EARNED and badgeStatus=LIVE", "When Owner=Loyalty and badgeType=EARNED", "When badgeStatus=UPCOMING and badgeType=AVAILABLE", "When badgeType=EXPIRED", "Filter by group ID"]}>
-
+<CodeGroup show-lines="true" tabs={["when badgeType=EARNED","When badgeType=EARNED and badgeStatus=LIVE","When Owner=Loyalty and badgeType=EARNED","When badgeStatus=UPCOMING and badgeType=AVAILABLE","When badgeType=EXPIRED","Filter by group ID"]}>
   ```json
   {
       "data": {
@@ -1408,5 +1398,5 @@ Example: X-CAP-CUSTOMER-IDENTIFIER: email
       "warnings": []
   }
   ```
-
 </CodeGroup>
+

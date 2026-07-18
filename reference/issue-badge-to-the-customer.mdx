@@ -1,21 +1,17 @@
 ---
 title: Issue badge (earn)
 ---
-
 This API allows you to issue badges to the customer (the customer earns the badge).
 
-<Callout kind="tip" title="Note">
-
-- For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
-- A badge can be issued via MemberCare without any owners or claim.
-
+<Callout kind="tip" collapsed="false">
+  - For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
+  - A badge can be issued via MemberCare without any owners or claim.
 </Callout>
 
 ## Example request
 
 <CodeGroup show-lines="true" tabs={["Sample request"]}>
-
-  ```bash "Sample request"
+  ```bash wrap="true" "Sample request"
   curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/customer/earn' \
   --header 'Accept: application/json' \
   --header 'Content-Type: application/json' \
@@ -34,17 +30,16 @@ This API allows you to issue badges to the customer (the customer earns the badg
   }
   '
   ```
-
 </CodeGroup>
 
 ## Prerequisites
 
-- [ ] Authentication: Basic or OAuth authentication
-- [ ] Default access group
+- Authentication: Basic or OAuth authentication
+- Default access group
 
 ## Resource information
 
-| URI           | /api_gateway/v1/badges/customer/earn |
+| URI           | /api\_gateway/v1/badges/customer/earn |
 | :------------ | :------------------------------------ |
 | HTTP method   | POST                                  |
 | Pagination    | No                                    |
@@ -52,21 +47,20 @@ This API allows you to issue badges to the customer (the customer earns the badg
 
 ## Request body parameters
 
-| Parameter | Data Type | Description |
-| --- | --- | --- |
-| badgeMetaId | String | Unique identifier ("id") generated during the creation of the badge. |
-| customerId* | Number | Unique identifier for the customer. |
-| requestId* | String | Enter a unique identifier to identify the request. |
-| earnEventDate | Date | Defines the date on which the customer performed the activity. This date can be set up to 24 hours in the future from the current time, which allows badges to be earned based on when the customer's action occurred, not just when the system processes it. * The earn event date has to be between the badge start date and end date if it is a direct earn type of badge. * The earn event date has to be set between the badge issual start date and end date if it is an issue &amp; earn type of badge. * You can enter a past date to issue a badge against an older transaction. Note: This field will be deprecated in the future and is being replaced by `earnEventDateISO` |
-| earnEventDateISO | String | Defines the date on which the customer performed the activity in ISO 8601 format, including the region offset. For example: The activity was performed at 11:20:00 on March 15, 2026, in India. Format for the request parameter: 2026-03-15T11:20:00+05:30 Notes: * This date can be set up to 24 hours in the future from the current time. * For direct earn badges, the date must be between the badge start and end date. * For issue &amp; earn badges, the date must be between the badge issual start and end date. * A past date can be entered to issue a badge against an older transaction. |
-| triggeredBy | Object | The object containing information about what triggered the action. |
-| ownerType* | Enum | The module for which the badge is being issued. Supported values: Loyalty, Loyalty_Promotion, Referral_Campaigns, Journeys, Audience_Campaigns, Rewards_Catalog, Goodwill_Module, Milestones, Historical_Import |
-| referenceId* | String | Enter a unique identifier to identify the owner (ownerType). The referenceId passed here should be the same as the referenceId in the [claim badge API](/reference/claim-badge). |
+| Parameter        | Data Type | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| ---------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| badgeMetaId      | String    | Unique identifier ("id") generated during the creation of the badge.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| customerId\*     | Number    | Unique identifier for the customer.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| requestId\*      | String    | Enter a unique identifier to identify the request.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| earnEventDate    | Date      | Defines the date on which the customer performed the activity. This date can be set up to 24 hours in the future from the current time, which allows badges to be earned based on when the customer's action occurred, not just when the system processes it. \* The earn event date has to be between the badge start date and end date if it is a direct earn type of badge. \* The earn event date has to be set between the badge issual start date and end date if it is an issue & earn type of badge. \* You can enter a past date to issue a badge against an older transaction. Note: This field will be deprecated in the future and is being replaced by `earnEventDateISO` |
+| earnEventDateISO | String    | Defines the date on which the customer performed the activity in ISO 8601 format, including the region offset. For example: The activity was performed at 11:20:00 on March 15, 2026, in India. Format for the request parameter: 2026-03-15T11:20:00+05:30 Notes: \* This date can be set up to 24 hours in the future from the current time. \* For direct earn badges, the date must be between the badge start and end date. \* For issue & earn badges, the date must be between the badge issual start and end date. \* A past date can be entered to issue a badge against an older transaction.                                                                                |
+| triggeredBy      | Object    | The object containing information about what triggered the action.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| ownerType\*      | Enum      | The module for which the badge is being issued. Supported values: Loyalty, Loyalty\_Promotion, Referral\_Campaigns, Journeys, Audience\_Campaigns, Rewards\_Catalog, Goodwill\_Module, Milestones, Historical\_Import                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| referenceId\*    | String    | Enter a unique identifier to identify the owner (ownerType). The referenceId passed here should be the same as the referenceId in the [claim badge API](/reference/claim-badge).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 
 ## Example response
 
 <CodeGroup show-lines="true" tabs={["Sample response"]}>
-
   ```json "Sample response"
   {
       "data": {
@@ -82,22 +76,21 @@ This API allows you to issue badges to the customer (the customer earns the badg
       "warnings": []
   }
   ```
-
 </CodeGroup>
 
 ## Response parameters
 
-| Parameter | Data Type | Description |
-| --- | --- | --- |
-| badgeMetaId | String | Unique identifier for the badge metadata. |
-| customerId | Number | Unique identifier for the customer. |
-| earnedBadgeId | String | Unique identifier for the earned badge. |
-| expiresOn | Number | The time indicating when the badge expires, in epoch milliseconds timestamp format. |
-| expiresOnISO | String | The time indicating when the badge expires in ISO 8601 format, returned in the server time zone. EU server example 2025-09-10T15:00:00Z → 10 September 2025, 15:00:00 (UTC) India server example 2025-09-10T15:00:00+05:30 → 10 September 2025, 15:00:00 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request |
-| requestId | String | A unique identifier to identify the request. |
-| issuedId | String | A Unique identifier representing the specific issuance instance of the badge. |
-| errors | Array | Array to list any errors. |
-| warnings | Array | Array to list any warnings. |
+| Parameter     | Data Type | Description                                                                                                                                                                                                                                                                                                                                                                        |
+| ------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| badgeMetaId   | String    | Unique identifier for the badge metadata.                                                                                                                                                                                                                                                                                                                                          |
+| customerId    | Number    | Unique identifier for the customer.                                                                                                                                                                                                                                                                                                                                                |
+| earnedBadgeId | String    | Unique identifier for the earned badge.                                                                                                                                                                                                                                                                                                                                            |
+| expiresOn     | Number    | The time indicating when the badge expires, in epoch milliseconds timestamp format.                                                                                                                                                                                                                                                                                                |
+| expiresOnISO  | String    | The time indicating when the badge expires in ISO 8601 format, returned in the server time zone. EU server example 2025-09-10T15:00:00Z → 10 September 2025, 15:00:00 (UTC) India server example 2025-09-10T15:00:00+05:30 → 10 September 2025, 15:00:00 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request |
+| requestId     | String    | A unique identifier to identify the request.                                                                                                                                                                                                                                                                                                                                       |
+| issuedId      | String    | A Unique identifier representing the specific issuance instance of the badge.                                                                                                                                                                                                                                                                                                      |
+| errors        | Array     | Array to list any errors.                                                                                                                                                                                                                                                                                                                                                          |
+| warnings      | Array     | Array to list any warnings.                                                                                                                                                                                                                                                                                                                                                        |
 
 ## API-specific error codes
 
@@ -111,3 +104,4 @@ This API allows you to issue badges to the customer (the customer earns the badg
 | 812        | `CustomerId` information is missing.            |
 | 804        | `RequestId` information is missing.             |
 | 716        | Owner type information is missing.              |
+

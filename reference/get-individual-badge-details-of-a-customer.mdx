@@ -1,37 +1,32 @@
 ---
 title: Get individual badge details of a customer
 ---
-
 This API allows you to retrieve details of individual badges for a specific customer (Explode API).
 
 For example: A User has completed 1000 steps and has earned a badge for achieving the goal. Using this API, the user can get information of a specific badge he has earned.
 
-<Callout kind="tip" title="Note">
-
-- For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
-
+<Callout kind="tip" collapsed="false">
+  - For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
 </Callout>
 
 ## Example request
 
 <CodeGroup show-lines="true" tabs={["Sample request"]}>
-
-  ```bash "Sample request"
+  ```bash wrap="true" "Sample request"
   curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/management/919999999994/badge/693696bdcebb9648d89735b3?includeStatistics=true' \
   --header 'Authorization: Basic bWFkaMjU2YQ==' \
   --header 'Cookie: _cfuvid=LbgLgMATQVG7rxgU6obNtuTjuntKzGkHg15XluHdUPI-1768984490920-0.0.1.1-604800000'
   ```
-
 </CodeGroup>
 
 ## Prerequisites
 
-- [ ] Authentication: Basic or OAuth authentication
-- [ ] Default access group
+- Authentication: Basic or OAuth authentication
+- Default access group
 
 ## Resource information
 
-| URI                    | api_gateway/v1/badges/management/`{customerId}`/badge/`{badgeId}` |
+| URI                    | api\_gateway/v1/badges/management/`{customerId}`/badge/`{badgeId}` |
 | :--------------------- | :----------------------------------------------------------------- |
 | HTTP Method            | GET                                                                |
 | Pagination             | No                                                                 |
@@ -71,8 +66,7 @@ Endpoint using the `X-CAP-CUSTOMER-IDENTIFIER: email` header: `https://eucrm.cc.
 
 ## Example response
 
-<CodeGroup show-lines="true" tabs={["Sample response", "Rolling window with includeStatistics=true", "Fixed window with includeStatistics=true", "Fixed window with includeStatistics=false", "Rolling window with includeStatistics=false", "Filter by Group ID", "With issueId and includeStatistics=true"]}>
-
+<CodeGroup show-lines="true" tabs={["Sample response","Rolling window with includeStatistics=true","Fixed window with includeStatistics=true","Fixed window with includeStatistics=false","Rolling window with includeStatistics=false","Filter by Group ID","With issueId and includeStatistics=true"]}>
   ```json "Sample response"
   {
       "data": {
@@ -720,55 +714,53 @@ Endpoint using the `X-CAP-CUSTOMER-IDENTIFIER: email` header: `https://eucrm.cc.
       "warnings": []
   }
   ```
-
 </CodeGroup>
 
 ## Response parameters
 
-| Parameter | Data Type | Description |
-| --- | --- | --- |
-| id | String | Unique identifier for the badge issue. |
-| name | String | Name of the badge issue. |
-| description | String | Description of the badge issue. |
-| createdOn | Float | Timestamp when the badge issue was created, in epoch milliseconds timestamp format. |
-| createdOnISO | String | Timestamp when the badge issue was created in ISO 8601 format, returned in the server time zone. EU server example 2025-09-10T15:00:00Z → 10 September 2025, 15:00:00 (UTC) India server example 2025-09-10T15:00:00+05:30 → 10 September 2025, 15:00:00 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
-| lastUpdatedOn | Float | Timestamp when the badge issue was last updated, in epoch timestamp format. |
-| lastUpdatedOnISO | String | Timestamp when the badge issue was last updated in ISO 8601 format, returned in the server time zone. EU server example 2026-02-04T06:45:10.000Z → 04 February 2026, 06:45:10 (UTC) India server example 2026-02-04T12:15:10.000+05:30 → 04 February 2026, 12:15:10 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
-| startsOn | Float | Timestamp indicating when the badge issue starts, in epoch timestamp format. |
-| startsOnISO | String | Timestamp indicating when the badge issue starts in ISO 8601 format, returned in the server time zone. EU server example 2026-02-04T06:46:02.000Z → 04 February 2026, 06:46:02 (UTC) India server example 2026-02-04T12:16:02.000+05:30 → 04 February 2026, 12:16:02 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
-| expiresOn | Float | Timestamp indicating when the badge issue expires, in epoch timestamp format. |
-| expiresOnISO | String | Timestamp indicating when the badge issue expires in ISO 8601 format, returned in the server time zone. EU server example 2026-02-04T06:47:15.000Z → 04 February 2026, 06:47:15 (UTC) India server example 2026-02-04T12:17:15.000+05:30 → 04 February 2026, 12:17:15 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
-| action | String | The status of the badge issued |
-| badgeType | Enum | Type of the badge. Supported values: Earn, Issue_Earn |
-| badgeStatus | String | Current status of the badge |
-| owner | Object | List of owners for the badge issue |
-| claimedBy | Object | List of modules that have claimed the badge |
-| ownerType | Enum | Type of the owner claiming the badge. Supported values: LOYALTY/REFERRAL_CAMPAIGNS/JOURNEYS/AUDIENCE_CAMPAIGNS/REWARDS_CATALOG/ GOODWILL_MODULE/ MILESTONES. |
-| isActive | Boolean | Indicates whether the badge is currently active. |
-| images | Object | List of images associated with the badge |
-| name | String | Name of the image |
-| filehandle | String | Service handle for the image file |
-| url | String | URL of the image. |
-| earnExpiry | Object | Details about the expiry of earning the badge |
-| expiryType | Enum | Type of expiry, supported values: RELATIVE,ABSOLUTE,NEVER. Relative expiry is based on when the badge was issued. Absolute expiry is based on the fixed date from the badge issual. Never means, the badges will never expiry after issual. |
-| relativeExpirytype | Enum | Type of relative expiry. Supported values: DAYS,WEEKS, MONTHS |
-| value | Integer | Value indicating the duration of expiry |
-| issueExpiry | Object | Details about the expiry of the badge issue |
-| expiryType | Enum | Type of expiry, supported values: RELATIVE,ABSOLUTE,NEVER. Relative expiry is based on when the badge was issued. Absolute expiry is based on the fixed date from the badge issual. Never means, the badges will never expiry after issual. |
-| customerConstraints | Object | List of constraints for customers |
-| badgeConstraints | Object | List of badge constraints associated with the badge. |
-| constraintType | Enum | Type of customer constraint. Supported values: "CUSTOMER_BADGE_FIXED_VALUE" and "CUSTOMER_BADGE_ROLLING_WINDOW". CUSTOMER_BADGE_FIXED_VALUE refers to the fixed earn limit for the customer. CUSTOMER_BADGE_ROLLING_WINDOW refers to the customer's earn limit calculated over a certain period in the past day/week/month. |
-| maxEarnLimit | Integer | Maximum limit a customer can earn |
-| issualDetails | Object | Details about the badge issuance, including count and individual issuance records. |
-| issuedStatus | String | Status of the badge issuance |
-| issueId | String | The unique ID of the issued badge that was intended for revocation. |
-| earnDetails | Object | Details about earning the badge |
-| activeEarnedCount | Integer | Count of currently active earned badges |
-| lastEarnedOn | Float | Timestamp (in seconds) when the badge was last earned. |
-| lastEarnedOnISO | String | Timestamp when the badge was last earned, in Unix epoch time (seconds). EU server example 1738651682 → 04 February 2026, 06:48:02 (UTC) India server example 1738671482 → 04 February 2026, 12:18:02 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
+| Parameter           | Data Type | Description                                                                                                                                                                                                                                                                                                                                                                                      |
+| ------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| id                  | String    | Unique identifier for the badge issue.                                                                                                                                                                                                                                                                                                                                                           |
+| name                | String    | Name of the badge issue.                                                                                                                                                                                                                                                                                                                                                                         |
+| description         | String    | Description of the badge issue.                                                                                                                                                                                                                                                                                                                                                                  |
+| createdOn           | Float     | Timestamp when the badge issue was created, in epoch milliseconds timestamp format.                                                                                                                                                                                                                                                                                                              |
+| createdOnISO        | String    | Timestamp when the badge issue was created in ISO 8601 format, returned in the server time zone. EU server example 2025-09-10T15:00:00Z → 10 September 2025, 15:00:00 (UTC) India server example 2025-09-10T15:00:00+05:30 → 10 September 2025, 15:00:00 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request.              |
+| lastUpdatedOn       | Float     | Timestamp when the badge issue was last updated, in epoch timestamp format.                                                                                                                                                                                                                                                                                                                      |
+| lastUpdatedOnISO    | String    | Timestamp when the badge issue was last updated in ISO 8601 format, returned in the server time zone. EU server example 2026-02-04T06:45:10.000Z → 04 February 2026, 06:45:10 (UTC) India server example 2026-02-04T12:15:10.000+05:30 → 04 February 2026, 12:15:10 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request.   |
+| startsOn            | Float     | Timestamp indicating when the badge issue starts, in epoch timestamp format.                                                                                                                                                                                                                                                                                                                     |
+| startsOnISO         | String    | Timestamp indicating when the badge issue starts in ISO 8601 format, returned in the server time zone. EU server example 2026-02-04T06:46:02.000Z → 04 February 2026, 06:46:02 (UTC) India server example 2026-02-04T12:16:02.000+05:30 → 04 February 2026, 12:16:02 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request.  |
+| expiresOn           | Float     | Timestamp indicating when the badge issue expires, in epoch timestamp format.                                                                                                                                                                                                                                                                                                                    |
+| expiresOnISO        | String    | Timestamp indicating when the badge issue expires in ISO 8601 format, returned in the server time zone. EU server example 2026-02-04T06:47:15.000Z → 04 February 2026, 06:47:15 (UTC) India server example 2026-02-04T12:17:15.000+05:30 → 04 February 2026, 12:17:15 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
+| action              | String    | The status of the badge issued                                                                                                                                                                                                                                                                                                                                                                   |
+| badgeType           | Enum      | Type of the badge. Supported values: Earn, Issue\_Earn                                                                                                                                                                                                                                                                                                                                           |
+| badgeStatus         | String    | Current status of the badge                                                                                                                                                                                                                                                                                                                                                                      |
+| owner               | Object    | List of owners for the badge issue                                                                                                                                                                                                                                                                                                                                                               |
+| claimedBy           | Object    | List of modules that have claimed the badge                                                                                                                                                                                                                                                                                                                                                      |
+| ownerType           | Enum      | Type of the owner claiming the badge. Supported values: LOYALTY/REFERRAL\_CAMPAIGNS/JOURNEYS/AUDIENCE\_CAMPAIGNS/REWARDS\_CATALOG/ GOODWILL\_MODULE/ MILESTONES.                                                                                                                                                                                                                                 |
+| isActive            | Boolean   | Indicates whether the badge is currently active.                                                                                                                                                                                                                                                                                                                                                 |
+| images              | Object    | List of images associated with the badge                                                                                                                                                                                                                                                                                                                                                         |
+| name                | String    | Name of the image                                                                                                                                                                                                                                                                                                                                                                                |
+| filehandle          | String    | Service handle for the image file                                                                                                                                                                                                                                                                                                                                                                |
+| url                 | String    | URL of the image.                                                                                                                                                                                                                                                                                                                                                                                |
+| earnExpiry          | Object    | Details about the expiry of earning the badge                                                                                                                                                                                                                                                                                                                                                    |
+| expiryType          | Enum      | Type of expiry, supported values: RELATIVE,ABSOLUTE,NEVER. Relative expiry is based on when the badge was issued. Absolute expiry is based on the fixed date from the badge issual. Never means, the badges will never expiry after issual.                                                                                                                                                      |
+| relativeExpirytype  | Enum      | Type of relative expiry. Supported values: DAYS,WEEKS, MONTHS                                                                                                                                                                                                                                                                                                                                    |
+| value               | Integer   | Value indicating the duration of expiry                                                                                                                                                                                                                                                                                                                                                          |
+| issueExpiry         | Object    | Details about the expiry of the badge issue                                                                                                                                                                                                                                                                                                                                                      |
+| expiryType          | Enum      | Type of expiry, supported values: RELATIVE,ABSOLUTE,NEVER. Relative expiry is based on when the badge was issued. Absolute expiry is based on the fixed date from the badge issual. Never means, the badges will never expiry after issual.                                                                                                                                                      |
+| customerConstraints | Object    | List of constraints for customers                                                                                                                                                                                                                                                                                                                                                                |
+| badgeConstraints    | Object    | List of badge constraints associated with the badge.                                                                                                                                                                                                                                                                                                                                             |
+| constraintType      | Enum      | Type of customer constraint. Supported values: "CUSTOMER\_BADGE\_FIXED\_VALUE" and "CUSTOMER\_BADGE\_ROLLING\_WINDOW". CUSTOMER\_BADGE\_FIXED\_VALUE refers to the fixed earn limit for the customer. CUSTOMER\_BADGE\_ROLLING\_WINDOW refers to the customer's earn limit calculated over a certain period in the past day/week/month.                                                          |
+| maxEarnLimit        | Integer   | Maximum limit a customer can earn                                                                                                                                                                                                                                                                                                                                                                |
+| issualDetails       | Object    | Details about the badge issuance, including count and individual issuance records.                                                                                                                                                                                                                                                                                                               |
+| issuedStatus        | String    | Status of the badge issuance                                                                                                                                                                                                                                                                                                                                                                     |
+| issueId             | String    | The unique ID of the issued badge that was intended for revocation.                                                                                                                                                                                                                                                                                                                              |
+| earnDetails         | Object    | Details about earning the badge                                                                                                                                                                                                                                                                                                                                                                  |
+| activeEarnedCount   | Integer   | Count of currently active earned badges                                                                                                                                                                                                                                                                                                                                                          |
+| lastEarnedOn        | Float     | Timestamp (in seconds) when the badge was last earned.                                                                                                                                                                                                                                                                                                                                           |
+| lastEarnedOnISO     | String    | Timestamp when the badge was last earned, in Unix epoch time (seconds). EU server example 1738651682 → 04 February 2026, 06:48:02 (UTC) India server example 1738671482 → 04 February 2026, 12:18:02 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request.                                                                  |
 
-<CodeGroup show-lines="true" tabs={["Rolling window with includeStatistics=true", "Fixed window with includeStatistics=true", "Fixed window with includeStatistics=false", "Rolling window with includeStatistics=false", "Filter by Group ID", "With issueId and includeStatistics=true"]}>
-
+<CodeGroup show-lines="true" tabs={["Rolling window with includeStatistics=true","Fixed window with includeStatistics=true","Fixed window with includeStatistics=false","Rolling window with includeStatistics=false","Filter by Group ID","With issueId and includeStatistics=true"]}>
   ```json "Rolling window with includeStatistics=true"
   Fixed window with includeStatistics=false
   {
@@ -1252,5 +1244,5 @@ Endpoint using the `X-CAP-CUSTOMER-IDENTIFIER: email` header: `https://eucrm.cc.
       "warnings": []
   }
   ```
-
 </CodeGroup>
+

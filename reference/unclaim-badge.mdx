@@ -1,27 +1,24 @@
 ---
 title: Unclaim badge
 ---
-
 This API allows you to unclaim a badge.  Using an unclaim API you can soft delete the active claim from the claims list.
 
 For example:
 
 A badge named Furry Friend Badge is owned by Loyalty and Milestones. Loyalty has successfully claimed the badge under program ID: 123, associating the badge claim with Loyalty as owner and reference ID: ABC. Using the unclaim badge API, you can remove Loyalty’s claim over the badge.
 
-<Callout kind="tip" title="Note">
-
-For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
-
+<Callout kind="tip" collapsed="false">
+  For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
 </Callout>
 
 ## Prerequisites
 
-- [ ] Authentication: Basic or OAuth authentication
-- [ ] Default access group
+- Authentication: Basic or OAuth authentication
+- Default access group
 
 ## Resource information
 
-| URI           | /api_gateway/v1/badges/badgeMeta/`{badgeId}`/unclaim |
+| URI           | /api\_gateway/v1/badges/badgeMeta/`{badgeId}`/unclaim |
 | :------------ | :---------------------------------------------------- |
 | HTTP Method   | POST                                                  |
 | Pagination    | No                                                    |
@@ -30,8 +27,7 @@ For detailed information about our APIs and for hands-on testing, refer document
 ## Example request
 
 <CodeGroup show-lines="true" tabs={["Sample request"]}>
-
-  ```bash "Sample request"
+  ```bash wrap="true" "Sample request"
   curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta/69381220cebb9648d8974518/unclaim' \
   --header 'Accept: application/json' \
   --header 'Content-Type: application/json' \
@@ -43,7 +39,6 @@ For detailed information about our APIs and for hands-on testing, refer document
       "referenceId": "123"
   }'
   ```
-
 </CodeGroup>
 
 ## Request path parameters
@@ -56,24 +51,21 @@ For detailed information about our APIs and for hands-on testing, refer document
 
 | Parameter Name | Data Type | Description                                                                                                                                                                                               |
 | -------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ownerType\*    | Enum      | Module where the badge was claimed. Supported values: Loyalty, Loyalty_Promotion, Referral_Campaigns, Journeys, Audience_Campaigns, Rewards_Catalog, Goodwill_Module, Milestones, Historical_Import |
+| ownerType\*    | Enum      | Module where the badge was claimed. Supported values: Loyalty, Loyalty\_Promotion, Referral\_Campaigns, Journeys, Audience\_Campaigns, Rewards\_Catalog, Goodwill\_Module, Milestones, Historical\_Import |
 | referenceId\*  | String    | Unique reference ID of the owner type.                                                                                                                                                                    |
 
 <CodeGroup show-lines="true" tabs={["JSON"]}>
-
-  ```json "JSON"
+  ```json JSON
   {
   "ownerType":"Loyalty",
   "referenceId":"string"
   }
   ```
-
 </CodeGroup>
 
 ## Example response
 
 <CodeGroup show-lines="true" tabs={["Sample response"]}>
-
   ```json "Sample response"
   {
       "data": {
@@ -85,19 +77,19 @@ For detailed information about our APIs and for hands-on testing, refer document
       "warnings": []
   }
   ```
-
 </CodeGroup>
 
 ## Response parameters
 
-| Parameter Name | Data Type | Description |
-| --- | --- | --- |
-| ownerType | Enum | Module wheere the badge was claimed. Supported values: Loyalty program, Milestones, Campaigns, Journeys, Goodwill. |
-| referenceId | String | Unique reference ID of the owner type. |
-| isActive | Boolean | Indicates whether the badge is active. |
+| Parameter Name | Data Type | Description                                                                                                        |
+| -------------- | --------- | ------------------------------------------------------------------------------------------------------------------ |
+| ownerType      | Enum      | Module wheere the badge was claimed. Supported values: Loyalty program, Milestones, Campaigns, Journeys, Goodwill. |
+| referenceId    | String    | Unique reference ID of the owner type.                                                                             |
+| isActive       | Boolean   | Indicates whether the badge is active.                                                                             |
 
 ## API-specific error codes
 
 | Error code | Description                        |
 | :--------- | :--------------------------------- |
 | 737        | Claim not found in existing claims |
+

@@ -1,20 +1,16 @@
 ---
 title: Revoke issued badge
 ---
-
 This API allows you to revoke an issued badge (earned badge by the customer).
 
-<Callout kind="tip" title="Note">
-
-For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
-
+<Callout kind="tip" collapsed="false">
+  For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
 </Callout>
 
 ## Example request
 
 <CodeGroup show-lines="true" tabs={["Sample request"]}>
-
-  ```bash "Sample request"
+  ```bash wrap="true" "Sample request"
   curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/customer/revokeEarn' \
   --header 'Accept: application/json' \
   --header 'Content-Type: application/json' \
@@ -26,17 +22,16 @@ For detailed information about our APIs and for hands-on testing, refer document
       "earnedBadgeId": "698daf848644c157e72d83f3"
   }'
   ```
-
 </CodeGroup>
 
 ## Prerequisites
 
-- [ ] Authentication: Basic or OAuth authentication
-- [ ] Default access group
+- Authentication: Basic or OAuth authentication
+- Default access group
 
 ## Resource information
 
-| URI           | /api_gateway/v1/badges/customer/revokeEarn |
+| URI           | /api\_gateway/v1/badges/customer/revokeEarn |
 | :------------ | :------------------------------------------ |
 | HTTP method   | POST                                        |
 | Rate limit    | NA                                          |
@@ -62,8 +57,7 @@ Example: `X-CAP-CUSTOMER-IDENTIFIER: email`
 | customerId\*    | String    | Unique identifier of the customer.                                  |
 | earnedBadgeId\* | String    | Earned Badge ID generated during the badge issue.                   |
 
-<CodeGroup show-lines="true" tabs={["json", "using X-CAP-CUSTOMER-IDENTIFIER header"]}>
-
+<CodeGroup show-lines="true" tabs={["using X-CAP-CUSTOMER-IDENTIFIER header"]}>
   ```json
   {
     "badgeMetaId": "653ddb33b3cda7078c7c68e9",
@@ -79,13 +73,11 @@ Example: `X-CAP-CUSTOMER-IDENTIFIER: email`
     "earnedBadgeId": "6659551c304b6e0b517b7bc7"
   }
   ```
-
 </CodeGroup>
 
 ## Example response
 
 <CodeGroup show-lines="true" tabs={["Sample response"]}>
-
   ```json "Sample response"
   {
       "data": {
@@ -98,7 +90,6 @@ Example: `X-CAP-CUSTOMER-IDENTIFIER: email`
       "warnings": []
   }
   ```
-
 </CodeGroup>
 
 ## Response parameters
@@ -117,3 +108,4 @@ Example: `X-CAP-CUSTOMER-IDENTIFIER: email`
 | 814        | Active earn instance is not present. |
 | 813        | EarnId is mandatory.                 |
 | 715        | Badge meta id is mandatory.          |
+

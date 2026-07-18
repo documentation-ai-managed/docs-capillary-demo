@@ -1,33 +1,29 @@
 ---
 title: Claim badge
 ---
-
 This API allows you to claim the badge using badge ID.
 
-<Callout kind="tip" title="Note">
-
-For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
-
+<Callout kind="tip" collapsed="false">
+  For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
 </Callout>
 
 ## Prerequisites
 
-- [ ] Authentication: Basic or OAuth authentication
-- [ ] Default access group
+- Authentication: Basic or OAuth authentication
+- Default access group
 
 ## Resource information
 
-| URI           | /api_gateway/v1/badges/badgeMeta`{badgeId}`/claim |
-| :------------ | :--------------------------------------------------- |
-| HTTP method   | POST                                                 |
-| Pagination    | NA                                                   |
-| Batch support | NA                                                   |
+| URI           | /api\_gateway/v1/badges/badgeMeta`{badgeId}`/claim |
+| :------------ | :------------------------------------------------- |
+| HTTP method   | POST                                               |
+| Pagination    | NA                                                 |
+| Batch support | NA                                                 |
 
 ## Example request
 
 <CodeGroup show-lines="true" tabs={["Sample request"]}>
-
-  ```bash "Sample request"
+  ```bash wrap="true" "Sample request"
   curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta/69381220cebb9648d8974518/claim' \
   --header 'Accept: application/json' \
   --header 'Content-Type: application/json' \
@@ -39,7 +35,6 @@ For detailed information about our APIs and for hands-on testing, refer document
       "referenceId": "123"
   }'
   ```
-
 </CodeGroup>
 
 ## Request path parameters
@@ -50,16 +45,15 @@ For detailed information about our APIs and for hands-on testing, refer document
 
 ## Request body parameters
 
-| Parameter | Data Type | Description |
-| --- | --- | --- |
-| ownerType* | Enum | The module for which the badge is being claimed. Supported values: Loyalty, Loyalty_Promotion, Referral_Campaigns, Journeys, Audience_Campaigns, Rewards_Catalog, Goodwill_Module, Milestones, Historical_Import |
-| referenceId* | String | Enter a unique identifier to identify the badge owner (ownerType). |
+| Parameter     | Data Type | Description                                                                                                                                                                                                            |
+| ------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ownerType\*   | Enum      | The module for which the badge is being claimed. Supported values: Loyalty, Loyalty\_Promotion, Referral\_Campaigns, Journeys, Audience\_Campaigns, Rewards\_Catalog, Goodwill\_Module, Milestones, Historical\_Import |
+| referenceId\* | String    | Enter a unique identifier to identify the badge owner (ownerType).                                                                                                                                                     |
 
 ## Example request
 
 <CodeGroup show-lines="true" tabs={["JSON"]}>
-
-  ```json "JSON"
+  ```bash wrap="true" JSON
   curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/badges/badgeMeta/693804d8cebb9648d8974489/claim' \
   --header 'Authorization: Basic Z2VvcmdlL86NjVhMDgzYjk1MWY5MGY1NTY5NDk1YmNkNzUxYmJiY2U=' \
   --header 'Cookie: _cfuvid=xqa2vacPOC_9d5xoORuyNOUReJ4nYUCw-1765278778115-0.0.1.1-604800000; _cfuvid=60YlXkyLfDaY1gOO1YdxKbhVquLZtaBlNd58D9_8rpU-1765282802951-0.0.1.1-604800000' \
@@ -69,13 +63,11 @@ For detailed information about our APIs and for hands-on testing, refer document
       "referenceId": "123"
   }'
   ```
-
 </CodeGroup>
 
 ## Example response
 
 <CodeGroup show-lines="true" tabs={["Sample response"]}>
-
   ```json "Sample response"
   {
       "data": {
@@ -87,7 +79,6 @@ For detailed information about our APIs and for hands-on testing, refer document
       "warnings": []
   }
   ```
-
 </CodeGroup>
 
 ## Response parameters
@@ -108,3 +99,4 @@ For detailed information about our APIs and for hands-on testing, refer document
 | 400        | Invalid enum value.                       |
 | 900        | The badge is already claimed by the user. |
 | 716        | Owner type is mandatory.                  |
+
