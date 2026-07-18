@@ -1,0 +1,34 @@
+/* ─── Parameter tables: line breaks inside Description cells ───────────
+   GFM pipe-table cells are single-line, so a bulleted list authored in a
+   Description cell collapses onto one line. `<br>` is stripped by the
+   save-time formatter, and table cells default to `white-space: normal`
+   (newlines collapse to spaces) — so nothing in the text can force a break.
+
+   Fix: author the sub-bullets with the `&#10;` newline entity (it SURVIVES
+   the formatter) and set `white-space: pre-line` on the cell so those
+   newlines render as line breaks. `pre-line` still collapses ordinary
+   runs of spaces, so cells WITHOUT `&#10;` are visually unchanged.
+
+   Opt-in per page via a hidden marker heading `### param-table-linebreaks`
+   (id="param-table-linebreaks"). Scoped with `:root:has(#…)`, matching the
+   house pattern in param-table-lists.css / inline-code-size.css.
+
+   Containers, matching the house pattern:
+     .dai-article   → published site
+     .mdx-container → in-editor preview
+   -------------------------------------------------------------------- */
+
+:root:has(#param-table-linebreaks) .dai-article  [data-component="Table"] td,
+:root:has(#param-table-linebreaks) .mdx-container [data-component="Table"] td {
+  white-space: pre-line;
+}
+
+/* Hide the marker heading itself (still in the DOM, so :has() matches). */
+#param-table-linebreaks {
+  display: none !important;
+}
+
+/* Hide its entry in the right-hand "On this page" table of contents. */
+:root:has(#param-table-linebreaks) a[href$="#param-table-linebreaks"] {
+  display: none !important;
+}
