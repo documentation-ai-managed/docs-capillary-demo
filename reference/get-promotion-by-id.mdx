@@ -280,105 +280,105 @@ This API fetches results for loyalty promotions created on the [old UI](https://
 | **Field** | **Data Type** | **Description** |
 | --- | --- | --- |
 | `status` | Object | Contains the status of the API response. |
-| • `code` | Integer | The HTTP status code indicating the outcome of the request. |
-| • `message` | String | A human-readable message summarising the outcome of the API request. |
+|   • `code` | Integer | The HTTP status code indicating the outcome of the request. |
+|   • `message` | String | A human-readable message summarising the outcome of the API request. |
 | `validationErrors` | Object or null | Contains validation error details when the request fails server-side validation; null if no errors occur. |
 | `data` | Array of Objects | Contains the list of promotions matching the request parameters and filters. |
-| • `id` | Integer | The unique identifier for the promotion. |
-| • `name` | String | The name of the promotion. |
-| • `description` | String | A text field describing the promotion's purpose and business context. |
-| • `promotionStatus` | String | The operational status of the promotion, indicating its current position in the promotion lifecycle. |
-| • `lastUpdateDate` | String (ISO 8601) | The date and time when the promotion was last modified, in ISO 8601 format. |
-| • `lastUpdatedBy` | Integer | The user ID of the person who performed the most recent modification to the promotion. |
-| • `rulesetInfos` | Array of Objects | The rulesets that define the conditions and actions governing how the promotion is evaluated and applied. |
-| • `id` | Integer | The unique identifier for the ruleset. |
-| • `orgName` | String | The name of the organization that owns and manages this ruleset. |
-| • `contextID` | Integer | The ID of the context, such as a program, in which the ruleset is configured and evaluated. |
-| • `orgID` | Integer | The unique system ID of the organization that owns this ruleset. |
-| • `contextType` | String | Specifies the context category, such as program or campaign, determining how the ruleset is applied. |
-| • `rules` | Array of Objects | The rules that define the eligibility conditions and triggering logic for the promotion within this ruleset. |
-| • `id` | Integer | Unique identifier for the rule. |
-| • `exp` | String | The conditional expression evaluated to determine whether the rule's actions are triggered. |
-| • `expJSON` | String | The structured JSON format of the rule expression, enabling programmatic evaluation of the rule logic. |
-| • `jsonType` | String | Specifies the JSON node structure type used to represent the rule expression. |
-| • `isActive` | Boolean | Indicates if this rule is currently enforced during promotion evaluation; inactive rules are skipped. |
-| • `priority` | Integer | Determines the evaluation order when multiple rules exist; lower values execute first and take precedence. |
-| • `startDate` | Long | The epoch timestamp marking when this rule becomes active and begins to be evaluated. |
-| • `endDate` | Long | The epoch timestamp marking when this rule stops being evaluated. |
-| • `createdOn` | Long | The epoch timestamp recording when this rule was originally created. |
-| • `caseToActions` | Object | Maps rule expression outcomes to the actions the promotion executes when each outcome is satisfied. |
-| • `true` | Array of Objects | Actions to be executed when the expression evaluates to true. |
-| • `id` | Integer | ID of the action to be executed. |
-| • `actionName` | String | The type of action to be performed, such as awarding points or issuing vouchers, when the rule condition is met. |
-| • `actionClass` | String | The fully qualified Java class containing the implementation logic for this action. |
-| • `mandatoryPropertiesValues` | Object | The required configuration parameters for the action, controlling how it executes. |
-| • `(key-value pairs)` | Varies (String, Integer) | Specific mandatory properties and their values. |
-| • `mandatoryComplexPropertiesValues` | Object | Complex structured configurations required by the action; empty if no complex properties are needed. |
-| • `description` | String or null | Description of the action (if applicable). |
-| • `ruleScope` | String | Specifies where the rule is evaluated, such as server-side or client-side, determining its execution environment. |
-| • `createdBy` | Integer | The user ID of the person who originally created this rule. |
-| • `modifiedBy` | Integer | The user ID of the person who made the most recent changes to this rule. |
-| • `modifiedOn` | Long | The epoch timestamp recording when this rule was last updated. |
-| • `name` | String | The display name assigned to this rule for identification within the ruleset. |
-| • `description` | String | A summary documenting the purpose and behaviour of this rule. |
-| • `ruleSetId` | Integer | The unique identifier linking this rule to its parent ruleset. |
-| • `updatedViaNewUI` | Boolean | Indicates if this rule was last modified using the Loyalty+ UI. |
-| • `ruleScope` | String | Specifies the execution scope, such as server-side or client-side, determining where the ruleset's rules are evaluated. |
-| • `startDate` | String | The epoch timestamp in milliseconds marking when this ruleset becomes active. |
-| • `endDate` | String | The epoch timestamp in milliseconds marking when this ruleset expires and stops being evaluated. |
-| • `createdOn` | Long | Date the rule was created, in epoch time. |
-| • `createdBy` | Integer | The user ID of the person who originally created this ruleset. |
-| • `modifiedBy` | Integer | The user ID of the person who made the most recent changes to this ruleset. |
-| • `modifiedOn` | Long | The epoch timestamp recording when this rule was last updated. |
-| • `name` | String | The display name assigned to this ruleset for identification and reference. |
-| • `packageName` | String | The package identifier used to group related rulesets together. |
-| • `description` | String | A summary describing the purpose and scope of this ruleset. |
-| • `filterInfo` | Array | The filter objects that restrict which customers or conditions the ruleset's rules are evaluated against. |
-| • `id` | Integer | Unique identifier of the filter. |
-| • `orgID` | Integer | Organization ID linked to the filter. |
-| • `ruleID` | Integer | Rule ID associated with the filter. |
-| • `name` | String | Name of the filter. Example: LoyaltyType, EventSource |
-| • `className` | String | Java class name that implements the filter. |
-| • `isInclude` | Boolean | Indicates whether the filter: -`true` : Includes entities that match the property values defined in `propertyToValues`. -`false` : Excludes entities that match the property values defined in `propertyToValues`. |
-| • `propertyToValues` | Object | Key-to-list mapping of filter properties. |
-| • `eventType` | String | The category of customer event that triggers this ruleset's evaluation. |
-| • `cappingInfo` | Array | The capping configuration objects that enforce quantity or frequency limits on promotion benefits within the ruleset. |
-| • `updatedViaNewUI` | Boolean | Indicates if the rule was updated via the new UI. |
-| • `label` | String | A display tag used to organise and identify this ruleset. |
-| • `private` | Boolean | Indicates if this ruleset is restricted to specific organisations or contexts, rather than shared broadly. |
-| • `programName` | String | The name of the loyalty program under which this promotion operates. |
-| • `programId` | Integer | The unique ID of the loyalty program to which this promotion belongs. |
-| • `startDate` | String (ISO 8601) | Specifies the date and time from which the promotion becomes active, in ISO 8601 format. |
-| • `endDate` | String (ISO 8601) | Specifies the date and time when the promotion stops being available to customers, in ISO 8601 format. |
-| • `identifier` | String | Specifies the external identifier configured for the promotion — a human-readable or externally assigned string used to reference it across systems. |
-| • `isActive` | Boolean | Indicates if the promotion is currently available for earning and redemption. |
-| • `eventName` | String | Specifies the customer action or milestone that activates this promotion. |
-| • `allocatePointsOn` | String | Specifies the transaction event at which promotion points are credited to the customer. |
-| • `limits` | Object | Defines various limits related to the promotion. |
-| • `pointsPerCustomer` | Integer | The maximum total points a single customer can earn from this promotion; -1 means unlimited. |
-| • `numberOfTimesPerCustomer` | Integer | The maximum number of times a customer can earn from this promotion; -1 means unlimited. |
-| • `totalPointsInPromotion` | Integer | The maximum total points available across all customers for this promotion; -1 means no overall cap. |
-| • `totalPointsPerEventLimit` | Integer | The maximum points awardable in a single event occurrence; -1 means no per-event cap. |
-| • `useProportions` | Boolean | Indicates if points are distributed proportionally based on transaction values rather than as fixed amounts. |
-| • `pointsOfferType` | String | Specifies the category of points awarded by this promotion. |
-| • `promotionRestrictions` | Object | Defines restrictions for the promotion. |
-| • `restrictions` | Object | Object of redemption restrictions. |
-| • `redemptionRestrictions` | Object | Contains information on the redemption limits for a promotion. |
-| • `name` | Enum | Type of redemption restriction. Possible values:`MAX_ALLOWED_POINTS_PER_EVENT`: The maximum points that can be earned for a single activity (make a transaction, redeem points etc.) done by a customer.`MAX_ALLOWED_TIMES_PER_CUSTOMER`: The maximum number of activities (make a transaction, redeem points etc.) a customer can do to earn points.`MAX_ALLOWED_POINTS_PER_CUSTOMER`:The maximum number of points a customer can earn from a promotion.`MAX_ALLOWED_TIMES_PER_PROMOTION`: The maximum number of activities (make a transaction, redeem points etc.) allowed across all customers in the brand for the promotion.`MAX_ALLOWED_POINTS_PER_PROMOTION`:The maximum number of points available across all customers in the brand for the promotion.`MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER`:The maximum number of times a customer can redeem a promotion after earning |
-| • `value` | Integer | Number of units corresponding to the `name`. Specify `-1` for no limit (max limit: 100). |
-| • `type` | Enum | Type of period for restriction. Possible values: `PERIOD_BASED`, `NON_PERIOD_BASED`. |
-| • `periodType` | Enum | Type of period. Supported value: `MOVING_WINDOW`. |
-| • `periodUnit` | Enum | Frequency of the period. Possible values: `DAILY`, `WEEKLY`, `MONTHLY`. |
-| • `issualRestrictions` | Object | Contains information on the issual limits for a promotion. |
-| • `name` | Enum | Type of issual restriction. Possible values:`MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER`: Maximum number of times a promotion can be issued to a customer. |
-| • `value` | Integer | Number of units corresponding to the `name`. Specify `-1` for no limit (max limit: 100). |
-| • `earnRestrictions` | Object | Contains information on the earn limits for a promotion (specific to enrol-and-issue promotions). |
-| • `name` | Enum | Type of earn restriction. Possible values:`MAX_NUMBER_OF_EARNS_PER_CUSTOMER`: The maximum number of times a loyalty promotion can be issued to a customer.`MAX_NUMBER_OF_EARNS_PER_PROMOTION`: The maximum number of times a loyalty promotion can be issued across customers.`MAX_POINTS_PER_EARN_PER_CUSTOMER`: The maximum number of points a customer can earn in a single event from a promotion. |
-| • `value` | Integer | Number of units corresponding to the `name`. Specify `-1` for no limit (max limit: 100). |
-| • `expiryRestrictions` | Object | Contains information on the expiry for a promotion (mandatory for all promotion types). |
-| • `name` | Enum | Action that is expiring. Possible values:`ISSUAL_PROMOTION_EXPIRY_BASED_ON`: The time period within which the customer must complete the activity required to issue the loyalty promotion. Once this lapses, the customer cannot earn the loyalty promotion.`EARN_PROMOTION_EXPIRY_BASED_ON`: The time period within which the customer must complete the activity required to receive the loyalty promotion benefits. Once this lapses, the customer cannot earn the benefits. |
-| • `type` | Enum | Type of expiration. Possible values: `PROMOTION`, `CUSTOM`. |
-| • `value` | Integer | Number of days the loyalty promotion expires from the date of issual. |
+|   • `id` | Integer | The unique identifier for the promotion. |
+|   • `name` | String | The name of the promotion. |
+|   • `description` | String | A text field describing the promotion's purpose and business context. |
+|   • `promotionStatus` | String | The operational status of the promotion, indicating its current position in the promotion lifecycle. |
+|   • `lastUpdateDate` | String (ISO 8601) | The date and time when the promotion was last modified, in ISO 8601 format. |
+|   • `lastUpdatedBy` | Integer | The user ID of the person who performed the most recent modification to the promotion. |
+|   • `rulesetInfos` | Array of Objects | The rulesets that define the conditions and actions governing how the promotion is evaluated and applied. |
+|   • `id` | Integer | The unique identifier for the ruleset. |
+|   • `orgName` | String | The name of the organization that owns and manages this ruleset. |
+|   • `contextID` | Integer | The ID of the context, such as a program, in which the ruleset is configured and evaluated. |
+|   • `orgID` | Integer | The unique system ID of the organization that owns this ruleset. |
+|   • `contextType` | String | Specifies the context category, such as program or campaign, determining how the ruleset is applied. |
+|   • `rules` | Array of Objects | The rules that define the eligibility conditions and triggering logic for the promotion within this ruleset. |
+|   • `id` | Integer | Unique identifier for the rule. |
+|   • `exp` | String | The conditional expression evaluated to determine whether the rule's actions are triggered. |
+|   • `expJSON` | String | The structured JSON format of the rule expression, enabling programmatic evaluation of the rule logic. |
+|   • `jsonType` | String | Specifies the JSON node structure type used to represent the rule expression. |
+|   • `isActive` | Boolean | Indicates if this rule is currently enforced during promotion evaluation; inactive rules are skipped. |
+|   • `priority` | Integer | Determines the evaluation order when multiple rules exist; lower values execute first and take precedence. |
+|   • `startDate` | Long | The epoch timestamp marking when this rule becomes active and begins to be evaluated. |
+|   • `endDate` | Long | The epoch timestamp marking when this rule stops being evaluated. |
+|   • `createdOn` | Long | The epoch timestamp recording when this rule was originally created. |
+|   • `caseToActions` | Object | Maps rule expression outcomes to the actions the promotion executes when each outcome is satisfied. |
+|   • `true` | Array of Objects | Actions to be executed when the expression evaluates to true. |
+|   • `id` | Integer | ID of the action to be executed. |
+|   • `actionName` | String | The type of action to be performed, such as awarding points or issuing vouchers, when the rule condition is met. |
+|   • `actionClass` | String | The fully qualified Java class containing the implementation logic for this action. |
+|   • `mandatoryPropertiesValues` | Object | The required configuration parameters for the action, controlling how it executes. |
+|   • `(key-value pairs)` | Varies (String, Integer) | Specific mandatory properties and their values. |
+|   • `mandatoryComplexPropertiesValues` | Object | Complex structured configurations required by the action; empty if no complex properties are needed. |
+|   • `description` | String or null | Description of the action (if applicable). |
+|   • `ruleScope` | String | Specifies where the rule is evaluated, such as server-side or client-side, determining its execution environment. |
+|   • `createdBy` | Integer | The user ID of the person who originally created this rule. |
+|   • `modifiedBy` | Integer | The user ID of the person who made the most recent changes to this rule. |
+|   • `modifiedOn` | Long | The epoch timestamp recording when this rule was last updated. |
+|   • `name` | String | The display name assigned to this rule for identification within the ruleset. |
+|   • `description` | String | A summary documenting the purpose and behaviour of this rule. |
+|   • `ruleSetId` | Integer | The unique identifier linking this rule to its parent ruleset. |
+|   • `updatedViaNewUI` | Boolean | Indicates if this rule was last modified using the Loyalty+ UI. |
+|   • `ruleScope` | String | Specifies the execution scope, such as server-side or client-side, determining where the ruleset's rules are evaluated. |
+|   • `startDate` | String | The epoch timestamp in milliseconds marking when this ruleset becomes active. |
+|   • `endDate` | String | The epoch timestamp in milliseconds marking when this ruleset expires and stops being evaluated. |
+|   • `createdOn` | Long | Date the rule was created, in epoch time. |
+|   • `createdBy` | Integer | The user ID of the person who originally created this ruleset. |
+|   • `modifiedBy` | Integer | The user ID of the person who made the most recent changes to this ruleset. |
+|   • `modifiedOn` | Long | The epoch timestamp recording when this rule was last updated. |
+|   • `name` | String | The display name assigned to this ruleset for identification and reference. |
+|   • `packageName` | String | The package identifier used to group related rulesets together. |
+|   • `description` | String | A summary describing the purpose and scope of this ruleset. |
+|   • `filterInfo` | Array | The filter objects that restrict which customers or conditions the ruleset's rules are evaluated against. |
+|   • `id` | Integer | Unique identifier of the filter. |
+|   • `orgID` | Integer | Organization ID linked to the filter. |
+|   • `ruleID` | Integer | Rule ID associated with the filter. |
+|   • `name` | String | Name of the filter. Example: LoyaltyType, EventSource |
+|   • `className` | String | Java class name that implements the filter. |
+|   • `isInclude` | Boolean | Indicates whether the filter: -`true` : Includes entities that match the property values defined in `propertyToValues`. -`false` : Excludes entities that match the property values defined in `propertyToValues`. |
+|   • `propertyToValues` | Object | Key-to-list mapping of filter properties. |
+|   • `eventType` | String | The category of customer event that triggers this ruleset's evaluation. |
+|   • `cappingInfo` | Array | The capping configuration objects that enforce quantity or frequency limits on promotion benefits within the ruleset. |
+|   • `updatedViaNewUI` | Boolean | Indicates if the rule was updated via the new UI. |
+|   • `label` | String | A display tag used to organise and identify this ruleset. |
+|   • `private` | Boolean | Indicates if this ruleset is restricted to specific organisations or contexts, rather than shared broadly. |
+|   • `programName` | String | The name of the loyalty program under which this promotion operates. |
+|   • `programId` | Integer | The unique ID of the loyalty program to which this promotion belongs. |
+|   • `startDate` | String (ISO 8601) | Specifies the date and time from which the promotion becomes active, in ISO 8601 format. |
+|   • `endDate` | String (ISO 8601) | Specifies the date and time when the promotion stops being available to customers, in ISO 8601 format. |
+|   • `identifier` | String | Specifies the external identifier configured for the promotion — a human-readable or externally assigned string used to reference it across systems. |
+|   • `isActive` | Boolean | Indicates if the promotion is currently available for earning and redemption. |
+|   • `eventName` | String | Specifies the customer action or milestone that activates this promotion. |
+|   • `allocatePointsOn` | String | Specifies the transaction event at which promotion points are credited to the customer. |
+|   • `limits` | Object | Defines various limits related to the promotion. |
+|   • `pointsPerCustomer` | Integer | The maximum total points a single customer can earn from this promotion; -1 means unlimited. |
+|   • `numberOfTimesPerCustomer` | Integer | The maximum number of times a customer can earn from this promotion; -1 means unlimited. |
+|   • `totalPointsInPromotion` | Integer | The maximum total points available across all customers for this promotion; -1 means no overall cap. |
+|   • `totalPointsPerEventLimit` | Integer | The maximum points awardable in a single event occurrence; -1 means no per-event cap. |
+|   • `useProportions` | Boolean | Indicates if points are distributed proportionally based on transaction values rather than as fixed amounts. |
+|   • `pointsOfferType` | String | Specifies the category of points awarded by this promotion. |
+|   • `promotionRestrictions` | Object | Defines restrictions for the promotion. |
+|   • `restrictions` | Object | Object of redemption restrictions. |
+|   • `redemptionRestrictions` | Object | Contains information on the redemption limits for a promotion. |
+|   • `name` | Enum | Type of redemption restriction. Possible values:`MAX_ALLOWED_POINTS_PER_EVENT`: The maximum points that can be earned for a single activity (make a transaction, redeem points etc.) done by a customer.`MAX_ALLOWED_TIMES_PER_CUSTOMER`: The maximum number of activities (make a transaction, redeem points etc.) a customer can do to earn points.`MAX_ALLOWED_POINTS_PER_CUSTOMER`:The maximum number of points a customer can earn from a promotion.`MAX_ALLOWED_TIMES_PER_PROMOTION`: The maximum number of activities (make a transaction, redeem points etc.) allowed across all customers in the brand for the promotion.`MAX_ALLOWED_POINTS_PER_PROMOTION`:The maximum number of points available across all customers in the brand for the promotion.`MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER`:The maximum number of times a customer can redeem a promotion after earning |
+|   • `value` | Integer | Number of units corresponding to the `name`. Specify `-1` for no limit (max limit: 100). |
+|   • `type` | Enum | Type of period for restriction. Possible values: `PERIOD_BASED`, `NON_PERIOD_BASED`. |
+|   • `periodType` | Enum | Type of period. Supported value: `MOVING_WINDOW`. |
+|   • `periodUnit` | Enum | Frequency of the period. Possible values: `DAILY`, `WEEKLY`, `MONTHLY`. |
+|   • `issualRestrictions` | Object | Contains information on the issual limits for a promotion. |
+|   • `name` | Enum | Type of issual restriction. Possible values:`MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER`: Maximum number of times a promotion can be issued to a customer. |
+|   • `value` | Integer | Number of units corresponding to the `name`. Specify `-1` for no limit (max limit: 100). |
+|   • `earnRestrictions` | Object | Contains information on the earn limits for a promotion (specific to enrol-and-issue promotions). |
+|   • `name` | Enum | Type of earn restriction. Possible values:`MAX_NUMBER_OF_EARNS_PER_CUSTOMER`: The maximum number of times a loyalty promotion can be issued to a customer.`MAX_NUMBER_OF_EARNS_PER_PROMOTION`: The maximum number of times a loyalty promotion can be issued across customers.`MAX_POINTS_PER_EARN_PER_CUSTOMER`: The maximum number of points a customer can earn in a single event from a promotion. |
+|   • `value` | Integer | Number of units corresponding to the `name`. Specify `-1` for no limit (max limit: 100). |
+|   • `expiryRestrictions` | Object | Contains information on the expiry for a promotion (mandatory for all promotion types). |
+|   • `name` | Enum | Action that is expiring. Possible values:`ISSUAL_PROMOTION_EXPIRY_BASED_ON`: The time period within which the customer must complete the activity required to issue the loyalty promotion. Once this lapses, the customer cannot earn the loyalty promotion.`EARN_PROMOTION_EXPIRY_BASED_ON`: The time period within which the customer must complete the activity required to receive the loyalty promotion benefits. Once this lapses, the customer cannot earn the benefits. |
+|   • `type` | Enum | Type of expiration. Possible values: `PROMOTION`, `CUSTOM`. |
+|   • `value` | Integer | Number of days the loyalty promotion expires from the date of issual. |
 | `scope` | Object or null | Scope of the promotion restrictions. |
 | `isStackable` | Boolean | Indicates if the promotion can be applied alongside other active promotions within the same transaction. |
 | `isConsideredForRanking` | Boolean | Indicates if the promotion is included in priority ranking, which controls which promotions take precedence when multiple are applicable to the same transaction. |
@@ -392,10 +392,10 @@ This API fetches results for loyalty promotions created on the [old UI](https://
 | `skipEarnedDateCheckOnRedeem` | Boolean | Determines whether redemption must occur within the validity window for the earned promotion. * false (default): Enforces date checks during redemption. The event date must be between the `createdOn` and `expiresOn` dates of the earn. * true: Skips the earned date window check during redemption; redemption can proceed even if the event date is before `createdOn` or after `expiresOn`. |
 | `targetRuleIds` | Array of Integers | The rule IDs specifying which earning rules define the points and benefits available through this promotion. |
 | `pageDetails` | Object | Contains metadata about the paginated result set, including current page, page size, and total record counts. |
-| • `pageNumber` | Integer | Current page number in the paginated result. |
-| • `pageSize` | Integer | Number of items displayed per page. |
-| • `totalEntries` | Integer | Total number of records available for pagination. |
-| • `pageCount` | Integer | Total number of pages available for the current query and page size. |
+|   • `pageNumber` | Integer | Current page number in the paginated result. |
+|   • `pageSize` | Integer | Number of items displayed per page. |
+|   • `totalEntries` | Integer | Total number of records available for pagination. |
+|   • `pageCount` | Integer | Total number of pages available for the current query and page size. |
 
 ## API specific error codes
 

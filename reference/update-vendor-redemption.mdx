@@ -83,20 +83,20 @@ Note: Parameters marked with `(*)` are mandatory.
 | `name` | String | The name defined by the brand for the vendor reward. |
 | **`redemptionType*`** | Enum | Specifies the method by which the customer can redeem rewards. Supported values: `GAMES`, `AUCTION`, `CART_PROMOTION`, `CASH_WALLET`, `VENDOR_ONLY_REWARD`, `VOUCHER`, `CASH_BACK`, `INTOUCH_REWARD`, `PHYSICAL_REWARD`, `CHARITY`, `MILES`, `GIFT_CARD`, `SWEEPSTAKES`, `VENDOR_INTOUCH_REWARD`, `CARD_DISC` **VENDOR_ONLY_REWARD**`: These are either points or coupons created at the vendor end. `**VENDOR_INTOUCH_REWARD**`: These are vendor rewards created at the Capillary end. It's not recommended to use `VENDOR_INTOUCH_REWARD`instead, use `VENDOR_ONLY_REWARD` to issue coupons directly through the vendor API. |
 | **`actions*`** | Object | Specifies the Name, Endpoint URL, API Type, API Headers, and the API Body of the internal API that executes a specific action. |
-| `- apiUrl`* | String | The URL to which the API request is made. For example, `"apiUrl": "https://partial.com/reward/issue"` specifies the endpoint where the request to issue a reward will be made. |
-| `- apiBodyField` |  |  |
-| `- apiBody` | String | The API body for the external API endpoint specified in `apiUrl`. You can also include custom fields, fulfillment status, and reward transaction ID. The fulfillment status and reward transaction ID are variables resolved in the backend according to the associated transaction.\\- **Custom Field**: Enables brands to add additional data in the API request. Use the format `customfield_customFieldName`. For example, a custom field named "Address: Bangalore" should be written as `customfield_Address` then it will replace the value of custom field with Bangalore. Note: Only custom fields created with `ISSUE_REWARD` scope are supported. **Fulfillment Status**: Enables updating the fulfillment status. Use the parameter `fulfillmentStatus`, formatted in camelCase. **Reward Transaction ID**: Enables adding the reward transaction ID. This helps the vendor to identify the transaction associated with the issued reward. Use the parameter `rewardTransactionId`, formatted in camelCase. **NOTE:** The API body supports other parameters that can be included based on the brand's specific requirements or integration needs.\- Internal Capillary APIs can also be used. |
-| `- name`* | String | The name of the action to be executed. |
-| `- execOrder`* | Integer | The execution order of the action. |
-| `- apiType`* | String | The HTTP method to be used for the API request. |
-| `- retryAction` | Boolean | Indicates whether the action should be retried on failure (`true`/`false`). |
-| `- actionId` | Integer | A unique identifier for the action. |
-| `- enabled` | Boolean | Specifies if the action is active (`true`/`false`). |
-| `- apiHeaders`* | Object | An object containing the headers to be sent with the API request. |
-| `-- Authorization` | String | The authorization header containing the authentication credentials. |
-| `-- Content-Type` | String | The content type header indicating the format of the request body. |
-| `- contextKeys`* | Object | An object containing context keys for extracting values from the response. |
-| `-- voucher` | String | The context key for extracting the voucher ID from the response. |
+|   • `apiUrl`* | String | The URL to which the API request is made. For example, `"apiUrl": "https://partial.com/reward/issue"` specifies the endpoint where the request to issue a reward will be made. |
+|   • `apiBodyField` |  |  |
+|   • `apiBody` | String | The API body for the external API endpoint specified in `apiUrl`. You can also include custom fields, fulfillment status, and reward transaction ID. The fulfillment status and reward transaction ID are variables resolved in the backend according to the associated transaction.\\- **Custom Field**: Enables brands to add additional data in the API request. Use the format `customfield_customFieldName`. For example, a custom field named "Address: Bangalore" should be written as `customfield_Address` then it will replace the value of custom field with Bangalore. Note: Only custom fields created with `ISSUE_REWARD` scope are supported. **Fulfillment Status**: Enables updating the fulfillment status. Use the parameter `fulfillmentStatus`, formatted in camelCase. **Reward Transaction ID**: Enables adding the reward transaction ID. This helps the vendor to identify the transaction associated with the issued reward. Use the parameter `rewardTransactionId`, formatted in camelCase. **NOTE:** The API body supports other parameters that can be included based on the brand's specific requirements or integration needs.\- Internal Capillary APIs can also be used. |
+|   • `name`* | String | The name of the action to be executed. |
+|   • `execOrder`* | Integer | The execution order of the action. |
+|   • `apiType`* | String | The HTTP method to be used for the API request. |
+|   • `retryAction` | Boolean | Indicates whether the action should be retried on failure (`true`/`false`). |
+|   • `actionId` | Integer | A unique identifier for the action. |
+|   • `enabled` | Boolean | Specifies if the action is active (`true`/`false`). |
+|   • `apiHeaders`* | Object | An object containing the headers to be sent with the API request. |
+|   ◦ `Authorization` | String | The authorization header containing the authentication credentials. |
+|   ◦ `Content-Type` | String | The content type header indicating the format of the request body. |
+|   • `contextKeys`* | Object | An object containing context keys for extracting values from the response. |
+|   ◦ `voucher` | String | The context key for extracting the voucher ID from the response. |
 | `responseKeys` | Array | A list of response keys expected from the vendor API. |
 | **`vendorId*`** | String | The unique ID of the vendor. |
 | `enabled` | Boolean | Indicates whether this vendor redemption configuration is active (`true`/`false`). |

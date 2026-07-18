@@ -63,12 +63,12 @@ This API grants multiple cart promotions to a customer in a single request.
 | eventTimeISO | String | Conditional | Defines the timestamp when the bulk earning event occurred in ISO 8601 format, including the region offset. * The promotion uses this timestamp to determine whether the earnings are valid. * A past timestamp can be provided if the earning is being recorded after the event occurred, as long as it falls within the promotion's active earning period. For example, the bulk earning event occurred at 14:30:45 on December 16, 2025, in India. Format for the request parameter: 2025-12-16T14:30:45+05:30. |
 | earnedFromType | Enum | Yes | Specifies how the cart promotion was earned. Supported values: `BULK_ISSUE`: Cart promotion granted via a bulk operation. `ACTIVITY:` Triggered by a specific customer event. `MILESTONE`: Triggered by achieving a predefined milestone. `REWARD`: Granted as a reward. |
 | eventDetails | Object | Yes | Defines contextual details about the triggering event for this bulk operation. Example: "eventDetails": `{ "id": "6911e951f57b486147effa6c", "type": "BULK_ISSUE" }` |
-| .id | String | Yes | Specifies the unique ID of the event or bulk operation reference. |
-| .type | String | Yes | Specifies the type of event. Consistent with earnedFromType. Supported values: • BULK_ISSUE: Cart promotion granted via a bulk operation. •ACTIVITY: Triggered by a specific customer event. • MILESTONE: Triggered by achieving a predefined milestone. • REWARD: Granted as a reward. |
+|   .id | String | Yes | Specifies the unique ID of the event or bulk operation reference. |
+|   .type | String | Yes | Specifies the type of event. Consistent with earnedFromType. Supported values: • BULK_ISSUE: Cart promotion granted via a bulk operation. •ACTIVITY: Triggered by a specific customer event. • MILESTONE: Triggered by achieving a predefined milestone. • REWARD: Granted as a reward. |
 | earnedPromotions | Object | Yes | Defines a list of cart promotions to be earned by the customer in this request. Min items: 1. |
-| .promotionId | String | Yes | Specifies the unique identifier of the specific cart promotion being earned. |
-| .earnCount | Integer | Yes | Specifies the number of times this specific cart promotion should be earned. Must be 1 or greater. |
-| .earnedFromId | String | Yes | Indicates a unique identifier for this specific earning within the bulk operation. |
+|   .promotionId | String | Yes | Specifies the unique identifier of the specific cart promotion being earned. |
+|   .earnCount | Integer | Yes | Specifies the number of times this specific cart promotion should be earned. Must be 1 or greater. |
+|   .earnedFromId | String | Yes | Indicates a unique identifier for this specific earning within the bulk operation. |
 
 ## Example response
 
@@ -135,24 +135,24 @@ This API grants multiple cart promotions to a customer in a single request.
 | Field | Type | Description |
 | --- | --- | --- |
 | data | Array[Object] | Defines a list of results , one for each entry in the request's earnedPromotions array. |
-| .earnedFromId | String | Indicates the unique identifier provided in the request for this specific earning instance. |
-| .promotionId | String | Specifies the cart promotion ID from the corresponding request entry. |
-| .successfulEarnCount | Integer | Indicates how many instances specified by earnCount were successfully created. |
-| .failedEarnCount | Integer | Indicates how many instances specified by earnCount failed to be created. |
-| .errorDetails | Object | Defines details about the failure, present only if failedEarnCount > 0. |
-| ...errorCode | Integer | Specifies a code indicating the reason for failure. |
-| ...errorMessages | String | Specifies a descriptive message explaining the failure. |
-| .customerEarnedPromotions | Array[Object] | Defines a list containing the details of each successfully created earning cart promotion for this entry. |
-| ....id | String | Specifies the unique identifier (earnId) for the successfully created earning cart promotion. |
-| ....customerId | Long | Specifies the ID of the customer. |
-| ....promotionId | String | Specifies the ID of the cart promotion definition. |
-| ....earnedFromType | Enum | Indicates how the cart promotion was earned. |
-| ....earnedFromId | String | Indicates the identifier for this specific earning instance. |
-| ....eventTime | Long | Specifies the timestamp when the earning occurred. |
-| ....eventTimeISO | String | Specifies the earning timestamp in UTC in ISO 8601 format, returned in the server time zone. EU server example 2026-02-04T09:08:48Z → 04 February 2026, 09:08:48 (UTC) India server example 2026-02-04T14:38:48+05:30 → 04 February 2026, 14:38:48 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
-| ....eventDetails | Object | Defines details about the triggering event. |
-| ....validTill | Long | Specifies the expiry timestamp in UTC for this earned cart promotion. Time format : Unix epoch milliseconds |
-| ....validTillISO | String | Specifies the expiry timestamp in UTC in ISO 8601 format, returned in the server time zone. EU server example 2026-02-04T09:09:30Z → 04 February 2026, 09:09:30 (UTC) India server example 2026-02-04T14:39:30+05:30 → 04 February 2026, 14:39:30 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
+|   .earnedFromId | String | Indicates the unique identifier provided in the request for this specific earning instance. |
+|   .promotionId | String | Specifies the cart promotion ID from the corresponding request entry. |
+|   .successfulEarnCount | Integer | Indicates how many instances specified by earnCount were successfully created. |
+|   .failedEarnCount | Integer | Indicates how many instances specified by earnCount failed to be created. |
+|   .errorDetails | Object | Defines details about the failure, present only if failedEarnCount > 0. |
+|       ...errorCode | Integer | Specifies a code indicating the reason for failure. |
+|       ...errorMessages | String | Specifies a descriptive message explaining the failure. |
+|   .customerEarnedPromotions | Array[Object] | Defines a list containing the details of each successfully created earning cart promotion for this entry. |
+|         ....id | String | Specifies the unique identifier (earnId) for the successfully created earning cart promotion. |
+|         ....customerId | Long | Specifies the ID of the customer. |
+|         ....promotionId | String | Specifies the ID of the cart promotion definition. |
+|         ....earnedFromType | Enum | Indicates how the cart promotion was earned. |
+|         ....earnedFromId | String | Indicates the identifier for this specific earning instance. |
+|         ....eventTime | Long | Specifies the timestamp when the earning occurred. |
+|         ....eventTimeISO | String | Specifies the earning timestamp in UTC in ISO 8601 format, returned in the server time zone. EU server example 2026-02-04T09:08:48Z → 04 February 2026, 09:08:48 (UTC) India server example 2026-02-04T14:38:48+05:30 → 04 February 2026, 14:38:48 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
+|         ....eventDetails | Object | Defines details about the triggering event. |
+|         ....validTill | Long | Specifies the expiry timestamp in UTC for this earned cart promotion. Time format : Unix epoch milliseconds |
+|         ....validTillISO | String | Specifies the expiry timestamp in UTC in ISO 8601 format, returned in the server time zone. EU server example 2026-02-04T09:09:30Z → 04 February 2026, 09:09:30 (UTC) India server example 2026-02-04T14:39:30+05:30 → 04 February 2026, 14:39:30 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
 | errors | Array | Defines an array for errors encountered. |
 
 ## Error codes
