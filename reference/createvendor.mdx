@@ -1,20 +1,16 @@
 ---
 title: Create a Vendor
 ---
-
 A vendor is an external third-party brand that you can use to fulfil your rewards. This API allows you to define vendor details, add images and videos, and display them in your reward catalogue.
 
-<Callout kind="tip" title="Note">
-
-For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
-
+<Callout kind="tip" collapsed="false">
+  For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
 </Callout>
 
 ## Example request
 
 <CodeGroup show-lines="true" tabs={["Sample request"]}>
-
-  ```bash "Sample request"
+  ```bash wrap="true" "Sample request"
   curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/vendor/create' \
   --header 'Accept: application/json' \
   --header 'Content-Type: application/json' \
@@ -52,17 +48,16 @@ For detailed information about our APIs and for hands-on testing, refer document
        "description": "6 Vendor for UAT"
   }'
   ```
-
 </CodeGroup>
 
 ## Prerequisites
 
-- [ ] Authentication: Basic/OAuth authentication
-- [ ] Default access group
+- Authentication: Basic/OAuth authentication
+- Default access group
 
 ## Resource information
 
-| URI           | /api_gateway/rewards/core/v1/vendor/create |
+| URI           | /api\_gateway/rewards/core/v1/vendor/create |
 | :------------ | :------------------------------------------ |
 | HTTP method   | POST                                        |
 | Pagination    | NA                                          |
@@ -71,9 +66,8 @@ For detailed information about our APIs and for hands-on testing, refer document
 
 ## Request body
 
-<CodeGroup show-lines="true" tabs={["Create a vendor", "Create a vendor with internal image / video", "Create a vendor with external image / video"]}>
-
-  ```json "Create a vendor"
+<CodeGroup show-lines="true" tabs={["Create a vendor","Create a vendor with internal image / video","Create a vendor with external image / video"]}>
+  ```json wrap="true" "Create a vendor"
   {
    "name": "vendor002",
    "code": "vendor002",
@@ -90,7 +84,7 @@ For detailed information about our APIs and for hands-on testing, refer document
   }
   ```
 
-  ```json "Create a vendor with internal image / video"
+  ```json wrap="true" "Create a vendor with internal image / video"
   {
       "name": "DocVendor2",
       "code": "Doc002",
@@ -117,7 +111,7 @@ For detailed information about our APIs and for hands-on testing, refer document
   }
   ```
 
-  ```json "Create a vendor with external image / video"
+  ```json wrap="true" "Create a vendor with external image / video"
   {
       "name": "DocVendor3",
       "code": "Doc003",
@@ -143,7 +137,6 @@ For detailed information about our APIs and for hands-on testing, refer document
       "description": "The top priority vendor"
   }
   ```
-
 </CodeGroup>
 
 ## Request body parameters
@@ -174,9 +167,8 @@ For detailed information about our APIs and for hands-on testing, refer document
 
 ## Example response
 
-<CodeGroup show-lines="true" tabs={["Sample response", "Wrong type value", "Rank value is 0", "Invalid brandId", "Vendor already exists"]}>
-
-  ```json "Sample response"
+<CodeGroup show-lines="true" tabs={["Sample response","Wrong type value","Rank value is 0","Invalid brandId","Vendor already exists"]}>
+  ```json wrap="true" "Sample response"
   {
       "status": {
           "success": true,
@@ -227,7 +219,7 @@ For detailed information about our APIs and for hands-on testing, refer document
   }
   ```
 
-  ```json "Wrong type value"
+  ```json wrap="true" "Wrong type value"
   {
     "status": {
       "success": false,
@@ -237,7 +229,7 @@ For detailed information about our APIs and for hands-on testing, refer document
   }
   ```
 
-  ```json "Rank value is 0"
+  ```json wrap="true" "Rank value is 0"
   {
     "status": {
       "success": false,
@@ -247,7 +239,7 @@ For detailed information about our APIs and for hands-on testing, refer document
   }
   ```
 
-  ```json "Invalid brandId"
+  ```json wrap="true" "Invalid brandId"
   {
       "status": {
           "success": false,
@@ -267,7 +259,6 @@ For detailed information about our APIs and for hands-on testing, refer document
       "vendor": null
   }
   ```
-
 </CodeGroup>
 
 ## Response parameters
@@ -306,5 +297,6 @@ For detailed information about our APIs and for hands-on testing, refer document
 | :--- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------- |
 | 5007 | Vendor already exists                                                                                                                                                | Vendor with the same name already exists. |
 | 3004 | Brand not found                                                                                                                                                      | `brandId` provided is invalid.            |
-| 400  | Cannot deserialize value of type com.capillary.solutions.rewards.domain.Type from String "REWARD": value not one of declared Enum instance names: [POINTS, REWARDS] | `type` is invalid.                        |
+| 400  | Cannot deserialize value of type com.capillary.solutions.rewards.domain.Type from String "REWARD": value not one of declared Enum instance names: \[POINTS, REWARDS] | `type` is invalid.                        |
 | 400  | rank must be greater than zero                                                                                                                                       | Value for `rank` provided is 0.           |
+

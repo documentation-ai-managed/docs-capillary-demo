@@ -9,8 +9,8 @@ This API is used to retrieve details of Vendor List of a specific brand using Br
 
 ## Prerequisites
 
-- [ ] Authentication: Basic or OAuth authentication
-- [ ] Default access group
+- Authentication: Basic or OAuth authentication
+- Default access group
 
 ## API Specification
 
@@ -42,7 +42,7 @@ This API is used to retrieve details of Vendor List of a specific brand using Br
 | `type`         | String    | Filters the vendor list based on the specific vendor type. Supported values : `POINTS` and `REWARDS`. Note: The default value is REWARDS, even if the query parameter `type` is not set. |
 
 <CodeGroup show-lines="true" tabs={["HTTP"]}>
-  ```http HTTP
+  ```http wrap="true" HTTP
   https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/vendor/brand/1?enabled=false
   ```
 </CodeGroup>
@@ -86,7 +86,7 @@ This API is used to retrieve details of Vendor List of a specific brand using Br
 | `createdOnDateTime`     | Indicates the date and time when the vendor redemption was created, formatted in ISO 8601.                                                                                                                                                                                                             |
 
 <CodeGroup show-lines="true" tabs={["When enabled=false","When enabled=true","Failure: Invalid Brand ID","With sortBy=lastUpdatedOn","Generic","With Vendor code Filter"]}>
-  ```json "When enabled=false"
+  ```json wrap="true" "When enabled=false"
   {
       "status": {
           "success": true,
@@ -452,7 +452,7 @@ This API is used to retrieve details of Vendor List of a specific brand using Br
   }
   ```
 
-  ```json "When enabled=true"
+  ```json wrap="true" "When enabled=true"
   {
       "status": {
           "success": true,
@@ -630,7 +630,7 @@ This API is used to retrieve details of Vendor List of a specific brand using Br
   }
   ```
 
-  ```json "Failure: Invalid Brand ID"
+  ```json wrap="true" "Failure: Invalid Brand ID"
   {
       "status": {
           "success": false,

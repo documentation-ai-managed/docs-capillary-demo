@@ -1,43 +1,38 @@
 ---
 title: Get all vendor redemptions
 ---
-
 This API is used to retrieve Vendor Redemption details. You can specify either a particular vendor or a reward type to filter the redemption details
 
-<Callout kind="tip" title="Note">
-
-For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
-
+<Callout kind="tip" collapsed="false">
+  For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
 </Callout>
 
 ## Example request
 
-<CodeGroup show-lines="true" tabs={["Sample request", "Sample request With sortOn=lastUpdatedOn, order= DESC, redemptionType= INTOUCH_REWARD"]}>
-
-  ```bash "Sample request"
+<CodeGroup show-lines="true" tabs={["Sample request","Sample request With sortOn=lastUpdatedOn, order= DESC, redemptionType= INTOUCH_REWARD"]}>
+  ```bash wrap="true" "Sample request"
   curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/vendor/redemptions?page=0&size=10&vendorId=430&order=ASC&redemptionType=INTOUCH_REWARD&sortOn=LAST_UPDATED_ON' \
   --header 'Authorization: Basic bWFkaHVfMjU2YQ==' \
   --header 'Cookie: _cfuvid=8rpNyzE0Ay41U4JARZee6dsWf__nZ.F84E_l3QkuwKU-1734505895564-0.0.1.1-604800000; _cfuvid=NtRONY0QwuYX36Yw4pjmIyA9l2D5m4QjzK0D0oQyNxA-1764223014942-0.0.1.1-604800000' \
   --header 'Accept: application/json'
   ```
 
-  ```bash "Sample request With sortOn=lastUpdatedOn, order= DESC, redemptionType= INTOUCH_REWARD"
+  ```bash wrap="true" "Sample request With sortOn=lastUpdatedOn, order= DESC, redemptionType= INTOUCH_REWARD"
   curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/vendor/redemptions?order=DESC&redemptionType=INTOUCH_REWARD&sortOn=LAST_UPDATED_ON' \
   --header 'Authorization: Basic bWFkaHzI3MjU2YQ==' \
   --header 'Cookie: _cfuvid=8rpNyzE0Ay41U4JARZee6dsWf__nZ.F84E_l3QkuwKU-1734505895564-0.0.1.1-604800000; _cfuvid=UN7LBPD0Ze6HcR1IkmVQYBfFVNI5f8Y.u5QwTnxv8Uo-1764223624323-0.0.1.1-604800000' \
   --header 'Accept: application/json'
   ```
-
 </CodeGroup>
 
 ## Prerequisites
 
-- [ ] Authentication: Basic or OAuth authentication
-- [ ] Default access group
+- Authentication: Basic or OAuth authentication
+- Default access group
 
 ## API Specification
 
-| URI                    | /api_gateway/rewards/core/v1/vendor/redemptions |
+| URI                    | /api\_gateway/rewards/core/v1/vendor/redemptions |
 | :--------------------- | :----------------------------------------------- |
 | HTTP Method            | GET                                              |
 | Pagination             | Yes                                              |
@@ -46,19 +41,18 @@ For detailed information about our APIs and for hands-on testing, refer document
 
 ## Request query parameters
 
-| Parameter Name | Data Type | Description |
-| --- | --- | --- |
-| size | Integer | Size of the page. The default value is 50. |
-| page | Integer | Specifies the page number for which results are retrieved. The default value is `0`, which returns the first page; 1 returns the next page, and subsequent values return subsequent pages. |
-| vendorId | Integer | A unique identifier for the vendor associated with the reward. |
-| redemptionType | Enum | Specifies the category of reward redemption available, it indicates how users can redeem the reward. **Supported values:** `GAMES, AUCTION, CART_PROMOTION, CASH_WALLET, VENDOR_ONLY_REWARD, VOUCHER, CASH_BACK, INTOUCH_REWARD, PHYSICAL_REWARD, CHARITY, MILES, GIFT_CARD, SWEEPSTAKES, VENDOR_INTOUCH_REWARD, CARD_DISC`. |
-| sortOn | Enum | Sorts the returned vendor list. Supported values : `lastUpdatedOn` |
-| order | Enum | Specifies the order in which results should be sorted based on `lastUpdatedOn` parameter . Supported values: `"ASC"` for ascending, `"DESC"` for descending. Default value is `"DESC"` |
+| Parameter Name | Data Type | Description                                                                                                                                                                                                                                                                                                                  |
+| -------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| size           | Integer   | Size of the page. The default value is 50.                                                                                                                                                                                                                                                                                   |
+| page           | Integer   | Specifies the page number for which results are retrieved. The default value is `0`, which returns the first page; 1 returns the next page, and subsequent values return subsequent pages.                                                                                                                                   |
+| vendorId       | Integer   | A unique identifier for the vendor associated with the reward.                                                                                                                                                                                                                                                               |
+| redemptionType | Enum      | Specifies the category of reward redemption available, it indicates how users can redeem the reward. **Supported values:** `GAMES, AUCTION, CART_PROMOTION, CASH_WALLET, VENDOR_ONLY_REWARD, VOUCHER, CASH_BACK, INTOUCH_REWARD, PHYSICAL_REWARD, CHARITY, MILES, GIFT_CARD, SWEEPSTAKES, VENDOR_INTOUCH_REWARD, CARD_DISC`. |
+| sortOn         | Enum      | Sorts the returned vendor list. Supported values : `lastUpdatedOn`                                                                                                                                                                                                                                                           |
+| order          | Enum      | Specifies the order in which results should be sorted based on `lastUpdatedOn` parameter . Supported values: `"ASC"` for ascending, `"DESC"` for descending. Default value is `"DESC"`                                                                                                                                       |
 
 ## Example response
 
-<CodeGroup show-lines="true" tabs={["Sample response", "Failure: Page Number and size are incorrect", "Failure: Invalid redemption type", "Sample response With sortOn=lastUpdatedOn, order= DESC, redemptionType= INTOUCH_REWARD"]}>
-
+<CodeGroup show-lines="true" tabs={["Sample response","Failure: Page Number and size are incorrect","Failure: Invalid redemption type","Sample response With sortOn=lastUpdatedOn, order= DESC, redemptionType= INTOUCH_REWARD"]}>
   ```json "Sample response"
   {
       "status": {
@@ -446,7 +440,7 @@ For detailed information about our APIs and for hands-on testing, refer document
   }
   ```
 
-  ```json "Failure: Page Number and size are incorrect"
+  ```json wrap="true" "Failure: Page Number and size are incorrect"
   {
       "status": {
           "success": false,
@@ -470,7 +464,7 @@ For detailed information about our APIs and for hands-on testing, refer document
   }
   ```
 
-  ```json "Sample response With sortOn=lastUpdatedOn, order= DESC, redemptionType= INTOUCH_REWARD"
+  ```json wrap="true" "Sample response With sortOn=lastUpdatedOn, order= DESC, redemptionType= INTOUCH_REWARD"
   {
       "status": {
           "success": true,
@@ -1055,7 +1049,6 @@ For detailed information about our APIs and for hands-on testing, refer document
       }
   }
   ```
-
 </CodeGroup>
 
 ## Response parameters
@@ -1088,3 +1081,4 @@ For detailed information about our APIs and for hands-on testing, refer document
 | :--------- | :------------------------------------------------- |
 | 8000       | Unable to fetch as Page number and size is invalid |
 | 2110       | Invalid redemption type                            |
+
