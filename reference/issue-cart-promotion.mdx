@@ -1,7 +1,6 @@
 ---
 title: Issue Cart Promotion
 ---
-
 This API issues a cart promotion to one or more customers.
 
 - When you call this API, the system adds the specified promotion to each customer's wallet, making it available for redemption at checkout.
@@ -9,17 +8,14 @@ This API issues a cart promotion to one or more customers.
 - You can issue the same promotion to multiple customers in a single request by passing an array of customer IDs in the request body.
 - The `contextId` parameter identifies the specific issuance context, which is useful for tracking and managing promotion grants.
 
-<Callout kind="tip" title="Note">
-
-For detailed information about the APIs and for hands-on testing, refer to the [API overview](https://docs.capillarytech.com/reference/apioverview) documentation and step-by-step guide on[ making your first API call.](https://docs.capillarytech.com/reference/make-your-first-api-call)
-
+<Callout kind="tip" collapsed="false">
+  For detailed information about the APIs and for hands-on testing, refer to the [API overview](https://docs.capillarytech.com/reference/apioverview) documentation and step-by-step guide on[ making your first API call.](https://docs.capillarytech.com/reference/make-your-first-api-call)
 </Callout>
 
 ## Example request
 
-<CodeGroup show-lines="true" tabs={["Issue to single customer", "Issue to bulk customers"]}>
-
-  ```text "Issue to single customer"
+<CodeGroup show-lines="true" tabs={["Issue to single customer","Issue to bulk customers"]}>
+  ```text wrap="true" "Issue to single customer"
   curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/69117663b1cfc114606fd7fb/issueBulk?contextId=68fb1c9731d91c625a8d9e80' \
   --header 'Content-Type: application/json' \6NzYzNDkxOGFmNDI3MGQ3YzI4ZjU4ZjY3MmNhZjY1ZmY=' \
   --header 'Cookie: _cfuvid=IBM60ka7X5Aybk9Gp8JKVHig14rVuwA5XcyAUA-1747041228297-0.0.1.1-604800000; _cfuvid=fVY1aFlJcxMfPAsl7lBGJQG55iNNKmYw08.WciBy9eY-1747126931365-0.0.1.1-604800000; _cfuvid=.SKkqn5X9vb1GQsCWsMQPXos7ah5dTOcOGwZsXgVL14-1762781673638-0.0.1.1-604800000' \
@@ -28,7 +24,7 @@ For detailed information about the APIs and for hands-on testing, refer to the [
   ]'
   ```
 
-  ```text "Issue to bulk customers"
+  ```text wrap="true" "Issue to bulk customers"
   curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/69117663b1cfc114606fd7fb/issueBulk?contextId=68fb1c9731d91c625a8d9e80' \
   --header 'Content-Type: application/json' \
   --header 'Authorization: Basic Z2VvcmdlLmJ1a2OGFmNDI3MGQ3YzI4ZjU4ZjY3MmNhZjY1ZmY=' \
@@ -37,28 +33,27 @@ For detailed information about the APIs and for hands-on testing, refer to the [
     566881933, 566135941
   ]'
   ```
-
 </CodeGroup>
 
 ## Prerequisites
 
-&#9744; Authentication - Basic or OAuth authentication
+☐ Authentication - Basic or OAuth authentication
 
-&#9744; Access group resource - Write access to customer group resource
+☐ Access group resource - Write access to customer group resource
 
-&#9744; Cart promotionId and customerId
+☐ Cart promotionId and customerId
 
 ## Resource Information
 
-| URI           | promotions/\{promotionId\}/issueBulk |
+| URI           | promotions/\{promotionId}/issueBulk |
 | :------------ | :---------------------------------- |
 | Rate Limit    | NA                                  |
 | Batch support | Yes                                 |
 
 ## Path Parameter
 
-| Parameter (Parameters marked as \* are required) | Data Type | Description                                                                                                                                                                                                                               |
-| :----------------------------------------------- | :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Parameter (Parameters marked as \* are required) | Data Type | Description                                                                                                                                                                                                 |
+| :----------------------------------------------- | :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | promotionId\*                                    | String    | ID of cart promotion that is generated when creating a cart promotion. Use the [get promotions for a customer API](/reference/get-promotions-for-a-customer) to get the promotionId for the Cart Promotion. |
 
 ## Query Parameter
@@ -69,7 +64,7 @@ For detailed information about the APIs and for hands-on testing, refer to the [
 
 ## Request Body
 
-```
+```typescript
 [
   564332013
 ]
@@ -84,8 +79,7 @@ For detailed information about the APIs and for hands-on testing, refer to the [
 ## Response Body
 
 <CodeGroup show-lines="true" tabs={["JSON"]}>
-
-  ```json "JSON"
+  ```json JSON
   {
       "data": {
           "564332013": {
@@ -99,7 +93,6 @@ For detailed information about the APIs and for hands-on testing, refer to the [
       }
   }
   ```
-
 </CodeGroup>
 
 ## Response Body Parameters
@@ -107,12 +100,12 @@ For detailed information about the APIs and for hands-on testing, refer to the [
 | Parameter       | Data Type | Description                                                                                  |
 | :-------------- | :-------- | :------------------------------------------------------------------------------------------- |
 | data            | Object    | Object containing details of the customer and issued cart promotion.                         |
-| -- id | String    | The unique identifier for the issued promotion.                                              |
-| -- customerId | Long      | The ID of the customer to whom the promotion was issued.                                     |
-| -- promotionId | String    | The ID of the promotion that was issued.                                                     |
+| -- id           | String    | The unique identifier for the issued promotion.                                              |
+| -- customerId   | Long      | The ID of the customer to whom the promotion was issued.                                     |
+| -- promotionId  | String    | The ID of the promotion that was issued.                                                     |
 | -- earnedFromId | String    | The context ID that was passed in the API request, used to track the source of the issuance. |
-| -- eventTime | Long      | The timestamp (in milliseconds) when the promotion was issued.                               |
-| -- validTill | Long      | The timestamp (in milliseconds) until which the issued promotion is valid.                   |
+| -- eventTime    | Long      | The timestamp (in milliseconds) when the promotion was issued.                               |
+| -- validTill    | Long      | The timestamp (in milliseconds) until which the issued promotion is valid.                   |
 
 ## Error codes
 
@@ -128,3 +121,4 @@ For detailed information about the APIs and for hands-on testing, refer to the [
 | 1006 | Invalid customer identifier. The customer IDs array is empty, contains null values, or includes invalid identifiers. Provide a valid, non-empty array of customer identifiers. |
 | 1007 | Error while fetching customer identifier. Retry and validate all customer data in your bulk payload.                                                                           |
 | 500  | Internal server error. Retry the request after a short delay, and contact support if the error persists.                                                                       |
+
