@@ -1,7 +1,6 @@
 ---
 title: Get all custom fields
 ---
-
 ### param-table-linebreaks
 
 This API is used to retrieve the details of the reward custom field metadata created for the org.
@@ -52,8 +51,8 @@ This API is used to retrieve the details of the reward custom field metadata cre
 
 ## Prerequisites
 
-- [ ] Authentication: Basic or OAuth authentication
-- [ ] Default access group
+- Authentication: Basic or OAuth authentication
+- Default access group
 
 ## Resource information
 
@@ -66,16 +65,16 @@ This API is used to retrieve the details of the reward custom field metadata cre
 
 ## Request Query Parameters
 
-| Parameter Name | Data Type | Description                                                                                                                                                                                                                    |
-| -------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **`scope`**    | String    | Defines where the custom fields will be applicable:&#10;  • **`REWARD`**: While creating or updating a reward.&#10;  • **`CATALOGUE_PROMOTION`**: While creating or updating a promotion.&#10;  • **`ISSUE_REWARD`**: While issuing a reward. |
-| **`sortBy`**   | Enum      | Sorts the returned custom fields list. Supported values: `lastUpdatedOn`                                                                                                                                                       |
-| **`orderBy`**  | Enum      | Specifies the order in which results should be sorted. Supported values: `"ASC"` for ascending, `"DESC"` for descending. Default value is `"DESC"`.                                                                            |
+| Parameter Name | Data Type | Description                                                                                                                                                                                                                                   |
+| -------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`scope`**    | String    | Defines where the custom fields will be applicable:&#xA;  • **`REWARD`**: While creating or updating a reward.&#xA;  • **`CATALOGUE_PROMOTION`**: While creating or updating a promotion.&#xA;  • **`ISSUE_REWARD`**: While issuing a reward. |
+| **`sortBy`**   | Enum      | Sorts the returned custom fields list. Supported values: `lastUpdatedOn`                                                                                                                                                                      |
+| **`orderBy`**  | Enum      | Specifies the order in which results should be sorted. Supported values: `"ASC"` for ascending, `"DESC"` for descending. Default value is `"DESC"`.                                                                                           |
 
 ## Example response
 
-<CodeGroup show-lines="true">
-  ```json
+<CodeGroup show-lines="true" tabs={["Sample response With sortBy=lastUpdatedOn&orderBy=DESC&scope=CATALOGUE_PROMOTION","Sample response With scope=ISSUE_REWARD","Sample response With scope=REWARD","Sample response With scope= CATALOG_PROMOTION","Sample response With sortBy=lastUpdatedOn"]}>
+  ```json "Sample response With sortBy=lastUpdatedOn&orderBy=DESC&scope=CATALOGUE_PROMOTION"
   [
       {
           "id": 32546,
@@ -152,7 +151,7 @@ This API is used to retrieve the details of the reward custom field metadata cre
   ]
   ```
 
-  ```json
+  ```json "Sample response With scope=ISSUE_REWARD"
   [
       {
           "id": 21682,
@@ -193,7 +192,7 @@ This API is used to retrieve the details of the reward custom field metadata cre
   ]
   ```
 
-  ```json
+  ```json "Sample response With scope=REWARD"
   [
       {
           "id": 18833,
@@ -453,7 +452,7 @@ This API is used to retrieve the details of the reward custom field metadata cre
   ]
   ```
 
-  ```json
+  ```json "Sample response With scope= CATALOG_PROMOTION"
   [
       {
           "id": 28655,
@@ -530,7 +529,7 @@ This API is used to retrieve the details of the reward custom field metadata cre
   ]
   ```
 
-  ```json
+  ```json "Sample response With sortBy=lastUpdatedOn"
   [
       {
           "id": 32546,

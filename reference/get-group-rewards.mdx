@@ -3,20 +3,20 @@ title: Groups - Get all rewards group
 ---
 This API allows you to retrieve details of all the reward groups available in the org.
 
-<Callout kind="tip" title="Note">
+<Callout kind="tip" collapsed="false">
   For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
 </Callout>
 
 ## Example request
 
 <CodeGroup show-lines="true" tabs={["Sample request with orderBy=DESC&active=true","Sample request with sortOn=LAST_UPDATED_ON","Sample request with orderBy=DESC"]}>
-  ```bash "Sample request with orderBy=DESC&active=true"
+  ```bash wrap="true" "Sample request with orderBy=DESC&active=true"
   curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/group?orderBy=DESC&active=true' \
   --header 'Authorization: Basic bWFkaHVfI3MjU2YQ==' \
   --header 'Cookie: _cfuvid=_XMq7vU15Ra4rfJ4eowUt3bE5nF5uk07Qq9cb7Xe63c-1747204203136-0.0.1.1-604800000; _cfuvid=En1D6mn09Bs3S7Mthyzz2LmKmJscmFt47ubQgAHwC.M-1764061935605-0.0.1.1-604800000'
   ```
 
-  ```bash "Sample request with sortOn=LAST_UPDATED_ON"
+  ```bash wrap="true" "Sample request with sortOn=LAST_UPDATED_ON"
   curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/group?sortOn=LAST_UPDATED_ON' \
   --header 'Authorization: Basic bWFkaHMjU2YQ==' \
   --header 'Cookie: _cfuvid=_XMq7vU15Ra4rfJ4eowUt3bE5nF5uk07Qq9cb7Xe63c-1747204203136-0.0.1.1-604800000; _cfuvid=BNKMdc2rm4I7MYA3KIlxZDn.nhxE7URS3m2d4Ipaduo-1764062400363-0.0.1.1-604800000'
@@ -31,8 +31,8 @@ This API allows you to retrieve details of all the reward groups available in th
 
 ## Prerequisites
 
-- [ ] Authentication: Basic or OAuth authentication
-- [ ] Default access group
+- Authentication: Basic or OAuth authentication
+- Default access group
 
 ## Resource information
 
@@ -57,7 +57,7 @@ This API allows you to retrieve details of all the reward groups available in th
 
 ## Example response
 
-<CodeGroup show-lines="true" tabs={["Sample response with orderBy=DESC&active=true","with sortOn=LAST_UPDATED_ON","orderBy=DESC"]}>
+<CodeGroup show-lines="true" tabs={["Sample response with orderBy=DESC&active=true","with sortOn=LAST_UPDATED_ON"]}>
   ```json "Sample response with orderBy=DESC&active=true"
   {
       "status": {
@@ -360,7 +360,7 @@ This API allows you to retrieve details of all the reward groups available in th
   }
   ```
 
-  ```json orderBy=DESC
+  ```json
   {
       "status": {
           "success": true,
@@ -537,7 +537,7 @@ This API allows you to retrieve details of all the reward groups available in th
 | message               | String    | A message describing the operation outcome.                                       |
 | success               | Boolean   | Indicates if the operation was successful.                                        |
 
-<CodeGroup show-lines="true" tabs={["json","with sortOn=LAST_UPDATED_ON","orderBy=DESC"]}>
+<CodeGroup show-lines="true" tabs={["with sortOn=LAST_UPDATED_ON"]}>
   ```json
   {
       "status": {
@@ -684,7 +684,7 @@ This API allows you to retrieve details of all the reward groups available in th
   }
   ```
 
-  ```text orderBy=DESC
+  ```text
   {
       "status": {
           "success": true,

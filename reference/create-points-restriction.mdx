@@ -1,9 +1,7 @@
 ---
 title: Points Restrictions - Create points restriction
 ---
-
 ### param-table-linebreaks
-
 
 This API allows the brand to restrict the customer to the number of points they burn/redeem in the rewards catalog.
 
@@ -11,20 +9,17 @@ This helps brands control the customer’s activity on the rewards catalog and i
 
 For example: A brand wants to limit the number of points that a customer can redeem in the rewards catalog to 100 points in a week to purchase Intouch rewards. Using the points restriction API, the brand can limit the number of points redeemed by the customer.
 
-<Callout kind="tip" title="Note">
+<Callout kind="tip" collapsed="false">
+  For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
 
-For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
-
-- An org can have a limit of 50 restrictions that can be created.
-- For specific KPI, you can set a  maximum of 15 active restrictions.
-
+  - An org can have a limit of 50 restrictions that can be created.
+  - For specific KPI, you can set a  maximum of 15 active restrictions.
 </Callout>
 
 ## Example request
 
-<CodeGroup show-lines="true" tabs={["Sample request", "Org level constraint", "Org level points constraint", "Org level points constraint- Content type", "Multiple points constraint", "Creation of points constraint that already exists", "Points restriction on supplementary program", "Points restriction on customer segments", "Points Restriction on Customer Loyalty Program", "Points Restriction on Customer Label", "Points Restriction on Customer Tier"]}>
-
-  ```bash "Sample request"
+<CodeGroup show-lines="true" tabs={["Sample request","Org level constraint","Org level points constraint","Org level points constraint- Content type","Multiple points constraint","Creation of points constraint that already exists","Points restriction on supplementary program","Points restriction on customer segments","Points Restriction on Customer Loyalty Program","Points Restriction on Customer Label","Points Restriction on Customer Tier"]}>
+  ```bash wrap="true" "Sample request"
   curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/constraints' \
   --header 'Content-Type: application/json' \
   --header 'accept: application/json' \
@@ -43,7 +38,7 @@ For detailed information about our APIs and for hands-on testing, refer document
   ]'
   ```
 
-  ```json "Org level constraint"
+  ```json wrap="true" "Org level constraint"
   [
       {   
           "kpi" :"POINTS",
@@ -57,7 +52,7 @@ For detailed information about our APIs and for hands-on testing, refer document
   ]
   ```
 
-  ```json "Org level points constraint"
+  ```json wrap="true" "Org level points constraint"
   [
       {
           "orgId": 51544,
@@ -211,17 +206,16 @@ For detailed information about our APIs and for hands-on testing, refer document
       }
   ]
   ```
-
 </CodeGroup>
 
 ## Prerequisites
 
-- [ ] Authentication: Basic or OAuth authentication
-- [ ] Default access group
+- Authentication: Basic or OAuth authentication
+- Default access group
 
 ## Resource information
 
-| URI                    | api_gateway/rewards/core/v1/brand/constraints |
+| URI                    | api\_gateway/rewards/core/v1/brand/constraints |
 | :--------------------- | :--------------------------------------------- |
 | HTTP Method            | POST                                           |
 | Pagination             | No                                             |
@@ -230,20 +224,19 @@ For detailed information about our APIs and for hands-on testing, refer document
 
 ## Request body parameters
 
-| Parameter | Data Type | Description |
-| --- | --- | --- |
-| **`kpi*`** | String | The Key Performance Indicator (KPI) on which the restriction is applied. Supported value: `POINTS`. |
-| **`constraintLevel*`** | Enum | The level at which restrictions are defined by the organization and applied. Supported values:&#10;  • `CUSTOMER_SEGMENT`: Apply restrictions on a customer segment by passing `segmentId` and `partitionId`. (Note: These IDs are not currently available in the Insights+ UI; you'll need to create a Jira ticket to obtain them.)&#10;  • `CUSTOMER_TIER`: Apply restrictions based on customer tier by passing the `tierId`.&#10;  • `CUSTOMER_LOYALTY_PROGRAM`: Apply restrictions to a specific loyalty program by passing the `programId`.&#10;  • `CUSTOMER_REDEMPTION_TYPE`: Apply restrictions to redeemable vouchers by passing the `redemptionType`.&#10;  • `CUSTOMER_SUPPL_PROGRAM`: Apply restrictions to a supplementary program by passing the `supplementaryProgramId`.&#10;  • `CUSTOMER_LABEL`: Apply restrictions based on a customer `Label`.&#10;  • `CUSTOMER`: Use `CUSTOMER` to apply a restriction at the individual customer level.&#10;  • Only one combination of `Constraint_Level` and `KPI` is allowed with `DAILY`, `WEEKLY`, or `MONTHLY` `frequencyType`. |
-| `tierId` | String | Unique identifier for the tier . It is mandatory to provide a valid `tierId` when `CUSTOMER_TIER` is used as the `constraintLevel`. |
-| `programId` | String | Unique identifier for the program . It is mandatory to provide a valid `programId` when `CUSTOMER_LOYALTY_PROGRAM` is used as the `constraintLevel` |
-| **`frequencyType*`** | Enum | The frequency at which the constraint is applied. Supported values: `DAILY`, `WEEKLY`, `MONTHLY`. Points redemption is only applicable to fixed window restrictions. |
-| **`intervalValue*`** | Integer | The interval at which the frequency is applied. |
-| **`constraintLimitValue*`** | Integer | The limit value for the constraint. |
-| **`isActive*`** | Boolean | The status of the constraint, indicating whether it's active (`true`) or not (`false`). |
-| **`redemptionType*`** | ENUM | The type of InTouch reward. Supported values: `GAMES`, `AUCTION`, `CART_PROMOTION`, `CASH_WALLET`, `VENDOR_ONLY_REWARD`, `VOUCHER`, `CASH_BACK`, `INTOUCH_REWARD`, `PHYSICAL_REWARD`, `CHARITY`, `MILES`, `GIFT_CARD`, `SWEEPSTAKES`, `VENDOR_INTOUCH_REWARD`, `CARD_DISC`. |
+| Parameter                   | Data Type | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| --------------------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`kpi*`**                  | String    | The Key Performance Indicator (KPI) on which the restriction is applied. Supported value: `POINTS`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| **`constraintLevel*`**      | Enum      | The level at which restrictions are defined by the organization and applied. Supported values:&#xA;  • `CUSTOMER_SEGMENT`: Apply restrictions on a customer segment by passing `segmentId` and `partitionId`. (Note: These IDs are not currently available in the Insights+ UI; you'll need to create a Jira ticket to obtain them.)&#xA;  • `CUSTOMER_TIER`: Apply restrictions based on customer tier by passing the `tierId`.&#xA;  • `CUSTOMER_LOYALTY_PROGRAM`: Apply restrictions to a specific loyalty program by passing the `programId`.&#xA;  • `CUSTOMER_REDEMPTION_TYPE`: Apply restrictions to redeemable vouchers by passing the `redemptionType`.&#xA;  • `CUSTOMER_SUPPL_PROGRAM`: Apply restrictions to a supplementary program by passing the `supplementaryProgramId`.&#xA;  • `CUSTOMER_LABEL`: Apply restrictions based on a customer `Label`.&#xA;  • `CUSTOMER`: Use `CUSTOMER` to apply a restriction at the individual customer level.&#xA;  • Only one combination of `Constraint_Level` and `KPI` is allowed with `DAILY`, `WEEKLY`, or `MONTHLY` `frequencyType`. |
+| `tierId`                    | String    | Unique identifier for the tier . It is mandatory to provide a valid `tierId` when `CUSTOMER_TIER` is used as the `constraintLevel`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `programId`                 | String    | Unique identifier for the program . It is mandatory to provide a valid `programId` when `CUSTOMER_LOYALTY_PROGRAM` is used as the `constraintLevel`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| **`frequencyType*`**        | Enum      | The frequency at which the constraint is applied. Supported values: `DAILY`, `WEEKLY`, `MONTHLY`. Points redemption is only applicable to fixed window restrictions.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| **`intervalValue*`**        | Integer   | The interval at which the frequency is applied.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| **`constraintLimitValue*`** | Integer   | The limit value for the constraint.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| **`isActive*`**             | Boolean   | The status of the constraint, indicating whether it's active (`true`) or not (`false`).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| **`redemptionType*`**       | ENUM      | The type of InTouch reward. Supported values: `GAMES`, `AUCTION`, `CART_PROMOTION`, `CASH_WALLET`, `VENDOR_ONLY_REWARD`, `VOUCHER`, `CASH_BACK`, `INTOUCH_REWARD`, `PHYSICAL_REWARD`, `CHARITY`, `MILES`, `GIFT_CARD`, `SWEEPSTAKES`, `VENDOR_INTOUCH_REWARD`, `CARD_DISC`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
-<CodeGroup show-lines="true" tabs={["Org level constraint", "Org level points constraint", "Org level points constraint- Content type", "Multiple points constraint", "Creation of points constraint that already exists", "Points restriction on supplementary program", "Points restriction on customer segments", "Points Restriction on Customer Loyalty Program", "Points Restriction on Customer Label", "Points Restriction on Customer Tier"]}>
-
+<CodeGroup show-lines="true" tabs={["Org level constraint","Org level points constraint","Org level points constraint- Content type","Multiple points constraint","Creation of points constraint that already exists","Points restriction on supplementary program","Points restriction on customer segments","Points Restriction on Customer Loyalty Program","Points Restriction on Customer Label","Points Restriction on Customer Tier"]}>
   ```json "Org level constraint"
   [
       {   
@@ -412,13 +405,11 @@ For detailed information about our APIs and for hands-on testing, refer document
       }
   ]
   ```
-
 </CodeGroup>
 
 ## Example response
 
-<CodeGroup show-lines="true" tabs={["Sample response", "Response-Org level constraints", "Response- Multiple content type", "Response- Customer points constraint", "Response-Content type", "Response- Creation of points constraint that already exists", "Response - Creation of points restriction on supplementary program", "Response- Creation of points restriction on customer segments", "Response- Creation of points restriction on customer loyalty program", "Response- Creation of points restriction on customer label", "Response- Creation of points restriction on customer tier"]}>
-
+<CodeGroup show-lines="true" tabs={["Sample response","Response-Org level constraints","Response- Multiple content type","Response- Customer points constraint","Response-Content type","Response- Creation of points constraint that already exists","Response - Creation of points restriction on supplementary program","Response- Creation of points restriction on customer segments","Response- Creation of points restriction on customer loyalty program","Response- Creation of points restriction on customer label","Response- Creation of points restriction on customer tier"]}>
   ```json "Sample response"
   [
       {
@@ -445,7 +436,7 @@ For detailed information about our APIs and for hands-on testing, refer document
   ]
   ```
 
-  ```json "Response-Org level constraints"
+  ```json wrap="true" "Response-Org level constraints"
   [
       {
           "rewardConstraintId": 7010,
@@ -514,7 +505,7 @@ For detailed information about our APIs and for hands-on testing, refer document
   ]
   ```
 
-  ```json "Response- Customer points constraint"
+  ```json wrap="true" "Response- Customer points constraint"
   [
       {
           "rewardConstraintId": 4226,
@@ -688,7 +679,6 @@ For detailed information about our APIs and for hands-on testing, refer document
       }
   ]
   ```
-
 </CodeGroup>
 
 ## Response parameters
@@ -718,3 +708,4 @@ For detailed information about our APIs and for hands-on testing, refer document
 | 12018      | Please make sure isActive flag is true for all the entries in the request body in create constraint call. |
 | 12020      | The limit of org level KPIs is reached. Please disable existing KPI constraints to add new constraints.   |
 | 12022      | Multiple restrictions are passed. Only one combination of constraint level and KPI is allowed.            |
+
