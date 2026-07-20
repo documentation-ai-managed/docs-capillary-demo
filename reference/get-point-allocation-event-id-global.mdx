@@ -1,31 +1,25 @@
 ---
 title: Get Point Allocation Details by Event ID
 ---
-
 ### param-table-linebreaks
 
-
-<Callout kind="danger">
-
+<Callout kind="danger" collapsed="false">
   This is a private API. Private APIs are deprecated and hence this page is hidden.
-
 </Callout>
 
 The API retrieves information about points allocated to a customer based on the event ID.
 
-<Callout kind="alert" title="Note">
-
-This API is a private API that has been exposed through [Neo ](https://docs.capillarytech.com/docs/neo-quick-start)and made public.
-
+<Callout kind="alert" collapsed="false">
+  This API is a private API that has been exposed through [Neo ](https://docs.capillarytech.com/docs/neo-quick-start)and made public.
 </Callout>
 
 ## Prerequisites
 
-&#9744; Basic or OAuth authentication details
+☐ Basic or OAuth authentication details
 
-&#9744; Access group resource - NA
+☐ Access group resource - NA
 
-&#9744; Header `x-cap-neo-dag-scope` set to  `global`
+☐ Header `x-cap-neo-dag-scope` set to  `global`
 
 ## Resource information
 
@@ -39,25 +33,23 @@ This API is a private API that has been exposed through [Neo ](https://docs.capi
 ## Example request
 
 <CodeGroup show-lines="true" tabs={["using transaction ID"]}>
-
-  ```json "using transaction ID"
+  ```bash wrap="true" "using transaction ID"
   curl --location 'https://eu.api.capillarytech.com/x/neo/pointsAllocation/event?entity_id=890697432&customer_id=566135941&event_type_id=15' \
   --header 'x-cap-neo-dag-scope: global' \
   --header 'Authorization: Basic ZGl2eWFfZG9jOmVjMzFiZWY3ZTNhNTdlYTI0YTYyZTZm' \
   --header 'Cookie: _cfuvid=nkdqRjD57tAqwEjeR8HFwvTH0opPqch.Nf9wK366n4k-1758113514799-0.0.1.1-604800000'
   ```
-
 </CodeGroup>
 
 ## Request query parameters
 
-| Parameter | Data Type | Required | Description |
-| --- | --- | --- | --- |
-| entity_id | String | Yes | Specifies the identifier used to fetch event-specific details. See the list below.&#10;  • The [event ID ](https://docs.capillarytech.com/reference/get-customer-events-data#/) (eventID in the Get customer Event API response) of the event, such as TransactionAdd or a behavioural event&#10;  • [The server-generated request ID of a behavioural event](https://docs.capillarytech.com/reference/post-event).&#10;  • For a `TransactionAdd` event, the Request ID can be retrieved from the **Evaluation Log** in the Member Care UI under **Events** > **Transactions** for the respective transaction.&#10;  • Transaction ID ([createdId from the Add transaction response](https://docs.capillarytech.com/reference/add-transaction-single#/)) |
-| customer_id | Long | Yes | Unique Customer ID |
-| event_type_id | Integer | Yes | Unique identifier for the type of event. This depends on the kind of event. Refer to the[table below](/reference/get-point-allocation-event-id-global#/example-request)for the event type ID associated with your event. |
-| page | Integer | No | Retrieve details of a specific page. Page count starts from 1. **Example**: `page=2` retrieves data on page 2. |
-| count | Integer | No | Number of results to display per page. The default value is 10. The maximum supported value is 100. |
+| Parameter       | Data Type | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| --------------- | --------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| entity\_id      | String    | Yes      | Specifies the identifier used to fetch event-specific details. See the list below.&#xA;  • The [event ID ](https://docs.capillarytech.com/reference/get-customer-events-data#/) (eventID in the Get customer Event API response) of the event, such as TransactionAdd or a behavioural event&#xA;  • [The server-generated request ID of a behavioural event](https://docs.capillarytech.com/reference/post-event).&#xA;  • For a `TransactionAdd` event, the Request ID can be retrieved from the **Evaluation Log** in the Member Care UI under **Events** > **Transactions** for the respective transaction.&#xA;  • Transaction ID ([createdId from the Add transaction response](https://docs.capillarytech.com/reference/add-transaction-single#/)) |
+| customer\_id    | Long      | Yes      | Unique Customer ID                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| event\_type\_id | Integer   | Yes      | Unique identifier for the type of event. This depends on the kind of event. Refer to the[table below](/reference/get-point-allocation-event-id-global#/example-request)for the event type ID associated with your event.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| page            | Integer   | No       | Retrieve details of a specific page. Page count starts from 1. **Example**: `page=2` retrieves data on page 2.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| count           | Integer   | No       | Number of results to display per page. The default value is 10. The maximum supported value is 100.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 
 ### Event type ID
 
@@ -156,53 +148,50 @@ This API is a private API that has been exposed through [Neo ](https://docs.capi
 ## Sample request
 
 <CodeGroup show-lines="true" tabs={["Sample request"]}>
-
-  ```bash "Sample request"
+  ```bash wrap="true" "Sample request"
   curl --location 'https://nightly.api.capillarytech.com/x/neo/pointsAllocation/event?entity_id=hfjWDK0dek&customer_id=374819205&event_type_id=15' \
   --header 'Content-Type: application/json' \
   --header 'x-cap-neo-dag-scope: global' \
   --header 'Authorization: Basic MDcxNTJkMjM0Yjcw' \
   --header 'Cookie: _cfuvid=aipDF8qJJabNkC6ofNg0_4.3nMtpbVSQI9mVehJNjMw-1749448275226-0.0.1.1-604800000; _cfuvid=5YjVQ2SkBWELRCgtes5wkbXKRpcYNHnhogmQk5roBL4-1750314849268-0.0.1.1-604800000'
   ```
-
 </CodeGroup>
 
 ## Response parameters
 
 | Parameter                  | Data Type | Description                                                                         |
 | -------------------------- | --------- | ----------------------------------------------------------------------------------- |
-| till_id                   | Integer   | Identifier of the store/till where the transaction occurred                         |
-| point_category_id        | Integer   | Unique identifier that indicates the type or category of points awarded or deducted |
-| program_id                | Integer   | ID of the loyalty program                                                           |
-| event_log_id             | Integer   | ID of the event log that recorded the transaction                                   |
-| event_type_id            | Integer   | ID indicating the type of event                                                     |
-| points_source_type_id   | Integer   | ID of the source type from which points were earned                                 |
-| original_points           | Integer   | Number of points initially awarded                                                  |
-| awarded_date              | Long      | Timestamp when the points were awarded (in milliseconds)                            |
-| returned_exclusive_value | Integer   | Exclusive value of points returned                                                  |
-| points_source_id         | Integer   | ID of the source entity awarding the points                                         |
+| till\_id                   | Integer   | Identifier of the store/till where the transaction occurred                         |
+| point\_category\_id        | Integer   | Unique identifier that indicates the type or category of points awarded or deducted |
+| program\_id                | Integer   | ID of the loyalty program                                                           |
+| event\_log\_id             | Integer   | ID of the event log that recorded the transaction                                   |
+| event\_type\_id            | Integer   | ID indicating the type of event                                                     |
+| points\_source\_type\_id   | Integer   | ID of the source type from which points were earned                                 |
+| original\_points           | Integer   | Number of points initially awarded                                                  |
+| awarded\_date              | Long      | Timestamp when the points were awarded (in milliseconds)                            |
+| returned\_exclusive\_value | Integer   | Exclusive value of points returned                                                  |
+| points\_source\_id         | Integer   | ID of the source entity awarding the points                                         |
 | id                         | Integer   | Unique ID of the point allocation entry                                             |
-| cps_id                    | Integer   | ID of the customer program state                                                    |
-| original_customer_id     | Integer   | ID of the customer before the merge or update                                       |
-| expiry_strategy_id       | Integer   | ID of the strategy used to determine point expiry                                   |
-| returned_value            | Integer   | Total value of returned points                                                      |
-| redeemed_exclusive_value | Integer   | Exclusive value of redeemed points                                                  |
-| expiry_date               | Long      | Expiry timestamp of the awarded points (in milliseconds)                            |
-| auto_update_time         | Long      | Timestamp of the last auto-update to the entry                                      |
-| redeemed_value            | Integer   | Value of points redeemed                                                            |
-| expired_exclusive_value  | Integer   | Exclusive value of points that have expired                                         |
-| allocation_strategy_id   | Integer   | ID of the strategy used to allocate points                                          |
-| points_value              | Integer   | Total value of the points awarded                                                   |
-| org_id                    | Integer   | Organization ID                                                                     |
-| expired_value             | Integer   | Value of points that expired                                                        |
-| customer_id               | Integer   | ID of the customer to whom the points are allocated                                 |
-| points_exclusive          | Integer   | Exclusive points that are available                                                 |
+| cps\_id                    | Integer   | ID of the customer program state                                                    |
+| original\_customer\_id     | Integer   | ID of the customer before the merge or update                                       |
+| expiry\_strategy\_id       | Integer   | ID of the strategy used to determine point expiry                                   |
+| returned\_value            | Integer   | Total value of returned points                                                      |
+| redeemed\_exclusive\_value | Integer   | Exclusive value of redeemed points                                                  |
+| expiry\_date               | Long      | Expiry timestamp of the awarded points (in milliseconds)                            |
+| auto\_update\_time         | Long      | Timestamp of the last auto-update to the entry                                      |
+| redeemed\_value            | Integer   | Value of points redeemed                                                            |
+| expired\_exclusive\_value  | Integer   | Exclusive value of points that have expired                                         |
+| allocation\_strategy\_id   | Integer   | ID of the strategy used to allocate points                                          |
+| points\_value              | Integer   | Total value of the points awarded                                                   |
+| org\_id                    | Integer   | Organization ID                                                                     |
+| expired\_value             | Integer   | Value of points that expired                                                        |
+| customer\_id               | Integer   | ID of the customer to whom the points are allocated                                 |
+| points\_exclusive          | Integer   | Exclusive points that are available                                                 |
 | status                     | String    | Current status of the point entry                                                   |
 
 ## Sample response
 
 <CodeGroup show-lines="true" tabs={["Sample Response"]}>
-
   ```json "Sample Response"
   [
       {
@@ -236,7 +225,6 @@ This API is a private API that has been exposed through [Neo ](https://docs.capi
       }
   ]
   ```
-
 </CodeGroup>
 
 ## Error codes
@@ -246,3 +234,4 @@ This API is a private API that has been exposed through [Neo ](https://docs.capi
 | 400        | Bad Request           |
 | 404        | Not Found             |
 | 500        | Internal Server Error |
+

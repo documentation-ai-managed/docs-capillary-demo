@@ -1,11 +1,8 @@
 ---
 title: Approve or reject a request
 ---
-
-<Callout kind="tip" title="Note">
-
-- For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
-
+<Callout kind="tip" collapsed="false">
+  - For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
 </Callout>
 
 ## API endpoint example
@@ -14,20 +11,20 @@ title: Approve or reject a request
 
 ## Prerequisites
 
-&#9744; Authentication: Basic or OAuth credentials
+☐ Authentication: Basic or OAuth credentials
 
-&#9744; Default access group
+☐ Default access group
 
-&#9744; Checker access (CanCheckRequest) - Contact the access team for the access.
+☐ Checker access (CanCheckRequest) - Contact the access team for the access.
 
 ## Resource information
 
-| URI                    | /api_gateway/v2/request-workflow`{requestType}` |
-| :--------------------- | :------------------------------------------------- |
-| HTTP Method            | PUT                                                |
-| Pagination             | No                                                 |
-| Batch support          | No                                                 |
-| Rate limit information | None                                               |
+| URI                    | /api\_gateway/v2/request-workflow`{requestType}` |
+| :--------------------- | :----------------------------------------------- |
+| HTTP Method            | PUT                                              |
+| Pagination             | No                                               |
+| Batch support          | No                                               |
+| Rate limit information | None                                             |
 
 ## Header information
 
@@ -49,10 +46,10 @@ title: Approve or reject a request
 | actionName\*         | String | The name or type of administrative action. For example, adminTask.                     |
 | payload\*            | Object | The payload object containing administrative task data.                                |
 | -AdminTask-Payload\* | Object | The payload specific to the administrative task.                                       |
-| -- actionDecision\* | Enum   | The decision made on the administrative action. Supported values - approved, rejected. |
-| -- actionMessage\* | String | A message or note accompanying the decision. For example, approving the request.       |
+| -- actionDecision\*  | Enum   | The decision made on the administrative action. Supported values - approved, rejected. |
+| -- actionMessage\*   | String | A message or note accompanying the decision. For example, approving the request.       |
 
-```
+```typescript
 {
    "requestId":"d9df3b65-62a7-11ee-aa6d-0aaee4e533d2",
    "actionName":"AdminTask",
@@ -71,25 +68,24 @@ title: Approve or reject a request
 | Parameter                        | Type    | Description                                                                              |
 | :------------------------------- | :------ | :--------------------------------------------------------------------------------------- |
 | data                             | Object  | The main data object containing request details.                                         |
-| -requestId | String  | A unique identifier for the request that was created during the creation of the request. |
-| -userId | Integer | The ID of the user associated with the request.                                          |
-| -userName | String  | The username of the user making the request.                                             |
-| -requestType | String  | The type of request (e.g., customer-status-change).                                      |
-| -state | String  | The current state of the request (e.g., approved, rejected).                             |
-| -startTime | String  | The timestamp indicating when the request started.                                       |
-| -endTime | String  | The timestamp indicating when the request ended.                                         |
-| -details | Object  | Additional details about the request.                                                    |
-| -- IntouchAPITask-Payload | Object  | Payload specific to the Intouch API task.                                                |
-| -- AdminTask-Payload | Object  | Payload specific to the administrative task.                                             |
-| -- ValidateMakerAccess_Output | Boolean | The output of the validation process for maker access.                                   |
-| -- AdminTask_Output | String  | The output of the administrative task.                                                   |
-| -- ValidatePayload_Output | Boolean | The output of the validation process for payload.                                        |
-| -- IntouchAPITask_Output | Object  | The output of the Intouch API task.                                                      |
-| -- ValidateCheckerAccess_Output | Boolean | The output of the validation process for checker access.                                 |
+| -requestId                       | String  | A unique identifier for the request that was created during the creation of the request. |
+| -userId                          | Integer | The ID of the user associated with the request.                                          |
+| -userName                        | String  | The username of the user making the request.                                             |
+| -requestType                     | String  | The type of request (e.g., customer-status-change).                                      |
+| -state                           | String  | The current state of the request (e.g., approved, rejected).                             |
+| -startTime                       | String  | The timestamp indicating when the request started.                                       |
+| -endTime                         | String  | The timestamp indicating when the request ended.                                         |
+| -details                         | Object  | Additional details about the request.                                                    |
+| -- IntouchAPITask-Payload        | Object  | Payload specific to the Intouch API task.                                                |
+| -- AdminTask-Payload             | Object  | Payload specific to the administrative task.                                             |
+| -- ValidateMakerAccess\_Output   | Boolean | The output of the validation process for maker access.                                   |
+| -- AdminTask\_Output             | String  | The output of the administrative task.                                                   |
+| -- ValidatePayload\_Output       | Boolean | The output of the validation process for payload.                                        |
+| -- IntouchAPITask\_Output        | Object  | The output of the Intouch API task.                                                      |
+| -- ValidateCheckerAccess\_Output | Boolean | The output of the validation process for checker access.                                 |
 
-<CodeGroup show-lines="true" tabs={["Customer identifier change", "Points redemption", "Issue goodwilll", "Earn badge", "Issue badge (Enrol customers to badge)", "Retro transaction"]}>
-
-  ```json "Customer identifier change"
+<CodeGroup show-lines="true" tabs={["Customer identifier change","Points redemption","Issue goodwilll","Earn badge","Issue badge (Enrol customers to badge)","Retro transaction"]}>
+  ```json wrap="true" "Customer identifier change"
   {
       "data": {
           "requestId": "113cff87-62a5-11ee-aa6d-0aaee4e533d2",
@@ -189,7 +185,7 @@ title: Approve or reject a request
 
   ```
 
-  ```json "Points redemption"
+  ```json wrap="true" "Points redemption"
   {
       "data": {
           "requestId": "d9df3b65-62a7-11ee-aa6d-0aaee4e533d2",
@@ -322,7 +318,7 @@ title: Approve or reject a request
 
   ```
 
-  ```json "Issue goodwilll"
+  ```json wrap="true" "Issue goodwilll"
   {
       "data": {
           "requestId": "ffcf19fb-a3fd-11ee-9fa7-4650f67465b8",
@@ -423,7 +419,7 @@ title: Approve or reject a request
   }
   ```
 
-  ```json "Earn badge"
+  ```json wrap="true" "Earn badge"
   {
       "data": {
           "requestId": "ef1bc378-a4d4-11ee-b2a9-462516199fc5",
@@ -500,7 +496,7 @@ title: Approve or reject a request
   }
   ```
 
-  ```json "Issue badge (Enrol customers to badge)"
+  ```json wrap="true" "Issue badge (Enrol customers to badge)"
   {
       "data": {
           "requestId": "23e06c3e-a5c3-11ee-9a63-9ab214749657",
@@ -588,7 +584,7 @@ title: Approve or reject a request
   }
   ```
 
-  ```json "Retro transaction"
+  ```json wrap="true" "Retro transaction"
   {
       "data": {
           "requestId": "48e1fabf-0570-11ef-9651-c27f077a65a1",
@@ -689,5 +685,5 @@ title: Approve or reject a request
       }
   }
   ```
-
 </CodeGroup>
+

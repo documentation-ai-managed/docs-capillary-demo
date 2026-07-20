@@ -1,14 +1,12 @@
 ---
 title: Redeem Cart Promotion
 ---
-
 This API defines the endpoint for saving or applying a cart promotion that a customer used during a purchase. It specifies the method to record the details of the transaction, such as the customer information, the items bought, the discount received, and how the cart promotion was applied.
 
 ## Example request
 
 <CodeGroup show-lines="true" tabs={["cURL"]}>
-
-  ```bash "cURL"
+  ```bash wrap="true" cURL
   curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/redemptions' \
   --header 'Content-Type: application/json' \
   --header 'X-CAP-API-AUTH-ORG-ID: 4000004' \
@@ -45,7 +43,6 @@ This API defines the endpoint for saving or applying a cart promotion that a cus
      ]
   }'
   ```
-
 </CodeGroup>
 
 ## Prerequisites
@@ -55,37 +52,36 @@ This API defines the endpoint for saving or applying a cart promotion that a cus
 
 ## Body parameters
 
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| customerIdentifierValue | String | Conditional | Specifies the value used to identify the customer, such as their mobile number. Required if customerId is not provided. |
-| customerIdentifierType | String | Conditional | Specifies the type of identifier used. Required if customerId is not provided. |
-| customerId | String | Conditional | Specifies the Unique Identifier of the customer. Note : One of customerId or the identifier pair is required. |
-| transactionIdentifier | String | Yes | Specifies the unique ID for the transaction. Supports a max of 250 characters. |
-| transactionNumber | String | Yes | Specifies the customer-facing bill or receipt number. Supports a max of 250 characters. |
-| transactionDate | Integer | Yes | Specifies the time of the transaction in UTC. Time format : milliseconds since epoch. |
-| transactionDateISO | String | Conditional | Specifies the time of the transaction in ISO 8601 format, returned in the server time zone. EU server example 2025-04-01T15:31:48Z → 01 April 2025, 15:31:48 (UTC) India server example 2025-04-01T21:01:48+05:30 → 01 April 2025, 21:01:48 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
-| amount | Integer | Yes | Specifies the total amount of the transaction before any discount. |
-| lineItems | Array | Conditional | Defines the details of the items purchased. At least one of lineItems or redemptions must be specified. |
-| .sku | String | Optional | Specifies the unique identifier for the product (SKU) to which the cart promotion is applied. |
-| .promotionId | String | Yes | Specifies the Unique Identifier of the cart promotion being redeemed or applied to the item. |
-| .earnedPromotionId | String | Optional | Specifies the Unique Identifier of the previously earned cart promotion being redeemed. |
-| .redemptionCount | Integer | Yes | Specifies the number of times this cart promotion is being redeemed for the item. |
-| .discount | Integer | Yes | Specifies the monetary value of the discount applied. |
-| .discountAppliedOnQuantity | Integer | Yes | Specifies the number of item units on which the discount was actually applied. |
-| .promotionAppliedOnQuantity | Integer | Yes | Specifies the quantity of the item that was eligible for the cart promotion. |
-| redemptions | Array | Conditional | Details about the cart promotions redeemed. You must specify at least one of the lineItems or redemptions. |
-| .sku | String | Optional | Specifies the product SKU for which the cart promotion is being redeemed. |
-| .promotionId | String | Yes | Specifies the unique identifier of the cart promotion that is being redeemed. |
-| .redemptionCount | Integer | Yes | Specifies the number of times this cart promotion needs to be redeemed for the item. |
-| .discount | Integer | Yes | Specifies the discount amount applied as part of the redemption. |
-| .discountAppliedOnQuantity | Integer | Yes | Specifies the quantity of the item on which the discount is applied. |
-| .promotionAppliedOnQuantity | Integer | Yes | Specifies the quantity of the item on which the discount was is applied. |
+| Field                       | Type    | Required    | Description                                                                                                                                                                                                                                                                                                                                                            |
+| --------------------------- | ------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| customerIdentifierValue     | String  | Conditional | Specifies the value used to identify the customer, such as their mobile number. Required if customerId is not provided.                                                                                                                                                                                                                                                |
+| customerIdentifierType      | String  | Conditional | Specifies the type of identifier used. Required if customerId is not provided.                                                                                                                                                                                                                                                                                         |
+| customerId                  | String  | Conditional | Specifies the Unique Identifier of the customer. Note : One of customerId or the identifier pair is required.                                                                                                                                                                                                                                                          |
+| transactionIdentifier       | String  | Yes         | Specifies the unique ID for the transaction. Supports a max of 250 characters.                                                                                                                                                                                                                                                                                         |
+| transactionNumber           | String  | Yes         | Specifies the customer-facing bill or receipt number. Supports a max of 250 characters.                                                                                                                                                                                                                                                                                |
+| transactionDate             | Integer | Yes         | Specifies the time of the transaction in UTC. Time format : milliseconds since epoch.                                                                                                                                                                                                                                                                                  |
+| transactionDateISO          | String  | Conditional | Specifies the time of the transaction in ISO 8601 format, returned in the server time zone. EU server example 2025-04-01T15:31:48Z → 01 April 2025, 15:31:48 (UTC) India server example 2025-04-01T21:01:48+05:30 → 01 April 2025, 21:01:48 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
+| amount                      | Integer | Yes         | Specifies the total amount of the transaction before any discount.                                                                                                                                                                                                                                                                                                     |
+| lineItems                   | Array   | Conditional | Defines the details of the items purchased. At least one of lineItems or redemptions must be specified.                                                                                                                                                                                                                                                                |
+| .sku                        | String  | Optional    | Specifies the unique identifier for the product (SKU) to which the cart promotion is applied.                                                                                                                                                                                                                                                                          |
+| .promotionId                | String  | Yes         | Specifies the Unique Identifier of the cart promotion being redeemed or applied to the item.                                                                                                                                                                                                                                                                           |
+| .earnedPromotionId          | String  | Optional    | Specifies the Unique Identifier of the previously earned cart promotion being redeemed.                                                                                                                                                                                                                                                                                |
+| .redemptionCount            | Integer | Yes         | Specifies the number of times this cart promotion is being redeemed for the item.                                                                                                                                                                                                                                                                                      |
+| .discount                   | Integer | Yes         | Specifies the monetary value of the discount applied.                                                                                                                                                                                                                                                                                                                  |
+| .discountAppliedOnQuantity  | Integer | Yes         | Specifies the number of item units on which the discount was actually applied.                                                                                                                                                                                                                                                                                         |
+| .promotionAppliedOnQuantity | Integer | Yes         | Specifies the quantity of the item that was eligible for the cart promotion.                                                                                                                                                                                                                                                                                           |
+| redemptions                 | Array   | Conditional | Details about the cart promotions redeemed. You must specify at least one of the lineItems or redemptions.                                                                                                                                                                                                                                                             |
+| .sku                        | String  | Optional    | Specifies the product SKU for which the cart promotion is being redeemed.                                                                                                                                                                                                                                                                                              |
+| .promotionId                | String  | Yes         | Specifies the unique identifier of the cart promotion that is being redeemed.                                                                                                                                                                                                                                                                                          |
+| .redemptionCount            | Integer | Yes         | Specifies the number of times this cart promotion needs to be redeemed for the item.                                                                                                                                                                                                                                                                                   |
+| .discount                   | Integer | Yes         | Specifies the discount amount applied as part of the redemption.                                                                                                                                                                                                                                                                                                       |
+| .discountAppliedOnQuantity  | Integer | Yes         | Specifies the quantity of the item on which the discount is applied.                                                                                                                                                                                                                                                                                                   |
+| .promotionAppliedOnQuantity | Integer | Yes         | Specifies the quantity of the item on which the discount was is applied.                                                                                                                                                                                                                                                                                               |
 
 ## Example response
 
 <CodeGroup show-lines="true" tabs={["JSON"]}>
-
-  ```json "JSON"
+  ```json JSON
   {
       "data": {
           "orgId": 100737,
@@ -120,7 +116,6 @@ This API defines the endpoint for saving or applying a cart promotion that a cus
       }
   }
   ```
-
 </CodeGroup>
 
 ## Response parameters
@@ -161,3 +156,4 @@ This API defines the endpoint for saving or applying a cart promotion that a cus
 | 406  | Web engage account Id is not valid for this org. Verify and update your web engage account ID for this org.                 |
 | 500  | Internal server error. Retry the request after a short delay, and contact support if the error persists.                    |
 | 521  | Could not acquire the lock on the resource. Retry after some time or resolve resource contention.                           |
+

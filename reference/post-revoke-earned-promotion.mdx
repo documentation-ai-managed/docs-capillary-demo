@@ -1,7 +1,6 @@
 ---
 title: Post Revoke Earned Cart Promotion
 ---
-
 This API revokes cart promotions that a customer has earned but not yet redeemed.
 
 - When you revoke an earned promotion, the system removes the customer's entitlement to redeem that promotion. The promotion is no longer available to the customer for future transactions.
@@ -11,8 +10,7 @@ This API revokes cart promotions that a customer has earned but not yet redeemed
 
 # Example request
 
-<CodeGroup show-lines="true" tabs={["Multiple id's revoke", "Single id's revoke"]}>
-
+<CodeGroup show-lines="true" tabs={["Multiple id's revoke","Single id's revoke"]}>
   ```bash "Multiple id's revoke"
   curl --location 'https://{Host}/api_gateway/v1/promotions/revokeEarn' \
   --header 'Accept: application/json' \
@@ -39,7 +37,7 @@ This API revokes cart promotions that a customer has earned but not yet redeemed
   '
   ```
 
-  ```text "Single id's revoke"
+  ```text wrap="true" "Single id's revoke"
   curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/revokeEarn' \
   --header 'Accept: application/json' \
   --header 'Content-Type: application/json' \
@@ -60,7 +58,6 @@ This API revokes cart promotions that a customer has earned but not yet redeemed
   }
   '
   ```
-
 </CodeGroup>
 
 # Prerequisites
@@ -76,12 +73,12 @@ This API revokes cart promotions that a customer has earned but not yet redeemed
 
 # Request body parameters
 
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| customerId | Number | Yes | Specifies the unique identifier for the customer. |
-| earnRevokeDetails | Array | Yes | Defines a list of cart promotion and earn ID details to be revoked. |
-| ..promotionId | String | Yes | Specifies the unique identifier of the cart promotion. |
-| ..earnIds | Array | Yes | Defines a list of specific earn transaction IDs to be revoked. Maximum earnIds supported in a single request : 1000 Example : "earnIds": [ "earned_id_1A2B3C", "earned_id_4D5E6F", "earned_id_7G8H9I" ] |
+| Field             | Type   | Required | Description                                                                                                                                                                                                    |
+| ----------------- | ------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| customerId        | Number | Yes      | Specifies the unique identifier for the customer.                                                                                                                                                              |
+| earnRevokeDetails | Array  | Yes      | Defines a list of cart promotion and earn ID details to be revoked.                                                                                                                                            |
+| ..promotionId     | String | Yes      | Specifies the unique identifier of the cart promotion.                                                                                                                                                         |
+| ..earnIds         | Array  | Yes      | Defines a list of specific earn transaction IDs to be revoked. Maximum earnIds supported in a single request : 1000 Example : "earnIds": \[ "earned\_id\_1A2B3C", "earned\_id\_4D5E6F", "earned\_id\_7G8H9I" ] |
 
 # Example response
 
@@ -136,3 +133,4 @@ This API revokes cart promotions that a customer has earned but not yet redeemed
 | 500  | Internal server error. Retry the request after a short delay, and contact support if the error persists.                           |
 
 <br />
+
