@@ -1,23 +1,20 @@
 ---
 title: Organisation Level Configuration for Rewards Catalog
 ---
-
 This API allows you to set the org's config for Rewards Catalog.
 
-<Callout kind="tip" title="Note">
-
-- For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
-
+<Callout kind="tip" collapsed="false">
+  - For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
 </Callout>
 
-## Prerequisites
+## Prerequisites&#x20;
 
-- [ ] Authentication: Basic or OAuth authentication
-- [ ] Default access group
+- Authentication: Basic or OAuth authentication
+- Default access group
 
 ## Resource information
 
-| URI                    | api_gateway/rewards/core/v1/brand/config |
+| URI                    | api\_gateway/rewards/core/v1/brand/config |
 | :--------------------- | :---------------------------------------- |
 | HTTP Method            | POST                                      |
 | Pagination             | No                                        |
@@ -32,13 +29,13 @@ This API allows you to set the org's config for Rewards Catalog.
 
 | Config Key Name                                      | Description                                                                                                                                                                                                                                                                                               |
 | :--------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| CONF_START_OF_THE_WEEK_FOR_ORG_RESTRICTION    | To add the start of the week for the org level restrictions, this will be applied to all org level restrictions with Week configurations. The default values may be:- MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY. By default, the start day will be MONDAY.                           |
-| CONF_SEND_REWARD_EXPIRY_NOTIFICATION_ENABLED    | To enable or disable the expiry notification for rewards. If enabled, the system will send expiry notification for rewards after setting the NUMBER_OF_DAYS_BEFORE_EXPIRY. The default value may be True or False.                                                                                    |
-| CONF_SEND_EXPIRY_NOTIFICATION_FOR_REWARD_TIME  | To set the time of the day to send the expiry notification for rewards. The default timing for sending the event is 16:00 (HH:MM).                                                                                                                                                                        |
-| CONF_EXT_POINTS_VENDOR                            | To enable a third-party vendor for points redemption. The default value may be True or False.                                                                                                                                                                                                             |
-| CONF_ENABLE_FEATURE_CATALOG_PROMOTION            | To enable the catalog promotion feature for a brand or organization. The default value may be True or False.                                                                                                                                                                                              |
-| CONF_CATALOG_PROMOTION_BUFFER_END_TIME_MINUTES | To add buffer time in minutes to the expiry date of a catalog promotion while issuing a reward. The integer value representing minutes can range from 0 to 30 (MM).                                                                                                                                       |
-| CONF_ENABLE_ORG_TIMEZONE                          | Enables organization-specific timezone handling for all reward constraint evaluations. When set to `true`, calculations for daily, weekly, monthly, and rolling windows will use the organization's configured timezone. If `false` (the default), calculations are based on the server's timezone (UTC). |
+| CONF\_START\_OF\_THE\_WEEK\_FOR\_ORG\_RESTRICTION    | To add the start of the week for the org level restrictions, this will be applied to all org level restrictions with Week configurations. The default values may be:- MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY. By default, the start day will be MONDAY.                           |
+| CONF\_SEND\_REWARD\_EXPIRY\_NOTIFICATION\_ENABLED    | To enable or disable the expiry notification for rewards. If enabled, the system will send expiry notification for rewards after setting the NUMBER\_OF\_DAYS\_BEFORE\_EXPIRY. The default value may be True or False.                                                                                    |
+| CONF\_SEND\_EXPIRY\_NOTIFICATION\_FOR\_REWARD\_TIME  | To set the time of the day to send the expiry notification for rewards. The default timing for sending the event is 16:00 (HH:MM).                                                                                                                                                                        |
+| CONF\_EXT\_POINTS\_VENDOR                            | To enable a third-party vendor for points redemption. The default value may be True or False.                                                                                                                                                                                                             |
+| CONF\_ENABLE\_FEATURE\_CATALOG\_PROMOTION            | To enable the catalog promotion feature for a brand or organization. The default value may be True or False.                                                                                                                                                                                              |
+| CONF\_CATALOG\_PROMOTION\_BUFFER\_END\_TIME\_MINUTES | To add buffer time in minutes to the expiry date of a catalog promotion while issuing a reward. The integer value representing minutes can range from 0 to 30 (MM).                                                                                                                                       |
+| CONF\_ENABLE\_ORG\_TIMEZONE                          | Enables organization-specific timezone handling for all reward constraint evaluations. When set to `true`, calculations for daily, weekly, monthly, and rolling windows will use the organization's configured timezone. If `false` (the default), calculations are based on the server's timezone (UTC). |
 
 ## Request body parameters
 
@@ -49,8 +46,7 @@ This API allows you to set the org's config for Rewards Catalog.
 | brandId        | Integer   | You can use the [API](https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/getAll) and retrieve the brand ID of your brand. |
 | label          | String    | A descriptive note or label regarding the start date of the restriction.                                                                  |
 
-<CodeGroup show-lines="true" tabs={["To configure the start week for org restriction", "To Enable Reward Expiry Notification", "To set Reward Expiry TIme"]}>
-
+<CodeGroup show-lines="true" tabs={["To configure the start week for org restriction","To Enable Reward Expiry Notification","To set Reward Expiry TIme"]}>
   ```json "To configure the start week for org restriction"
   {
       "configKeyName": "CONF_START_OF_THE_WEEK_FOR_ORG_RESTRICTION",
@@ -74,7 +70,6 @@ This API allows you to set the org's config for Rewards Catalog.
       "brandId": 1
   }
   ```
-
 </CodeGroup>
 
 ## Response parameters
@@ -89,8 +84,7 @@ This API allows you to set the org's config for Rewards Catalog.
 | brandId        | Integer   | You can use the [API](https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/getAll) and retrieve the brand ID of your brand. |
 | label          | String    | A descriptive label explaining the configuration setting, its implications, and the context where it applies.                             |
 
-<CodeGroup show-lines="true" tabs={["Response: To configure the start week for org restriction", "Response: To Enable Reward Expiry Notification", "Response: To set Reward Expiry TIme", "Failure: Brand or Config Key is incorrect"]}>
-
+<CodeGroup show-lines="true" tabs={["Response: To configure the start week for org restriction","Response: To Enable Reward Expiry Notification","Response: To set Reward Expiry TIme","Failure: Brand or Config Key is incorrect"]}>
   ```json "Response: To configure the start week for org restriction"
   {
       "status": {
@@ -162,7 +156,6 @@ This API allows you to set the org's config for Rewards Catalog.
       ]
   }
   ```
-
 </CodeGroup>
 
 ## API- specific errors
@@ -171,3 +164,4 @@ This API allows you to set the org's config for Rewards Catalog.
 | :--------- | :---------------------------------------------- |
 | 3004       | Brand not found. Pass a valid brand identifier. |
 | 3011       | Brand or config key is incorrect                |
+
