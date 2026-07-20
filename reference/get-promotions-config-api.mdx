@@ -1,7 +1,6 @@
 ---
 title: Get Cart Promotions Config API
 ---
-
 This API retrieves the configuration details of cart promotions using their promotion IDs.
 
 - When you call this API, the system returns a simplified view of the promotion configuration, including the promotion name, type, expiry date, description, reward summary, and current status.
@@ -12,20 +11,17 @@ This API retrieves the configuration details of cart promotions using their prom
 ## Example request
 
 <CodeGroup show-lines="true" tabs={["cURL"]}>
-
-  ```bash "cURL"
+  ```bash wrap="true" cURL
   curl --location 'https://{Host}/api_gateway/v1/promotions/config?promotionIds=68e7966845de881062349048&includeExpired=true&includeInactive=true' \
   --header 'Authorization: Basic Z2VvcmdlvY2RlbNWI5ZjAxMzU5NGIwNDllZTk=' \
   --header 'Cookie: _cfuvid=DWAI.W93CwD84bJoUrRqwVps-1761979737913-0.0.1.1-604800000' \
   --data ''
   ```
-
 </CodeGroup>
 
 ## Prerequisites
 
 - Authentication: Basic or OAuth authentication.
-
 - Default access group
 
 ## Resource information
@@ -45,8 +41,7 @@ This API retrieves the configuration details of cart promotions using their prom
 ## Example response
 
 <CodeGroup show-lines="true" tabs={["JSON"]}>
-
-  ```json "JSON"
+  ```json JSON
   {
       "data": [
           {
@@ -67,41 +62,40 @@ This API retrieves the configuration details of cart promotions using their prom
       "errors": []
   }
   ```
-
 </CodeGroup>
 
 ## Response parameters
 
-| Field | Type | Description |
-| --- | --- | --- |
-| data | Array | Defines a list of cart promotion configuration objects. |
-| ..promotionId | String | Specifies the unique identifier for the cart promotion. |
-| ..promotionName | String | Specifies the name of the cart promotion. |
-| ..promotionType | String | Specifies the type of cart promotion. |
-| ..milestoneId | Number | Specifies the milestone ID. |
-| ..groupId | Number | Specifies the group ID. |
-| ..ruleId | Number | Specifies the rule ID. |
-| ..expiry | Number | Indicates the timestamp of when the cart promotion expires in UTC time zone.Time format: Epoch milliseconds |
-| ..expiryISO | String | Specifies the ISO 8601 timestamp of when the cart promotion expires in UTC, returned in the server time zone. EU server example 2026-02-04T09:14:45Z → 04 February 2026, 09:14:45 (UTC) India server example 2026-02-04T14:44:45+05:30 → 04 February 2026, 14:44:45 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
-| ..description | String | Specifies the description of the cart promotion. |
-| ..storeCriteria | Object | Defines store-based applicability rules. |
-| ..supplementaryCriteria | Object | Defines supplementary criteria. |
-| ..reward | String | Specifies the reward details. |
-| ..maxEarningPerCustomer | Number | Specifies the maximum number of times a customer can earn the cart promotion. |
-| ..isActive | Boolean | Indicates whether the cart promotion is currently active. |
-| ..customFieldValues | Object | Contains custom field key-value pairs associated with the cart promotion. |
-| ..promotionRestrictions | Object | Contains any restrictions applied to the cart promotion. |
-| ...Customer | Array | Contains customer-level redemption limits. |
-| ...Cart | Array | Contains cart-level redemption limits. |
-| ....kpi | String | Specifies the key metric used for the restriction. |
-| ....limit | String | Specifies the maximum allowed value for the restriction. |
-| ....windowType | Enum | Specifies the type of limit window applied to the restriction. Possible values: `OVERALL`, `MOVING`, `FIXED`, `CLASSIC`. |
-| ....fixedWindowConfig | Object | Contains the cycle configuration for the restriction when `windowType` is `FIXED`. |
-| .....cycleType | Enum | Specifies the type of fixed cycle. |
-| .....weekStartDay | Enum | Specifies the start day of the weekly cycle when `cycleType` is `WEEK`. |
-| .....refreshRate | Integer | Specifies the number of days per cycle when `cycleType` is `N_DAY`. |
-| .....cycleReferenceDate | Long | Epoch timestamp in milliseconds. The anchor date from which N_DAY cycles are calculated. Interpreted in the org's configured timezone. Defaults to the promotion's `startDate` if omitted. |
-| errors | Array | Specifies the errors messages. |
+| Field                   | Type    | Description                                                                                                                                                                                                                                                                                                                                                                                    |
+| ----------------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| data                    | Array   | Defines a list of cart promotion configuration objects.                                                                                                                                                                                                                                                                                                                                        |
+| ..promotionId           | String  | Specifies the unique identifier for the cart promotion.                                                                                                                                                                                                                                                                                                                                        |
+| ..promotionName         | String  | Specifies the name of the cart promotion.                                                                                                                                                                                                                                                                                                                                                      |
+| ..promotionType         | String  | Specifies the type of cart promotion.                                                                                                                                                                                                                                                                                                                                                          |
+| ..milestoneId           | Number  | Specifies the milestone ID.                                                                                                                                                                                                                                                                                                                                                                    |
+| ..groupId               | Number  | Specifies the group ID.                                                                                                                                                                                                                                                                                                                                                                        |
+| ..ruleId                | Number  | Specifies the rule ID.                                                                                                                                                                                                                                                                                                                                                                         |
+| ..expiry                | Number  | Indicates the timestamp of when the cart promotion expires in UTC time zone.Time format: Epoch milliseconds                                                                                                                                                                                                                                                                                    |
+| ..expiryISO             | String  | Specifies the ISO 8601 timestamp of when the cart promotion expires in UTC, returned in the server time zone. EU server example 2026-02-04T09:14:45Z → 04 February 2026, 09:14:45 (UTC) India server example 2026-02-04T14:44:45+05:30 → 04 February 2026, 14:44:45 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
+| ..description           | String  | Specifies the description of the cart promotion.                                                                                                                                                                                                                                                                                                                                               |
+| ..storeCriteria         | Object  | Defines store-based applicability rules.                                                                                                                                                                                                                                                                                                                                                       |
+| ..supplementaryCriteria | Object  | Defines supplementary criteria.                                                                                                                                                                                                                                                                                                                                                                |
+| ..reward                | String  | Specifies the reward details.                                                                                                                                                                                                                                                                                                                                                                  |
+| ..maxEarningPerCustomer | Number  | Specifies the maximum number of times a customer can earn the cart promotion.                                                                                                                                                                                                                                                                                                                  |
+| ..isActive              | Boolean | Indicates whether the cart promotion is currently active.                                                                                                                                                                                                                                                                                                                                      |
+| ..customFieldValues     | Object  | Contains custom field key-value pairs associated with the cart promotion.                                                                                                                                                                                                                                                                                                                      |
+| ..promotionRestrictions | Object  | Contains any restrictions applied to the cart promotion.                                                                                                                                                                                                                                                                                                                                       |
+| ...Customer             | Array   | Contains customer-level redemption limits.                                                                                                                                                                                                                                                                                                                                                     |
+| ...Cart                 | Array   | Contains cart-level redemption limits.                                                                                                                                                                                                                                                                                                                                                         |
+| ....kpi                 | String  | Specifies the key metric used for the restriction.                                                                                                                                                                                                                                                                                                                                             |
+| ....limit               | String  | Specifies the maximum allowed value for the restriction.                                                                                                                                                                                                                                                                                                                                       |
+| ....windowType          | Enum    | Specifies the type of limit window applied to the restriction. Possible values: `OVERALL`, `MOVING`, `FIXED`, `CLASSIC`.                                                                                                                                                                                                                                                                       |
+| ....fixedWindowConfig   | Object  | Contains the cycle configuration for the restriction when `windowType` is `FIXED`.                                                                                                                                                                                                                                                                                                             |
+| .....cycleType          | Enum    | Specifies the type of fixed cycle.                                                                                                                                                                                                                                                                                                                                                             |
+| .....weekStartDay       | Enum    | Specifies the start day of the weekly cycle when `cycleType` is `WEEK`.                                                                                                                                                                                                                                                                                                                        |
+| .....refreshRate        | Integer | Specifies the number of days per cycle when `cycleType` is `N_DAY`.                                                                                                                                                                                                                                                                                                                            |
+| .....cycleReferenceDate | Long    | Epoch timestamp in milliseconds. The anchor date from which N\_DAY cycles are calculated. Interpreted in the org's configured timezone. Defaults to the promotion's `startDate` if omitted.                                                                                                                                                                                                    |
+| errors                  | Array   | Specifies the errors messages.                                                                                                                                                                                                                                                                                                                                                                 |
 
 ## Error codes
 
@@ -112,3 +106,4 @@ This API retrieves the configuration details of cart promotions using their prom
 | 500  | Internal server error. Retry the request after a short delay, and contact support if the error persists.               |
 | 704  | Invalid reward type passed. Provide a valid reward type as per API specification.                                      |
 | 707  | The passed promotion type is not supported. Change the promotion type to one supported by the system.                  |
+

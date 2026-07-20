@@ -1,7 +1,6 @@
 ---
 title: Get Lock unlock -Pending carts (Cart Promotion)
 ---
-
 This API retrieves the details of pending cart evaluations for a specific customer. These are carts where promotions have been temporarily reserved for the customer, but the transaction has not yet been completed for the promotion to be redeemed.
 
 Cart locking functionality during cart evaluation, which temporarily reserves the applied promotion exclusively for the customer, is disabled by default. To enable it, you must raise a support ticket with capillary to activate the `isLockingEnabled` configuration for the particular org.
@@ -9,19 +8,16 @@ Cart locking functionality during cart evaluation, which temporarily reserves th
 ## Example request
 
 <CodeGroup show-lines="true" tabs={["cURL"]}>
-
-  ```bash "cURL"
+  ```bash wrap="true" cURL
   curl --location 'https://eu.api.capillarytech.com/api_gateway/v1/promotions/customer/566881933/evaluations/pending_carts' \
   --header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86NjVhWY5MGY1NTY5NDk1YmNkNzUxYmJiY2U=' \
   --header 'Cookie: _cfuvid=OgMlxpnYcUTaLvDRPsarD3khviE1Jl3t9uS8-1764069327097-0.0.1.1-604800000'
   ```
-
 </CodeGroup>
 
 ## Prerequisites
 
 - Authentication: Basic or OAuth authentication.
-
 - Default access group
 
 ## Resource information
@@ -39,8 +35,7 @@ Cart locking functionality during cart evaluation, which temporarily reserves th
 ## Example response
 
 <CodeGroup show-lines="true" tabs={["JSON"]}>
-
-  ```json "JSON"
+  ```json JSON
   {
       "data": {
           "tempRedemptionDetails": [
@@ -74,24 +69,23 @@ Cart locking functionality during cart evaluation, which temporarily reserves th
       }
   }
   ```
-
 </CodeGroup>
 
 ## Response parameters
 
-| Field | Type | Description |
-| --- | --- | --- |
-| data | Object | Defines the main container for the response data. |
-| .tempRedemptionDetails | Array | Indicates the list of pending redemption details for the customer's cart. |
-| ..cartEvaluationId | String | Indicates the unique identifier for the specific cart evaluation session. |
-| ..startTime | Number | Indicates the date and time when the evaluation or lock started. Time format: Epoch milliseconds. Note: This field returns an epoch milliseconds timestamp. |
-| ..validTillTime | Number | Indicates when the pending evaluation/redemption expires. Time format: Epoch milliseconds. Note: This field returns an epoch milliseconds timestamp. |
-| ..appliedPromotions | Array | Indicates the list of promotions applied during this evaluation. |
-| ...promotionId | String | Indicates the unique system identifier for the promotion. |
-| ...promoCode | String | Specifies the coupon code used to trigger the promotion. |
-| ...promotionName | String | Name of the promotion. |
-| ...redemptionCount | Number | Indicates the number of times this promotion was applied or redeemed in this evaluation. |
-| ...discount | String | Indicates the calculated discount amount for this promotion. |
+| Field                  | Type   | Description                                                                                                                                                 |
+| ---------------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| data                   | Object | Defines the main container for the response data.                                                                                                           |
+| .tempRedemptionDetails | Array  | Indicates the list of pending redemption details for the customer's cart.                                                                                   |
+| ..cartEvaluationId     | String | Indicates the unique identifier for the specific cart evaluation session.                                                                                   |
+| ..startTime            | Number | Indicates the date and time when the evaluation or lock started. Time format: Epoch milliseconds. Note: This field returns an epoch milliseconds timestamp. |
+| ..validTillTime        | Number | Indicates when the pending evaluation/redemption expires. Time format: Epoch milliseconds. Note: This field returns an epoch milliseconds timestamp.        |
+| ..appliedPromotions    | Array  | Indicates the list of promotions applied during this evaluation.                                                                                            |
+| ...promotionId         | String | Indicates the unique system identifier for the promotion.                                                                                                   |
+| ...promoCode           | String | Specifies the coupon code used to trigger the promotion.                                                                                                    |
+| ...promotionName       | String | Name of the promotion.                                                                                                                                      |
+| ...redemptionCount     | Number | Indicates the number of times this promotion was applied or redeemed in this evaluation.                                                                    |
+| ...discount            | String | Indicates the calculated discount amount for this promotion.                                                                                                |
 
 ## Error codes
 
@@ -103,3 +97,4 @@ Cart locking functionality during cart evaluation, which temporarily reserves th
 | 116  | Maximum pending open carts exceeded. Reduce the number of open carts for this customer.                                             |
 | 120  | Pending cart not found for the cart evaluation. Check if there is an active pending cart to evaluate.                               |
 | 500  | Internal server error. Retry the request after a short delay, and contact support if the error persists.                            |
+
