@@ -9,8 +9,8 @@ This API allows the brand to retrieve the details of the points restrictions set
 
 ## Prerequisites
 
-- [ ] Authentication: Basic or OAuth authentication
-- [ ] Default access group
+- Authentication: Basic or OAuth authentication
+- Default access group
 
 ## Resource information
 
@@ -29,27 +29,27 @@ This API allows the brand to retrieve the details of the points restrictions set
 
 | Parameter Name | Data Type | Description                                                                                                                                        |
 | :------------- | :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **`sortBy`**   | Enum      | Sorts the returned list. Supported values: `lastUpdatedOn`                                                                                         |
-| **`orderBy`**  | Enum      | Specifies the order in which results should be sorted. Supported values: `"ASC"` for ascending, `"DESC"` for descending. Default value is `"ASC"`. |
+| ``             | Enum      | Sorts the returned list. Supported values: `lastUpdatedOn`                                                                                         |
+| ``             | Enum      | Specifies the order in which results should be sorted. Supported values: `"ASC"` for ascending, `"DESC"` for descending. Default value is `"ASC"`. |
 
 ## Response parameters
 
-| Parameter                  | Data Type | Description                                                                                                                                                                                                                                                                                                                                                         |
-| :------------------------- | :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **`rewardConstraintId`**   | Integer   | A unique identifier for the reward constraint.                                                                                                                                                                                                                                                                                                                      |
-| **`orgId`**                | Integer   | The identifier for the organization.                                                                                                                                                                                                                                                                                                                                |
-| **`kpi`**                  | String    | The KPI on which the restriction is applied. Supported value: `POINTS`.                                                                                                                                                                                                                                                                                             |
-| **`constraintLevel`**      | String    | The level at which restrictions are defined by the organization and applied. Values: `CUSTOMER_REDEMPTION_TYPE`, `CUSTOMER`, `CUSTOMER_SEGMENT`, `CUSTOMER_TIER`, `CUSTOMER_LOYALTY_PROGRAM`, `CUSTOMER_SUPPL_PROGRAM`, `CUSTOMER_LABEL`. Only one combination of `Constraint_Level` and `KPI` is allowed with the `DAILY`, `WEEKLY`, or `MONTHLY` `frequencyType`. |
-| **`frequencyType`**        | String    | The frequency at which the constraint is applied. Supported values: `DAILY`, `WEEKLY`, `MONTHLY`.                                                                                                                                                                                                                                                                   |
-| **`constraintLimitValue`** | Integer   | The limit value for the constraint.                                                                                                                                                                                                                                                                                                                                 |
-| **`isActive`**             | Boolean   | The status indicating whether the constraint is active.                                                                                                                                                                                                                                                                                                             |
-| **`intervalValue`**        | Integer   | The interval at which the frequency is applied (daily).                                                                                                                                                                                                                                                                                                             |
-| **`status.success`**       | Boolean   | Indicates if the status check was successful.                                                                                                                                                                                                                                                                                                                       |
-| **`status.code`**          | Integer   | The status code associated with the constraint check.                                                                                                                                                                                                                                                                                                               |
-| **`redemptionType`**       | String    | The type of redemption managed by this constraint. Supported values: `GAMES`, `AUCTION`, `CART_PROMOTION`, `CASH_WALLET`, `VENDOR_ONLY_REWARD`, `VOUCHER`, `CASH_BACK`, `INTOUCH_REWARD`, `PHYSICAL_REWARD`, `CHARITY`, `MILES`, `GIFT_CARD`, `SWEEPSTAKES`, `VENDOR_INTOUCH_REWARD`, `CARD_DISC`.                                                                  |
+| Parameter | Data Type | Description                                                                                                                                                                                                                                                                                                                                                         |
+| :-------- | :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| ``        | Integer   | A unique identifier for the reward constraint.                                                                                                                                                                                                                                                                                                                      |
+| ``        | Integer   | The identifier for the organization.                                                                                                                                                                                                                                                                                                                                |
+| ``        | String    | The KPI on which the restriction is applied. Supported value: `POINTS`.                                                                                                                                                                                                                                                                                             |
+| ``        | String    | The level at which restrictions are defined by the organization and applied. Values: `CUSTOMER_REDEMPTION_TYPE`, `CUSTOMER`, `CUSTOMER_SEGMENT`, `CUSTOMER_TIER`, `CUSTOMER_LOYALTY_PROGRAM`, `CUSTOMER_SUPPL_PROGRAM`, `CUSTOMER_LABEL`. Only one combination of `Constraint_Level` and `KPI` is allowed with the `DAILY`, `WEEKLY`, or `MONTHLY` `frequencyType`. |
+| ``        | String    | The frequency at which the constraint is applied. Supported values: `DAILY`, `WEEKLY`, `MONTHLY`.                                                                                                                                                                                                                                                                   |
+| ``        | Integer   | The limit value for the constraint.                                                                                                                                                                                                                                                                                                                                 |
+| ``        | Boolean   | The status indicating whether the constraint is active.                                                                                                                                                                                                                                                                                                             |
+| ``        | Integer   | The interval at which the frequency is applied (daily).                                                                                                                                                                                                                                                                                                             |
+| ``        | Boolean   | Indicates if the status check was successful.                                                                                                                                                                                                                                                                                                                       |
+| ``        | Integer   | The status code associated with the constraint check.                                                                                                                                                                                                                                                                                                               |
+| ``        | String    | The type of redemption managed by this constraint. Supported values: `GAMES`, `AUCTION`, `CART_PROMOTION`, `CASH_WALLET`, `VENDOR_ONLY_REWARD`, `VOUCHER`, `CASH_BACK`, `INTOUCH_REWARD`, `PHYSICAL_REWARD`, `CHARITY`, `MILES`, `GIFT_CARD`, `SWEEPSTAKES`, `VENDOR_INTOUCH_REWARD`, `CARD_DISC`.                                                                  |
 
-<CodeGroup show-lines="true" tabs={["With sortBy=lastUpdatedOn"]}>
-  ```json
+<CodeGroup show-lines="true" tabs={["JSON","With sortBy=lastUpdatedOn"]}>
+  ```json JSON
   [
       {
           "rewardConstraintId": 10259,
@@ -240,4 +240,3 @@ This API allows the brand to retrieve the details of the points restrictions set
   ]
   ```
 </CodeGroup>
-
