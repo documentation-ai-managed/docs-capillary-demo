@@ -1,30 +1,28 @@
 ---
 title: Create Reward Expiry Reminder
 ---
-
 This API is designed to create a reward expiry reminder, notifying users when their rewards are nearing expiration.
 
 Use Cases:
 
-1. Reward Expiration Notification : When a reward expires, notify the user via push notification, email, or SMS.
-2. Sweepstakes Expiration Notification and Winner Finalization : When a sweepstake expires, notify who entered, and trigger a Databricks notebook to finalize the winner.
+  1. Reward Expiration Notification : When a reward expires, notify the user via push notification, email, or SMS.
 
-<Callout kind="tip" title="Note">
+  2. Sweepstakes Expiration Notification and Winner Finalization : When a sweepstake expires, notify who entered, and trigger a Databricks notebook to finalize the winner.
 
-- For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
-- This an org Level config and this feature this feature is disabled by default
-
+<Callout kind="tip" collapsed="false">
+  - For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
+  - This an org Level config and this feature this feature is disabled by default
 </Callout>
 
 ## Prerequisites
 
-- [ ] Authentication: Basic or OAuth authentication
-- [ ] Default access group
-- [ ] This is an organization-level configuration, and the feature is disabled by default. To enable it, use this [API](https://docs.capillarytech.com/reference/org-level-config) with the key **CONF_SEND_REWARD_EXPIRY_NOTIFICATION_ENABLED** set to true or false. You can also configure the notification timing using the key **CONF_SEND_EXPIRY_NOTIFICATION_FOR_REWARD_TIME** with the value in HH:MM format.
+- Authentication: Basic or OAuth authentication
+- Default access group
+- This is an organization-level configuration, and the feature is disabled by default. To enable it, use this [API](https://docs.capillarytech.com/reference/org-level-config) with the key **CONF\_SEND\_REWARD\_EXPIRY\_NOTIFICATION\_ENABLED** set to true or false. You can also configure the notification timing using the key **CONF\_SEND\_EXPIRY\_NOTIFICATION\_FOR\_REWARD\_TIME** with the value in HH:MM format.
 
 ## Resource information
 
-| URI                    | /api_gateway/rewards/core/v1/reward/expiryReminder |
+| URI                    | /api\_gateway/rewards/core/v1/reward/expiryReminder |
 | :--------------------- | :-------------------------------------------------- |
 | HTTP Method            | POST                                                |
 | Pagination             | No                                                  |
@@ -43,14 +41,12 @@ Use Cases:
 | timing         | timestamp | This defines the specific time when the reminder will be sent. The time should be provided in 24-hour format (HH:MM) and represents the the org's cluster (server) time. If no time is specified, the reminder will automatically be set for 16:00 server time for the org's cluster. |
 
 <CodeGroup show-lines="true" tabs={["Request"]}>
-
-  ```json "Request"
+  ```json Request
   {
       "duration": 32,
       "timing": "18:00"
   }
   ```
-
 </CodeGroup>
 
 ## Response parameters
@@ -73,8 +69,7 @@ Use Cases:
 | lastUpdatedBy         | Identifier of the user who last updated the reminder.                                                                                             |
 | lastUpdatedOnDateTime | Last updated date and time of the field in ISO 8601 format (YYYY-MM-DDTHH:MM:SSZ)                                                                 |
 
-<CodeGroup show-lines="true" tabs={["200- Response", "400- No duration is passed."]}>
-
+<CodeGroup show-lines="true" tabs={["200- Response","400- No duration is passed."]}>
   ```json "200- Response"
   {
       "status": {
@@ -109,7 +104,6 @@ Use Cases:
       }
   }
   ```
-
 </CodeGroup>
 
 ## API-specific error codes
