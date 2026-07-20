@@ -1,29 +1,26 @@
 ---
 title: Get all brand rewards using Brand ID
 ---
-
 This API is used to retrieve list of rewards owned by brands based on filters.
 
-<Callout kind="tip" title="Note">
-
-- For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
-- The `groupName `filter allows only one group name at a time; multiple names separated by commas are not supported.
-
+<Callout kind="tip" collapsed="false">
+  - For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
+  - The `groupName `filter allows only one group name at a time; multiple names separated by commas are not supported.
 </Callout>
 
 ## Prerequisites
 
-- [ ] Authentication: Basic or OAuth authentication
-- [ ] Default access group
+- Authentication: Basic or OAuth authentication
+- Default access group
 
 ## Resource information
 
-| URI                    | api_gateway/rewards/core/v1/reward/list/brand`{BrandID}` |
-| :--------------------- | :---------------------------------------------------------- |
-| HTTP Method            | GET                                                         |
-| Pagination             | Yes Default - 100                                           |
-| Batch support          | No                                                          |
-| Rate limit information | None                                                        |
+| URI                    | api\_gateway/rewards/core/v1/reward/list/brand`{BrandID}` |
+| :--------------------- | :-------------------------------------------------------- |
+| HTTP Method            | GET                                                       |
+| Pagination             | Yes Default - 100                                         |
+| Batch support          | No                                                        |
+| Rate limit information | None                                                      |
 
 ## API endpoint example
 
@@ -45,7 +42,7 @@ This API is used to retrieve list of rewards owned by brands based on filters.
 | **`ownerId`**        | String    | The unique identifier of the owner to claim the reward.                                                                                                                                                                                                                                                                                                                                                       |
 | **`startDate`**      | Long      | The start date of the reward in **epoch format**. Any rewards between the specified start and end date will be displayed. If either the start or end date falls within the timeline, the reward will still be included in the response. If `startDate` is used as a filter, `endDate` must also be specified, and vice versa.                                                                                 |
 | **`endDate`**        | Long      | The end date of the reward in **epoch format**. Any rewards between the specified start and end date will be displayed. If either the start or end date falls within the timeline, the reward will still be included in the response.                                                                                                                                                                         |
-| **`rewardStatus`**   | Enum      | Indicates the current state of the reward. Only **one** `rewardStatus` can be used as a filter. Supported values:<br/>- **`LIVE`**: The reward is currently available for redemption.<br/>- **`UPCOMING`**: The reward will be available in the future.<br/>- **`ENDED`**: The reward is no longer available.                                                                                                 |
+| **`rewardStatus`**   | Enum      | Indicates the current state of the reward. Only **one** `rewardStatus` can be used as a filter. Supported values:- **`LIVE`**: The reward is currently available for redemption.- **`UPCOMING`**: The reward will be available in the future.- **`ENDED`**: The reward is no longer available.                                                                                                                |
 | **`vendorId`**       | Integer   | A collection of identifiers for vendors associated with the reward. Multiple `vendorId` values are supported, separated by a comma (`,`). **For example:** `VendorId=36,32`. There is no specific limit on the number of `vendorId` values.                                                                                                                                                                   |
 | **`redemptionType`** | Enum      | Specifies the category of reward redemption available, indicating how users can redeem the reward. Only **one** `redemptionType` can be used as a filter. **Supported values:** `GAMES`, `AUCTION`, `CART_PROMOTION`, `CASH_WALLET`, `VENDOR_ONLY_REWARD`, `VOUCHER`, `CASH_BACK`, `INTOUCH_REWARD`, `PHYSICAL_REWARD`, `CHARITY`, `MILES`, `GIFT_CARD`, `SWEEPSTAKES`, `VENDOR_INTOUCH_REWARD`, `CARD_DISC`. |
 | **`rewardName`**     | String    | The name of the reward that was created. `rewardName` supports **partial search**. Users can search for a reward using part of its name, and results that match the partial input will be returned. **For example:** Searching for "Gold" could return "Gold Star Reward" or "Golden Points".                                                                                                                 |
@@ -54,11 +51,9 @@ This API is used to retrieve list of rewards owned by brands based on filters.
 | **`groupName`**      | String    | Filters rewards that are categorized under a specific group, for example: `'Seasonal Specials'`.                                                                                                                                                                                                                                                                                                              |
 
 <CodeGroup show-lines="true" tabs={["API Endpoint"]}>
-
-  ```http "API Endpoint"
+  ```http wrap="true" "API Endpoint"
   https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/list/brand/1?page=0&size=20&startDate=1727254620000&endDate=1752244980000&rewardType=CHARITY&rewardStatus=LIVE
   ```
-
 </CodeGroup>
 
 ## Response parameters
@@ -107,8 +102,7 @@ This API is used to retrieve list of rewards owned by brands based on filters.
 | lastUpdatedOnDateTime | Date and time of the most recent reward modification.The ISO 8601 timestamp format is used: YYYY-MM-DDTHH:MM:SSZ. (e.g., `2023-10-05T14:30:00Z`) |
 | createdBy             | The user who created the reward.                                                                                                                 |
 
-<CodeGroup show-lines="true" tabs={["200- Response", "200- With Owner type", "Failure: Invalid Brand ID", "Failure: Both startDate and endDate is mandatory"]}>
-
+<CodeGroup show-lines="true" tabs={["200- Response","200- With Owner type","Failure: Invalid Brand ID","Failure: Both startDate and endDate is mandatory"]}>
   ```json "200- Response"
   {
       "status": {
@@ -360,7 +354,6 @@ This API is used to retrieve list of rewards owned by brands based on filters.
       },
 
   ```
-
 </CodeGroup>
 
 ## API-specific error codes
@@ -368,3 +361,4 @@ This API is used to retrieve list of rewards owned by brands based on filters.
 | Error code | Description     |
 | :--------- | :-------------- |
 | 3004       | Brand not found |
+

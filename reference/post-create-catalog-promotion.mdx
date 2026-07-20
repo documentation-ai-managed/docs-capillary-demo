@@ -1,33 +1,27 @@
 ---
 title: Create catalog promotion
 ---
-
 This API is used to create catalog promotions and link it to a reward.
 
-<Callout kind="alert">
-
+<Callout kind="alert" collapsed="false">
   Notes
 
-- By default, the reward catalog promotion is not enabled for the organization. Create a ticket to the Capillary Product Support team.
-- A reward can be linked to only one active- running or scheduled promotion.
-- Promotion can be disabled but cannot be re-enabled.
-
+  - By default, the reward catalog promotion is not enabled for the organization. Create a ticket to the Capillary Product Support team.
+  - A reward can be linked to only one active- running or scheduled promotion.
+  - Promotion can be disabled but cannot be re-enabled.
 </Callout>
 
-<Callout kind="success">
-
+<Callout kind="success" collapsed="false">
   Notes
 
-- For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
-- Start time and end time are in UTC zone.
-
+  - For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
+  - Start time and end time are in UTC zone.
 </Callout>
 
 ## Example request
 
 <CodeGroup show-lines="true" tabs={["Sample request"]}>
-
-  ```bash "Sample request"
+  ```bash wrap="true" "Sample request"
   curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/promotion/create' \
   --header 'Accept: application/json' \
   --header 'Content-Type: application/json' \
@@ -55,17 +49,16 @@ This API is used to create catalog promotions and link it to a reward.
   }
   '
   ```
-
 </CodeGroup>
 
 ## Prerequisites
 
-- [ ] Authentication: Basic or OAuth authentication
-- [ ] Default access group
+- Authentication: Basic or OAuth authentication
+- Default access group
 
 ## Resource information
 
-| URI                    | /api_gateway/rewards/core/v1/promotion/create |
+| URI                    | /api\_gateway/rewards/core/v1/promotion/create |
 | :--------------------- | :--------------------------------------------- |
 | HTTP Method            | POST                                           |
 | Pagination             | No                                             |
@@ -91,8 +84,7 @@ This API is used to create catalog promotions and link it to a reward.
 ## Example response
 
 <CodeGroup show-lines="true" tabs={["Sample response"]}>
-
-  ```json "Sample response"
+  ```json wrap="true" "Sample response"
   {
       "status": {
           "success": true,
@@ -105,7 +97,6 @@ This API is used to create catalog promotions and link it to a reward.
       "failedRewards": []
   }
   ```
-
 </CodeGroup>
 
 ## Response parameters
@@ -126,3 +117,4 @@ This API is used to create catalog promotions and link it to a reward.
 | :--------- | :---------------------------------------------------------------------- |
 | 11015      | Reward expired or disabled or free. Cannot apply for catalog promotion. |
 | 11004      | Reward already linked to active catalog promotion.                      |
+

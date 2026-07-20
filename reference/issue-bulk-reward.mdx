@@ -1,9 +1,7 @@
 ---
 title: Issue bulk reward
 ---
-
 ### param-table-linebreaks
-
 
 This API is used to issue multiple rewards to the user based on mobile number email Id.
 
@@ -13,40 +11,35 @@ While issuing bulk rewards,
    1. If the customer has enough points, then all the rewards in the issue bulk call are issued in a single shot
    2. If the customer doesn't have enough points, then the issue bulk call is failed and no reward is issued.
 2. If the isRedeemable call is successful, then the system will issue the rewards to the user.
-
    1. Let's say, one reward is coupon, another is cart promotion in the request payload. Coupon is issued but cart promotion issual failed, this can happen and the coupon will be issued. Here in this case, partial issual will be successful.
 
-<Callout kind="danger" title="️ Issuing a reward created for a customer segment">
-
-If you want to issue a reward created for a specific customer segment, the user receiving the reward must belong to the segment or partition to which the reward is attached.
-
+<Callout kind="danger" collapsed="false">
+  If you want to issue a reward created for a specific customer segment, the user receiving the reward must belong to the segment or partition to which the reward is attached.
 </Callout>
 
-<Callout kind="tip" title="Note">
-
-- For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
-- If either of the userGroup2PrimaryUserId or userGroup2Id or userGroup2ExternalId is not null, the transaction will be treated as group loyalty redemption...
-- Rewards can be issued to customers when linked to cards or labels with an ACTIVE status. If no cards or labels are linked, rewards are still issued. A reward linked to a specific card series or label cannot be issued to a customer associated with a different card series or label.
-- The Rewards system (Marvel/Rewards Catalogue)  only deducts points from the customer if the vendor reward issue is successful. As a result, the need to reverse redeemed points does not arise, as points are deducted only upon a confirmed successful reward issue. The success of the vendor reward issue is determined based on the following configuration criteria:
-  1. \*\*HTTP Status Code:\*\*The API response must return a status code of 200.
-  2. \*\*Context Map Validation:\*\*The context map in the vendor redemption configuration must include a keyword "voucher". The "voucher" must have a valid value, such as a coupon code or reference ID.
-- If the conversion ratio results in a decimal points value, for example, 2,475 points × 0.005 ratio = 12.375 points, the Loyalty program must be configured to allow redemptions in multiples of **0.001**. Without this setting, the reward issuance will fail. To configure this, set **Allow redemption in multiples of** to **0.001** in the Loyalty program's redeem conditions. See [Points, Create redeem conditions](https://docs.capillarytech.com/docs/points#points-consumption-order) for instructions.
-
+<Callout kind="tip" collapsed="false">
+  - For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .
+  - If either of the userGroup2PrimaryUserId or userGroup2Id or userGroup2ExternalId is not null, the transaction will be treated as group loyalty redemption...
+  - Rewards can be issued to customers when linked to cards or labels with an ACTIVE status. If no cards or labels are linked, rewards are still issued. A reward linked to a specific card series or label cannot be issued to a customer associated with a different card series or label.
+  - The Rewards system (Marvel/Rewards Catalogue)  only deducts points from the customer if the vendor reward issue is successful. As a result, the need to reverse redeemed points does not arise, as points are deducted only upon a confirmed successful reward issue. The success of the vendor reward issue is determined based on the following configuration criteria:
+    1. \*\*HTTP Status Code:\*\*The API response must return a status code of 200.
+    2. \*\*Context Map Validation:\*\*The context map in the vendor redemption configuration must include a keyword "voucher". The "voucher" must have a valid value, such as a coupon code or reference ID.
+  - If the conversion ratio results in a decimal points value, for example, 2,475 points × 0.005 ratio = 12.375 points, the Loyalty program must be configured to allow redemptions in multiples of **0.001**. Without this setting, the reward issuance will fail. To configure this, set **Allow redemption in multiples of** to **0.001** in the Loyalty program's redeem conditions. See [Points, Create redeem conditions](https://docs.capillarytech.com/docs/points#points-consumption-order) for instructions.
 </Callout>
 
 ## Prerequisites
 
-- [ ] Authentication: Basic or OAuth authentication
-- [ ] Default access group
+- Authentication: Basic or OAuth authentication
+- Default access group
 
 ## Resource information
 
-| URI                    | /api_gateway/rewards/core/v1/user/rewards/issue?username=`{store}`\&amp;skip_validation=true |
-| :--------------------- | :------------------------------------------------------------------------------------------- |
-| HTTP Method            | POST                                                                                         |
-| Pagination             | No                                                                                           |
-| Batch support          | No                                                                                           |
-| Rate limit information | None                                                                                         |
+| URI                    | /api\_gateway/rewards/core/v1/user/rewards/issue?username=`{store}`\&amp;skip\_validation=true |
+| :--------------------- | :--------------------------------------------------------------------------------------------- |
+| HTTP Method            | POST                                                                                           |
+| Pagination             | No                                                                                             |
+| Batch support          | No                                                                                             |
+| Rate limit information | None                                                                                           |
 
 ## API endpoint example
 
@@ -57,35 +50,34 @@ If you want to issue a reward created for a specific customer segment, the user 
 | Parameter        | Data Type | Description                                                                                                                     |
 | ---------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | Username\*       | String    | Username name of the store.                                                                                                     |
-| skip_validation | Boolean   | A validation code is used to redeem points for the transaction. `skip_validation` is set to true to bypass the validation code. |
+| skip\_validation | Boolean   | A validation code is used to redeem points for the transaction. `skip_validation` is set to true to bypass the validation code. |
 
 ## Request body parameters
 
-| Parameter | Data Type | Description |
-| --- | --- | --- |
-| `mobile`* | String | Mobile phone number of the customer. Any of the identifiers is mandatory. |
-| `email ID`* | String | Email ID of the customer. Any of the identifiers is mandatory. |
-| `external ID`* | String | External ID of the customer. Any of the identifiers is mandatory. |
-| `brand` | String | Brand associated with the transaction. |
-| `transactionNumber` | String | Unique identifier for the transaction. |
-| `programId` | Integer | The ID of the program associated with the promotion. |
-| `notes` | String | A string used to store or represent additional information. |
-| `eventLogId` | String | A plain string identifier used to identify the transaction associated with a reward issuance. There is no character limit for this parameter. |
-| `quantity`* | Integer | Quantity or redemption value of the specific reward issued. This is applicable for rewards with payment config CONV_RATIO only and should have a value greater than one. For more information and various examples, refer to the documentation [here](https://docs.capillarytech.com/reference/reward-issuance-with-quantity-and-calculation-scenarios). **Notes:** -&#10;  • If the quantity is entered with decimals, the system will not consider the decimal part. For example, if you enter the value 1.56, the system will disregard the .56, and the value will be treated as 1.&#10;  • The maximum allowed quantity is **5** for rewards of type **CONV_RATIO** if either redemptionValue or points are not provided.&#10;  • If both the quantity and redemption value are defined in the payment configuration block, the defined number of rewards will be issued and the calculation will be based on the redemption value for each reward.&#10;  • If you define quantity without a redemption value, the system considers the quantity as the redemption value. For example, if you provide a quantity of five and no redemption value, one reward with a redemption value of 5 will be issued. |
-| `rewards` | Array | Array of rewards associated with the transaction. |
-| `rewardId` | Integer | Unique identifier for a reward. |
-| `params` | String | Params acts as a key that holds additional information or configuration details as a JSON object. |
-| `requestId` | String | A plain string identifier for the request that initiated this reward issuance attempt. Each request ID must be unique for each reward. This is used for [Idempotency check](https://docs.capillarytech.com/reference/idempotency-check-for-issuing-reward). There is no character limit for this parameter. |
-| `paymentConfig` | Object | Payment configuration details for the reward. **Note:** The payment config ID is mandatory if rewards are created with a payment configuration block. This applies when multiple payment configurations are defined for a single reward. It is not recommended to use Payment Config for single payment config as it will break the flow when rewards need to be issued from loyalty workflows/ loyalty promotions/ journeys/ campaigns. |
-| `-id` | Integer | Unique identifier for the payment configuration. (id can be obtained from this [API](https://docs.capillarytech.com/reference/get-brand-by-id)) |
-| `-redemptionValue` | Integer | Value associated with the reward. Applicable only when the reward is mapped to a `CONV_RATIO` payment configuration. Represents the value (e.g., miles) associated with the reward. **Note**: If both the quantity (e.g., 2) and redemption value (e.g., 100 in the payment configuration block) are provided in the request body, the system takes the corresponding quantity and redemption values. If redemption value is not provided, the system takes quantity as the redemption value. |
-| `customFields` | Object | The list of custom fields associated with the reward issued to the customer. A custom field allows you to add extra information related to the reward. You can add the custom field in the issue reward call once the custom field is created using the [create custom field API](/reference/post-create-custom-field). |
-| `fulfillmentDetails` | Object | The list of fulfillment details associated with the reward. There can be multiple stages that the reward undergoes, such as BOOKED, ON THE WAY, DELIVERED. For example, A brand can have a fulfillment status as the Reward is SHIPPED before delivering the reward to the customer. You can create a fulfillment status using the [Create fulfillment status API](/reference/create-fulfillment-status) and use it in the issue reward call. |
-| `userGroup2PrimaryUserId` | String | Specifies the user ID of the primary user to identify the user group from which points will be redeemed. The reward is issued directly to the individual customer (identified by mobile number, email ID, etc.) specified in the request.&#10;  • Use the above or `userGroup2Id` , `userGroup2ExternalId `to specify the group's shared points pool for the redemption.&#10;  • If all group identifiers are null, the transaction will not be a Group Loyalty Redemption, and points will be redeemed from the individual customer's account Note: For group redemption to occur, the EMF configuration enable_group_program_redemptions must be set to false since this configuration is used for MLP use cases only. |
-| `eventDateTime` | String | Date and time when a triggering event (transactional or behavioural) occurred, initiating the reward earning. Time format: UTC time format (YYYY-MM-DDTHH:MM:SSZ). |
+| Parameter                 | Data Type | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| ------------------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `mobile`\*                | String    | Mobile phone number of the customer. Any of the identifiers is mandatory.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `email ID`\*              | String    | Email ID of the customer. Any of the identifiers is mandatory.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `external ID`\*           | String    | External ID of the customer. Any of the identifiers is mandatory.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `brand`                   | String    | Brand associated with the transaction.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `transactionNumber`       | String    | Unique identifier for the transaction.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `programId`               | Integer   | The ID of the program associated with the promotion.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `notes`                   | String    | A string used to store or represent additional information.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `eventLogId`              | String    | A plain string identifier used to identify the transaction associated with a reward issuance. There is no character limit for this parameter.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `quantity`\*              | Integer   | Quantity or redemption value of the specific reward issued. This is applicable for rewards with payment config CONV\_RATIO only and should have a value greater than one. For more information and various examples, refer to the documentation [here](https://docs.capillarytech.com/reference/reward-issuance-with-quantity-and-calculation-scenarios). **Notes:** -&#xA;  • If the quantity is entered with decimals, the system will not consider the decimal part. For example, if you enter the value 1.56, the system will disregard the .56, and the value will be treated as 1.&#xA;  • The maximum allowed quantity is **5** for rewards of type **CONV\_RATIO** if either redemptionValue or points are not provided.&#xA;  • If both the quantity and redemption value are defined in the payment configuration block, the defined number of rewards will be issued and the calculation will be based on the redemption value for each reward.&#xA;  • If you define quantity without a redemption value, the system considers the quantity as the redemption value. For example, if you provide a quantity of five and no redemption value, one reward with a redemption value of 5 will be issued. |
+| `rewards`                 | Array     | Array of rewards associated with the transaction.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `rewardId`                | Integer   | Unique identifier for a reward.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `params`                  | String    | Params acts as a key that holds additional information or configuration details as a JSON object.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `requestId`               | String    | A plain string identifier for the request that initiated this reward issuance attempt. Each request ID must be unique for each reward. This is used for [Idempotency check](https://docs.capillarytech.com/reference/idempotency-check-for-issuing-reward). There is no character limit for this parameter.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `paymentConfig`           | Object    | Payment configuration details for the reward. **Note:** The payment config ID is mandatory if rewards are created with a payment configuration block. This applies when multiple payment configurations are defined for a single reward. It is not recommended to use Payment Config for single payment config as it will break the flow when rewards need to be issued from loyalty workflows/ loyalty promotions/ journeys/ campaigns.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `-id`                     | Integer   | Unique identifier for the payment configuration. (id can be obtained from this [API](https://docs.capillarytech.com/reference/get-brand-by-id))                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `-redemptionValue`        | Integer   | Value associated with the reward. Applicable only when the reward is mapped to a `CONV_RATIO` payment configuration. Represents the value (e.g., miles) associated with the reward. **Note**: If both the quantity (e.g., 2) and redemption value (e.g., 100 in the payment configuration block) are provided in the request body, the system takes the corresponding quantity and redemption values. If redemption value is not provided, the system takes quantity as the redemption value.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `customFields`            | Object    | The list of custom fields associated with the reward issued to the customer. A custom field allows you to add extra information related to the reward. You can add the custom field in the issue reward call once the custom field is created using the [create custom field API](/reference/post-create-custom-field).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `fulfillmentDetails`      | Object    | The list of fulfillment details associated with the reward. There can be multiple stages that the reward undergoes, such as BOOKED, ON THE WAY, DELIVERED. For example, A brand can have a fulfillment status as the Reward is SHIPPED before delivering the reward to the customer. You can create a fulfillment status using the [Create fulfillment status API](/reference/create-fulfillment-status) and use it in the issue reward call.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `userGroup2PrimaryUserId` | String    | Specifies the user ID of the primary user to identify the user group from which points will be redeemed. The reward is issued directly to the individual customer (identified by mobile number, email ID, etc.) specified in the request.&#xA;  • Use the above or `userGroup2Id` , `userGroup2ExternalId `to specify the group's shared points pool for the redemption.&#xA;  • If all group identifiers are null, the transaction will not be a Group Loyalty Redemption, and points will be redeemed from the individual customer's account Note: For group redemption to occur, the EMF configuration enable\_group\_program\_redemptions must be set to false since this configuration is used for MLP use cases only.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `eventDateTime`           | String    | Date and time when a triggering event (transactional or behavioural) occurred, initiating the reward earning. Time format: UTC time format (YYYY-MM-DDTHH:MM:SSZ).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 
-<CodeGroup show-lines="true" tabs={["json", "With payment config", "With fullfilment status and custom field", "With user_group2_primary_user_id", "With params in Reward Level", "With params in Request Level", "With redemptionValue", "With event log ID and request ID", "Issuing a reward by defining  Quantity and Redemption Value", "Issuing a reward with only quantity"]}>
-
+<CodeGroup show-lines="true" tabs={["With payment config","With fullfilment status and custom field","With user_group2_primary_user_id","With params in Reward Level","With params in Request Level","With redemptionValue","With event log ID and request ID","Issuing a reward by defining  Quantity and Redemption Value","Issuing a reward with only quantity"]}>
   ```json
   {
       "status": {
@@ -340,7 +332,6 @@ If you want to issue a reward created for a specific customer segment, the user 
       ]
   }
   ```
-
 </CodeGroup>
 
 ## Response parameters
@@ -366,7 +357,7 @@ If you want to issue a reward created for a specific customer segment, the user 
 | requestId               | A unique identifier for the request that is used for Idempotency check.                                                                                                                                                                                                                                                                     |
 | intouch                 | Details of the rewards issued, including points redeemed, coupon codes, and expiration dates.                                                                                                                                                                                                                                               |
 | pointsRedeemed          | The number of points that were redeemed for this reward.                                                                                                                                                                                                                                                                                    |
-| pointsRedeemedInDecimal | The number of points redeemed, expressed as a decimal value rounded to 3 decimal places. Rounding follows the HALF_UP method, where if the fourth decimal digit is 5 or more, the third decimal rounds up. For example, 21.4555 becomes 21.456, and 21.4554 becomes 21.455. This field will have values only for conversion ratio rewards. |
+| pointsRedeemedInDecimal | The number of points redeemed, expressed as a decimal value rounded to 3 decimal places. Rounding follows the HALF\_UP method, where if the fourth decimal digit is 5 or more, the third decimal rounds up. For example, 21.4555 becomes 21.456, and 21.4554 becomes 21.455. This field will have values only for conversion ratio rewards. |
 | couponCode              | The unique code for the issued coupon.                                                                                                                                                                                                                                                                                                      |
 | codeExpiry              | The expiration date and time for the issued coupon code in the format YYYY-MM-DD HH:MM:SS.                                                                                                                                                                                                                                                  |
 | promotions              | A list of promotional offers associated with the reward.                                                                                                                                                                                                                                                                                    |
@@ -379,8 +370,7 @@ If you want to issue a reward created for a specific customer segment, the user 
 | redemptionType          | Specifies the category of reward redemption available, that indicate how users can redeem the reward.                                                                                                                                                                                                                                       |
 | redemptionValue         | Redemption Value is the value of a reward, showing how much is needed to claim it.                                                                                                                                                                                                                                                          |
 
-<CodeGroup show-lines="true" tabs={["200 OK", "Reward issued partially", "Invalid payment mode", "Payment config ID mandatory", "User don't belong to group", "Non-Redeemable points", "Invalid ID is passed", "Invalid Request ID", "Duplicate Request ID", "User not associated with the card series linked to reward"]}>
-
+<CodeGroup show-lines="true" tabs={["200 OK","Reward issued partially","Invalid payment mode","Payment config ID mandatory","User don't belong to group","Non-Redeemable points","Invalid ID is passed","Invalid Request ID","Duplicate Request ID","User not associated with the card series linked to reward"]}>
   ```json "200 OK"
   {
       "status": {
@@ -669,7 +659,6 @@ If you want to issue a reward created for a specific customer segment, the user 
       "requestId": null
   }
   ```
-
 </CodeGroup>
 
 ## Example: Issuing reward with quantity and redemption value
@@ -683,8 +672,7 @@ Consider the below scenario:
 **Sample Payload:**
 
 <CodeGroup show-lines="true" tabs={["JSON"]}>
-
-  ```json "JSON"
+  ```json JSON
   {
       "mobile": "11223569865",
       "brand": "BUKL",
@@ -698,13 +686,12 @@ Consider the below scenario:
           ]
       }
   ```
-
 </CodeGroup>
 
 **Calculation:**
 
 Formula:\
-Points need to be Redeemed = (redemption_value conv_ratio) × reward_quantity
+Points need to be Redeemed = (redemption\_value conv\_ratio) × reward\_quantity
 
 \= (1000 0.44) × 3 = 6818 points\
 Result: 6818 points are redeemed for 3 reward vouchers of 1000 miles each.
@@ -722,8 +709,7 @@ The system interprets the quantity as the redemption value and reward quantity a
 **Sample Payload:**
 
 <CodeGroup show-lines="true" tabs={["JSON"]}>
-
-  ```json "JSON"
+  ```json JSON
   {
       "mobile": "11223569865",
       "brand": "BUKL",
@@ -735,7 +721,6 @@ The system interprets the quantity as the redemption value and reward quantity a
       ]
   }
   ```
-
 </CodeGroup>
 
 ## Response parameters
@@ -761,7 +746,7 @@ The system interprets the quantity as the redemption value and reward quantity a
 | requestId               | A unique identifier for the request that is used for Idempotency check.                                                                                                                                                                                                                                                                     |
 | intouch                 | Details of the rewards issued, including points redeemed, coupon codes, and expiration dates.                                                                                                                                                                                                                                               |
 | pointsRedeemed          | The number of points that were redeemed for this reward.                                                                                                                                                                                                                                                                                    |
-| pointsRedeemedInDecimal | The number of points redeemed, expressed as a decimal value rounded to 3 decimal places. Rounding follows the HALF_UP method, where if the fourth decimal digit is 5 or more, the third decimal rounds up. For example, 21.4555 becomes 21.456, and 21.4554 becomes 21.455. This field will have values only for conversion ratio rewards. |
+| pointsRedeemedInDecimal | The number of points redeemed, expressed as a decimal value rounded to 3 decimal places. Rounding follows the HALF\_UP method, where if the fourth decimal digit is 5 or more, the third decimal rounds up. For example, 21.4555 becomes 21.456, and 21.4554 becomes 21.455. This field will have values only for conversion ratio rewards. |
 | couponCode              | The unique code for the issued coupon.                                                                                                                                                                                                                                                                                                      |
 | codeExpiry              | The expiration date and time for the issued coupon code in the format YYYY-MM-DD HH:MM:SS.                                                                                                                                                                                                                                                  |
 | promotions              | A list of promotional offers associated with the reward.                                                                                                                                                                                                                                                                                    |
@@ -774,8 +759,7 @@ The system interprets the quantity as the redemption value and reward quantity a
 | redemptionType          | Specifies the category of reward redemption available, that indicate how users can redeem the reward.                                                                                                                                                                                                                                       |
 | redemptionValue         | Redemption Value is the value of a reward, showing how much is needed to claim it.                                                                                                                                                                                                                                                          |
 
-<CodeGroup show-lines="true" tabs={["200 OK", "Reward issued partially", "Invalid payment mode", "Payment config ID mandatory", "User don't belong to group", "Non-Redeemable points", "Invalid ID is passed", "Invalid Request ID", "Duplicate Request ID", "User not associated with the card series linked to reward"]}>
-
+<CodeGroup show-lines="true" tabs={["200 OK","Reward issued partially","Invalid payment mode","Payment config ID mandatory","User don't belong to group","Non-Redeemable points","Invalid ID is passed","Invalid Request ID","Duplicate Request ID","User not associated with the card series linked to reward"]}>
   ```json "200 OK"
   {
       "status": {
@@ -1064,7 +1048,6 @@ The system interprets the quantity as the redemption value and reward quantity a
       "requestId": null
   }
   ```
-
 </CodeGroup>
 
 ## Example: Issuing reward with quantity and redemption value
@@ -1078,8 +1061,7 @@ Consider the below scenario:
 **Sample Payload:**
 
 <CodeGroup show-lines="true" tabs={["JSON"]}>
-
-  ```json "JSON"
+  ```json JSON
   {
     "mobile": "11223569865",
     "brand": "BUKL",
@@ -1094,17 +1076,16 @@ Consider the below scenario:
     ]
   }
   ```
-
 </CodeGroup>
 
 **Calculation:**\
 Formula:
-Points need to be Redeemed = (redemption_value / conv_ratio) × reward_quantity
+Points need to be Redeemed = (redemption\_value / conv\_ratio) × reward\_quantity
 
 \= (1000 / 0.44) × 3 = 6818 points\
 **Result:** 6818 points are redeemed for 3 reward vouchers of 1000 miles each.
 
-***
+---
 
 ## Example: Issuing reward with only quantity
 
@@ -1118,8 +1099,7 @@ The system interprets the quantity as the redemption value and reward quantity a
 **Sample Payload:**
 
 <CodeGroup show-lines="true" tabs={["JSON"]}>
-
-  ```json "JSON"
+  ```json JSON
   {
     "mobile": "11223569865",
     "brand": "BUKL",
@@ -1131,12 +1111,11 @@ The system interprets the quantity as the redemption value and reward quantity a
     ]
   }
   ```
-
 </CodeGroup>
 
 **Calculation:**\
 Formula:
-Points need to be Redeemed = (redemption_value / conv_ratio) × reward_quantity
+Points need to be Redeemed = (redemption\_value / conv\_ratio) × reward\_quantity
 
 \= (3 / 0.44) × 1 = 7 points\
 **Result:** 7 points are redeemed for one reward voucher of 3 miles.
@@ -1147,17 +1126,17 @@ Consider the following scenario:
 
 | **Reward** | **Segments and Partitions** |
 | ---------- | --------------------------- |
-| r1         | \{`s1`,`p1`\}, \{`s2`,`p2`\}    |
-| r2         | \{`s1`,`p2`\}, \{`s2`,`p1`\}    |
-| r3         | \{`s1`,`p1`\}, \{`s3`,`p1`\}    |
+| r1         | p1, p2                      |
+| r2         | p2, p1                      |
+| r3         | p1, p1                      |
 | r4         | No segments or partitions   |
 
 **User Segments and Partitions:**
 
 | **User** | **Belongs to Segments and Partitions** | **Reward details**                       |
 | :------- | :------------------------------------- | :--------------------------------------- |
-| user1    | \{`s2`,`p1`\}, \{`s3`,`p2`\}               | Does not contain r1, r3; contains r2, r4 |
-| user2    | \{`s1`,`p1`\}                            | Contains r1, r3, r4; does not contain r2 |
+| user1    | p1, p2                                 | Does not contain r1, r3; contains r2, r4 |
+| user2    | p1                                     | Contains r1, r3, r4; does not contain r2 |
 | user3    | No segments or partitions              | Contains r4                              |
 
 **Bulk Issuance Results:**
@@ -1168,7 +1147,7 @@ Consider the following scenario:
 | user2    | r1, r2, r3, r4                     | r2 fails; r1, r3, and r4 pass        |
 | user3    | r1, r2, r3, r4                     | r1, r2, and r3 fail; r4 passes       |
 
-***
+---
 
 ## API-specific error codes
 
@@ -1185,3 +1164,4 @@ Consider the following scenario:
 | 12016      | Invalid payment mode passed. Whatever `paymentId` is passed in this API, the same should be mapped for the reward created.                                                                                                                                                |
 | 12034      | User doesn't belong to segment partition defined for reward segment                                                                                                                                                                                                       |
 | 12050      | User has no valid cards from card series linked to the reward. The customer is not associated with the card series linked to the issued reward.                                                                                                                           |
+
