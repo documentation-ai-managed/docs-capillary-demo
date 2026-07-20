@@ -1,20 +1,16 @@
 ---
 title: Update badge custom field
 ---
-
 This API allows you to update the custom field of the badge.
 
-<Callout kind="tip" title="Note">
-
-For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
-
+<Callout kind="tip" collapsed="false">
+  For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).
 </Callout>
 
 ## Example request
 
 <CodeGroup show-lines="true" tabs={["Sample request"]}>
-
-  ```bash "Sample request"
+  ```bash wrap="true" "Sample request"
   curl --location --request PUT 'https://eu.api.capillarytech.com/api_gateway/v1/badges/customField/6995bc2a306bcf780036c094' \
   --header 'Content-Type: application/json' \
   --header 'Accept: application/json' \
@@ -28,17 +24,16 @@ For detailed information about our APIs and for hands-on testing, refer document
       "dataType": "STRING"
   }'
   ```
-
 </CodeGroup>
 
 ## Prerequisites
 
-- [ ] Authentication: Basic or OAuth authentication
-- [ ] Default access group
+- Authentication: Basic or OAuth authentication
+- Default access group
 
 ## Resource information
 
-| URI                  | /api_gateway/v1/badges/customField/`{customFieldId}` |
+| URI                  | /api\_gateway/v1/badges/customField/`{customFieldId}` |
 | :------------------- | :---------------------------------------------------- |
 | HTTP method          | PUT                                                   |
 | Pagination supported | No                                                    |
@@ -62,8 +57,7 @@ For detailed information about our APIs and for hands-on testing, refer document
 | dataType\*     | Enum      | Data type of the custom field. Supported values: INTEGER, BOOLEAN, DATE, STRING |
 
 <CodeGroup show-lines="true" tabs={["JSON"]}>
-
-  ```json "JSON"
+  ```json JSON
   {
       "name": "CF32 date",
       "isMandatory": false,
@@ -72,13 +66,11 @@ For detailed information about our APIs and for hands-on testing, refer document
       "dataType": "STRING"
   }
   ```
-
 </CodeGroup>
 
 ## Example response
 
 <CodeGroup show-lines="true" tabs={["Sample response"]}>
-
   ```json "Sample response"
   {
       "data": {
@@ -100,28 +92,27 @@ For detailed information about our APIs and for hands-on testing, refer document
       "warnings": []
   }
   ```
-
 </CodeGroup>
 
 ## Response parameters
 
-| Parameter Name | Data Type | Description |
-| --- | --- | --- |
-| id | String | The unique identifier of the custom field. |
-| orgId | Integer | The org ID the custom field belongs to. |
-| name | String | The name of the custom field. |
-| isMandatory | Boolean | Indicates if the custom field is mandatory. |
-| defaultValue | String | The default value of the custom field. |
-| isActive | Boolean | Indicates if the custom field is active. |
-| dataType | Enum | The data type of the custom field's value. |
-| createdOn | Date | The timestamp when the custom field was created. |
-| createdOnISO | String | The timestamp when the custom field was created, in ISO 8601 format, returned in the server time zone. EU server example 2025-12-16T14:30:45Z → 16 December 2025, 14:30:45 (UTC) India server example 2025-12-16T14:30:45+05:30 → 16 December 2025, 14:30:45 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
-| createdBy | Integer | The identifier of the user who created the custom field. |
-| lastUpdatedOn | Date | The timestamp when the custom field was last updated. |
-| lastUpdatedOnISO | String | The timestamp when the custom field was last updated, in ISO timestamp format. The timestamp when the custom field was last updated, in ISO 8601 format, returned in the server time zone. EU server example 2025-12-16T14:30:45Z → 16 December 2025, 14:30:45 (UTC) India server example 2025-12-16T14:30:45+05:30 → 16 December 2025, 14:30:45 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
-| lastUpdatedBy | Integer | The identifier of the user who last updated the custom field. |
-| errors | Array | A list of errors if any. |
-| warnings | Array | A list of warnings if any. |
+| Parameter Name   | Data Type | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| ---------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id               | String    | The unique identifier of the custom field.                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| orgId            | Integer   | The org ID the custom field belongs to.                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| name             | String    | The name of the custom field.                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| isMandatory      | Boolean   | Indicates if the custom field is mandatory.                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| defaultValue     | String    | The default value of the custom field.                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| isActive         | Boolean   | Indicates if the custom field is active.                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| dataType         | Enum      | The data type of the custom field's value.                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| createdOn        | Date      | The timestamp when the custom field was created.                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| createdOnISO     | String    | The timestamp when the custom field was created, in ISO 8601 format, returned in the server time zone. EU server example 2025-12-16T14:30:45Z → 16 December 2025, 14:30:45 (UTC) India server example 2025-12-16T14:30:45+05:30 → 16 December 2025, 14:30:45 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request.                                                                                     |
+| createdBy        | Integer   | The identifier of the user who created the custom field.                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| lastUpdatedOn    | Date      | The timestamp when the custom field was last updated.                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| lastUpdatedOnISO | String    | The timestamp when the custom field was last updated, in ISO timestamp format. The timestamp when the custom field was last updated, in ISO 8601 format, returned in the server time zone. EU server example 2025-12-16T14:30:45Z → 16 December 2025, 14:30:45 (UTC) India server example 2025-12-16T14:30:45+05:30 → 16 December 2025, 14:30:45 (IST) Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
+| lastUpdatedBy    | Integer   | The identifier of the user who last updated the custom field.                                                                                                                                                                                                                                                                                                                                                                                                               |
+| errors           | Array     | A list of errors if any.                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| warnings         | Array     | A list of warnings if any.                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 
 ## Error codes
 
@@ -130,3 +121,4 @@ For detailed information about our APIs and for hands-on testing, refer document
 | 745        | Custom Field default value should be a Boolean |
 | 744        | Custom Field default value should be a number  |
 | 746        | Custom Field data type cannot be changed       |
+
