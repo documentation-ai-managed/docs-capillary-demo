@@ -15,8 +15,8 @@ This API retrieves the detailed information of a specific reward transaction usi
 
 ## Prerequisites
 
-- [ ] Authentication: Basic or OAuth authentication
-- [ ] Default access group
+☐ Authentication: Basic or OAuth authentication
+☐ Default access group
 
 ## Resource information
 
@@ -44,15 +44,15 @@ This API retrieves the detailed information of a specific reward transaction usi
 | :-------------------- | :-------- | :------------------------------------------------------------------------------------------------------------------------------------ |
 | rewardTransactionId\* | String    | Unique identifier of the reward transaction. The reward transaction is generated during the issual of the reward. **Example**: 327847 |
 
-<CodeGroup show-lines="true" tabs={["With couponCodeCase filter"]}>
-  ```bash
+<CodeGroup show-lines="true" tabs={["cURL","With couponCodeCase filter"]}>
+  ```bash wrap="true" cURL
   /curl --location 'http://crm-nightly-new.cc.capillarytech.com/api_gateway/rewards/core/v1.1/reward-transactions/<rewardTransactionId>' \
   e--header 'DATA-SCOPE: OTHER' \
   x--header 'DATA-SCOPE-ORG: 50672' \
   --header 'Authorization: Basic a2FyXzE6MzE1MmQyMzRiNzA='
   ```
 
-  ```text "With couponCodeCase filter"
+  ```text wrap="true" "With couponCodeCase filter"
   curl --location 'https://crm-staging-new.cc.capillarytech.com/api_gateway/rewards/core/v1.1/reward-transactions/927488?couponCodeCase=AS_IT_IS' \
   --header 'Accept: application/json' \
   --header 'Content-Type: application/json' \
