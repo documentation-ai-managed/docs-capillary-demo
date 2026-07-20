@@ -1,7 +1,7 @@
 ---
 title: Create Data Field
 ---
-<Callout kind="tip" collapsed="false">
+<Callout kind="tip" title="Note:">
   For detailed information about the APIs and for hands-on testing, refer to the [API overview documentation](https://docs.capillarytech.com/reference/apioverview) and the step-by-step guide on [making your first API call.](https://docs.capillarytech.com/reference/make-your-first-api-call)
 </Callout>
 
@@ -37,11 +37,11 @@ This API lets you specify which data fields should be included when performing a
 |   • `fieldAlias`         | String    | The alias or display name of the field.                                                                                                                                                                                                                                      |
 |   • `fieldType`          | Enum      | Type of field. Use the field type `DATA`.                                                                                                                                                                                                                                    |
 |   • `dataSourceDetails`  | Object    | Contains details about the data source.                                                                                                                                                                                                                                      |
-|   ◦ `fieldReference`     | String    | Applicable when using custom fields or extended fields. Ex: `extendedFields.ship_email`, `customFields.age`. If you are using store code to search, use `additionalFields.storecode` (applicable for transaction).                                                           |
+|     ◦ `fieldReference`   | String    | Applicable when using custom fields or extended fields. Ex: `extendedFields.ship_email`, `customFields.age`. If you are using store code to search, use `additionalFields.storecode` (applicable for transaction).                                                           |
 |   • `dataType`           | String    | Data type of the field (`STRING`, `NUMBER`, `DECIMAL`, or `DATE`).                                                                                                                                                                                                           |
 
-<CodeGroup show-lines="true" tabs={["Customer","Transaction"]}>
-  ```bash Customer
+<CodeGroup show-lines="true" tabs={["Bash"]}>
+  ```bash
   curl --location 'eu.api.capillarytech.com/api_gateway/cortex/v1/dataFields' \
   --header 'Authorization: Basic bmVlcmFqLmRvNGFmDA0MDA5Y2IwMzZhNGNjZGMzMzQzMWVmOWFjOQ==' \
   --header 'Content-Type: application/json' \
@@ -98,9 +98,7 @@ This API lets you specify which data fields should be included when performing a
 
   	]
   }'
-  ```
 
-  ```bash Transaction
   curl --location 'eu.api.capillarytech.com/api_gateway/cortex/v1/dataFields' \
   --header 'Authorization: Basic bmVlcmFqLmRvYzpiNGFmODDA5Y2IwMzZhNGNjZGMzMzQzMWVmOWFjOQ==' \
   --header 'Content-Type: application/json' \
@@ -167,7 +165,7 @@ This API lets you specify which data fields should be included when performing a
 |   • `fieldAlias`        | String    | The alias or display name of the search field.                      |
 |   • `fieldType`         | Enum      | Type of field (e.g., `INDEXED`, `FILTERABLE`).                      |
 |   • `dataSourceDetails` | Object    | Contains details about the data source.                             |
-|   ◦ `fieldReference`    | String    | The reference to the search field in the data source.               |
+|     ◦ `fieldReference`  | String    | The reference to the search field in the data source.               |
 |   • `dataType`          | String    | Data type of the field (e.g., `STRING`, `DATE`).                    |
 | auditInfo               | Object    | An object containing audit information about the criteria.          |
 |   • `createdOn`         | String    | The timestamp indicating when the criteria was created.             |
@@ -175,8 +173,8 @@ This API lets you specify which data fields should be included when performing a
 |   • `lastUpdatedOn`     | String    | The timestamp indicating when the search criteria was last updated. |
 |   • `lastUpdatedBy`     | Integer   | The ID of the user who last updated the criteria.                   |
 
-<CodeGroup show-lines="true" tabs={["Customer","Transaction"]}>
-  ```json Customer
+<CodeGroup show-lines="true" tabs={["JSON"]}>
+  ```json
   {
       "data": {
           "id": "67e6a8bfdd6a186b5555ba98",
@@ -239,9 +237,7 @@ This API lets you specify which data fields should be included when performing a
       },
       "errors": []
   }
-  ```
 
-  ```json Transaction
   {
       "data": {
           "id": "67ebcbe9730aa850fc504145",
@@ -309,4 +305,3 @@ This API lets you specify which data fields should be included when performing a
 | 400             | 1005           | Field data source cannot be empty                                                  |
 | 400             | 1006           | Field data type cannot be empty                                                    |
 | 400             | 1045           | Field type is required                                                             |
-
