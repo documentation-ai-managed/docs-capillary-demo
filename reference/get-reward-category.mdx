@@ -9,9 +9,9 @@ This API allows you to retrieve the details of the reward categories for a parti
 
 ## Prerequisites
 
-- [ ] Authentication - Basic or OAuth authentication details
-- [ ] Default access group
-- [ ] Brand ID or Brand Name
+- Authentication - Basic or OAuth authentication details
+- Default access group
+- Brand ID or Brand Name
 
 ## Resource information
 
@@ -46,14 +46,14 @@ With Brand Name:
 | sortBy         | Enum      | Sorts the returned reward category list.Supported values: `lastUpdatedOn`                                                                      |
 | orderBy        | Enum      | Specifies the order in which results should be sorted.Supported values: `"ASC"` for ascending, `"DESC"` for descending.Default value is "DESC" |
 
-<CodeGroup show-lines="true" tabs={["Sample Request"]}>
+<CodeGroup show-lines="true" tabs={["Sample Request","With sortBy=lastUpdatedOn"]}>
   ```bash wrap="true" "Sample Request"
   curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/metadata/categories/brand/55' \
   --header 'Accept: */*' \
   --header 'Authorization: Basic Ymxpc3MJmNGRjNzU5MWI1NzY='
   ```
 
-  ```text wrap="true"
+  ```text wrap="true" "With sortBy=lastUpdatedOn"
   curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/metadata/categories/brand/55?orderBy=ASC&sortBy=lastUpdatedOn' \
   --header 'Accept: */*' \
   --header 'Authorization: Basic Z2VvcmdlLmpvaG5zb246OTg4OTU2NWI4ODVhMmY4ZWE1MTk1MjA2NWEwYTEzNzg=' \
@@ -74,7 +74,7 @@ With Brand Name:
 | -name        | String    | Name of the reward category.                                                                                                                       |
 | -enabled     | Boolean   | Current active status of the reward category. If true, the reward category is currently active, else it is inactive.**Values:** `true` or `false`. |
 
-<CodeGroup show-lines="true" tabs={["Sample Response","Invalid brandId"]}>
+<CodeGroup show-lines="true" tabs={["Sample Response","Invalid brandId","With sortBy=lastUpdatedOn"]}>
   ```json "Sample Response"
   {
       "status": {
@@ -108,7 +108,7 @@ With Brand Name:
   }
   ```
 
-  ```text
+  ```text "With sortBy=lastUpdatedOn"
   {
       "status": {
           "success": true,
