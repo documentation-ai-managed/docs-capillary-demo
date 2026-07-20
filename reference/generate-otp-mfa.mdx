@@ -16,9 +16,9 @@ If the rate limit is reached, further OTP generation requests for that mobile nu
 
 ## Prerequisites
 
-&#9744; **Access group resource:** Write access to customer group resource. For more information on access control, see the [access group documentation](https://docs.capillarytech.com/docs/access-group).
+☐ **Access group resource:** Write access to customer group resource. For more information on access control, see the [access group documentation](https://docs.capillarytech.com/docs/access-group).
 
-&#9744; **Authentication:** Basic or OAuth authentication details. For more information on authentication, see the [Authentication documentation](https://docs.capillarytech.com/docs/api-client).
+☐ **Authentication:** Basic or OAuth authentication details. For more information on authentication, see the [Authentication documentation](https://docs.capillarytech.com/docs/api-client).
 
 ## Example request
 
@@ -49,20 +49,20 @@ If the rate limit is reached, further OTP generation requests for that mobile nu
 
 | Parameter (Parameters marked with \* are mandatory) | Data Type | Description                                                                                                                                                                                                                                                                                                                                                                                                            |
 | :-------------------------------------------------- | :-------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ``\*                                                | Enum      | Customer identifier used for MFA token generation. Values: `MOBILE`, `EMAIL`, `USERNAME`, `EXTERNALID`. If you want to use external ID, [external ID login](https://docs.capillarytech.com/docs/setup_customer#customer-registration-configuration) must be enabled in the organisation settings.                                                                                                                      |
-| ``\*                                                | String    | Value of the identifier. For example, if `identifierType` is `MOBILE`, the `identifierValue` is mobile number. If you want to send the OTP to WhatsApp or Zalo, you need to raise a JIRA ticket to the sustenance team to [define the related configurations](https://docs.capillarytech.com/reference/authentication-configurations#integrating-whatsapp-and-zalo-for-otp-communication) and configure the templates. |
-| ``\*                                                | String    | Device ID of the customer that receives OTP.                                                                                                                                                                                                                                                                                                                                                                           |
-| ``\*                                                | String    | Name of the brand or organisation that needs verification.                                                                                                                                                                                                                                                                                                                                                             |
-| ``\*                                                | String    | Unique session ID created from `/mfa/token/generate` API.                                                                                                                                                                                                                                                                                                                                                              |
+| **`identifierType`**\*                              | Enum      | Customer identifier used for MFA token generation. Values: `MOBILE`, `EMAIL`, `USERNAME`, `EXTERNALID`. If you want to use external ID, [external ID login](https://docs.capillarytech.com/docs/setup_customer#customer-registration-configuration) must be enabled in the organisation settings.                                                                                                                      |
+| **`identifierValue`**\*                             | String    | Value of the identifier. For example, if `identifierType` is `MOBILE`, the `identifierValue` is mobile number. If you want to send the OTP to WhatsApp or Zalo, you need to raise a JIRA ticket to the sustenance team to [define the related configurations](https://docs.capillarytech.com/reference/authentication-configurations#integrating-whatsapp-and-zalo-for-otp-communication) and configure the templates. |
+| **`deviceId`**\*                                    | String    | Device ID of the customer that receives OTP.                                                                                                                                                                                                                                                                                                                                                                           |
+| **`brand`**\*                                       | String    | Name of the brand or organisation that needs verification.                                                                                                                                                                                                                                                                                                                                                             |
+| **`sessionId`**\*                                   | String    | Unique session ID created from `/mfa/token/generate` API.                                                                                                                                                                                                                                                                                                                                                              |
 
 ## Response parameters
 
-| Parameter | Data Type | Description                                                             |
-| --------- | --------- | ----------------------------------------------------------------------- |
-| status    | object    | Object containing status information.                                   |
-| • success | boolean   | Boolean indicating the status of the request.                           |
-| • code    | integer   | HTTP status code indicating the result. Example: 200 indicates success. |
-| • message | string    | Message describing the status of the request.                           |
+| Parameter   | Data Type | Description                                                             |
+| ----------- | --------- | ----------------------------------------------------------------------- |
+| `status`    | object    | Object containing status information.                                   |
+| • `success` | boolean   | Boolean indicating the status of the request.                           |
+| • `code`    | integer   | HTTP status code indicating the result. Example: 200 indicates success. |
+| • `message` | string    | Message describing the status of the request.                           |
 
 <CodeGroup show-lines="true" tabs={["JSON"]}>
   ```json JSON
@@ -75,3 +75,4 @@ If the rate limit is reached, further OTP generation requests for that mobile nu
   }
   ```
 </CodeGroup>
+
